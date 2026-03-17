@@ -24,6 +24,7 @@ The hierarchy of work: **Areas → Programs → Projects → Tasks.**
 When a Project spins up, the **Olympics framework** is used to form a team. This is where agents get drafted, roles get assigned, and interaction rules get defined.
 
 → [Olympics Framework](1-execution/olympics.md)
+→ [Project Kickoff Guide](1-execution/project-kickoff.md)
 → [Areas](1-execution/areas/)
 → [Programs](1-execution/programs/)
 
