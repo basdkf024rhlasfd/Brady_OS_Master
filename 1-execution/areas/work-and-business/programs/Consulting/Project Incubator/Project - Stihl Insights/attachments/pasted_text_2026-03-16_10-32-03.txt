@@ -1,0 +1,312 @@
+Below are clean product user stories you can drop directly into a backlog or sprint plan. I framed them for a CI system / AI analyst product rather than a prompt tweak so they’re useful for an actual dev roadmap.
+
+⸻
+
+Dev Plan — Reliability Improvements for STIHL CI System
+
+Epic 1 — Deterministic Command Execution
+
+Problem:
+Right now the system relies on natural language interpretation. That means commands like daily brief or stock pulse may occasionally produce partial or inconsistent outputs depending on how the model interprets the request.
+
+User Story 1.1 — Command Router
+
+As a CI system user (Rob)
+I want commands like daily brief, stock pulse, and battlecard husqvarna to trigger deterministic workflows
+So that I always receive the exact artifact expected.
+
+Acceptance Criteria
+	•	System detects command keywords with a command router
+	•	Commands map to specific output templates
+	•	Natural language interpretation is bypassed when a command is detected
+	•	Router supports parameters (ex: battlecard husqvarna)
+	•	Router logs which command was executed
+
+Success Metric
+	•	≥99% command execution accuracy
+
+⸻
+
+User Story 1.2 — Command Feedback
+
+As a CI system user
+I want confirmation of which command was executed
+So that I know the system interpreted my request correctly.
+
+Acceptance Criteria
+
+System response header includes:
+
+Command executed: DAILY_BRIEF
+Template: Daily Intelligence Brief v1
+Data sources: Yahoo Finance, FRED
+
+
+⸻
+
+Epic 2 — Structured Data Retrieval Layer
+
+Problem:
+The current system depends on ad hoc web search, which can produce inconsistent data retrieval.
+
+User Story 2.1 — Market Data Adapter
+
+As a CI system
+I want a dedicated adapter for market data retrieval
+So that stock and commodity data is reliable and consistent.
+
+Acceptance Criteria
+
+Supported endpoints:
+
+stocks
+commodities
+currency
+
+Example response structure:
+
+{
+  "ticker": "SWK",
+  "price": 95.23,
+  "daily_change": -1.2,
+  "ytd_change": 3.4,
+  "timestamp": "2026-03-16T11:15:00",
+  "exchange": "NYSE",
+  "source": "Yahoo Finance"
+}
+
+Success Metric
+	•	All financial data pulled from structured API responses.
+
+⸻
+
+User Story 2.2 — Data Freshness Guardrails
+
+As a CI system user
+I want stale or unavailable data clearly flagged
+So that executives do not rely on outdated intelligence.
+
+Acceptance Criteria
+
+If data age > 24 hours:
+
+⚠️ STALE DATA — last updated March 14
+
+If API fails:
+
+❌ DATA UNAVAILABLE — source unreachable
+
+
+⸻
+
+Epic 3 — Competitive Intelligence Data Cache
+
+Problem:
+The system currently re-fetches data every run, which is inefficient and expensive.
+
+User Story 3.1 — CI Data Cache
+
+As a CI system
+I want frequently used datasets cached
+So that reports generate faster and reduce redundant API calls.
+
+Acceptance Criteria
+
+Cached datasets:
+
+peer financials
+commodity prices
+import volumes
+housing indicators
+battery cost curves
+
+Cache refresh frequency:
+
+Dataset	Refresh
+stock data	hourly
+commodities	daily
+trade data	weekly
+market reports	quarterly
+
+
+⸻
+
+User Story 3.2 — Historical Data Layer
+
+As a CI analyst
+I want historical snapshots of competitor metrics
+So that trend analysis can be generated automatically.
+
+Acceptance Criteria
+
+Store historical:
+
+stock prices
+commodity prices
+competitor revenue
+battery penetration estimates
+
+Supports:
+
+trend charts
+weekly fact sets
+quarterly comparisons
+
+
+⸻
+
+Epic 4 — Website Intelligence Monitor
+
+Problem:
+The site audit insight in the doc is static and will become outdated quickly.
+
+User Story 4.1 — Competitive Website Monitor
+
+As a CI system
+I want automated monitoring of competitor websites
+So that new products or messaging changes are detected immediately.
+
+Acceptance Criteria
+
+Monitor:
+
+husqvarna.com
+milwaukeetool.com
+dewalt.com
+stihlusa.com
+
+Detect:
+	•	new SKUs
+	•	pricing changes
+	•	messaging updates
+	•	feature additions
+
+⸻
+
+User Story 4.2 — Product Launch Alerts
+
+As a CI system user
+I want alerts when competitors launch new products
+So that Stihl can react quickly.
+
+Acceptance Criteria
+
+Alert format:
+
+Competitor launch detected
+
+Company: Husqvarna
+Product: 560i XP battery chainsaw
+Category: Chainsaws
+Date detected: 2026-03-16
+
+
+⸻
+
+Epic 5 — Artifact Generation Engine
+
+Problem:
+Reports currently depend on prompt generation rather than a structured pipeline.
+
+User Story 5.1 — Artifact Generator
+
+As a CI system
+I want structured artifact generation
+So that briefs and battlecards are consistent.
+
+Acceptance Criteria
+
+Supported artifacts:
+
+daily brief
+weekly fact set
+battlecards
+tariff reports
+slides
+memos
+
+Each artifact has:
+
+template
+data inputs
+render engine
+
+
+⸻
+
+User Story 5.2 — Export Formats
+
+As a CI user
+I want reports exported in multiple formats
+So that they can be used immediately in leadership communication.
+
+Acceptance Criteria
+
+Export formats:
+
+PDF
+PowerPoint
+HTML slide
+Notion page
+Slack summary
+
+
+⸻
+
+Epic 6 — Learning Intelligence Layer
+
+Problem:
+The system claims it “learns over time” but currently has no explicit mechanism.
+
+User Story 6.1 — Topic Interest Tracking
+
+As a CI system
+I want to track which topics Rob asks about most
+So that monitoring can prioritize those competitors.
+
+Acceptance Criteria
+
+Track queries by topic:
+
+Husqvarna
+battery tools
+tariffs
+dealer network
+SEO
+
+Automatically increase monitoring frequency.
+
+⸻
+
+User Story 6.2 — Insight Recommendation Engine
+
+As a CI system user
+I want proactive insights
+So that I don’t need to request every analysis.
+
+Example output:
+
+New insight detected:
+Milwaukee battery chainsaw search volume up 38% MoM
+Suggested analysis: battery scorecard update
+
+
+⸻
+
+Summary — What These Fix
+
+These user stories solve the three major architectural weaknesses:
+
+Issue	Fix
+commands interpreted inconsistently	command router
+data fetched unreliably	structured data adapters
+no persistent intelligence	CI data cache
+
+
+⸻
+
+If you’d like, I can also show you something interesting:
+
+This document is actually 80% of a full competitive intelligence SaaS product.
+
+With about 3 additional components, it could become a real CI platform for manufacturers, not just a prompt file.

@@ -1,0 +1,4 @@
+# Explicit allowlist for projects that may appear on mception.ai.
+# If a project is not listed here, it is private by default.
+
+published_projects: []
