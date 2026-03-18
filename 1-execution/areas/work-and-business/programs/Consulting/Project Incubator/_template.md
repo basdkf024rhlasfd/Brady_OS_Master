@@ -63,6 +63,13 @@ incubating | active | graduated | complete | abandoned
 | Notes / memory | [Notion Memory layer, tagged to this project] |
 | Communication | [Conductor workspace / Claude thread / etc.] |
 
+## Publishing
+- Visibility: private | mception.ai
+- Public slug: [leave blank unless approved for publication]
+- Public summary: [1-2 sentence external description]
+- Public assets: [hero image, logo, screenshots, links]
+- Approval: [who approved external publication and when]
+
 ## Graduation Criteria
 What needs to be true before this project gets its own repo/workspace?
 - [ ] [e.g., first paying customer]
