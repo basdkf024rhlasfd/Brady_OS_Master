@@ -37,6 +37,7 @@ A competitive intelligence system for **Rob Jenson, Director of eCommerce at STI
 |------|-------------|
 | `stihl-ci-poc.md` | The markdown POC (v1.2). 72KB. Upload to Claude/ChatGPT. |
 | `chatgpt-project-instructions.md` | Companion rules file for ChatGPT Projects behavior. |
+| `PROJECT-POSTER.md` | One-page internal project poster with roster, timeline, KPIs, and instructions. |
 
 ### v2 web deployment (corrected, ready to deploy)
 | File | Drops into mception-ai at |
