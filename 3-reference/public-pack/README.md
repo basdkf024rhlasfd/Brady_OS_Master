@@ -22,15 +22,13 @@ It gives someone enough structure to:
 
 ## Start Here
 
-Use these files in order:
+1. Read [PUBLIC-OVERVIEW.md](PUBLIC-OVERVIEW.md) to understand what this is
+2. Paste the prompt from [ACTIVATION-AGENT.md](ACTIVATION-AGENT.md) into Claude, ChatGPT, or another AI assistant
+3. Pick Express (5 minutes) or Standard (15 minutes) setup
+4. The agent builds your system and generates files from [templates/](templates/)
+5. After setup, use [DEFAULTS-AND-CUSTOMIZATION.md](DEFAULTS-AND-CUSTOMIZATION.md) to customize what was defaulted
 
-1. [PUBLIC-OVERVIEW.md](PUBLIC-OVERVIEW.md)
-2. [SETUP-CHECKLIST.md](SETUP-CHECKLIST.md)
-3. [CUSTOMIZATION-WORKSHEET.md](CUSTOMIZATION-WORKSHEET.md)
-4. [ACTIVATION-AGENT.md](ACTIVATION-AGENT.md)
-5. [REBUILD-GUIDE.md](REBUILD-GUIDE.md)
-
-Then use the files in [templates/](templates/) to create the first live version.
+[SETUP-CHECKLIST.md](SETUP-CHECKLIST.md) and [REBUILD-GUIDE.md](REBUILD-GUIDE.md) are references — the Activation Agent uses them, you don't need to read them separately.
 
 ## What To Zip
 
@@ -40,8 +38,8 @@ Zip this entire `public-pack/` folder and share that zip, not the full Brady OS 
 
 - `PUBLIC-OVERVIEW.md`: friend-safe explanation of the system
 - `SETUP-CHECKLIST.md`: local prerequisites and tool choices
-- `CUSTOMIZATION-WORKSHEET.md`: the user-specific decisions the recipient must make
-- `ACTIVATION-AGENT.md`: prompt for an AI assistant to walk the recipient through setup
+- `ACTIVATION-AGENT.md`: prompt for an AI assistant to walk the recipient through setup (Express or Standard mode)
+- `DEFAULTS-AND-CUSTOMIZATION.md`: post-setup reference for what was defaulted and how to customize later
 - `REBUILD-GUIDE.md`: compact implementation guide
 - `STARTER-AGENTS.md`: abstracted starter-agent pack
 - `templates/`: starter files for Areas, Programs, Projects, and custom agents
