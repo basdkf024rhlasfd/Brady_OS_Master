@@ -11,7 +11,8 @@ Profiles are platform-agnostic. Where an agent lives (Claude, ChatGPT, Notion AI
 
 When a project needs a team, agents are drafted from this layer and assigned project-specific roles. Personal agents live in `0-agents/`. The broader talent pool lives in the community directories at the repo root (engineering/, marketing/, sales/, etc.).
 
-→ [Agent Profile Template](0-agents/_template.md)
+→ [Agent Index](0-agents/README.md)
+→ [Agent Profile Template](0-agents/custom-built-agents/_template.md)
 
 ### Layer 1 — Execution
 The hierarchy of work: **Areas → Programs → Projects → Tasks.**
