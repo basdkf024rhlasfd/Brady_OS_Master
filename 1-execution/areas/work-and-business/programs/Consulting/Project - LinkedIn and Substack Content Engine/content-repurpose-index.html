@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brady Smallwood — Content Repurpose Index</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --accent: #4f9cf7;
+    --accent2: #f7c94f;
+    --green: #4fcf7f;
+    --purple: #a855f7;
+    --pink: #f472b6;
+    --orange: #fb923c;
+    --text: #e5e5e5;
+    --muted: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 24px; max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+  .stats { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; }
+  .stat-num { font-size: 24px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .filter-btn { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .section-title { font-size: 20px; font-weight: 700; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .section-icon { font-size: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 12px; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--accent); }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+  .card-title { font-size: 16px; font-weight: 600; }
+  .card-title a { color: var(--text); text-decoration: none; }
+  .card-title a:hover { color: var(--accent); }
+  .card-date { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .card-summary { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+  .card-quote { font-style: italic; color: var(--accent2); font-size: 13px; border-left: 2px solid var(--accent2); padding-left: 10px; margin: 8px 0; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tag-linkedin { background: rgba(79,156,247,0.15); color: var(--accent); }
+  .tag-substack { background: rgba(168,85,247,0.15); color: var(--purple); }
+  .tag-thread { background: rgba(244,114,182,0.15); color: var(--pink); }
+  .tag-essay { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .tag-story { background: rgba(79,207,127,0.15); color: var(--green); }
+  .tag-theme { background: rgba(247,201,79,0.12); color: var(--accent2); font-size: 10px; padding: 2px 7px; }
+  .source { font-size: 10px; color: var(--muted); margin-top: 6px; }
+  .priority { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .priority-high { background: #ef4444; }
+  .priority-med { background: var(--accent2); }
+  .priority-low { background: var(--green); }
+  .legend { display: flex; gap: 16px; margin-bottom: 24px; font-size: 11px; color: var(--muted); }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  @media (max-width: 640px) { body { padding: 12px; } .card { padding: 14px; } }
+</style>
+</head>
+<body>
+
+<h1>Content Repurpose Index</h1>
+<p class="subtitle">Brady Smallwood — Notion Diary, Journal & Reflection Content for LinkedIn / Substack / Social Media • Generated 2026-03-19</p>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">32</div><div class="stat-label">Indexed Pieces</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Theme Clusters</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Databases Mined</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Era Spans</div></div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="priority priority-high"></span> Publish-ready / high viral potential</div>
+  <div class="legend-item"><span class="priority priority-med"></span> Strong angle, needs light editing</div>
+  <div class="legend-item"><span class="priority priority-low"></span> Raw material / needs development</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: CAREER TRANSITION & IDENTITY -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">🔥</span> Career Transition & Identity</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/390ec0d18e484a4a92e0b84349cc127a" target="_blank">Diary – Why I'm Building This System Now (2026-01-14)</a></div>
+    <div class="card-date">Jan 14, 2026</div>
+  </div>
+  <div class="card-summary">Brady explains — in family-facing language — why he left his COO role and is building a personal operating system. The simple, uncomfortable truth: "what I'm building right now is not directly making money." Frames it as preparation over panic, choosing adaptability over scrambling later.</div>
+  <div class="card-quote">"I'd rather spend time now building adaptability than scramble later from a place of fear and urgency."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">Career Transition</span>
+    <span class="tag tag-theme">ADHD</span>
+    <span class="tag tag-theme">Building in Public</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/31aed43b89c58101bc57dcb2f5764b05" target="_blank">Thread Log: Brady Origin Story — Umami Operator (3/5/26)</a></div>
+    <div class="card-date">Mar 5, 2026</div>
+  </div>
+  <div class="card-summary">Four polished deliverables: ~900-word WSJ-caliber origin story, LinkedIn About, one-liner, and 3 WSJ article angles. Core arc: "I left my COO role to go deep on AI — and here's what I found." Includes the #2/umami identity and judgment layer thesis.</div>
+  <div class="card-quote">"The operator who encodes judgment — turning 15 years of domain expertise into AI that doesn't just automate tasks, but makes the right calls."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn About</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-essay">WSJ Pitch</span>
+    <span class="tag tag-theme">Origin Story</span>
+    <span class="tag tag-theme">AI + Expertise</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/31aed43b89c58197809dddcca1e60e57" target="_blank">North Star Articulation — Brady's Real Goal (March 2026)</a></div>
+    <div class="card-date">Mar 4, 2026</div>
+  </div>
+  <div class="card-summary">The clearest articulation of Brady's actual goal: be recognized as a genuine AI expert, speak on panels, get on stage, maybe have a WSJ article. Maps how Walmart, portfolio micro-apps, and AI sampling serve as vehicles toward thought leadership. Names the gap: breadth alone doesn't earn the stage.</div>
+  <div class="card-quote">"The end game is thought leadership with a credible story behind it."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">North Star</span>
+    <span class="tag tag-theme">Thought Leadership</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/5c19ce4bf0c94cf6ab012003cfc629f0" target="_blank">Forty-One and Twenty Years Home From Japan</a></div>
+    <div class="card-date">Oct 12, 2025</div>
+  </div>
+  <div class="card-summary">Long-form autobiographical essay: 21 homes, career from Freddie Mac during the financial crisis through Walmart's AI era. Traces the tech timeline (Excel → R → Alteryx → Tableau → AI). Links political, economic, and career arcs across two decades.</div>
+  <div class="card-quote">"The goal now is to stay rooted in values while adaptable to change — to keep learning without losing who I am."</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-story">Long-form Story</span>
+    <span class="tag tag-theme">Career Arc</span>
+    <span class="tag tag-theme">Financial Crisis</span>
+    <span class="tag tag-theme">Tech Evolution</span>
+  </div>
+  <div class="source">Source: Context Vault (Reference Layer)</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/2f4955d73b9d4cdd812efa0f366813e0" target="_blank">Personal Recording Session 1 – Career Transition</a></div>
+    <div class="card-date">Dec 12, 2025</div>
+  </div>
+  <div class="card-summary">Voice-note processed career transition reflection. Covers the decision to leave IVFH, industry contacts with deep retail/merchandising experience, and the vision for what comes next.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Career Transition</span>
+    <span class="tag tag-theme">Food Industry</span>
+  </div>
+  <div class="source">Source: Context Vault</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/2c6ed43b89c58064b674f62488e0b720" target="_blank">2026 Career Transition</a></div>
+    <div class="card-date">Jan 28, 2026</div>
+  </div>
+  <div class="card-summary">Hub page tracking Brady's career transition strategy — the structured approach to building a portfolio career after corporate exit.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Portfolio Career</span>
+  </div>
+  <div class="source">Source: OS Structure</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: AI & BUILDING IN PUBLIC -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">🤖</span> AI, Building in Public & Thought Leadership</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/2f8ed43b89c5812b9325fd5cced34c92" target="_blank">Hierarchical Agent Orchestration Thesis — McKinsey vs Gas Town vs Brady (2026-01-30)</a></div>
+    <div class="card-date">Jan 30, 2026</div>
+  </div>
+  <div class="card-summary">Brady's original thesis on agentic AI: agent architecture must match organizational hierarchy. Contrasts McKinsey's "consultant-safe" view, Yegge's chaos-tolerant Gas Town model, and Brady's governance-first approach. Key insight: "AI solves the customer problem without using AI to transform the management system."</div>
+  <div class="card-quote">"Companies bolt AI onto execution but leave management layer running on spreadsheets and meetings."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-thread">Thread / Series</span>
+    <span class="tag tag-theme">AI Governance</span>
+    <span class="tag tag-theme">Original Framework</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/2fced43b89c581f99017d78bc292628f" target="_blank">Narrative as Architecture — Story Is Not Decoration (2026-02-03)</a></div>
+    <div class="card-date">Feb 3, 2026</div>
+  </div>
+  <div class="card-summary">Doctrine piece: story as a first-class architectural principle for AI orchestration. "Story is not decoration. Story is compression." Argues that narrative beats dashboards for coordination, agents should be characters not functions, and humans are authors not supervisors. Scales to robotics, metaverse, multi-user.</div>
+  <div class="card-quote">"You're not debugging, you're editing. You're not configuring, you're casting. You're not monitoring, you're directing."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-essay">Thought Piece</span>
+    <span class="tag tag-theme">AI Architecture</span>
+    <span class="tag tag-theme">Narrative Design</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/31aed43b89c581bab1ecf64c73780667" target="_blank">Number2.AI + Salt/Umami Framework — Identity as Product (2026-03-04)</a></div>
+    <div class="card-date">Mar 4, 2026</div>
+  </div>
+  <div class="card-summary">"I am the umami." Brady's identity insight turned into product concept. The #2 seat operator who amplifies existing systems. Salt (free tier) = baseline; Umami (paid tier) = depth layer. Also surfaces the constraint architecture: Brady runs best with external constraints applied; the #1 seat is ADHD-hostile.</div>
+  <div class="card-quote">"Umami isn't the main flavor — it's the thing that makes every other flavor more itself."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">Personal Brand</span>
+    <span class="tag tag-theme">ADHD</span>
+    <span class="tag tag-theme">Product Strategy</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/5faa222516d141dab3f956236b4e3201" target="_blank">Origin Story — "Arm the Rebels" (Dad's Tax Office, 2012)</a></div>
+    <div class="card-date">Dec 16, 2025</div>
+  </div>
+  <div class="card-summary">The foundational story behind Brady's "arm the rebels" mission. Dad sick with cancer, still commuting to his tax office because he hadn't figured out cloud storage. "He could have struggled less while sick." Connects directly to building tools for solo operators and independent brokers.</div>
+  <div class="card-quote">"Build tools that let the solo operator, the small team, the independent broker compete with the enterprise — without needing an enterprise budget."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-story">Origin Story</span>
+    <span class="tag tag-theme">Mission</span>
+    <span class="tag tag-theme">Family + Business</span>
+  </div>
+  <div class="source">Source: Context Vault (Reference Layer)</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/2beed43b89c580b8a9c7dd3aa90c9722" target="_blank">AI Companionship & Loneliness Reflection (12/3/25)</a></div>
+    <div class="card-date">Dec 3, 2025</div>
+  </div>
+  <div class="card-summary">Honest voice-note reflection on AI as cure for loneliness. Despite a large family, loneliness has increased. Desire for "yes and" conversations that build on ideas. The Jarvis vision — an always-on companion. Raw, vulnerable, and deeply relatable.</div>
+  <div class="card-quote">"AI companions could serve as a cure for loneliness by being consistently available and supportive."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">AI Companionship</span>
+    <span class="tag tag-theme">Vulnerability</span>
+    <span class="tag tag-theme">Loneliness</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/301ed43b89c5814a813bcfc8ef0aed9c" target="_blank">BIG IDEA — "The AI Book" — 30-Page Intro Guide for Lay People</a></div>
+    <div class="card-date">Feb 8, 2026</div>
+  </div>
+  <div class="card-summary">Concept for an AI guide for non-technical people paired with a physical device companion. Democratizing AI access beyond laptops and software knowledge. Could become a content series.</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Series</span>
+    <span class="tag tag-theme">AI Education</span>
+    <span class="tag tag-theme">Arm the Rebels</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-low"></span><a href="https://www.notion.so/2efed43b89c580af8ca0fb2234916764" target="_blank">Concept Development — Personal OS as Transferable Framework</a></div>
+    <div class="card-date">Feb 17, 2026</div>
+  </div>
+  <div class="card-summary">Exploration of the personal operating system as a product/framework others could adopt. The meta-insight: the system itself is IP worth sharing.</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Series</span>
+    <span class="tag tag-thread">Thread / Series</span>
+    <span class="tag tag-theme">Personal OS</span>
+    <span class="tag tag-theme">Building in Public</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: PERSONAL DEVELOPMENT & ADHD -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">🧠</span> Personal Development, ADHD & Mental Frameworks</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/314ed43b89c58141874bf0e2d7f6a7ac" target="_blank">Morning Mantra — Handwritten (2026-02-27)</a></div>
+    <div class="card-date">Feb 27, 2026</div>
+  </div>
+  <div class="card-summary">Handwritten morning mantra transcribed. Bookended by "I'm the good guy." Evidence-based self-affirmation: >95th percentile at everything he's truly committed to. Permission to say no, go on focus mode, not be selfish. Claudine's analysis: "This is the manifesto of a man giving himself permission to be exactly who he already is."</div>
+  <div class="card-quote">"I can be good at anything, though not everything. I pick my focus areas and go deep enough to be great."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">ADHD</span>
+    <span class="tag tag-theme">Self-Leadership</span>
+    <span class="tag tag-theme">Mindset</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/fd0809055acb426a81d3f3ba0b25598d" target="_blank">Batman — What Happens When a Hero Quits Too Early? (2026-01-20)</a></div>
+    <div class="card-date">Jan 20, 2026</div>
+  </div>
+  <div class="card-summary">Deep reflection using The Dark Knight as mirror. "Where am I tempted to retire from a calling before the story has finished its arc?" Addresses how exhaustion hardens into identity, the danger of building "peaceful Gotham" that's really suppression, and reframing burnout as rehab not verdict.</div>
+  <div class="card-quote">"If the problem isn't that I'm the wrong person, but that the system was wrong for the season… what would a sustainable version of this calling look like?"</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">Burnout</span>
+    <span class="tag tag-theme">Resilience</span>
+    <span class="tag tag-theme">Leadership</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/a96e3a05d43342a68cd602e75c83373a" target="_blank">The Most Non-Controversial Manifesto Ever (2026-01-12)</a></div>
+    <div class="card-date">Jan 12, 2026</div>
+  </div>
+  <div class="card-summary">Comprehensive personal operating manifesto: first principles (long-arc net-positive life, probabilistic thinking, reality over self-image), the Iron Man/Batman archetype, Branch 3 "operator hero path," vice budgets, embarrassment scales, and career sequence logic. The most raw and complete philosophical document in the system.</div>
+  <div class="card-quote">"I evaluate choices by their effect on my long-run trajectory as a net-positive adult: finances, health, family, reputation, and self-respect."</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-thread">Multi-part Series</span>
+    <span class="tag tag-theme">Personal Philosophy</span>
+    <span class="tag tag-theme">Decision Frameworks</span>
+    <span class="tag tag-theme">Identity</span>
+  </div>
+  <div class="source">Source: Diary DB — ⚠️ VERY personal. Needs heavy editing for public. Extract frameworks only.</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/3ee83e6d4df54b1394281b1990b5e41e" target="_blank">Bertha Session — Belief System & New Engine (2026-01-11)</a></div>
+    <div class="card-date">Jan 11, 2026</div>
+  </div>
+  <div class="card-summary">Coaching session about designing a new motivating belief system post-Mormon. Separating real values (ambition, contribution, moral floor) from the "good boy costume." The new engine: "net-positive adult over 10-15 year arcs, stacking small daily pluses." Reframes shame as empathy infrastructure.</div>
+  <div class="card-quote">"Having felt real despair, guilt, and fear of exposure now gives you empathy infrastructure; it can make you safer to others, if it doesn't run you."</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">Faith Transition</span>
+    <span class="tag tag-theme">Identity</span>
+    <span class="tag tag-theme">Vulnerability</span>
+  </div>
+  <div class="source">Source: Diary DB — ⚠️ Deeply personal. Needs careful editing for public framing.</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/0488f0c5704d40f28c478f1edc3f26e5" target="_blank">Lab Season Crucible Session (2026-01-18)</a></div>
+    <div class="card-date">Jan 18, 2026</div>
+  </div>
+  <div class="card-summary">Framing the post-corporate season as a crucible — "closer to the Dark Knight pit or Walden Pond than a productivity sprint." Honest about fragmented focus, the tension between lab work and family presence, and the fear of running out of runway for potential.</div>
+  <div class="card-quote">"Days will continue to feel full and pleasant while real progress quietly stalls."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">ADHD</span>
+    <span class="tag tag-theme">Deep Work</span>
+    <span class="tag tag-theme">Transition</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/ed5506de4f7b49f7a365a98dc33b5c1d" target="_blank">Verbatim Journal — 6 Weeks Voluntarily Unemployed (2026-02-17)</a></div>
+    <div class="card-date">Feb 17, 2026</div>
+  </div>
+  <div class="card-summary">Raw verbatim: "6 weeks voluntarily unemployed but feel like my mind needs a break." Only obligation: Lily's concert at 7. The radical permission to have a day with nothing on it. Resonant for anyone in transition.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Transition</span>
+    <span class="tag tag-theme">Rest</span>
+    <span class="tag tag-theme">Vulnerability</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-low"></span><a href="https://www.notion.so/047f87adeca14800a850ad1145b0de59" target="_blank">Personality Tests — Comprehensive Self-Assessment</a></div>
+    <div class="card-date">Dec 12, 2025</div>
+  </div>
+  <div class="card-summary">Detailed personality assessment with psycholinguistic and sociolinguistic analysis. Covers leadership style, communication patterns, strategy/framework orientation. Could mine for "know thyself" content.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Self-Knowledge</span>
+    <span class="tag tag-theme">Leadership</span>
+  </div>
+  <div class="source">Source: Context Vault</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: PARENTING & FAMILY -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">👨‍👧‍👦</span> Parenting, Family & Legacy</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/308ed43b89c5815288aade72adea3c84" target="_blank">Daddy Passed Away — 12/10/14</a></div>
+    <div class="card-date">Dec 10, 2014</div>
+  </div>
+  <div class="card-summary">Raw journal entry about his father's death from cancer. Highway 20 Ride playing when the call came. Last words on Thanksgiving. Carrying the body out at 11:30 PM. "The only thing I ever really wanted from him was more." Devastating, beautiful, universally resonant.</div>
+  <div class="card-quote">"All in all, I really loved the guy and was glad he was my dad. The only thing I ever really wanted from him was more."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-story">Personal Story</span>
+    <span class="tag tag-theme">Fatherhood</span>
+    <span class="tag tag-theme">Loss</span>
+    <span class="tag tag-theme">Legacy</span>
+  </div>
+  <div class="source">Source: Journal DB (Google Doc 2012-2014)</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/7e8c6ab8539746608f7cf93509dbbfae" target="_blank">Isla on My Childhood — Quick Note from Stairs (2026-01-02)</a></div>
+    <div class="card-date">Jan 2, 2026</div>
+  </div>
+  <div class="card-summary">Tiny, perfect moment: walking up the stairs at his childhood home, Isla holding his hand, she says: "Bro you had an awesome life when you were a kid. I like hearing all the stories about you." High-signal dad memory. Short-form gold.</div>
+  <div class="card-quote">"Bro you had an awesome life when you were a kid. I like hearing all the stories about you."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-story">Micro-Story</span>
+    <span class="tag tag-theme">Parenting</span>
+    <span class="tag tag-theme">Memory</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/2daed43b89c580459818e3777a5797f2" target="_blank">2026 Yearly Birthday Letters (YBL)</a></div>
+    <div class="card-date">Dec 31, 2025</div>
+  </div>
+  <div class="card-summary">Annual tradition of writing letters to each child capturing memories, reflections, and milestones. The concept itself is the content: why writing to your kids matters, how it preserves family memory, the discipline of annual reflection.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">Parenting</span>
+    <span class="tag tag-theme">Legacy</span>
+    <span class="tag tag-theme">Tradition</span>
+  </div>
+  <div class="source">Source: Diary DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/308ed43b89c58194b648f2756bd835c3" target="_blank">Life Snapshot — Bethesda, Booth Acceptance, Faith at 7 Months (3/10/12)</a></div>
+    <div class="card-date">Mar 10, 2012</div>
+  </div>
+  <div class="card-summary">Journal entry from 2012: got into Chicago Booth, salary trajectory from $52K to $94K, Romney campaign volunteering, Faith at 7 months. Captures the juggle of young career ambition, family, and faith community. Time-capsule quality.</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-story">Time Capsule</span>
+    <span class="tag tag-theme">Early Career</span>
+    <span class="tag tag-theme">Family</span>
+  </div>
+  <div class="source">Source: Journal DB (Google Doc 2012-2014)</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/308ed43b89c5812584efc2492c78d1ee" target="_blank">Elder Winkler & Faith Sleeping on My Chest — 3/16/12</a></div>
+    <div class="card-date">Mar 16, 2012</div>
+  </div>
+  <div class="card-summary">Early parenthood moment — the divide between first-child attention and second-child reality. "I have had far fewer of those moments with Faith than I did with Lily, because my job has mostly been to take care of Lily since Faith came along. But I love Faith..."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Parenting</span>
+    <span class="tag tag-theme">Vulnerability</span>
+  </div>
+  <div class="source">Source: Journal DB (Google Doc 2012-2014)</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-low"></span><a href="https://www.notion.so/311ed43b89c581798753ee5a2446203f" target="_blank">Thinking of Dawn — Susan Elzey's Column (Forwarded)</a></div>
+    <div class="card-date">Feb 24, 2026</div>
+  </div>
+  <div class="card-summary">Brady forwarded his mother's published column about the 5th anniversary of his sister Dawn's passing (cerebral palsy). The column itself is publication-quality. Possible angle: sharing how family stories shape your operating principles.</div>
+  <div class="tags">
+    <span class="tag tag-substack">Substack Essay</span>
+    <span class="tag tag-theme">Family</span>
+    <span class="tag tag-theme">Loss</span>
+    <span class="tag tag-theme">Faith</span>
+  </div>
+  <div class="source">Source: Email Hub — ⚠️ Mother's content; would need her permission to repurpose.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: FOOD INDUSTRY & BROKER CO -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">🥫</span> Food Industry, Broker Co & Domain Expertise</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/302ed43b89c58185ba90ea5a2b16e857" target="_blank">Chad Call Script — Waypoint Partnership Pitch (2026-02-09)</a></div>
+    <div class="card-date">Feb 9, 2026</div>
+  </div>
+  <div class="card-summary">Talk track for pitching the advisory/partnership model. "Left IVFH COO role 12/31/25. Now building a portfolio career under Sycamore Lane Holdings." Could extract the pitch narrative as a "how to pitch your new thing" post.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Entrepreneurship</span>
+    <span class="tag tag-theme">Partnership</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/302ed43b89c5815588f5f4af16ac150e" target="_blank">Adam Hanselman (Gauge Capital) — Call Talk Track (2026-02-09)</a></div>
+    <div class="card-date">Feb 9, 2026</div>
+  </div>
+  <div class="card-summary">Pitch: "15+ years in the space. Not building generic AI — building tools that replace specific manual workflows brokers hate." The portfolio career under Sycamore Lane Holdings. Could frame as "how operators pitch differently than founders."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Food Industry</span>
+    <span class="tag tag-theme">AI + Domain</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: SYSTEMS & OS PHILOSOPHY -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">⚙️</span> Systems Thinking, OS Philosophy & Productivity</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-high"></span><a href="https://www.notion.so/2b7ed43b89c580849c30fae7382db079" target="_blank">OS Structure & Philosophy</a></div>
+    <div class="card-date">Feb 3, 2026</div>
+  </div>
+  <div class="card-summary">The philosophical backbone of Brady's personal operating system. "Any system that only works on good days is not a system." Covers governance, areas/programs/projects structure, and the why behind the architecture. Ready-made content series on building personal systems.</div>
+  <div class="card-quote">"Any system that only works on good days is not a system."</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Series</span>
+    <span class="tag tag-theme">Systems</span>
+    <span class="tag tag-theme">ADHD</span>
+    <span class="tag tag-theme">Productivity</span>
+  </div>
+  <div class="source">Source: Reference Layer</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/2c7ed43b89c580f3ab68ec8441a25c1a" target="_blank">Brady's Personal OS — 5 Rings Architecture</a></div>
+    <div class="card-date">Jan 26, 2026</div>
+  </div>
+  <div class="card-summary">The 3-layer architecture (Execution, Memory, Reference) for organizing information and building intelligent personal automation. Includes Diary Database as "personal reflections and learning over time." The system design itself is content.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-substack">Substack Series</span>
+    <span class="tag tag-theme">Personal OS</span>
+    <span class="tag tag-theme">Architecture</span>
+  </div>
+  <div class="source">Source: Reference Layer</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/3c66851c5a9f4eb49c712012c4c425b9" target="_blank">Bias Toward Lightweight Housekeeping Over Perfect Automation</a></div>
+    <div class="card-date">Jan 12, 2026</div>
+  </div>
+  <div class="card-summary">Framework for how the OS treats rituals vs automation. Defines tradeoffs between "just do it manually" and "automate everything." Applicable to any ADHD-friendly system design conversation.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Systems Design</span>
+    <span class="tag tag-theme">ADHD</span>
+  </div>
+  <div class="source">Source: Streaming Notes DB</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 7: MILESTONE JOURNAL ENTRIES -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">📖</span> Historical Journal — Milestone Entries (2012-2014)</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-med"></span><a href="https://www.notion.so/308ed43b89c581abbd7bd64875534313" target="_blank">First Day at Walmart — 8/14/14</a></div>
+    <div class="card-date">Aug 14, 2014</div>
+  </div>
+  <div class="card-summary">"Orientation was cheesy, but I am trying to stay open minded. It feels good to be back in a job earning money and having benefits." The humility of Day 1 at what became a decade-defining career chapter. Perfect "then vs now" pairing.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-story">Then vs Now</span>
+    <span class="tag tag-theme">Career</span>
+    <span class="tag tag-theme">Walmart</span>
+  </div>
+  <div class="source">Source: Journal DB (Google Doc 2012-2014)</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="priority priority-low"></span><a href="https://www.notion.so/308ed43b89c581a5bec9c0c6c596aa9c" target="_blank">First Day at Walmart Home Office — 8/15/14</a></div>
+    <div class="card-date">Aug 15, 2014</div>
+  </div>
+  <div class="card-summary">"I think I am going to enjoy the work once I get past the initial weeks or months of just learning what acronyms mean, where the data is..." Every corporate newcomer's experience, crystallized.</div>
+  <div class="tags">
+    <span class="tag tag-linkedin">LinkedIn Post</span>
+    <span class="tag tag-theme">Career</span>
+    <span class="tag tag-theme">Walmart</span>
+  </div>
+  <div class="source">Source: Journal DB (Google Doc 2012-2014)</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SUGGESTED CONTENT SERIES -->
+<!-- ============================================ -->
+
+<div class="section-title"><span class="section-icon">📋</span> Suggested Content Series (for Social Media Manager Agent)</div>
+
+<div class="card" style="border-color: var(--accent);">
+  <div class="card-title" style="margin-bottom: 12px; color: var(--accent);">Series 1: "The COO Who Quit" — Career Transition Arc</div>
+  <div class="card-summary">
+    <strong>Platform:</strong> LinkedIn (primary) + Substack (long-form)<br>
+    <strong>Cadence:</strong> Weekly<br>
+    <strong>Source pages:</strong> Why I'm Building This System Now → Origin Story (Umami Operator) → North Star Articulation → Lab Season Crucible → 6 Weeks Unemployed verbatim<br>
+    <strong>Hook:</strong> Real-time narrative of leaving corporate for portfolio career. Not polished retrospective — messy, in-progress, honest.
+  </div>
+</div>
+
+<div class="card" style="border-color: var(--purple);">
+  <div class="card-title" style="margin-bottom: 12px; color: var(--purple);">Series 2: "AI for the Rest of Us" — Thought Leadership</div>
+  <div class="card-summary">
+    <strong>Platform:</strong> Substack (primary) + LinkedIn (excerpts)<br>
+    <strong>Cadence:</strong> Bi-weekly<br>
+    <strong>Source pages:</strong> Hierarchical Agent Orchestration Thesis → Narrative as Architecture → Number2.AI/Umami Framework → AI Companionship reflection → AI Book concept<br>
+    <strong>Hook:</strong> Original AI frameworks from an operator (not a researcher). "What 15 years of running operations taught me about how AI actually works."
+  </div>
+</div>
+
+<div class="card" style="border-color: var(--green);">
+  <div class="card-title" style="margin-bottom: 12px; color: var(--green);">Series 3: "Building with ADHD" — Personal Systems</div>
+  <div class="card-summary">
+    <strong>Platform:</strong> LinkedIn + Substack<br>
+    <strong>Cadence:</strong> Weekly or bi-weekly<br>
+    <strong>Source pages:</strong> OS Philosophy → 5 Rings Architecture → Morning Mantra → Batman/Hero reflection → Lightweight Housekeeping → Manifesto (extract frameworks)<br>
+    <strong>Hook:</strong> "Any system that only works on good days is not a system." Building AI-native productivity for a brain that won't sit still.
+  </div>
+</div>
+
+<div class="card" style="border-color: var(--pink);">
+  <div class="card-title" style="margin-bottom: 12px; color: var(--pink);">Series 4: "Dad Journal" — Parenting & Family Moments</div>
+  <div class="card-summary">
+    <strong>Platform:</strong> LinkedIn (short-form) + Substack (essay format)<br>
+    <strong>Cadence:</strong> Monthly<br>
+    <strong>Source pages:</strong> Daddy Passed Away → Isla on My Childhood → Yearly Birthday Letters → Faith at 7 Months → First Day at Walmart (family angle)<br>
+    <strong>Hook:</strong> Real moments from a dad of 5. Not advice — artifacts. The entries themselves are the content.
+  </div>
+</div>
+
+<div class="card" style="border-color: var(--orange);">
+  <div class="card-title" style="margin-bottom: 12px; color: var(--orange);">Series 5: "Arm the Rebels" — Mission & Food Industry</div>
+  <div class="card-summary">
+    <strong>Platform:</strong> LinkedIn (primary)<br>
+    <strong>Cadence:</strong> As milestones hit<br>
+    <strong>Source pages:</strong> Origin Story (Dad's Tax Office) → Broker Co pitch tracks → Industry research → Ethnographic study<br>
+    <strong>Hook:</strong> "My dad was sick with cancer and still commuting to his tax office because he hadn't figured out cloud storage." The mission to arm independent operators with enterprise-grade tools.
+  </div>
+</div>
+
+<div style="margin-top: 40px; padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 10px;">
+  <h3 style="margin-bottom: 8px;">⚠️ Editorial Notes for Social Media Manager Agent</h3>
+  <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">
+    <strong>Privacy gates:</strong> Several entries (Bertha sessions, Manifesto, faith transition content) contain deeply personal material. These need Brady's explicit approval before any public use. Extract frameworks and lessons — don't publish raw diary entries.<br><br>
+    <strong>Family content:</strong> Mother's column (Thinking of Dawn) requires Susan Elzey's permission. Kids' names/details should be anonymized or approved.<br><br>
+    <strong>Voice:</strong> Brady's natural writing voice is direct, honest, slightly self-deprecating, and punctuated by clean one-liners. Don't over-polish. The rawness IS the brand.<br><br>
+    <strong>Notion sources:</strong> Diary DB, Journal DB, Streaming Notes DB, Context Vault, Reference Layer. All live under the OS 2.0 Memory Layer.<br><br>
+    <strong>Last updated:</strong> March 19, 2026
+  </p>
+</div>
+
+</body>
+</html>
