@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,15 +14,6 @@ const navLinks = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [embedded, setEmbedded] = useState(false);
-
-  useEffect(() => {
-    setEmbedded(window.self !== window.top);
-  }, []);
-
-  if (embedded) {
-    return <main className="min-h-screen bg-[#09090b]">{children}</main>;
-  }
 
   return (
     <div className="flex min-h-screen bg-[#09090b]">
