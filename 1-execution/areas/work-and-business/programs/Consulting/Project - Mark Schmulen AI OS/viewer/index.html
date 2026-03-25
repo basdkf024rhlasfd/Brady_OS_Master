@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI OS — Mark Schmulen</title>
+<meta name="description" content="Private AI operating system project brief for Mark Schmulen — agents, skills, memory, and tool connections.">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; display: flex; height: 100vh; }
+
+  /* Sidebar */
+  nav {
+    width: 280px; min-width: 280px; background: #111; border-right: 1px solid #222;
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  nav .brand { padding: 20px 16px 16px; border-bottom: 1px solid #222; }
+  nav .brand .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2.2px; color: #555; }
+  nav .brand .title { font-size: 18px; font-weight: 600; color: #fff; margin-top: 6px; }
+  nav h2 { font-size: 11px; padding: 16px 16px 6px; color: #555; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: color 0.15s; user-select: none; }
+  nav h2:hover { color: #888; }
+  nav h2 .chevron { display: inline-block; font-size: 8px; margin-right: 4px; transition: transform 0.15s; }
+  nav h2 .chevron.collapsed { transform: rotate(-90deg); }
+  nav .nav-group.collapsed a { display: none; }
+  nav a {
+    display: block; padding: 8px 16px; color: #aaa; text-decoration: none;
+    font-size: 13px; border-left: 3px solid transparent; transition: all 0.15s;
+  }
+  nav a:hover { background: #1a1a1a; color: #fff; }
+  nav a.active { background: #0d0d1a; color: #818cf8; border-left-color: #818cf8; }
+  nav .search-box { padding: 12px 16px; }
+  nav input {
+    width: 100%; padding: 8px 10px; background: #1a1a1a; border: 1px solid #333;
+    border-radius: 6px; color: #ccc; font-size: 13px; outline: none;
+  }
+  nav input:focus { border-color: #818cf8; }
+  nav input::placeholder { color: #555; }
+  nav a .saved-count { font-size: 10px; opacity: 0.5; }
+  nav a.special-link { display: flex; justify-content: space-between; align-items: center; }
+
+  /* Main content */
+  main { flex: 1; overflow-y: auto; padding: 0; }
+  .content-wrap { max-width: 820px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  /* Markdown styles */
+  .content-wrap h1 { font-size: 28px; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid #222; }
+  .content-wrap h2 { font-size: 22px; color: #c7d2fe; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #0d0d1a; }
+  .content-wrap h3 { font-size: 17px; color: #a5b4fc; margin: 28px 0 12px; }
+  .content-wrap h4 { font-size: 15px; color: #818cf8; margin: 20px 0 8px; }
+  .content-wrap p { line-height: 1.7; margin: 0 0 14px; color: #bbb; font-size: 14.5px; }
+  .content-wrap ul, .content-wrap ol { margin: 0 0 14px; padding-left: 24px; }
+  .content-wrap li { line-height: 1.7; margin: 4px 0; color: #bbb; font-size: 14.5px; }
+  .content-wrap strong { color: #e0e0e0; }
+  .content-wrap hr { border: none; border-top: 1px solid #222; margin: 32px 0; }
+  .content-wrap code { background: #0d0d1a; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #818cf8; }
+  .content-wrap pre { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 0 0 16px; }
+  .content-wrap pre code { background: none; padding: 0; }
+  .content-wrap blockquote { border-left: 3px solid #818cf8; padding: 8px 16px; margin: 0 0 14px; background: #0a0a12; border-radius: 0 6px 6px 0; }
+  .content-wrap blockquote p { color: #a5b4fc; }
+  .content-wrap a { color: #818cf8; text-decoration: none; }
+  .content-wrap a:hover { text-decoration: underline; }
+
+  /* Tables */
+  .content-wrap table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; }
+  .content-wrap th { text-align: left; padding: 10px 12px; background: #0d0d1a; color: #818cf8; font-weight: 600; border: 1px solid #222; }
+  .content-wrap td { padding: 8px 12px; border: 1px solid #1a1a1a; color: #bbb; }
+  .content-wrap tr:hover td { background: #111; }
+
+  /* Search results */
+  .search-results { padding: 0 16px; }
+  .search-result { padding: 6px 0; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
+  .search-result:hover { background: #1a1a1a; }
+  .search-result .file { font-size: 11px; color: #818cf8; }
+  .search-result .line { font-size: 12px; color: #888; margin-top: 2px; }
+  .search-result mark { background: #a5b4fc; color: #000; padding: 0 2px; border-radius: 2px; }
+
+  /* Loading */
+  .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
+
+  /* Saved items */
+  .saved-item { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; position: relative; }
+  .saved-item:hover { border-color: #333; }
+  .saved-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
+  .saved-item-title { font-size: 15px; color: #e0e0e0; font-weight: 600; cursor: pointer; flex: 1; min-width: 0; }
+  .saved-item-title:hover { color: #818cf8; }
+  .saved-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .saved-item-btn { background: none; border: 1px solid #333; color: #888; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
+  .saved-item-btn:hover { border-color: #555; color: #ccc; }
+  .saved-item-btn.delete:hover { border-color: #f7768e; color: #f7768e; }
+  .saved-item-meta { font-size: 11px; color: #555; margin-bottom: 8px; }
+  .saved-item-type { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; font-weight: 600; margin-right: 8px; }
+  .saved-item-type.snippet { background: #0d0d1a; color: #818cf8; }
+  .saved-item-type.note { background: #1a2a1a; color: #9ece6a; }
+  .saved-item-type.template { background: #2a1a1a; color: #f7768e; }
+  .saved-item-preview { font-size: 13px; color: #888; line-height: 1.6; white-space: pre-wrap; max-height: 80px; overflow: hidden; }
+  .saved-item.expanded .saved-item-preview { max-height: none; }
+  .saved-empty { color: #555; font-size: 14px; text-align: center; padding: 48px 24px; }
+
+  .save-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+  .save-form h3 { font-size: 14px; color: #a5b4fc; margin: 0 0 12px; }
+  .save-form input, .save-form textarea, .save-form select {
+    width: 100%; padding: 8px 10px; background: #0a0a0a; border: 1px solid #333;
+    border-radius: 6px; color: #ccc; font-size: 13px; outline: none; margin-bottom: 10px;
+    font-family: inherit;
+  }
+  .save-form input:focus, .save-form textarea:focus { border-color: #818cf8; }
+  .save-form textarea { min-height: 100px; resize: vertical; }
+  .save-form .form-row { display: flex; gap: 10px; align-items: center; }
+  .save-form button {
+    background: #0d0d1a; border: 1px solid #818cf8; color: #818cf8; font-size: 13px;
+    padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.15s;
+  }
+  .save-form button:hover { background: #818cf8; color: #0a0a0a; }
+  .save-form button.cancel-btn { border-color: #555; color: #888; background: none; }
+  .save-form button.cancel-btn:hover { border-color: #888; color: #ccc; background: #1a1a1a; }
+
+  /* Save page button */
+  .save-page-btn {
+    display: inline-flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #333;
+    color: #888; font-size: 12px; padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    transition: all 0.15s; float: right; margin-top: -4px;
+  }
+  .save-page-btn:hover { border-color: #818cf8; color: #818cf8; }
+
+  /* Request Inbox */
+  .request-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+  .request-form label { display: block; margin-bottom: 16px; }
+  .request-form .label-text { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: #555; margin-bottom: 6px; }
+  .request-form select, .request-form textarea {
+    width: 100%; padding: 10px 12px; background: #0a0a0a; border: 1px solid #333;
+    border-radius: 8px; color: #e0e0e0; font-size: 13px; outline: none; font-family: inherit;
+  }
+  .request-form select:focus, .request-form textarea:focus { border-color: #818cf8; }
+  .request-form textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+  .request-form .actions { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+  .request-form .submit-btn {
+    background: #818cf8; border: none; color: #000; font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: background 0.15s;
+  }
+  .request-form .submit-btn:hover { background: #a5b4fc; }
+  .request-form .status { font-size: 13px; color: #555; }
+  .prompt-btn {
+    display: block; width: 100%; text-align: left; background: #0a0a0a; border: 1px solid #222;
+    border-radius: 8px; padding: 10px 14px; color: #bbb; font-size: 13px; line-height: 1.6;
+    cursor: pointer; transition: all 0.15s; margin-bottom: 8px; font-family: inherit;
+  }
+  .prompt-btn:hover { border-color: #818cf8; color: #fff; }
+  .request-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 14px 18px; margin-bottom: 10px; }
+  .request-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .request-card .cat { font-size: 13px; font-weight: 600; color: #fff; }
+  .request-card .timing { font-size: 11px; color: #555; }
+  .request-card .summary { font-size: 13px; color: #888; line-height: 1.6; }
+  .request-card .date { font-size: 11px; color: #555; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div id="gate" style="display:flex;align-items:center;justify-content:center;height:100vh;width:100vw;background:#0a0a0a;">
+  <div style="text-align:center;">
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2.2px;color:#555;margin-bottom:8px;">AI Operating System</div>
+    <h1 style="font-size:20px;color:#fff;margin-bottom:24px;font-weight:600;">Mark Schmulen AI OS</h1>
+    <input type="password" id="gate-pw" placeholder="Password" autofocus
+      style="padding:10px 16px;background:#111;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:15px;width:240px;outline:none;text-align:center;" />
+    <div style="color:#666;font-size:12px;margin-top:10px;">Private project brief. Access is unlocked per browser session.</div>
+    <div id="gate-err" style="color:#f7768e;font-size:12px;margin-top:10px;opacity:0;"></div>
+  </div>
+</div>
+
+<nav style="display:none;">
+  <div class="brand">
+    <div class="eyebrow">AI Operating System</div>
+    <div class="title">Mark Schmulen</div>
+  </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search..." />
+  </div>
+  <div id="search-results" class="search-results" style="display:none"></div>
+  <div id="nav-links"></div>
+</nav>
+
+<main style="display:none;">
+  <div class="content-wrap" id="content">
+    <div class="loading">Loading...</div>
+  </div>
+</main>
+
+<script>
+// ─── Password gate ───
+const AUTH_SESSION_KEY = 'mschmulen-auth-v1';
+const AUTH_HASH = '6201eb4dccc956cc4fa3a78dca0c2888177ec52efd48f125df214f046eb43138';
+const AUTH_LOCK_KEY = 'mschmulen-auth-lock-until';
+const AUTH_FAIL_KEY = 'mschmulen-auth-fail-count';
+const AUTH_MAX_FAILS = 5;
+const AUTH_LOCK_MS = 30000;
+let viewerInitialized = false;
+
+function showViewer() {
+  document.getElementById('gate').style.display = 'none';
+  document.querySelector('nav').style.display = '';
+  document.querySelector('main').style.display = '';
+  if (!viewerInitialized) {
+    viewerInitialized = true;
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+  }
+}
+
+function showGateError(message, timeout = 1800) {
+  const input = document.getElementById('gate-pw');
+  const err = document.getElementById('gate-err');
+  err.textContent = message;
+  err.style.opacity = '1';
+  input.value = '';
+  input.style.borderColor = '#f7768e';
+  setTimeout(() => {
+    input.style.borderColor = '#333';
+    err.style.opacity = '0';
+  }, timeout);
+}
+
+async function sha256Hex(value) {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest)).map(byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+function currentLockUntil() {
+  return Number(sessionStorage.getItem(AUTH_LOCK_KEY) || '0');
+}
+
+function registerFailedAttempt() {
+  const nextCount = Number(sessionStorage.getItem(AUTH_FAIL_KEY) || '0') + 1;
+  sessionStorage.setItem(AUTH_FAIL_KEY, String(nextCount));
+  if (nextCount >= AUTH_MAX_FAILS) {
+    const lockUntil = Date.now() + AUTH_LOCK_MS;
+    sessionStorage.setItem(AUTH_LOCK_KEY, String(lockUntil));
+    sessionStorage.setItem(AUTH_FAIL_KEY, '0');
+    return lockUntil;
+  }
+  return 0;
+}
+
+function clearFailedAttempts() {
+  sessionStorage.removeItem(AUTH_FAIL_KEY);
+  sessionStorage.removeItem(AUTH_LOCK_KEY);
+}
+
+(async function initAuth() {
+  if (sessionStorage.getItem(AUTH_SESSION_KEY) === AUTH_HASH) {
+    showViewer();
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const accessParam = params.get('access');
+  if (accessParam) {
+    const accessHash = await sha256Hex(accessParam.trim());
+    if (accessHash === AUTH_HASH) {
+      sessionStorage.setItem(AUTH_SESSION_KEY, AUTH_HASH);
+      clearFailedAttempts();
+      params.delete('access');
+      const cleanQuery = params.toString();
+      const cleanUrl = window.location.pathname + (cleanQuery ? `?${cleanQuery}` : '') + window.location.hash;
+      history.replaceState(null, '', cleanUrl);
+      showViewer();
+      return;
+    }
+  }
+
+  const input = document.getElementById('gate-pw');
+  input.addEventListener('keydown', async function(e) {
+    if (e.key !== 'Enter') return;
+
+    const lockUntil = currentLockUntil();
+    if (Date.now() < lockUntil) {
+      const seconds = Math.max(1, Math.ceil((lockUntil - Date.now()) / 1000));
+      showGateError(`Too many failed attempts. Try again in ${seconds}s.`, 2200);
+      return;
+    }
+
+    const submittedHash = await sha256Hex(this.value.trim());
+    if (submittedHash === AUTH_HASH) {
+      sessionStorage.setItem(AUTH_SESSION_KEY, AUTH_HASH);
+      clearFailedAttempts();
+      showViewer();
+      return;
+    }
+
+    const nextLockUntil = registerFailedAttempt();
+    if (nextLockUntil) {
+      const seconds = Math.max(1, Math.ceil((nextLockUntil - Date.now()) / 1000));
+      showGateError(`Too many failed attempts. Try again in ${seconds}s.`, 2200);
+      return;
+    }
+
+    showGateError('Wrong password');
+  });
+})();
+
+// ─── File definitions ───
+const files = [
+  { id: 'overview', file: '../kb/00-overview.md', label: 'Overview' },
+  { id: 'executive-assistant', file: '../kb/01-executive-assistant.md', label: 'Executive Assistant' },
+  { id: 'cmo-agent', file: '../kb/02-cmo-agent.md', label: 'CMO Agent' },
+  { id: 'cfo-agent', file: '../kb/03-cfo-agent.md', label: 'CFO Agent' },
+  { id: 'skills-library', file: '../kb/04-skills-library.md', label: 'Skills Library' },
+  { id: 'how-it-works', file: '../kb/05-how-it-works.md', label: 'How It Works' },
+  { id: 'timeline', file: '../kb/06-timeline.md', label: 'Timeline & Status' },
+];
+
+const sections = [
+  { name: 'Project', ids: ['overview', 'timeline'], defaultOpen: true },
+  { name: 'Agents', ids: ['executive-assistant', 'cmo-agent', 'cfo-agent'], defaultOpen: true },
+  { name: 'System', ids: ['skills-library', 'how-it-works'] },
+];
+
+const fileMap = {};
+files.forEach(f => fileMap[f.id] = f);
+
+const cache = {};
+let currentFile = null;
+
+// ─── Request data ───
+const requestCategories = ['New skill', 'Agent change', 'MCP connection', 'Context update', 'Bug fix', 'Question'];
+const requestPrompts = [
+  'Build a skill that drafts weekly investor updates from my latest metrics.',
+  'Connect my CMO agent to my Twitter/X account for content scheduling.',
+  'Add a meeting debrief skill that summarizes action items from Granola transcripts.',
+  'Update my executive assistant context with my new scheduling preferences.',
+  'Create a skill that generates LinkedIn posts from my meeting notes.',
+];
+
+// ─── Build nav ───
+const navLinks = document.getElementById('nav-links');
+const collapsedGroups = JSON.parse(localStorage.getItem('mschmulen-navCollapsed') || '{}');
+
+function buildNavSection(name, buildLinks, defaultOpen) {
+  const isCollapsed = collapsedGroups.hasOwnProperty(name) ? collapsedGroups[name] : !defaultOpen;
+
+  const h2 = document.createElement('h2');
+  const chevron = document.createElement('span');
+  chevron.className = 'chevron' + (isCollapsed ? ' collapsed' : '');
+  chevron.textContent = '\u25BC';
+  h2.appendChild(chevron);
+  h2.appendChild(document.createTextNode(' ' + name));
+
+  const group = document.createElement('div');
+  group.className = 'nav-group' + (isCollapsed ? ' collapsed' : '');
+
+  h2.addEventListener('click', () => {
+    const nowCollapsed = group.classList.toggle('collapsed');
+    chevron.classList.toggle('collapsed', nowCollapsed);
+    collapsedGroups[name] = nowCollapsed;
+    localStorage.setItem('mschmulen-navCollapsed', JSON.stringify(collapsedGroups));
+  });
+
+  navLinks.appendChild(h2);
+  buildLinks(group);
+  navLinks.appendChild(group);
+  return { h2, group, chevron };
+}
+
+// KB sections
+sections.forEach(section => {
+  buildNavSection(section.name, group => {
+    section.ids.forEach(id => {
+      const f = fileMap[id];
+      if (!f) return;
+      const a = document.createElement('a');
+      a.href = '#' + f.id;
+      a.textContent = f.label;
+      a.dataset.id = f.id;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        loadFile(f.id);
+      });
+      group.appendChild(a);
+    });
+  }, section.defaultOpen);
+});
+
+// Requests section
+buildNavSection('Requests', group => {
+  const a = document.createElement('a');
+  a.href = '#requests';
+  a.className = 'special-link';
+  a.dataset.id = 'requests';
+  a.innerHTML = '<span>Request Inbox</span>';
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    renderRequestInbox();
+  });
+  group.appendChild(a);
+});
+
+// Saved section
+const savedNavLink = document.createElement('a');
+function updateSavedCount() {
+  const items = JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
+  savedNavLink.innerHTML = `<span>All Saved</span><span class="saved-count">${items.length}</span>`;
+}
+buildNavSection('Saved', group => {
+  savedNavLink.href = '#saved';
+  savedNavLink.className = 'special-link';
+  savedNavLink.dataset.id = 'saved';
+  updateSavedCount();
+  savedNavLink.addEventListener('click', e => {
+    e.preventDefault();
+    renderSaved();
+  });
+  group.appendChild(savedNavLink);
+});
+
+// ─── Saved items localStorage ───
+function getSavedItems() {
+  return JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
+}
+
+function saveSavedItems(items) {
+  localStorage.setItem('mschmulen-savedItems', JSON.stringify(items));
+  updateSavedCount();
+}
+
+function addSavedItem(item) {
+  const items = getSavedItems();
+  item.id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  item.createdAt = new Date().toISOString();
+  items.unshift(item);
+  saveSavedItems(items);
+  return item;
+}
+
+function deleteSavedItem(id) {
+  const items = getSavedItems().filter(i => i.id !== id);
+  saveSavedItems(items);
+}
+
+function updateSavedItem(id, updates) {
+  const items = getSavedItems();
+  const idx = items.findIndex(i => i.id === id);
+  if (idx !== -1) { Object.assign(items[idx], updates); saveSavedItems(items); }
+}
+
+function renderSaved() {
+  setActiveNav('saved');
+  history.replaceState(null, '', '#saved');
+  const content = document.getElementById('content');
+  const items = getSavedItems();
+
+  const typeOptions = `<option value="note">Note</option><option value="template">Template</option><option value="snippet">Snippet</option>`;
+
+  let html = `
+    <h1>Saved</h1>
+    <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
+      Save templates, notes, and snippets from across the project brief. Everything is stored locally in your browser.
+    </p>
+    <div class="save-form" id="save-form">
+      <h3>New Item</h3>
+      <input type="text" id="save-title" placeholder="Title" />
+      <div class="form-row" style="margin-bottom:10px">
+        <select id="save-type" style="width:auto;margin-bottom:0">${typeOptions}</select>
+      </div>
+      <textarea id="save-body" placeholder="Content — paste a snippet, write a note, or draft a template..."></textarea>
+      <button id="save-submit">Save</button>
+    </div>
+  `;
+
+  if (items.length === 0) {
+    html += `<div class="saved-empty"><p>No saved items yet.</p><p style="font-size:12px">Use the form above or the save button when viewing pages.</p></div>`;
+  } else {
+    html += items.map(item => {
+      const date = new Date(item.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const sourceLabel = item.source ? ` &middot; from ${item.source}` : '';
+      const preview = (item.body || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return `<div class="saved-item" data-id="${item.id}">
+        <div class="saved-item-header">
+          <span class="saved-item-title" data-id="${item.id}">${(item.title || 'Untitled').replace(/</g, '&lt;')}</span>
+          <div class="saved-item-actions">
+            <button class="saved-item-btn expand-btn" data-id="${item.id}">expand</button>
+            <button class="saved-item-btn edit-btn" data-id="${item.id}">edit</button>
+            <button class="saved-item-btn delete" data-id="${item.id}">delete</button>
+          </div>
+        </div>
+        <div class="saved-item-meta">
+          <span class="saved-item-type ${item.type || 'note'}">${item.type || 'note'}</span>
+          ${date}${sourceLabel}
+        </div>
+        <div class="saved-item-preview">${preview}</div>
+      </div>`;
+    }).join('');
+  }
+
+  content.innerHTML = html;
+  document.querySelector('main').scrollTop = 0;
+
+  document.getElementById('save-submit').addEventListener('click', () => {
+    const title = document.getElementById('save-title').value.trim();
+    const type = document.getElementById('save-type').value;
+    const body = document.getElementById('save-body').value.trim();
+    if (!title && !body) return;
+    addSavedItem({ title: title || 'Untitled', type, body });
+    renderSaved();
+  });
+
+  content.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.saved-item');
+      const isExpanded = card.classList.toggle('expanded');
+      btn.textContent = isExpanded ? 'collapse' : 'expand';
+    });
+  });
+
+  content.querySelectorAll('.delete').forEach(btn => {
+    btn.addEventListener('click', () => {
+      deleteSavedItem(btn.dataset.id);
+      renderSaved();
+    });
+  });
+
+  content.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const item = getSavedItems().find(i => i.id === id);
+      if (!item) return;
+      const card = btn.closest('.saved-item');
+      card.innerHTML = `
+        <div class="save-form" style="margin:0;border:none;padding:0;background:none">
+          <input type="text" value="${(item.title || '').replace(/"/g, '&quot;')}" class="edit-title" />
+          <div class="form-row" style="margin-bottom:10px">
+            <select class="edit-type" style="width:auto;margin-bottom:0">
+              <option value="note" ${item.type === 'note' ? 'selected' : ''}>Note</option>
+              <option value="template" ${item.type === 'template' ? 'selected' : ''}>Template</option>
+              <option value="snippet" ${item.type === 'snippet' ? 'selected' : ''}>Snippet</option>
+            </select>
+          </div>
+          <textarea class="edit-body">${(item.body || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+          <div class="form-row">
+            <button class="edit-save">Save</button>
+            <button class="cancel-btn edit-cancel">Cancel</button>
+          </div>
+        </div>
+      `;
+      card.querySelector('.edit-save').addEventListener('click', () => {
+        updateSavedItem(id, {
+          title: card.querySelector('.edit-title').value.trim() || 'Untitled',
+          type: card.querySelector('.edit-type').value,
+          body: card.querySelector('.edit-body').value.trim(),
+        });
+        renderSaved();
+      });
+      card.querySelector('.edit-cancel').addEventListener('click', () => renderSaved());
+    });
+  });
+}
+
+// ─── Request Inbox ───
+const REQUEST_STORAGE_KEY = 'mschmulen-request-inbox';
+
+function getRequests() {
+  try { return JSON.parse(localStorage.getItem(REQUEST_STORAGE_KEY) || '[]'); }
+  catch { localStorage.removeItem(REQUEST_STORAGE_KEY); return []; }
+}
+
+function saveRequests(items) {
+  localStorage.setItem(REQUEST_STORAGE_KEY, JSON.stringify(items));
+}
+
+function renderRequestInbox() {
+  setActiveNav('requests');
+  history.replaceState(null, '', '#requests');
+  const content = document.getElementById('content');
+  const saved = getRequests();
+
+  const categoryOptions = requestCategories.map(c => `<option value="${c}">${c}</option>`).join('');
+  const promptButtons = requestPrompts.map(p =>
+    `<button class="prompt-btn" data-prompt="${p.replace(/"/g, '&quot;')}">${p}</button>`
+  ).join('');
+
+  const requestCards = saved.length === 0
+    ? '<div style="border:1px dashed #222;border-radius:8px;padding:24px;text-align:center;color:#555;font-size:13px;">No requests saved yet in this browser.</div>'
+    : saved.map(item => `<div class="request-card">
+        <div class="top"><span class="cat">${item.category}</span><span class="timing">${item.urgency}</span></div>
+        <div class="summary">${item.summary.replace(/</g, '&lt;')}</div>
+        <div class="date">${item.createdAt}</div>
+      </div>`).join('');
+
+  content.innerHTML = `
+    <h1>Request Inbox</h1>
+    <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
+      Request new skills, agent changes, MCP connections, or context updates. Requests are reviewed within one business day.
+    </p>
+
+    <div style="display:grid;gap:24px;grid-template-columns:1.1fr 0.9fr;">
+      <div>
+        <div class="request-form">
+          <h3 style="font-size:16px;color:#fff;margin:0 0 16px;">New request</h3>
+          <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr;margin-bottom:12px;">
+            <label>
+              <span class="label-text">Category</span>
+              <select id="req-category">${categoryOptions}</select>
+            </label>
+            <label>
+              <span class="label-text">Timing</span>
+              <select id="req-timing">
+                <option>Today</option>
+                <option selected>This week</option>
+                <option>Next check-in</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            <span class="label-text">Request</span>
+            <textarea id="req-summary" placeholder="Example: Build a skill that generates weekly investor updates from my latest QuickBooks data."></textarea>
+          </label>
+          <div class="actions">
+            <button class="submit-btn" id="req-submit">Save request</button>
+            <span class="status" id="req-status">Requests are reviewed within one business day.</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="margin-bottom:24px;">
+          <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#555;margin-bottom:12px;">Suggested asks</h3>
+          ${promptButtons}
+        </div>
+        <div>
+          <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#555;margin-bottom:12px;">Recent saved requests</h3>
+          ${requestCards}
+        </div>
+      </div>
+    </div>
+  `;
+  document.querySelector('main').scrollTop = 0;
+
+  content.querySelectorAll('.prompt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('req-summary').value = btn.dataset.prompt;
+    });
+  });
+
+  document.getElementById('req-submit').addEventListener('click', () => {
+    const summary = document.getElementById('req-summary').value.trim();
+    if (!summary) return;
+    const entry = {
+      id: crypto.randomUUID(),
+      category: document.getElementById('req-category').value,
+      summary,
+      urgency: document.getElementById('req-timing').value,
+      createdAt: new Date().toLocaleString(),
+    };
+    const next = [entry, ...getRequests()].slice(0, 6);
+    saveRequests(next);
+    const status = document.getElementById('req-status');
+    status.textContent = 'Request saved.';
+    status.style.color = '#9ece6a';
+    setTimeout(() => {
+      status.textContent = 'Requests are reviewed within one business day.';
+      status.style.color = '#555';
+    }, 1800);
+    renderRequestInbox();
+  });
+}
+
+// ─── Save page button on content views ───
+function addSaveButton(pageTitle, sourceLabel) {
+  const content = document.getElementById('content');
+  const h1 = content.querySelector('h1');
+  if (!h1) return;
+  const btn = document.createElement('button');
+  btn.className = 'save-page-btn';
+  btn.innerHTML = '+ Save snippet';
+  btn.addEventListener('click', () => {
+    const selection = window.getSelection().toString().trim();
+    if (selection) {
+      addSavedItem({ title: pageTitle + ' — snippet', type: 'snippet', body: selection, source: sourceLabel || pageTitle });
+      btn.textContent = 'Saved!';
+      btn.style.borderColor = '#9ece6a';
+      btn.style.color = '#9ece6a';
+      setTimeout(() => { btn.innerHTML = '+ Save snippet'; btn.style.borderColor = ''; btn.style.color = ''; }, 1500);
+    } else {
+      const form = document.createElement('div');
+      form.className = 'save-form';
+      form.style.marginTop = '16px';
+      form.innerHTML = `
+        <h3>Save from "${pageTitle}"</h3>
+        <input type="text" placeholder="Title" value="${pageTitle.replace(/"/g, '&quot;')}" class="inline-save-title" />
+        <textarea placeholder="Paste or type content to save..." class="inline-save-body"></textarea>
+        <div class="form-row">
+          <select class="inline-save-type" style="width:auto;margin-bottom:0">
+            <option value="snippet">Snippet</option>
+            <option value="note">Note</option>
+            <option value="template">Template</option>
+          </select>
+          <button class="inline-save-submit">Save</button>
+          <button class="cancel-btn inline-save-cancel">Cancel</button>
+        </div>
+      `;
+      h1.after(form);
+      btn.style.display = 'none';
+      form.querySelector('.inline-save-submit').addEventListener('click', () => {
+        const t = form.querySelector('.inline-save-title').value.trim() || pageTitle;
+        const b = form.querySelector('.inline-save-body').value.trim();
+        if (!b) return;
+        addSavedItem({ title: t, type: form.querySelector('.inline-save-type').value, body: b, source: sourceLabel || pageTitle });
+        form.remove();
+        btn.style.display = '';
+        btn.textContent = 'Saved!';
+        btn.style.borderColor = '#9ece6a';
+        btn.style.color = '#9ece6a';
+        setTimeout(() => { btn.innerHTML = '+ Save snippet'; btn.style.borderColor = ''; btn.style.color = ''; }, 1500);
+      });
+      form.querySelector('.inline-save-cancel').addEventListener('click', () => {
+        form.remove();
+        btn.style.display = '';
+      });
+    }
+  });
+  h1.appendChild(btn);
+}
+
+// ─── File loading ───
+async function fetchFile(id) {
+  if (cache[id]) return cache[id];
+  const entry = fileMap[id];
+  if (!entry) return '';
+  const res = await fetch(entry.file);
+  const text = await res.text();
+  cache[id] = text;
+  return text;
+}
+
+async function loadFile(id) {
+  currentFile = id;
+  const content = document.getElementById('content');
+  content.innerHTML = '<div class="loading">Loading...</div>';
+
+  document.querySelectorAll('nav a').forEach(a => {
+    const isActive = a.dataset.id === id;
+    a.classList.toggle('active', isActive);
+    if (isActive) {
+      const group = a.closest('.nav-group');
+      if (group && group.classList.contains('collapsed')) {
+        group.classList.remove('collapsed');
+        const chevron = group.previousElementSibling?.querySelector('.chevron');
+        if (chevron) chevron.classList.remove('collapsed');
+      }
+    }
+  });
+
+  const md = await fetchFile(id);
+  content.innerHTML = marked.parse(md);
+
+  content.querySelectorAll('code').forEach(code => {
+    const text = code.textContent.trim();
+    const match = text.match(/^kb\/(.+\.md)$/);
+    if (!match) return;
+    const entry = files.find(f => f.file.endsWith('kb/' + match[1]));
+    if (!entry) return;
+    const link = document.createElement('a');
+    link.href = '#' + entry.id;
+    link.style.cssText = 'color:#818cf8;cursor:pointer;text-decoration:none;';
+    link.textContent = entry.label;
+    link.addEventListener('click', e => { e.preventDefault(); loadFile(entry.id); });
+    code.replaceWith(link);
+  });
+
+  window.scrollTo(0, 0);
+  document.querySelector('main').scrollTop = 0;
+
+  history.replaceState(null, '', '#' + id);
+
+  const fileEntry = fileMap[id];
+  if (fileEntry) addSaveButton(fileEntry.label, fileEntry.label);
+}
+
+async function loadFileWithAnchor(id, anchorText) {
+  await loadFile(id);
+  if (anchorText) {
+    setTimeout(() => {
+      const headings = document.querySelectorAll('#content h1, #content h2, #content h3, #content h4');
+      for (const h of headings) {
+        if (h.textContent.includes(anchorText)) {
+          h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          h.style.background = '#0d0d1a';
+          h.style.borderRadius = '4px';
+          h.style.padding = '4px 8px';
+          setTimeout(() => { h.style.background = ''; h.style.padding = ''; }, 2000);
+          break;
+        }
+      }
+    }, 50);
+  }
+}
+
+function setActiveNav(id) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.id === id));
+}
+
+// ─── Search ───
+let searchTimeout;
+document.getElementById('search').addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  const query = this.value.trim().toLowerCase();
+  const resultsDiv = document.getElementById('search-results');
+  const navDiv = document.getElementById('nav-links');
+
+  if (!query) {
+    resultsDiv.style.display = 'none';
+    navDiv.style.display = '';
+    return;
+  }
+
+  searchTimeout = setTimeout(async () => {
+    await Promise.all(files.map(f => fetchFile(f.id)));
+
+    const results = [];
+    for (const f of files) {
+      const text = cache[f.id] || '';
+      const lines = text.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].toLowerCase().includes(query)) {
+          const snippet = lines[i].trim().substring(0, 120);
+          const highlighted = snippet.replace(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), match => `<mark>${match}</mark>`);
+          results.push({ fileId: f.id, label: f.label, line: highlighted });
+          if (results.length >= 30) break;
+        }
+      }
+      if (results.length >= 30) break;
+    }
+
+    navDiv.style.display = 'none';
+    resultsDiv.style.display = '';
+
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<div style="padding:12px 0;color:#555;font-size:12px;">No results found.</div>';
+    } else {
+      resultsDiv.innerHTML = results.map(r =>
+        `<div class="search-result" data-id="${r.fileId}">
+          <div class="file">${r.label}</div>
+          <div class="line">${r.line}</div>
+        </div>`
+      ).join('');
+
+      resultsDiv.querySelectorAll('.search-result').forEach(el => {
+        el.addEventListener('click', () => {
+          document.getElementById('search').value = '';
+          resultsDiv.style.display = 'none';
+          navDiv.style.display = '';
+          loadFile(el.dataset.id);
+        });
+      });
+    }
+  }, 200);
+});
+
+// ─── Hash routing ───
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash) {
+    loadFile('overview');
+    return;
+  }
+  if (hash === 'requests') { renderRequestInbox(); return; }
+  if (hash === 'saved') { renderSaved(); return; }
+  if (fileMap[hash]) { loadFile(hash); return; }
+  loadFile('overview');
+}
+
+</script>
+</body>
+</html>

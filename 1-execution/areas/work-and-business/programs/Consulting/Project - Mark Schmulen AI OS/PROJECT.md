@@ -98,6 +98,14 @@ Less applicable for a standup engagement, but the compounding effect IS the prod
 | Project manifest | This file |
 | OS governance | [olympics.md](../../../../3-reference/olympics.md), [consulting-engagement.md](../consulting-engagement.md) |
 
+## Publishing
+- **Slug:** `mark-schmulen`
+- **Portal route:** `/mark-schmulen`
+- **Surface:** Static HTML viewer + markdown KB
+- **Password:** `mark` (SHA-256 gated, session-based)
+- **Approved:** 2026-03-25
+- **Allowlist entry:** `3-reference/publishing/mception-ai-projects.yml`
+
 ## Status
 - Phase: **pre-engagement** (brief drafted, awaiting confirmation)
 - Last updated: 2026-03-25
