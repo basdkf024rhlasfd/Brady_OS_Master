@@ -45,7 +45,8 @@ Fork from the Orlando template at `orlando-v3/houston/viewer/index.html` or the 
 2. Replace accent color (Orlando = blue `#7aa2f7`, STIHL = orange `#f97316`)
 3. Update the `files[]` array to match your KB files
 4. Update the `sections[]` array to match your nav groups
-5. Set the password in the gate check
+
+**No auth in standalone apps.** The portal handles authentication via Clerk. Standalone viewer apps should load directly with no password gate.
 
 No `package.json`, no `node_modules`, no build config.
 
@@ -79,7 +80,6 @@ Single HTML file with three embedded sections:
 
 ### `<body>` structure
 ```html
-<div id="gate">...</div>     <!-- Password gate -->
 <nav>                         <!-- 280px sidebar -->
   <div class="brand">...</div>
   <div class="search-box"><input id="search" /></div>
@@ -259,7 +259,7 @@ The standalone app works on its own. When iframed by the portal, keep project na
 
 - [ ] Create `viewer/` and `kb/` directories
 - [ ] Fork viewer HTML from Orlando or STIHL template
-- [ ] Customize branding, accent color, password
+- [ ] Customize branding and accent color
 - [ ] Update `files[]` and `sections[]` arrays
 - [ ] Write markdown KB files with real content
 - [ ] Create GitHub repo, push, deploy to Vercel (static)
