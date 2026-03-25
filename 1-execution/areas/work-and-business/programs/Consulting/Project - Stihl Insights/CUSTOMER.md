@@ -16,9 +16,9 @@ Your current process:
 
 ## What You Get
 
-A private intelligence surface with six sections, updated weekly:
+A private intelligence briefing surface, updated weekly:
 
-### Home
+### Morning Brief
 The single place to start every day. What changed, why it matters, what to do about it. Includes ready-to-copy prompts you can paste into ChatGPT or Claude for immediate analysis.
 
 ### Competitors
@@ -27,14 +27,11 @@ Living profiles on Husqvarna, Deere, Toro, Honda, Echo/Yamabiko, and Milwaukee T
 ### Digital Analytics
 Systematic view of where stihlusa.com stands vs competitors: site performance, search/SEO, marketplace presence, feature gaps. Analytical, not marketing — real findings, not vanity metrics.
 
-### Artifacts
+### Examples
 Finished, presentation-ready examples: executive one-pagers, tariff memos, battlecards, digital benchmarks. Each includes a prompt so you can regenerate or customize it on your own.
 
-### Data
-The accumulated intelligence base — saved facts, financial metrics, tariff data, product launches, source documents. Everything sourced and dated. This library grows every week and compounds over time.
-
-### Requests
-Need something specific? Submit a request — a custom brief, a competitor comparison, talking points for a meeting. Responses delivered within the week.
+### Request Inbox
+Need something specific? Submit a request — a custom brief, a competitor comparison, talking points for a meeting. Requests are captured directly in the surface and triaged within the week.
 
 ## How We Measure Success
 
@@ -70,12 +67,12 @@ These are the outcomes that matter — from your chair, not ours.
 ## How It Works Week to Week
 
 1. Surface updates weekly with fresh intelligence
-2. Home tells you what changed and what to do
+2. The Morning Brief tells you what changed and what to do
 3. You copy prompts, open artifacts, browse competitors as needed
-4. You submit requests when you need something custom
+4. You submit a request when you need something custom
 5. The surface adapts based on what you actually use — sections you rely on get deeper, prompts you copy get refined
 
 ## Timeline
 
-- **Initial delivery:** All 6 sections populated with real, specific, actionable content
+- **Initial delivery:** All core briefing pages populated with real, specific, actionable content
 - **Ongoing:** Weekly updates, continuous improvement, responsive to your requests

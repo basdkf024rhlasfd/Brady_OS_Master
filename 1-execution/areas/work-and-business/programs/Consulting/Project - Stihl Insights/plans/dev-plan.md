@@ -2,117 +2,109 @@
 
 ## What We're Building
 
-A private intelligence surface for Rob Jenson that replaces the output of an internal insights team. Six sections, each populated with real content — not placeholders, not demos.
+A private intelligence surface for Rob Jenson that replaces the output of an internal insights team. The current canonical implementation is the standalone viewer in Brady OS backed by markdown knowledge-base files.
 
-The surface lives at mception.ai under the existing portal shell (Next.js, Clerk auth, self-contained STIHL routes).
+The earlier Next.js portal plan remains useful as product reference, but it is not the current source of truth for implementation.
 
 ## Information Architecture
 
 ```
-Home
-Competitors
+Brief
+Competitor Watch
+New Launches
 Digital Analytics
-Artifacts (includes prompts)
-Data
-Requests
+Tariff Watch
+Financial Watch
+Examples
+Geography & Weather
+Method & Sources
+Request Inbox
+Saved
 ```
 
-### Home
+### Brief
 The working front door. Not a dashboard — a tight operating surface.
-- What matters today (one primary insight, one recommendation)
-- Today's update / daily increment
-- 2-3 favorited prompts (copy-to-clipboard, ready for AI)
-- One recommended artifact
-- Recently updated data block
+- one lead signal
+- one recommendation
+- a few supporting facts
+- direct links into deeper pages
 
-### Competitors
-Each competitor gets a real profile, not a card.
-- Current position
-- Latest change
-- Why it matters to STIHL
-- Linked artifacts
-- Linked underlying data
+### Competitor Watch
+Each competitor page should answer four questions:
+- What changed?
+- Why does it matter?
+- What should STIHL watch next?
+- What should STIHL do with that information?
 
-Initial competitors: Husqvarna, Deere & Co, Toro, Honda Power Equipment, Echo/Yamabiko, Milwaukee Tool (TTI)
+### New Launches
+Launch coverage should track only launches that change the expectation set for STIHL, dealers, or leadership.
 
 ### Digital Analytics
 The audit and measurement section. Analytical, not marketing.
 - Site performance findings
-- Search / SEO changes
+- Search and browse observations
 - Marketplace observations
-- Feature gaps vs competitors
-- Linked screenshots, crawls, source notes
+- Feature gaps versus competitors
 
-### Artifacts
-The action/output layer. Finished examples + reusable templates.
-- Each artifact has an attached prompt ("use this prompt to regenerate or customize")
-- Copy-to-clipboard on every prompt
-- Daily starter prompts get favorited to Home
+### Tariff Watch
+The current tariff story, the usable numbers, and the talking points that come out of them.
 
-Initial artifacts:
-- Executive one-pager
-- Tariff impact memo
-- Competitor battlecard (Husqvarna)
+### Financial Watch
+Supporting context only. Helpful after the main commercial signal is clear, not before.
+
+### Examples
+Finished deliverable patterns that set the quality bar:
+- Morning Brief
+- Tariff memo
+- Competitive battlecard
 - Digital benchmark snapshot
-- Leadership briefing template
-- Dealer talking points template
+- Category one-pager
 
-### Data
-The compounding asset. A real library, not a content page.
-- Saved facts, tables, source notes
-- Each item has: title, type, source, date, tags, status
-- Linked to competitors / artifacts / analyses
-- This is the substrate — other sections are curated views built from it
+### Geography & Weather
+Regional timing context when it changes demand or dealer behavior enough to matter.
 
-Initial data categories:
-- Financial metrics (revenue, margins, stock)
-- Tariff and trade policy
-- Product launches and recalls
-- Market share estimates
-- Digital performance benchmarks
-- Source documents and links
+### Method & Sources
+The page that explains where signals come from and what standards a claim must meet before it gets surfaced.
 
-### Requests
-Concierge intake. Simple.
-- "What do you need answered?"
-- Suggested quick actions (prepare brief, compare competitor, audit a page, build talking points)
-- Optional deadline / meeting context
-- Not a ticketing system — a conversation starter
+### Request Inbox
+Concierge intake:
+- what do you need answered
+- how soon do you need it
+- a few suggested request starters
+
+### Saved
+Browser-local storage for snippets, notes, and templates the user wants to keep close.
 
 ## Build Phases
 
 ### Phase 1: Structure and Navigation
-**Goal:** All 6 routes exist with correct IA and navigation. Content can be placeholder but structure is final.
+**Goal:** The standalone viewer has a clear navigation model and the briefing reads as one coherent product.
 
-- [ ] Create/update route structure: `/stihl/home`, `/stihl/competitors`, `/stihl/digital`, `/stihl/artifacts`, `/stihl/data`, `/stihl/requests`
-- [ ] Update nav to match new IA (retire old routes: Today, About)
-- [ ] Home page layout with all blocks (empty shells OK)
-- [ ] Competitor profile page template
-- [ ] Artifacts page with prompt card component (copy-to-clipboard)
-- [ ] Data page with item list and metadata display
-- [ ] Requests page with intake form
+- [ ] Make the standalone viewer the canonical STIHL surface inside Brady OS
+- [ ] Align nav labels with client-facing language
+- [ ] Keep the Morning Brief as the clear starting page
+- [ ] Keep the request inbox simple and concierge-style
+- [ ] Preserve search and save flows without turning the product into a dashboard
 
-### Phase 2: Data Model and Content Seeding
-**Goal:** Real content in `stihl-data.ts` (or equivalent) for all sections. Every item passes the content test: specific, dated, says why STIHL should care, implies an action.
+### Phase 2: Content Seeding and Quality Control
+**Goal:** Every markdown page passes the content test: specific, dated, says why STIHL should care, implies an action.
 
-- [ ] Restructure data model to support all 6 sections
-- [ ] Seed competitor profiles (6 competitors, real data)
-- [ ] Seed digital analytics findings (real observations from stihlusa.com and competitors)
-- [ ] Seed initial artifacts (4-6 finished examples with attached prompts)
-- [ ] Seed data library (financial metrics, tariff data, product launches, benchmarks)
-- [ ] Seed Home page content (today's insight, recommendation, favorited prompts)
-- [ ] Write 8-12 prompt templates across categories (daily brief, battlecard, tariff analysis, digital audit, leadership memo, dealer talking points)
+- [ ] Tighten the Morning Brief around one lead signal and one recommendation
+- [ ] Make competitor pages about latest change plus implication, not generic profiles
+- [ ] Keep digital findings observational and commercially relevant
+- [ ] Keep examples concrete enough to set a quality bar
+- [ ] Attach source and timing language to all time-sensitive claims
 
 ### Phase 3: Polish and Proof
-**Goal:** The surface looks and feels like a professional intelligence product. Rob can use it without explanation.
+**Goal:** The viewer feels like a professional intelligence product. Rob can use it without explanation.
 
 - [ ] Copy and naming cleanup (plain English, executive-safe language everywhere)
 - [ ] Visual hierarchy — Home communicates the main point in under 60 seconds
-- [ ] Prompt copy-to-clipboard works reliably
-- [ ] Artifact display is clean and presentation-ready
-- [ ] Data items have proper metadata and linking
-- [ ] Competitor pages show real depth (not just surface cards)
-- [ ] Cross-linking works: data items link to competitors, artifacts link to prompts, Home links to everything
+- [ ] Search works across the knowledge base
+- [ ] Save flows work reliably in-browser
+- [ ] Request inbox feels lightweight and trustworthy
+- [ ] Cross-linking between pages works cleanly
+- [ ] Viewer access is acceptable for a static internal surface
 
 ### Phase 4: Delivery and Handoff
 **Goal:** Rob is using it.
@@ -153,12 +145,12 @@ Avoid anywhere in the UI:
 
 ## Technical Constraints
 
-- Stay within the existing Next.js portal shell
-- Keep seeded content in data files (no backend required for MVP)
-- Auth handled by Clerk at portal level
-- No built-in chat — prompts are the AI bridge
-- No integrations yet — pure content surface
-- Self-contained STIHL routes (don't depend on shared components beyond portal shell)
+- Keep the current implementation inside Brady OS until the broader product strategy hardens
+- Keep seeded content in markdown and local viewer logic
+- No backend required for MVP
+- No built-in chat
+- No integrations yet
+- Static access controls are acceptable for internal sharing, but should not be confused with full security
 
 ## Success Criteria
 

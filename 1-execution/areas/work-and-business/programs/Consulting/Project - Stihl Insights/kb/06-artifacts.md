@@ -1,99 +1,81 @@
-# Artifact Examples
+# Examples
 
-Example deliverables — presentation-ready formats with sections, audience, and purpose.
+Finished deliverable formats. Use these to show the quality bar, pick the right artifact, and brief faster.
 
 ---
 
 ## Morning Brief
 
-**Format:** One-page daily briefing
-**Audience:** Rob and direct reports
+**Format:** One-page operating brief  
+**Audience:** Rob and direct reports  
+**Use when:** Leadership needs a quick answer on what changed and what to do next
 
-The first screen every morning: top signal, what changed, market pulse, launch watch, and one recommended move.
+**What it should do**
 
-**Sections:**
-- Quick pulse
-- Market pulse
-- Tariff watch
-- Launch radar
-- What to do today
-
----
-
-## Kantar-style Category Snapshot
-
-**Format:** Visual one-pager
-**Audience:** Executive and commercial stakeholders
-
-A polished category view with competitor posture, pricing pressure, launch activity, and the bottom-line implication for STIHL.
-
-**Sections:**
-- Category headline
-- Peer scorecards
-- Promo watch
-- Implications
-- Recommended response
-
----
+- Lead with one top signal
+- Give one recommendation
+- Show only the few supporting facts needed to defend the recommendation
 
 ## Tariff Impact Memo
 
-**Format:** Board-ready memo
-**Audience:** US and German leadership
+**Format:** Board-ready memo  
+**Audience:** US and German leadership  
+**Use when:** Pricing, sourcing, or margin conversations need a clean business translation
 
-Explains tariff developments in plain business terms with competitor exposure and STIHL's structural advantage.
+**What it should do**
 
-**Sections:**
-- What changed
-- Cost exposure
-- Peer comparison
-- Scenario math
-- Action recommendation
-
----
+- Explain what changed
+- Compare STIHL's relative position versus import-heavy peers
+- End with a recommendation and a talk track
 
 ## Competitive Battlecard
 
-**Format:** Two-page field document
-**Audience:** Sales, eCommerce, leadership
+**Format:** Two-page field document  
+**Audience:** Sales, eCommerce, leadership  
+**Use when:** One competitor is becoming the center of a meeting or internal discussion
 
-Tight dossier on one competitor with positioning, watchouts, pricing posture, and talk tracks.
+**What it should do**
 
-**Sections:**
-- Overview
-- What they are saying
-- What to watch
-- How STIHL should respond
-
----
+- Summarize current posture
+- Call out latest moves
+- Translate those moves into STIHL responses
+- Give ready-to-use talking points
 
 ## Digital Benchmark Snapshot
 
-**Format:** Site audit deck
-**Audience:** Product and digital teams
+**Format:** Site audit deck or one-pager  
+**Audience:** Product and digital teams  
+**Use when:** The conversation shifts from market intelligence to digital execution gaps
 
-Compares discovery, PDP depth, search, marketplace support, and conversion surfaces across top peers.
+**What it should do**
 
-**Sections:**
-- What works
-- What is weak
-- Competitive contrast
-- Priority fixes
+- Show what works
+- Show where browse, search, or education is weak
+- Prioritize the fixes that matter commercially
+
+## Category Snapshot
+
+**Format:** Executive one-pager  
+**Audience:** Commercial and executive stakeholders  
+**Use when:** The goal is to summarize category posture without making people read a long memo
+
+**What it should do**
+
+- Set the category headline
+- Compare peers quickly
+- Clarify the implication for STIHL
+- Point to one recommended response
 
 ---
 
-## Geo-Weather Demand Note
+## Quality Bar
 
-**Format:** Regional signal brief
-**Audience:** Commercial planning and dealer operations
+Every example should answer four questions without explanation:
 
-Pairs weather and regional conditions with demand timing hypotheses and suggested operational attention.
-
-**Sections:**
-- Regional setup
-- Weather signal
-- Category implication
-- Dealer response
+1. What changed?
+2. Why should STIHL care?
+3. What should happen next?
+4. What fact or source holds the argument up?
 
 ---
 

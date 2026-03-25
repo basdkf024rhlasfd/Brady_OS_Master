@@ -1,32 +1,40 @@
-# Launch Radar
+# New Launches
 
-Competitor product launches, announcements, and positioning moves.
+Competitor product launches, assortment moves, and positioning changes that deserve follow-up.
 
 ---
 
 ## Husqvarna
 
-*Q1 2026*
+*Q1 2026 launch watch*
 
-Fuel-injected 564 XP chainsaw and cordless 550i XP (gasless pro model) announced. Price increases effective April 21.
+The 564 XP and 550i XP keep Husqvarna visible in the pro chainsaw and battery conversation at the same time.
 
-> The 550i XP signals pro-grade battery chainsaws are a real category now. Watch dealer reception and pricing.
+> Why it matters: Husqvarna is not only adding SKUs. It is reinforcing a story that pro users can move into battery without giving up credibility.
 
-## TTI / Milwaukee
+## Milwaukee / TTI
 
-*Q1 2026*
+*Q1 2026 expansion watch*
 
-Milwaukee outdoor line expanding via jobsite-to-yard crossover. Leveraging M18 battery ecosystem loyalty from construction into OPE.
+Milwaukee continues to extend outdoor through the broader M18 platform instead of building a separate outdoor identity.
 
-> Milwaukee's play is platform lock-in. STIHL's counter is total cost of ownership and the dealer service moat.
+> Why it matters: This is an ecosystem play. STIHL should answer it with service, ownership economics, and use-case proof rather than trying to mimic platform breadth.
 
 ## DeWalt
 
-*Ongoing*
+*Spring 2026 assortment watch*
 
-60V MAX outdoor line expanding. 8 consecutive quarters of organic growth on DeWalt brand despite -3% overall SBD revenue.
+DeWalt's 60V MAX outdoor expansion continues to keep the brand in consideration wherever retail shoppers are already comparing cordless systems.
 
-> DeWalt's post-tariff pricing umbrella makes STIHL's value proposition stronger at every price point.
+> Why it matters: DeWalt benefits when buyers already expect one battery family to cover multiple jobs. STIHL needs a sharper explanation of where its system wins and why dealers still matter.
+
+---
+
+## Follow-Up Questions
+
+1. Which launches are getting real dealer enthusiasm versus just press coverage?
+2. Where are peer launches changing the battery expectation set for pro users?
+3. Which STIHL categories need better comparison language because of these launches?
 
 ---
 

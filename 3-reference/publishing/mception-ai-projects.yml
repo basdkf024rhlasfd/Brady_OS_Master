@@ -1,4 +1,6 @@
-# Explicit allowlist for projects that may appear on mception.ai.
-# If a project is not listed here, it is private by default.
+# Explicit publication allowlist for projects that may be newly published on mception.ai.
+# Use this file as the approval gate for new slugs or visibility expansions.
+# If a project is not listed here, it remains private by default unless it is an already-live public slug being maintained without broadening visibility.
+# If this file cannot be read or parsed, mception.ai should fail closed on new publication decisions and visibility expansions.
 
 published_projects: []

@@ -1,19 +1,32 @@
-# Market Pulse
+# Financial Watch
 
-Financial watch — peer stock prices, commodity inputs, and market signals.
+Snapshot of peer equity and input-cost signals that may change the commercial conversation.
 
 ---
 
-## Financial Watch
+## Market Snapshot
 
-| Company | Ticker | Price | Move | Note |
-|---------|--------|-------|------|------|
-| Husqvarna | HUSQ-A.ST | SEK 86.10 | +1.4% | As of Mar 14, 2026 close · Nasdaq Stockholm |
-| TTI / Milwaukee | TTNDY | $15.42 | +0.8% | As of Mar 14, 2026 · OTC ADR — primary listing 0669.HK |
-| Stanley B&D | SWK | $92.18 | -0.6% | Relevant for DeWalt price pressure and promo posture. |
-| John Deere | DE | $576.82 | +0.2% | Useful for broad outdoor demand and dealer sentiment context. |
-| Lithium carbonate | Li | $105/kWh eq. | -2.1% WoW | Battery margin tailwind if the decline holds. |
-| Aluminum | LME | $3,215/ton | +1.2% WoW | Input cost watch for battery and handheld tools. |
+| Company | Ticker | Snapshot | Why it matters |
+|---------|--------|----------|----------------|
+| Husqvarna | HUSQ-A.ST | As of Mar. 14, 2026 close | Useful read on sentiment toward a close outdoor peer under pressure. |
+| TTI / Milwaukee | TTNDY / 0669.HK | As of Mar. 14, 2026 close | Helps track whether the platform-driven battery story is still being rewarded. |
+| Stanley Black & Decker | SWK | As of Mar. 14, 2026 close | Relevant for DeWalt pricing pressure, promo posture, and investor confidence. |
+| John Deere | DE | As of Mar. 14, 2026 close | Useful macro context for dealer and outdoor equipment sentiment. |
+
+---
+
+## Input Watch
+
+| Input | Current read | Commercial implication |
+|-------|--------------|------------------------|
+| Lithium economics | Still a watch item | Softer battery input costs help the battery margin story if the trend holds. |
+| Aluminum | Still elevated enough to matter | Keep watching for any effect on battery and handheld tool cost assumptions. |
+
+---
+
+## How To Use This Page
+
+Do not lead with stock moves in a client or leadership conversation. Use this page to add context once the real commercial signal is already clear.
 
 ---
 
