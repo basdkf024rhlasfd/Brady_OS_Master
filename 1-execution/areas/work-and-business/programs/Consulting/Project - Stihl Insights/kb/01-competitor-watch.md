@@ -1,6 +1,6 @@
 # Competitor Watch
 
-Living profiles on peer brands — current position, latest moves, why it matters to STIHL.
+Living profiles on peer brands: current posture, latest change, why it matters, and what STIHL should watch next.
 
 ---
 
@@ -8,63 +8,63 @@ Living profiles on peer brands — current position, latest moves, why it matter
 
 | Field | Detail |
 |-------|--------|
-| **Focus** | Outdoor category peer with brand overlap and battery credibility. |
-| **Revenue** | SEK 48.35B revenue, pressured profitability. |
-| **Pressure** | Execution and demand pressure create a window for share capture. |
-| **Watch** | Category page quality, battery narrative, promo stance. |
-| **Stance** | Wounded but still dangerous. Track every sign of recovery. |
+| **Position** | Closest branded outdoor peer with real battery credibility and dealer overlap. |
+| **Latest change** | Q1 2026 launch activity keeps attention on the 550i XP and 564 XP. |
+| **Why it matters** | Husqvarna can still win the "modern pro battery" story even while broader performance remains pressured. |
+| **What to watch** | Dealer reaction, price posture, and how aggressively the battery story is merchandised. |
+| **STIHL implication** | Compete on proof, service, and total ownership economics, not just assortment count. |
 
 ## Milwaukee / TTI
 
 | Field | Detail |
 |-------|--------|
-| **Focus** | Platform-driven battery challenger with jobsite halo. |
-| **Revenue** | US$15.3B group revenue with strong battery-led positioning. |
-| **Pressure** | Tariff and import exposure remain meaningful. |
-| **Watch** | Outdoor expansion, battery ecosystem storytelling, contractor adoption. |
-| **Stance** | The biggest storytelling threat, not the closest channel analog. |
+| **Position** | Platform-led battery challenger with strong contractor mindshare. |
+| **Latest change** | Outdoor expansion continues to ride the M18 ecosystem rather than a stand-alone OPE narrative. |
+| **Why it matters** | Milwaukee is the clearest example of battery lock-in crossing from jobsite to yard. |
+| **What to watch** | Crossover bundles, pro-user testimonials, and signs of contractor adoption in outdoor categories. |
+| **STIHL implication** | The counter-story is dealer service, runtime proof, and ownership economics outside the jobsite halo. |
 
 ## DeWalt / Stanley Black & Decker
 
 | Field | Detail |
 |-------|--------|
-| **Focus** | Brand power plus pricing and promo activity. |
-| **Revenue** | US$15.4B revenue, still managing cost and margin recovery. |
-| **Pressure** | Tariffs and price pass-through create vulnerability. |
-| **Watch** | Price increases, outdoor assortment depth, seasonal promotions. |
-| **Stance** | Every price move should be translated into a STIHL sales talking point. |
+| **Position** | Brand-scale competitor with pricing power, retail presence, and promo reach. |
+| **Latest change** | Pricing and tariff management remain central to 2026 operating language. |
+| **Why it matters** | DeWalt price moves give STIHL an opening to frame steadier value and channel discipline. |
+| **What to watch** | Price increases, spring promotions, assortment depth, and margin-recovery language. |
+| **STIHL implication** | Every DeWalt pricing move should produce a direct STIHL talking point for dealers and leadership. |
 
 ## John Deere
 
 | Field | Detail |
 |-------|--------|
-| **Focus** | Broader outdoor and dealer signal benchmark. |
-| **Revenue** | US$51.7B revenue with category adjacency rather than direct overlap. |
-| **Pressure** | Farm and turf demand cycles matter more than handheld OPE. |
-| **Watch** | Dealer health, regional demand, mower crossover behavior. |
-| **Stance** | A useful macro proxy even when direct product overlap is limited. |
+| **Position** | Broader outdoor and dealer-health benchmark rather than a pure handheld peer. |
+| **Latest change** | Dealer and demand signals remain more relevant than direct product overlap. |
+| **Why it matters** | Deere is useful as a macro read on dealer confidence and regional outdoor demand. |
+| **What to watch** | Dealer sentiment, regional timing, and mower-to-handheld crossover behavior. |
+| **STIHL implication** | Use Deere more as a market context signal than a direct battlecard competitor. |
 
 ---
 
 ## Financial Calendar
 
-### Next earnings — SWK
+### Stanley Black & Decker
 
-**Apr 24, 2026 (est.)**
+**Apr. 24, 2026 (estimated)**
 
-Key metric: updated tariff exposure guidance and DeWalt pricing actions.
+Watch for updated tariff exposure guidance, price realization, and DeWalt outdoor commentary.
 
-### Husqvarna Q1
+### Husqvarna Group
 
-**Apr 29, 2026 (est.)**
+**Apr. 29, 2026 (estimated)**
 
-Watch for restructuring progress and whether revenue decline has stabilized.
+Watch for margin stabilization, battery launch traction, and any changes in demand language.
 
-### TTI interim
+### Techtronic Industries
 
-**Aug 2026 (est.)**
+**Aug. 2026 (estimated interim timing)**
 
-Milwaukee growth rate and any tariff-driven margin compression.
+Watch for Milwaukee growth, tariff commentary, and signs that outdoor is becoming a bigger strategic callout.
 
 ---
 

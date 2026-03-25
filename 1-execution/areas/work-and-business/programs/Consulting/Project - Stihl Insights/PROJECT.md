@@ -99,7 +99,7 @@ Full framework: [recursive-learning.md](plans/recursive-learning.md)
 
 | What | Where |
 |------|-------|
-| Code / deliverables | mception-ai/cody repo (Next.js portal) — `src/app/(portal)/stihl/` |
+| Code / deliverables | Brady OS repo — `1-execution/.../Project - Stihl Insights/viewer/` + `kb/` |
 | Planning & reference | This repo — `1-execution/.../Project - Stihl Insights/` |
 | Tasks | Notion (linked to Consulting program) |
 | Notes / memory | Notion Memory layer, tagged to this project |
@@ -107,7 +107,9 @@ Full framework: [recursive-learning.md](plans/recursive-learning.md)
 | Project manifest | This file |
 | OS governance | [olympics.md](../../../../3-reference/olympics.md), [consulting-engagement.md](../consulting-engagement.md) |
 
+**Canonical source note:** Until the STIHL product shape is hardened, Brady OS is the canonical source for STIHL planning, content, and viewer code. The separate `stihl-insights` repo is intentionally not being treated as the source of truth.
+
 ## Status
 - Phase: **active**
-- Last updated: 2026-03-18
+- Last updated: 2026-03-25
 - Final medal: pending

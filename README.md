@@ -43,6 +43,8 @@ This includes OS doctrine (authority horizons, Trust Loop), narrative architectu
 → [Narrative Architecture](3-reference/narrative-architecture.md)
 → [Team Templates](3-reference/team-templates/)
 → [Rewards](3-reference/rewards.md)
+→ [mception.ai Publishing Policy](3-reference/publishing/mception-ai.md)
+→ [mception.ai Publication Allowlist](3-reference/publishing/mception-ai-projects.yml)
 
 ## How It All Fits Together
 

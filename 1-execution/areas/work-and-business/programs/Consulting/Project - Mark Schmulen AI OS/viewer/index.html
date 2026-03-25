@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STIHL Competitive Brief</title>
-<meta name="description" content="Private competitive intelligence brief for STIHL USA — competitors, tariffs, digital commerce, launches, and category signals.">
+<title>AI OS — Mark Schmulen</title>
+<meta name="description" content="Private AI operating system project brief for Mark Schmulen — agents, skills, memory, and tool connections.">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,13 +28,13 @@
     font-size: 13px; border-left: 3px solid transparent; transition: all 0.15s;
   }
   nav a:hover { background: #1a1a1a; color: #fff; }
-  nav a.active { background: #1a150a; color: #f97316; border-left-color: #f97316; }
+  nav a.active { background: #0d0d1a; color: #818cf8; border-left-color: #818cf8; }
   nav .search-box { padding: 12px 16px; }
   nav input {
     width: 100%; padding: 8px 10px; background: #1a1a1a; border: 1px solid #333;
     border-radius: 6px; color: #ccc; font-size: 13px; outline: none;
   }
-  nav input:focus { border-color: #f97316; }
+  nav input:focus { border-color: #818cf8; }
   nav input::placeholder { color: #555; }
   nav a .saved-count { font-size: 10px; opacity: 0.5; }
   nav a.special-link { display: flex; justify-content: space-between; align-items: center; }
@@ -45,25 +45,25 @@
 
   /* Markdown styles */
   .content-wrap h1 { font-size: 28px; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid #222; }
-  .content-wrap h2 { font-size: 22px; color: #fed7aa; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #1a150a; }
-  .content-wrap h3 { font-size: 17px; color: #e0af68; margin: 28px 0 12px; }
-  .content-wrap h4 { font-size: 15px; color: #fb923c; margin: 20px 0 8px; }
+  .content-wrap h2 { font-size: 22px; color: #c7d2fe; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #0d0d1a; }
+  .content-wrap h3 { font-size: 17px; color: #a5b4fc; margin: 28px 0 12px; }
+  .content-wrap h4 { font-size: 15px; color: #818cf8; margin: 20px 0 8px; }
   .content-wrap p { line-height: 1.7; margin: 0 0 14px; color: #bbb; font-size: 14.5px; }
   .content-wrap ul, .content-wrap ol { margin: 0 0 14px; padding-left: 24px; }
   .content-wrap li { line-height: 1.7; margin: 4px 0; color: #bbb; font-size: 14.5px; }
   .content-wrap strong { color: #e0e0e0; }
   .content-wrap hr { border: none; border-top: 1px solid #222; margin: 32px 0; }
-  .content-wrap code { background: #1a150a; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #fb923c; }
+  .content-wrap code { background: #0d0d1a; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #818cf8; }
   .content-wrap pre { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 0 0 16px; }
   .content-wrap pre code { background: none; padding: 0; }
-  .content-wrap blockquote { border-left: 3px solid #f97316; padding: 8px 16px; margin: 0 0 14px; background: #0d0a05; border-radius: 0 6px 6px 0; }
-  .content-wrap blockquote p { color: #d4a574; }
-  .content-wrap a { color: #fb923c; text-decoration: none; }
+  .content-wrap blockquote { border-left: 3px solid #818cf8; padding: 8px 16px; margin: 0 0 14px; background: #0a0a12; border-radius: 0 6px 6px 0; }
+  .content-wrap blockquote p { color: #a5b4fc; }
+  .content-wrap a { color: #818cf8; text-decoration: none; }
   .content-wrap a:hover { text-decoration: underline; }
 
   /* Tables */
   .content-wrap table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; }
-  .content-wrap th { text-align: left; padding: 10px 12px; background: #1a150a; color: #f97316; font-weight: 600; border: 1px solid #222; }
+  .content-wrap th { text-align: left; padding: 10px 12px; background: #0d0d1a; color: #818cf8; font-weight: 600; border: 1px solid #222; }
   .content-wrap td { padding: 8px 12px; border: 1px solid #1a1a1a; color: #bbb; }
   .content-wrap tr:hover td { background: #111; }
 
@@ -71,9 +71,9 @@
   .search-results { padding: 0 16px; }
   .search-result { padding: 6px 0; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
   .search-result:hover { background: #1a1a1a; }
-  .search-result .file { font-size: 11px; color: #f97316; }
+  .search-result .file { font-size: 11px; color: #818cf8; }
   .search-result .line { font-size: 12px; color: #888; margin-top: 2px; }
-  .search-result mark { background: #e0af68; color: #000; padding: 0 2px; border-radius: 2px; }
+  .search-result mark { background: #a5b4fc; color: #000; padding: 0 2px; border-radius: 2px; }
 
   /* Loading */
   .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
@@ -83,14 +83,14 @@
   .saved-item:hover { border-color: #333; }
   .saved-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
   .saved-item-title { font-size: 15px; color: #e0e0e0; font-weight: 600; cursor: pointer; flex: 1; min-width: 0; }
-  .saved-item-title:hover { color: #f97316; }
+  .saved-item-title:hover { color: #818cf8; }
   .saved-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
   .saved-item-btn { background: none; border: 1px solid #333; color: #888; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
   .saved-item-btn:hover { border-color: #555; color: #ccc; }
   .saved-item-btn.delete:hover { border-color: #f7768e; color: #f7768e; }
   .saved-item-meta { font-size: 11px; color: #555; margin-bottom: 8px; }
   .saved-item-type { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; font-weight: 600; margin-right: 8px; }
-  .saved-item-type.snippet { background: #1a150a; color: #f97316; }
+  .saved-item-type.snippet { background: #0d0d1a; color: #818cf8; }
   .saved-item-type.note { background: #1a2a1a; color: #9ece6a; }
   .saved-item-type.template { background: #2a1a1a; color: #f7768e; }
   .saved-item-preview { font-size: 13px; color: #888; line-height: 1.6; white-space: pre-wrap; max-height: 80px; overflow: hidden; }
@@ -98,20 +98,20 @@
   .saved-empty { color: #555; font-size: 14px; text-align: center; padding: 48px 24px; }
 
   .save-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
-  .save-form h3 { font-size: 14px; color: #e0af68; margin: 0 0 12px; }
+  .save-form h3 { font-size: 14px; color: #a5b4fc; margin: 0 0 12px; }
   .save-form input, .save-form textarea, .save-form select {
     width: 100%; padding: 8px 10px; background: #0a0a0a; border: 1px solid #333;
     border-radius: 6px; color: #ccc; font-size: 13px; outline: none; margin-bottom: 10px;
     font-family: inherit;
   }
-  .save-form input:focus, .save-form textarea:focus { border-color: #f97316; }
+  .save-form input:focus, .save-form textarea:focus { border-color: #818cf8; }
   .save-form textarea { min-height: 100px; resize: vertical; }
   .save-form .form-row { display: flex; gap: 10px; align-items: center; }
   .save-form button {
-    background: #1a150a; border: 1px solid #f97316; color: #f97316; font-size: 13px;
+    background: #0d0d1a; border: 1px solid #818cf8; color: #818cf8; font-size: 13px;
     padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.15s;
   }
-  .save-form button:hover { background: #f97316; color: #0a0a0a; }
+  .save-form button:hover { background: #818cf8; color: #0a0a0a; }
   .save-form button.cancel-btn { border-color: #555; color: #888; background: none; }
   .save-form button.cancel-btn:hover { border-color: #888; color: #ccc; background: #1a1a1a; }
 
@@ -121,7 +121,7 @@
     color: #888; font-size: 12px; padding: 6px 12px; border-radius: 6px; cursor: pointer;
     transition: all 0.15s; float: right; margin-top: -4px;
   }
-  .save-page-btn:hover { border-color: #f97316; color: #f97316; }
+  .save-page-btn:hover { border-color: #818cf8; color: #818cf8; }
 
   /* Request Inbox */
   .request-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
@@ -131,21 +131,21 @@
     width: 100%; padding: 10px 12px; background: #0a0a0a; border: 1px solid #333;
     border-radius: 8px; color: #e0e0e0; font-size: 13px; outline: none; font-family: inherit;
   }
-  .request-form select:focus, .request-form textarea:focus { border-color: #f97316; }
+  .request-form select:focus, .request-form textarea:focus { border-color: #818cf8; }
   .request-form textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
   .request-form .actions { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
   .request-form .submit-btn {
-    background: #f97316; border: none; color: #000; font-size: 13px; font-weight: 600;
+    background: #818cf8; border: none; color: #000; font-size: 13px; font-weight: 600;
     padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: background 0.15s;
   }
-  .request-form .submit-btn:hover { background: #fb923c; }
+  .request-form .submit-btn:hover { background: #a5b4fc; }
   .request-form .status { font-size: 13px; color: #555; }
   .prompt-btn {
     display: block; width: 100%; text-align: left; background: #0a0a0a; border: 1px solid #222;
     border-radius: 8px; padding: 10px 14px; color: #bbb; font-size: 13px; line-height: 1.6;
     cursor: pointer; transition: all 0.15s; margin-bottom: 8px; font-family: inherit;
   }
-  .prompt-btn:hover { border-color: #f97316; color: #fff; }
+  .prompt-btn:hover { border-color: #818cf8; color: #fff; }
   .request-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 14px 18px; margin-bottom: 10px; }
   .request-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .request-card .cat { font-size: 13px; font-weight: 600; color: #fff; }
@@ -158,22 +158,22 @@
 
 <div id="gate" style="display:flex;align-items:center;justify-content:center;height:100vh;width:100vw;background:#0a0a0a;">
   <div style="text-align:center;">
-    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2.2px;color:#555;margin-bottom:8px;">Competitive Intelligence</div>
-    <h1 style="font-size:20px;color:#fff;margin-bottom:24px;font-weight:600;">STIHL Competitive Brief</h1>
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2.2px;color:#555;margin-bottom:8px;">AI Operating System</div>
+    <h1 style="font-size:20px;color:#fff;margin-bottom:24px;font-weight:600;">Mark Schmulen AI OS</h1>
     <input type="password" id="gate-pw" placeholder="Password" autofocus
       style="padding:10px 16px;background:#111;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:15px;width:240px;outline:none;text-align:center;" />
-    <div style="color:#666;font-size:12px;margin-top:10px;">Private internal briefing. Access is unlocked per browser session.</div>
+    <div style="color:#666;font-size:12px;margin-top:10px;">Private project brief. Access is unlocked per browser session.</div>
     <div id="gate-err" style="color:#f7768e;font-size:12px;margin-top:10px;opacity:0;"></div>
   </div>
 </div>
 
 <nav style="display:none;">
   <div class="brand">
-    <div class="eyebrow">Competitive Intelligence</div>
-    <div class="title">STIHL Competitive Brief</div>
+    <div class="eyebrow">AI Operating System</div>
+    <div class="title">Mark Schmulen</div>
   </div>
   <div class="search-box">
-    <input type="text" id="search" placeholder="Search intelligence..." />
+    <input type="text" id="search" placeholder="Search..." />
   </div>
   <div id="search-results" class="search-results" style="display:none"></div>
   <div id="nav-links"></div>
@@ -187,10 +187,10 @@
 
 <script>
 // ─── Password gate ───
-const AUTH_SESSION_KEY = 'stihl-auth-v2';
-const AUTH_HASH = '6ed22f80faf4f887fe30032fb1fdd4a900b43899b46852ec92ea6e1ad754be04';
-const AUTH_LOCK_KEY = 'stihl-auth-lock-until';
-const AUTH_FAIL_KEY = 'stihl-auth-fail-count';
+const AUTH_SESSION_KEY = 'mschmulen-auth-v1';
+const AUTH_HASH = '6201eb4dccc956cc4fa3a78dca0c2888177ec52efd48f125df214f046eb43138';
+const AUTH_LOCK_KEY = 'mschmulen-auth-lock-until';
+const AUTH_FAIL_KEY = 'mschmulen-auth-fail-count';
 const AUTH_MAX_FAILS = 5;
 const AUTH_LOCK_MS = 30000;
 let viewerInitialized = false;
@@ -300,21 +300,19 @@ function clearFailedAttempts() {
 
 // ─── File definitions ───
 const files = [
-  { id: 'morning-brief', file: '../kb/00-morning-brief.md', label: 'Brief' },
-  { id: 'competitor-watch', file: '../kb/01-competitor-watch.md', label: 'Competitor Watch' },
-  { id: 'launch-radar', file: '../kb/02-launch-radar.md', label: 'New Launches' },
-  { id: 'digital-intel', file: '../kb/03-digital-intelligence.md', label: 'Digital Intelligence' },
-  { id: 'tariff-watch', file: '../kb/04-tariff-watch.md', label: 'Tariff Watch' },
-  { id: 'market-pulse', file: '../kb/05-market-pulse.md', label: 'Financial Watch' },
-  { id: 'artifacts', file: '../kb/06-artifacts.md', label: 'Examples' },
-  { id: 'geo-weather', file: '../kb/07-geo-weather.md', label: 'Geography & Weather' },
-  { id: 'method-sources', file: '../kb/08-method-sources.md', label: 'Method & Sources' },
+  { id: 'overview', file: '../kb/00-overview.md', label: 'Overview' },
+  { id: 'executive-assistant', file: '../kb/01-executive-assistant.md', label: 'Executive Assistant' },
+  { id: 'cmo-agent', file: '../kb/02-cmo-agent.md', label: 'CMO Agent' },
+  { id: 'cfo-agent', file: '../kb/03-cfo-agent.md', label: 'CFO Agent' },
+  { id: 'skills-library', file: '../kb/04-skills-library.md', label: 'Skills Library' },
+  { id: 'how-it-works', file: '../kb/05-how-it-works.md', label: 'How It Works' },
+  { id: 'timeline', file: '../kb/06-timeline.md', label: 'Timeline & Status' },
 ];
 
 const sections = [
-  { name: 'Intelligence', ids: ['morning-brief', 'competitor-watch', 'launch-radar', 'digital-intel', 'tariff-watch', 'market-pulse'], defaultOpen: true },
-  { name: 'Examples', ids: ['artifacts', 'geo-weather'] },
-  { name: 'Reference', ids: ['method-sources'] },
+  { name: 'Project', ids: ['overview', 'timeline'], defaultOpen: true },
+  { name: 'Agents', ids: ['executive-assistant', 'cmo-agent', 'cfo-agent'], defaultOpen: true },
+  { name: 'System', ids: ['skills-library', 'how-it-works'] },
 ];
 
 const fileMap = {};
@@ -324,18 +322,18 @@ const cache = {};
 let currentFile = null;
 
 // ─── Request data ───
-const requestCategories = ['Daily brief', 'Competitor analysis', 'Digital audit', 'Tariff memo', 'Launch tracker', 'Financial pulse'];
+const requestCategories = ['New skill', 'Agent change', 'MCP connection', 'Context update', 'Bug fix', 'Question'];
 const requestPrompts = [
-  'Build a Husqvarna battlecard for next week\'s leadership meeting.',
-  'Summarize the latest tariff changes and translate them into STIHL talking points.',
-  'Audit the chainsaw browse experience against Husqvarna and DeWalt.',
-  'Create a Kantar-style one-pager for battery handheld equipment.',
-  'Explain how weather might affect regional sales timing over the next two weeks.',
+  'Build a skill that drafts weekly investor updates from my latest metrics.',
+  'Connect my CMO agent to my Twitter/X account for content scheduling.',
+  'Add a meeting debrief skill that summarizes action items from Granola transcripts.',
+  'Update my executive assistant context with my new scheduling preferences.',
+  'Create a skill that generates LinkedIn posts from my meeting notes.',
 ];
 
 // ─── Build nav ───
 const navLinks = document.getElementById('nav-links');
-const collapsedGroups = JSON.parse(localStorage.getItem('stihl-navCollapsed') || '{}');
+const collapsedGroups = JSON.parse(localStorage.getItem('mschmulen-navCollapsed') || '{}');
 
 function buildNavSection(name, buildLinks, defaultOpen) {
   const isCollapsed = collapsedGroups.hasOwnProperty(name) ? collapsedGroups[name] : !defaultOpen;
@@ -354,7 +352,7 @@ function buildNavSection(name, buildLinks, defaultOpen) {
     const nowCollapsed = group.classList.toggle('collapsed');
     chevron.classList.toggle('collapsed', nowCollapsed);
     collapsedGroups[name] = nowCollapsed;
-    localStorage.setItem('stihl-navCollapsed', JSON.stringify(collapsedGroups));
+    localStorage.setItem('mschmulen-navCollapsed', JSON.stringify(collapsedGroups));
   });
 
   navLinks.appendChild(h2);
@@ -399,7 +397,7 @@ buildNavSection('Requests', group => {
 // Saved section
 const savedNavLink = document.createElement('a');
 function updateSavedCount() {
-  const items = JSON.parse(localStorage.getItem('stihl-savedItems') || '[]');
+  const items = JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
   savedNavLink.innerHTML = `<span>All Saved</span><span class="saved-count">${items.length}</span>`;
 }
 buildNavSection('Saved', group => {
@@ -416,11 +414,11 @@ buildNavSection('Saved', group => {
 
 // ─── Saved items localStorage ───
 function getSavedItems() {
-  return JSON.parse(localStorage.getItem('stihl-savedItems') || '[]');
+  return JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
 }
 
 function saveSavedItems(items) {
-  localStorage.setItem('stihl-savedItems', JSON.stringify(items));
+  localStorage.setItem('mschmulen-savedItems', JSON.stringify(items));
   updateSavedCount();
 }
 
@@ -455,7 +453,7 @@ function renderSaved() {
   let html = `
     <h1>Saved</h1>
     <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
-      Save templates, notes, and snippets from across the intelligence base. Everything is stored locally in your browser.
+      Save templates, notes, and snippets from across the project brief. Everything is stored locally in your browser.
     </p>
     <div class="save-form" id="save-form">
       <h3>New Item</h3>
@@ -469,7 +467,7 @@ function renderSaved() {
   `;
 
   if (items.length === 0) {
-    html += `<div class="saved-empty"><p>No saved items yet.</p><p style="font-size:12px">Use the form above or the save button when viewing intelligence pages.</p></div>`;
+    html += `<div class="saved-empty"><p>No saved items yet.</p><p style="font-size:12px">Use the form above or the save button when viewing pages.</p></div>`;
   } else {
     html += items.map(item => {
       const date = new Date(item.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -557,7 +555,7 @@ function renderSaved() {
 }
 
 // ─── Request Inbox ───
-const REQUEST_STORAGE_KEY = 'stihl-request-inbox';
+const REQUEST_STORAGE_KEY = 'mschmulen-request-inbox';
 
 function getRequests() {
   try { return JSON.parse(localStorage.getItem(REQUEST_STORAGE_KEY) || '[]'); }
@@ -590,7 +588,7 @@ function renderRequestInbox() {
   content.innerHTML = `
     <h1>Request Inbox</h1>
     <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
-      Capture a request quickly. Requests are reviewed within one business day.
+      Request new skills, agent changes, MCP connections, or context updates. Requests are reviewed within one business day.
     </p>
 
     <div style="display:grid;gap:24px;grid-template-columns:1.1fr 0.9fr;">
@@ -607,13 +605,13 @@ function renderRequestInbox() {
               <select id="req-timing">
                 <option>Today</option>
                 <option selected>This week</option>
-                <option>Next meeting</option>
+                <option>Next check-in</option>
               </select>
             </label>
           </div>
           <label>
             <span class="label-text">Request</span>
-            <textarea id="req-summary" placeholder="Example: Build a board-ready tariff memo comparing STIHL, Husqvarna, and DeWalt."></textarea>
+            <textarea id="req-summary" placeholder="Example: Build a skill that generates weekly investor updates from my latest QuickBooks data."></textarea>
           </label>
           <div class="actions">
             <button class="submit-btn" id="req-submit">Save request</button>
@@ -635,14 +633,12 @@ function renderRequestInbox() {
   `;
   document.querySelector('main').scrollTop = 0;
 
-  // Wire up prompt buttons
   content.querySelectorAll('.prompt-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.getElementById('req-summary').value = btn.dataset.prompt;
     });
   });
 
-  // Wire up submit
   document.getElementById('req-submit').addEventListener('click', () => {
     const summary = document.getElementById('req-summary').value.trim();
     if (!summary) return;
@@ -739,7 +735,6 @@ async function loadFile(id) {
   const content = document.getElementById('content');
   content.innerHTML = '<div class="loading">Loading...</div>';
 
-  // Update active nav and expand group if collapsed
   document.querySelectorAll('nav a').forEach(a => {
     const isActive = a.dataset.id === id;
     a.classList.toggle('active', isActive);
@@ -756,7 +751,6 @@ async function loadFile(id) {
   const md = await fetchFile(id);
   content.innerHTML = marked.parse(md);
 
-  // Make kb/ file references clickable
   content.querySelectorAll('code').forEach(code => {
     const text = code.textContent.trim();
     const match = text.match(/^kb\/(.+\.md)$/);
@@ -765,7 +759,7 @@ async function loadFile(id) {
     if (!entry) return;
     const link = document.createElement('a');
     link.href = '#' + entry.id;
-    link.style.cssText = 'color:#fb923c;cursor:pointer;text-decoration:none;';
+    link.style.cssText = 'color:#818cf8;cursor:pointer;text-decoration:none;';
     link.textContent = entry.label;
     link.addEventListener('click', e => { e.preventDefault(); loadFile(entry.id); });
     code.replaceWith(link);
@@ -788,7 +782,7 @@ async function loadFileWithAnchor(id, anchorText) {
       for (const h of headings) {
         if (h.textContent.includes(anchorText)) {
           h.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          h.style.background = '#1a150a';
+          h.style.background = '#0d0d1a';
           h.style.borderRadius = '4px';
           h.style.padding = '4px 8px';
           setTimeout(() => { h.style.background = ''; h.style.padding = ''; }, 2000);
@@ -818,7 +812,6 @@ document.getElementById('search').addEventListener('input', function() {
   }
 
   searchTimeout = setTimeout(async () => {
-    // Preload all files for search
     await Promise.all(files.map(f => fetchFile(f.id)));
 
     const results = [];
@@ -865,13 +858,13 @@ document.getElementById('search').addEventListener('input', function() {
 function handleHash() {
   const hash = location.hash.replace('#', '');
   if (!hash) {
-    loadFile('morning-brief');
+    loadFile('overview');
     return;
   }
   if (hash === 'requests') { renderRequestInbox(); return; }
   if (hash === 'saved') { renderSaved(); return; }
   if (fileMap[hash]) { loadFile(hash); return; }
-  loadFile('morning-brief');
+  loadFile('overview');
 }
 
 </script>
