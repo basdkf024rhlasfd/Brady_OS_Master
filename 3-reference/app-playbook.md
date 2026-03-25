@@ -21,9 +21,11 @@ mception.ai (portal)          Client App (standalone)
    Domain: mception.ai          Domain: auto-assigned
 ```
 
-**Rule:** Each client project = its own repo, its own deploy. The portal just iframes it.
+**Rule:** Each client project = its own repo, its own deploy. The portal links to a single canonical project entry and embeds the project surface there.
 
 **Default pattern:** Single HTML file + markdown KB directory. Zero build toolchain.
+
+**Portal standard:** The global `mception.ai` sidebar is a project selector, not a second layer of project-specific IA. Each client project gets one sidebar entry. Project-specific navigation belongs inside the project surface. Treat Orlando as the preferred pattern. The older STIHL-style multi-route portal submenu pattern is legacy and should not be copied for new projects.
 
 ---
 
@@ -132,7 +134,7 @@ const sections = [
 **Embedded detection:**
 ```javascript
 if (window.self !== window.top) {
-  // Hide sidebar — portal provides nav
+  // Optional: adjust chrome for embed context
 }
 ```
 
@@ -192,7 +194,9 @@ Or just `open viewer/index.html` — works for everything except cross-origin fe
 
 ### Add iframe proxy page in munich
 
-Unlike the old multi-route pattern, you only need **one** proxy page since the viewer handles its own routing via hash:
+Create a single canonical entry route for the project. Do not mirror project-internal sections into the portal sidebar.
+
+Portal hookup is not publication approval. Wiring a project into the portal or deploying it does not make a new project publishable on `mception.ai` by itself. New public slugs still require approval plus inclusion in `3-reference/publishing/mception-ai-projects.yml`. Existing public slugs may be updated at the same route without re-interpreting the work as a new publication request, as long as the update does not broaden visibility. If the allowlist cannot be read, the system should fail closed on new publication decisions and visibility expansions.
 
 ```
 munich/src/app/(portal)/<project>/page.tsx
@@ -213,10 +217,12 @@ export default function Page() {
 Edit `munich/src/components/portal/Sidebar.tsx`:
 
 ```typescript
-const projectSubPages = [
+const projectLinks = [
   { href: "/<project>", label: "<Project Name>", short: "P" },
 ];
 ```
+
+The portal sidebar should contain one link per project. Do not add nested project submenus for internal pages such as dashboard, competitors, requests, or saved views.
 
 ### Set env var on munich Vercel project
 
@@ -229,6 +235,8 @@ echo "<production-url>" | npx vercel env add NEXT_PUBLIC_<PROJECT>_APP_URL produ
 ```bash
 npx vercel --prod --force
 ```
+
+This completes the portal connection, not the publication decision. New projects remain private unless they are explicitly added to `3-reference/publishing/mception-ai-projects.yml` after approval. Updating an already-live public slug at the same route is maintenance, not a new publication event, so long as the update does not broaden visibility.
 
 ---
 
@@ -243,7 +251,7 @@ cd "Project - <Name>" && python3 -m http.server 4100
 cd munich && npm run dev  # runs on port 3000
 ```
 
-The standalone app works on its own. When iframed by the portal, the viewer auto-hides the sidebar.
+The standalone app works on its own. When iframed by the portal, keep project navigation inside the project surface unless there is a specific reason to suppress it.
 
 ---
 
@@ -256,7 +264,7 @@ The standalone app works on its own. When iframed by the portal, the viewer auto
 - [ ] Write markdown KB files with real content
 - [ ] Create GitHub repo, push, deploy to Vercel (static)
 - [ ] Add proxy page in munich
-- [ ] Add sidebar nav entry in munich
+- [ ] Add one canonical project link in munich
 - [ ] Set `NEXT_PUBLIC_<PROJECT>_APP_URL` env var on munich
 - [ ] Redeploy munich
 - [ ] Test: standalone app works alone
@@ -291,6 +299,8 @@ Use the React/Next.js pattern (see git history for the old version of this playb
 - Team is already in a React/Next.js codebase and the app will grow
 
 For pure intelligence surfaces with static or manually-updated content → **always use the HTML viewer pattern.**
+
+Legacy note: avoid the old STIHL-style approach where the portal shell exposed multiple project-specific routes in its own sidebar. Prefer a single project entry route and let the project surface own its internal navigation.
 
 ---
 
