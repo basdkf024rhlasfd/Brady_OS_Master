@@ -102,7 +102,6 @@ Less applicable for a standup engagement, but the compounding effect IS the prod
 - **Slug:** `mark-schmulen`
 - **Portal route:** `/mark-schmulen`
 - **Surface:** Static HTML viewer + markdown KB
-- **Password:** `mark` (SHA-256 gated, session-based)
 - **Approved:** 2026-03-25
 - **Allowlist entry:** `3-reference/publishing/mception-ai-projects.yml`
 

@@ -156,18 +156,7 @@
 </head>
 <body>
 
-<div id="gate" style="display:flex;align-items:center;justify-content:center;height:100vh;width:100vw;background:#0a0a0a;">
-  <div style="text-align:center;">
-    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2.2px;color:#555;margin-bottom:8px;">AI Operating System</div>
-    <h1 style="font-size:20px;color:#fff;margin-bottom:24px;font-weight:600;">Mark Schmulen AI OS</h1>
-    <input type="password" id="gate-pw" placeholder="Password" autofocus
-      style="padding:10px 16px;background:#111;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:15px;width:240px;outline:none;text-align:center;" />
-    <div style="color:#666;font-size:12px;margin-top:10px;">Private project brief. Access is unlocked per browser session.</div>
-    <div id="gate-err" style="color:#f7768e;font-size:12px;margin-top:10px;opacity:0;"></div>
-  </div>
-</div>
-
-<nav style="display:none;">
+<nav>
   <div class="brand">
     <div class="eyebrow">AI Operating System</div>
     <div class="title">Mark Schmulen</div>
@@ -179,124 +168,13 @@
   <div id="nav-links"></div>
 </nav>
 
-<main style="display:none;">
+<main>
   <div class="content-wrap" id="content">
     <div class="loading">Loading...</div>
   </div>
 </main>
 
 <script>
-// ─── Password gate ───
-const AUTH_SESSION_KEY = 'mschmulen-auth-v1';
-const AUTH_HASH = '6201eb4dccc956cc4fa3a78dca0c2888177ec52efd48f125df214f046eb43138';
-const AUTH_LOCK_KEY = 'mschmulen-auth-lock-until';
-const AUTH_FAIL_KEY = 'mschmulen-auth-fail-count';
-const AUTH_MAX_FAILS = 5;
-const AUTH_LOCK_MS = 30000;
-let viewerInitialized = false;
-
-function showViewer() {
-  document.getElementById('gate').style.display = 'none';
-  document.querySelector('nav').style.display = '';
-  document.querySelector('main').style.display = '';
-  if (!viewerInitialized) {
-    viewerInitialized = true;
-    window.addEventListener('hashchange', handleHash);
-    handleHash();
-  }
-}
-
-function showGateError(message, timeout = 1800) {
-  const input = document.getElementById('gate-pw');
-  const err = document.getElementById('gate-err');
-  err.textContent = message;
-  err.style.opacity = '1';
-  input.value = '';
-  input.style.borderColor = '#f7768e';
-  setTimeout(() => {
-    input.style.borderColor = '#333';
-    err.style.opacity = '0';
-  }, timeout);
-}
-
-async function sha256Hex(value) {
-  const bytes = new TextEncoder().encode(value);
-  const digest = await crypto.subtle.digest('SHA-256', bytes);
-  return Array.from(new Uint8Array(digest)).map(byte => byte.toString(16).padStart(2, '0')).join('');
-}
-
-function currentLockUntil() {
-  return Number(sessionStorage.getItem(AUTH_LOCK_KEY) || '0');
-}
-
-function registerFailedAttempt() {
-  const nextCount = Number(sessionStorage.getItem(AUTH_FAIL_KEY) || '0') + 1;
-  sessionStorage.setItem(AUTH_FAIL_KEY, String(nextCount));
-  if (nextCount >= AUTH_MAX_FAILS) {
-    const lockUntil = Date.now() + AUTH_LOCK_MS;
-    sessionStorage.setItem(AUTH_LOCK_KEY, String(lockUntil));
-    sessionStorage.setItem(AUTH_FAIL_KEY, '0');
-    return lockUntil;
-  }
-  return 0;
-}
-
-function clearFailedAttempts() {
-  sessionStorage.removeItem(AUTH_FAIL_KEY);
-  sessionStorage.removeItem(AUTH_LOCK_KEY);
-}
-
-(async function initAuth() {
-  if (sessionStorage.getItem(AUTH_SESSION_KEY) === AUTH_HASH) {
-    showViewer();
-    return;
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const accessParam = params.get('access');
-  if (accessParam) {
-    const accessHash = await sha256Hex(accessParam.trim());
-    if (accessHash === AUTH_HASH) {
-      sessionStorage.setItem(AUTH_SESSION_KEY, AUTH_HASH);
-      clearFailedAttempts();
-      params.delete('access');
-      const cleanQuery = params.toString();
-      const cleanUrl = window.location.pathname + (cleanQuery ? `?${cleanQuery}` : '') + window.location.hash;
-      history.replaceState(null, '', cleanUrl);
-      showViewer();
-      return;
-    }
-  }
-
-  const input = document.getElementById('gate-pw');
-  input.addEventListener('keydown', async function(e) {
-    if (e.key !== 'Enter') return;
-
-    const lockUntil = currentLockUntil();
-    if (Date.now() < lockUntil) {
-      const seconds = Math.max(1, Math.ceil((lockUntil - Date.now()) / 1000));
-      showGateError(`Too many failed attempts. Try again in ${seconds}s.`, 2200);
-      return;
-    }
-
-    const submittedHash = await sha256Hex(this.value.trim());
-    if (submittedHash === AUTH_HASH) {
-      sessionStorage.setItem(AUTH_SESSION_KEY, AUTH_HASH);
-      clearFailedAttempts();
-      showViewer();
-      return;
-    }
-
-    const nextLockUntil = registerFailedAttempt();
-    if (nextLockUntil) {
-      const seconds = Math.max(1, Math.ceil((nextLockUntil - Date.now()) / 1000));
-      showGateError(`Too many failed attempts. Try again in ${seconds}s.`, 2200);
-      return;
-    }
-
-    showGateError('Wrong password');
-  });
-})();
 
 // ─── File definitions ───
 const files = [
@@ -866,6 +744,9 @@ function handleHash() {
   if (fileMap[hash]) { loadFile(hash); return; }
   loadFile('overview');
 }
+
+window.addEventListener('hashchange', handleHash);
+handleHash();
 
 </script>
 </body>
