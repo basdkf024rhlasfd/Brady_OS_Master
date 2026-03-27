@@ -245,8 +245,23 @@ const requestPrompts = [
   'Create a skill that generates LinkedIn posts from my meeting notes.',
 ];
 
+// ─── Role detection ───
+const urlParams = new URLSearchParams(window.location.search);
+const USER_ROLE = urlParams.get('role') === 'advisor' ? 'advisor' : 'client';
+const IS_ADVISOR = USER_ROLE === 'advisor';
+
 // ─── Feedback localStorage ───
-const FEEDBACK_STORAGE_KEY = 'mschmulen-sow-feedback';
+const FEEDBACK_STORAGE_KEY = 'mschmulen-sow-feedback-client';
+
+// One-time migration from old key
+if (!localStorage.getItem('mschmulen-sow-feedback-migrated')) {
+  const old = localStorage.getItem('mschmulen-sow-feedback');
+  if (old) {
+    localStorage.setItem(FEEDBACK_STORAGE_KEY, old);
+    localStorage.removeItem('mschmulen-sow-feedback');
+  }
+  localStorage.setItem('mschmulen-sow-feedback-migrated', '1');
+}
 
 function getFeedback() {
   try { return JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY) || '[]'); }
@@ -254,9 +269,18 @@ function getFeedback() {
 }
 
 function saveFeedbackEntry(text) {
+  if (IS_ADVISOR) return;
   const items = getFeedback();
   items.unshift({ text, createdAt: new Date().toLocaleString() });
   localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(items.slice(0, 20)));
+}
+
+// ─── Advisor badge ───
+if (IS_ADVISOR) {
+  const badge = document.createElement('div');
+  badge.textContent = 'Advisor View';
+  badge.style.cssText = 'font-size:10px;color:#818cf8;letter-spacing:1.2px;text-transform:uppercase;margin-top:6px;opacity:0.6;';
+  document.querySelector('nav .brand').appendChild(badge);
 }
 
 // ─── Build nav ───
@@ -409,7 +433,7 @@ async function renderSOW() {
   const mainEl = document.querySelector('main');
   const md = await fetchFile('statement-of-work');
   const renderedMd = marked.parse(md);
-  const feedback = getFeedback();
+  const feedback = IS_ADVISOR ? [] : getFeedback();
 
   const feedbackCards = feedback.length === 0
     ? ''
@@ -418,15 +442,20 @@ async function renderSOW() {
         ${feedback.map(f => `<div class="feedback-card">${f.text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}<div class="date">${f.createdAt}</div></div>`).join('')}
       </div>`;
 
+  const subtitleText = IS_ADVISOR
+    ? 'Write feedback to copy to your clipboard. Nothing is saved in this browser.'
+    : 'Questions, changes, or comments on the scope. Feedback is saved locally and copied to your clipboard.';
+  const submitLabel = IS_ADVISOR ? 'Copy to Clipboard' : 'Save & Copy';
+
   mainEl.innerHTML = `
     <div class="sow-layout">
       <div class="sow-content">${renderedMd}</div>
       <div class="sow-sidebar">
         <div class="feedback-form">
           <h3>Notes & Feedback</h3>
-          <div class="subtitle">Questions, changes, or comments on the scope. Feedback is saved locally and copied to your clipboard.</div>
+          <div class="subtitle">${subtitleText}</div>
           <textarea id="sow-feedback" placeholder="Any questions about the scope? Things you'd add, remove, or change? Write your notes here..."></textarea>
-          <button class="submit-btn" id="sow-submit">Save & Copy</button>
+          <button class="submit-btn" id="sow-submit">${submitLabel}</button>
           <div class="status" id="sow-status"></div>
         </div>
         ${feedbackCards}
@@ -447,9 +476,13 @@ async function renderSOW() {
 
     // UI feedback
     const status = document.getElementById('sow-status');
-    const subject = encodeURIComponent('SOW Feedback — AI OS');
-    const body = encodeURIComponent(text);
-    status.innerHTML = 'Saved & copied to clipboard. <a href="mailto:brady.smallwood@gmail.com?subject=' + subject + '&body=' + body + '" style="color:#818cf8">Email Brady</a>';
+    if (IS_ADVISOR) {
+      status.innerHTML = 'Copied to clipboard.';
+    } else {
+      const subject = encodeURIComponent('SOW Feedback — AI OS');
+      const body = encodeURIComponent(text);
+      status.innerHTML = 'Saved & copied to clipboard. <a href="mailto:brady.smallwood@gmail.com?subject=' + subject + '&body=' + body + '" style="color:#818cf8">Email Brady</a>';
+    }
     status.style.color = '#9ece6a';
     document.getElementById('sow-feedback').value = '';
     setTimeout(() => {
