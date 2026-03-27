@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brady OS</title>
+<meta name="description" content="Brady OS — governance system navigator across Agents, Execution, Memory, and Reference layers.">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; display: flex; height: 100vh; }
+
+  /* Sidebar */
+  nav {
+    width: 280px; min-width: 280px; background: #111; border-right: 1px solid #222;
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  nav .brand { padding: 20px 16px 16px; border-bottom: 1px solid #222; }
+  nav .brand .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2.2px; color: #555; }
+  nav .brand .title { font-size: 18px; font-weight: 600; color: #fff; margin-top: 6px; }
+  nav .brand .subtitle { font-size: 11px; color: #4ade80; margin-top: 4px; letter-spacing: 0.5px; }
+  nav h2 { font-size: 11px; padding: 16px 16px 6px; color: #555; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: color 0.15s; user-select: none; }
+  nav h2:hover { color: #888; }
+  nav h2 .chevron { display: inline-block; font-size: 8px; margin-right: 4px; transition: transform 0.15s; }
+  nav h2 .chevron.collapsed { transform: rotate(-90deg); }
+  nav .nav-group.collapsed { display: none; }
+  nav a {
+    display: block; padding: 7px 16px; color: #aaa; text-decoration: none;
+    font-size: 13px; border-left: 3px solid transparent; transition: all 0.15s;
+  }
+  nav a:hover { background: #1a1a1a; color: #fff; }
+  nav a.active { background: #0a1a0d; color: #4ade80; border-left-color: #4ade80; }
+  nav .search-box { padding: 12px 16px; }
+  nav input {
+    width: 100%; padding: 8px 10px; background: #1a1a1a; border: 1px solid #333;
+    border-radius: 6px; color: #ccc; font-size: 13px; outline: none;
+  }
+  nav input:focus { border-color: #4ade80; }
+  nav input::placeholder { color: #555; }
+
+  /* Sub-section headers */
+  nav .sub-section-header {
+    font-size: 10px; padding: 10px 16px 4px 20px; color: #444; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer;
+    transition: color 0.15s; user-select: none;
+  }
+  nav .sub-section-header:hover { color: #666; }
+  nav .sub-section-header .chevron { display: inline-block; font-size: 7px; margin-right: 3px; transition: transform 0.15s; }
+  nav .sub-section-header .chevron.collapsed { transform: rotate(-90deg); }
+  nav .sub-inner-group.collapsed a { display: none; }
+  nav .sub-inner-group a { padding-left: 24px; }
+
+  /* Layer badge */
+  .layer-badge {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 1px 5px; border-radius: 3px; margin-left: 6px; font-weight: 600;
+    vertical-align: middle;
+  }
+  .layer-badge.l0 { color: #38bdf8; background: #0c1a2e; border: 1px solid #1e3a5f33; }
+  .layer-badge.l1 { color: #fb923c; background: #1a1508; border: 1px solid #92400e33; }
+  .layer-badge.l2 { color: #c084fc; background: #1a0d2e; border: 1px solid #6b21a833; }
+  .layer-badge.l3 { color: #4ade80; background: #0a1a0d; border: 1px solid #16a34a33; }
+
+  /* File count */
+  .file-count {
+    font-size: 10px; color: #444; margin-left: 4px; font-weight: 400;
+  }
+
+  /* Main content */
+  main { flex: 1; overflow-y: auto; padding: 0; }
+  .content-wrap { max-width: 820px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  /* Markdown styles */
+  .content-wrap h1 { font-size: 28px; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid #222; }
+  .content-wrap h2 { font-size: 22px; color: #86efac; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #0a1a0d; }
+  .content-wrap h3 { font-size: 17px; color: #4ade80; margin: 28px 0 12px; }
+  .content-wrap h4 { font-size: 15px; color: #22c55e; margin: 20px 0 8px; }
+  .content-wrap p { line-height: 1.7; margin: 0 0 14px; color: #bbb; font-size: 14.5px; }
+  .content-wrap ul, .content-wrap ol { margin: 0 0 14px; padding-left: 24px; }
+  .content-wrap li { line-height: 1.7; margin: 4px 0; color: #bbb; font-size: 14.5px; }
+  .content-wrap strong { color: #e0e0e0; }
+  .content-wrap hr { border: none; border-top: 1px solid #222; margin: 32px 0; }
+  .content-wrap code { background: #0a1a0d; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #4ade80; }
+  .content-wrap pre { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 0 0 16px; }
+  .content-wrap pre code { background: none; padding: 0; }
+  .content-wrap blockquote { border-left: 3px solid #4ade80; padding: 8px 16px; margin: 0 0 14px; background: #0a120a; border-radius: 0 6px 6px 0; }
+  .content-wrap blockquote p { color: #86efac; }
+  .content-wrap a { color: #4ade80; text-decoration: none; }
+  .content-wrap a:hover { text-decoration: underline; }
+
+  /* Tables */
+  .content-wrap table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; }
+  .content-wrap th { text-align: left; padding: 10px 12px; background: #0a1a0d; color: #4ade80; font-weight: 600; border: 1px solid #222; }
+  .content-wrap td { padding: 8px 12px; border: 1px solid #1a1a1a; color: #bbb; }
+  .content-wrap tr:hover td { background: #111; }
+
+  /* Search results */
+  .search-results { padding: 0 16px; }
+  .search-result { padding: 6px 0; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
+  .search-result:hover { background: #1a1a1a; }
+  .search-result .file { font-size: 11px; color: #4ade80; }
+  .search-result .line { font-size: 12px; color: #888; margin-top: 2px; }
+  .search-result mark { background: #86efac; color: #000; padding: 0 2px; border-radius: 2px; }
+
+  /* Loading */
+  .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
+
+  /* Nav separator */
+  nav .nav-separator { border: none; border-top: 1px solid #1a1a1a; margin: 8px 16px; }
+
+  /* Landing page */
+  .landing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .landing-card {
+    background: #111; border: 1px solid #222; border-radius: 10px; padding: 20px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .landing-card:hover { border-color: #4ade80; background: #0a1a0d; }
+  .landing-card .card-layer { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; }
+  .landing-card .card-title { font-size: 16px; color: #fff; font-weight: 600; margin-bottom: 6px; }
+  .landing-card .card-desc { font-size: 13px; color: #888; line-height: 1.5; }
+  .landing-card.l0 .card-layer { color: #38bdf8; }
+  .landing-card.l1 .card-layer { color: #fb923c; }
+  .landing-card.l2 .card-layer { color: #c084fc; }
+  .landing-card.l3 .card-layer { color: #4ade80; }
+
+  /* Error state */
+  .file-error { color: #666; font-style: italic; font-size: 13px; padding: 20px 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="eyebrow">Governance System</div>
+    <div class="title">Brady OS</div>
+    <div class="subtitle">Admin Navigator</div>
+  </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search all layers..." />
+  </div>
+  <div id="search-results" class="search-results" style="display:none"></div>
+  <div id="nav-links"></div>
+</nav>
+
+<main>
+  <div class="content-wrap" id="content">
+    <div class="loading">Loading...</div>
+  </div>
+</main>
+
+<script>
+
+// ─── File definitions ───
+const files = [
+  // Root
+  { id: 'readme', file: '../README.md', label: 'Brady OS Overview' },
+  { id: 'agents-md', file: '../AGENTS.md', label: 'Agent Instructions' },
+  { id: 'rebuild', file: '../REBUILD-BRADY-OS.md', label: 'Rebuild Guide' },
+
+  // Layer 0 — Custom Agents
+  { id: 'agent-template', file: '../0-agents/custom-built-agents/_template.md', label: 'Agent Template' },
+  { id: 'agent-bertha', file: '../0-agents/custom-built-agents/bertha.md', label: 'Bertha' },
+  { id: 'agent-bo', file: '../0-agents/custom-built-agents/bo.md', label: 'Bo' },
+  { id: 'agent-burt', file: '../0-agents/custom-built-agents/burt.md', label: 'Burt' },
+  { id: 'agent-claudine', file: '../0-agents/custom-built-agents/claudine.md', label: 'Claudine' },
+  { id: 'agent-content-drafter', file: '../0-agents/custom-built-agents/content-drafter.md', label: 'Content Drafter' },
+  { id: 'agent-cornelius', file: '../0-agents/custom-built-agents/cornelius.md', label: 'Cornelius' },
+  { id: 'agent-dicaprio', file: '../0-agents/custom-built-agents/dicaprio.md', label: 'DiCaprio' },
+  { id: 'agent-dicaprio-skill', file: '../0-agents/custom-built-agents/dicaprio-SKILL.md', label: 'DiCaprio Skill Spec' },
+  { id: 'agent-dicaprio-status', file: '../0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md', label: 'DiCaprio Status Template' },
+  { id: 'agent-mason', file: '../0-agents/custom-built-agents/mason.md', label: 'Mason' },
+  { id: 'agent-musashi', file: '../0-agents/custom-built-agents/musashi.md', label: 'Musashi' },
+  { id: 'agent-phil', file: '../0-agents/custom-built-agents/phil.md', label: 'Phil' },
+
+  // Layer 0 — Imported: Design
+  { id: 'imp-design-brand-guardian', file: '../0-agents/imported-agents/design/design-brand-guardian.md', label: 'Brand Guardian' },
+  { id: 'imp-design-image-prompt', file: '../0-agents/imported-agents/design/design-image-prompt-engineer.md', label: 'Image Prompt Engineer' },
+  { id: 'imp-design-inclusive-visuals', file: '../0-agents/imported-agents/design/design-inclusive-visuals-specialist.md', label: 'Inclusive Visuals' },
+  { id: 'imp-design-ui', file: '../0-agents/imported-agents/design/design-ui-designer.md', label: 'UI Designer' },
+  { id: 'imp-design-ux-arch', file: '../0-agents/imported-agents/design/design-ux-architect.md', label: 'UX Architect' },
+  { id: 'imp-design-ux-research', file: '../0-agents/imported-agents/design/design-ux-researcher.md', label: 'UX Researcher' },
+  { id: 'imp-design-visual-story', file: '../0-agents/imported-agents/design/design-visual-storyteller.md', label: 'Visual Storyteller' },
+  { id: 'imp-design-whimsy', file: '../0-agents/imported-agents/design/design-whimsy-injector.md', label: 'Whimsy Injector' },
+
+  // Layer 0 — Imported: Engineering
+  { id: 'imp-eng-ai-data', file: '../0-agents/imported-agents/engineering/engineering-ai-data-remediation-engineer.md', label: 'AI Data Remediation' },
+  { id: 'imp-eng-ai', file: '../0-agents/imported-agents/engineering/engineering-ai-engineer.md', label: 'AI Engineer' },
+  { id: 'imp-eng-auto-opt', file: '../0-agents/imported-agents/engineering/engineering-autonomous-optimization-architect.md', label: 'Autonomous Optimization' },
+  { id: 'imp-eng-backend', file: '../0-agents/imported-agents/engineering/engineering-backend-architect.md', label: 'Backend Architect' },
+  { id: 'imp-eng-code-review', file: '../0-agents/imported-agents/engineering/engineering-code-reviewer.md', label: 'Code Reviewer' },
+  { id: 'imp-eng-data', file: '../0-agents/imported-agents/engineering/engineering-data-engineer.md', label: 'Data Engineer' },
+  { id: 'imp-eng-db-opt', file: '../0-agents/imported-agents/engineering/engineering-database-optimizer.md', label: 'Database Optimizer' },
+  { id: 'imp-eng-devops', file: '../0-agents/imported-agents/engineering/engineering-devops-automator.md', label: 'DevOps Automator' },
+  { id: 'imp-eng-embedded', file: '../0-agents/imported-agents/engineering/engineering-embedded-firmware-engineer.md', label: 'Embedded Firmware' },
+  { id: 'imp-eng-feishu', file: '../0-agents/imported-agents/engineering/engineering-feishu-integration-developer.md', label: 'Feishu Integration' },
+  { id: 'imp-eng-frontend', file: '../0-agents/imported-agents/engineering/engineering-frontend-developer.md', label: 'Frontend Developer' },
+  { id: 'imp-eng-git', file: '../0-agents/imported-agents/engineering/engineering-git-workflow-master.md', label: 'Git Workflow Master' },
+  { id: 'imp-eng-incident', file: '../0-agents/imported-agents/engineering/engineering-incident-response-commander.md', label: 'Incident Response' },
+  { id: 'imp-eng-mobile', file: '../0-agents/imported-agents/engineering/engineering-mobile-app-builder.md', label: 'Mobile App Builder' },
+  { id: 'imp-eng-prototype', file: '../0-agents/imported-agents/engineering/engineering-rapid-prototyper.md', label: 'Rapid Prototyper' },
+  { id: 'imp-eng-security', file: '../0-agents/imported-agents/engineering/engineering-security-engineer.md', label: 'Security Engineer' },
+  { id: 'imp-eng-senior', file: '../0-agents/imported-agents/engineering/engineering-senior-developer.md', label: 'Senior Developer' },
+  { id: 'imp-eng-architect', file: '../0-agents/imported-agents/engineering/engineering-software-architect.md', label: 'Software Architect' },
+  { id: 'imp-eng-solidity', file: '../0-agents/imported-agents/engineering/engineering-solidity-smart-contract-engineer.md', label: 'Solidity Engineer' },
+  { id: 'imp-eng-sre', file: '../0-agents/imported-agents/engineering/engineering-sre.md', label: 'SRE' },
+  { id: 'imp-eng-techwriter', file: '../0-agents/imported-agents/engineering/engineering-technical-writer.md', label: 'Technical Writer' },
+  { id: 'imp-eng-threat', file: '../0-agents/imported-agents/engineering/engineering-threat-detection-engineer.md', label: 'Threat Detection' },
+  { id: 'imp-eng-wechat', file: '../0-agents/imported-agents/engineering/engineering-wechat-mini-program-developer.md', label: 'WeChat Mini Program' },
+
+  // Layer 0 — Imported: Marketing
+  { id: 'imp-mkt-appstore', file: '../0-agents/imported-agents/marketing/marketing-app-store-optimizer.md', label: 'App Store Optimizer' },
+  { id: 'imp-mkt-baidu', file: '../0-agents/imported-agents/marketing/marketing-baidu-seo-specialist.md', label: 'Baidu SEO' },
+  { id: 'imp-mkt-bilibili', file: '../0-agents/imported-agents/marketing/marketing-bilibili-content-strategist.md', label: 'Bilibili Strategist' },
+  { id: 'imp-mkt-book', file: '../0-agents/imported-agents/marketing/marketing-book-co-author.md', label: 'Book Co-Author' },
+  { id: 'imp-mkt-carousel', file: '../0-agents/imported-agents/marketing/marketing-carousel-growth-engine.md', label: 'Carousel Growth' },
+  { id: 'imp-mkt-china-ecom', file: '../0-agents/imported-agents/marketing/marketing-china-ecommerce-operator.md', label: 'China Ecommerce' },
+  { id: 'imp-mkt-content', file: '../0-agents/imported-agents/marketing/marketing-content-creator.md', label: 'Content Creator' },
+  { id: 'imp-mkt-crossborder', file: '../0-agents/imported-agents/marketing/marketing-cross-border-ecommerce.md', label: 'Cross-Border Ecommerce' },
+  { id: 'imp-mkt-douyin', file: '../0-agents/imported-agents/marketing/marketing-douyin-strategist.md', label: 'Douyin Strategist' },
+  { id: 'imp-mkt-growth', file: '../0-agents/imported-agents/marketing/marketing-growth-hacker.md', label: 'Growth Hacker' },
+  { id: 'imp-mkt-instagram', file: '../0-agents/imported-agents/marketing/marketing-instagram-curator.md', label: 'Instagram Curator' },
+  { id: 'imp-mkt-kuaishou', file: '../0-agents/imported-agents/marketing/marketing-kuaishou-strategist.md', label: 'Kuaishou Strategist' },
+  { id: 'imp-mkt-linkedin', file: '../0-agents/imported-agents/marketing/marketing-linkedin-content-creator.md', label: 'LinkedIn Creator' },
+  { id: 'imp-mkt-livestream', file: '../0-agents/imported-agents/marketing/marketing-livestream-commerce-coach.md', label: 'Livestream Commerce' },
+  { id: 'imp-mkt-podcast', file: '../0-agents/imported-agents/marketing/marketing-podcast-strategist.md', label: 'Podcast Strategist' },
+  { id: 'imp-mkt-private', file: '../0-agents/imported-agents/marketing/marketing-private-domain-operator.md', label: 'Private Domain Operator' },
+  { id: 'imp-mkt-reddit', file: '../0-agents/imported-agents/marketing/marketing-reddit-community-builder.md', label: 'Reddit Community' },
+  { id: 'imp-mkt-seo', file: '../0-agents/imported-agents/marketing/marketing-seo-specialist.md', label: 'SEO Specialist' },
+  { id: 'imp-mkt-shortvideo', file: '../0-agents/imported-agents/marketing/marketing-short-video-editing-coach.md', label: 'Short Video Coach' },
+  { id: 'imp-mkt-social', file: '../0-agents/imported-agents/marketing/marketing-social-media-strategist.md', label: 'Social Media Strategist' },
+  { id: 'imp-mkt-tiktok', file: '../0-agents/imported-agents/marketing/marketing-tiktok-strategist.md', label: 'TikTok Strategist' },
+  { id: 'imp-mkt-twitter', file: '../0-agents/imported-agents/marketing/marketing-twitter-engager.md', label: 'Twitter Engager' },
+  { id: 'imp-mkt-wechat', file: '../0-agents/imported-agents/marketing/marketing-wechat-official-account.md', label: 'WeChat Official Account' },
+  { id: 'imp-mkt-weibo', file: '../0-agents/imported-agents/marketing/marketing-weibo-strategist.md', label: 'Weibo Strategist' },
+  { id: 'imp-mkt-xiaohongshu', file: '../0-agents/imported-agents/marketing/marketing-xiaohongshu-specialist.md', label: 'Xiaohongshu Specialist' },
+  { id: 'imp-mkt-zhihu', file: '../0-agents/imported-agents/marketing/marketing-zhihu-strategist.md', label: 'Zhihu Strategist' },
+
+  // Layer 0 — Imported: Sales
+  { id: 'imp-sales-account', file: '../0-agents/imported-agents/sales/sales-account-strategist.md', label: 'Account Strategist' },
+  { id: 'imp-sales-coach', file: '../0-agents/imported-agents/sales/sales-coach.md', label: 'Sales Coach' },
+  { id: 'imp-sales-deal', file: '../0-agents/imported-agents/sales/sales-deal-strategist.md', label: 'Deal Strategist' },
+  { id: 'imp-sales-discovery', file: '../0-agents/imported-agents/sales/sales-discovery-coach.md', label: 'Discovery Coach' },
+  { id: 'imp-sales-engineer', file: '../0-agents/imported-agents/sales/sales-engineer.md', label: 'Sales Engineer' },
+  { id: 'imp-sales-outbound', file: '../0-agents/imported-agents/sales/sales-outbound-strategist.md', label: 'Outbound Strategist' },
+  { id: 'imp-sales-pipeline', file: '../0-agents/imported-agents/sales/sales-pipeline-analyst.md', label: 'Pipeline Analyst' },
+  { id: 'imp-sales-proposal', file: '../0-agents/imported-agents/sales/sales-proposal-strategist.md', label: 'Proposal Strategist' },
+
+  // Layer 0 — Imported: Product
+  { id: 'imp-prod-nudge', file: '../0-agents/imported-agents/product/product-behavioral-nudge-engine.md', label: 'Behavioral Nudge Engine' },
+  { id: 'imp-prod-feedback', file: '../0-agents/imported-agents/product/product-feedback-synthesizer.md', label: 'Feedback Synthesizer' },
+  { id: 'imp-prod-sprint', file: '../0-agents/imported-agents/product/product-sprint-prioritizer.md', label: 'Sprint Prioritizer' },
+  { id: 'imp-prod-trend', file: '../0-agents/imported-agents/product/product-trend-researcher.md', label: 'Trend Researcher' },
+
+  // Layer 0 — Imported: Project Management
+  { id: 'imp-pm-experiment', file: '../0-agents/imported-agents/project-management/project-management-experiment-tracker.md', label: 'Experiment Tracker' },
+  { id: 'imp-pm-jira', file: '../0-agents/imported-agents/project-management/project-management-jira-workflow-steward.md', label: 'Jira Workflow Steward' },
+  { id: 'imp-pm-shepherd', file: '../0-agents/imported-agents/project-management/project-management-project-shepherd.md', label: 'Project Shepherd' },
+  { id: 'imp-pm-studio-ops', file: '../0-agents/imported-agents/project-management/project-management-studio-operations.md', label: 'Studio Operations' },
+  { id: 'imp-pm-studio-prod', file: '../0-agents/imported-agents/project-management/project-management-studio-producer.md', label: 'Studio Producer' },
+  { id: 'imp-pm-senior', file: '../0-agents/imported-agents/project-management/project-manager-senior.md', label: 'Senior PM' },
+
+  // Layer 0 — Imported: Support
+  { id: 'imp-sup-analytics', file: '../0-agents/imported-agents/support/support-analytics-reporter.md', label: 'Analytics Reporter' },
+  { id: 'imp-sup-exec-summary', file: '../0-agents/imported-agents/support/support-executive-summary-generator.md', label: 'Exec Summary Generator' },
+  { id: 'imp-sup-finance', file: '../0-agents/imported-agents/support/support-finance-tracker.md', label: 'Finance Tracker' },
+  { id: 'imp-sup-infra', file: '../0-agents/imported-agents/support/support-infrastructure-maintainer.md', label: 'Infrastructure Maintainer' },
+  { id: 'imp-sup-legal', file: '../0-agents/imported-agents/support/support-legal-compliance-checker.md', label: 'Legal Compliance' },
+  { id: 'imp-sup-responder', file: '../0-agents/imported-agents/support/support-support-responder.md', label: 'Support Responder' },
+
+  // Layer 0 — Imported: Testing
+  { id: 'imp-test-a11y', file: '../0-agents/imported-agents/testing/testing-accessibility-auditor.md', label: 'Accessibility Auditor' },
+  { id: 'imp-test-api', file: '../0-agents/imported-agents/testing/testing-api-tester.md', label: 'API Tester' },
+  { id: 'imp-test-evidence', file: '../0-agents/imported-agents/testing/testing-evidence-collector.md', label: 'Evidence Collector' },
+  { id: 'imp-test-perf', file: '../0-agents/imported-agents/testing/testing-performance-benchmarker.md', label: 'Performance Benchmarker' },
+  { id: 'imp-test-reality', file: '../0-agents/imported-agents/testing/testing-reality-checker.md', label: 'Reality Checker' },
+  { id: 'imp-test-results', file: '../0-agents/imported-agents/testing/testing-test-results-analyzer.md', label: 'Test Results Analyzer' },
+  { id: 'imp-test-tool', file: '../0-agents/imported-agents/testing/testing-tool-evaluator.md', label: 'Tool Evaluator' },
+  { id: 'imp-test-workflow', file: '../0-agents/imported-agents/testing/testing-workflow-optimizer.md', label: 'Workflow Optimizer' },
+
+  // Layer 0 — Imported: Specialized
+  { id: 'imp-spec-ap', file: '../0-agents/imported-agents/specialized/accounts-payable-agent.md', label: 'Accounts Payable' },
+  { id: 'imp-spec-identity', file: '../0-agents/imported-agents/specialized/agentic-identity-trust.md', label: 'Agentic Identity Trust' },
+  { id: 'imp-spec-orchestrator', file: '../0-agents/imported-agents/specialized/agents-orchestrator.md', label: 'Agents Orchestrator' },
+  { id: 'imp-spec-auto-gov', file: '../0-agents/imported-agents/specialized/automation-governance-architect.md', label: 'Automation Governance' },
+  { id: 'imp-spec-blockchain', file: '../0-agents/imported-agents/specialized/blockchain-security-auditor.md', label: 'Blockchain Security' },
+  { id: 'imp-spec-compliance', file: '../0-agents/imported-agents/specialized/compliance-auditor.md', label: 'Compliance Auditor' },
+  { id: 'imp-spec-training', file: '../0-agents/imported-agents/specialized/corporate-training-designer.md', label: 'Corporate Training' },
+  { id: 'imp-spec-data-consol', file: '../0-agents/imported-agents/specialized/data-consolidation-agent.md', label: 'Data Consolidation' },
+  { id: 'imp-spec-gov-presales', file: '../0-agents/imported-agents/specialized/government-digital-presales-consultant.md', label: 'Gov Digital Presales' },
+  { id: 'imp-spec-healthcare', file: '../0-agents/imported-agents/specialized/healthcare-marketing-compliance.md', label: 'Healthcare Marketing' },
+  { id: 'imp-spec-id-graph', file: '../0-agents/imported-agents/specialized/identity-graph-operator.md', label: 'Identity Graph Operator' },
+  { id: 'imp-spec-lsp', file: '../0-agents/imported-agents/specialized/lsp-index-engineer.md', label: 'LSP Index Engineer' },
+  { id: 'imp-spec-recruit', file: '../0-agents/imported-agents/specialized/recruitment-specialist.md', label: 'Recruitment Specialist' },
+  { id: 'imp-spec-report', file: '../0-agents/imported-agents/specialized/report-distribution-agent.md', label: 'Report Distribution' },
+  { id: 'imp-spec-sales-data', file: '../0-agents/imported-agents/specialized/sales-data-extraction-agent.md', label: 'Sales Data Extraction' },
+  { id: 'imp-spec-cultural', file: '../0-agents/imported-agents/specialized/specialized-cultural-intelligence-strategist.md', label: 'Cultural Intelligence' },
+  { id: 'imp-spec-devadvocate', file: '../0-agents/imported-agents/specialized/specialized-developer-advocate.md', label: 'Developer Advocate' },
+  { id: 'imp-spec-docgen', file: '../0-agents/imported-agents/specialized/specialized-document-generator.md', label: 'Document Generator' },
+  { id: 'imp-spec-mcp', file: '../0-agents/imported-agents/specialized/specialized-mcp-builder.md', label: 'MCP Builder' },
+  { id: 'imp-spec-model-qa', file: '../0-agents/imported-agents/specialized/specialized-model-qa.md', label: 'Model QA' },
+  { id: 'imp-spec-study', file: '../0-agents/imported-agents/specialized/study-abroad-advisor.md', label: 'Study Abroad Advisor' },
+  { id: 'imp-spec-supply', file: '../0-agents/imported-agents/specialized/supply-chain-strategist.md', label: 'Supply Chain Strategist' },
+  { id: 'imp-spec-zk', file: '../0-agents/imported-agents/specialized/zk-steward.md', label: 'ZK Steward' },
+
+  // Layer 0 — Imported: Paid Media
+  { id: 'imp-paid-auditor', file: '../0-agents/imported-agents/paid-media/paid-media-auditor.md', label: 'Auditor' },
+  { id: 'imp-paid-creative', file: '../0-agents/imported-agents/paid-media/paid-media-creative-strategist.md', label: 'Creative Strategist' },
+  { id: 'imp-paid-social', file: '../0-agents/imported-agents/paid-media/paid-media-paid-social-strategist.md', label: 'Paid Social Strategist' },
+  { id: 'imp-paid-ppc', file: '../0-agents/imported-agents/paid-media/paid-media-ppc-strategist.md', label: 'PPC Strategist' },
+  { id: 'imp-paid-programmatic', file: '../0-agents/imported-agents/paid-media/paid-media-programmatic-buyer.md', label: 'Programmatic Buyer' },
+  { id: 'imp-paid-search', file: '../0-agents/imported-agents/paid-media/paid-media-search-query-analyst.md', label: 'Search Query Analyst' },
+  { id: 'imp-paid-tracking', file: '../0-agents/imported-agents/paid-media/paid-media-tracking-specialist.md', label: 'Tracking Specialist' },
+
+  // Layer 0 — Imported: Spatial Computing
+  { id: 'imp-spatial-metal', file: '../0-agents/imported-agents/spatial-computing/macos-spatial-metal-engineer.md', label: 'macOS Spatial Metal' },
+  { id: 'imp-spatial-terminal', file: '../0-agents/imported-agents/spatial-computing/terminal-integration-specialist.md', label: 'Terminal Integration' },
+  { id: 'imp-spatial-visionos', file: '../0-agents/imported-agents/spatial-computing/visionos-spatial-engineer.md', label: 'VisionOS Spatial' },
+  { id: 'imp-spatial-cockpit', file: '../0-agents/imported-agents/spatial-computing/xr-cockpit-interaction-specialist.md', label: 'XR Cockpit Interaction' },
+  { id: 'imp-spatial-immersive', file: '../0-agents/imported-agents/spatial-computing/xr-immersive-developer.md', label: 'XR Immersive Developer' },
+  { id: 'imp-spatial-interface', file: '../0-agents/imported-agents/spatial-computing/xr-interface-architect.md', label: 'XR Interface Architect' },
+
+  // Layer 0 — Imported: Game Development
+  { id: 'imp-game-audio', file: '../0-agents/imported-agents/game-development/game-audio-engineer.md', label: 'Audio Engineer' },
+  { id: 'imp-game-designer', file: '../0-agents/imported-agents/game-development/game-designer.md', label: 'Game Designer' },
+  { id: 'imp-game-level', file: '../0-agents/imported-agents/game-development/level-designer.md', label: 'Level Designer' },
+  { id: 'imp-game-narrative', file: '../0-agents/imported-agents/game-development/narrative-designer.md', label: 'Narrative Designer' },
+  { id: 'imp-game-techart', file: '../0-agents/imported-agents/game-development/technical-artist.md', label: 'Technical Artist' },
+  { id: 'imp-game-godot-gameplay', file: '../0-agents/imported-agents/game-development/godot/godot-gameplay-scripter.md', label: 'Godot Gameplay Scripter' },
+  { id: 'imp-game-godot-multi', file: '../0-agents/imported-agents/game-development/godot/godot-multiplayer-engineer.md', label: 'Godot Multiplayer' },
+  { id: 'imp-game-godot-shader', file: '../0-agents/imported-agents/game-development/godot/godot-shader-developer.md', label: 'Godot Shader Dev' },
+  { id: 'imp-game-roblox-avatar', file: '../0-agents/imported-agents/game-development/roblox-studio/roblox-avatar-creator.md', label: 'Roblox Avatar Creator' },
+  { id: 'imp-game-roblox-exp', file: '../0-agents/imported-agents/game-development/roblox-studio/roblox-experience-designer.md', label: 'Roblox Experience Designer' },
+  { id: 'imp-game-roblox-sys', file: '../0-agents/imported-agents/game-development/roblox-studio/roblox-systems-scripter.md', label: 'Roblox Systems Scripter' },
+  { id: 'imp-game-unity-arch', file: '../0-agents/imported-agents/game-development/unity/unity-architect.md', label: 'Unity Architect' },
+  { id: 'imp-game-unity-editor', file: '../0-agents/imported-agents/game-development/unity/unity-editor-tool-developer.md', label: 'Unity Editor Tools' },
+  { id: 'imp-game-unity-multi', file: '../0-agents/imported-agents/game-development/unity/unity-multiplayer-engineer.md', label: 'Unity Multiplayer' },
+  { id: 'imp-game-unity-shader', file: '../0-agents/imported-agents/game-development/unity/unity-shader-graph-artist.md', label: 'Unity Shader Graph' },
+  { id: 'imp-game-unreal-multi', file: '../0-agents/imported-agents/game-development/unreal-engine/unreal-multiplayer-architect.md', label: 'Unreal Multiplayer' },
+  { id: 'imp-game-unreal-sys', file: '../0-agents/imported-agents/game-development/unreal-engine/unreal-systems-engineer.md', label: 'Unreal Systems' },
+  { id: 'imp-game-unreal-techart', file: '../0-agents/imported-agents/game-development/unreal-engine/unreal-technical-artist.md', label: 'Unreal Technical Artist' },
+  { id: 'imp-game-unreal-world', file: '../0-agents/imported-agents/game-development/unreal-engine/unreal-world-builder.md', label: 'Unreal World Builder' },
+
+  // Layer 0 — Imported: Strategy
+  { id: 'imp-strat-brief', file: '../0-agents/imported-agents/strategy/EXECUTIVE-BRIEF.md', label: 'Executive Brief' },
+  { id: 'imp-strat-quickstart', file: '../0-agents/imported-agents/strategy/QUICKSTART.md', label: 'Quickstart' },
+  { id: 'imp-strat-nexus', file: '../0-agents/imported-agents/strategy/nexus-strategy.md', label: 'Nexus Strategy' },
+  { id: 'imp-strat-activation', file: '../0-agents/imported-agents/strategy/coordination/agent-activation-prompts.md', label: 'Agent Activation Prompts' },
+  { id: 'imp-strat-handoff', file: '../0-agents/imported-agents/strategy/coordination/handoff-templates.md', label: 'Handoff Templates' },
+  { id: 'imp-strat-p0', file: '../0-agents/imported-agents/strategy/playbooks/phase-0-discovery.md', label: 'Phase 0: Discovery' },
+  { id: 'imp-strat-p1', file: '../0-agents/imported-agents/strategy/playbooks/phase-1-strategy.md', label: 'Phase 1: Strategy' },
+  { id: 'imp-strat-p2', file: '../0-agents/imported-agents/strategy/playbooks/phase-2-foundation.md', label: 'Phase 2: Foundation' },
+  { id: 'imp-strat-p3', file: '../0-agents/imported-agents/strategy/playbooks/phase-3-build.md', label: 'Phase 3: Build' },
+  { id: 'imp-strat-p4', file: '../0-agents/imported-agents/strategy/playbooks/phase-4-hardening.md', label: 'Phase 4: Hardening' },
+  { id: 'imp-strat-p5', file: '../0-agents/imported-agents/strategy/playbooks/phase-5-launch.md', label: 'Phase 5: Launch' },
+  { id: 'imp-strat-p6', file: '../0-agents/imported-agents/strategy/playbooks/phase-6-operate.md', label: 'Phase 6: Operate' },
+  { id: 'imp-strat-enterprise', file: '../0-agents/imported-agents/strategy/runbooks/scenario-enterprise-feature.md', label: 'Enterprise Feature' },
+  { id: 'imp-strat-incident', file: '../0-agents/imported-agents/strategy/runbooks/scenario-incident-response.md', label: 'Incident Response' },
+  { id: 'imp-strat-campaign', file: '../0-agents/imported-agents/strategy/runbooks/scenario-marketing-campaign.md', label: 'Marketing Campaign' },
+  { id: 'imp-strat-mvp', file: '../0-agents/imported-agents/strategy/runbooks/scenario-startup-mvp.md', label: 'Startup MVP' },
+
+  // Layer 0 — Imported: Examples
+  { id: 'imp-ex-nexus', file: '../0-agents/imported-agents/examples/nexus-spatial-discovery.md', label: 'Nexus Spatial Discovery' },
+  { id: 'imp-ex-book', file: '../0-agents/imported-agents/examples/workflow-book-chapter.md', label: 'Book Chapter Workflow' },
+  { id: 'imp-ex-landing', file: '../0-agents/imported-agents/examples/workflow-landing-page.md', label: 'Landing Page Workflow' },
+  { id: 'imp-ex-mvp', file: '../0-agents/imported-agents/examples/workflow-startup-mvp.md', label: 'Startup MVP Workflow' },
+  { id: 'imp-ex-memory', file: '../0-agents/imported-agents/examples/workflow-with-memory.md', label: 'Workflow with Memory' },
+
+  // Layer 0 — Imported: Integrations
+  { id: 'imp-int-memory', file: '../0-agents/imported-agents/integrations/mcp-memory/backend-architect-with-memory.md', label: 'Backend Architect + Memory' },
+
+  // Layer 1 — Execution: Program docs
+  { id: 'exec-area-work', file: '../1-execution/areas/work-and-business/work-and-business.md', label: 'Work & Business' },
+  { id: 'exec-consulting', file: '../1-execution/areas/work-and-business/programs/Consulting/consulting.md', label: 'Consulting Program' },
+  { id: 'exec-engagement', file: '../1-execution/areas/work-and-business/programs/Consulting/consulting-engagement.md', label: 'Engagement Template' },
+  { id: 'exec-gtm', file: '../1-execution/areas/work-and-business/programs/Consulting/gtm-strategy.md', label: 'GTM Strategy' },
+
+  // Layer 1 — Project: Stihl Insights
+  { id: 'proj-stihl', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/PROJECT.md', label: 'Project Overview' },
+  { id: 'proj-stihl-poster', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/PROJECT-POSTER.md', label: 'Project Poster' },
+  { id: 'proj-stihl-customer', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/CUSTOMER.md', label: 'Customer Profile' },
+  { id: 'proj-stihl-kb-morning', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/00-morning-brief.md', label: 'Morning Brief' },
+  { id: 'proj-stihl-kb-competitor', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/01-competitor-watch.md', label: 'Competitor Watch' },
+  { id: 'proj-stihl-kb-launch', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/02-launch-radar.md', label: 'Launch Radar' },
+  { id: 'proj-stihl-kb-digital', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/03-digital-intelligence.md', label: 'Digital Intelligence' },
+  { id: 'proj-stihl-kb-tariff', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/04-tariff-watch.md', label: 'Tariff Watch' },
+  { id: 'proj-stihl-kb-market', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/05-market-pulse.md', label: 'Market Pulse' },
+  { id: 'proj-stihl-kb-artifacts', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/06-artifacts.md', label: 'Artifacts' },
+  { id: 'proj-stihl-kb-geo', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/07-geo-weather.md', label: 'Geo-Weather' },
+  { id: 'proj-stihl-kb-methods', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Stihl Insights/kb/08-method-sources.md', label: 'Method & Sources' },
+
+  // Layer 1 — Project: Mark Schmulen AI OS
+  { id: 'proj-schmulen', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/PROJECT.md', label: 'Project Overview' },
+  { id: 'proj-schmulen-poster', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/PROJECT-POSTER.md', label: 'Project Poster' },
+  { id: 'proj-schmulen-customer', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/CUSTOMER.md', label: 'Customer Profile' },
+  { id: 'proj-schmulen-cmo-design', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/cmo-agent-design-doc.md', label: 'CMO Agent Design Doc' },
+  { id: 'proj-schmulen-kb-overview', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/00-overview.md', label: 'Overview' },
+  { id: 'proj-schmulen-kb-ea', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/01-executive-assistant.md', label: 'Executive Assistant' },
+  { id: 'proj-schmulen-kb-cmo', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/02-cmo-agent.md', label: 'CMO Agent' },
+  { id: 'proj-schmulen-kb-cfo', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/03-cfo-agent.md', label: 'CFO Agent' },
+  { id: 'proj-schmulen-kb-skills', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/04-skills-library.md', label: 'Skills Library' },
+  { id: 'proj-schmulen-kb-how', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/05-how-it-works.md', label: 'How It Works' },
+  { id: 'proj-schmulen-kb-timeline', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/06-timeline.md', label: 'Timeline' },
+  { id: 'proj-schmulen-kb-scope', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/07-scope-of-work.md', label: 'Scope of Work' },
+  { id: 'proj-schmulen-kb-sow', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - Mark Schmulen AI OS/kb/08-statement-of-work.md', label: 'Statement of Work' },
+
+  // Layer 1 — Project: PauletteAI
+  { id: 'proj-paulette', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/PROJECT.md', label: 'Project Overview' },
+  { id: 'proj-paulette-poster', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/PROJECT-POSTER.md', label: 'Project Poster' },
+  { id: 'proj-paulette-customer', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/CUSTOMER.md', label: 'Customer Profile' },
+  { id: 'proj-paulette-kb-overview', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/00-overview.md', label: 'Overview' },
+  { id: 'proj-paulette-kb-commands', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/01-slash-commands.md', label: 'Slash Commands' },
+  { id: 'proj-paulette-kb-knowledge', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/02-knowledge-base.md', label: 'Knowledge Base' },
+  { id: 'proj-paulette-kb-session', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/03-session-logging.md', label: 'Session Logging' },
+  { id: 'proj-paulette-kb-voice', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/04-voice-specification.md', label: 'Voice Specification' },
+  { id: 'proj-paulette-kb-workstreams', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/05-active-workstreams.md', label: 'Active Workstreams' },
+  { id: 'proj-paulette-kb-domain', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - PauletteAI/kb/06-domain-context.md', label: 'Domain Context' },
+
+  // Layer 1 — Project: Content Engine
+  { id: 'proj-content', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - LinkedIn and Substack Content Engine/PROJECT.md', label: 'Project Overview' },
+  { id: 'proj-content-tracker', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - LinkedIn and Substack Content Engine/CONTENT-TRACKER.md', label: 'Content Tracker' },
+  { id: 'proj-content-crm', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - LinkedIn and Substack Content Engine/LINKEDIN-CRM.md', label: 'LinkedIn CRM' },
+  { id: 'proj-content-prompts', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - LinkedIn and Substack Content Engine/PROMPT-LIBRARY.md', label: 'Prompt Library' },
+  { id: 'proj-content-voice', file: '../1-execution/areas/work-and-business/programs/Consulting/Project - LinkedIn and Substack Content Engine/VOICE-PROFILE.md', label: 'Voice Profile' },
+
+  // Layer 1 — Project Incubator
+  { id: 'proj-incubator', file: '../1-execution/areas/work-and-business/programs/Consulting/Project Incubator/_template.md', label: 'Project Template' },
+
+  // Layer 2 — Memory
+  { id: 'memory-overview', file: '../2-memory/README.md', label: 'Memory Overview' },
+
+  // Layer 3 — Reference: Doctrine
+  { id: 'ref-doctrine', file: '../3-reference/os-doctrine.md', label: 'OS Doctrine' },
+  { id: 'ref-narrative', file: '../3-reference/narrative-architecture.md', label: 'Narrative Architecture' },
+  { id: 'ref-olympics', file: '../3-reference/olympics.md', label: 'Olympics Framework' },
+  { id: 'ref-kickoff', file: '../3-reference/project-kickoff.md', label: 'Project Kickoff' },
+  { id: 'ref-rewards', file: '../3-reference/rewards.md', label: 'Rewards' },
+  { id: 'ref-app-playbook', file: '../3-reference/app-playbook.md', label: 'App Playbook' },
+  { id: 'ref-automation', file: '../3-reference/automation-rollout-plan.md', label: 'Automation Rollout' },
+  { id: 'ref-rebuild-pkg', file: '../3-reference/rebuild-packaging.md', label: 'Rebuild Packaging' },
+
+  // Layer 3 — Reference: Skills
+  { id: 'ref-skill-atc', file: '../3-reference/skills/air-traffic-control/SKILL.md', label: 'Air Traffic Control' },
+  { id: 'ref-skill-project-creator', file: '../3-reference/skills/project-creator/SKILL.md', label: 'Project Creator' },
+  { id: 'ref-skill-brief-template', file: '../3-reference/skills/project-creator/BRIEF-TEMPLATE.md', label: 'Brief Template' },
+
+  // Layer 3 — Reference: Team Templates
+  { id: 'ref-team-mvp', file: '../3-reference/team-templates/mvp-build.md', label: 'MVP Build' },
+  { id: 'ref-team-content', file: '../3-reference/team-templates/content-project.md', label: 'Content Project' },
+  { id: 'ref-team-template', file: '../3-reference/team-templates/_template.md', label: 'Team Template' },
+
+  // Layer 3 — Reference: Publishing
+  { id: 'ref-pub-policy', file: '../3-reference/publishing/mception-ai.md', label: 'mception.ai Policy' },
+
+  // Layer 3 — Reference: Public Pack
+  { id: 'ref-public-overview', file: '../3-reference/public-pack/PUBLIC-OVERVIEW.md', label: 'Public Overview' },
+  { id: 'ref-public-activation', file: '../3-reference/public-pack/ACTIVATION-AGENT.md', label: 'Activation Agent' },
+  { id: 'ref-public-worksheet', file: '../3-reference/public-pack/CUSTOMIZATION-WORKSHEET.md', label: 'Customization Worksheet' },
+  { id: 'ref-public-checklist', file: '../3-reference/public-pack/SETUP-CHECKLIST.md', label: 'Setup Checklist' },
+  { id: 'ref-public-rebuild', file: '../3-reference/public-pack/REBUILD-GUIDE.md', label: 'Rebuild Guide' },
+  { id: 'ref-public-tpl-area', file: '../3-reference/public-pack/templates/area-template.md', label: 'Area Template' },
+  { id: 'ref-public-tpl-agent', file: '../3-reference/public-pack/templates/custom-agent-template.md', label: 'Agent Template' },
+  { id: 'ref-public-tpl-program', file: '../3-reference/public-pack/templates/program-template.md', label: 'Program Template' },
+  { id: 'ref-public-tpl-project', file: '../3-reference/public-pack/templates/project-template.md', label: 'Project Template' },
+];
+
+// ─── Section definitions ───
+const sections = [
+  // Root
+  { name: 'System', ids: ['readme', 'agents-md', 'rebuild'], defaultOpen: true },
+
+  // Layer 0
+  {
+    name: 'Agents — Custom', badge: 'l0', defaultOpen: true,
+    ids: ['agent-claudine', 'agent-bo', 'agent-bertha', 'agent-burt', 'agent-mason',
+          'agent-musashi', 'agent-phil', 'agent-cornelius', 'agent-content-drafter',
+          'agent-dicaprio', 'agent-dicaprio-skill', 'agent-dicaprio-status', 'agent-template']
+  },
+  {
+    name: 'Agents — Imported', badge: 'l0', defaultOpen: false,
+    subSections: [
+      { name: 'Design', ids: ['imp-design-brand-guardian', 'imp-design-image-prompt', 'imp-design-inclusive-visuals', 'imp-design-ui', 'imp-design-ux-arch', 'imp-design-ux-research', 'imp-design-visual-story', 'imp-design-whimsy'] },
+      { name: 'Engineering', ids: ['imp-eng-ai-data', 'imp-eng-ai', 'imp-eng-auto-opt', 'imp-eng-backend', 'imp-eng-code-review', 'imp-eng-data', 'imp-eng-db-opt', 'imp-eng-devops', 'imp-eng-embedded', 'imp-eng-feishu', 'imp-eng-frontend', 'imp-eng-git', 'imp-eng-incident', 'imp-eng-mobile', 'imp-eng-prototype', 'imp-eng-security', 'imp-eng-senior', 'imp-eng-architect', 'imp-eng-solidity', 'imp-eng-sre', 'imp-eng-techwriter', 'imp-eng-threat', 'imp-eng-wechat'] },
+      { name: 'Marketing', ids: ['imp-mkt-appstore', 'imp-mkt-baidu', 'imp-mkt-bilibili', 'imp-mkt-book', 'imp-mkt-carousel', 'imp-mkt-china-ecom', 'imp-mkt-content', 'imp-mkt-crossborder', 'imp-mkt-douyin', 'imp-mkt-growth', 'imp-mkt-instagram', 'imp-mkt-kuaishou', 'imp-mkt-linkedin', 'imp-mkt-livestream', 'imp-mkt-podcast', 'imp-mkt-private', 'imp-mkt-reddit', 'imp-mkt-seo', 'imp-mkt-shortvideo', 'imp-mkt-social', 'imp-mkt-tiktok', 'imp-mkt-twitter', 'imp-mkt-wechat', 'imp-mkt-weibo', 'imp-mkt-xiaohongshu', 'imp-mkt-zhihu'] },
+      { name: 'Sales', ids: ['imp-sales-account', 'imp-sales-coach', 'imp-sales-deal', 'imp-sales-discovery', 'imp-sales-engineer', 'imp-sales-outbound', 'imp-sales-pipeline', 'imp-sales-proposal'] },
+      { name: 'Product', ids: ['imp-prod-nudge', 'imp-prod-feedback', 'imp-prod-sprint', 'imp-prod-trend'] },
+      { name: 'Project Management', ids: ['imp-pm-experiment', 'imp-pm-jira', 'imp-pm-shepherd', 'imp-pm-studio-ops', 'imp-pm-studio-prod', 'imp-pm-senior'] },
+      { name: 'Support', ids: ['imp-sup-analytics', 'imp-sup-exec-summary', 'imp-sup-finance', 'imp-sup-infra', 'imp-sup-legal', 'imp-sup-responder'] },
+      { name: 'Testing', ids: ['imp-test-a11y', 'imp-test-api', 'imp-test-evidence', 'imp-test-perf', 'imp-test-reality', 'imp-test-results', 'imp-test-tool', 'imp-test-workflow'] },
+      { name: 'Specialized', ids: ['imp-spec-ap', 'imp-spec-identity', 'imp-spec-orchestrator', 'imp-spec-auto-gov', 'imp-spec-blockchain', 'imp-spec-compliance', 'imp-spec-training', 'imp-spec-data-consol', 'imp-spec-gov-presales', 'imp-spec-healthcare', 'imp-spec-id-graph', 'imp-spec-lsp', 'imp-spec-recruit', 'imp-spec-report', 'imp-spec-sales-data', 'imp-spec-cultural', 'imp-spec-devadvocate', 'imp-spec-docgen', 'imp-spec-mcp', 'imp-spec-model-qa', 'imp-spec-study', 'imp-spec-supply', 'imp-spec-zk'] },
+      { name: 'Paid Media', ids: ['imp-paid-auditor', 'imp-paid-creative', 'imp-paid-social', 'imp-paid-ppc', 'imp-paid-programmatic', 'imp-paid-search', 'imp-paid-tracking'] },
+      { name: 'Spatial Computing', ids: ['imp-spatial-metal', 'imp-spatial-terminal', 'imp-spatial-visionos', 'imp-spatial-cockpit', 'imp-spatial-immersive', 'imp-spatial-interface'] },
+      { name: 'Game Development', ids: ['imp-game-audio', 'imp-game-designer', 'imp-game-level', 'imp-game-narrative', 'imp-game-techart', 'imp-game-godot-gameplay', 'imp-game-godot-multi', 'imp-game-godot-shader', 'imp-game-roblox-avatar', 'imp-game-roblox-exp', 'imp-game-roblox-sys', 'imp-game-unity-arch', 'imp-game-unity-editor', 'imp-game-unity-multi', 'imp-game-unity-shader', 'imp-game-unreal-multi', 'imp-game-unreal-sys', 'imp-game-unreal-techart', 'imp-game-unreal-world'] },
+      { name: 'Strategy', ids: ['imp-strat-brief', 'imp-strat-quickstart', 'imp-strat-nexus', 'imp-strat-activation', 'imp-strat-handoff', 'imp-strat-p0', 'imp-strat-p1', 'imp-strat-p2', 'imp-strat-p3', 'imp-strat-p4', 'imp-strat-p5', 'imp-strat-p6', 'imp-strat-enterprise', 'imp-strat-incident', 'imp-strat-campaign', 'imp-strat-mvp'] },
+      { name: 'Examples', ids: ['imp-ex-nexus', 'imp-ex-book', 'imp-ex-landing', 'imp-ex-mvp', 'imp-ex-memory'] },
+      { name: 'Integrations', ids: ['imp-int-memory'] },
+    ]
+  },
+
+  // Layer 1
+  {
+    name: 'Execution — Program', badge: 'l1', defaultOpen: true,
+    ids: ['exec-area-work', 'exec-consulting', 'exec-engagement', 'exec-gtm']
+  },
+  {
+    name: 'Execution — Stihl Insights', badge: 'l1', defaultOpen: false,
+    subSections: [
+      { name: 'Project', ids: ['proj-stihl', 'proj-stihl-poster', 'proj-stihl-customer'] },
+      { name: 'Knowledge Base', ids: ['proj-stihl-kb-morning', 'proj-stihl-kb-competitor', 'proj-stihl-kb-launch', 'proj-stihl-kb-digital', 'proj-stihl-kb-tariff', 'proj-stihl-kb-market', 'proj-stihl-kb-artifacts', 'proj-stihl-kb-geo', 'proj-stihl-kb-methods'] },
+    ]
+  },
+  {
+    name: 'Execution — Mark Schmulen', badge: 'l1', defaultOpen: false,
+    subSections: [
+      { name: 'Project', ids: ['proj-schmulen', 'proj-schmulen-poster', 'proj-schmulen-customer', 'proj-schmulen-cmo-design'] },
+      { name: 'Knowledge Base', ids: ['proj-schmulen-kb-overview', 'proj-schmulen-kb-ea', 'proj-schmulen-kb-cmo', 'proj-schmulen-kb-cfo', 'proj-schmulen-kb-skills', 'proj-schmulen-kb-how', 'proj-schmulen-kb-timeline', 'proj-schmulen-kb-scope', 'proj-schmulen-kb-sow'] },
+    ]
+  },
+  {
+    name: 'Execution — PauletteAI', badge: 'l1', defaultOpen: false,
+    subSections: [
+      { name: 'Project', ids: ['proj-paulette', 'proj-paulette-poster', 'proj-paulette-customer'] },
+      { name: 'Knowledge Base', ids: ['proj-paulette-kb-overview', 'proj-paulette-kb-commands', 'proj-paulette-kb-knowledge', 'proj-paulette-kb-session', 'proj-paulette-kb-voice', 'proj-paulette-kb-workstreams', 'proj-paulette-kb-domain'] },
+    ]
+  },
+  {
+    name: 'Execution — Content Engine', badge: 'l1', defaultOpen: false,
+    ids: ['proj-content', 'proj-content-tracker', 'proj-content-crm', 'proj-content-prompts', 'proj-content-voice']
+  },
+  {
+    name: 'Execution — Incubator', badge: 'l1', defaultOpen: false,
+    ids: ['proj-incubator']
+  },
+
+  // Layer 2
+  { name: 'Memory', badge: 'l2', defaultOpen: false, ids: ['memory-overview'] },
+
+  // Layer 3
+  {
+    name: 'Reference — Doctrine', badge: 'l3', defaultOpen: false,
+    ids: ['ref-doctrine', 'ref-narrative', 'ref-olympics', 'ref-kickoff', 'ref-rewards', 'ref-app-playbook', 'ref-automation', 'ref-rebuild-pkg']
+  },
+  {
+    name: 'Reference — Skills', badge: 'l3', defaultOpen: false,
+    ids: ['ref-skill-atc', 'ref-skill-project-creator', 'ref-skill-brief-template']
+  },
+  {
+    name: 'Reference — Templates', badge: 'l3', defaultOpen: false,
+    ids: ['ref-team-mvp', 'ref-team-content', 'ref-team-template']
+  },
+  {
+    name: 'Reference — Publishing', badge: 'l3', defaultOpen: false,
+    ids: ['ref-pub-policy']
+  },
+  {
+    name: 'Reference — Public Pack', badge: 'l3', defaultOpen: false,
+    ids: ['ref-public-overview', 'ref-public-activation', 'ref-public-worksheet', 'ref-public-checklist', 'ref-public-rebuild', 'ref-public-tpl-area', 'ref-public-tpl-agent', 'ref-public-tpl-program', 'ref-public-tpl-project']
+  },
+];
+
+// ─── Build lookup ───
+const fileMap = {};
+files.forEach(f => fileMap[f.id] = f);
+
+const cache = {};
+let currentFile = null;
+
+// ─── Build nav ───
+const navLinks = document.getElementById('nav-links');
+const collapsedGroups = JSON.parse(localStorage.getItem('bradyos-navCollapsed') || '{}');
+
+function buildNavSection(section) {
+  const { name, ids, subSections, badge, defaultOpen } = section;
+  const isCollapsed = collapsedGroups.hasOwnProperty(name) ? collapsedGroups[name] : !defaultOpen;
+
+  const h2 = document.createElement('h2');
+  const chevron = document.createElement('span');
+  chevron.className = 'chevron' + (isCollapsed ? ' collapsed' : '');
+  chevron.textContent = '\u25BC';
+  h2.appendChild(chevron);
+  h2.appendChild(document.createTextNode(' ' + name));
+
+  if (badge) {
+    const span = document.createElement('span');
+    span.className = 'layer-badge ' + badge;
+    span.textContent = badge.toUpperCase();
+    h2.appendChild(span);
+  }
+
+  // Count total files
+  let count = 0;
+  if (ids) count = ids.length;
+  if (subSections) subSections.forEach(s => count += s.ids.length);
+  if (count > 0) {
+    const countSpan = document.createElement('span');
+    countSpan.className = 'file-count';
+    countSpan.textContent = '(' + count + ')';
+    h2.appendChild(countSpan);
+  }
+
+  const group = document.createElement('div');
+  group.className = 'nav-group' + (isCollapsed ? ' collapsed' : '');
+
+  h2.addEventListener('click', () => {
+    const nowCollapsed = group.classList.toggle('collapsed');
+    chevron.classList.toggle('collapsed', nowCollapsed);
+    collapsedGroups[name] = nowCollapsed;
+    localStorage.setItem('bradyos-navCollapsed', JSON.stringify(collapsedGroups));
+  });
+
+  // Build links
+  if (ids) {
+    ids.forEach(id => {
+      const f = fileMap[id];
+      if (!f) return;
+      const a = document.createElement('a');
+      a.href = '#' + f.id;
+      a.textContent = f.label;
+      a.dataset.id = f.id;
+      a.addEventListener('click', e => { e.preventDefault(); loadFile(f.id); });
+      group.appendChild(a);
+    });
+  }
+
+  // Build sub-sections
+  if (subSections) {
+    subSections.forEach(sub => buildSubSection(group, sub.name, sub.ids));
+  }
+
+  navLinks.appendChild(h2);
+  navLinks.appendChild(group);
+}
+
+function buildSubSection(parent, name, ids) {
+  const subKey = 'sub-' + name;
+  const isCollapsed = collapsedGroups.hasOwnProperty(subKey) ? collapsedGroups[subKey] : true;
+
+  const header = document.createElement('div');
+  header.className = 'sub-section-header';
+  const chevron = document.createElement('span');
+  chevron.className = 'chevron' + (isCollapsed ? ' collapsed' : '');
+  chevron.textContent = '\u25BC';
+  header.appendChild(chevron);
+  header.appendChild(document.createTextNode(' ' + name));
+
+  const countSpan = document.createElement('span');
+  countSpan.className = 'file-count';
+  countSpan.textContent = ' (' + ids.length + ')';
+  header.appendChild(countSpan);
+
+  const innerGroup = document.createElement('div');
+  innerGroup.className = 'sub-inner-group' + (isCollapsed ? ' collapsed' : '');
+
+  header.addEventListener('click', () => {
+    const nowCollapsed = innerGroup.classList.toggle('collapsed');
+    chevron.classList.toggle('collapsed', nowCollapsed);
+    collapsedGroups[subKey] = nowCollapsed;
+    localStorage.setItem('bradyos-navCollapsed', JSON.stringify(collapsedGroups));
+  });
+
+  ids.forEach(id => {
+    const f = fileMap[id];
+    if (!f) return;
+    const a = document.createElement('a');
+    a.href = '#' + f.id;
+    a.textContent = f.label;
+    a.dataset.id = f.id;
+    a.addEventListener('click', e => { e.preventDefault(); loadFile(f.id); });
+    innerGroup.appendChild(a);
+  });
+
+  parent.appendChild(header);
+  parent.appendChild(innerGroup);
+}
+
+// Build all sections with separators between layer groups
+let lastBadge = null;
+sections.forEach((section, i) => {
+  const currentBadge = section.badge || 'system';
+  if (lastBadge && currentBadge !== lastBadge) {
+    navLinks.appendChild(Object.assign(document.createElement('hr'), { className: 'nav-separator' }));
+  }
+  lastBadge = currentBadge;
+  buildNavSection(section);
+});
+
+// ─── File loading ───
+async function fetchFile(id) {
+  if (cache[id]) return cache[id];
+  const entry = fileMap[id];
+  if (!entry) return '';
+  try {
+    const res = await fetch(entry.file);
+    if (!res.ok) throw new Error(res.status);
+    const text = await res.text();
+    cache[id] = text;
+    return text;
+  } catch (e) {
+    return `*Could not load file: ${entry.file}*`;
+  }
+}
+
+async function loadFile(id) {
+  currentFile = id;
+  const mainEl = document.querySelector('main');
+  mainEl.innerHTML = '<div class="content-wrap" id="content"><div class="loading">Loading...</div></div>';
+
+  setActiveNav(id);
+  history.replaceState(null, '', '#' + id);
+
+  const md = await fetchFile(id);
+  const content = document.getElementById('content');
+  content.innerHTML = marked.parse(md);
+
+  mainEl.scrollTop = 0;
+}
+
+function setActiveNav(id) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.id === id));
+}
+
+// ─── Landing page ───
+function renderLanding() {
+  const mainEl = document.querySelector('main');
+  mainEl.innerHTML = `
+    <div class="content-wrap" id="content">
+      <h1>Brady OS</h1>
+      <p>A governance system for life and work on the other side of complexity. Navigate all four layers below.</p>
+      <div class="landing-grid">
+        <div class="landing-card l0" data-target="agent-claudine">
+          <div class="card-layer">Layer 0</div>
+          <div class="card-title">Agents</div>
+          <div class="card-desc">10 custom-built agents + 150+ imported agent library across 15 categories.</div>
+        </div>
+        <div class="landing-card l1" data-target="exec-consulting">
+          <div class="card-layer">Layer 1</div>
+          <div class="card-title">Execution</div>
+          <div class="card-desc">Areas, Programs, Projects, Tasks. The hierarchy of work.</div>
+        </div>
+        <div class="landing-card l2" data-target="memory-overview">
+          <div class="card-layer">Layer 2</div>
+          <div class="card-title">Memory</div>
+          <div class="card-desc">Unstructured intake: notes, diary, voice, email. Lives in Notion.</div>
+        </div>
+        <div class="landing-card l3" data-target="ref-doctrine">
+          <div class="card-layer">Layer 3</div>
+          <div class="card-title">Reference</div>
+          <div class="card-desc">Doctrine, frameworks, skills, team templates, publishing rules.</div>
+        </div>
+      </div>
+    </div>
+  `;
+  mainEl.scrollTop = 0;
+
+  mainEl.querySelectorAll('.landing-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const target = card.dataset.target;
+      if (target) loadFile(target);
+    });
+  });
+}
+
+// ─── Search ───
+let searchTimeout;
+document.getElementById('search').addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  const query = this.value.trim().toLowerCase();
+  const resultsDiv = document.getElementById('search-results');
+  const navDiv = document.getElementById('nav-links');
+
+  if (!query) {
+    resultsDiv.style.display = 'none';
+    navDiv.style.display = '';
+    return;
+  }
+
+  searchTimeout = setTimeout(async () => {
+    // Also search labels
+    const labelMatches = files.filter(f => f.label.toLowerCase().includes(query));
+
+    // Search cached content
+    const contentResults = [];
+    for (const f of files) {
+      const text = cache[f.id] || '';
+      if (!text) continue;
+      const lines = text.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].toLowerCase().includes(query)) {
+          const snippet = lines[i].trim().substring(0, 120);
+          const highlighted = snippet.replace(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), match => `<mark>${match}</mark>`);
+          contentResults.push({ fileId: f.id, label: f.label, line: highlighted });
+          if (contentResults.length >= 20) break;
+        }
+      }
+      if (contentResults.length >= 20) break;
+    }
+
+    // Combine: label matches first, then content
+    const allResults = [];
+    const seen = new Set();
+    labelMatches.forEach(f => {
+      if (!seen.has(f.id)) {
+        allResults.push({ fileId: f.id, label: f.label, line: `<span style="color:#4ade80">Navigate to ${f.label}</span>` });
+        seen.add(f.id);
+      }
+    });
+    contentResults.forEach(r => {
+      if (!seen.has(r.fileId + r.line)) {
+        allResults.push(r);
+        seen.add(r.fileId + r.line);
+      }
+    });
+
+    navDiv.style.display = 'none';
+    resultsDiv.style.display = '';
+
+    if (allResults.length === 0) {
+      resultsDiv.innerHTML = '<div style="padding:12px 0;color:#555;font-size:12px;">No results. Try loading pages first to enable content search.</div>';
+    } else {
+      resultsDiv.innerHTML = allResults.slice(0, 30).map(r =>
+        `<div class="search-result" data-id="${r.fileId}">
+          <div class="file">${r.label}</div>
+          <div class="line">${r.line}</div>
+        </div>`
+      ).join('');
+
+      resultsDiv.querySelectorAll('.search-result').forEach(el => {
+        el.addEventListener('click', () => {
+          document.getElementById('search').value = '';
+          resultsDiv.style.display = 'none';
+          navDiv.style.display = '';
+          loadFile(el.dataset.id);
+        });
+      });
+    }
+  }, 200);
+});
+
+// ─── Hash routing ───
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash) { renderLanding(); return; }
+  if (fileMap[hash]) { loadFile(hash); return; }
+  renderLanding();
+}
+
+window.addEventListener('hashchange', handleHash);
+handleHash();
+
+</script>
+</body>
+</html>
