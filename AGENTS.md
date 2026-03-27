@@ -17,3 +17,7 @@
 - If an already-live slug is missing from the allowlist, treat that as documentation drift to reconcile, not a reason to block maintenance of that same live slug.
 - When an agent is asked to "publish to mception.ai" or "make this available on mception.ai", it must check the allowlist in `3-reference/publishing/mception-ai-projects.yml` and treat absence from that allowlist as `private` for any new publication or visibility expansion.
 - If the allowlist cannot be read or validated, agents must fail closed for any new publication or visibility expansion. Existing production maintenance may proceed only when the slug is independently verified as already live and the work does not broaden visibility.
+
+## Skills
+
+- **Air Traffic Control:** `3-reference/skills/air-traffic-control/SKILL.md` — Route tasks across repos, generate handoff prompts, coordinate cross-repo changes, check version control status. Registry: `3-reference/skills/air-traffic-control/repo-registry.yml`

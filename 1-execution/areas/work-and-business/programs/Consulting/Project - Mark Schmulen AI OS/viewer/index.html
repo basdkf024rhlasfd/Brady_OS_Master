@@ -36,7 +36,6 @@
   }
   nav input:focus { border-color: #818cf8; }
   nav input::placeholder { color: #555; }
-  nav a .saved-count { font-size: 10px; opacity: 0.5; }
   nav a.special-link { display: flex; justify-content: space-between; align-items: center; }
 
   /* Main content */
@@ -77,51 +76,6 @@
 
   /* Loading */
   .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
-
-  /* Saved items */
-  .saved-item { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; position: relative; }
-  .saved-item:hover { border-color: #333; }
-  .saved-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
-  .saved-item-title { font-size: 15px; color: #e0e0e0; font-weight: 600; cursor: pointer; flex: 1; min-width: 0; }
-  .saved-item-title:hover { color: #818cf8; }
-  .saved-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
-  .saved-item-btn { background: none; border: 1px solid #333; color: #888; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
-  .saved-item-btn:hover { border-color: #555; color: #ccc; }
-  .saved-item-btn.delete:hover { border-color: #f7768e; color: #f7768e; }
-  .saved-item-meta { font-size: 11px; color: #555; margin-bottom: 8px; }
-  .saved-item-type { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; font-weight: 600; margin-right: 8px; }
-  .saved-item-type.snippet { background: #0d0d1a; color: #818cf8; }
-  .saved-item-type.note { background: #1a2a1a; color: #9ece6a; }
-  .saved-item-type.template { background: #2a1a1a; color: #f7768e; }
-  .saved-item-preview { font-size: 13px; color: #888; line-height: 1.6; white-space: pre-wrap; max-height: 80px; overflow: hidden; }
-  .saved-item.expanded .saved-item-preview { max-height: none; }
-  .saved-empty { color: #555; font-size: 14px; text-align: center; padding: 48px 24px; }
-
-  .save-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
-  .save-form h3 { font-size: 14px; color: #a5b4fc; margin: 0 0 12px; }
-  .save-form input, .save-form textarea, .save-form select {
-    width: 100%; padding: 8px 10px; background: #0a0a0a; border: 1px solid #333;
-    border-radius: 6px; color: #ccc; font-size: 13px; outline: none; margin-bottom: 10px;
-    font-family: inherit;
-  }
-  .save-form input:focus, .save-form textarea:focus { border-color: #818cf8; }
-  .save-form textarea { min-height: 100px; resize: vertical; }
-  .save-form .form-row { display: flex; gap: 10px; align-items: center; }
-  .save-form button {
-    background: #0d0d1a; border: 1px solid #818cf8; color: #818cf8; font-size: 13px;
-    padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.15s;
-  }
-  .save-form button:hover { background: #818cf8; color: #0a0a0a; }
-  .save-form button.cancel-btn { border-color: #555; color: #888; background: none; }
-  .save-form button.cancel-btn:hover { border-color: #888; color: #ccc; background: #1a1a1a; }
-
-  /* Save page button */
-  .save-page-btn {
-    display: inline-flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #333;
-    color: #888; font-size: 12px; padding: 6px 12px; border-radius: 6px; cursor: pointer;
-    transition: all 0.15s; float: right; margin-top: -4px;
-  }
-  .save-page-btn:hover { border-color: #818cf8; color: #818cf8; }
 
   /* Request Inbox */
   .request-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
@@ -272,165 +226,6 @@ buildNavSection('Requests', group => {
   group.appendChild(a);
 });
 
-// Saved section
-const savedNavLink = document.createElement('a');
-function updateSavedCount() {
-  const items = JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
-  savedNavLink.innerHTML = `<span>All Saved</span><span class="saved-count">${items.length}</span>`;
-}
-buildNavSection('Saved', group => {
-  savedNavLink.href = '#saved';
-  savedNavLink.className = 'special-link';
-  savedNavLink.dataset.id = 'saved';
-  updateSavedCount();
-  savedNavLink.addEventListener('click', e => {
-    e.preventDefault();
-    renderSaved();
-  });
-  group.appendChild(savedNavLink);
-});
-
-// ─── Saved items localStorage ───
-function getSavedItems() {
-  return JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
-}
-
-function saveSavedItems(items) {
-  localStorage.setItem('mschmulen-savedItems', JSON.stringify(items));
-  updateSavedCount();
-}
-
-function addSavedItem(item) {
-  const items = getSavedItems();
-  item.id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-  item.createdAt = new Date().toISOString();
-  items.unshift(item);
-  saveSavedItems(items);
-  return item;
-}
-
-function deleteSavedItem(id) {
-  const items = getSavedItems().filter(i => i.id !== id);
-  saveSavedItems(items);
-}
-
-function updateSavedItem(id, updates) {
-  const items = getSavedItems();
-  const idx = items.findIndex(i => i.id === id);
-  if (idx !== -1) { Object.assign(items[idx], updates); saveSavedItems(items); }
-}
-
-function renderSaved() {
-  setActiveNav('saved');
-  history.replaceState(null, '', '#saved');
-  const content = document.getElementById('content');
-  const items = getSavedItems();
-
-  const typeOptions = `<option value="note">Note</option><option value="template">Template</option><option value="snippet">Snippet</option>`;
-
-  let html = `
-    <h1>Saved</h1>
-    <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
-      Save templates, notes, and snippets from across the project brief. Everything is stored locally in your browser.
-    </p>
-    <div class="save-form" id="save-form">
-      <h3>New Item</h3>
-      <input type="text" id="save-title" placeholder="Title" />
-      <div class="form-row" style="margin-bottom:10px">
-        <select id="save-type" style="width:auto;margin-bottom:0">${typeOptions}</select>
-      </div>
-      <textarea id="save-body" placeholder="Content — paste a snippet, write a note, or draft a template..."></textarea>
-      <button id="save-submit">Save</button>
-    </div>
-  `;
-
-  if (items.length === 0) {
-    html += `<div class="saved-empty"><p>No saved items yet.</p><p style="font-size:12px">Use the form above or the save button when viewing pages.</p></div>`;
-  } else {
-    html += items.map(item => {
-      const date = new Date(item.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      const sourceLabel = item.source ? ` &middot; from ${item.source}` : '';
-      const preview = (item.body || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      return `<div class="saved-item" data-id="${item.id}">
-        <div class="saved-item-header">
-          <span class="saved-item-title" data-id="${item.id}">${(item.title || 'Untitled').replace(/</g, '&lt;')}</span>
-          <div class="saved-item-actions">
-            <button class="saved-item-btn expand-btn" data-id="${item.id}">expand</button>
-            <button class="saved-item-btn edit-btn" data-id="${item.id}">edit</button>
-            <button class="saved-item-btn delete" data-id="${item.id}">delete</button>
-          </div>
-        </div>
-        <div class="saved-item-meta">
-          <span class="saved-item-type ${item.type || 'note'}">${item.type || 'note'}</span>
-          ${date}${sourceLabel}
-        </div>
-        <div class="saved-item-preview">${preview}</div>
-      </div>`;
-    }).join('');
-  }
-
-  content.innerHTML = html;
-  document.querySelector('main').scrollTop = 0;
-
-  document.getElementById('save-submit').addEventListener('click', () => {
-    const title = document.getElementById('save-title').value.trim();
-    const type = document.getElementById('save-type').value;
-    const body = document.getElementById('save-body').value.trim();
-    if (!title && !body) return;
-    addSavedItem({ title: title || 'Untitled', type, body });
-    renderSaved();
-  });
-
-  content.querySelectorAll('.expand-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.saved-item');
-      const isExpanded = card.classList.toggle('expanded');
-      btn.textContent = isExpanded ? 'collapse' : 'expand';
-    });
-  });
-
-  content.querySelectorAll('.delete').forEach(btn => {
-    btn.addEventListener('click', () => {
-      deleteSavedItem(btn.dataset.id);
-      renderSaved();
-    });
-  });
-
-  content.querySelectorAll('.edit-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.id;
-      const item = getSavedItems().find(i => i.id === id);
-      if (!item) return;
-      const card = btn.closest('.saved-item');
-      card.innerHTML = `
-        <div class="save-form" style="margin:0;border:none;padding:0;background:none">
-          <input type="text" value="${(item.title || '').replace(/"/g, '&quot;')}" class="edit-title" />
-          <div class="form-row" style="margin-bottom:10px">
-            <select class="edit-type" style="width:auto;margin-bottom:0">
-              <option value="note" ${item.type === 'note' ? 'selected' : ''}>Note</option>
-              <option value="template" ${item.type === 'template' ? 'selected' : ''}>Template</option>
-              <option value="snippet" ${item.type === 'snippet' ? 'selected' : ''}>Snippet</option>
-            </select>
-          </div>
-          <textarea class="edit-body">${(item.body || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
-          <div class="form-row">
-            <button class="edit-save">Save</button>
-            <button class="cancel-btn edit-cancel">Cancel</button>
-          </div>
-        </div>
-      `;
-      card.querySelector('.edit-save').addEventListener('click', () => {
-        updateSavedItem(id, {
-          title: card.querySelector('.edit-title').value.trim() || 'Untitled',
-          type: card.querySelector('.edit-type').value,
-          body: card.querySelector('.edit-body').value.trim(),
-        });
-        renderSaved();
-      });
-      card.querySelector('.edit-cancel').addEventListener('click', () => renderSaved());
-    });
-  });
-}
 
 // ─── Request Inbox ───
 const REQUEST_STORAGE_KEY = 'mschmulen-request-inbox';
@@ -540,63 +335,6 @@ function renderRequestInbox() {
   });
 }
 
-// ─── Save page button on content views ───
-function addSaveButton(pageTitle, sourceLabel) {
-  const content = document.getElementById('content');
-  const h1 = content.querySelector('h1');
-  if (!h1) return;
-  const btn = document.createElement('button');
-  btn.className = 'save-page-btn';
-  btn.innerHTML = '+ Save snippet';
-  btn.addEventListener('click', () => {
-    const selection = window.getSelection().toString().trim();
-    if (selection) {
-      addSavedItem({ title: pageTitle + ' — snippet', type: 'snippet', body: selection, source: sourceLabel || pageTitle });
-      btn.textContent = 'Saved!';
-      btn.style.borderColor = '#9ece6a';
-      btn.style.color = '#9ece6a';
-      setTimeout(() => { btn.innerHTML = '+ Save snippet'; btn.style.borderColor = ''; btn.style.color = ''; }, 1500);
-    } else {
-      const form = document.createElement('div');
-      form.className = 'save-form';
-      form.style.marginTop = '16px';
-      form.innerHTML = `
-        <h3>Save from "${pageTitle}"</h3>
-        <input type="text" placeholder="Title" value="${pageTitle.replace(/"/g, '&quot;')}" class="inline-save-title" />
-        <textarea placeholder="Paste or type content to save..." class="inline-save-body"></textarea>
-        <div class="form-row">
-          <select class="inline-save-type" style="width:auto;margin-bottom:0">
-            <option value="snippet">Snippet</option>
-            <option value="note">Note</option>
-            <option value="template">Template</option>
-          </select>
-          <button class="inline-save-submit">Save</button>
-          <button class="cancel-btn inline-save-cancel">Cancel</button>
-        </div>
-      `;
-      h1.after(form);
-      btn.style.display = 'none';
-      form.querySelector('.inline-save-submit').addEventListener('click', () => {
-        const t = form.querySelector('.inline-save-title').value.trim() || pageTitle;
-        const b = form.querySelector('.inline-save-body').value.trim();
-        if (!b) return;
-        addSavedItem({ title: t, type: form.querySelector('.inline-save-type').value, body: b, source: sourceLabel || pageTitle });
-        form.remove();
-        btn.style.display = '';
-        btn.textContent = 'Saved!';
-        btn.style.borderColor = '#9ece6a';
-        btn.style.color = '#9ece6a';
-        setTimeout(() => { btn.innerHTML = '+ Save snippet'; btn.style.borderColor = ''; btn.style.color = ''; }, 1500);
-      });
-      form.querySelector('.inline-save-cancel').addEventListener('click', () => {
-        form.remove();
-        btn.style.display = '';
-      });
-    }
-  });
-  h1.appendChild(btn);
-}
-
 // ─── File loading ───
 async function fetchFile(id) {
   if (cache[id]) return cache[id];
@@ -649,7 +387,6 @@ async function loadFile(id) {
   history.replaceState(null, '', '#' + id);
 
   const fileEntry = fileMap[id];
-  if (fileEntry) addSaveButton(fileEntry.label, fileEntry.label);
 }
 
 async function loadFileWithAnchor(id, anchorText) {
@@ -740,7 +477,7 @@ function handleHash() {
     return;
   }
   if (hash === 'requests') { renderRequestInbox(); return; }
-  if (hash === 'saved') { renderSaved(); return; }
+
   if (fileMap[hash]) { loadFile(hash); return; }
   loadFile('overview');
 }
