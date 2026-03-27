@@ -21,4 +21,5 @@
 ## Skills
 
 - **Air Traffic Control:** `3-reference/skills/air-traffic-control/SKILL.md` — Route tasks across repos, generate handoff prompts, coordinate cross-repo changes, check version control status. Registry: `3-reference/skills/air-traffic-control/repo-registry.yml`
-- **DiCaprio:** `dicaprio-agent/SKILL.md` — 20K-foot recon across all projects and workspaces. Scans GitHub, local files, Notion, and Conductor. Flags stale work, drift, blockers, and deadlines. Reports to Claudine. Template: `dicaprio-agent/STATUS-TEMPLATE.md`
+- **DiCaprio:** `0-agents/custom-built-agents/dicaprio-SKILL.md` — 20K-foot recon across all projects and workspaces. Scans GitHub, local files, Notion, and Conductor. Flags stale work, drift, blockers, and deadlines. Reports to Claudine. Template: `0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md`
+- **Project Creator:** `3-reference/skills/project-creator/SKILL.md` — Turn a conversation into an execution-ready project brief. Extracts context, asks Brady 3–5 questions, applies OS defaults, generates a step-by-step brief for Conductor/Claude Code. Template: `3-reference/skills/project-creator/BRIEF-TEMPLATE.md`

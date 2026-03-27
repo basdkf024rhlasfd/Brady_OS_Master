@@ -8,3 +8,7 @@ published_projects:
     project: "Project - Mark Schmulen AI OS"
     approved: 2026-03-25
     notes: "Client-facing AI OS project brief for Mark Schmulen"
+  - slug: pauletteai
+    project: "Project - PauletteAI"
+    approved: 2026-03-27
+    notes: "Client-facing AI assistant project brief for Paulette Dean / DAHS"
