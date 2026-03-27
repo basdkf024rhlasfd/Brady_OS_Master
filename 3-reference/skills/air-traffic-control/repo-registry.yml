@@ -1,0 +1,128 @@
+# Brady OS — Repo Registry
+# Authoritative map of all repos in the operating system.
+# Used by the Air Traffic Control skill for routing and prompt generation.
+
+repos:
+  brady-os:
+    description: "Governance layer — agents, execution hierarchy, reference docs, publishing rules"
+    github: basdkf024rhlasfd/brady-os
+    conductor_workspace: /Users/bs/conductor/workspaces/brady_os_master
+    deploy: GitHub (private)
+    branch_convention: feature branches off main
+
+    owns:
+      - Agent profiles and roster (0-agents/)
+      - Execution hierarchy — Areas, Programs, Projects, Tasks (1-execution/)
+      - OS doctrine and governance rules (3-reference/os-doctrine.md)
+      - App playbook — client project setup pattern (3-reference/app-playbook.md)
+      - Publishing policy and allowlist (3-reference/publishing/)
+      - Team templates and project kickoff guides (3-reference/team-templates/)
+      - Skills and reusable operational patterns (3-reference/skills/)
+      - Public rebuild kit (3-reference/public-pack/)
+
+    does_not_own:
+      - Application code (lives in standalone repos)
+      - Portal UI, auth, or sidebar (lives in mception-ai)
+      - Client KB content (lives in client repos)
+
+    key_files:
+      - AGENTS.md                                          # Repo instructions, publishing rules
+      - README.md                                          # Overview
+      - 3-reference/os-doctrine.md                         # Authority horizons, governance
+      - 3-reference/app-playbook.md                        # Client project setup pattern
+      - 3-reference/publishing/mception-ai-projects.yml    # Publication allowlist
+      - 3-reference/skills/air-traffic-control/SKILL.md    # This skill
+
+  orlando-v3:
+    description: "Client-facing Orlando real estate KB viewer — standalone HTML app with AI chat"
+    github: basdkf024rhlasfd/Orlando
+    conductor_workspace: /Users/bs/conductor/workspaces/orlando-v3
+    deploy: Vercel static / GitHub Pages
+    branch_convention: feature branches off main
+
+    owns:
+      - Orlando RE knowledge base content (kb/ — 24 markdown files)
+      - Viewer HTML app (viewer/index.html, viewer/chat.js, viewer/brand.css)
+      - Chat engine with Anthropic API + KB routing (viewer/chat.js)
+      - Domain-specific skills (skills/ — 13 SKILL.md files)
+      - Content manifest (content-manifest.json)
+      - Client config template (viewer/config.example.js)
+      - CLAUDE.md with KB routing rules
+
+    does_not_own:
+      - Portal auth or sidebar nav (lives in mception-ai)
+      - Publishing approval (lives in brady-os)
+      - Global chat engine (lives in mception-ai)
+
+    key_files:
+      - CLAUDE.md                    # KB routing rules for agents
+      - content-manifest.json        # Centralized metadata (files, skills, sections, routes)
+      - viewer/index.html            # Main SPA
+      - viewer/chat.js               # AI chat with KB routing (~12K lines)
+      - viewer/config.example.js     # Config template (API key, branding, agent info)
+
+  mception-ai:
+    description: "Next.js portal (mception.ai) — Clerk auth, sidebar, iframe hosting, project access control, global chat"
+    github: basdkf024rhlasfd/mception-ai
+    conductor_workspace: /Users/bs/conductor/workspaces/mception-ai
+    deploy: Vercel (Next.js)
+    branch_convention: feature branches off main
+
+    owns:
+      - Clerk auth and user management
+      - Access control — email-based project permissions (src/lib/access.ts)
+      - Portal shell — sidebar, layout, navigation (src/components/portal/)
+      - ProjectFrame iframe wrapper (src/components/portal/ProjectFrame.tsx)
+      - Project routes — one page per project under src/app/(portal)/
+      - Global chat engine + project-specific prompts (src/lib/chat/)
+      - API routes (src/app/api/)
+      - Orlando config endpoint (src/app/api/orlando/config/)
+      - Embedded copy of Orlando viewer (public/orlando/)
+      - Vercel deployment and env var management
+
+    does_not_own:
+      - KB content authoring (lives in standalone repos)
+      - Publishing policy (lives in brady-os)
+      - Agent profiles (lives in brady-os)
+      - Standalone viewer code (lives in client repos; portal embeds a copy)
+
+    key_files:
+      - src/lib/access.ts                              # Permission resolution (projects, roles, emails)
+      - src/components/portal/ProjectFrame.tsx          # iframe + postMessage bridge
+      - src/components/portal/Sidebar.tsx               # Navigation sidebar
+      - src/components/portal/AppShell.tsx              # Portal shell layout
+      - src/app/(portal)/layout.tsx                     # Portal layout with auth check
+      - src/lib/chat/global-chat-engine.ts              # Chat session management
+      - src/lib/chat/project-prompts/*.md               # Per-project system prompts
+      - conductor.json                                  # Conductor workspace config
+
+    env_vars:
+      auth:
+        - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+        - CLERK_SECRET_KEY
+      access_control:
+        - MCEPTION_PLATFORM_OWNER_EMAIL          # Default: brady.smallwood@gmail.com
+        - MCEPTION_RESERVED_TEST_EMAIL           # Default: bradysmallz@gmail.com
+        - MCEPTION_ADMIN_EMAILS                  # CSV of admin emails
+        - MCEPTION_ALL_PROJECTS_EMAILS           # CSV — grants all projects
+        - MCEPTION_STIHL_EMAILS                  # CSV — per-project access
+        - MCEPTION_ORLANDO_EMAILS
+        - MCEPTION_MOVING_EMAILS
+        - MCEPTION_MARK_SCHMULEN_EMAILS
+      external_apps:
+        - NEXT_PUBLIC_STIHL_APP_URL              # Default: http://localhost:4100
+      ai:
+        - ANTHROPIC_API_KEY
+      orlando_config:
+        - ORLANDO_API_KEY
+        - ORLANDO_CLIENT_NAME
+        - ORLANDO_LOGO_URL
+        - ORLANDO_AGENT_NAME
+        - ORLANDO_AGENT_PHONE
+        - ORLANDO_AGENT_EMAIL
+
+    current_projects:
+      - stihl
+      - orlando
+      - moving
+      - mark-schmulen

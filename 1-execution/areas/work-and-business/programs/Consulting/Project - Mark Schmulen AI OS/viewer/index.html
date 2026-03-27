@@ -37,7 +37,6 @@
   }
   nav input:focus { border-color: #818cf8; }
   nav input::placeholder { color: #555; }
-  nav a .saved-count { font-size: 10px; opacity: 0.5; }
   nav a.special-link { display: flex; justify-content: space-between; align-items: center; }
 
   /* Sub-section headers inside Example Project */
@@ -149,51 +148,6 @@
 
   /* Loading */
   .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
-
-  /* Saved items */
-  .saved-item { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; position: relative; }
-  .saved-item:hover { border-color: #333; }
-  .saved-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
-  .saved-item-title { font-size: 15px; color: #e0e0e0; font-weight: 600; cursor: pointer; flex: 1; min-width: 0; }
-  .saved-item-title:hover { color: #818cf8; }
-  .saved-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
-  .saved-item-btn { background: none; border: 1px solid #333; color: #888; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
-  .saved-item-btn:hover { border-color: #555; color: #ccc; }
-  .saved-item-btn.delete:hover { border-color: #f7768e; color: #f7768e; }
-  .saved-item-meta { font-size: 11px; color: #555; margin-bottom: 8px; }
-  .saved-item-type { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; font-weight: 600; margin-right: 8px; }
-  .saved-item-type.snippet { background: #0d0d1a; color: #818cf8; }
-  .saved-item-type.note { background: #1a2a1a; color: #9ece6a; }
-  .saved-item-type.template { background: #2a1a1a; color: #f7768e; }
-  .saved-item-preview { font-size: 13px; color: #888; line-height: 1.6; white-space: pre-wrap; max-height: 80px; overflow: hidden; }
-  .saved-item.expanded .saved-item-preview { max-height: none; }
-  .saved-empty { color: #555; font-size: 14px; text-align: center; padding: 48px 24px; }
-
-  .save-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
-  .save-form h3 { font-size: 14px; color: #a5b4fc; margin: 0 0 12px; }
-  .save-form input, .save-form textarea, .save-form select {
-    width: 100%; padding: 8px 10px; background: #0a0a0a; border: 1px solid #333;
-    border-radius: 6px; color: #ccc; font-size: 13px; outline: none; margin-bottom: 10px;
-    font-family: inherit;
-  }
-  .save-form input:focus, .save-form textarea:focus { border-color: #818cf8; }
-  .save-form textarea { min-height: 100px; resize: vertical; }
-  .save-form .form-row { display: flex; gap: 10px; align-items: center; }
-  .save-form button {
-    background: #0d0d1a; border: 1px solid #818cf8; color: #818cf8; font-size: 13px;
-    padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.15s;
-  }
-  .save-form button:hover { background: #818cf8; color: #0a0a0a; }
-  .save-form button.cancel-btn { border-color: #555; color: #888; background: none; }
-  .save-form button.cancel-btn:hover { border-color: #888; color: #ccc; background: #1a1a1a; }
-
-  /* Save page button */
-  .save-page-btn {
-    display: inline-flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #333;
-    color: #888; font-size: 12px; padding: 6px 12px; border-radius: 6px; cursor: pointer;
-    transition: all 0.15s; float: right; margin-top: -4px;
-  }
-  .save-page-btn:hover { border-color: #818cf8; color: #818cf8; }
 
   /* Request Inbox */
   .request-form { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
@@ -876,7 +830,6 @@ async function loadFile(id) {
   history.replaceState(null, '', '#' + id);
 
   const fileEntry = fileMap[id];
-  if (fileEntry) addSaveButton(fileEntry.label, fileEntry.label);
 }
 
 async function loadFileWithAnchor(id, anchorText) {
@@ -971,7 +924,7 @@ function handleHash() {
     return;
   }
   if (hash === 'requests') { renderRequestInbox(); return; }
-  if (hash === 'saved') { renderSaved(); return; }
+
   if (fileMap[hash]) { loadFile(hash); return; }
   renderSOW();
 }
