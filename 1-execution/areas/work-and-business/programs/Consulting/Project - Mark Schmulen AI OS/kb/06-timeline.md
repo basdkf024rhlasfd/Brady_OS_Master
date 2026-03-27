@@ -41,6 +41,16 @@
 2. **Week 2 — Deliver & Train:** Working agents delivered. Brady walks you through using them, adding skills, and how memory compounds. You start working through agents daily.
 3. **Ongoing (optional):** Monthly check-in to build new skills, tune context files, and optimize the stack. The goal is you maintaining it yourself — the retainer is insurance, not dependency.
 
+## Working Process
+
+| Activity | Cadence |
+|----------|---------|
+| Context extraction interview | Week 1 (one-time) |
+| Agent build & configuration | Week 1–2 |
+| Delivery walkthrough & training | Week 2 |
+| Async requests via this portal | Anytime |
+| Check-in calls | Weekly during build, then as needed |
+
 ## Request Something
 
 Use the **Request Inbox** to ask for new skills, agent changes, MCP connections, or context updates at any time.
