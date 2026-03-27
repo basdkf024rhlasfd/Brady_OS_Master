@@ -22,7 +22,8 @@
   nav h2:hover { color: #888; }
   nav h2 .chevron { display: inline-block; font-size: 8px; margin-right: 4px; transition: transform 0.15s; }
   nav h2 .chevron.collapsed { transform: rotate(-90deg); }
-  nav .nav-group.collapsed a { display: none; }
+  nav .nav-group.collapsed { display: none; }
+  nav .nav-group.collapsed-inner a { display: none; }
   nav a {
     display: block; padding: 8px 16px; color: #aaa; text-decoration: none;
     font-size: 13px; border-left: 3px solid transparent; transition: all 0.15s;
@@ -39,33 +40,104 @@
   nav a .saved-count { font-size: 10px; opacity: 0.5; }
   nav a.special-link { display: flex; justify-content: space-between; align-items: center; }
 
+  /* Sub-section headers inside Example Project */
+  nav .sub-section-header {
+    font-size: 10px; padding: 12px 16px 4px 20px; color: #444; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer;
+    transition: color 0.15s; user-select: none;
+  }
+  nav .sub-section-header:hover { color: #666; }
+  nav .sub-section-header .chevron { display: inline-block; font-size: 7px; margin-right: 3px; transition: transform 0.15s; }
+  nav .sub-section-header .chevron.collapsed { transform: rotate(-90deg); }
+  nav .sub-inner-group.collapsed a { display: none; }
+  nav .sub-inner-group a { padding-left: 24px; }
+
+  /* Illustrative badge in nav */
+  .illustrative-badge {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: #b45309; background: #1a1508; border: 1px solid #92400e33;
+    padding: 1px 5px; border-radius: 3px; margin-left: 6px; font-weight: 600;
+    vertical-align: middle;
+  }
+
   /* Main content */
   main { flex: 1; overflow-y: auto; padding: 0; }
   .content-wrap { max-width: 820px; margin: 0 auto; padding: 40px 48px 80px; }
 
+  /* SOW two-column layout */
+  .sow-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; max-width: 1100px; margin: 0 auto; padding: 40px 48px 80px; }
+  .sow-content { min-width: 0; }
+  .sow-sidebar { position: sticky; top: 40px; align-self: start; }
+
+  /* Feedback form */
+  .feedback-form {
+    background: #111; border: 1px solid #222; border-radius: 10px; padding: 20px 24px;
+  }
+  .feedback-form h3 {
+    font-size: 14px; color: #fff; margin: 0 0 4px; font-weight: 600;
+  }
+  .feedback-form .subtitle {
+    font-size: 12px; color: #555; margin-bottom: 16px; line-height: 1.5;
+  }
+  .feedback-form textarea {
+    width: 100%; min-height: 160px; padding: 12px 14px; background: #0a0a0a;
+    border: 1px solid #333; border-radius: 8px; color: #e0e0e0; font-size: 13px;
+    outline: none; font-family: inherit; line-height: 1.6; resize: vertical;
+    margin-bottom: 12px;
+  }
+  .feedback-form textarea:focus { border-color: #818cf8; }
+  .feedback-form textarea::placeholder { color: #555; }
+  .feedback-form .submit-btn {
+    width: 100%; background: #818cf8; border: none; color: #000; font-size: 13px;
+    font-weight: 600; padding: 10px 20px; border-radius: 20px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .feedback-form .submit-btn:hover { background: #a5b4fc; }
+  .feedback-form .status { font-size: 12px; color: #555; text-align: center; margin-top: 8px; }
+
+  .feedback-history { margin-top: 20px; }
+  .feedback-history h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #444; margin-bottom: 10px; }
+  .feedback-card {
+    background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px;
+    padding: 10px 12px; margin-bottom: 8px; font-size: 12px; color: #888; line-height: 1.5;
+  }
+  .feedback-card .date { font-size: 10px; color: #444; margin-top: 4px; }
+
+  /* Illustrative banner on content pages */
+  .illustrative-banner {
+    background: #1a1508; border: 1px solid #92400e44; border-radius: 8px;
+    padding: 10px 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+  }
+  .illustrative-banner .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; flex-shrink: 0;
+  }
+  .illustrative-banner .text {
+    font-size: 12px; color: #b45309; line-height: 1.5;
+  }
+
   /* Markdown styles */
-  .content-wrap h1 { font-size: 28px; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid #222; }
-  .content-wrap h2 { font-size: 22px; color: #c7d2fe; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #0d0d1a; }
-  .content-wrap h3 { font-size: 17px; color: #a5b4fc; margin: 28px 0 12px; }
-  .content-wrap h4 { font-size: 15px; color: #818cf8; margin: 20px 0 8px; }
-  .content-wrap p { line-height: 1.7; margin: 0 0 14px; color: #bbb; font-size: 14.5px; }
-  .content-wrap ul, .content-wrap ol { margin: 0 0 14px; padding-left: 24px; }
-  .content-wrap li { line-height: 1.7; margin: 4px 0; color: #bbb; font-size: 14.5px; }
-  .content-wrap strong { color: #e0e0e0; }
-  .content-wrap hr { border: none; border-top: 1px solid #222; margin: 32px 0; }
-  .content-wrap code { background: #0d0d1a; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #818cf8; }
-  .content-wrap pre { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 0 0 16px; }
-  .content-wrap pre code { background: none; padding: 0; }
-  .content-wrap blockquote { border-left: 3px solid #818cf8; padding: 8px 16px; margin: 0 0 14px; background: #0a0a12; border-radius: 0 6px 6px 0; }
-  .content-wrap blockquote p { color: #a5b4fc; }
-  .content-wrap a { color: #818cf8; text-decoration: none; }
-  .content-wrap a:hover { text-decoration: underline; }
+  .sow-content h1, .content-wrap h1 { font-size: 28px; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid #222; }
+  .sow-content h2, .content-wrap h2 { font-size: 22px; color: #c7d2fe; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #0d0d1a; }
+  .sow-content h3, .content-wrap h3 { font-size: 17px; color: #a5b4fc; margin: 28px 0 12px; }
+  .sow-content h4, .content-wrap h4 { font-size: 15px; color: #818cf8; margin: 20px 0 8px; }
+  .sow-content p, .content-wrap p { line-height: 1.7; margin: 0 0 14px; color: #bbb; font-size: 14.5px; }
+  .sow-content ul, .sow-content ol, .content-wrap ul, .content-wrap ol { margin: 0 0 14px; padding-left: 24px; }
+  .sow-content li, .content-wrap li { line-height: 1.7; margin: 4px 0; color: #bbb; font-size: 14.5px; }
+  .sow-content strong, .content-wrap strong { color: #e0e0e0; }
+  .sow-content hr, .content-wrap hr { border: none; border-top: 1px solid #222; margin: 32px 0; }
+  .sow-content code, .content-wrap code { background: #0d0d1a; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #818cf8; }
+  .sow-content pre, .content-wrap pre { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 0 0 16px; }
+  .sow-content pre code, .content-wrap pre code { background: none; padding: 0; }
+  .sow-content blockquote, .content-wrap blockquote { border-left: 3px solid #818cf8; padding: 8px 16px; margin: 0 0 14px; background: #0a0a12; border-radius: 0 6px 6px 0; }
+  .sow-content blockquote p, .content-wrap blockquote p { color: #a5b4fc; }
+  .sow-content a, .content-wrap a { color: #818cf8; text-decoration: none; }
+  .sow-content a:hover, .content-wrap a:hover { text-decoration: underline; }
 
   /* Tables */
-  .content-wrap table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; }
-  .content-wrap th { text-align: left; padding: 10px 12px; background: #0d0d1a; color: #818cf8; font-weight: 600; border: 1px solid #222; }
-  .content-wrap td { padding: 8px 12px; border: 1px solid #1a1a1a; color: #bbb; }
-  .content-wrap tr:hover td { background: #111; }
+  .sow-content table, .content-wrap table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; }
+  .sow-content th, .content-wrap th { text-align: left; padding: 10px 12px; background: #0d0d1a; color: #818cf8; font-weight: 600; border: 1px solid #222; }
+  .sow-content td, .content-wrap td { padding: 8px 12px; border: 1px solid #1a1a1a; color: #bbb; }
+  .sow-content tr:hover td, .content-wrap tr:hover td { background: #111; }
 
   /* Search results */
   .search-results { padding: 0 16px; }
@@ -152,6 +224,9 @@
   .request-card .timing { font-size: 11px; color: #555; }
   .request-card .summary { font-size: 13px; color: #888; line-height: 1.6; }
   .request-card .date { font-size: 11px; color: #555; margin-top: 8px; }
+
+  /* Nav separator */
+  nav .nav-separator { border: none; border-top: 1px solid #1a1a1a; margin: 8px 16px; }
 </style>
 </head>
 <body>
@@ -178,6 +253,7 @@
 
 // ─── File definitions ───
 const files = [
+  { id: 'scope-of-work', file: '../kb/07-scope-of-work.md', label: 'Scope of Work' },
   { id: 'overview', file: '../kb/00-overview.md', label: 'Overview' },
   { id: 'executive-assistant', file: '../kb/01-executive-assistant.md', label: 'Executive Assistant' },
   { id: 'cmo-agent', file: '../kb/02-cmo-agent.md', label: 'CMO Agent' },
@@ -187,9 +263,15 @@ const files = [
   { id: 'timeline', file: '../kb/06-timeline.md', label: 'Timeline & Status' },
 ];
 
-const sections = [
-  { name: 'Project', ids: ['overview', 'timeline'], defaultOpen: true },
-  { name: 'Agents', ids: ['executive-assistant', 'cmo-agent', 'cfo-agent'], defaultOpen: true },
+// IDs that belong to the "Example Project" section
+const exampleProjectIds = new Set([
+  'overview', 'timeline', 'executive-assistant', 'cmo-agent', 'cfo-agent',
+  'skills-library', 'how-it-works', 'requests'
+]);
+
+const exampleSubSections = [
+  { name: 'Project', ids: ['overview', 'timeline'] },
+  { name: 'Agents', ids: ['executive-assistant', 'cmo-agent', 'cfo-agent'] },
   { name: 'System', ids: ['skills-library', 'how-it-works'] },
 ];
 
@@ -209,11 +291,25 @@ const requestPrompts = [
   'Create a skill that generates LinkedIn posts from my meeting notes.',
 ];
 
+// ─── Feedback localStorage ───
+const FEEDBACK_STORAGE_KEY = 'mschmulen-sow-feedback';
+
+function getFeedback() {
+  try { return JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY) || '[]'); }
+  catch { localStorage.removeItem(FEEDBACK_STORAGE_KEY); return []; }
+}
+
+function saveFeedbackEntry(text) {
+  const items = getFeedback();
+  items.unshift({ text, createdAt: new Date().toLocaleString() });
+  localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(items.slice(0, 20)));
+}
+
 // ─── Build nav ───
 const navLinks = document.getElementById('nav-links');
 const collapsedGroups = JSON.parse(localStorage.getItem('mschmulen-navCollapsed') || '{}');
 
-function buildNavSection(name, buildLinks, defaultOpen) {
+function buildNavSection(name, buildLinks, defaultOpen, extraHTML) {
   const isCollapsed = collapsedGroups.hasOwnProperty(name) ? collapsedGroups[name] : !defaultOpen;
 
   const h2 = document.createElement('h2');
@@ -222,6 +318,11 @@ function buildNavSection(name, buildLinks, defaultOpen) {
   chevron.textContent = '\u25BC';
   h2.appendChild(chevron);
   h2.appendChild(document.createTextNode(' ' + name));
+  if (extraHTML) {
+    const span = document.createElement('span');
+    span.innerHTML = extraHTML;
+    h2.appendChild(span);
+  }
 
   const group = document.createElement('div');
   group.className = 'nav-group' + (isCollapsed ? ' collapsed' : '');
@@ -239,27 +340,78 @@ function buildNavSection(name, buildLinks, defaultOpen) {
   return { h2, group, chevron };
 }
 
-// KB sections
-sections.forEach(section => {
-  buildNavSection(section.name, group => {
-    section.ids.forEach(id => {
-      const f = fileMap[id];
-      if (!f) return;
-      const a = document.createElement('a');
-      a.href = '#' + f.id;
-      a.textContent = f.label;
-      a.dataset.id = f.id;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        loadFile(f.id);
-      });
-      group.appendChild(a);
-    });
-  }, section.defaultOpen);
-});
+function buildSubSection(parent, name, ids) {
+  const subKey = 'sub-' + name;
+  const isCollapsed = collapsedGroups.hasOwnProperty(subKey) ? collapsedGroups[subKey] : false;
 
-// Requests section
-buildNavSection('Requests', group => {
+  const header = document.createElement('div');
+  header.className = 'sub-section-header';
+  const chevron = document.createElement('span');
+  chevron.className = 'chevron' + (isCollapsed ? ' collapsed' : '');
+  chevron.textContent = '\u25BC';
+  header.appendChild(chevron);
+  header.appendChild(document.createTextNode(' ' + name));
+
+  const innerGroup = document.createElement('div');
+  innerGroup.className = 'sub-inner-group' + (isCollapsed ? ' collapsed' : '');
+
+  header.addEventListener('click', () => {
+    const nowCollapsed = innerGroup.classList.toggle('collapsed');
+    chevron.classList.toggle('collapsed', nowCollapsed);
+    collapsedGroups[subKey] = nowCollapsed;
+    localStorage.setItem('mschmulen-navCollapsed', JSON.stringify(collapsedGroups));
+  });
+
+  ids.forEach(id => {
+    const f = fileMap[id];
+    if (!f) return;
+    const a = document.createElement('a');
+    a.href = '#' + f.id;
+    a.textContent = f.label;
+    a.dataset.id = f.id;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      loadFile(f.id);
+    });
+    innerGroup.appendChild(a);
+  });
+
+  parent.appendChild(header);
+  parent.appendChild(innerGroup);
+}
+
+// ─── 1. Scope of Work section ───
+buildNavSection('Scope of Work', group => {
+  const a = document.createElement('a');
+  a.href = '#scope-of-work';
+  a.textContent = 'Scope of Work';
+  a.dataset.id = 'scope-of-work';
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    renderSOW();
+  });
+  group.appendChild(a);
+}, true);
+
+// Separator
+navLinks.appendChild(Object.assign(document.createElement('hr'), { className: 'nav-separator' }));
+
+// ─── 2. Example Project section ───
+buildNavSection('Example Project', group => {
+  // Sub-sections for KB files
+  exampleSubSections.forEach(sub => {
+    buildSubSection(group, sub.name, sub.ids);
+  });
+
+  // Requests link
+  const reqHeader = document.createElement('div');
+  reqHeader.className = 'sub-section-header';
+  reqHeader.style.cursor = 'default';
+  reqHeader.textContent = 'Requests';
+  group.appendChild(reqHeader);
+
+  const reqGroup = document.createElement('div');
+  reqGroup.className = 'sub-inner-group';
   const a = document.createElement('a');
   a.href = '#requests';
   a.className = 'special-link';
@@ -269,10 +421,14 @@ buildNavSection('Requests', group => {
     e.preventDefault();
     renderRequestInbox();
   });
-  group.appendChild(a);
-});
+  reqGroup.appendChild(a);
+  group.appendChild(reqGroup);
+}, false, '<span class="illustrative-badge">Illustrative</span>');
 
-// Saved section
+// Separator
+navLinks.appendChild(Object.assign(document.createElement('hr'), { className: 'nav-separator' }));
+
+// ─── 3. Saved section ───
 const savedNavLink = document.createElement('a');
 function updateSavedCount() {
   const items = JSON.parse(localStorage.getItem('mschmulen-savedItems') || '[]');
@@ -289,6 +445,66 @@ buildNavSection('Saved', group => {
   });
   group.appendChild(savedNavLink);
 });
+
+// ─── SOW Render ───
+async function renderSOW() {
+  currentFile = 'scope-of-work';
+  setActiveNav('scope-of-work');
+  history.replaceState(null, '', '#scope-of-work');
+
+  const mainEl = document.querySelector('main');
+  const md = await fetchFile('scope-of-work');
+  const renderedMd = marked.parse(md);
+  const feedback = getFeedback();
+
+  const feedbackCards = feedback.length === 0
+    ? ''
+    : `<div class="feedback-history">
+        <h4>Sent</h4>
+        ${feedback.map(f => `<div class="feedback-card">${f.text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}<div class="date">${f.createdAt}</div></div>`).join('')}
+      </div>`;
+
+  mainEl.innerHTML = `
+    <div class="sow-layout">
+      <div class="sow-content">${renderedMd}</div>
+      <div class="sow-sidebar">
+        <div class="feedback-form">
+          <h3>Notes & Feedback</h3>
+          <div class="subtitle">Questions, changes, or comments on the scope. Submitting opens an email to Brady.</div>
+          <textarea id="sow-feedback" placeholder="Any questions about the scope? Things you'd add, remove, or change? Write your notes here..."></textarea>
+          <button class="submit-btn" id="sow-submit">Send Feedback</button>
+          <div class="status" id="sow-status"></div>
+        </div>
+        ${feedbackCards}
+      </div>
+    </div>
+  `;
+  mainEl.scrollTop = 0;
+
+  document.getElementById('sow-submit').addEventListener('click', () => {
+    const text = document.getElementById('sow-feedback').value.trim();
+    if (!text) return;
+
+    // Save locally
+    saveFeedbackEntry(text);
+
+    // Open mailto
+    const subject = encodeURIComponent('SOW Feedback — AI OS');
+    const body = encodeURIComponent(text);
+    window.open(`mailto:brady.smallwood@gmail.com?subject=${subject}&body=${body}`, '_self');
+
+    // UI feedback
+    const status = document.getElementById('sow-status');
+    status.textContent = 'Email client opened. Feedback saved locally.';
+    status.style.color = '#9ece6a';
+    document.getElementById('sow-feedback').value = '';
+    setTimeout(() => {
+      status.textContent = '';
+      status.style.color = '';
+      renderSOW();
+    }, 2000);
+  });
+}
 
 // ─── Saved items localStorage ───
 function getSavedItems() {
@@ -323,7 +539,7 @@ function updateSavedItem(id, updates) {
 function renderSaved() {
   setActiveNav('saved');
   history.replaceState(null, '', '#saved');
-  const content = document.getElementById('content');
+  const mainEl = document.querySelector('main');
   const items = getSavedItems();
 
   const typeOptions = `<option value="note">Note</option><option value="template">Template</option><option value="snippet">Snippet</option>`;
@@ -369,8 +585,10 @@ function renderSaved() {
     }).join('');
   }
 
-  content.innerHTML = html;
-  document.querySelector('main').scrollTop = 0;
+  mainEl.innerHTML = `<div class="content-wrap">${html}</div>`;
+  mainEl.scrollTop = 0;
+
+  const content = mainEl.querySelector('.content-wrap');
 
   document.getElementById('save-submit').addEventListener('click', () => {
     const title = document.getElementById('save-title').value.trim();
@@ -447,7 +665,7 @@ function saveRequests(items) {
 function renderRequestInbox() {
   setActiveNav('requests');
   history.replaceState(null, '', '#requests');
-  const content = document.getElementById('content');
+  const mainEl = document.querySelector('main');
   const saved = getRequests();
 
   const categoryOptions = requestCategories.map(c => `<option value="${c}">${c}</option>`).join('');
@@ -463,53 +681,61 @@ function renderRequestInbox() {
         <div class="date">${item.createdAt}</div>
       </div>`).join('');
 
-  content.innerHTML = `
-    <h1>Request Inbox</h1>
-    <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
-      Request new skills, agent changes, MCP connections, or context updates. Requests are reviewed within one business day.
-    </p>
-
-    <div style="display:grid;gap:24px;grid-template-columns:1.1fr 0.9fr;">
-      <div>
-        <div class="request-form">
-          <h3 style="font-size:16px;color:#fff;margin:0 0 16px;">New request</h3>
-          <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr;margin-bottom:12px;">
-            <label>
-              <span class="label-text">Category</span>
-              <select id="req-category">${categoryOptions}</select>
-            </label>
-            <label>
-              <span class="label-text">Timing</span>
-              <select id="req-timing">
-                <option>Today</option>
-                <option selected>This week</option>
-                <option>Next check-in</option>
-              </select>
-            </label>
-          </div>
-          <label>
-            <span class="label-text">Request</span>
-            <textarea id="req-summary" placeholder="Example: Build a skill that generates weekly investor updates from my latest QuickBooks data."></textarea>
-          </label>
-          <div class="actions">
-            <button class="submit-btn" id="req-submit">Save request</button>
-            <span class="status" id="req-status">Requests are reviewed within one business day.</span>
-          </div>
-        </div>
+  mainEl.innerHTML = `
+    <div class="content-wrap">
+      <div class="illustrative-banner">
+        <div class="dot"></div>
+        <div class="text">Illustrative — based on initial conversation. This will be refined as we align on the scope of work.</div>
       </div>
-      <div>
-        <div style="margin-bottom:24px;">
-          <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#555;margin-bottom:12px;">Suggested asks</h3>
-          ${promptButtons}
+      <h1>Request Inbox</h1>
+      <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
+        Request new skills, agent changes, MCP connections, or context updates. Requests are reviewed within one business day.
+      </p>
+
+      <div style="display:grid;gap:24px;grid-template-columns:1.1fr 0.9fr;">
+        <div>
+          <div class="request-form">
+            <h3 style="font-size:16px;color:#fff;margin:0 0 16px;">New request</h3>
+            <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr;margin-bottom:12px;">
+              <label>
+                <span class="label-text">Category</span>
+                <select id="req-category">${categoryOptions}</select>
+              </label>
+              <label>
+                <span class="label-text">Timing</span>
+                <select id="req-timing">
+                  <option>Today</option>
+                  <option selected>This week</option>
+                  <option>Next check-in</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              <span class="label-text">Request</span>
+              <textarea id="req-summary" placeholder="Example: Build a skill that generates weekly investor updates from my latest QuickBooks data."></textarea>
+            </label>
+            <div class="actions">
+              <button class="submit-btn" id="req-submit">Save request</button>
+              <span class="status" id="req-status">Requests are reviewed within one business day.</span>
+            </div>
+          </div>
         </div>
         <div>
-          <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#555;margin-bottom:12px;">Recent saved requests</h3>
-          ${requestCards}
+          <div style="margin-bottom:24px;">
+            <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#555;margin-bottom:12px;">Suggested asks</h3>
+            ${promptButtons}
+          </div>
+          <div>
+            <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#555;margin-bottom:12px;">Recent saved requests</h3>
+            ${requestCards}
+          </div>
         </div>
       </div>
     </div>
   `;
-  document.querySelector('main').scrollTop = 0;
+  mainEl.scrollTop = 0;
+
+  const content = mainEl.querySelector('.content-wrap');
 
   content.querySelectorAll('.prompt-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -543,6 +769,7 @@ function renderRequestInbox() {
 // ─── Save page button on content views ───
 function addSaveButton(pageTitle, sourceLabel) {
   const content = document.getElementById('content');
+  if (!content) return;
   const h1 = content.querySelector('h1');
   if (!h1) return;
   const btn = document.createElement('button');
@@ -610,24 +837,24 @@ async function fetchFile(id) {
 
 async function loadFile(id) {
   currentFile = id;
+  const mainEl = document.querySelector('main');
+  mainEl.innerHTML = '<div class="content-wrap" id="content"><div class="loading">Loading...</div></div>';
   const content = document.getElementById('content');
-  content.innerHTML = '<div class="loading">Loading...</div>';
 
-  document.querySelectorAll('nav a').forEach(a => {
-    const isActive = a.dataset.id === id;
-    a.classList.toggle('active', isActive);
-    if (isActive) {
-      const group = a.closest('.nav-group');
-      if (group && group.classList.contains('collapsed')) {
-        group.classList.remove('collapsed');
-        const chevron = group.previousElementSibling?.querySelector('.chevron');
-        if (chevron) chevron.classList.remove('collapsed');
-      }
-    }
-  });
+  setActiveNav(id);
 
   const md = await fetchFile(id);
-  content.innerHTML = marked.parse(md);
+
+  // Add illustrative banner for example project pages
+  let bannerHTML = '';
+  if (exampleProjectIds.has(id)) {
+    bannerHTML = `<div class="illustrative-banner">
+      <div class="dot"></div>
+      <div class="text">Illustrative — based on initial conversation. This will be refined as we align on the scope of work.</div>
+    </div>`;
+  }
+
+  content.innerHTML = bannerHTML + marked.parse(md);
 
   content.querySelectorAll('code').forEach(code => {
     const text = code.textContent.trim();
@@ -644,7 +871,7 @@ async function loadFile(id) {
   });
 
   window.scrollTo(0, 0);
-  document.querySelector('main').scrollTop = 0;
+  mainEl.scrollTop = 0;
 
   history.replaceState(null, '', '#' + id);
 
@@ -725,7 +952,11 @@ document.getElementById('search').addEventListener('input', function() {
           document.getElementById('search').value = '';
           resultsDiv.style.display = 'none';
           navDiv.style.display = '';
-          loadFile(el.dataset.id);
+          if (el.dataset.id === 'scope-of-work') {
+            renderSOW();
+          } else {
+            loadFile(el.dataset.id);
+          }
         });
       });
     }
@@ -735,14 +966,14 @@ document.getElementById('search').addEventListener('input', function() {
 // ─── Hash routing ───
 function handleHash() {
   const hash = location.hash.replace('#', '');
-  if (!hash) {
-    loadFile('overview');
+  if (!hash || hash === 'scope-of-work') {
+    renderSOW();
     return;
   }
   if (hash === 'requests') { renderRequestInbox(); return; }
   if (hash === 'saved') { renderSaved(); return; }
   if (fileMap[hash]) { loadFile(hash); return; }
-  loadFile('overview');
+  renderSOW();
 }
 
 window.addEventListener('hashchange', handleHash);
