@@ -207,7 +207,8 @@
 
 // ─── File definitions ───
 const files = [
-  { id: 'scope-of-work', file: '../kb/07-scope-of-work.md', label: 'Scope of Work' },
+  { id: 'statement-of-work', file: '../kb/08-statement-of-work.md', label: 'Statement of Work' },
+  { id: 'scope-of-work', file: '../kb/07-scope-of-work.md', label: 'Deliverables & Timeline' },
   { id: 'overview', file: '../kb/00-overview.md', label: 'Overview' },
   { id: 'executive-assistant', file: '../kb/01-executive-assistant.md', label: 'Executive Assistant' },
   { id: 'cmo-agent', file: '../kb/02-cmo-agent.md', label: 'CMO Agent' },
@@ -337,14 +338,24 @@ function buildSubSection(parent, name, ids) {
 // ─── 1. Scope of Work section ───
 buildNavSection('Scope of Work', group => {
   const a = document.createElement('a');
-  a.href = '#scope-of-work';
-  a.textContent = 'Scope of Work';
-  a.dataset.id = 'scope-of-work';
+  a.href = '#statement-of-work';
+  a.textContent = 'Statement of Work';
+  a.dataset.id = 'statement-of-work';
   a.addEventListener('click', e => {
     e.preventDefault();
     renderSOW();
   });
   group.appendChild(a);
+
+  const a2 = document.createElement('a');
+  a2.href = '#scope-of-work';
+  a2.textContent = 'Deliverables & Timeline';
+  a2.dataset.id = 'scope-of-work';
+  a2.addEventListener('click', e => {
+    e.preventDefault();
+    loadFile('scope-of-work');
+  });
+  group.appendChild(a2);
 }, true);
 
 // Separator
@@ -402,12 +413,12 @@ buildNavSection('Saved', group => {
 
 // ─── SOW Render ───
 async function renderSOW() {
-  currentFile = 'scope-of-work';
-  setActiveNav('scope-of-work');
-  history.replaceState(null, '', '#scope-of-work');
+  currentFile = 'statement-of-work';
+  setActiveNav('statement-of-work');
+  history.replaceState(null, '', '#statement-of-work');
 
   const mainEl = document.querySelector('main');
-  const md = await fetchFile('scope-of-work');
+  const md = await fetchFile('statement-of-work');
   const renderedMd = marked.parse(md);
   const feedback = getFeedback();
 
@@ -905,7 +916,7 @@ document.getElementById('search').addEventListener('input', function() {
           document.getElementById('search').value = '';
           resultsDiv.style.display = 'none';
           navDiv.style.display = '';
-          if (el.dataset.id === 'scope-of-work') {
+          if (el.dataset.id === 'statement-of-work') {
             renderSOW();
           } else {
             loadFile(el.dataset.id);
@@ -919,7 +930,7 @@ document.getElementById('search').addEventListener('input', function() {
 // ─── Hash routing ───
 function handleHash() {
   const hash = location.hash.replace('#', '');
-  if (!hash || hash === 'scope-of-work') {
+  if (!hash || hash === 'statement-of-work') {
     renderSOW();
     return;
   }
