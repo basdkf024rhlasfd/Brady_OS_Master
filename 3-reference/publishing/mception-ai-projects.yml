@@ -12,3 +12,7 @@ published_projects:
     project: "Project - PauletteAI"
     approved: 2026-03-27
     notes: "Client-facing AI assistant project brief for Paulette Dean / DAHS"
+  - slug: stihl
+    project: "Project - Stihl Insights"
+    approved: 2026-03-27
+    notes: "STIHL Competitive Intelligence briefing for Rob Jenson"
