@@ -21,3 +21,4 @@
 ## Skills
 
 - **Air Traffic Control:** `3-reference/skills/air-traffic-control/SKILL.md` — Route tasks across repos, generate handoff prompts, coordinate cross-repo changes, check version control status. Registry: `3-reference/skills/air-traffic-control/repo-registry.yml`
+- **DiCaprio:** `dicaprio-agent/SKILL.md` — 20K-foot recon across all projects and workspaces. Scans GitHub, local files, Notion, and Conductor. Flags stale work, drift, blockers, and deadlines. Reports to Claudine. Template: `dicaprio-agent/STATUS-TEMPLATE.md`
