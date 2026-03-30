@@ -1,6 +1,8 @@
-# Brand Voice: Mark Schmulen / Contour
+# Brand Voice: Mark Schmulen
 
-**Status:** Placeholder -- populate after interview with Mark.
+**Status:** Placeholder — populate after interview with Mark
+
+This is Mark's personal voice. It applies across all his companies (PropMatic, Saivory, Jelly Capital). While each company may have slightly different subject matter, Mark's communication style is consistent.
 
 ## What to capture here
 
@@ -13,10 +15,13 @@
 - Hard "nevers": tone, words, or styles that are off-brand
 - Example content: 2-3 real posts or emails from Mark with annotations on what makes them "his"
 
+## Company-Specific Tone Notes
+If Mark speaks differently about each business (e.g., more technical for PropMatic, more casual for Saivory), note those differences here after the interview.
+
 ## Source
 
 Populate from INTERVIEW-GUIDE.md, Section 2: Brand Voice. Also capture patterns from how Mark speaks during the interview itself.
 
-## Why this matters
+## Why This Matters
 
 This is the single most important file in the knowledge base. Every content-generating sub-agent loads this file before producing output. The difference between "useful AI assistant" and "sounds like generic AI" lives in this file. Be specific. Include examples.

@@ -11,7 +11,7 @@ These agents live at `/0-agents/imported-agents/marketing/` and are ready to be 
 | Agent | File | Likely Home | Notes |
 |-------|------|-------------|-------|
 | Carousel Growth Engine | `marketing-carousel-growth-engine.md` | Content & MarComms | LinkedIn/Instagram carousel creation. Activate when Mark starts using visual content. |
-| Instagram Curator | `marketing-instagram-curator.md` | Content & MarComms | Instagram content strategy and curation. Activate if Contour builds an Instagram presence. |
+| Instagram Curator | `marketing-instagram-curator.md` | Content & MarComms | Instagram content strategy and curation. Activate if Mark builds an Instagram presence for any company. |
 | Short Video Editing Coach | `marketing-short-video-editing-coach.md` | Content & MarComms | Video content guidance. Activate if Mark starts producing video (TikTok, Reels, YouTube Shorts). |
 
 ## How to Plug In

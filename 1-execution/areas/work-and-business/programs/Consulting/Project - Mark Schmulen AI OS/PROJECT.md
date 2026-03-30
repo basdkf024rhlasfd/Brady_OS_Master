@@ -10,7 +10,7 @@
 [Consulting](../consulting.md) — Work & Business
 
 ## Customer Problem
-- **Who specifically:** Mark Schmulen, entrepreneur and CEO/Founder at Contour (real estate tech). Personally still using conventional chat (Claude, Gemini, ChatGPT) for both personal and business work — no agent workflows, no context files, no skills, no MCP connections. This engagement is for Mark personally, not scoped to Contour specifically.
+- **Who specifically:** Mark Schmulen, entrepreneur and founder of PropMatic, Saivory, and Jelly Capital. Personally still using conventional chat (Claude, Gemini, ChatGPT) for both personal and business work — no agent workflows, no context files, no skills, no MCP connections. This engagement is for Mark personally, spanning all three companies.
 - **Trigger moment:** Mark watched a YouTube course on AI agent setup, realized "this is what Brady was talking about in Denver," and told Brady directly he'd be interested in consulting help to build his own agents.
 - **Current workaround:** Using basic chat interfaces. Context bleeds across personal/business conversations. No persistent memory, no skills, no tool connections. Repeats preferences every session. His own product builds self-learning agents for clients, but the cobbler's kids have no shoes.
 - **Cost of status quo:** Mark spends time context-switching between Gmail, Calendar, Notion, Slack, Stripe, QuickBooks. No compounding — every chat session starts from zero. Hiring a marketer he may not need if his CMO agent works. Losing hours daily to manual coordination that agents could handle.

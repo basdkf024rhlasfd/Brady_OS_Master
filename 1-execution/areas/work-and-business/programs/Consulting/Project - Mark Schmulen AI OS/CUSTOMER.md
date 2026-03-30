@@ -1,11 +1,11 @@
 # Mark Schmulen AI OS — What Success Looks Like
 
 ## Who This Is For
-Mark Schmulen — Entrepreneur, CEO/Founder at Contour
+Mark Schmulen — Entrepreneur and founder of PropMatic, Saivory, and Jelly Capital
 
 ## The Problem We're Solving
 
-You understand AI agents — your company builds them for your clients. But you haven't built your own. Every day you're opening Gmail, Calendar, Notion, Slack, Stripe, and QuickBooks separately. You repeat context to Claude or ChatGPT every session. You're hiring a marketer to do work that a well-configured CMO agent could handle.
+You understand AI agents — you've built them for clients. But you haven't built your own. You're running three companies and every day you're opening Gmail, Calendar, Notion, Slack, Stripe, and QuickBooks separately. You repeat context to Claude or ChatGPT every session. You're hiring a marketer to do work that a well-configured CMO agent could handle.
 
 Your current process:
 - Using conventional chat with no persistent memory — every session starts from zero

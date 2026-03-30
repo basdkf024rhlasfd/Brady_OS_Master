@@ -24,3 +24,7 @@ published_projects:
     project: "Project - IVFH HR Strategy Agent"
     approved: 2026-03-30
     notes: "HR Strategy Agent SOW and engagement tiers for Gary Schubert / IVFH"
+  - slug: content-engine
+    project: "Project - LinkedIn and Substack Content Engine"
+    approved: 2026-03-30
+    notes: "Brady's personal content pipeline — LinkedIn and Substack drafting, voice check, publishing tracker"
