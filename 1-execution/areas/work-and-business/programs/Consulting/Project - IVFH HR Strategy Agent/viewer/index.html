@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Strategy Agent — IVFH</title>
+<meta name="description" content="Private workforce intelligence project brief for Gary Schubert / IVFH — HR Strategy Agent powered by SRP.">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; display: flex; height: 100vh; }
+
+  /* Sidebar */
+  nav {
+    width: 280px; min-width: 280px; background: #111; border-right: 1px solid #222;
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  nav .brand { padding: 20px 16px 16px; border-bottom: 1px solid #222; }
+  nav .brand .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2.2px; color: #555; }
+  nav .brand .title { font-size: 18px; font-weight: 600; color: #fff; margin-top: 6px; }
+  nav h2 { font-size: 11px; padding: 16px 16px 6px; color: #555; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: color 0.15s; user-select: none; }
+  nav h2:hover { color: #888; }
+  nav h2 .chevron { display: inline-block; font-size: 8px; margin-right: 4px; transition: transform 0.15s; }
+  nav h2 .chevron.collapsed { transform: rotate(-90deg); }
+  nav .nav-group.collapsed { display: none; }
+  nav a {
+    display: block; padding: 8px 16px; color: #aaa; text-decoration: none;
+    font-size: 13px; border-left: 3px solid transparent; transition: all 0.15s;
+  }
+  nav a:hover { background: #1a1a1a; color: #fff; }
+  nav a.active { background: #0d0d1a; color: #818cf8; border-left-color: #818cf8; }
+  nav .search-box { padding: 12px 16px; }
+  nav input {
+    width: 100%; padding: 8px 10px; background: #1a1a1a; border: 1px solid #333;
+    border-radius: 6px; color: #ccc; font-size: 13px; outline: none;
+  }
+  nav input:focus { border-color: #818cf8; }
+  nav input::placeholder { color: #555; }
+
+  /* Main content */
+  main { flex: 1; overflow-y: auto; padding: 0; }
+  .content-wrap { max-width: 820px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  /* SOW two-column layout */
+  .sow-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; max-width: 1100px; margin: 0 auto; padding: 40px 48px 80px; }
+  .sow-content { min-width: 0; }
+  .sow-sidebar { position: sticky; top: 40px; align-self: start; }
+
+  /* Feedback form */
+  .feedback-form {
+    background: #111; border: 1px solid #222; border-radius: 10px; padding: 20px 24px;
+  }
+  .feedback-form h3 { font-size: 14px; color: #fff; margin: 0 0 4px; font-weight: 600; }
+  .feedback-form .subtitle { font-size: 12px; color: #555; margin-bottom: 16px; line-height: 1.5; }
+  .feedback-form textarea {
+    width: 100%; min-height: 160px; padding: 12px 14px; background: #0a0a0a;
+    border: 1px solid #333; border-radius: 8px; color: #e0e0e0; font-size: 13px;
+    outline: none; font-family: inherit; line-height: 1.6; resize: vertical;
+    margin-bottom: 12px;
+  }
+  .feedback-form textarea:focus { border-color: #818cf8; }
+  .feedback-form textarea::placeholder { color: #555; }
+  .feedback-form .submit-btn {
+    width: 100%; background: #818cf8; border: none; color: #000; font-size: 13px;
+    font-weight: 600; padding: 10px 20px; border-radius: 20px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .feedback-form .submit-btn:hover { background: #a5b4fc; }
+  .feedback-form .status { font-size: 12px; color: #555; text-align: center; margin-top: 8px; }
+
+  .feedback-history { margin-top: 20px; }
+  .feedback-history h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #444; margin-bottom: 10px; }
+  .feedback-card {
+    background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px;
+    padding: 10px 12px; margin-bottom: 8px; font-size: 12px; color: #888; line-height: 1.5;
+  }
+  .feedback-card .date { font-size: 10px; color: #444; margin-top: 4px; }
+
+  /* Markdown styles */
+  .sow-content h1, .content-wrap h1 { font-size: 28px; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid #222; }
+  .sow-content h2, .content-wrap h2 { font-size: 22px; color: #c7d2fe; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #0d0d1a; }
+  .sow-content h3, .content-wrap h3 { font-size: 17px; color: #a5b4fc; margin: 28px 0 12px; }
+  .sow-content h4, .content-wrap h4 { font-size: 15px; color: #818cf8; margin: 20px 0 8px; }
+  .sow-content p, .content-wrap p { line-height: 1.7; margin: 0 0 14px; color: #bbb; font-size: 14.5px; }
+  .sow-content ul, .sow-content ol, .content-wrap ul, .content-wrap ol { margin: 0 0 14px; padding-left: 24px; }
+  .sow-content li, .content-wrap li { line-height: 1.7; margin: 4px 0; color: #bbb; font-size: 14.5px; }
+  .sow-content strong, .content-wrap strong { color: #e0e0e0; }
+  .sow-content hr, .content-wrap hr { border: none; border-top: 1px solid #222; margin: 32px 0; }
+  .sow-content code, .content-wrap code { background: #0d0d1a; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #818cf8; }
+  .sow-content pre, .content-wrap pre { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 0 0 16px; }
+  .sow-content pre code, .content-wrap pre code { background: none; padding: 0; }
+  .sow-content blockquote, .content-wrap blockquote { border-left: 3px solid #818cf8; padding: 8px 16px; margin: 0 0 14px; background: #0a0a12; border-radius: 0 6px 6px 0; }
+  .sow-content blockquote p, .content-wrap blockquote p { color: #a5b4fc; }
+  .sow-content a, .content-wrap a { color: #818cf8; text-decoration: none; }
+  .sow-content a:hover, .content-wrap a:hover { text-decoration: underline; }
+
+  /* Tables */
+  .sow-content table, .content-wrap table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; }
+  .sow-content th, .content-wrap th { text-align: left; padding: 10px 12px; background: #0d0d1a; color: #818cf8; font-weight: 600; border: 1px solid #222; }
+  .sow-content td, .content-wrap td { padding: 8px 12px; border: 1px solid #1a1a1a; color: #bbb; }
+  .sow-content tr:hover td, .content-wrap tr:hover td { background: #111; }
+
+  /* Search results */
+  .search-results { padding: 0 16px; }
+  .search-result { padding: 6px 0; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
+  .search-result:hover { background: #1a1a1a; }
+  .search-result .file { font-size: 11px; color: #818cf8; }
+  .search-result .line { font-size: 12px; color: #888; margin-top: 2px; }
+  .search-result mark { background: #a5b4fc; color: #000; padding: 0 2px; border-radius: 2px; }
+
+  /* Loading */
+  .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
+
+  /* Nav separator */
+  nav .nav-separator { border: none; border-top: 1px solid #1a1a1a; margin: 8px 16px; }
+
+  /* Mobile nav */
+  .mobile-header { display: none; }
+  .mobile-dropdown { display: none; }
+
+  @media (max-width: 768px) {
+    body { flex-direction: column; height: auto; min-height: 100vh; }
+    nav { display: none !important; }
+    .mobile-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #111; border-bottom: 1px solid #222;
+      padding: 12px 16px; position: sticky; top: 0; z-index: 50;
+    }
+    .mobile-header .brand-text { font-size: 15px; font-weight: 600; color: #fff; }
+    .mobile-header .eyebrow-text { font-size: 9px; text-transform: uppercase; letter-spacing: 1.8px; color: #555; }
+    .mobile-header button {
+      background: none; border: 1px solid #333; color: #aaa;
+      padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;
+    }
+    .mobile-header button:hover { border-color: #818cf8; color: #818cf8; }
+    .mobile-dropdown {
+      background: #111; border-bottom: 1px solid #222;
+      padding: 8px 0; position: sticky; top: 49px; z-index: 49;
+    }
+    .mobile-dropdown.open { display: block; }
+    .mobile-dropdown a {
+      display: block; padding: 10px 16px; color: #aaa;
+      text-decoration: none; font-size: 14px; border-left: 3px solid transparent;
+    }
+    .mobile-dropdown a:hover { color: #fff; background: #1a1a1a; }
+    .mobile-dropdown a.active { color: #818cf8; background: #0d0d1a; border-left-color: #818cf8; }
+    .mobile-dropdown .section-label {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+      color: #555; padding: 12px 16px 4px; font-weight: 600;
+    }
+    .sow-layout { grid-template-columns: 1fr; }
+    .sow-sidebar { position: static; }
+    main { overflow-y: visible; }
+    .content-wrap { padding: 20px 16px 60px; }
+    .sow-layout { padding: 20px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="eyebrow">HR Strategy Agent</div>
+    <div class="title">IVFH</div>
+  </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search..." />
+  </div>
+  <div id="search-results" class="search-results" style="display:none"></div>
+  <div id="nav-links"></div>
+</nav>
+
+<div class="mobile-header">
+  <div>
+    <div class="eyebrow-text">HR Strategy Agent</div>
+    <div class="brand-text">IVFH</div>
+  </div>
+  <button onclick="toggleMobileNav()">Menu &#x25BE;</button>
+</div>
+<div class="mobile-dropdown" id="mobileDropdown"></div>
+
+<main>
+  <div class="content-wrap" id="content">
+    <div class="loading">Loading...</div>
+  </div>
+</main>
+
+<script>
+
+// ─── File definitions ───
+const files = [
+  { id: 'statement-of-work', file: '../kb/statement-of-work.md', label: 'Statement of Work' },
+  { id: 'tier-spectrum', file: '../kb/tier-spectrum.md', label: 'Engagement Tiers' },
+];
+
+const fileMap = {};
+files.forEach(f => fileMap[f.id] = f);
+
+const cache = {};
+let currentFile = null;
+
+// ─── Feedback localStorage ───
+const FEEDBACK_STORAGE_KEY = 'ivfh-sow-feedback';
+
+function getFeedback() {
+  try { return JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY) || '[]'); }
+  catch { localStorage.removeItem(FEEDBACK_STORAGE_KEY); return []; }
+}
+
+function saveFeedbackEntry(text) {
+  const items = getFeedback();
+  items.unshift({ text, createdAt: new Date().toLocaleString() });
+  localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(items.slice(0, 20)));
+}
+
+// ─── Build nav ───
+const navLinks = document.getElementById('nav-links');
+const collapsedGroups = JSON.parse(localStorage.getItem('ivfh-navCollapsed') || '{}');
+
+function buildNavSection(name, buildLinks, defaultOpen) {
+  const isCollapsed = collapsedGroups.hasOwnProperty(name) ? collapsedGroups[name] : !defaultOpen;
+
+  const h2 = document.createElement('h2');
+  const chevron = document.createElement('span');
+  chevron.className = 'chevron' + (isCollapsed ? ' collapsed' : '');
+  chevron.textContent = '\u25BC';
+  h2.appendChild(chevron);
+  h2.appendChild(document.createTextNode(' ' + name));
+
+  const group = document.createElement('div');
+  group.className = 'nav-group' + (isCollapsed ? ' collapsed' : '');
+
+  h2.addEventListener('click', () => {
+    const nowCollapsed = group.classList.toggle('collapsed');
+    chevron.classList.toggle('collapsed', nowCollapsed);
+    collapsedGroups[name] = nowCollapsed;
+    localStorage.setItem('ivfh-navCollapsed', JSON.stringify(collapsedGroups));
+  });
+
+  navLinks.appendChild(h2);
+  buildLinks(group);
+  navLinks.appendChild(group);
+}
+
+// ─── 1. Engagement section ───
+buildNavSection('Engagement', group => {
+  const a = document.createElement('a');
+  a.href = '#statement-of-work';
+  a.textContent = 'Statement of Work';
+  a.dataset.id = 'statement-of-work';
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    renderSOW();
+  });
+  group.appendChild(a);
+}, true);
+
+// Separator
+navLinks.appendChild(Object.assign(document.createElement('hr'), { className: 'nav-separator' }));
+
+// ─── 2. Reference section ───
+buildNavSection('Reference', group => {
+  const a = document.createElement('a');
+  a.href = '#tier-spectrum';
+  a.textContent = 'Engagement Tiers';
+  a.dataset.id = 'tier-spectrum';
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    loadFile('tier-spectrum');
+  });
+  group.appendChild(a);
+}, true);
+
+// ─── SOW Render ───
+async function renderSOW() {
+  currentFile = 'statement-of-work';
+  setActiveNav('statement-of-work');
+  history.replaceState(null, '', '#statement-of-work');
+
+  const mainEl = document.querySelector('main');
+  const md = await fetchFile('statement-of-work');
+  const renderedMd = marked.parse(md);
+  const feedback = getFeedback();
+
+  const feedbackCards = feedback.length === 0
+    ? ''
+    : `<div class="feedback-history">
+        <h4>Sent</h4>
+        ${feedback.map(f => `<div class="feedback-card">${f.text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}<div class="date">${f.createdAt}</div></div>`).join('')}
+      </div>`;
+
+  mainEl.innerHTML = `
+    <div class="sow-layout">
+      <div class="sow-content">${renderedMd}</div>
+      <div class="sow-sidebar">
+        <div class="feedback-form">
+          <h3>Notes & Feedback</h3>
+          <div class="subtitle">Questions, changes, or comments on the scope. Feedback is saved locally and copied to your clipboard.</div>
+          <textarea id="sow-feedback" placeholder="Any questions about the scope? Things you'd add, remove, or change? Write your notes here..."></textarea>
+          <button class="submit-btn" id="sow-submit">Save & Copy</button>
+          <div class="status" id="sow-status"></div>
+        </div>
+        ${feedbackCards}
+      </div>
+    </div>
+  `;
+  mainEl.scrollTop = 0;
+
+  document.getElementById('sow-submit').addEventListener('click', async () => {
+    const text = document.getElementById('sow-feedback').value.trim();
+    if (!text) return;
+    saveFeedbackEntry(text);
+    try { await navigator.clipboard.writeText(text); } catch(e) {}
+    const status = document.getElementById('sow-status');
+    const subject = encodeURIComponent('SOW Feedback — HR Strategy Agent');
+    const body = encodeURIComponent(text);
+    status.innerHTML = 'Saved & copied to clipboard. <a href="mailto:brady.smallwood@gmail.com?subject=' + subject + '&body=' + body + '" style="color:#818cf8">Email Brady</a>';
+    status.style.color = '#9ece6a';
+    document.getElementById('sow-feedback').value = '';
+    setTimeout(() => { renderSOW(); }, 3000);
+  });
+}
+
+// ─── File loading ───
+async function fetchFile(id) {
+  if (cache[id]) return cache[id];
+  const entry = fileMap[id];
+  if (!entry) return '';
+  const res = await fetch(entry.file);
+  const text = await res.text();
+  cache[id] = text;
+  return text;
+}
+
+async function loadFile(id) {
+  currentFile = id;
+  const mainEl = document.querySelector('main');
+  mainEl.innerHTML = '<div class="content-wrap" id="content"><div class="loading">Loading...</div></div>';
+  const content = document.getElementById('content');
+
+  setActiveNav(id);
+
+  const md = await fetchFile(id);
+  content.innerHTML = marked.parse(md);
+
+  window.scrollTo(0, 0);
+  mainEl.scrollTop = 0;
+  history.replaceState(null, '', '#' + id);
+}
+
+function setActiveNav(id) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.id === id));
+  updateMobileActiveState(id);
+}
+
+// ─── Search ───
+let searchTimeout;
+document.getElementById('search').addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  const query = this.value.trim().toLowerCase();
+  const resultsDiv = document.getElementById('search-results');
+  const navDiv = document.getElementById('nav-links');
+
+  if (!query) {
+    resultsDiv.style.display = 'none';
+    navDiv.style.display = '';
+    return;
+  }
+
+  searchTimeout = setTimeout(async () => {
+    await Promise.all(files.map(f => fetchFile(f.id)));
+
+    const results = [];
+    for (const f of files) {
+      const text = cache[f.id] || '';
+      const lines = text.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].toLowerCase().includes(query)) {
+          const snippet = lines[i].trim().substring(0, 120);
+          const highlighted = snippet.replace(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), match => `<mark>${match}</mark>`);
+          results.push({ fileId: f.id, label: f.label, line: highlighted });
+          if (results.length >= 20) break;
+        }
+      }
+      if (results.length >= 20) break;
+    }
+
+    navDiv.style.display = 'none';
+    resultsDiv.style.display = '';
+
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<div style="padding:12px 0;color:#555;font-size:12px;">No results found.</div>';
+    } else {
+      resultsDiv.innerHTML = results.map(r =>
+        `<div class="search-result" data-id="${r.fileId}">
+          <div class="file">${r.label}</div>
+          <div class="line">${r.line}</div>
+        </div>`
+      ).join('');
+
+      resultsDiv.querySelectorAll('.search-result').forEach(el => {
+        el.addEventListener('click', () => {
+          document.getElementById('search').value = '';
+          resultsDiv.style.display = 'none';
+          navDiv.style.display = '';
+          if (el.dataset.id === 'statement-of-work') {
+            renderSOW();
+          } else {
+            loadFile(el.dataset.id);
+          }
+        });
+      });
+    }
+  }, 200);
+});
+
+// ─── Mobile nav ───
+function buildMobileDropdown() {
+  const dd = document.getElementById('mobileDropdown');
+  let html = '';
+  html += `<div class="section-label">Engagement</div>`;
+  html += `<a href="#statement-of-work" data-id="statement-of-work" onclick="mobileNavClick(event, 'statement-of-work')">Statement of Work</a>`;
+  html += `<div class="section-label">Reference</div>`;
+  html += `<a href="#tier-spectrum" data-id="tier-spectrum" onclick="mobileNavClick(event, 'tier-spectrum')">Engagement Tiers</a>`;
+  dd.innerHTML = html;
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobileDropdown').classList.toggle('open');
+}
+
+function mobileNavClick(e, id) {
+  e.preventDefault();
+  document.getElementById('mobileDropdown').classList.remove('open');
+  if (id === 'statement-of-work') { renderSOW(); }
+  else { loadFile(id); }
+  updateMobileActiveState(id);
+}
+
+function updateMobileActiveState(id) {
+  document.querySelectorAll('.mobile-dropdown a').forEach(a => {
+    a.classList.toggle('active', a.dataset.id === id);
+  });
+}
+
+buildMobileDropdown();
+
+// ─── Hash routing ───
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash || hash === 'statement-of-work') {
+    renderSOW();
+    return;
+  }
+  if (fileMap[hash]) { loadFile(hash); return; }
+  renderSOW();
+}
+
+window.addEventListener('hashchange', handleHash);
+handleHash();
+
+</script>
+</body>
+</html>
