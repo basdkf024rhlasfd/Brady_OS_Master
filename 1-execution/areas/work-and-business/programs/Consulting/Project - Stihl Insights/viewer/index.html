@@ -152,6 +152,44 @@
   .request-card .timing { font-size: 11px; color: #555; }
   .request-card .summary { font-size: 13px; color: #888; line-height: 1.6; }
   .request-card .date { font-size: 11px; color: #555; margin-top: 8px; }
+
+  /* Mobile nav */
+  .mobile-header { display: none; }
+  .mobile-dropdown { display: none; }
+
+  @media (max-width: 768px) {
+    body { flex-direction: column; height: auto; min-height: 100vh; }
+    nav { display: none !important; }
+    .mobile-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #111; border-bottom: 1px solid #222;
+      padding: 12px 16px; position: sticky; top: 0; z-index: 50;
+    }
+    .mobile-header .brand-text { font-size: 15px; font-weight: 600; color: #fff; }
+    .mobile-header .eyebrow-text { font-size: 9px; text-transform: uppercase; letter-spacing: 1.8px; color: #555; }
+    .mobile-header button {
+      background: none; border: 1px solid #333; color: #aaa;
+      padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;
+    }
+    .mobile-header button:hover { border-color: #f97316; color: #f97316; }
+    .mobile-dropdown {
+      background: #111; border-bottom: 1px solid #222;
+      padding: 8px 0; position: sticky; top: 49px; z-index: 49;
+    }
+    .mobile-dropdown.open { display: block; }
+    .mobile-dropdown a {
+      display: block; padding: 10px 16px; color: #aaa;
+      text-decoration: none; font-size: 14px; border-left: 3px solid transparent;
+    }
+    .mobile-dropdown a:hover { color: #fff; background: #1a1a1a; }
+    .mobile-dropdown a.active { color: #f97316; background: #1a150a; border-left-color: #f97316; }
+    .mobile-dropdown .section-label {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+      color: #555; padding: 12px 16px 4px; font-weight: 600;
+    }
+    main { overflow-y: visible; }
+    .content-wrap { padding: 20px 16px 60px; }
+  }
 </style>
 </head>
 <body>
@@ -179,6 +217,15 @@
   <div id="nav-links"></div>
 </nav>
 
+<div class="mobile-header" id="mobileHeader" style="display:none;">
+  <div>
+    <div class="eyebrow-text">Competitive Intelligence</div>
+    <div class="brand-text">STIHL Brief</div>
+  </div>
+  <button onclick="toggleMobileNav()">Menu &#x25BE;</button>
+</div>
+<div class="mobile-dropdown" id="mobileDropdown"></div>
+
 <main style="display:none;">
   <div class="content-wrap" id="content">
     <div class="loading">Loading...</div>
@@ -199,8 +246,10 @@ function showViewer() {
   document.getElementById('gate').style.display = 'none';
   document.querySelector('nav').style.display = '';
   document.querySelector('main').style.display = '';
+  document.getElementById('mobileHeader').style.display = '';
   if (!viewerInitialized) {
     viewerInitialized = true;
+    buildMobileDropdown();
     window.addEventListener('hashchange', handleHash);
     handleHash();
   }
@@ -801,6 +850,8 @@ async function loadFileWithAnchor(id, anchorText) {
 
 function setActiveNav(id) {
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.id === id));
+  currentFile = id;
+  if (typeof updateMobileActiveState === 'function') updateMobileActiveState(id);
 }
 
 // ─── Search ───
@@ -860,6 +911,43 @@ document.getElementById('search').addEventListener('input', function() {
     }
   }, 200);
 });
+
+// ─── Mobile nav ───
+function buildMobileDropdown() {
+  const dd = document.getElementById('mobileDropdown');
+  let html = '';
+  sections.forEach(s => {
+    html += `<div class="section-label">${s.name}</div>`;
+    s.ids.forEach(id => {
+      const f = fileMap[id];
+      if (f) html += `<a href="#${f.id}" data-id="${f.id}" onclick="mobileNavClick(event, '${f.id}')">${f.label}</a>`;
+    });
+  });
+  html += `<div class="section-label">Saved</div>`;
+  html += `<a href="#saved" data-id="saved" onclick="mobileNavClick(event, 'saved')">All Saved</a>`;
+  html += `<div class="section-label">Requests</div>`;
+  html += `<a href="#requests" data-id="requests" onclick="mobileNavClick(event, 'requests')">Request Inbox</a>`;
+  dd.innerHTML = html;
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobileDropdown').classList.toggle('open');
+}
+
+function mobileNavClick(e, id) {
+  e.preventDefault();
+  document.getElementById('mobileDropdown').classList.remove('open');
+  if (id === 'saved') { renderSaved(); }
+  else if (id === 'requests') { renderRequestInbox(); }
+  else { loadFile(id); }
+  updateMobileActiveState(id);
+}
+
+function updateMobileActiveState(id) {
+  document.querySelectorAll('.mobile-dropdown a').forEach(a => {
+    a.classList.toggle('active', a.dataset.id === id);
+  });
+}
 
 // ─── Hash routing ───
 function handleHash() {
