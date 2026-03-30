@@ -34,7 +34,7 @@ When Mark makes a request:
 | Sub-Agent | File | Domain |
 |-----------|------|--------|
 | Content & MarComms | `skills/content-marcomms.md` | Blog, LinkedIn, email, social, podcast |
-| Demand Gen | `skills/demand-gen.md` | SEO, paid campaigns, lead gen, growth |
+| Demand Gen | `skills/demand-gen.md` | SEO, paid campaigns, lead gen, growth, direct outreach |
 | Analytics & Insights | `skills/analytics-insights.md` | Campaign reporting, A/B analysis, competitive intel |
 | Marketing EA | `skills/marketing-ea.md` | Content calendar, follow-ups, scheduling |
 
