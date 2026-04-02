@@ -9,7 +9,7 @@
 - Agent architecture complete: orchestrator + 5 sub-agents (Content, Substack, Demand Gen, Analytics, EA)
 - Knowledge base pre-populated from public research + call transcripts
 - Voice profile drafted from LinkedIn activity + Otter transcript analysis
-- Competitive landscape mapped for PropMatic and Saivory
+- Competitive landscape mapped for PropMatic
 - Ready for Mark's first session — calibration questions in SETUP.md
 
 ---

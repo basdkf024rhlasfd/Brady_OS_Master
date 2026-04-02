@@ -18,14 +18,14 @@ Before generating, read the following files:
 The user provides format and topic as `$ARGUMENTS`. Examples:
 - "blog post about AI in real estate"
 - "website copy for PropMatic's landing page"
-- "newsletter about food tech trends for Saivory"
-- "presentation on Jelly Capital's investment thesis"
+- "newsletter about AI search trends in multifamily"
+- "presentation on PropMatic's durable agents model"
 
 If the format is not specified, ask the user to clarify before proceeding. Supported formats: blog, website copy, newsletter, presentation.
 
 ## Execution Steps
 
-1. **Identify company context.** Determine which company this relates to — PropMatic, Saivory, Jelly Capital — or if it's personal brand content. Use `kb/manifesto.md` to ground the context.
+1. **Identify company context.** Ground this in PropMatic context, or determine if it's personal brand content. Use `kb/manifesto.md` to ground the context.
 
 2. **Apply format-specific rules:**
 

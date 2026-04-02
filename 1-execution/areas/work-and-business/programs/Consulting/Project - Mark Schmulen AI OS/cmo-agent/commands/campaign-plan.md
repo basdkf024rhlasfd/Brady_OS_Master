@@ -18,8 +18,8 @@ Before generating, read the following files:
 
 The user provides a campaign objective as `$ARGUMENTS`. Examples:
 - "drive signups for PropMatic's beta launch"
-- "build awareness for Saivory's new menu planning feature"
-- "generate deal flow for Jelly Capital Q2"
+- "build awareness for PropMatic's AI leasing assistant"
+- "generate inbound leads for PropMatic Q2"
 - "establish Mark as a thought leader in AI-powered real estate"
 
 ## Execution Steps

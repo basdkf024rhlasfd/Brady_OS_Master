@@ -17,11 +17,11 @@ Before generating, read the following files:
 The user provides a competitor name or market area as `$ARGUMENTS`. Examples:
 - "Entrata" (specific competitor)
 - "AI-powered property management" (market area)
-- "food delivery logistics competitors for Saivory"
+- "AI leasing assistants in multifamily"
 
 ## Execution Steps
 
-1. **Identify which of Mark's companies this relates to.** Use `kb/manifesto.md` to determine whether the competitor or market area maps to PropMatic, Saivory, or Jelly Capital.
+1. **Ground this in PropMatic context.** Use `kb/manifesto.md` to understand PropMatic's positioning relative to the competitor or market area.
 
 2. **Research the competitor or market area** using `kb/competitive-landscape.md` as the primary source. If the competitor is not in the KB, clearly state that the analysis is based on general knowledge and flag it for Mark to validate.
 
