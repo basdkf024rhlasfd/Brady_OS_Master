@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Native Innovation in CPG + Global Snack Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --green: #7CB97A;
+    --green-dim: #4A7A48;
+    --teal: #4AB5A3;
+    --purple: #8B6DB5;
+    --orange: #D4843A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── PAGE SYSTEM ─── */
+  .page {
+    position: relative;
+    z-index: 1;
+    padding: 48px 52px 40px;
+    min-height: 100vh;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ─── HEADER ─── */
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid var(--gold-dim);
+  }
+  .header-left { max-width: 680px; }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .header-tag::before { content: ''; width: 18px; height: 2px; background: var(--gold); }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 10px; }
+  h1 span { color: var(--gold); }
+  .header-sub { font-size: 15px; color: var(--gray-light); line-height: 1.5; }
+  .header-right { text-align: right; padding-top: 8px; flex-shrink: 0; }
+  .header-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+  .header-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 54px; font-weight: 700; color: var(--red); line-height: 1; }
+  .header-stat-note { font-size: 11px; color: var(--gray); margin-top: 4px; }
+
+  /* ─── THESIS BOX ─── */
+  .thesis {
+    background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+    border: 1px solid rgba(212,168,67,0.25); border-radius: 8px;
+    padding: 18px 28px; margin-bottom: 32px; text-align: center;
+  }
+  .thesis p { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; line-height: 1.5; }
+  .thesis em { color: var(--gold); font-style: normal; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 16px; margin-top: 32px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.2); }
+  .section-header:first-child { margin-top: 0; }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  h2 span { color: var(--gold); }
+  h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600;
+    margin-bottom: 6px; margin-top: 24px; line-height: 1.3;
+  }
+  .subtitle { font-size: 14px; color: var(--gray-light); margin-bottom: 20px; font-style: italic; }
+
+  /* ─── STATS ROW ─── */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  .stats-row-3 { grid-template-columns: repeat(3, 1fr); }
+  .stat-card {
+    background: var(--bg-card); border-radius: 8px; padding: 18px 14px;
+    border: 1px solid rgba(255,255,255,0.06); text-align: center;
+  }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .stat-num--red { color: var(--red); }
+  .stat-num--green { color: var(--green); }
+  .stat-num--blue { color: var(--blue); }
+  .stat-desc { font-size: 12px; color: var(--gray-light); line-height: 1.4; }
+  .stat-src { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray); margin-top: 6px; }
+
+  /* ─── TABLES ─── */
+  .bench-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 20px; }
+  .bench-table th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); padding: 12px 14px; text-align: left; background: var(--bg-card-alt); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .bench-table td { font-size: 12px; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--gray-light); vertical-align: top; line-height: 1.5; }
+  .bench-table tr:last-child td { border-bottom: none; }
+  .bench-table td:first-child { font-weight: 600; color: var(--white); }
+  .col-gold { color: var(--gold) !important; font-weight: 600; }
+  .col-red { color: var(--red) !important; }
+  .col-green { color: var(--green) !important; }
+
+  /* ─── PANELS ─── */
+  .panel {
+    background: var(--bg-card); border-radius: 10px; padding: 22px;
+    border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px;
+  }
+  .panel--gold { border-top: 3px solid var(--gold); }
+  .panel--red { border-top: 3px solid var(--red-dim); }
+  .panel--blue { border-top: 3px solid var(--blue); }
+  .panel--green { border-top: 3px solid var(--green-dim); }
+  .panel-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .panel-label--red { color: var(--red); }
+  .panel-title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+
+  /* ─── GRID LAYOUTS ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+
+  /* ─── FLOW / PROCESS ─── */
+  .flow-row {
+    display: flex; align-items: center; gap: 0; margin-bottom: 20px;
+    background: var(--bg-card); border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .flow-step {
+    flex: 1; padding: 14px 16px; text-align: center; position: relative;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .flow-step:last-child { border-right: none; }
+  .flow-step-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 1px; margin-bottom: 2px; }
+  .flow-step-label { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+  .flow-step-desc { font-size: 10px; color: var(--gray); line-height: 1.3; }
+  .flow-arrow { color: var(--gold); font-size: 18px; flex-shrink: 0; padding: 0 2px; }
+  .flow-step--dead { background: rgba(196,92,92,0.1); }
+  .flow-step--dead .flow-step-label { color: var(--red); }
+
+  /* ─── STACK DIAGRAM ─── */
+  .stack { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+  .stack-layer {
+    display: flex; align-items: stretch; border: 1px solid rgba(255,255,255,0.06);
+    border-bottom: none; background: var(--bg-card);
+  }
+  .stack-layer:first-child { border-radius: 8px 8px 0 0; }
+  .stack-layer:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); border-radius: 0 0 8px 8px; }
+  .stack-num {
+    width: 48px; display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    color: var(--gold); background: rgba(212,168,67,0.08);
+    border-right: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+  }
+  .stack-content { flex: 1; padding: 14px 18px; }
+  .stack-name { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .stack-desc { font-size: 12px; color: var(--gray-light); line-height: 1.4; }
+
+  /* ─── PRODUCT MOCK-UPS ─── */
+  .product-card {
+    background: var(--bg-card); border-radius: 10px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .product-visual {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .product-visual .product-emoji {
+    font-size: 48px; filter: saturate(0.85);
+  }
+  .product-visual .product-label {
+    position: absolute; bottom: 8px; left: 0; right: 0; text-align: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600;
+    color: rgba(255,255,255,0.7); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .product-info { padding: 14px 16px; }
+  .product-name { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+  .product-origin {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .product-desc { font-size: 11px; color: var(--gray-light); line-height: 1.45; margin-bottom: 8px; }
+  .product-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .product-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.5px;
+    padding: 3px 8px; border-radius: 3px; background: rgba(212,168,67,0.1);
+    color: var(--gold); border: 1px solid rgba(212,168,67,0.2);
+  }
+  .product-tag--green { background: rgba(122,185,122,0.1); color: var(--green); border-color: rgba(122,185,122,0.2); }
+  .product-tag--blue { background: rgba(74,127,181,0.1); color: var(--blue); border-color: rgba(74,127,181,0.2); }
+
+  /* Product visual backgrounds */
+  .pv-japan { background: linear-gradient(135deg, #1a1520 0%, #2d1f35 50%, #1a2030 100%); }
+  .pv-brazil { background: linear-gradient(135deg, #1a2015 0%, #252d1a 50%, #1a2520 100%); }
+  .pv-korea { background: linear-gradient(135deg, #201a15 0%, #2d251a 50%, #201a20 100%); }
+  .pv-fusion { background: linear-gradient(135deg, #15181a 0%, #1a2025 50%, #201a25 100%); }
+
+  /* ─── QUOTE CARDS ─── */
+  .quote-card { background: var(--bg-card); border-left: 3px solid var(--gold-dim); border-radius: 0 8px 8px 0; padding: 14px 16px; }
+  .quote-card p { font-size: 13px; line-height: 1.5; font-weight: 500; }
+
+  /* ─── BAR CHARTS (CSS only) ─── */
+  .bar-chart { margin-bottom: 20px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .bar-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-light); width: 100px; text-align: right; flex-shrink: 0; letter-spacing: 0.5px; }
+  .bar-track { flex: 1; height: 28px; background: rgba(255,255,255,0.03); border-radius: 4px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.8); }
+  .bar-fill--gold { background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
+  .bar-fill--blue { background: linear-gradient(90deg, var(--dark-blue), var(--blue)); }
+  .bar-fill--red { background: linear-gradient(90deg, var(--red-dim), var(--red)); }
+  .bar-fill--green { background: linear-gradient(90deg, var(--green-dim), var(--green)); }
+
+  /* ─── MARKET SIZING VISUAL ─── */
+  .market-circles {
+    display: flex; align-items: center; justify-content: center; gap: 32px;
+    margin: 24px 0;
+  }
+  .market-circle {
+    border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+  }
+  .market-circle--global {
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(74,127,181,0.2), rgba(74,127,181,0.05));
+    border: 2px solid rgba(74,127,181,0.3);
+  }
+  .market-circle--us {
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(212,168,67,0.2), rgba(212,168,67,0.05));
+    border: 2px solid rgba(212,168,67,0.3);
+  }
+  .market-circle .mc-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
+  .market-circle--global .mc-num { color: var(--blue); }
+  .market-circle--us .mc-num { color: var(--gold); }
+  .market-circle .mc-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--gray); margin-top: 4px; text-transform: uppercase; }
+
+  /* ─── COUNTRY FLAGS (CSS) ─── */
+  .country-badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px;
+    border-radius: 4px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600;
+  }
+  .country-badge--jp { background: rgba(196,92,92,0.15); border: 1px solid rgba(196,92,92,0.25); }
+  .country-badge--br { background: rgba(122,185,122,0.15); border: 1px solid rgba(122,185,122,0.25); }
+  .country-badge--kr { background: rgba(74,127,181,0.15); border: 1px solid rgba(74,127,181,0.25); }
+
+  /* ─── BODY TEXT ─── */
+  .body-text { font-size: 13px; color: var(--gray-light); line-height: 1.65; margin-bottom: 16px; }
+  .body-text strong { color: var(--white); font-weight: 600; }
+  .body-text em { color: var(--gold); font-style: normal; }
+
+  /* ─── BOTTOM BAR ─── */
+  .bottom-bar { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: auto; }
+  .bottom-bar-left { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--gray); }
+  .bottom-bar-right { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--gold); }
+
+  /* ─── PARTNERSHIP TRACK ─── */
+  .track-card {
+    background: var(--bg-card); border-radius: 10px; padding: 22px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .track-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .track-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .track-detail { font-size: 12px; color: var(--gray-light); line-height: 1.5; }
+  .track-detail li { margin-bottom: 4px; margin-left: 16px; }
+
+  /* ─── UTILITY ─── */
+  .source-note { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray); margin-top: 8px; line-height: 1.5; font-style: italic; }
+  .spacer { height: 16px; }
+  .spacer-sm { height: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 1: COVER / THE INNOVATION CRISIS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">Strategic Whitepaper &mdash; April 2026</div>
+      <h1>AI-Native <span>Innovation</span><br>in CPG</h1>
+      <p class="header-sub">A framework for replacing workshops, sourcing breakout products,<br>and building an AI innovation engine.</p>
+    </div>
+    <div class="header-right">
+      <div class="header-stat-label">New CPG product failure rate</div>
+      <div class="header-stat-num">85%</div>
+      <div class="header-stat-note">Nielsen (within 2 years of launch)</div>
+    </div>
+  </div>
+
+  <div class="thesis">
+    <p>CPG innovation is at a 30-year low. The answer isn't better workshops.<br><em>It's an AI engine that runs continuously &mdash; from insight to shelf.</em></p>
+  </div>
+
+  <div class="section-header">The Innovation Crisis</div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num stat-num--red">26%</div>
+      <div class="stat-desc">of 2024 food launches were genuinely new (down from 50% in 2007)</div>
+      <div class="stat-src">Mintel GNPD, 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num stat-num--red">88%</div>
+      <div class="stat-desc">failure rate for the bottom 20,000 US food companies</div>
+      <div class="stat-src">University of Toronto</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num stat-num--red">2%</div>
+      <div class="stat-desc">of CPG revenue allocated to R&D (vs. 15%+ in tech)</div>
+      <div class="stat-src">Bain &amp; Company</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num stat-num--red">18-24mo</div>
+      <div class="stat-desc">average concept-to-shelf timeline for traditional CPG</div>
+      <div class="stat-src">Industry benchmark</div>
+    </div>
+  </div>
+
+  <div class="section-header">The Workshop Model Is Structurally Broken</div>
+
+  <div class="flow-row">
+    <div class="flow-step">
+      <div class="flow-step-num">01</div>
+      <div class="flow-step-label">Insights Dump</div>
+      <div class="flow-step-desc">Market data &amp; trend decks</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-num">02</div>
+      <div class="flow-step-label">Brainstorm</div>
+      <div class="flow-step-desc">Workshop ideation</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-num">03</div>
+      <div class="flow-step-label">Committee</div>
+      <div class="flow-step-desc">Concept filtering</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-num">04</div>
+      <div class="flow-step-label">Business Case</div>
+      <div class="flow-step-desc">Rough financials</div>
+    </div>
+    <div class="flow-step flow-step--dead">
+      <div class="flow-step-num">05</div>
+      <div class="flow-step-label">Dies Here</div>
+      <div class="flow-step-desc">Post-workshop follow-up</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="panel panel--red">
+      <div class="panel-label panel-label--red">Fatal Flaw 1</div>
+      <div class="panel-title">Front-Loaded Thinking</div>
+      <p class="body-text" style="margin:0">Teams invest the most creative energy <strong>before</strong> they have any real consumer signal. By the time validation happens, sunk costs make it impossible to kill bad ideas.</p>
+    </div>
+    <div class="panel panel--red">
+      <div class="panel-label panel-label--red">Fatal Flaw 2</div>
+      <div class="panel-title">Groupthink by Design</div>
+      <p class="body-text" style="margin:0">Workshop-driven ideation systematically over-indexes on safe, familiar ideas. No mechanism exists to surface opportunities from <strong>global markets</strong> or unstructured data at scale.</p>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-left">Sources: Mintel GNPD 2024 &middot; Nielsen &middot; Bain &amp; Company &middot; University of Toronto</div>
+    <div class="bottom-bar-right">mception.ai</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 2: THE AI INNOVATION STACK + COMPETITIVE LANDSCAPE
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="section-header">The AI Innovation Stack</div>
+  <h2>From Event-Based to <span>Continuous Innovation</span></h2>
+  <p class="subtitle">Five layers. Runs persistently. Replaces the workshop cycle.</p>
+
+  <div class="stack">
+    <div class="stack-layer">
+      <div class="stack-num">L5</div>
+      <div class="stack-content">
+        <div class="stack-name">Execution Engine</div>
+        <div class="stack-desc">Spec sheets, co-manufacturer matching, ingredient sourcing optimization, go-to-market planning. Validated concept &rarr; launch-ready product.</div>
+      </div>
+    </div>
+    <div class="stack-layer">
+      <div class="stack-num">L4</div>
+      <div class="stack-content">
+        <div class="stack-name">Rapid Validation Loop</div>
+        <div class="stack-desc">AI generates landing pages, mock packaging, ad creatives. Tests click-through, conversion intent, audience segmentation. <strong>Days, not months.</strong></div>
+      </div>
+    </div>
+    <div class="stack-layer">
+      <div class="stack-num">L3</div>
+      <div class="stack-content">
+        <div class="stack-name">Simulation Layer</div>
+        <div class="stack-desc">Pricing elasticity, velocity modeling, basket attachment probability, cannibalization risk. Outputs: Y1 revenue estimates, failure probability scores.</div>
+      </div>
+    </div>
+    <div class="stack-layer">
+      <div class="stack-num">L2</div>
+      <div class="stack-content">
+        <div class="stack-name">Concept Generator</div>
+        <div class="stack-desc">Produces product ideas constrained by margins, retailer fit, ingredients, and regulatory. Generates names, packaging concepts, positioning statements.</div>
+      </div>
+    </div>
+    <div class="stack-layer">
+      <div class="stack-num">L1</div>
+      <div class="stack-content">
+        <div class="stack-name">Insight Engine</div>
+        <div class="stack-desc">Continuously mines social, menus, recipes, retail, reviews. Outputs: unmet needs by category, flavor gaps by region, ingredient velocity trajectories.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">Competitive Landscape &mdash; Real Companies, Real Gaps</div>
+
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th style="width:16%">Company</th>
+        <th style="width:14%">Stack Layer</th>
+        <th style="width:34%">What They Do</th>
+        <th style="width:18%">Clients</th>
+        <th style="width:18%">Key Gap</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Tastewise</td><td>Insight</td><td>Real-time food intelligence. TasteGPT for concept discovery.</td><td class="col-gold">Nestle, PepsiCo, Kraft Heinz, Mars</td><td class="col-red">No formulation or validation</td></tr>
+      <tr><td>NotCo / Giuseppe</td><td>Concept</td><td>AI ingredient formulation. B2B Concept Quant. $400M raised.</td><td class="col-gold">Barry Callebaut, Magnum, Kraft Heinz</td><td class="col-red">Formulation only</td></tr>
+      <tr><td>Gastrograph AI</td><td>Simulation</td><td>Sensory perception modeling. 12K+ products, 38 countries.</td><td class="col-gold">Ajinomoto</td><td class="col-red">No ideation</td></tr>
+      <tr><td>Spoonshot</td><td>Insight</td><td>Trend prediction from 900+ sources. Free tier $99/mo.</td><td class="col-gold">Cargill, 15 $B+ brands</td><td class="col-red">Forecasting only</td></tr>
+      <tr><td>Mintel Spark</td><td>Concept</td><td>AI generator on 50+ years of GNPD data. Launched 2025.</td><td class="col-gold">Enterprise CPG</td><td class="col-red">No validation or execution</td></tr>
+      <tr><td>Foodpairing</td><td>Concept</td><td>Molecular flavor pairing via chromatography + ML.</td><td class="col-gold">Unilever, Kellogg's, Bacardi</td><td class="col-red">Flavor science only</td></tr>
+    </tbody>
+  </table>
+
+  <div class="thesis">
+    <p>Every player covers 1&ndash;2 layers. <em>Nobody runs the full pipeline from insight to launch-ready product.</em><br>The Concept Generator layer is the thinnest. That's the widest moat.</p>
+  </div>
+
+  <div class="section-header">What AI Replaces vs. What Humans Keep</div>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Trend Scanning</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--gold" style="width:90%">90% AI</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Ideation</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--gold" style="width:85%">85% AI</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Formulation</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--gold" style="width:80%">80% AI</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Validation</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--gold" style="width:85%">85% AI</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Pricing</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--gold" style="width:90%">90% AI</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Packaging</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--blue" style="width:70%">70% AI</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Go-to-Market</div>
+      <div class="bar-track"><div class="bar-fill bar-fill--blue" style="width:60%">60% AI</div></div>
+    </div>
+  </div>
+  <p class="body-text" style="text-align:center;"><strong>Humans move up the stack.</strong> AI handles volume. Humans handle judgment &mdash; taste intuition, brand storytelling, relationship management.</p>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-left">Competitive data from company websites, press releases, and analyst reports (2024&ndash;2026)</div>
+    <div class="bottom-bar-right">mception.ai</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 3: GLOBAL SNACK OPPORTUNITY — MARKET SIZING + 3 COUNTRIES
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="section-header">The Global Snack Sourcing Thesis</div>
+  <h2>Massive Market. <span>Hungry for Novelty.</span></h2>
+
+  <div class="market-circles">
+    <div class="market-circle market-circle--global">
+      <div class="mc-num">$900B+</div>
+      <div class="mc-label">Global by 2030</div>
+    </div>
+    <div class="market-circle market-circle--us">
+      <div class="mc-num">$170B</div>
+      <div class="mc-label">US Market 2025</div>
+    </div>
+  </div>
+
+  <div class="body-text" style="text-align:center; margin-bottom:28px;">
+    American consumers are ready for international flavors at scale. The <em>"swicy"</em> trend (sweet + spicy) has grown ~5% annually since 2018.<br>Three source markets have the highest product-market fit for US import and innovation.
+  </div>
+
+  <!-- JAPAN -->
+  <div class="panel panel--gold" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="panel-label">Source Market 1</div>
+        <div class="panel-title" style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:24px;">&#127471;&#127477;</span> Japan &mdash; The Proven Export Powerhouse
+        </div>
+        <div class="body-text" style="margin-bottom:0;">
+          <strong>Morinaga acquired My/Mochi</strong> (March 2026) &mdash; consolidating Japanese snack power in the US frozen aisle. <strong>Hi-Chew: $300M+ lifetime US sales</strong>, 2nd factory building in NC. Konbini culture driving lychee, yuzu, melon into mainstream.
+        </div>
+      </div>
+      <div style="text-align:right; padding-left:20px; flex-shrink:0;">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:var(--gold);">12%</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px;">MOCHI CAGR</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; color:var(--gold); margin-top:8px;">400+</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px;">KITKAT FLAVORS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAZIL -->
+  <div class="panel panel--green" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="panel-label" style="color:var(--green);">Source Market 2</div>
+        <div class="panel-title" style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:24px;">&#127463;&#127479;</span> Brazil &mdash; The Underpenetrated Goldmine
+        </div>
+        <div class="body-text" style="margin-bottom:0;">
+          <strong>Brazi Bites: $300M+ lifetime sales</strong>, 108% growth 2021&ndash;2022, created an entirely new frozen category. <strong>Trader Joe's started carrying brigadeiros spring 2026</strong> &mdash; the mainstreaming signal. Cassava = naturally gluten-free.
+        </div>
+      </div>
+      <div style="text-align:right; padding-left:20px; flex-shrink:0;">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:var(--green);">108%</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px;">BRAZI BITES GROWTH</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; color:var(--green); margin-top:8px;">$20B+</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px;">ENERGY CATEGORY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KOREA -->
+  <div class="panel panel--blue" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="panel-label" style="color:var(--blue);">Source Market 3</div>
+        <div class="panel-title" style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:24px;">&#127472;&#127479;</span> Korea &mdash; The Cultural Momentum Play
+        </div>
+        <div class="body-text" style="margin-bottom:0;">
+          <strong>K-Food exports: record $13.62B in 2025.</strong> US is #1 market at $1.8B (+13.2% YoY). <strong>Gochujang launches grew 120%</strong> in 12 months. Samyang "Myeonvidia" &mdash; stock up 10x in 3 years on Buldak demand.
+        </div>
+      </div>
+      <div style="text-align:right; padding-left:20px; flex-shrink:0;">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:var(--blue);">$13.6B</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px;">K-FOOD EXPORTS 2025</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; color:var(--blue); margin-top:8px;">120%</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px;">GOCHUJANG GROWTH</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-left">Sources: Korea Ministry of Agriculture &middot; Kerry 2026 Taste Charts &middot; Mintel &middot; Inc. Magazine &middot; Food Institute</div>
+    <div class="bottom-bar-right">mception.ai</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 4: PRODUCT CONCEPTS — MOCK-UPS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="section-header">AI-Validated Snack Concepts &mdash; Top 5 of 20</div>
+  <h2>From the <span>Engine</span> to the Shelf</h2>
+  <p class="subtitle">Each concept grounded in real market data. Generated via SCAMPER methodology + AI insight signals.</p>
+
+  <div class="grid-3" style="margin-bottom:0;">
+    <!-- Brigadeiro Bites -->
+    <div class="product-card">
+      <div class="product-visual pv-brazil">
+        <div class="product-emoji">&#127851;</div>
+        <div class="product-label">Impulse / Checkout</div>
+      </div>
+      <div class="product-info">
+        <div class="product-origin">Brazil &middot; SCAMPER: Adapt</div>
+        <div class="product-name">Brigadeiro Bites</div>
+        <div class="product-desc">Brazil's national chocolate truffle in shelf-stable bite packs. Three flavors: classic, coconut (beijinho), passionfruit. Trader Joe's just started carrying &mdash; first mover wins the format.</div>
+        <div class="product-tags">
+          <span class="product-tag">Clean Label</span>
+          <span class="product-tag--green product-tag">TJ's Signal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Korean Corn Dog Bites -->
+    <div class="product-card">
+      <div class="product-visual pv-korea">
+        <div class="product-emoji">&#127789;</div>
+        <div class="product-label">Frozen / Party</div>
+      </div>
+      <div class="product-info">
+        <div class="product-origin">Korea &middot; SCAMPER: Adapt</div>
+        <div class="product-name">Korean Corn Dog Bites</div>
+        <div class="product-desc">Cheese-filled, crispy batter (potato, ramen, rice puff) in frozen bite format. 2B+ TikTok views. Chains expanding but near-zero frozen retail presence.</div>
+        <div class="product-tags">
+          <span class="product-tag--blue product-tag">2B+ TikTok</span>
+          <span class="product-tag">Zero Retail</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Savory Mochi Bites -->
+    <div class="product-card">
+      <div class="product-visual pv-japan">
+        <div class="product-emoji">&#127832;</div>
+        <div class="product-label">Snack Aisle</div>
+      </div>
+      <div class="product-info">
+        <div class="product-origin">Japan &middot; SCAMPER: Reverse</div>
+        <div class="product-name">Savory Mochi Bites</div>
+        <div class="product-desc">Miso-butter, furikake, shichimi togarashi. GF cracker alternative. $1.3B mochi market is 95% sweet &mdash; savory gap wide open.</div>
+        <div class="product-tags">
+          <span class="product-tag">Gluten-Free</span>
+          <span class="product-tag--green product-tag">95% Gap</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:16px;">
+    <!-- Gochujang Glazed Nuts -->
+    <div class="product-card">
+      <div class="product-visual pv-korea" style="height:120px;">
+        <div class="product-emoji">&#127798;&#65039;</div>
+        <div class="product-label">Snack Aisle / Costco</div>
+      </div>
+      <div class="product-info">
+        <div class="product-origin">Korea &middot; SCAMPER: Combine</div>
+        <div class="product-name">Gochujang Glazed Nuts</div>
+        <div class="product-desc">Gochujang + honey-glazed mixed nuts. Sweet-spicy-umami trifecta. Gochujang launches +120%. $6B flavored nut category. Simple to produce.</div>
+        <div class="product-tags">
+          <span class="product-tag">#1 Flavor Trend</span>
+          <span class="product-tag--blue product-tag">$6B Category</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cassava Street Food Crisps -->
+    <div class="product-card">
+      <div class="product-visual pv-brazil" style="height:120px;">
+        <div class="product-emoji">&#127835;</div>
+        <div class="product-label">Chip Aisle</div>
+      </div>
+      <div class="product-info">
+        <div class="product-origin">Brazil &middot; SCAMPER: Modify</div>
+        <div class="product-name">Cassava Street Food Crisps</div>
+        <div class="product-desc">Brazilian street food flavors: churrasco, Bahian coconut-lime, pimenta, farofa crunch. Root veggie chips = fastest-growing sub-category. Naturally GF/paleo.</div>
+        <div class="product-tags">
+          <span class="product-tag--green product-tag">Paleo</span>
+          <span class="product-tag">Fastest-Growing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="thesis">
+    <p>These are 5 of 20 concepts. The full pipeline &mdash; with SCAMPER methodology, target channels,<br>and market data for each &mdash; is in the <em>complete whitepaper document.</em></p>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-left">Concepts generated via SCAMPER + AI insight signals from Mintel, Kerry, Tastewise, and market research</div>
+    <div class="bottom-bar-right">mception.ai</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 5: THE ENGINE + PARTNERSHIP MODEL + NEXT STEPS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="section-header">The MVP AI Engine</div>
+  <h2>How It <span>Works</span> in Practice</h2>
+
+  <div class="grid-3" style="margin-top:16px;">
+    <div class="panel" style="text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Inputs</div>
+      <div style="font-size:13px; color:var(--gray-light); line-height:1.6;">Retailer target data<br>Margin requirements<br>Channel constraints<br>Category focus</div>
+    </div>
+    <div class="panel panel--gold" style="text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Engine</div>
+      <div style="font-size:13px; color:var(--gray-light); line-height:1.6;">Scan global signals<br>&darr;<br>Generate concepts<br>&darr;<br>Simulate &amp; score<br>&darr;<br>Validate digitally</div>
+    </div>
+    <div class="panel" style="text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Outputs</div>
+      <div style="font-size:13px; color:var(--gray-light); line-height:1.6;">20+ validated concepts<br>Top 5 ranked by risk<br>GTM strategy per winner<br>Launch-ready package</div>
+    </div>
+  </div>
+
+  <div class="stats-row stats-row-3" style="margin-top:8px;">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--green);">Weeks</div>
+      <div class="stat-desc">not quarters &mdash; from insight to validated concept</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--green);">60-70%</div>
+      <div class="stat-desc">time reduction vs. traditional innovation consulting</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--green);">40%+</div>
+      <div class="stat-desc">improvement in concept survival rate</div>
+    </div>
+  </div>
+
+  <div class="section-header">The Partnership Model</div>
+
+  <div class="grid-3" style="margin-top:4px;">
+    <div class="track-card" style="border-top:3px solid var(--gold);">
+      <div class="track-num" style="color:var(--gold);">Track 1</div>
+      <div class="track-title">Product Co-Ventures</div>
+      <ul class="track-detail">
+        <li>Select 3&ndash;5 concepts from pipeline</li>
+        <li>Run full AI validation stack</li>
+        <li>Bring 1&ndash;2 to market in 6 months</li>
+        <li><strong style="color:var(--gold);">Shared equity, shared upside</strong></li>
+      </ul>
+    </div>
+    <div class="track-card" style="border-top:3px solid var(--blue);">
+      <div class="track-num" style="color:var(--blue);">Track 2</div>
+      <div class="track-title">Innovation Consulting</div>
+      <ul class="track-detail">
+        <li>Deploy engine for client pipelines</li>
+        <li>Replace 18-month workshop process</li>
+        <li>Quarterly retainer + per-concept fees</li>
+        <li><strong style="color:var(--blue);">Continuous, data-validated system</strong></li>
+      </ul>
+    </div>
+    <div class="track-card" style="border-top:3px solid var(--green);">
+      <div class="track-num" style="color:var(--green);">Track 3</div>
+      <div class="track-title">Combined Play</div>
+      <ul class="track-detail">
+        <li>Launches generate proof points</li>
+        <li>Proof points make consulting undeniable</li>
+        <li>Every launch = a case study</li>
+        <li><strong style="color:var(--green);">Highest leverage, compounding</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-header">Next Steps</div>
+
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th style="width:8%">Step</th>
+        <th style="width:52%">Action</th>
+        <th style="width:20%">Timeline</th>
+        <th style="width:20%">Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-gold">1</td><td>Align on 3&ndash;5 concepts to run through full validation</td><td>This week</td><td>Both</td></tr>
+      <tr><td class="col-gold">2</td><td>Build v1 engine &mdash; Tastewise + Claude + landing page builders</td><td>2&ndash;3 weeks</td><td>Brady</td></tr>
+      <tr><td class="col-gold">3</td><td>Run rapid validation on top concepts (digital demand testing)</td><td>2 weeks</td><td>Both</td></tr>
+      <tr><td class="col-gold">4</td><td>Launch 1&ndash;2 products as proof of concept</td><td>3&ndash;6 months</td><td>Both</td></tr>
+      <tr><td class="col-gold">5</td><td>Package system for consulting clients</td><td>Parallel track</td><td>Brady</td></tr>
+    </tbody>
+  </table>
+
+  <div class="spacer"></div>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-left">CONFIDENTIAL &middot; Prepared by Brady Smallwood &middot; April 2026</div>
+    <div class="bottom-bar-right">mception.ai</div>
+  </div>
+</div>
+
+</body>
+</html>
