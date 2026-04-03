@@ -9,6 +9,15 @@
 ## Program
 [Consulting](../consulting.md) — Work & Business
 
+## Engagement Model
+**Tier 2 — Self-Service Assessment (Complimentary Pilot)**
+
+Deploy a workforce intelligence system to IVFH's ~70-person org. Surveys + AI-guided questionnaires — no human interviews, no disruption. Employees respond on their own time. The system generates deliverables on a cadence. Gary gets a leadership dashboard.
+
+This is the default engagement. If the data reveals questions that need deeper investigation (Tier 3: human interviews, financials, comp benchmarking), that's a natural next step — but nothing about this pilot assumes or requires it.
+
+See: [Statement of Work](kb/statement-of-work.md) | [Tier Spectrum](kb/tier-spectrum.md)
+
 ## Customer Problem
 - **Who specifically:** Gary Schubert, CEO of IVFH (International Foodsource Holdings, OTCQX: IVFH) — a ~70-person specialty food distribution company. Gary needs a living system that assesses his workforce, maps capabilities, captures organizational knowledge, and supports continuous improvement.
 - **Trigger moment:** Gary is running a ~70-person org where roles are built around people, not needs. Tribal knowledge walks out the door when people leave. He can't answer basic questions about who does what, who owns what, or whether the org is structured for where the company is headed (ERP rebuild, digital channel expansion, AI strategy).
@@ -24,38 +33,38 @@
 ## Scoreboard
 
 ### Internal (Brady's Goals)
-- **Victory Condition:** Prove the SRP (Strategic Resource Planning) model works as a repeatable consulting offering — deliver a working HR Strategy Agent system that Gary's team uses, validate the team model (Austin builds, Brady advises, Brandon validates), and capture the reference implementation for future SRP sales.
+- **Victory Condition:** Prove the SRP Tier 2 model works as a scalable, repeatable product — deploy a self-service workforce assessment to IVFH's full org, generate actionable deliverables without human interviews, and create the reference implementation for future SRP sales.
 - **Key Results:**
-  - KR1: Deliver Phase 1 foundation (AI interview capture system, pilot SOPs, org map, skills inventory) within 6 weeks of kickoff — Score: _/1.0
-  - KR2: Gary actively uses system outputs for workforce decisions (references org map, cites capability data, uses SOPs) — Score: _/1.0
-  - KR3: Phase 2 scope confirmed and resourced at Week 6 reassessment — Score: _/1.0
-  - KR4: Capture reusable SRP engagement template in Layer 3 — Score: _/1.0
-- **Leading Indicator:** Does Gary reference system outputs in conversations with Austin? Does he ask for more, or does Phase 1 sit unused?
+  - KR1: Deploy Tier 2 assessment system to IVFH's ~70 employees within 2 weeks of kickoff — Score: _/1.0
+  - KR2: System generates org map, skills heat map, SOP drafts, and gap analysis on cadence (Weeks 2/4/6/8) — Score: _/1.0
+  - KR3: Gary actively uses system outputs for workforce decisions — Score: _/1.0
+  - KR4: Tier 2 data creates natural pull for Tier 3 conversation at Week 8 — Score: _/1.0
+- **Leading Indicator:** Does Gary reference the dashboard? Does he forward deliverables to his leadership team? Does he ask "can we go deeper on X?"
 
 ### Customer (Gary's Goals)
-- **Victory Condition:** IVFH has a living system — an HR Strategy Agent — that gives Gary clear visibility into who does what, what capabilities exist, where knowledge lives, and how to make informed workforce decisions.
+- **Victory Condition:** Gary sees his organization clearly — who does what, what capabilities exist, where the gaps are — without disrupting operations or scheduling a single interview.
 - **Key Results:**
-  - KR1: Clear current-state org map with role clarity assessment — roles defined by actual work, not titles — Score: _/1.0
-  - KR2: Documented SOPs and process maps for pilot roles that capture tribal knowledge, exception handling, and handoffs — Score: _/1.0
-  - KR3: Skills and capability inventory benchmarked against role requirements — industry-specific, not generic — Score: _/1.0
-  - KR4: Gary can answer "who owns this?" and "what happens if this person leaves?" using system outputs — Score: _/1.0
+  - KR1: Current-state org map showing role reality vs. titles across all ~70 employees — Score: _/1.0
+  - KR2: Skills and capability heat map benchmarked against IVFH-specific role requirements — Score: _/1.0
+  - KR3: SOP drafts generated from survey + AI interview data for key roles — Score: _/1.0
+  - KR4: Gap analysis that answers Gary's top 3–5 priority questions about his organization — Score: _/1.0
 
 ### How They Connect
-Brady wins when Gary wins. If Gary is making workforce decisions informed by system outputs — referencing the org map, citing capability gaps, using SOPs for onboarding — then the SRP model is validated and the reference implementation exists. Internal KR4 (template capture) is a bonus that comes from executing well on delivery.
+Brady wins when Gary wins. If Gary is making workforce decisions informed by Tier 2 outputs — and asking "can we go deeper?" — the model is validated and the Tier 3 upsell is earned, not pitched. The reference implementation exists regardless.
 
 - **Medal:** Gold (0.7+) / Silver (0.4–0.6) / Bronze (0.1–0.3) / DNS (0.0)
 
 ## Timeline
-- Pre-kickoff: Alignment call with Gary, working session with Austin, engagement letter (current)
-- Phase 1 start: TBD (pending alignment call)
-- Phase 1 delivery: ~6 weeks from kickoff
-- Phase 2 scope: Reassess at Week 6
+- Pre-kickoff: Alignment call with Gary (current)
+- Deploy: Tier 2 assessment live within 2 weeks of go
+- Deliverable cadence: Weeks 2 / 4 / 6 / 8
+- Week 8: Full assessment + Tier 3 conversation if data warrants
 - Hard deadlines: None declared, but ERP rebuild and digital expansion are reshaping the org now — earlier is better.
 
 ### Brady's Time Commitment
-- **First 10 days:** ~3 hours total — deliver interview framework, skills taxonomy, role architecture notes, one working session with Austin
-- **Weeks 2–6:** ~1 hour/week — standing check-in with Austin, review outputs, flag domain gaps
-- **After Week 6:** Reassess — taper to ad-hoc if domain context is baked in, or scope Phase 2 with increased involvement
+- **Pre-deploy:** ~2 hours — alignment call with Gary, calibrate survey questions and skills taxonomy for IVFH
+- **Weeks 1–8:** ~30 min/week — review automated outputs, flag where domain context is missing, async with Austin
+- **Week 8:** ~1 hour — review full assessment, advise on Tier 3 recommendation
 
 ## Team
 
@@ -68,9 +77,9 @@ Brady wins when Gary wins. If Gary is making workforce decisions informed by sys
 | Brandon Thurman | Expert-in-the-Loop / HR Strategist (Phase 2+) | Thurman Advisory Group |
 
 #### Engagement Roles
-- **Austin** is primary liaison with Gary. Builds and configures AI agents, prompts, pipelines, and infrastructure. Conducts employee interviews. Implements SOP generation, dashboards, and reporting. Owns sprint cadence and scope.
-- **Brady** provides initial interview framework, IVFH-specific skills taxonomy, role architecture notes. Reviews pilot outputs and flags domain gaps. Available async for operational context questions. Does NOT pull from board materials (see Public Company Firewall below).
-- **Brandon** calibrates system to IVFH's industry context. Navigates org politics. Validates AI-generated outputs before they reach leadership. Conducts high-stakes conversations. Primary involvement Phase 2+, with advisory input in Phase 1 design.
+- **Austin** is primary liaison with Gary. Deploys and configures the Tier 2 assessment system — surveys, AI-guided follow-ups, automated deliverable generation, leadership dashboard. Owns sprint cadence and scope.
+- **Brady** calibrates survey questions, skills taxonomy, and role architecture to IVFH's specific industry context. Reviews automated outputs and flags domain gaps. Available async for operational context questions. Does NOT pull from board materials (see Public Company Firewall below).
+- **Brandon** available for Tier 3 engagement if pilot data warrants deeper org design work. Advisory input on Tier 2 assessment design. Primary involvement Tier 3+.
 
 ### Internal Agent Team (Brady's Deliverables)
 
@@ -121,7 +130,7 @@ Brady sits on the IVFH Board. IVFH is publicly traded (OTCQX: IVFH). This create
 
 This is the first client implementation of **Strategic Resource Planning (SRP)** — the joint offering from Sycamore Lane Holdings x Thurman Advisory Group. Not a favor — an investment in proving the model. Doing this well creates the reference implementation for everything that follows in Brady's consulting practice.
 
-IVFH is operating at roughly the **AI + Expert Advisory** tier, with potential to scale to **AI + Fractional HR Leader** if Phase 2 scope warrants Brandon's deeper involvement.
+IVFH is starting at **Tier 2 (Self-Service Assessment)** — the scalable, product-like engagement that proves the model without heavy consulting overhead. If the data creates pull for Tier 3 (Expert-Led Discovery with Brandon's deeper involvement), that's earned, not pitched.
 
 ## Where Things Live
 
@@ -137,11 +146,15 @@ IVFH is operating at roughly the **AI + Expert Advisory** tier, with potential t
 | OS governance | [olympics.md](../../../../3-reference/olympics.md), [consulting-engagement.md](../consulting-engagement.md) |
 
 ## Publishing
-- Visibility: **private** — public company considerations, no external publication
-- Public slug: n/a
-- Approval: n/a
+- **Slug:** `gary-schubert`
+- **Portal route:** `/gary-schubert`
+- **Surface:** Static HTML viewer + markdown KB
+- **Approved:** 2026-03-30
+- **Allowlist entry:** `3-reference/publishing/mception-ai-projects.yml`
+- **Note:** Portal shows SOW, tier spectrum, and engagement overview only. No board materials, no non-public financials, no individual comp data.
 
 ## Status
-- Phase: **pre-kickoff** (strategy brief complete, awaiting alignment call with Gary)
-- Last updated: 2026-03-27
+- Phase: **pre-kickoff** (SOW drafted, awaiting alignment call with Gary)
+- Engagement model: Tier 2 — Self-Service Assessment (Complimentary Pilot)
+- Last updated: 2026-03-30
 - Final medal: pending

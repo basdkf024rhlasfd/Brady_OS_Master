@@ -1,10 +1,31 @@
-# App Playbook — Standalone Client Project Setup
+# App Playbook — Project Setup & Deployment
 
-How to spin up a new client-facing intelligence app and connect it to the mception.ai portal. Based on the Orlando and STIHL builds (March 2026).
+How to build and deploy project apps on the mception.ai portal. Three patterns based on complexity.
 
 ---
 
-## Architecture
+## Choose Your Pattern
+
+| Pattern | When to use | Examples | Build tool | Deploy |
+|---------|-------------|----------|------------|--------|
+| **1. Simple UI** | Static KB viewer, single-page display, minimal interactivity | PauletteAI, Baden Bagley, Orlando | Hand-code HTML | Standalone repo → Vercel static → iframe via ProjectFrame |
+| **2. Complex UI, portal-native** | Rich interactive app, needs API routes, internal tools | STIHL, Content Engine | V0 or Stitch for design → copy components into portal | Native Next.js pages in mception-ai repo |
+| **3. Complex UI, standalone deploy** | Client needs their own URL, or app must exist outside portal | Client-facing tools, public demos | V0 or Stitch → deploy directly | Standalone Vercel app → iframe via ProjectFrame |
+
+### Decision guide
+
+- **Is the UI simple enough to hand-code?** → Pattern 1 (HTML viewer)
+- **Is it complex enough to warrant V0/Stitch?**
+  - **Does it need API routes or should stay private?** → Pattern 2 (portal-native)
+  - **Does the client/user need a standalone URL?** → Pattern 3 (standalone deploy)
+
+All three patterns are valid. Pick based on the project's needs.
+
+---
+
+## Pattern 1: Simple UI (HTML Viewer)
+
+### Architecture
 
 ```
 mception.ai (portal)          Client App (standalone)
@@ -14,45 +35,35 @@ mception.ai (portal)          Client App (standalone)
 │  ProjectFrame       │──────▶│  marked.js (CDN)     │
 │  (iframe wrapper)   │       │  No build step       │
 │                     │       │  No auth (portal     │
-│  ENV: APP_URL ──────│───┐   │   handles it)        │
-└─────────────────────┘   │   └─────────────────────┘
-   munich repo            │      separate repo
-   Vercel: munich         └──▶   Vercel: static deploy
-   Domain: mception.ai          Domain: auto-assigned
+│                     │       │   handles it)        │
+└─────────────────────┘       └─────────────────────┘
+   mception-ai repo              separate repo
+   Vercel: mception-ai            Vercel: static deploy
 ```
 
-**Rule:** Each client project = its own repo, its own deploy. The portal links to a single canonical project entry and embeds the project surface there.
+**Rule:** Each client project = its own repo, its own deploy. The portal embeds it via ProjectFrame.
 
 **Default pattern:** Single HTML file + markdown KB directory. Zero build toolchain.
 
-**Portal standard:** The global `mception.ai` sidebar is a project selector, not a second layer of project-specific IA. Each client project gets one sidebar entry. Project-specific navigation belongs inside the project surface. Treat Orlando as the preferred pattern. The older STIHL-style multi-route portal submenu pattern is legacy and should not be copied for new projects.
+**No auth in standalone apps.** The portal handles authentication via Clerk.
 
----
-
-## Step 1: Scaffold the App
+### Scaffold
 
 ```bash
-# From the Brady OS project folder
 cd "1-execution/areas/work-and-business/programs/Consulting/Project - <Name>/"
-
-# Create the two directories — that's it
 mkdir viewer kb
 ```
 
-Fork from the Orlando template at `orlando-v3/houston/viewer/index.html` or the STIHL template at `Project - Stihl Insights/viewer/index.html`. Then customize:
+Fork from the Orlando template (`orlando-v3/houston/viewer/index.html`) or the PauletteAI template. Then customize:
 
 1. Replace branding (title, sidebar header, meta tags)
-2. Replace accent color (Orlando = blue `#7aa2f7`, STIHL = orange `#f97316`)
-3. Update the `files[]` array to match your KB files
-4. Update the `sections[]` array to match your nav groups
-
-**No auth in standalone apps.** The portal handles authentication via Clerk. Standalone viewer apps should load directly with no password gate.
+2. Replace accent color
+3. Update the `files[]` and `sections[]` arrays
+4. Write markdown KB files
 
 No `package.json`, no `node_modules`, no build config.
 
----
-
-## Step 2: Directory Structure
+### Directory Structure
 
 ```
 Project - <Name>/
@@ -61,253 +72,247 @@ Project - <Name>/
 └── kb/
     ├── 00-<first-section>.md
     ├── 01-<second-section>.md
-    ├── ...
     └── NN-<last-section>.md
 ```
 
----
-
-## Step 3: Core File — `viewer/index.html`
-
-Single HTML file with three embedded sections:
-
-### `<style>` block
-- Dark theme: `#0a0a0a` body, `#111` nav, `#222` borders
-- 280px fixed left sidebar with collapsible section groups
-- Markdown rendering styles (h1–h4, tables, code, blockquotes)
-- Search results styling
-- Saved items + Request Inbox styles
-
-### `<body>` structure
-```html
-<nav>                         <!-- 280px sidebar -->
-  <div class="brand">...</div>
-  <div class="search-box"><input id="search" /></div>
-  <div id="search-results"></div>
-  <div id="nav-links"></div>
-</nav>
-<main>                        <!-- Content area -->
-  <div class="content-wrap" id="content"></div>
-</main>
-```
-
-### `<script>` block — key components
-
-**Data layer:**
-```javascript
-const files = [
-  { id: 'section-id', file: '../kb/00-section.md', label: 'Display Name' },
-  // ...
-];
-
-const sections = [
-  { name: 'Group Name', ids: ['section-id', ...], defaultOpen: true },
-  // ...
-];
-```
-
-**Navigation:**
-- `buildNavSection(name, buildLinks, defaultOpen)` — creates collapsible group with chevron toggle
-- Collapse state persisted in `localStorage` via `<project>-navCollapsed`
-- Special sections for Requests (inline form) and Saved (localStorage CRUD)
-
-**Content loading:**
-- `fetchFile(id)` — fetch + cache markdown content
-- `loadFile(id)` — render markdown via `marked.parse()`, auto-link `kb/*.md` references
-- `loadFileWithAnchor(id, anchorText)` — load file then scroll to heading
-
-**Search:**
-- 200ms debounce, preloads all files, searches across all cached content
-- Replaces nav with inline search results
-- Click result → load file
-
-**Interactive features:**
-- `renderRequestInbox()` — localStorage-backed form for capturing requests
-- `renderSaved()` — CRUD for saved snippets, notes, and templates
-- `addSaveButton()` — adds "+ Save snippet" button to KB pages
-
-**Routing:**
-- Hash-based: `#section-id`, `#requests`, `#saved`
-- `history.replaceState()` updates URL without page reload
-- `handleHash()` on page load restores correct view
-
-**Embedded detection:**
-```javascript
-if (window.self !== window.top) {
-  // Optional: adjust chrome for embed context
-}
-```
-
----
-
-## Step 4: Content as Markdown
-
-Write each section's content as a standalone markdown file in `kb/`. Guidelines:
-
-- Start each file with an `# H1` title
-- Use `## H2` for major sections, `### H3` for items
-- Use markdown tables for structured data
-- Use blockquotes for implications or callouts
-- Cross-reference other files with inline code: `` `kb/01-section.md` `` — the viewer auto-links these
-- Keep files focused: one topic per file, easy to search and navigate independently
-
----
-
-## Step 5: Deploy
-
-### Option A: Static hosting (recommended)
+### Deploy
 
 ```bash
-# Push to GitHub
 cd "Project - <Name>"
-git init
-git add viewer/ kb/
+git init && git add viewer/ kb/
 git commit -m "Initial <project> viewer build"
 gh repo create <project-slug> --private --source=. --push
-
-# Deploy to Vercel as static site
-npx vercel link
-npx vercel --prod
+npx vercel link && npx vercel --prod
 ```
 
-No build command needed — Vercel serves static files directly.
+### Connect to Portal
 
-### Option B: Any static host
-
-GitHub Pages, S3, Netlify, or any static file server works. Just point it at the directory containing `viewer/` and `kb/`.
-
-### Option C: Local only
-
-```bash
-# For local development (fetch() needs a server for markdown files)
-cd "Project - <Name>"
-python3 -m http.server 4100
-
-# Then open http://localhost:4100/viewer/
-```
-
-Or just `open viewer/index.html` — works for everything except cross-origin fetch (markdown loading).
-
----
-
-## Step 6: Connect to the Portal
-
-### Add iframe proxy page in munich
-
-Create a single canonical entry route for the project. Do not mirror project-internal sections into the portal sidebar.
-
-Portal hookup is not publication approval. Wiring a project into the portal or deploying it does not make a new project publishable on `mception.ai` by itself. New public slugs still require approval plus inclusion in `3-reference/publishing/mception-ai-projects.yml`. Existing public slugs may be updated at the same route without re-interpreting the work as a new publication request, as long as the update does not broaden visibility. If the allowlist cannot be read, the system should fail closed on new publication decisions and visibility expansions.
+Create one route in mception-ai:
 
 ```
-munich/src/app/(portal)/<project>/page.tsx
+src/app/(portal)/<project>/page.tsx
 ```
 
 ```tsx
 import { ProjectFrame } from "@/components/portal/ProjectFrame";
+import { requireProjectAccess } from "@/lib/portal-access";
 
-const APP_URL = process.env.NEXT_PUBLIC_<PROJECT>_APP_URL ?? "http://localhost:4100";
-
-export default function Page() {
-  return <ProjectFrame baseUrl={APP_URL} path="/viewer/" title="<Project Name>" />;
+export default async function Page() {
+  await requireProjectAccess("<project>");
+  return <ProjectFrame baseUrl="https://<deploy-url>" path="/viewer/" title="<Project Name>" />;
 }
 ```
 
-### Add sidebar nav in munich
-
-Edit `munich/src/components/portal/Sidebar.tsx`:
-
-```typescript
-const projectLinks = [
-  { href: "/<project>", label: "<Project Name>", short: "P" },
-];
-```
-
-The portal sidebar should contain one link per project. Do not add nested project submenus for internal pages such as dashboard, competitors, requests, or saved views.
-
-### Set env var on munich Vercel project
-
-```bash
-echo "<production-url>" | npx vercel env add NEXT_PUBLIC_<PROJECT>_APP_URL production
-```
-
-### Redeploy munich
-
-```bash
-npx vercel --prod --force
-```
-
-This completes the portal connection, not the publication decision. New projects remain private unless they are explicitly added to `3-reference/publishing/mception-ai-projects.yml` after approval. Updating an already-live public slug at the same route is maintenance, not a new publication event, so long as the update does not broaden visibility.
+Add sidebar entry, access control env var, and allowlist entry (see Common Steps below).
 
 ---
 
-## Step 7: Local Development
+## Pattern 2: Complex UI, Portal-Native
 
-```bash
-# Terminal 1: Standalone app (Python HTTP server for fetch() support)
-cd "Project - <Name>" && python3 -m http.server 4100
-# Open http://localhost:4100/viewer/
+### Architecture
 
-# Terminal 2: Portal (optional — only if testing iframe)
-cd munich && npm run dev  # runs on port 3000
+```
+mception.ai (portal)
+┌─────────────────────────────────────────┐
+│  Clerk auth                             │
+│  Sidebar nav                            │
+│  ┌────────────────────────────────────┐ │
+│  │  layout.tsx (requireProjectAccess) │ │
+│  │  AppShell (sidebar + mobile nav)   │ │
+│  │  /queue/page.tsx                   │ │
+│  │  /editor/page.tsx                  │ │
+│  │  /published/page.tsx               │ │
+│  │  API routes (Claude, Notion, etc.) │ │
+│  └────────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+   mception-ai repo — everything in one place
 ```
 
-The standalone app works on its own. When iframed by the portal, keep project navigation inside the project surface unless there is a specific reason to suppress it.
+**When:** The app has complex interactivity, needs API routes, or should have no public URL. Design the UI in V0 or Google Stitch, then copy the generated components directly into the portal.
+
+**No standalone URL exists.** Auth, routing, and API are all handled natively.
+
+### Build Process
+
+1. **Design in V0/Stitch** — iterate on the UI until it looks right
+2. **Copy components** into `src/components/<project>/` and `src/app/(portal)/<project>/`
+3. **Adapt to portal conventions** — use existing shadcn/ui components, `cn()` from utils, `lucide-react` icons, portal dark theme classes
+
+### Directory Structure
+
+```
+src/app/(portal)/<project>/
+├── layout.tsx              # Auth gate + AppShell wrapper
+├── page.tsx                # Redirect to default sub-route
+├── <view-1>/page.tsx
+├── <view-2>/page.tsx
+└── <view-3>/page.tsx
+
+src/components/<project>/
+├── AppShell.tsx            # Sidebar nav + mobile header
+└── <domain-components>.tsx
+
+src/lib/
+├── <project>-types.ts
+└── <project>-data.ts
+
+src/app/api/<project>/      # Optional API routes
+└── <endpoint>/route.ts
+```
+
+### Layout Pattern (follow STIHL)
+
+```tsx
+// layout.tsx
+import { requireProjectAccess } from "@/lib/portal-access";
+import { ProjectShell } from "@/components/<project>/AppShell";
+
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  await requireProjectAccess("<project>");
+  return <ProjectShell>{children}</ProjectShell>;
+}
+```
+
+### AppShell Pattern (follow STIHL)
+
+- Desktop: 56-width sidebar with nav items, icons, active state via `usePathname()`
+- Mobile: fixed top header with horizontal scrolling tab pills
+- Footer: "Internal use only" or "Personal use only"
+- Use portal's existing dark theme classes (`bg-card`, `text-foreground`, `text-muted-foreground`, `border-white/[0.08]`, `text-primary`, `bg-primary/10`)
+
+### Connect to Portal
+
+No ProjectFrame needed — the pages are native. Just ensure:
+- Slug is in `ALL_PROJECTS` array in `src/lib/access.ts`
+- Slug has entry in `PROJECT_EMAIL_ENV` map
+- Sidebar entry exists in `Sidebar.tsx`
+- Env var `MCEPTION_<SLUG>_EMAILS` is set on Vercel
+- Allowlist entry in `mception-ai-projects.yml`
+
+### Reference Implementations
+
+- **STIHL:** `src/app/(portal)/stihl/` + `src/components/stihl/` + `src/lib/stihl-data.ts`
+- **Content Engine:** `src/app/(portal)/content-engine/` + `src/components/content-engine/` + `src/lib/content-engine-data.ts`
 
 ---
 
-## Checklist for New Projects
+## Pattern 3: Complex UI, Standalone Deploy
 
-- [ ] Create `viewer/` and `kb/` directories
-- [ ] Fork viewer HTML from Orlando or STIHL template
-- [ ] Customize branding and accent color
-- [ ] Update `files[]` and `sections[]` arrays
-- [ ] Write markdown KB files with real content
-- [ ] Create GitHub repo, push, deploy to Vercel (static)
-- [ ] Add proxy page in munich
-- [ ] Add one canonical project link in munich
-- [ ] Set `NEXT_PUBLIC_<PROJECT>_APP_URL` env var on munich
-- [ ] Redeploy munich
-- [ ] Test: standalone app works alone
-- [ ] Test: app works inside portal iframe
-- [ ] Test: search, nav groups, saved items, requests all work
+### Architecture
+
+```
+mception.ai (portal)          Standalone App (Vercel)
+┌─────────────────────┐       ┌─────────────────────┐
+│  Clerk auth         │       │  Next.js / React     │
+│  Sidebar nav        │       │  V0-generated        │
+│  ProjectFrame       │──────▶│  Own API routes      │
+│  (iframe wrapper)   │       │  Own domain           │
+│                     │       │  Accessible by URL    │
+└─────────────────────┘       └─────────────────────┘
+   mception-ai repo              separate Vercel project
+```
+
+**When:** Client needs direct access, app needs its own domain, or the app is a product that lives outside the portal.
+
+**Note:** The standalone URL is publicly accessible. If this is a concern, use Pattern 2 instead, or add Vercel Password Protection (Pro plan).
+
+### Build Process
+
+1. **Build in V0** — iterate until the UI is right
+2. **Deploy from V0** — click Publish, optionally create GitHub repo
+3. **Note the production URL** (e.g., `https://<project>.vercel.app`)
+4. **Wire into portal** via ProjectFrame
+
+### Connect to Portal
+
+```tsx
+// src/app/(portal)/<project>/page.tsx
+import { ProjectFrame } from "@/components/portal/ProjectFrame";
+import { requireProjectAccess } from "@/lib/portal-access";
+
+export default async function Page() {
+  await requireProjectAccess("<project>");
+  return <ProjectFrame baseUrl="https://<project>.vercel.app" path="/" title="<Project Name>" />;
+}
+```
+
+### PostMessage Bridge (optional)
+
+If the standalone app needs to call portal API routes:
+
+```javascript
+// Standalone app → portal
+window.parent.postMessage({ source: '<project>', type: 'REQUEST', payload: {...} }, '*');
+
+// Portal → standalone app
+window.addEventListener('message', (event) => {
+  if (event.data?.source === 'mception-portal') { ... }
+});
+```
 
 ---
 
-## Theming Quick Reference
+## Common Steps (All Patterns)
+
+### Access Control Setup
+
+1. Add slug to `ALL_PROJECTS` in `src/lib/access.ts`
+2. Add slug to `PROJECT_EMAIL_ENV` map: `"<slug>": "MCEPTION_<SLUG>_EMAILS"`
+3. Add sidebar entry in `src/components/portal/Sidebar.tsx`
+4. Set `MCEPTION_<SLUG>_EMAILS` env var on Vercel with allowed email addresses
+5. Add entry to `3-reference/publishing/mception-ai-projects.yml` with approval date
+
+### Publishing Rules
+
+Portal hookup is not publication approval. Wiring a project into the portal does not make it publicly visible. New slugs require approval plus inclusion in the allowlist YAML. Existing public slugs may be updated without re-approval as long as visibility is not broadened. If the allowlist cannot be read, fail closed on new publication decisions.
+
+### Content as Markdown (Pattern 1)
+
+- Start each file with `# H1` title
+- Use `## H2` for major sections, `### H3` for items
+- Use markdown tables for structured data
+- Cross-reference files with inline code: `` `kb/01-section.md` ``
+- Keep files focused: one topic per file
+
+### Theming (Pattern 1)
 
 | Element | Use your accent color |
 |---------|----------------------|
 | Active nav text + left border | `#ACCENT` |
-| Active nav background | darken accent heavily |
-| Code text, links | `#ACCENT` (slightly lighter) |
+| Code text, links | `#ACCENT` |
 | Blockquote border | `#ACCENT` |
 | Table header text | `#ACCENT` |
-| h2 color | light tint of accent |
 | Search input focus border | `#ACCENT` |
 
-Base dark theme (don't change): `#0a0a0a` body, `#111` nav/cards, `#222` borders, `#e0e0e0` text, `#bbb` paragraphs.
+Base dark theme: `#0a0a0a` body, `#111` nav/cards, `#222` borders.
 
 ---
 
-## When to Use Next.js Instead
+## Checklist
 
-Use the React/Next.js pattern (see git history for the old version of this playbook) when:
+### Pattern 1 (Simple UI)
+- [ ] Create `viewer/` and `kb/` directories
+- [ ] Fork viewer HTML from Orlando or PauletteAI template
+- [ ] Customize branding and accent color
+- [ ] Write markdown KB files
+- [ ] Create GitHub repo, push, deploy to Vercel (static)
+- [ ] Add ProjectFrame page in portal
+- [ ] Add sidebar entry, access control, allowlist
 
-- App needs server-side logic (auth, API routes, database queries)
-- App needs real-time or dynamic data fetching
-- App needs complex interactivity beyond forms + localStorage
-- Team is already in a React/Next.js codebase and the app will grow
+### Pattern 2 (Portal-Native)
+- [ ] Design UI in V0 or Stitch
+- [ ] Create layout.tsx with requireProjectAccess
+- [ ] Create AppShell component (follow STIHL pattern)
+- [ ] Create page routes for each view
+- [ ] Create data layer (types + static data)
+- [ ] Add API routes if needed
+- [ ] Add sidebar entry, access control, allowlist
+- [ ] Build passes (`npx next build`)
 
-For pure intelligence surfaces with static or manually-updated content → **always use the HTML viewer pattern.**
-
-Legacy note: avoid the old STIHL-style approach where the portal shell exposed multiple project-specific routes in its own sidebar. Prefer a single project entry route and let the project surface own its internal navigation.
-
----
-
-## Reference Implementations
-
-- **STIHL viewer:** `Project - Stihl Insights/viewer/index.html` (orange theme)
-- **STIHL KB:** `Project - Stihl Insights/kb/` (9 files)
-- **Orlando viewer:** `orlando-v3/houston/viewer/index.html` (blue theme)
-- **Orlando KB:** `orlando-v3/houston/kb/` (23 files)
-- **Portal ProjectFrame:** `munich/src/components/portal/ProjectFrame.tsx`
+### Pattern 3 (Standalone Deploy)
+- [ ] Build and iterate in V0
+- [ ] Deploy to Vercel (note production URL)
+- [ ] Optionally create GitHub repo for maintenance
+- [ ] Add ProjectFrame page in portal
+- [ ] Add sidebar entry, access control, allowlist
+- [ ] Consider iframe guard or Vercel password protection if private

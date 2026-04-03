@@ -12,3 +12,19 @@ published_projects:
     project: "Project - PauletteAI"
     approved: 2026-03-27
     notes: "Client-facing AI assistant project brief for Paulette Dean / DAHS"
+  - slug: stihl
+    project: "Project - Stihl Insights"
+    approved: 2026-03-27
+    notes: "STIHL Competitive Intelligence briefing for Rob Jenson"
+  - slug: baden-bagley
+    project: "Project - Baden Bagley"
+    approved: 2026-03-29
+    notes: "Client file sharing portal for Baden Bagley (baden.bagley@gmail.com)"
+  - slug: gary-schubert
+    project: "Project - IVFH HR Strategy Agent"
+    approved: 2026-03-30
+    notes: "HR Strategy Agent SOW and engagement tiers for Gary Schubert / IVFH"
+  - slug: content-engine
+    project: "Project - LinkedIn and Substack Content Engine"
+    approved: 2026-03-30
+    notes: "Brady's personal content pipeline — LinkedIn and Substack drafting, voice check, publishing tracker"

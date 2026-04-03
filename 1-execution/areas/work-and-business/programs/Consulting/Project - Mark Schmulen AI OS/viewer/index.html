@@ -146,6 +146,28 @@
   .search-result .line { font-size: 12px; color: #888; margin-top: 2px; }
   .search-result mark { background: #a5b4fc; color: #000; padding: 0 2px; border-radius: 2px; }
 
+  /* CMO context dropdowns */
+  .cmo-context-toggle {
+    display: inline-block; font-size: 11px; color: #818cf8; cursor: pointer;
+    margin-left: 8px; opacity: 0.6; transition: opacity 0.15s;
+  }
+  .cmo-context-toggle:hover { opacity: 1; }
+  .cmo-context-panel {
+    background: #111; border: 1px solid #222; border-radius: 8px;
+    padding: 12px 14px; margin: 8px 0 4px; display: none;
+  }
+  .cmo-context-panel.open { display: block; }
+  .cmo-context-panel textarea {
+    width: 100%; min-height: 80px; padding: 10px; background: #0a0a0a;
+    border: 1px solid #333; border-radius: 6px; color: #e0e0e0;
+    font-size: 13px; font-family: inherit; line-height: 1.6;
+    resize: vertical; outline: none;
+  }
+  .cmo-context-panel textarea:focus { border-color: #818cf8; }
+  .cmo-context-panel .save-indicator {
+    font-size: 11px; color: #555; margin-top: 6px; min-height: 16px;
+  }
+
   /* Loading */
   .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: #555; font-size: 14px; }
 
@@ -181,6 +203,52 @@
 
   /* Nav separator */
   nav .nav-separator { border: none; border-top: 1px solid #1a1a1a; margin: 8px 16px; }
+
+  /* Mobile nav */
+  .mobile-header { display: none; }
+  .mobile-dropdown { display: none; }
+
+  @media (max-width: 768px) {
+    body { flex-direction: column; height: auto; min-height: 100vh; }
+    nav { display: none !important; }
+    .mobile-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #111; border-bottom: 1px solid #222;
+      padding: 12px 16px; position: sticky; top: 0; z-index: 50;
+    }
+    .mobile-header .brand-text { font-size: 15px; font-weight: 600; color: #fff; }
+    .mobile-header .eyebrow-text { font-size: 9px; text-transform: uppercase; letter-spacing: 1.8px; color: #555; }
+    .mobile-header button {
+      background: none; border: 1px solid #333; color: #aaa;
+      padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;
+    }
+    .mobile-header button:hover { border-color: #818cf8; color: #818cf8; }
+    .mobile-dropdown {
+      background: #111; border-bottom: 1px solid #222;
+      padding: 8px 0; position: sticky; top: 49px; z-index: 49;
+    }
+    .mobile-dropdown.open { display: block; }
+    .mobile-dropdown a {
+      display: block; padding: 10px 16px; color: #aaa;
+      text-decoration: none; font-size: 14px; border-left: 3px solid transparent;
+    }
+    .mobile-dropdown a:hover { color: #fff; background: #1a1a1a; }
+    .mobile-dropdown a.active { color: #818cf8; background: #0d0d1a; border-left-color: #818cf8; }
+    .mobile-dropdown .section-label {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+      color: #555; padding: 12px 16px 4px; font-weight: 600;
+    }
+    .mobile-dropdown .sub-label {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+      color: #444; padding: 8px 16px 2px 24px; font-weight: 600;
+    }
+    .mobile-dropdown .sub-item { padding-left: 24px; }
+    .sow-layout { grid-template-columns: 1fr; }
+    .sow-sidebar { position: static; }
+    main { overflow-y: visible; }
+    .content-wrap { padding: 20px 16px 60px; }
+    .sow-layout { padding: 20px 16px 60px; }
+  }
 </style>
 </head>
 <body>
@@ -196,6 +264,15 @@
   <div id="search-results" class="search-results" style="display:none"></div>
   <div id="nav-links"></div>
 </nav>
+
+<div class="mobile-header">
+  <div>
+    <div class="eyebrow-text">AI Operating System</div>
+    <div class="brand-text">Mark Schmulen</div>
+  </div>
+  <button onclick="toggleMobileNav()">Menu &#x25BE;</button>
+</div>
+<div class="mobile-dropdown" id="mobileDropdown"></div>
 
 <main>
   <div class="content-wrap" id="content">
@@ -225,12 +302,25 @@ const exampleProjectIds = new Set([
 
 const exampleSubSections = [
   { name: 'Project', ids: ['overview', 'timeline'] },
-  { name: 'Agents', ids: ['executive-assistant', 'cmo-agent', 'cfo-agent'] },
+  { name: 'Agents', ids: ['cmo-agent', 'executive-assistant', 'cfo-agent'] },
   { name: 'System', ids: ['skills-library', 'how-it-works'] },
 ];
 
+const commandFiles = [
+  { id: 'cmd-content-draft', file: '../cmo-agent/commands/content-draft.md', label: '/content-draft' },
+  { id: 'cmd-linkedin-post', file: '../cmo-agent/commands/linkedin-post.md', label: '/linkedin-post' },
+  { id: 'cmd-email-campaign', file: '../cmo-agent/commands/email-campaign.md', label: '/email-campaign' },
+  { id: 'cmd-campaign-plan', file: '../cmo-agent/commands/campaign-plan.md', label: '/campaign-plan' },
+  { id: 'cmd-competitive-brief', file: '../cmo-agent/commands/competitive-brief.md', label: '/competitive-brief' },
+  { id: 'cmd-content-calendar', file: '../cmo-agent/commands/content-calendar.md', label: '/content-calendar' },
+  { id: 'cmd-social-post', file: '../cmo-agent/commands/social-post.md', label: '/social-post' },
+];
+const commandNameMap = {};
+commandFiles.forEach(f => { commandNameMap[f.label] = f.id; });
+
 const fileMap = {};
 files.forEach(f => fileMap[f.id] = f);
+commandFiles.forEach(f => fileMap[f.id] = f);
 
 const cache = {};
 let currentFile = null;
@@ -251,7 +341,7 @@ const USER_ROLE = urlParams.get('role') === 'advisor' ? 'advisor' : 'client';
 const IS_ADVISOR = USER_ROLE === 'advisor';
 
 // ─── Feedback localStorage ───
-const FEEDBACK_STORAGE_KEY = 'mschmulen-sow-feedback-client';
+const FEEDBACK_STORAGE_KEY = `mschmulen-sow-feedback-${USER_ROLE}`;
 
 // One-time migration from old key
 if (!localStorage.getItem('mschmulen-sow-feedback-migrated')) {
@@ -269,7 +359,6 @@ function getFeedback() {
 }
 
 function saveFeedbackEntry(text) {
-  if (IS_ADVISOR) return;
   const items = getFeedback();
   items.unshift({ text, createdAt: new Date().toLocaleString() });
   localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(items.slice(0, 20)));
@@ -347,6 +436,7 @@ function buildSubSection(parent, name, ids) {
     a.href = '#' + f.id;
     a.textContent = f.label;
     a.dataset.id = f.id;
+    if (id === 'cmo-agent') { a.style.fontWeight = '600'; a.style.color = '#e0e0e0'; }
     a.addEventListener('click', e => {
       e.preventDefault();
       loadFile(f.id);
@@ -433,7 +523,7 @@ async function renderSOW() {
   const mainEl = document.querySelector('main');
   const md = await fetchFile('statement-of-work');
   const renderedMd = marked.parse(md);
-  const feedback = IS_ADVISOR ? [] : getFeedback();
+  const feedback = getFeedback();
 
   const feedbackCards = feedback.length === 0
     ? ''
@@ -443,9 +533,9 @@ async function renderSOW() {
       </div>`;
 
   const subtitleText = IS_ADVISOR
-    ? 'Write feedback to copy to your clipboard. Nothing is saved in this browser.'
+    ? 'Your advisor notes. Saved locally and copied to your clipboard.'
     : 'Questions, changes, or comments on the scope. Feedback is saved locally and copied to your clipboard.';
-  const submitLabel = IS_ADVISOR ? 'Copy to Clipboard' : 'Save & Copy';
+  const submitLabel = 'Save & Copy';
 
   mainEl.innerHTML = `
     <div class="sow-layout">
@@ -477,7 +567,7 @@ async function renderSOW() {
     // UI feedback
     const status = document.getElementById('sow-status');
     if (IS_ADVISOR) {
-      status.innerHTML = 'Copied to clipboard.';
+      status.innerHTML = 'Saved & copied to clipboard.';
     } else {
       const subject = encodeURIComponent('SOW Feedback — AI OS');
       const body = encodeURIComponent(text);
@@ -843,16 +933,29 @@ async function loadFile(id) {
 
   content.querySelectorAll('code').forEach(code => {
     const text = code.textContent.trim();
+    // Convert kb/*.md references to nav links
     const match = text.match(/^kb\/(.+\.md)$/);
-    if (!match) return;
-    const entry = files.find(f => f.file.endsWith('kb/' + match[1]));
-    if (!entry) return;
-    const link = document.createElement('a');
-    link.href = '#' + entry.id;
-    link.style.cssText = 'color:#818cf8;cursor:pointer;text-decoration:none;';
-    link.textContent = entry.label;
-    link.addEventListener('click', e => { e.preventDefault(); loadFile(entry.id); });
-    code.replaceWith(link);
+    if (match) {
+      const entry = files.find(f => f.file.endsWith('kb/' + match[1]));
+      if (!entry) return;
+      const link = document.createElement('a');
+      link.href = '#' + entry.id;
+      link.style.cssText = 'color:#818cf8;cursor:pointer;text-decoration:none;';
+      link.textContent = entry.label;
+      link.addEventListener('click', e => { e.preventDefault(); loadFile(entry.id); });
+      code.replaceWith(link);
+      return;
+    }
+    // Convert /command-name references to clickable links
+    if (text.startsWith('/') && commandNameMap[text]) {
+      const cmdId = commandNameMap[text];
+      const link = document.createElement('a');
+      link.href = '#' + cmdId;
+      link.style.cssText = 'color:#818cf8;cursor:pointer;text-decoration:none;';
+      link.textContent = text;
+      link.addEventListener('click', e => { e.preventDefault(); loadFile(cmdId); });
+      code.replaceWith(link);
+    }
   });
 
   window.scrollTo(0, 0);
@@ -860,7 +963,79 @@ async function loadFile(id) {
 
   history.replaceState(null, '', '#' + id);
 
-  const fileEntry = fileMap[id];
+  // CMO agent: inject interactive context dropdowns
+  if (id === 'cmo-agent') {
+    const CONTEXT_PREFIX = 'mschmulen-cmo-context-';
+
+    function sanitizeKey(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function injectDropdown(anchor, itemName) {
+      const key = CONTEXT_PREFIX + sanitizeKey(itemName);
+      const saved = localStorage.getItem(key) || '';
+
+      const toggle = document.createElement('span');
+      toggle.className = 'cmo-context-toggle';
+      toggle.textContent = saved ? '\u25BE context added' : '\u25B8 add context';
+      toggle.style.color = saved ? '#9ece6a' : '#818cf8';
+
+      const panel = document.createElement('div');
+      panel.className = 'cmo-context-panel';
+      panel.innerHTML = `
+        <textarea placeholder="Add examples, direction, or context for ${itemName.replace(/"/g, '&quot;')}...">${(saved || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+        <div class="save-indicator"></div>
+      `;
+
+      const textarea = panel.querySelector('textarea');
+      const indicator = panel.querySelector('.save-indicator');
+      let saveTimeout;
+
+      textarea.addEventListener('input', () => {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+          const val = textarea.value.trim();
+          if (val) {
+            localStorage.setItem(key, val);
+            toggle.textContent = '\u25BE context added';
+            toggle.style.color = '#9ece6a';
+          } else {
+            localStorage.removeItem(key);
+            toggle.textContent = '\u25B8 add context';
+            toggle.style.color = '#818cf8';
+          }
+          indicator.textContent = 'Saved';
+          indicator.style.color = '#9ece6a';
+          setTimeout(() => { indicator.textContent = ''; }, 1500);
+        }, 600);
+      });
+
+      toggle.addEventListener('click', () => {
+        panel.classList.toggle('open');
+      });
+
+      anchor.after(panel);
+      anchor.appendChild(toggle);
+    }
+
+    // Target list items with <strong> content (content areas)
+    content.querySelectorAll('li').forEach(li => {
+      const strong = li.querySelector('strong');
+      if (strong) {
+        injectDropdown(li, strong.textContent);
+      }
+    });
+
+    // Target skill table rows (rows with /command-name or command text in first cell)
+    content.querySelectorAll('table tr').forEach(tr => {
+      const firstCell = tr.querySelector('td');
+      if (!firstCell) return;
+      const text = firstCell.textContent.trim();
+      if (text.startsWith('/')) {
+        injectDropdown(tr, text);
+      }
+    });
+  }
 }
 
 async function loadFileWithAnchor(id, anchorText) {
@@ -884,6 +1059,7 @@ async function loadFileWithAnchor(id, anchorText) {
 
 function setActiveNav(id) {
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.id === id));
+  if (typeof updateMobileActiveState === 'function') updateMobileActiveState(id);
 }
 
 // ─── Search ───
@@ -946,6 +1122,51 @@ document.getElementById('search').addEventListener('input', function() {
     }
   }, 200);
 });
+
+// ─── Mobile nav ───
+function buildMobileDropdown() {
+  const dd = document.getElementById('mobileDropdown');
+  let html = '';
+  // SOW
+  html += `<div class="section-label">Engagement</div>`;
+  html += `<a href="#statement-of-work" data-id="statement-of-work" onclick="mobileNavClick(event, 'statement-of-work')">Statement of Work</a>`;
+  // Example Project sub-sections
+  html += `<div class="section-label">Example Project</div>`;
+  exampleSubSections.forEach(sub => {
+    html += `<div class="sub-label">${sub.name}</div>`;
+    sub.ids.forEach(id => {
+      const f = fileMap[id];
+      if (f) {
+        const bold = f.id === 'cmo-agent' ? ' style="font-weight:600;color:#e0e0e0;"' : '';
+        html += `<a href="#${f.id}" data-id="${f.id}" class="sub-item"${bold} onclick="mobileNavClick(event, '${f.id}')">${f.label}</a>`;
+      }
+    });
+  });
+  // Requests
+  html += `<div class="section-label">Requests</div>`;
+  html += `<a href="#requests" data-id="requests" onclick="mobileNavClick(event, 'requests')">Request Inbox</a>`;
+  dd.innerHTML = html;
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobileDropdown').classList.toggle('open');
+}
+
+function mobileNavClick(e, id) {
+  e.preventDefault();
+  document.getElementById('mobileDropdown').classList.remove('open');
+  if (id === 'requests') { renderRequests(); }
+  else { loadFile(id); }
+  updateMobileActiveState(id);
+}
+
+function updateMobileActiveState(id) {
+  document.querySelectorAll('.mobile-dropdown a').forEach(a => {
+    a.classList.toggle('active', a.dataset.id === id);
+  });
+}
+
+buildMobileDropdown();
 
 // ─── Hash routing ───
 function handleHash() {

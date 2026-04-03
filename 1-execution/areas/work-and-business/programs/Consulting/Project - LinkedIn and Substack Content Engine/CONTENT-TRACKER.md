@@ -3,6 +3,7 @@
 Use this file as the local working surface for the project.
 
 Full source material index: [content-repurpose-index.html](content-repurpose-index.html) (32 pieces, 7 theme clusters, generated 2026-03-19)
+Additional source: [Small Town America transcript](sources/small-town-america-transcript.md) (6 pieces, 1 new theme cluster, captured 2026-03-31)
 
 Status vocabulary:
 
@@ -25,7 +26,7 @@ Priority:
 | Week Of | LinkedIn Target | LinkedIn Published | Substack Target | Substack Published | Pieces Ready Or Scheduled At Week Start | Notes |
 |---------|-----------------|--------------------|-----------------|--------------------|-----------------------------------------|-------|
 | 2026-03-23 | 2 | 0 | 0 | 0 | 0 | Project started |
-| 2026-03-30 | 3 | 0 | 1 | 0 | 0 | |
+| 2026-03-30 | 3 | 0 | 1 | 0 | 0 | "Small Town America" voice memo captured (41 min). 6 new pieces extracted, 3 promoted to active queue. Drafts in progress. |
 | 2026-04-06 | 2 | 0 | 0 | 0 | 0 | |
 | 2026-04-13 | 3 | 0 | 1 | 0 | 0 | |
 | 2026-04-20 | 2 | 0 | 0 | 0 | 0 | |
@@ -49,6 +50,9 @@ High-priority pieces scheduled into upcoming weeks. Source links go to Notion.
 | 010 | [Umami Operator Origin Story](https://www.notion.so/31aed43b89c58101bc57dcb2f5764b05) | High | LinkedIn About + Substack | Origin Story | Streaming Notes | Idea | 2026-04-20 | WSJ-caliber origin story + LinkedIn About + one-liner. 4 polished deliverables. |
 | 011 | [North Star Articulation — Brady's Real Goal](https://www.notion.so/31aed43b89c58197809dddcca1e60e57) | High | LinkedIn + Substack | Thought Leadership | Streaming Notes | Idea | 2026-04-27 | "The end game is thought leadership with a credible story behind it." |
 | 012 | [The Most Non-Controversial Manifesto Ever](https://www.notion.so/a96e3a05d43342a68cd602e75c83373a) | High | Substack | Personal Philosophy | Diary | Idea | 2026-04-27 | Most complete philosophical doc in system. Extract frameworks only. Very personal — needs heavy editing. |
+| 034 | King Video — When Small Town America Lost the Technology Race | High | LinkedIn Story + Substack | Small Town America | Voice Memo | Drafting | 2026-04-06 | Dad's video stores, Redbox/Netflix decline, Dropbox regret. "Arm the Rebels" crossover. |
+| 035 | AI Is the Biggest Small Town Renaissance Nobody's Talking About | High | LinkedIn Opinion + Substack | Small Town America | Voice Memo | Drafting | 2026-04-06 | Core thesis: AI levels the playing field. 20-30 year resource gap closing. |
+| 036 | My 9-Year-Old Vibe-Coded an Ice Cream Business Over Spring Break | High | LinkedIn Story | Small Town America | Voice Memo | Drafting | 2026-04-13 | Son's ice cream wagon, daughter's Caitlin Clark AI, oldest's college research. "Dad Journal" crossover. |
 
 ## Backlog
 
@@ -110,6 +114,14 @@ Organized by theme. Pull from here as active queue slots open.
 | 032 | [First Day at Walmart — 8/14/14](https://www.notion.so/308ed43b89c581abbd7bd64875534313) | Med | LinkedIn | Journal (2012-14) | "Then vs now" pairing. Day 1 humility. |
 | 033 | [First Day at Walmart Home Office — 8/15/14](https://www.notion.so/308ed43b89c581a5bec9c0c6c596aa9c) | Low | LinkedIn | Journal (2012-14) | Acronyms and onboarding. Every corporate newcomer's experience. |
 
+### Small Town America
+
+| ID | Title | Priority | Channel | Source DB | Notes |
+|----|-------|----------|---------|-----------|-------|
+| 037 | Shirt Sleeves to Shirt Sleeves — Inverted | Med | LinkedIn | Voice Memo | Generational arc: dad's posters → Brady's eBay → nephew's AI posters. The old saying needs a new ending. |
+| 038 | What If 1,000 People Did One Weekend Vibe-Coding Project for Their Town? | Med | LinkedIn | Voice Memo | Humane society song, nonprofit help, trades tools. Call to action. |
+| 039 | I Felt Like the Country Bumpkin at Chicago Booth — That Resource Gap Just Closed | Med | LinkedIn | Voice Memo | Education angle: AP classes, private schools, traveling peers. "We all have the same resources now." |
+
 ## Content Series Plans
 
 Suggested series derived from theme clusters. Each series pulls from multiple source pieces.
@@ -149,11 +161,25 @@ Suggested series derived from theme clusters. Each series pulls from multiple so
 - **Source pieces:** 016, 028, 029
 - **Hook:** "My dad was sick with cancer and still commuting to his tax office because he hadn't figured out cloud storage." The mission to arm independent operators with enterprise-grade tools.
 
+### Series 6: "Small Town America" — AI as Renaissance for the Rest of Us
+
+- **Platform:** LinkedIn (primary) + Substack (long-form)
+- **Cadence:** As pieces develop
+- **Source pieces:** 034, 035, 036, 037, 038, 039, plus crossover with 016 (Arm the Rebels origin)
+- **Hook:** "I grew up at the end of a gravel road in Southern Virginia. My dad owned video stores. Here's why I think AI is about to change everything for places like the one I came from."
+
 ## Draft Pipeline
 
 | Piece | Derived From | Channel | Current State | Next Move | Owner | Notes |
 |-------|--------------|---------|---------------|-----------|-------|-------|
-| None yet | | | | | | |
+| 034 — King Video (LinkedIn Story) | Voice Memo: Small Town America | LinkedIn | Draft | Brady review | Content Drafter | ~300 words |
+| 034 — King Video (Substack Essay) | Voice Memo: Small Town America | Substack | Draft | Brady review | Content Drafter | ~2,000 words |
+| 035 — Small Town Renaissance (LinkedIn Opinion) | Voice Memo: Small Town America | LinkedIn | Draft | Brady review | Content Drafter | ~250 words |
+| 035 — Small Town Renaissance (Substack Essay) | Voice Memo: Small Town America | Substack | Draft | Brady review | Content Drafter | ~2,000 words |
+| 036 — Kids and AI (LinkedIn Story) | Voice Memo: Small Town America | LinkedIn | Draft | Brady review | Content Drafter | ~300 words |
+| 037 — Shirt Sleeves Inverted (LinkedIn Opinion) | Voice Memo: Small Town America | LinkedIn | Draft | Brady review | Content Drafter | ~250 words |
+| 038 — 1,000 Weekend Projects (LinkedIn Opinion) | Voice Memo: Small Town America | LinkedIn | Draft | Brady review | Content Drafter | ~250 words |
+| 039 — Country Bumpkin at Booth (LinkedIn Story) | Voice Memo: Small Town America | LinkedIn | Draft | Brady review | Content Drafter | ~300 words |
 
 ## Publishing Log
 
