@@ -22,7 +22,7 @@ The user provides a topic as `$ARGUMENTS`. Examples:
 
 ## Execution Steps
 
-1. **Identify company context.** Determine which company this relates to — PropMatic, Saivory, Jelly Capital — or if it's personal brand / thought leadership content. Use `kb/manifesto.md` to ground the company context.
+1. **Identify company context.** Ground this in PropMatic context, or determine if it's personal brand / thought leadership content. Use `kb/manifesto.md` to ground the company context.
 
 2. **Generate 3 hook variants:**
    - **Curiosity gap** — Open a loop the reader needs to close ("Most real estate operators are ignoring the one metric that actually predicts vacancy...")

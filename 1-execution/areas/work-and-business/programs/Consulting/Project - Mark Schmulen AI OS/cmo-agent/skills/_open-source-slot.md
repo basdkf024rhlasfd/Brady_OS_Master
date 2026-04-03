@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This slot holds imported marketing agents from Brady's GitHub repo that are not yet assigned to an active sub-agent. They are available for plug-in when Mark's needs evolve or when a specific use case emerges.
+This slot holds imported marketing agents from the open-source agent library that are not yet assigned to an active sub-agent. They are available for plug-in when Mark's needs evolve or when a specific use case emerges.
 
 ## Available Agents
 

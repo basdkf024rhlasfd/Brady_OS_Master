@@ -16,9 +16,9 @@ Before generating, read the following files:
 
 The user provides a campaign goal as `$ARGUMENTS`. Examples:
 - "nurture sequence for PropMatic demo requesters"
-- "announce Saivory's new partnership"
+- "announce PropMatic's new integration partnership"
 - "cold outreach to real estate operators for PropMatic"
-- "investor update for Jelly Capital LPs"
+- "investor update for PropMatic stakeholders"
 
 ## Execution Steps
 

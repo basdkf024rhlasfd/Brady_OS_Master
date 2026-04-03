@@ -16,8 +16,8 @@ Before generating, read the following files:
 
 The user provides platform and topic as `$ARGUMENTS`. Examples:
 - "twitter thread about AI replacing property managers"
-- "instagram post about Saivory's kitchen tech"
-- "youtube video concept for Jelly Capital deal thesis"
+- "instagram post about PropMatic's AI leasing workflow"
+- "youtube video concept for PropMatic's durable agents model"
 - "twitter single tweet announcing PropMatic feature"
 
 If the platform is not specified, ask before proceeding.

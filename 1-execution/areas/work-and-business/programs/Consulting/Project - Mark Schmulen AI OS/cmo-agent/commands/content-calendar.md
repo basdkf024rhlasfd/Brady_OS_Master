@@ -69,7 +69,7 @@ The user provides an action as `$ARGUMENTS`. Supported actions:
 #### Week of [Date]
 | Topic | Format | Platform | Company | Status | Due |
 |-------|--------|----------|---------|--------|-----|
-| [Topic] | [Blog/Post/Email/etc.] | [LinkedIn/Twitter/Blog/etc.] | [PropMatic/Saivory/Jelly/Personal] | [Status] | [Date] |
+| [Topic] | [Blog/Post/Email/etc.] | [LinkedIn/Twitter/Blog/etc.] | [PropMatic/Personal] | [Status] | [Date] |
 
 #### Week of [Date]
 [Same format]
@@ -84,7 +84,7 @@ The user provides an action as `$ARGUMENTS`. Supported actions:
 - 🔲 **Gaps:** [Weeks or companies with insufficient coverage]
 
 ### Content Mix
-- **By company:** PropMatic: X, Saivory: X, Jelly Capital: X, Personal: X
+- **By company:** PropMatic: X, Personal: X
 - **By format:** Blog: X, LinkedIn: X, Twitter: X, Email: X, Other: X
 - **By status:** Ideas: X, Drafting: X, Review: X, Scheduled: X
 
