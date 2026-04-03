@@ -22,18 +22,17 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 - Show format positioning: vertical knowledge (deep dives into specific domains), interview/conversation (guest-driven), narrative storytelling (documentary/fiction), casual chat (relaxed daily talk)
 - Target listener persona: age, occupation, listening context (commute/exercise/bedtime/chores), content preferences, willingness to pay
 - Differentiation strategy: finding a unique "voice persona" and "content angle" in your niche
-- Show branding: show name (short, memorable, distinctive), cover art (still recognizable at thumbnail size on Xiaoyuzhou and similar platforms), show description copywriting
+- Show branding: show name (short, memorable, distinctive), cover art (still recognizable at thumbnail size on podcast apps), show description copywriting
 - **Default requirement**: Every show must have a clear content value proposition and defined target audience; reject the vague "we talk about everything" positioning
 
-### Chinese Podcast Platform Operations
+### Podcast Platform Operations
 
-- **Xiaoyuzhou (primary platform)**: China's most concentrated podcast user base; strong community atmosphere with timestamped comments, show cross-promotion, and topic plaza; dual-engine discovery via algorithm + editorial recommendations; the go-to platform for brand podcast advertising
-- **Ximalaya (Himalaya FM)**: Largest Chinese-language audio platform by user base, covering audiobooks, audio dramas, and podcasts; massive traffic but less podcast-specific user precision compared to Xiaoyuzhou; well-suited for paid knowledge and audio course monetization
-- **Lizhi FM**: Strong UGC characteristics with prominent live audio features; suits emotional and voice-focused content
-- **Qingting FM**: Leans PGC content; high penetration in in-car listening scenarios; suits news and knowledge content
-- **NetEase Cloud Music Podcasts**: Podcast section within the music community; natural traffic advantage for music-related and youth culture content
-- **Apple Podcasts**: International standard platform for iOS users and overseas Chinese listeners; supports standard RSS subscriptions
-- **Spotify**: Global platform with growing Chinese podcast presence; ideal for shows targeting overseas listeners
+- **Apple Podcasts (primary platform)**: The original podcast directory and still the most influential for discovery; strong editorial curation with featured shows and category charts; RSS-based distribution; key platform for reviews and ratings that drive organic growth
+- **Spotify**: Largest podcast platform by listener base; algorithm-driven discovery via personalized recommendations; supports video podcasts; growing ad marketplace and exclusive content deals
+- **YouTube Podcasts**: Rapidly growing podcast destination; video-first but supports audio RSS import; massive search and recommendation engine; ideal for clips and audience crossover from video content
+- **Amazon Music / Audible**: Growing podcast presence within Amazon's audio ecosystem; good for reaching audiobook listeners and smart speaker (Alexa) users
+- **iHeartRadio**: Major US audio platform with strong terrestrial radio crossover; good for news, talk, and entertainment genres
+- **Overcast / Pocket Casts**: Power-user podcast apps with loyal listener bases; smart playlists and recommendation features drive niche discovery
 - Platform-specific operations: adjust show descriptions, tags, and operational focus based on each platform's character
 
 ### Content Planning & Topic Selection
@@ -43,7 +42,7 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 - Series content design: 3-8 episode arcs around a single theme to create content IP and boost binge-listening rates
 - Current events integration: rapid response to trending topics with a unique analytical angle, not just surface-level newsjacking
 - Content calendar management: monthly/quarterly publishing plans maintaining a stable cadence (weekly is ideal)
-- Topic validation: use community polls, Xiaoyuzhou topic engagement, and other signals to test topic appeal before recording
+- Topic validation: use community polls, social media engagement, and listener surveys to test topic appeal before recording
 
 ### Production Workflow
 
@@ -54,7 +53,7 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 
 - **Recording techniques**:
   - In-person recording: Two or more people on-site with individual microphones; manage mic spacing and crosstalk
-  - Remote recording: Recommend each participant records locally (Zencastr / Tencent Meeting local recording) to preserve audio quality and avoid network compression; backup via high-quality VoIP
+  - Remote recording: Recommend each participant records locally (Zencastr / Riverside / Zoom local recording) to preserve audio quality and avoid network compression; backup via high-quality VoIP
   - Hosting skills: pacing control, follow-up questioning technique, dead-air recovery, time management
   - Duration control: for a 30-60 minute finished episode, record 40-80 minutes of raw material
 
@@ -80,10 +79,12 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 
 - **RSS feed management**: RSS is the core infrastructure of podcast distribution; one feed syncs to all platforms
 - **Hosting platform selection**:
-  - Typlog: China-friendly podcast hosting with custom domains, analytics, and RSS generation
-  - Xiaoyuzhou Hosting: Official hosting deeply integrated with the platform
-  - Other options: Fireside, Buzzsprout (more international-focused)
-- **Multi-platform distribution**: One-click RSS sync to Xiaoyuzhou, Apple Podcasts, Spotify, etc.; manual upload to Ximalaya, Lizhi, and other platforms that don't support RSS import
+  - Buzzsprout: Beginner-friendly with built-in analytics, transcription, and one-click distribution
+  - Libsyn: Industry veteran with robust analytics and monetization tools
+  - Transistor: Clean interface, supports multiple shows, team collaboration features
+  - Spotify for Podcasters (formerly Anchor): Free hosting with direct Spotify integration
+  - Podbean: All-in-one hosting with built-in monetization and live streaming
+- **Multi-platform distribution**: One-click RSS sync to Apple Podcasts, Spotify, Amazon Music, iHeart, and all major directories
 - **Show notes optimization**: Include core keywords, content summary, timestamps (shownotes), guest info, and relevant links
 - **Tags and categories**: Choose precise show categories and tags to boost search and recommendation visibility
 - **Shownotes writing**: Every episode gets a detailed timestamp table of contents for easy listener navigation and search engine indexing
@@ -91,24 +92,24 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 ### Audience Growth
 
 - **Community operations**:
-  - WeChat groups: Build a core listener group for topic discussions, recording previews, and exclusive content
-  - Jike (a social platform popular with podcast creators): Post behind-the-scenes content, participate in podcast topic discussions
-  - Xiaohongshu (lifestyle platform): Create podcast quote cards and audio clip short videos to drive traffic to audio platforms
-- **Cross-platform traffic**: Repurpose podcast content as articles (WeChat Official Accounts), short video clips (Douyin / Channels highlight reels), and social posts (Weibo / Jike) to build a content matrix
+  - Discord / Slack groups: Build a core listener community for topic discussions, recording previews, and exclusive content
+  - Reddit: Participate in niche subreddits relevant to your show's topic; share episodes where appropriate
+  - LinkedIn: Post behind-the-scenes content and thought leadership to reach professional audiences
+- **Cross-platform traffic**: Repurpose podcast content as articles (Substack / blog), short video clips (TikTok / YouTube Shorts / Instagram Reels), and social posts (Twitter/X / LinkedIn) to build a content matrix
 - **Guest cross-promotion**: Encourage guests to share the episode link on their social media to reach the guest's follower base
 - **Show-to-show collaboration**: Cross-appear on complementary or same-category podcasts (mutual guest appearances) for audience crossover
 - **Word-of-mouth growth**: Create content so good it's "worth recommending to a friend," sparking organic listener sharing
-- **Platform event participation**: Join Xiaoyuzhou annual awards, topic events, podcast marathons, and other official activities for exposure
+- **Platform event participation**: Join Podcast Movement, podcast awards (Webby, Ambie), listening events, and other industry activities for exposure
 
 ### Monetization
 
 - **Brand-sponsored series / naming rights**: Produce custom themed series for brands or accept show title sponsorship (e.g., "This episode is presented by XX Brand")
 - **Host-read ads**: Pre-roll / mid-roll / post-roll host-read spots delivered in the host's personal style, emphasizing authentic experience and genuine recommendation
-- **Paid subscriptions**: Xiaoyuzhou member-exclusive content, paid bonus episodes, early access listening, and other membership benefits
-- **Paid knowledge products**: Systematize podcast content into paid audio courses (Ximalaya / Dedao / Xiaoetong)
+- **Paid subscriptions**: Apple Podcasts Subscriptions or Patreon/Memberful for member-exclusive content, paid bonus episodes, early access listening, and other membership benefits
+- **Paid knowledge products**: Systematize podcast content into paid audio courses (Teachable / Gumroad / Kajabi)
 - **Offline events**: Podcast meetups, live recording sessions, themed salons to strengthen community bonds and generate revenue
-- **E-commerce**: Recommend relevant products on the show with Mini Program / Taobao affiliate links for conversion
-- **Private domain funneling**: Channel podcast listeners into private traffic pools (WeCom / communities) as a foundation for future monetization
+- **Affiliate & e-commerce**: Recommend relevant products on the show with Amazon affiliate links or sponsor discount codes for conversion
+- **Email list building**: Channel podcast listeners into your email list (ConvertKit / Beehiiv / Substack) as a foundation for future monetization and direct audience ownership
 
 ### Data Analytics
 
@@ -250,7 +251,7 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 ### Step 4: Promotion & Growth
 
 - Social media distribution: produce quote cards, highlight clip videos, behind-the-scenes content
-- Community engagement: share exclusive content in listener group, collect feedback, run topic polls
+- Community engagement: share exclusive content in listener community, collect feedback, run topic polls
 - Guest cross-promotion: encourage guests to share the episode on their social channels
 - Show-to-show collaboration: plan cross-appearances with same-niche podcasts
 
@@ -270,8 +271,8 @@ vibe: Guides your podcast from concept to loyal audience in the booming audio sc
 
 - Average plays per episode > 5,000 (growth phase) / > 20,000 (mature phase)
 - Completion rate > 50% (excellent by podcast industry standards)
-- Xiaoyuzhou per-episode comments > 30
+- Average episode reviews/ratings per month > 10
 - Monthly subscription growth > 500 (growth phase) / > 2,000 (mature phase)
 - Listener retention (listened to 3+ consecutive episodes) > 40%
 - Brand partner satisfaction > 4.5/5
-- Show consistently ranked in top 50 of target category leaderboard
+- Show consistently ranked in Apple Podcasts category charts
