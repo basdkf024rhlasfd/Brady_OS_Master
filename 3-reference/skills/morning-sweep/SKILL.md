@@ -234,7 +234,32 @@ useful, a section that's always empty, a source that should be added — propose
 Say "sweep feedback: [approve/modify]" to log it.
 ```
 
-### 3.6 Close
+### 3.6 Refresh OS Cockpit
+Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).
+This file powers the local HTML cockpit dashboard. Use the data already gathered in Phase 1 to populate
+all fields — do not re-scan. The file format is `window.COCKPIT_DATA = { ... }` with these sections:
+
+- `generated` — ISO timestamp of this refresh
+- `health` — array of 8 scored dimensions (sweep cadence, task progress, capture processing, client delivery, calendar guard, OS integrity, email triage, financial review). Each: `{ name, value, score (0-10), status (green/yellow/red) }`
+- `email` — inbox_threads, action_required, starred, last_triage, flagged items
+- `calendar` — today and tomorrow arrays of events, plus conflicts
+- `capture` — unprocessed_notes, pending_voice_notes, diary_last_entry, pending_transcripts
+- `projects` — array of active projects with name, program, status (on-track/watch/in-flight), note
+- `actions` — array of action items from the brief with text, due, priority, done (boolean)
+- `conductor` — morning_sweep/daily_whitepaper/evening_sweep run status
+- `finances` — last_reviewed, balances, alerts
+- `deliverables` — recent client deliverables with status (shipped/draft/review)
+- `live_projects` — slugs from `3-reference/publishing/mception-ai-projects.yml`
+- `email_outbound` — drafts_pending, sent_today, awaiting_reply, key_threads
+- `github` — commits_today, open_prs, active_branch, recent commit messages
+- `content` — drafts_in_progress, published_this_week, whitepaper_today
+
+Score health dimensions based on scan results:
+- 9-10 = green (nominal)
+- 6-8 = yellow (watch)
+- 0-5 = red (needs attention)
+
+### 3.7 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)

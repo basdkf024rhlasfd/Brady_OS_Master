@@ -239,9 +239,22 @@ Score today's log quality (per the standard Phil audit). Flag if < 4.
 #### 4.4 Update Jarvis Score (if substantive work happened)
 Score the 7 dimensions, compute weighted composite, log to Jarvis Score Log DB.
 
-### Phase 5: CLOSE THE DAY
+### Phase 5: REFRESH OS COCKPIT
 
-#### 5.1 Report
+Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).
+Use data gathered in Phase 1 — do not re-scan. The file format is `window.COCKPIT_DATA = { ... }`.
+See the morning-sweep SKILL.md Phase 3.6 for the full schema. Key differences for the evening refresh:
+
+- `conductor.evening_sweep` — mark as `{ ran: true, time: "[current time]" }`
+- `actions` — update `done` flags based on what was completed today
+- `health` — rescore dimensions with end-of-day data (e.g., task completion is now final)
+- `email_outbound.sent_today` — final count for the day
+
+This gives Brady a final state snapshot he can glance at before closing the laptop.
+
+### Phase 6: CLOSE THE DAY
+
+#### 6.1 Report
 Brief in-chat summary:
 ```
 ✅ Day archived to ~/Documents/Daily-Journal/2026/03/2026-03-29/
@@ -252,7 +265,7 @@ Brief in-chat summary:
 You're done. Go read. 📖
 ```
 
-#### 5.2 Permission to Stop
+#### 6.2 Permission to Stop
 End with something that gives Brady permission to close the laptop.
 Match the energy — if it was a hard day, acknowledge it. If it was productive, celebrate it.
 Don't be saccharine. Be real.
