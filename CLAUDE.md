@@ -10,6 +10,7 @@
 - `3-reference/os-doctrine.md` — Authority horizons, Trust Loop
 - `3-reference/app-playbook.md` — Client app setup pattern
 - `3-reference/project-kickoff.md` — Project initialization workflow
+- `3-reference/governance/` — Agent enforcement rules, contracts, council charter, information flow standards. Index: `governance-index.md`
 - `REBUILD-BRADY-OS.md` — Comprehensive rebuild guide (client-facing)
 
 ## mception.ai Publishing
@@ -35,6 +36,7 @@
 - **DiCaprio:** `0-agents/custom-built-agents/dicaprio-SKILL.md` — 20K-foot recon across all projects and workspaces. Template: `0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md`
 - **Project Creator:** `3-reference/skills/project-creator/SKILL.md` — Turn a conversation into an execution-ready project brief. Template: `3-reference/skills/project-creator/BRIEF-TEMPLATE.md`
 - **V0 to Portal:** `3-reference/skills/v0-to-portal/SKILL.md` — Deploy V0 apps into mception.ai portal via ProjectFrame
+- **Client Project Cleanup:** `3-reference/skills/client-project-cleanup/SKILL.md` — Weekly audit of consulting project pages in Notion for SOP compliance, staleness, and privacy leaks
 - **Infographic Template:** `3-reference/skills/infographic-template/SKILL.md` — Generate infographic layouts
 - **Morning Sweep:** `3-reference/skills/morning-sweep/SKILL.md` — Brady's canonical morning sweep across Gmail, iMessage, Notion, Calendar, Otter, and family logistics
 - **Evening Sweep:** `3-reference/skills/evening-sweep/SKILL.md` — End-of-day archival and journaling workflow that captures the full day into a durable local record
