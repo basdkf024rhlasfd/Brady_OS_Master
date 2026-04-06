@@ -33,6 +33,35 @@ repos:
       - 3-reference/publishing/mception-ai-projects.yml    # Publication allowlist
       - 3-reference/skills/air-traffic-control/SKILL.md    # This skill
 
+  telly-bot:
+    description: "Telegram-to-Notion dispatch bot — captures messages, photos, files to Streaming Notes"
+    github: null  # local-only, deployed via Vercel CLI
+    conductor_workspace: null  # standalone, not in Conductor
+    local_path: ~/telly-bot
+    deploy: Vercel (serverless function)
+    branch_convention: main only
+
+    owns:
+      - Telegram webhook handler (api/webhook.js)
+      - Prefix routing logic (pulse, task, log, idea, bug)
+      - File upload pipeline (Telegram → Vercel Blob → Notion)
+
+    does_not_own:
+      - Streaming Notes schema or database (lives in Notion)
+      - Agent profile and operational docs (lives in brady-os 0-agents/)
+      - Notion integration permissions (managed in Notion settings)
+
+    key_files:
+      - api/webhook.js          # Serverless function — all logic lives here
+      - package.json            # Dependencies (@vercel/blob)
+      - vercel.json             # Route config
+
+    env_vars:
+      - TELEGRAM_BOT_TOKEN      # From BotFather
+      - TELEGRAM_CHAT_ID        # Brady's chat ID (8764020256)
+      - NOTION_API_KEY          # Notion internal integration token
+      - BLOB_READ_WRITE_TOKEN   # Vercel Blob store (auto-added when store is connected)
+
   orlando-v3:
     description: "Client-facing Orlando real estate KB viewer — standalone HTML app with AI chat"
     github: basdkf024rhlasfd/Orlando
