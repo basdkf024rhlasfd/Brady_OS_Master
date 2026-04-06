@@ -35,7 +35,11 @@
 - **DiCaprio:** `0-agents/custom-built-agents/dicaprio-SKILL.md` — 20K-foot recon across all projects and workspaces. Template: `0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md`
 - **Project Creator:** `3-reference/skills/project-creator/SKILL.md` — Turn a conversation into an execution-ready project brief. Template: `3-reference/skills/project-creator/BRIEF-TEMPLATE.md`
 - **V0 to Portal:** `3-reference/skills/v0-to-portal/SKILL.md` — Deploy V0 apps into mception.ai portal via ProjectFrame
-- **Public Pack Sync:** `3-reference/skills/public-pack-sync/SKILL.md` — Sanitize internal docs for shareable public-pack
+- **Infographic Template:** `3-reference/skills/infographic-template/SKILL.md` — Generate infographic layouts
+- **Morning Sweep:** `3-reference/skills/morning-sweep/SKILL.md` — Brady's canonical morning sweep across Gmail, iMessage, Notion, Calendar, Otter, and family logistics
+- **Evening Sweep:** `3-reference/skills/evening-sweep/SKILL.md` — End-of-day archival and journaling workflow that captures the full day into a durable local record
+- **Weekly Sweep:** `3-reference/skills/weekly-sweep/SKILL.md` — Sunday planning sweep for weekly priorities, calendar coverage, projects, finances, and family logistics
+- **Daily Whitepaper:** `3-reference/skills/daily-whitepaper/SKILL.md` — Daily news-and-Substack synthesis that produces a polished two-page PDF intelligence brief
 
 ## Notion Architecture
 - **Client Projects DB** (workspace root, shareable): ID `c8a6b2d70d9343839a16c950c95a6066`
