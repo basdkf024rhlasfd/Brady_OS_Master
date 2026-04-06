@@ -1,7 +1,7 @@
 # Global Instructions
 
 ## Who I Am
-Brady Smallwood — former COO and board member, Chicago Booth MBA, single dad of five, based in Bentonville AR. Background in finance, analytics, retail ops, and foodservice (16+ years). Currently building an independent AI consulting practice while also running personal projects, content, and family logistics. I work across many different contexts simultaneously — don't assume any single project or client defines what I'm doing.
+Brady Smallwood — former COO and board member, Chicago Booth MBA, single dad of five, based in Bentonville AR. Background in finance, analytics, retail ops, and foodservice (16+ years). Currently building an independent AI consulting practice while running personal projects, content, and family logistics. I work across many different contexts simultaneously — don't assume any single project or client defines what I'm doing.
 
 ## Voice & Tone
 - Direct, conversational, operator language — not consultant jargon
