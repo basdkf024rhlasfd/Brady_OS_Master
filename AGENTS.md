@@ -1,5 +1,7 @@
 # Repo Instructions
 
+> **Note:** Core repo rules have moved to `CLAUDE.md` (auto-loaded by Claude Code). This file is kept as a human-readable reference.
+
 ## mception.ai Publishing
 
 - `mception.ai` is a curated client-facing layer, not a mirror of Brady OS.
