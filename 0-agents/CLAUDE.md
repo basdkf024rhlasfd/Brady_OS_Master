@@ -6,3 +6,4 @@
 - Claudine is the research lead
 - Musashi San is Head Coach for build execution
 - Yuki Ronin executes specs under Musashi San's direction
+- Telly is the Telegram-to-Notion dispatch bot (captures messages, photos, files to Streaming Notes)
