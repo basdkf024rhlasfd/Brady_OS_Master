@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brady OS — Cockpit</title>
+<style>
+  :root {
+    --bg: #0C0F14;
+    --surface: #141820;
+    --surface-2: #1a1f2a;
+    --border: #2a2f3a;
+    --text: #e8eaed;
+    --text-muted: #8b919e;
+    --accent: #4ade80;
+    --accent-dim: rgba(74, 222, 128, 0.12);
+    --yellow: #facc15;
+    --yellow-dim: rgba(250, 204, 21, 0.12);
+    --red: #f87171;
+    --red-dim: rgba(248, 113, 113, 0.12);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96, 165, 250, 0.12);
+    --orange: #fb923c;
+    --orange-dim: rgba(251, 146, 60, 0.12);
+    --purple: #c084fc;
+    --purple-dim: rgba(192, 132, 252, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .logo {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .logo span { color: var(--text-muted); font-weight: 400; }
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .pulse {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .timestamp { font-size: 11px; color: var(--text-muted); }
+
+  /* ── Health Score Banner ── */
+  .health-banner {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .score-ring {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .score-ring svg { width: 120px; height: 120px; }
+  .score-ring circle {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: center;
+  }
+  .score-ring .track { stroke: var(--border); }
+  .score-ring .fill { stroke: var(--accent); stroke-dasharray: 314; stroke-dashoffset: 63; transition: stroke-dashoffset 1s ease; }
+  .score-value {
+    position: absolute;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .score-label {
+    position: absolute;
+    bottom: 8px;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .health-dimensions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    align-content: center;
+  }
+  .dimension {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .dimension-indicator {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dimension-indicator.green { background: var(--accent); }
+  .dimension-indicator.yellow { background: var(--yellow); }
+  .dimension-indicator.red { background: var(--red); }
+  .dimension-info { flex: 1; min-width: 0; }
+  .dimension-name { font-size: 11px; color: var(--text-muted); }
+  .dimension-value { font-size: 13px; font-weight: 600; }
+  .dimension-score {
+    font-size: 14px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Main Grid ── */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    min-height: calc(100vh - 200px);
+  }
+
+  /* ── Lane (Inbound / Processing / Outbound) ── */
+  .lane {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+  }
+  .lane-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lane-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .lane-title .icon { font-size: 14px; }
+  .lane-count {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .lane:nth-child(1) .lane-title { color: var(--blue); }
+  .lane:nth-child(1) .lane-count { background: var(--blue-dim); color: var(--blue); }
+  .lane:nth-child(2) .lane-title { color: var(--orange); }
+  .lane:nth-child(2) .lane-count { background: var(--orange-dim); color: var(--orange); }
+  .lane:nth-child(3) .lane-title { color: var(--accent); }
+  .lane:nth-child(3) .lane-count { background: var(--accent-dim); color: var(--accent); }
+
+  .lane-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* ── Section inside a lane ── */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-header:hover { background: var(--surface-2); }
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+  .badge-green { background: var(--accent-dim); color: var(--accent); }
+  .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
+  .badge-red { background: var(--red-dim); color: var(--red); }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); }
+  .badge-purple { background: var(--purple-dim); color: var(--purple); }
+  .badge-muted { background: var(--surface-2); color: var(--text-muted); }
+
+  .section-body { padding: 10px 14px; }
+
+  /* ── Items ── */
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .item:last-child { border-bottom: none; }
+  .item-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .item-content { flex: 1; min-width: 0; }
+  .item-label { color: var(--text); font-weight: 500; }
+  .item-meta { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+  .item-tag {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ── Stat row ── */
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--text-muted); }
+  .stat-value { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+  }
+
+  /* ── Empty state ── */
+  .empty {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .main { grid-template-columns: 1fr; }
+    .health-banner { grid-template-columns: 1fr; }
+    .score-ring { justify-self: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">BRADY OS <span>cockpit</span></div>
+    <div class="header-status">
+      <div class="pulse"></div>
+      <span>System Active</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="timestamp" id="clock"></div>
+  </div>
+</div>
+
+<!-- Health Score Banner -->
+<div class="health-banner">
+  <div class="score-ring">
+    <svg viewBox="0 0 120 120">
+      <circle class="track" cx="60" cy="60" r="50" />
+      <circle class="fill" cx="60" cy="60" r="50" />
+    </svg>
+    <div class="score-value" id="overall-score">8.0</div>
+    <div class="score-label">System Health</div>
+  </div>
+  <div class="health-dimensions" id="dimensions">
+    <!-- populated by JS -->
+  </div>
+</div>
+
+<!-- Main 3-Lane Grid -->
+<div class="main">
+
+  <!-- INBOUND LANE -->
+  <div class="lane">
+    <div class="lane-header">
+      <div class="lane-title"><span class="icon">&#x2193;</span> Inbound</div>
+      <div class="lane-count" id="inbound-count">0</div>
+    </div>
+    <div class="lane-body" id="inbound-body">
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Email Inbox</div>
+          <span class="section-badge badge-blue">Gmail</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Unread</span>
+            <span class="stat-value" style="color:var(--blue)">12</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Action Required</span>
+            <span class="stat-value" style="color:var(--yellow)">3</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Follow-up Flagged</span>
+            <span class="stat-value">5</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Last Triage</span>
+            <span class="stat-value">6:14 AM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Calendar</div>
+          <span class="section-badge badge-green">Today</span>
+        </div>
+        <div class="section-body">
+          <div class="item">
+            <div class="item-dot" style="background:var(--yellow)"></div>
+            <div class="item-content">
+              <div class="item-label">Client check-in — Baden Bagley</div>
+              <div class="item-meta">10:00 AM CT &middot; Zoom</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">Focus Block — Deep Work</div>
+              <div class="item-meta">1:00 PM &ndash; 3:00 PM CT</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--purple)"></div>
+            <div class="item-content">
+              <div class="item-label">Kids pickup</div>
+              <div class="item-meta">3:30 PM CT &middot; Guardrail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Capture Surfaces</div>
+          <span class="section-badge badge-muted">Notion</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Unprocessed Notes</span>
+            <span class="stat-value">2</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Voice Notes (pending)</span>
+            <span class="stat-value" style="color:var(--yellow)">1</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Diary Last Entry</span>
+            <span class="stat-value">Yesterday</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Meetings (Otter / Granola)</div>
+          <span class="section-badge badge-muted">0 pending</span>
+        </div>
+        <div class="section-body">
+          <div class="empty">No unprocessed transcripts</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROCESSING LANE -->
+  <div class="lane">
+    <div class="lane-header">
+      <div class="lane-title"><span class="icon">&#x2699;</span> Processing</div>
+      <div class="lane-count" id="processing-count">0</div>
+    </div>
+    <div class="lane-body" id="processing-body">
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Active Projects</div>
+          <span class="section-badge badge-orange">5</span>
+        </div>
+        <div class="section-body">
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">Schmulen AI OS</div>
+              <div class="item-meta">Consulting &middot; Cycle review due Thu</div>
+            </div>
+            <span class="item-tag badge-green">On Track</span>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">Baden Bagley Viewer</div>
+              <div class="item-meta">Consulting &middot; Live on mception.ai</div>
+            </div>
+            <span class="item-tag badge-green">On Track</span>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--yellow)"></div>
+            <div class="item-content">
+              <div class="item-label">Content Engine</div>
+              <div class="item-meta">Creation &middot; 6d since last touch</div>
+            </div>
+            <span class="item-tag badge-yellow">Watch</span>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">STIHL Insights</div>
+              <div class="item-meta">Consulting &middot; Portal-native</div>
+            </div>
+            <span class="item-tag badge-green">On Track</span>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--red)"></div>
+            <div class="item-content">
+              <div class="item-label">OS Cockpit Build</div>
+              <div class="item-meta">Internal &middot; This session</div>
+            </div>
+            <span class="item-tag badge-blue">In Flight</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Tasks — Today</div>
+          <span class="section-badge badge-orange">7</span>
+        </div>
+        <div class="section-body">
+          <div class="item">
+            <div class="item-dot" style="background:var(--red)"></div>
+            <div class="item-content">
+              <div class="item-label">Prep Baden Bagley call</div>
+              <div class="item-meta">Due before 10 AM &middot; Work</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--yellow)"></div>
+            <div class="item-content">
+              <div class="item-label">Review Schmulen scope doc</div>
+              <div class="item-meta">Consulting &middot; Medium priority</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">Commit OS governance migration</div>
+              <div class="item-meta">Internal &middot; Brady OS</div>
+            </div>
+          </div>
+          <div class="stat-row" style="margin-top:8px">
+            <span class="stat-label">Completed today</span>
+            <span class="stat-value" style="color:var(--accent)">4 / 7</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:57%; background:var(--accent)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Conductor Agents</div>
+          <span class="section-badge badge-purple">Active</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Morning Sweep</span>
+            <span class="stat-value" style="color:var(--accent)">&#10003; 6:14 AM</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Daily Whitepaper</span>
+            <span class="stat-value" style="color:var(--accent)">&#10003; 6:32 AM</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Evening Sweep</span>
+            <span class="stat-value" style="color:var(--text-muted)">9:00 PM</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Active Workspaces</span>
+            <span class="stat-value">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Finances (Monarch)</div>
+          <span class="section-badge badge-muted">Weekly</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Last reviewed</span>
+            <span class="stat-value">Apr 3</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Pending alerts</span>
+            <span class="stat-value">0</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OUTBOUND LANE -->
+  <div class="lane">
+    <div class="lane-header">
+      <div class="lane-title"><span class="icon">&#x2191;</span> Outbound</div>
+      <div class="lane-count" id="outbound-count">0</div>
+    </div>
+    <div class="lane-body" id="outbound-body">
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Client Deliverables</div>
+          <span class="section-badge badge-green">Active</span>
+        </div>
+        <div class="section-body">
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">Schmulen — PropMatic CMO Agent spec</div>
+              <div class="item-meta">Draft ready for review</div>
+            </div>
+            <span class="item-tag badge-yellow">Review</span>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">Baden Bagley — Viewer update</div>
+              <div class="item-meta">Deployed to mception.ai</div>
+            </div>
+            <span class="item-tag badge-green">Shipped</span>
+          </div>
+          <div class="item">
+            <div class="item-dot" style="background:var(--accent)"></div>
+            <div class="item-content">
+              <div class="item-label">STIHL — Weekly intelligence brief</div>
+              <div class="item-meta">Auto-generated, pending approval</div>
+            </div>
+            <span class="item-tag badge-yellow">Review</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">mception.ai — Live Projects</div>
+          <span class="section-badge badge-green">6 live</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">mark-schmulen</span>
+            <span class="stat-value" style="color:var(--accent)">&#9679; Live</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">pauletteai</span>
+            <span class="stat-value" style="color:var(--accent)">&#9679; Live</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">stihl</span>
+            <span class="stat-value" style="color:var(--accent)">&#9679; Live</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">baden-bagley</span>
+            <span class="stat-value" style="color:var(--accent)">&#9679; Live</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">gary-schubert</span>
+            <span class="stat-value" style="color:var(--accent)">&#9679; Live</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">content-engine</span>
+            <span class="stat-value" style="color:var(--accent)">&#9679; Live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Content Pipeline</div>
+          <span class="section-badge badge-muted">Substack</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Drafts in progress</span>
+            <span class="stat-value">1</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Published this week</span>
+            <span class="stat-value">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Daily Whitepaper</span>
+            <span class="stat-value" style="color:var(--accent)">&#10003; Today</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Email Outbound</div>
+          <span class="section-badge badge-blue">Gmail</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Drafts pending send</span>
+            <span class="stat-value" style="color:var(--yellow)">2</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Sent today</span>
+            <span class="stat-value">4</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Awaiting reply</span>
+            <span class="stat-value">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">GitHub Activity</div>
+          <span class="section-badge badge-purple">Today</span>
+        </div>
+        <div class="section-body">
+          <div class="stat-row">
+            <span class="stat-label">Commits today</span>
+            <span class="stat-value">4</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Open PRs</span>
+            <span class="stat-value">1</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Active branch</span>
+            <span class="stat-value" style="font-size:11px">notion-agent-audit</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <span>Brady OS v2.0 &middot; GitHub canonical &middot; Notion operational</span>
+  <span>Built with <a href="#">mception.ai</a></span>
+</div>
+
+<script>
+// Clock
+function updateClock() {
+  const now = new Date();
+  const opts = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'America/Chicago' };
+  document.getElementById('clock').textContent = now.toLocaleString('en-US', opts) + ' CT';
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// Health dimensions
+const dimensions = [
+  { name: 'Sweep Cadence', value: 'On schedule', score: 9, status: 'green' },
+  { name: 'Task Completion', value: '57% today', score: 7, status: 'yellow' },
+  { name: 'Capture Processing', value: '2 pending', score: 8, status: 'green' },
+  { name: 'Client Delivery', value: 'All current', score: 9, status: 'green' },
+  { name: 'Calendar Guard', value: 'No conflicts', score: 9, status: 'green' },
+  { name: 'OS Integrity', value: 'GitHub synced', score: 8, status: 'green' },
+  { name: 'Email Triage', value: '3 action items', score: 7, status: 'yellow' },
+  { name: 'Financial Review', value: '3d ago', score: 7, status: 'green' },
+];
+
+const dimContainer = document.getElementById('dimensions');
+dimensions.forEach(d => {
+  dimContainer.innerHTML += `
+    <div class="dimension">
+      <div class="dimension-indicator ${d.status}"></div>
+      <div class="dimension-info">
+        <div class="dimension-name">${d.name}</div>
+        <div class="dimension-value">${d.value}</div>
+      </div>
+      <div class="dimension-score" style="color:var(--${d.status === 'green' ? 'accent' : d.status === 'yellow' ? 'yellow' : 'red'})">${d.score}</div>
+    </div>
+  `;
+});
+
+// Calculate overall score
+const avg = dimensions.reduce((s, d) => s + d.score, 0) / dimensions.length;
+document.getElementById('overall-score').textContent = avg.toFixed(1);
+
+// Update ring fill (314 circumference, 0 offset = full, 314 = empty)
+const offset = 314 - (314 * (avg / 10));
+document.querySelector('.score-ring .fill').style.strokeDashoffset = offset;
+
+// Update ring color based on score
+const ringColor = avg >= 8 ? 'var(--accent)' : avg >= 6 ? 'var(--yellow)' : 'var(--red)';
+document.querySelector('.score-ring .fill').style.stroke = ringColor;
+document.getElementById('overall-score').style.color = ringColor;
+
+// Lane counts
+document.getElementById('inbound-count').textContent =
+  document.querySelectorAll('#inbound-body .item').length +
+  ' items';
+document.getElementById('processing-count').textContent =
+  document.querySelectorAll('#processing-body .item').length +
+  ' items';
+document.getElementById('outbound-count').textContent =
+  document.querySelectorAll('#outbound-body .item').length +
+  ' items';
+</script>
+
+</body>
+</html>
