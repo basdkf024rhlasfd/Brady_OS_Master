@@ -234,7 +234,10 @@ useful, a section that's always empty, a source that should be added — propose
 Say "sweep feedback: [approve/modify]" to log it.
 ```
 
-### 3.6 Refresh OS Cockpit
+### 3.6 Pipeline Dashboard
+Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
+
+### 3.7 Refresh OS Cockpit
 Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).
 This file powers the local HTML cockpit dashboard. Use the data already gathered in Phase 1 to populate
 all fields — do not re-scan. The file format is `window.COCKPIT_DATA = { ... }` with these sections:
@@ -259,7 +262,7 @@ Score health dimensions based on scan results:
 - 6-8 = yellow (watch)
 - 0-5 = red (needs attention)
 
-### 3.7 Close
+### 3.8 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)

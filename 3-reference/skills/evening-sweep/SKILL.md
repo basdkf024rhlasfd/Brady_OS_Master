@@ -265,7 +265,10 @@ Brief in-chat summary:
 You're done. Go read. 📖
 ```
 
-#### 6.2 Permission to Stop
+#### 6.2 Pipeline Dashboard
+Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
+
+#### 6.3 Permission to Stop
 End with something that gives Brady permission to close the laptop.
 Match the energy — if it was a hard day, acknowledge it. If it was productive, celebrate it.
 Don't be saccharine. Be real.
