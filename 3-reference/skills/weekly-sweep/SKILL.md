@@ -256,7 +256,10 @@ a strong recommendation.
 ### 5.6 Update Weekly Prompt (Self-Improvement)
 If the weekly sweep itself needs improvement (e.g., a section is always empty, a scan is useless),
 propose changes to Section B of the 📋 Weekly Planning Sweep event using the same approve/reject flow.
-### 5.7 Close
+### 5.7 Pipeline Dashboard
+Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
+
+### 5.8 Close
 - Report all calendar changes made
 - Report all prompt changes applied
 - Ask: "Anything to adjust before the week starts?"

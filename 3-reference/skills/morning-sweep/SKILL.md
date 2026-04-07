@@ -234,7 +234,10 @@ useful, a section that's always empty, a source that should be added — propose
 Say "sweep feedback: [approve/modify]" to log it.
 ```
 
-### 3.6 Close
+### 3.6 Pipeline Dashboard
+Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
+
+### 3.7 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)
