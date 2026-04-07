@@ -45,13 +45,21 @@ Prefix matching is case-insensitive. The prefix is stripped from the content bef
 
 ## C. File Handling Protocol
 
+When a file is sent, Telly prompts with inline keyboard buttons:
+- **🔓 Public** — file uploaded to public Vercel Blob (`telly/` prefix), embedded inline in Notion (images render as image blocks, others as linked text). URL is unguessable but publicly accessible.
+- **🔒 Private** — file uploaded to private Vercel Blob (`telly-private/` prefix), stored as text reference in Notion (`🔒 filename (stored privately)`). URL is not publicly accessible.
+
+Pending file state is stored temporarily in Vercel Blob (`pending/{chatId}.json`) between the prompt and the button tap, then deleted after processing.
+
 1. **Supported types:** photo, document, video, voice
 2. **Download:** Fetch file from Telegram API using `getFile` → download from `file_path`
-3. **Store:** Upload to Vercel Blob under `telly/` prefix with timestamp filename
-4. **Embed:** Images → Notion image block (external URL). Non-images → linked paragraph with paperclip icon
-5. **Captions:** If a file message has a caption, it's parsed through the prefix routing table
-6. **File-only messages:** No text/caption → defaults to Pulse Note with filename as title
-7. **Size limit:** Telegram Bot API limits file downloads to 20MB
+3. **Store (public):** Upload to Vercel Blob under `telly/` prefix with `access: "public"`
+4. **Store (private):** Upload to Vercel Blob under `telly-private/` prefix with `access: "private"`
+5. **Embed (public):** Images → Notion image block (external URL). Non-images → linked paragraph with paperclip icon
+6. **Embed (private):** Text-only reference in Notion — no inline preview, no public URL
+7. **Captions:** If a file message has a caption, it's parsed through the prefix routing table
+8. **File-only messages:** No text/caption → defaults to Pulse Note with filename as title
+9. **Size limit:** Telegram Bot API limits file downloads to 20MB
 
 ---
 
@@ -67,7 +75,7 @@ Properties Telly writes to:
 | Status | status | Always "Not Started" |
 | Tags | multi_select | From prefix routing table (if any) |
 
-**Database ID:** `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
+**Database ID:** `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`
 
 Telly does not write to any other properties (Priority, Target, Action, Phil Score, etc.).
 

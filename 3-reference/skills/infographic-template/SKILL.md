@@ -1,4 +1,11 @@
-# Infographic Template — mception.ai House Style
+# Infographic Template — DEPRECATED
+
+> **This skill has been superseded by `3-reference/skills/mception-design-system/SKILL.md`.**
+> Use the mception Design System skill for all new visual documents. It includes the full color palette, light/dark mode conversion, PDF generation, reference HTML files, and anti-patterns.
+
+---
+
+# (Legacy) Infographic Template — mception.ai House Style
 
 ## What This Is
 A reusable HTML infographic template for Brady's consulting deliverables. Dark-mode, data-dense, single-page HTML documents that render beautifully in browsers and print to PDF.
