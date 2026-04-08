@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — Capability Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  /* ─── HEADER ─── */
+  .header {
+    margin-bottom: 36px; padding-bottom: 24px;
+    border-bottom: 2px solid var(--gold-dim);
+  }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .header-tag::before { content: ''; width: 18px; height: 2px; background: var(--gold); }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 42px; font-weight: 700;
+    line-height: 1.1; letter-spacing: -1px; margin-bottom: 10px;
+  }
+  h1 span { color: var(--gold); }
+  .header-sub { font-size: 16px; color: var(--gray-light); line-height: 1.5; max-width: 700px; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.2); }
+
+  /* ─── THESIS BAR ─── */
+  .thesis {
+    background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+    border: 1px solid rgba(212,168,67,0.25); border-radius: 8px;
+    padding: 18px 28px; margin-bottom: 32px; text-align: center;
+  }
+  .thesis p {
+    font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; line-height: 1.5;
+  }
+  .thesis em { color: var(--gold); font-style: normal; }
+
+  /* ─── SERVICE CARDS GRID ─── */
+  .services-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .service-card {
+    background: var(--bg-card); border-radius: 10px; padding: 24px;
+    border: 1px solid rgba(255,255,255,0.06); border-top: 3px solid var(--gold);
+  }
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 14px; color: var(--gray-light); line-height: 1.55; margin-bottom: 14px;
+  }
+  .deliverables {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .deliverable-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--gold);
+    background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 4px; padding: 4px 8px;
+  }
+
+  /* ─── DIFFERENTIATOR ROW ─── */
+  .diff-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin-bottom: 28px;
+  }
+  .diff-card {
+    background: var(--bg-card); border-radius: 8px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06); text-align: center;
+  }
+  .diff-card .diff-num {
+    font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
+    color: var(--gold); margin-bottom: 6px;
+  }
+  .diff-card .diff-label {
+    font-size: 13px; color: var(--gray-light); line-height: 1.4;
+  }
+
+  /* ─── BOTTOM BAR ─── */
+  .bottom-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .bottom-bar-left {
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+  }
+  .bottom-bar-left span { color: var(--gold); }
+  .bottom-bar-center {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--gray); letter-spacing: 1px;
+  }
+  .bottom-bar-right {
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;
+    color: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-tag">{{TAG}}</div>
+    <h1>{{TITLE}} <span>{{TITLE_ACCENT}}</span></h1>
+    <p class="header-sub">{{SUBTITLE}}</p>
+  </div>
+
+  <div class="thesis">
+    <p>{{THESIS}}</p>
+  </div>
+
+  <div class="section-header">Services</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>{{SERVICE_1_TITLE}}</h3>
+      <p>{{SERVICE_1_DESC}}</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">{{SERVICE_1_TAG_1}}</span>
+        <span class="deliverable-tag">{{SERVICE_1_TAG_2}}</span>
+        <span class="deliverable-tag">{{SERVICE_1_TAG_3}}</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <h3>{{SERVICE_2_TITLE}}</h3>
+      <p>{{SERVICE_2_DESC}}</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">{{SERVICE_2_TAG_1}}</span>
+        <span class="deliverable-tag">{{SERVICE_2_TAG_2}}</span>
+        <span class="deliverable-tag">{{SERVICE_2_TAG_3}}</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <h3>{{SERVICE_3_TITLE}}</h3>
+      <p>{{SERVICE_3_DESC}}</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">{{SERVICE_3_TAG_1}}</span>
+        <span class="deliverable-tag">{{SERVICE_3_TAG_2}}</span>
+        <span class="deliverable-tag">{{SERVICE_3_TAG_3}}</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <h3>{{SERVICE_4_TITLE}}</h3>
+      <p>{{SERVICE_4_DESC}}</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">{{SERVICE_4_TAG_1}}</span>
+        <span class="deliverable-tag">{{SERVICE_4_TAG_2}}</span>
+        <span class="deliverable-tag">{{SERVICE_4_TAG_3}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">Why This Works</div>
+  <div class="diff-row">
+    <div class="diff-card">
+      <div class="diff-num">{{DIFF_1_NUM}}</div>
+      <div class="diff-label">{{DIFF_1_DESC}}</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">{{DIFF_2_NUM}}</div>
+      <div class="diff-label">{{DIFF_2_DESC}}</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">{{DIFF_3_NUM}}</div>
+      <div class="diff-label">{{DIFF_3_DESC}}</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-left">{{CTA_TEXT}} <span>{{CTA_CONTACT}}</span></div>
+    <div class="bottom-bar-center">{{TAGLINE}}</div>
+    <div class="bottom-bar-right">mception.ai</div>
+  </div>
+
+</body>
+</html>

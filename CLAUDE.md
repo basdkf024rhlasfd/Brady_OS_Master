@@ -54,6 +54,8 @@
 - **Project Standup Kit:** `3-reference/skills/project-standup-kit/SKILL.md` — Consolidated status across all projects/repos/clients. Sequences DiCaprio (recon) → pipeline-dashboard → client-project-cleanup → air-traffic-control.
 - **Doctrine Sync:** `3-reference/skills/doctrine-sync/SKILL.md` — Detects drift between OS doctrine/governance and agent profiles. Drift report + paste-ready updates. Runs standalone or as weekly sweep step.
 - **Midjourney Prompt:** `3-reference/skills/midjourney-prompt/SKILL.md` — Generates one optimal Midjourney prompt per product idea. Handles packaging, industrial, tech, beverage, and lifestyle products with correct text rendering and matchable filenames.
+- **Deck Generator:** `3-reference/skills/deck-generator/SKILL.md` — Branded slide decks via Marp CLI with mception design tokens. Markdown in, HTML + PDF + PPTX out. Custom theme: `references/mception-marp-theme.css`
+- **Marketing Templates:** `3-reference/skills/marketing-templates/SKILL.md` — Template-driven marketing assets (sell sheets, client one-pagers, capability overviews). Placeholder substitution + Playwright PDF. Templates in `references/`.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`
 
 ## Scripts

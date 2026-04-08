@@ -209,7 +209,7 @@ These are the standard sections. Client configs can enable/disable or customize.
 
 ### Quarterly
 
-14. **Board-Level Strategy Brief** — Custom strategic analysis. Different product — presentation-quality, not just a bigger daily.
+14. **Board-Level Strategy Brief** — Custom strategic analysis. Different product — presentation-quality, not just a bigger daily. Trigger the `deck-generator` skill with the quarterly research as input. Use the `light` slide class for print-friendly PDF output.
 
 ---
 
