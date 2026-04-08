@@ -259,6 +259,13 @@ propose changes to Section B of the 📋 Weekly Planning Sweep event using the s
 ### 5.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 
+### 5.8 Doctrine Sync Check
+Run the doctrine-sync skill (`3-reference/skills/doctrine-sync/SKILL.md`) to detect drift between
+OS doctrine/governance and agent profiles. Output the summary + priority list in the sweep report.
+If any agent is flagged CRITICAL (council member missing key governance knowledge), escalate to Brady
+with paste-ready updates. This is how the OS stays self-aware — doctrine changes get caught weekly,
+not when someone notices an agent giving stale advice.
+
 ### 5.8 Close
 - Report all calendar changes made
 - Report all prompt changes applied

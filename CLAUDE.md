@@ -52,6 +52,7 @@
 - **Content Publishing Kit:** `3-reference/skills/content-publishing-kit/SKILL.md` — Topic to publishable draft. Sequences full-stack-ideation (angles) → content-drafter agent (voice-matched writing) → mception-design-system (visuals). LinkedIn, Substack, white papers.
 - **Prospect Research Kit:** `3-reference/skills/prospect-research-kit/SKILL.md` — Fast research on a person/company. Fact base + talk track + Notion records. No deliverables sent — Brady's internal prep. Upgrades to client-engagement-kit when ready.
 - **Project Standup Kit:** `3-reference/skills/project-standup-kit/SKILL.md` — Consolidated status across all projects/repos/clients. Sequences DiCaprio (recon) → pipeline-dashboard → client-project-cleanup → air-traffic-control.
+- **Doctrine Sync:** `3-reference/skills/doctrine-sync/SKILL.md` — Detects drift between OS doctrine/governance and agent profiles. Drift report + paste-ready updates. Runs standalone or as weekly sweep step.
 - **Midjourney Prompt:** `3-reference/skills/midjourney-prompt/SKILL.md` — Generates one optimal Midjourney prompt per product idea. Handles packaging, industrial, tech, beverage, and lifestyle products with correct text rendering and matchable filenames.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`
 
