@@ -118,13 +118,16 @@ Three-font stack. No substitutions.
 - Red = alarm stats, "problem" indicators
 - Three-tier depth: bg → bg-card → bg-card-alt
 
+**Contrast — non-negotiable:**
+Every element that sets a background MUST set an explicit `color`. Dark backgrounds → light text (`var(--white)` or `var(--gray-light)`). Light backgrounds → dark text. When building the light-mode version, reverse accordingly. Heuristic: if you can't read it on a projector in a sunlit room, the contrast is wrong.
+
 ---
 
 ## Layout Patterns
 
 ### Page Structure
 - `max-width: 1100px`, centered
-- `padding: 48px 52px 40px`
+- `padding: 48px 52px 40px` — `52px` is the **minimum** horizontal padding. `36px` clips on consumer printers — never go below `52px` on any layout (tabloid or landscape letter).
 - `@page { size: 11in 17in; margin: 0; }` for tabloid print
 - Subtle grid texture overlay: gold at 3% opacity, 40px spacing
 

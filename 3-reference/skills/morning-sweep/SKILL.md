@@ -237,7 +237,14 @@ Say "sweep feedback: [approve/modify]" to log it.
 ### 3.6 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 
-### 3.7 Refresh OS Cockpit
+### 3.7 Config Sync Check
+Run the config-sync skill (`3-reference/skills/config-sync/SKILL.md`) as a lightweight drift check.
+Compare the Conductor workspace against the Claude Code CLI checkout and `~/.claude/` config.
+- If everything is current: output one line — `✅ Config sync: all [N] files current`
+- If drift detected: output the summary table (not the full report) and flag it in TOP 3 if critical
+- Do not auto-sync — just surface the drift so Brady can fix it when ready
+
+### 3.8 Refresh OS Cockpit
 Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).
 This file powers the local HTML cockpit dashboard. Use the data already gathered in Phase 1 to populate
 all fields — do not re-scan. The file format is `window.COCKPIT_DATA = { ... }` with these sections:
@@ -262,7 +269,7 @@ Score health dimensions based on scan results:
 - 6-8 = yellow (watch)
 - 0-5 = red (needs attention)
 
-### 3.8 Close
+### 3.9 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)

@@ -37,6 +37,7 @@
 - **Project Creator:** `3-reference/skills/project-creator/SKILL.md` — Turn a conversation into an execution-ready project brief. Template: `3-reference/skills/project-creator/BRIEF-TEMPLATE.md`
 - **V0 to Portal:** `3-reference/skills/v0-to-portal/SKILL.md` — Deploy V0 apps into mception.ai portal via ProjectFrame
 - **Client Project Cleanup:** `3-reference/skills/client-project-cleanup/SKILL.md` — Weekly audit of consulting project pages in Notion for SOP compliance, staleness, and privacy leaks
+- **Config Sync:** `3-reference/skills/config-sync/SKILL.md` — Detects drift between Conductor workspace and Claude Code CLI checkout. Compares skills, agents, CLAUDE.md files. Reports which side is newer, offers one-command sync.
 - **mception Design System:** `3-reference/skills/mception-design-system/SKILL.md` — Canonical design language for all visual docs, infographics, briefings. Dark-mode-first, CEO-scannable. Supersedes infographic-template.
 - **Infographic Template:** `3-reference/skills/infographic-template/SKILL.md` — (Deprecated, see mception-design-system)
 - **Morning Sweep:** `3-reference/skills/morning-sweep/SKILL.md` — Brady's canonical morning sweep across Gmail, iMessage, Notion, Calendar, Otter, and family logistics
