@@ -10,7 +10,8 @@ Canonical source files for every Claude instruction surface that requires manual
 |------|----------------|------------------|
 | `global-claude-code.md` | `~/.claude/CLAUDE.md` | Run `./install.sh` or copy manually |
 | `cowork-global.md` | Claude Desktop → Settings → Cowork → Global Instructions → Edit | Manual paste |
-| `claude-chat-projects.md` | Claude.ai → any Project → Instructions | Manual paste per project |
+| `claude-chat-projects.md` | Claude.ai → any Project → Instructions | Manual paste per project (base template) |
+| `innovation-lab-project.md` | Claude.ai → "Innovation Lab" Project → Instructions | Manual paste + upload 9 skill files as Project Knowledge |
 
 ## Keeping These Fresh
 
