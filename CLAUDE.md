@@ -44,6 +44,18 @@
 - **Weekly Sweep:** `3-reference/skills/weekly-sweep/SKILL.md` — Sunday planning sweep for weekly priorities, calendar coverage, projects, finances, and family logistics
 - **Daily Whitepaper:** `3-reference/skills/daily-whitepaper/SKILL.md` — Daily news-and-Substack synthesis that produces a polished two-page PDF intelligence brief
 - **Pipeline Dashboard:** `3-reference/skills/pipeline-dashboard/SKILL.md` — Live snapshot of Streaming Notes DB pipeline (In/Processing/Out). Runs at end of each sweep.
+- **Deep Research:** `3-reference/skills/deep-research/SKILL.md` — Autonomous planner-executor-publisher research engine. Three depth levels (quick/standard/deep), five research types. Works standalone or as building block for other skills. Template: `3-reference/skills/deep-research/references/research-brief-template.md`
+- **Exec Intel Brief:** `3-reference/skills/exec-intel-brief/SKILL.md` — Daily competitive intelligence PDF for consulting clients. Email-native delivery with scannable brief + LLM-ready markdown dossier. Client configs in `references/clients/`. Template: `references/client_template.md`
+- **Full-Stack Ideation:** `3-reference/skills/full-stack-ideation/SKILL.md` — 100-method brainstorming toolkit for structured ideation across any problem domain. Method selection guide + scoring + output format.
+- **Client Engagement Kit:** `3-reference/skills/client-engagement-kit/SKILL.md` — Orchestrates the full Day 1 consulting package. Sequences exec-intel-brief, full-stack-ideation, midjourney-prompt, and mception-design-system into a 7-step pipeline from research to polished deliverables.
+- **Daily Operating Rhythm:** `3-reference/skills/daily-operating-rhythm/SKILL.md` — Brady's full daily cycle: morning-sweep → daily-whitepaper → exec-intel-brief (per client) → pipeline-dashboard → evening-sweep. Weekly-sweep on Sundays.
+- **Content Publishing Kit:** `3-reference/skills/content-publishing-kit/SKILL.md` — Topic to publishable draft. Sequences full-stack-ideation (angles) → content-drafter agent (voice-matched writing) → mception-design-system (visuals). LinkedIn, Substack, white papers.
+- **Prospect Research Kit:** `3-reference/skills/prospect-research-kit/SKILL.md` — Fast research on a person/company. Fact base + talk track + Notion records. No deliverables sent — Brady's internal prep. Upgrades to client-engagement-kit when ready.
+- **Project Standup Kit:** `3-reference/skills/project-standup-kit/SKILL.md` — Consolidated status across all projects/repos/clients. Sequences DiCaprio (recon) → pipeline-dashboard → client-project-cleanup → air-traffic-control.
+- **Doctrine Sync:** `3-reference/skills/doctrine-sync/SKILL.md` — Detects drift between OS doctrine/governance and agent profiles. Drift report + paste-ready updates. Runs standalone or as weekly sweep step.
+- **Midjourney Prompt:** `3-reference/skills/midjourney-prompt/SKILL.md` — Generates one optimal Midjourney prompt per product idea. Handles packaging, industrial, tech, beverage, and lifestyle products with correct text rendering and matchable filenames.
+- **Deck Generator:** `3-reference/skills/deck-generator/SKILL.md` — Branded slide decks via Marp CLI with mception design tokens. Markdown in, HTML + PDF + PPTX out. Custom theme: `references/mception-marp-theme.css`
+- **Marketing Templates:** `3-reference/skills/marketing-templates/SKILL.md` — Template-driven marketing assets (sell sheets, client one-pagers, capability overviews). Placeholder substitution + Playwright PDF. Templates in `references/`.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`
 
 ## Scripts

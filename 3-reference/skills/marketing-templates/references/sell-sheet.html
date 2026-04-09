@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — Sell Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  /* ─── HEADER ─── */
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid var(--gold-dim);
+  }
+  .header-left { max-width: 680px; }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .header-tag::before { content: ''; width: 18px; height: 2px; background: var(--gold); }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-size: 42px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 10px; }
+  h1 span { color: var(--gold); }
+  .header-sub { font-size: 16px; color: var(--gray-light); line-height: 1.5; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.2); }
+
+  /* ─── PROBLEM CARD ─── */
+  .problem-card {
+    background: var(--bg-card); border-radius: 10px; padding: 26px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--red-dim);
+    margin-bottom: 24px;
+  }
+  .problem-card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700;
+    color: var(--red); margin-bottom: 12px;
+  }
+  .problem-card p { font-size: 15px; color: var(--gray-light); line-height: 1.6; }
+
+  /* ─── SOLUTION CARD ─── */
+  .solution-card {
+    background: var(--bg-card); border-radius: 10px; padding: 26px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold);
+    margin-bottom: 24px;
+  }
+  .solution-card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .solution-card h3 span { color: var(--gold); }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .feature-list li {
+    font-size: 15px; color: var(--gray-light); line-height: 1.5;
+    padding-left: 20px; position: relative;
+  }
+  .feature-list li::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 8px; height: 8px; border-radius: 2px; background: var(--gold);
+  }
+  .feature-list li strong { color: var(--white); }
+
+  /* ─── STATS ROW ─── */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--bg-card); border-radius: 8px; padding: 18px 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .stat-desc { font-size: 12px; color: var(--gray-light); line-height: 1.4; }
+  .stat-src { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray); margin-top: 6px; }
+
+  /* ─── SOCIAL PROOF ─── */
+  .proof-card {
+    background: var(--bg-card); border-left: 3px solid var(--gold-dim);
+    border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 24px;
+  }
+  .proof-card .proof-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+  .proof-card p { font-size: 15px; line-height: 1.6; font-weight: 500; }
+  .proof-card .proof-attribution {
+    font-size: 13px; color: var(--gray); margin-top: 8px; font-style: italic;
+  }
+
+  /* ─── CTA BAR ─── */
+  .cta-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .cta-bar-left { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; }
+  .cta-bar-left span { color: var(--gold); }
+  .cta-bar-right { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">{{TAG}}</div>
+      <h1>{{TITLE}} <span>{{TITLE_ACCENT}}</span></h1>
+      <p class="header-sub">{{SUBTITLE}}</p>
+    </div>
+  </div>
+
+  <div class="section-header">The Problem</div>
+  <div class="problem-card">
+    <h3>{{PROBLEM_TITLE}}</h3>
+    <p>{{PROBLEM_BODY}}</p>
+  </div>
+
+  <div class="section-header">The Solution</div>
+  <div class="solution-card">
+    <h3>{{SOLUTION_TITLE}} <span>{{SOLUTION_ACCENT}}</span></h3>
+    <ul class="feature-list">
+      <li><strong>{{FEATURE_1_TITLE}}</strong> — {{FEATURE_1_DESC}}</li>
+      <li><strong>{{FEATURE_2_TITLE}}</strong> — {{FEATURE_2_DESC}}</li>
+      <li><strong>{{FEATURE_3_TITLE}}</strong> — {{FEATURE_3_DESC}}</li>
+      <li><strong>{{FEATURE_4_TITLE}}</strong> — {{FEATURE_4_DESC}}</li>
+    </ul>
+  </div>
+
+  <div class="section-header">By the Numbers</div>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">{{STAT_1_NUM}}</div>
+      <div class="stat-desc">{{STAT_1_DESC}}</div>
+      <div class="stat-src">{{STAT_1_SRC}}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">{{STAT_2_NUM}}</div>
+      <div class="stat-desc">{{STAT_2_DESC}}</div>
+      <div class="stat-src">{{STAT_2_SRC}}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">{{STAT_3_NUM}}</div>
+      <div class="stat-desc">{{STAT_3_DESC}}</div>
+      <div class="stat-src">{{STAT_3_SRC}}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">{{STAT_4_NUM}}</div>
+      <div class="stat-desc">{{STAT_4_DESC}}</div>
+      <div class="stat-src">{{STAT_4_SRC}}</div>
+    </div>
+  </div>
+
+  <div class="section-header">Proof Point</div>
+  <div class="proof-card">
+    <div class="proof-label">{{PROOF_LABEL}}</div>
+    <p>{{PROOF_QUOTE}}</p>
+    <div class="proof-attribution">{{PROOF_ATTRIBUTION}}</div>
+  </div>
+
+  <div class="cta-bar">
+    <div class="cta-bar-left">{{CTA_TEXT}} <span>{{CTA_CONTACT}}</span></div>
+    <div class="cta-bar-right">mception.ai</div>
+  </div>
+
+</body>
+</html>

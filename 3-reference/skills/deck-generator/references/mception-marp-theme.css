@@ -1,0 +1,388 @@
+/* @theme mception */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #7CB97A;
+}
+
+/* ─── BASE SLIDE ─── */
+section {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  padding: 60px 72px;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* Gold grid overlay */
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+h4, h5, h6 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+p, li {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--gray-light);
+}
+
+strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+blockquote {
+  border-left: 3px solid var(--gold-dim);
+  padding-left: 20px;
+  margin: 16px 0;
+}
+
+blockquote p {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--white);
+  font-style: italic;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* Bullet styling */
+ul, ol {
+  margin-left: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+li::marker {
+  color: var(--gold);
+}
+
+/* ─── TABLES ─── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 18px;
+}
+
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 14px 16px;
+  text-align: left;
+  background: var(--bg-card-alt);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+td {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray-light);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── IMAGES ─── */
+img {
+  border-radius: 8px;
+}
+
+/* ─── FOOTER / PAGINATION ─── */
+section::after {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+footer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+}
+
+/* ═══════════════════════════════════════════
+   SLIDE CLASSES
+   ═══════════════════════════════════════════ */
+
+/* ─── TITLE SLIDE ─── */
+section.title {
+  justify-content: center;
+  text-align: center;
+  padding: 80px 100px;
+}
+
+section.title h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+section.title p {
+  font-size: 24px;
+  color: var(--gray-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+section.title::after {
+  content: none;
+}
+
+/* Bottom accent line on title slide */
+section.title {
+  border-bottom: 3px solid var(--gold-dim);
+}
+
+/* ─── CARD SLIDE ─── */
+section.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-top: 3px solid var(--gold);
+}
+
+/* ─── STAT SLIDE ─── */
+section.stat {
+  justify-content: center;
+  text-align: center;
+}
+
+section.stat h1 {
+  font-size: 96px;
+  color: var(--gold);
+  margin-bottom: 24px;
+  letter-spacing: -2px;
+}
+
+section.stat p {
+  font-size: 24px;
+  color: var(--gray-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+section.stat em {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--gray);
+  display: block;
+  margin-top: 16px;
+}
+
+/* ─── SPLIT (TWO-COLUMN) SLIDE ─── */
+section.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  padding: 60px 56px;
+}
+
+section.split h2 {
+  grid-column: 1 / -1;
+}
+
+/* ─── PROBLEM SLIDE (red accent) ─── */
+section.problem {
+  border-top: 3px solid var(--red);
+}
+
+section.problem h2 {
+  color: var(--red);
+}
+
+/* ─── CLOSING / CTA SLIDE ─── */
+section.closing {
+  justify-content: center;
+  text-align: center;
+  border-top: 3px solid var(--gold);
+}
+
+section.closing h2 {
+  font-size: 42px;
+  margin-bottom: 24px;
+}
+
+section.closing p {
+  font-size: 22px;
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+
+section.closing a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE (for print-friendly PDF)
+   Use: <!-- _class: light -->
+   ═══════════════════════════════════════════ */
+
+section.light {
+  background: #FFFFFF;
+  color: #1A1A1A;
+}
+
+section.light::before {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+}
+
+section.light h1, section.light h2, section.light h3, section.light strong {
+  color: #1A1A1A;
+}
+
+section.light h4, section.light h5, section.light h6, section.light header {
+  color: #B8922E;
+}
+
+section.light p, section.light li {
+  color: #4A4D54;
+}
+
+section.light em {
+  color: #B8922E;
+}
+
+section.light code {
+  background: #F5F5F3;
+  border-color: rgba(0,0,0,0.06);
+}
+
+section.light blockquote {
+  border-left-color: #B8922E;
+}
+
+section.light table {
+  background: #F5F5F3;
+  border-color: rgba(0,0,0,0.06);
+}
+
+section.light th {
+  background: #EDECEA;
+  color: #6B6E75;
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+section.light td {
+  color: #4A4D54;
+  border-bottom-color: rgba(0,0,0,0.04);
+}
+
+section.light footer, section.light::after {
+  color: #6B6E75;
+}
+
+section.light li::marker {
+  color: #B8922E;
+}
