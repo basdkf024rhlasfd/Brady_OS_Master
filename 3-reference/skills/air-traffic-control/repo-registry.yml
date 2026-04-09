@@ -32,6 +32,20 @@ repos:
       - 3-reference/app-playbook.md                        # Client project setup pattern
       - 3-reference/publishing/mception-ai-projects.yml    # Publication allowlist
       - 3-reference/skills/air-traffic-control/SKILL.md    # This skill
+      - 3-reference/skills/config-sync/SKILL.md            # CLI ↔ workspace sync
+
+    sync_paths:
+      description: "Files monitored by config-sync skill for CLI drift detection"
+      git_tracked:
+        - "3-reference/skills/*/SKILL.md"
+        - "3-reference/skills/*/references/**"
+        - "3-reference/skills/CLAUDE.md"
+        - "0-agents/custom-built-agents/*.md"
+        - "0-agents/CLAUDE.md"
+        - "CLAUDE.md"
+      standalone:
+        - path: "~/.claude/CLAUDE.md"
+          canonical_source: "in-repo"
 
   telly-bot:
     description: "Telegram-to-Notion dispatch bot — captures messages, photos, files to Streaming Notes"
