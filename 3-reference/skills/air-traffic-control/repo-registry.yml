@@ -46,6 +46,12 @@ repos:
       standalone:
         - path: "~/.claude/CLAUDE.md"
           canonical_source: "in-repo"
+      cowork_prompts:
+        description: "CoWork execution prompts that mirror repo skill files — compared via content hash"
+        - repo_source: "3-reference/skills/morning-sweep/SKILL.md"
+          cowork_copies:
+            - "~/Documents/Claude/Scheduled/morning-sweep/SKILL.md"
+            - "~/Downloads/morning-sweep-v2-prompt.md"
 
   telly-bot:
     description: "Telegram-to-Notion dispatch bot — captures messages, photos, files to Streaming Notes"
