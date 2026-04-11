@@ -59,6 +59,7 @@
 - **Marketing Templates:** `3-reference/skills/marketing-templates/SKILL.md` — Template-driven marketing assets (sell sheets, client one-pagers, capability overviews). Placeholder substitution + Playwright PDF. Templates in `references/`.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`
 - **OS Context Pack:** `3-reference/skills/os-context-pack/SKILL.md` — Generates a portable context pack for Claude Chat Projects. Trigger: "brady os context". Outputs custom instructions + knowledge file.
+- **Agent Debate:** `3-reference/skills/agent-debate/SKILL.md` — Stages structured debates between Brady OS agents on strategic questions. War room transcript format. Trigger: "stage a debate", "agent debate", "war room".
 - **Cascading Accountability:** `3-reference/skills/cascading-accountability/SKILL.md` — AI-native management system for CEO daily briefings. Surfaces performance signals, risk flags, and pre-drafted communications. Templates + OKR tracker + whitepaper.
 
 ## Scripts
