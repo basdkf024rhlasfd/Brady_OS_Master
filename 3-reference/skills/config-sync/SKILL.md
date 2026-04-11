@@ -1,9 +1,9 @@
 ---
 name: config-sync
 description: >
-  Detects drift between Conductor workspace files and Claude Code CLI files.
-  Compares skills, agents, and CLAUDE.md docs across checkout locations.
-  Reports which side is newer and offers one-command sync.
+  Detects drift between Conductor workspace files, Claude Code CLI files, and
+  CoWork execution prompts. Compares skills, agents, CLAUDE.md docs, and CoWork
+  prompts across all surfaces. Reports which side is newer and offers sync commands.
 
   Trigger this skill whenever Brady says "config sync", "are my skills current",
   "check CLI files", "sync skills", "sync config", "are things in sync",
@@ -58,6 +58,13 @@ Configured in `repo-registry.yml` under `brady-os.sync_paths`:
 ### Standalone (compared via content hash)
 - `~/.claude/CLAUDE.md` — Global Claude Code instructions (not in any repo)
 
+### CoWork Prompts (compared via content hash against repo source)
+CoWork execution prompts live outside the repo but must stay in sync with the repo SKILL.md they mirror.
+Configured in `repo-registry.yml` under `brady-os.sync_paths.cowork_prompts`.
+
+- `~/Documents/Claude/Scheduled/morning-sweep/SKILL.md` — mirrors `3-reference/skills/morning-sweep/SKILL.md`
+- `~/Downloads/morning-sweep-v2-prompt.md` — backup copy, same source
+
 ## Execution Steps
 
 ### Step 1: Resolve Locations
@@ -94,6 +101,16 @@ For each file in the manifest:
 2. Compare against the repo version (if a canonical source is tracked)
 3. If hashes match → **CURRENT**
 4. If hashes differ → show diff summary and let Brady decide
+
+**CoWork prompt files (compared via content hash against repo source):**
+1. For each entry in `sync_paths.cowork_prompts`, compute `shasum -a 256` of the CoWork copy
+2. Compute `shasum -a 256` of the `repo_source` file in the workspace
+3. If hashes match → **CURRENT**
+4. If hashes differ → flag as **COWORK STALE** — the repo is canonical, CoWork copy needs updating
+5. If CoWork file is missing → flag as **MISSING** with the expected path
+6. Note: CoWork prompts may intentionally contain extra sections (references, Notion IDs, etc.)
+   that don't exist in the repo SKILL.md. Only compare the Phase 3 structure and skill logic,
+   not supplementary reference sections. When hashes differ, show a summary of what's different.
 
 **Ambiguous cases (both sides changed independently):**
 - If both sides have different commits that are not ancestors of each other → flag as **CONFLICT**
@@ -145,6 +162,10 @@ FILE DRIFT
     0-agents/CLAUDE.md ................. [CURRENT | DIFFERS]
     3-reference/skills/CLAUDE.md ....... [CURRENT | DIFFERS]
     ~/.claude/CLAUDE.md ................ [CURRENT | DIFFERS]
+
+  CoWork Prompts:
+    morning-sweep (Documents) .......... [CURRENT | COWORK STALE | MISSING]
+    morning-sweep (Downloads) .......... [CURRENT | COWORK STALE | MISSING]
 
 -----------------------------------------------
 SUMMARY
