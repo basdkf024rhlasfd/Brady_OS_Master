@@ -1,0 +1,181 @@
+**CONFIDENTIAL — NOT FOR DISTRIBUTION**
+
+**To: Chad**
+
+**From: Brady**
+
+**Date: March 31, 2026**
+
+**Re: The AI piece for Greg — what Bill and I are both missing**
+
+**Scoring key (on every paragraph):**  
+
+**C** = Confidentiality risk (0 = public info, 10 = I’d get sued)
+
+**V** = Verification certainty (0 = my guess, 10 = direct public quotes from named leaders)
+
+Chad — here’s the AI section for what we’re putting together for Greg. Bill’s whitepaper is excellent on pricing, merchandising, org structure, and e-commerce. Your stuff covers the operator and political landscape. Neither of you go deep on AI, and that’s the biggest gap. This is the piece that ties it together.  [C:0 / V:10]
+
+I’ve scored every paragraph so you can see what’s fully sourced public information vs. what comes from my time at Kroger or my network at Walmart. Use the scores to decide what you’re comfortable putting in front of Greg directly vs. what you want to hold back for a conversation.  [C:0 / V:10]
+
+# **1. Walmart Is 2–3 Years Ahead on AI**
+
+In July 2025, Walmart created an EVP-level role for AI Acceleration, Product and Design and hired Daniel Danker, the former Chief Product Officer of Instacart, to fill it. Danker now leads AI transformation and all product management and design across the entire enterprise. This wasn’t a CTO hiring a vendor. This was Doug McMillon making AI a board-level organizational priority.  [C:0 / V:10]
+
+In the same period, Walmart consolidated dozens of fragmented AI tools into four enterprise-wide “super agents” — one for customers (Sparky), one for associates, one for sellers/suppliers, and one for developers. Their CTO, Suresh Kumar, described building agents that manage other agents. At the ICR Conference in January 2026, Danker said publicly: “This is the year where tinkering becomes transformation.”  [C:0 / V:10]
+
+They also elevated Brian Knapp to SVP of AI & Data, who created a new Agent Builders organization specifically to develop AI agents across the enterprise. These aren’t lateral moves. Walmart restructured reporting lines and created entirely new leadership pillars around AI.  [C:0 / V:10]
+
+## **What They’ve Built**
+
+- **Wally** — an AI agent for merchandising. Real-time inventory imbalance detection. Analyzes weather, social media, logistics disruptions. Autonomously reroutes stock. Merchants ask questions in plain language and get answers in seconds instead of hours in Excel. $55M+ in waste savings in 2025 alone. Built under Brian Knapp, SVP of Merchandising Transformation. [C:0 / V:9]
+
+- **Code Puppy** — an internal AI coding assistant for developers. Helps generate code, write unit tests, troubleshoot pipeline failures, and understand existing systems. Adoption has been rapid across multiple departments — engineering, finance, marketing. Walmart is now publicly discussing moving from “vibe coding” to “vibe testing” — using AI to validate code, not just write it. [C:0 / V:8]
+
+- **Marty** — an AI advertising assistant for Walmart Connect. Helps brands of any size build, optimize, and troubleshoot ad campaigns using conversational chat. Currently in beta for Sponsored Search campaigns. Available to all advertisers H1 2026. [C:0 / V:9]
+
+- **Sparky** — a customer-facing AI agent that recognizes repeat purchases, suggests orders, answers service questions, and sends reminders. 50% of Walmart app users have interacted with it. 35% higher average order value vs. non-Sparky users. Walmart has integrated Sparky into ChatGPT and Google Gemini so customers can shop Walmart through third-party AI platforms. Danker said the traditional search bar and Sparky will eventually merge into one system. [C:0 / V:10]
+
+- **WIBEY (Developer Agent)** — a unified entry point consolidating 200+ internal agents. Integrates CLI, Slack, VS Code. Single-prompt service scaffolding for developers across the enterprise. [C:0 / V:8]
+
+## **The Organizational Commitment**
+
+The organizational commitment is what separates this from a technology project. Walmart did the hard infrastructure work years ago — building a hybrid cloud architecture across private cloud, Azure, and Google Cloud so workloads can move between environments. They migrated their data into Google Cloud, which unlocked the ability to build AI tools on top of a unified data layer. That’s a multi-year investment that’s now paying dividends.  [C:0 / V:8]
+
+They reorganized their technology leadership to create dedicated AI roles at VP and EVP level. They’re hiring individual contributors and risk-takers, not layers of management. The tools spread organically because they’re genuinely useful — that’s a cultural signal, not just a technology one. McMillon has announced a headcount freeze through 2028 as AI absorbs growth. 900,000 associates are already using AI tools daily.  [C:0 / V:8]
+
+When you hire people like Danker and Knapp, and you give them real organizational authority, you create a flywheel. Top AI builders want to work where the problems are hard and the leadership gets it. Walmart is pulling talent that Kroger can’t even attract right now.  [C:0 / V:8]
+
+# **2. Where Kroger Stands**
+
+Kroger announced a Google Cloud / Gemini expansion in January 2026 for a customer-facing shopping assistant — meal planning, cart building, personalized recommendations. It’s a fine start. But it’s a purchased solution, not a capability. Kroger is buying off-the-shelf tools from Google. Walmart is building enterprise platforms that change how every function in the company operates.  [C:0 / V:9]
+
+To Kroger’s credit, on March 6 they elevated Milen Mahadevan — previously CEO of 84.51° — to Chief Data & AI Officer. That’s a step in the right direction, but it’s a new title on an existing leader, not the kind of structural move Walmart made by creating a new EVP role and hiring externally from Instacart. And Milen still reports to Yael Cosset, not the CEO. AI strategy at Kroger is still being driven inside the same technology organization that Bill’s paper identifies as the root of the e-commerce problem.  [C:1 / V:9]
+
+- **Leadership gap: **Walmart created an EVP-level AI role reporting to the CEO. Kroger’s new CDAIO still reports to Yael. Bill’s memo identifies Yael as lacking technology development experience and as the root of Kroger’s slow e-commerce progress. AI strategy at Kroger is being driven by the same team that’s struggling to fix the website. [C:1 / V:8]
+
+- **Data infrastructure gap: **Walmart built its hybrid cloud years ago so AI workloads run natively. Kroger’s data story is 84.51°, which is excellent for personalization and retail media analytics, but it’s a subsidiary — not an enterprise AI platform. AI at Kroger sits in pockets. At Walmart, it’s becoming the operating system. [C:0 / V:7]
+
+- **Talent gap: **While Kroger laid off staff in its Technology & Digital division and at 84.51° in 2025, Walmart was hiring Danker from Instacart and building dedicated agent teams. The talent pipeline in AI + retail is already tiny. Walmart is pulling in the best people. [C:0 / V:9]
+
+- **Board-level AI expertise gap: **Kroger’s closest thing to a “tech” board member is Ashok Vemuri — ex-Infosys, ex-Conduent. He’s a digital services and BPO executive. Solid, but that’s IT outsourcing-era thinking, not AI-era governance. There is nobody on Kroger’s board who has built or led AI at scale. [C:0 / V:7]
+
+- **Internal adoption gap: **Walmart reports 900,000 associates using AI tools. Kroger’s AI use cases — inventory robots in ~35 stores, dynamic batching for pickup orders — are real but narrow. Pilots, not transformation. [C:0 / V:8]
+
+- **Capital still pointed backward: **Kroger just took a $2.5B impairment on the Ocado fulfillment network. They’re spending $3.8–$4.0B in capex this year. Where is the AI allocation within that? If it’s not a visible, named line item in the capital plan, it’s an afterthought. [C:0 / V:8]
+
+# **3. The Supplier Risk Nobody Is Talking About**
+
+This is the part that should keep Kroger’s board up at night.  [C:0 / V:10]
+
+Walmart is building AI agents that their suppliers use to run advertising campaigns (Marty), access retail data insights (Scintilla), and manage their business on Walmart’s platform. Today, these tools help suppliers sell to Walmart. But the trajectory is clear — suppliers will start using these same tools for all of their business, not just their Walmart account. When the AI agent that manages your trade spend, plans your promotions, and optimizes your pricing is built by Walmart, you have a structural dependency that goes way beyond shelf space.  [C:1 / V:7]
+
+This is the same platform play we’ve seen in tech: the company that owns the workflow owns the relationship. If Kroger’s suppliers are running Walmart-built AI tools to manage their entire retail business, Kroger becomes a secondary customer on someone else’s platform.  [C:0 / V:8]
+
+Kroger actually has a natural advantage here that it’s not using. Kroger has better relationships with the large marketplace companies — Instacart, DoorDash, Uber Eats — than Walmart does. Kroger’s willingness to partner rather than compete on last-mile should extend to AI infrastructure. Instacart’s AI-powered tools (Cart Assistant, catalogue management, Caper Smart Carts) are already better than what Kroger could build alone. But someone needs to think about this as an ecosystem play, not just a delivery contract.  [C:2 / V:6]
+
+# **4. What Kroger Needs to Do on AI**
+
+The Ocado impairment proved Kroger can’t afford another multi-billion-dollar technology bet that misreads the market. The AI strategy needs to be capital-light, fast, and built on partnerships.  [C:0 / V:9]
+
+## **a. Create a senior AI leadership role that reports to the CEO**
+
+AI can’t be a sub-function of the team that’s struggling to fix the website. The Milen Mahadevan promotion to Chief Data & AI Officer is a step, but he still reports to Yael, not Greg. This person needs to own AI strategy across merchandising, supply chain, store operations, supplier partnerships, and retail media as a peer to the CFO and COO. Walmart made this move 9 months ago. Kroger needs to complete the move, not just rename a role.  [C:0 / V:9]
+
+## **b. Add AI expertise to the board**
+
+Kroger needs someone on the board who has actually built and shipped AI at scale. Not a digital services exec, not a management consultant — someone who has led AI organizations at companies where it’s a core capability. Think former heads of AI at major tech or fintech companies, AI lab founders, or senior leaders from Google, Meta, or similar. The board needs someone who can pressure-test Kroger’s AI investments and hold management accountable on a technology trajectory that most of the current board isn’t equipped to evaluate.  [C:0 / V:9]
+
+## **c. Redirect capital from legacy fulfillment to AI-relevant investments**
+
+The remaining five Ocado CFCs (Monroe, Dallas, Atlanta, Denver, Detroit) and the planned Phoenix site need a hard cost-benefit analysis against what that capital could do if redirected toward AI-powered store-based fulfillment — which is already the stated strategy. Every dollar keeping a CFC alive is a dollar not going toward the tools that will determine competitiveness in 2–3 years.  [C:1 / V:8]
+
+## **d. Build AI tools for associates, not just customers**
+
+The Gemini shopping assistant is customer-facing. That’s table stakes. Where Walmart is winning is internal — merchants getting instant data analysis, developers shipping code faster, store associates getting AI-assisted task management. Kroger has 400,000+ associates. If each one saves 30 minutes a day, that’s the equivalent of adding tens of thousands of employees. Fastest ROI in the company.  [C:0 / V:8]
+
+## **e. Leverage marketplace partnerships for AI, not just delivery**
+
+Expand the Instacart/DoorDash/Uber relationships beyond last-mile delivery into shared AI infrastructure — Instacart’s catalogue AI and Caper Smart Carts, DoorDash’s logistics optimization, Uber’s demand forecasting. Kroger should be the largest retailer in America that’s willing to partner rather than build everything itself. Make that the identity, and the ecosystem comes to you.  [C:1 / V:6]
+
+## **f. Build a supplier-facing AI platform before Walmart locks them in**
+
+Kroger Precision Marketing and 84.51° are the foundation. The data asset is world-class. But it’s being used for personalization and retail media, not for building supplier tools that create structural dependency. Whoever builds the platform that CPG companies run their business on wins the next decade. Kroger has the data. It needs the tools.  [C:1 / V:7]
+
+## **g. Engage Prakhar Mehrotra as an AI advisor**
+
+Prakhar Mehrotra is currently SVP and Global Head of AI at PayPal. Before that, he was Corporate Vice President of Applied AI at Walmart Global Tech, where he ran AI for e-commerce and retail operations. He also did a stint as Managing Director and Head of AI at Blackstone. He’s got a PhD from Caltech and sits on the National Academy of Sciences’ AI Roundtable.  [C:0 / V:9]
+
+Here’s why he matters for this pitch:
+
+- **Greg knows him.** Prakhar was at Walmart Global Tech during and after Greg’s tenure. There’s already a relationship there.
+
+- **PayPal is a Kroger partner.** PayPal processes payments across Kroger’s ecosystem. There’s a natural partnership angle where Prakhar could advise Kroger on AI strategy without a full-time commitment — it’s mutually beneficial.
+
+- **He’s publicly visible on agentic commerce.** He’s been speaking at Fortune Brainstorm AI, Bloomberg Tech Disruptors, and the AI Impact Summit about agentic commerce and the shift from the “information era” to the “intelligence era.”
+
+- **He bridges retail and fintech AI.** His career arc — Walmart to Blackstone to PayPal — gives him a cross-sector perspective that pure retail operators don’t have.
+
+The suggestion to Greg: bring Prakhar in as an AI advisor or board observer. It’s a low-friction, high-signal move that immediately changes the conversation about how seriously Kroger is taking AI.  [C:0 / V:8]
+
+# **5. What Was on the Table That Rodney Left Behind**
+
+One thing Bill’s memo doesn’t cover is what the alternative e-commerce deals actually looked like before Kroger went all-in on Ocado. I was in the room for these conversations:  [C:4 / V:10]
+
+- **Uber** offered approximately $140 million in marketing funds to build out a partnership. [C:6 / V:10]
+
+- **DoorDash** was exploring co-branded Dashmarts — joint fulfillment locations for Kroger customers. [C:5 / V:10]
+
+- **Instacart** offered to deploy hundreds of micro-fulfillment centers, entirely on their dime, profitable from day one. [C:6 / V:10]
+
+Bill’s pitch says “Ocado was a bad bet.” This turns it into “here’s exactly what was left on the table, and some of these doors may still be open.” That’s the kind of intelligence that helps a new CEO move faster.  [C:2 / V:9]
+
+The cleanup cost is the other piece. The $2.5 billion impairment is the accounting charge, but the actual operational cost of unwinding the remaining five CFCs — severance, lease obligations, technology decommissioning, customer migration — will be hundreds of millions beyond what’s been disclosed. The Florida CFC closure alone is a ~$350M headwind to total sales in 2026. If you’re going to shut the rest down, sequencing matters — one coordinated exit in the first year while you still have investor goodwill, not five separate write-downs over five quarters.  [C:3 / V:7]
+
+# **6. The Bigger Lesson**
+
+The Ocado situation wasn’t just a bad technology bet. The deeper issue was a leadership team that spent billions trying to own the customer relationship through infrastructure, rather than recognizing that the market had moved toward partnerships and speed. The same pattern is available with AI. Buying a Google shopping assistant and calling it an AI strategy would repeat the exact same mistake — confusing a purchased solution with a real capability.  [C:1 / V:8]
+
+Greg has the credibility and the investor goodwill to make a different choice. But the window is narrowing. Every quarter Walmart gets further ahead on internal AI tools, supplier-facing platforms, and organizational muscle is a quarter Kroger falls further behind on something much harder to catch up on than pricing or store operations.  [C:0 / V:7]
+
+**GREG-READY OUTLINE**
+
+*Chad — below is a clean section you can paste into your email, deck, or framework for Greg. No scores, no commentary. Ready to use as-is or adapt.*
+
+**AI: The Capability Gap That’s Growing**
+
+*Prepared for Greg Foran, CEO, The Kroger Co.*
+
+## **The Competitive Reality**
+
+Walmart has reorganized its technology leadership around AI as a core enterprise capability. They’ve created dedicated AI leadership roles at EVP and SVP level, migrated to cloud-native data infrastructure, and deployed internal AI tools — merchandising analytics, coding assistants, advertising optimization, inventory management — that have achieved rapid organic adoption across 900,000 associates. Their four “super agents” serve customers, associates, suppliers, and developers. The customer-facing agent has been used by 50% of Walmart app users and drives 35% higher average order values. Internal AI productivity tools went viral across departments because they’re genuinely useful. The talent flywheel is accelerating — top AI builders want to work where the problems are hard and the leadership understands the opportunity.
+
+Kroger’s AI posture today is consumer-facing features without enterprise infrastructure. The January 2026 Google Cloud expansion for a customer-facing shopping assistant is a good step, and the March 2026 elevation of Milen Mahadevan to Chief Data & AI Officer signals intent. But the CDAIO role still reports inside the existing technology organization, not directly to the CEO. There is no AI expertise on the board. AI at Kroger today sits in pockets — inventory pilots in ~35 stores, dynamic batching for pickup orders, retail media personalization through 84.51°. It’s not yet changing how merchants work, how associates operate, or how suppliers engage with the company.
+
+## **The Supplier Platform Risk**
+
+Walmart is building AI tools that suppliers will use across their entire business — not just the Walmart account. Demand forecasting, assortment planning, promotional optimization, advertising management. Once embedded in supplier workflows, these tools create enormous switching costs. Kroger risks becoming a secondary customer managed through a competitor’s AI infrastructure.
+
+Kroger’s counter-positioning: leverage marketplace partnerships (Instacart, DoorDash, Uber Eats) and become the platform-friendly grocer these companies want to build with. This requires AI-literate leadership and strategic intent.
+
+## **What Needs to Happen**
+
+- **Appoint AI leadership that reports to the CEO.** AI can’t be a sub-function of the team that’s struggling to fix the website. The CDAIO role needs to be a peer to the CFO and COO — owning AI strategy across merchandising, supply chain, store operations, and supplier partnerships. Walmart made this move 9 months ago. Kroger needs to complete it.
+
+- **Add AI expertise to the board.** Recruit a board member who has built and led AI at scale. The current board lacks the technical depth to evaluate AI investments or hold management accountable on this trajectory.
+
+- **Reallocate capital toward AI.** The $2.5B Ocado impairment is a painful lesson in misallocated capital. With $3.8–$4.0B in planned capex this year, AI must be a visible, named investment priority — not buried inside IT budgets.
+
+- **Elevate 84.51° from subsidiary to platform.** Kroger’s data science capability is world-class but siloed. Integrate it as an enterprise AI platform rather than operating it as a separate analytics service.
+
+- **Deploy associate-facing AI tools.** Start with internal productivity — coding assistants, merchandising analytics, scheduling optimization. These build AI literacy across the organization and create the culture of adoption that Walmart already has. 400,000+ associates. Fastest ROI in the company.
+
+- **Expand marketplace partnerships into AI.** Kroger’s relationships with Instacart, DoorDash, and Uber Eats are a competitive advantage. Extend them beyond delivery into shared AI infrastructure: catalogue intelligence, logistics optimization, demand forecasting.
+
+- **Build a supplier-facing AI platform.** Kroger Precision Marketing and 84.51° have world-class data. Turn that into tools suppliers actually use to run their business, before Walmart’s platform becomes the default.
+
+- **Engage external AI advisors.** Kroger has an opportunity to bring in advisors who understand AI in retail at the highest level. Prakhar Mehrotra — currently SVP and Global Head of AI at PayPal, formerly Corporate VP of Applied AI at Walmart Global Tech — is one example. He knows the Kroger ecosystem (PayPal is a payment partner), he knows Greg from Walmart, and he’s one of the most visible voices on agentic commerce in the industry. An advisory engagement or board observer role would be a high-signal, low-friction move.
+
+**Bottom line: **Bill’s paper tells Greg what’s broken operationally. Your perspective tells him who to trust and how to navigate the politics. This section tells him what’s coming that neither of those cover — and it’s coming fast. If we put all three together, it’s the most complete transformation brief he’ll get from anyone outside the building.
+
+The Ocado experience showed what happens when Kroger makes a multi-billion-dollar technology bet that misreads the market. The AI strategy should be the opposite: capital-light, partnership-driven, and focused on building real organizational capability rather than purchasing a vendor’s product.
