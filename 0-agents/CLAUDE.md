@@ -7,3 +7,4 @@
 - Musashi San is Head Coach for build execution
 - Yuki Ronin executes specs under Musashi San's direction
 - Telly is the Telegram-to-Notion dispatch bot (captures messages, photos, files to Streaming Notes)
+- Wyatt Earp is the ad hoc dissent agent (pressure-tests pitches and strategic recommendations for being too timid)
