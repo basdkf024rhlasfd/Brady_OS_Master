@@ -28,3 +28,7 @@ published_projects:
     project: "Project - LinkedIn and Substack Content Engine"
     approved: 2026-03-30
     notes: "Brady's personal content pipeline — LinkedIn and Substack drafting, voice check, publishing tracker"
+  - slug: kroger
+    project: "Project - Kroger"
+    approved: 2026-04-12
+    notes: "Kroger management OS whitepaper and strategy materials for prospect sharing"

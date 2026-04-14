@@ -1,0 +1,24 @@
+# §7.1 Banner Divestitures
+
+## Situation
+Kroger operates 14 distinct banners across North America, inherited through decades of M&A — Ralphs, King Soopers, Fred Meyer, Harris Teeter, Mariano's, Smith's, Fry's, Pick 'n Save, Metro Market, QFC, Dillons, Gerbes, Food 4 Less, and Ruler Foods. Each banner carries distinct operating models, margin profiles, real estate footprints, and supply chain requirements. This inherited portfolio made sense as a growth play through the 1990s-2010s. It does not make sense now. Fred Meyer alone generates $18.2B in annual sales but demands wholly separate operations in the Pacific Northwest and Great Plains. Harris Teeter drives traffic in the Mid-Atlantic but operates on a premium positioning that sits uneasily next to the Kroger core banner. The portfolio is a tax on centralized decision-making — every supply chain decision, every private label rollout, every technology investment, every pricing test has to thread the needle across incompatible formats and geographies.
+
+## Complication
+The failed Albertsons merger threw off any near-term rationalization plans. Regulatory pressure made clear that scale consolidation via M&A is off the table. But the complication cuts deeper: divestitures are not a capital event — they're a **supply chain and retail media event**. When you divest a banner, you don't just hand off stores. You hand off distribution, supplier relationships, private label supply agreements, and customer data. Bundling these together correctly determines whether divestiture improves or worsens Kroger's core competitive position. Divest the wrong banner and you hemorrhage private label manufacturing capability. Divest Harris Teeter without restructuring Mid-Atlantic distribution and you undermine the entire East Coast footprint. The worst-case scenario is a fire-sale that transfers leverage to a competitor. The best-case scenario is a structured portfolio reset that simplifies operations, frees capital, and actually improves negotiating leverage with the remaining supplier base.
+
+## Resolution
+**Divestiture candidates in order of strategic rationale:**
+
+**1. Ruler Foods (immediate).** Smallest, lowest integration, operates 21 stores in Illinois/Missouri. Divest as-is with supply chain support from core Kroger DC. This is a cash event with zero strategic fallout and it tests the M&A mechanics.
+
+**2. Food 4 Less (12–18 months).** 101 stores across California, Illinois, Indiana. Operating model is pure discount — high volume, minimal margin. Incompatible with Kroger's omnichannel strategy and KPM-enabled pricing. Can be bundled with supply chain support and legacy Signature/Simple Truth private label contracts. Strategic gain: removes lowest-margin operations; frees California distribution capacity for Ralphs concentration.
+
+**3. Harris Teeter (18–30 months).** This is the hardest call and the highest value. Harris Teeter generates ~$2B in sales with strong Mid-Atlantic market position. But its premium positioning, separate supply chain, and regional scale make it strategically misaligned with Kroger's precision-marketing and private label consolidation. A structured sale to a regional operator (or financial buyer with operational expertise) unlocks $3–5B in cash while preserving supply chain relationships through transition agreements. The sale price depends on anchoring clean operations to a buyer who can run it as a standalone business. Alternative: rebrand as Kroger and consolidate the Mid-Atlantic distribution footprint (lower upside but faster integration).
+
+**4. Mariano's (24–36 months).** Chicago-area banner with strong local brand equity. Similar rationale to Harris Teeter — premium format, separate operations, strong market but limited synergy upside. Can be sold to private equity or regional operator. Frees Chicago-area real estate and DC capacity for core Kroger.
+
+**5. Fred Meyer (long-term option, not immediate).** Fred Meyer is the hardest decision because it's profitable ($18.2B sales, second-most profitable banner) but operationally isolated in the Pacific Northwest/Great Plains. If Foran decides to rebuild the West, keep it. If the West is not core growth, divest in 2027+ to a regional operator or break it into smaller banners. For now, treat as a strategic option pending the West Coast strategy call (separate workstream, not in scope here).
+
+**Financial impact:** Divestitures 1–4 unlocked ~$5–8B in cash (net of transition costs and supply chain agreements). Reinvestment targets: technology, supply chain automation, private label manufacturing, and store refresh in high-growth geographies.
+
+**Cross-domain entanglement:** Banner rationalization directly drives supply chain footprint optimization (§8.1 — eliminate redundant DCs, consolidate private label suppliers) and retail media scale (§9 — unified customer data across fewer formats allows more efficient KPM ad network and 84.51° licensing).
