@@ -56,6 +56,26 @@ Examples:
 - board-governance owner
 - product owner for one venture
 
+### 7. Dissent Agent / Devil's Advocate
+
+Purpose:
+
+- pressure-tests pitches, strategic recommendations, and plans before they ship
+- catches timidity, groupthink, and unstated assumptions
+- constructive opposition that strengthens the final output
+
+This role can be activated on-demand — a "dissent protocol" — rather than running all the time. Most useful before high-stakes external communications or major scope decisions.
+
+### 8. Dispatch / Intake Bot
+
+Purpose:
+
+- lightweight routing agent that takes captures from informal channels (messaging apps, voice notes, quick texts)
+- classifies by type (task, note, reference, event) and routes to the right inbox
+- does not interpret — just dispatches
+
+This is a good candidate for early automation. Keep it simple.
+
 ## Rule
 
-Start with 3-5 roles total. Add more only when the work demands it.
+Start with 3-6 roles total. The Dissent Agent and Dispatch Bot are optional — add them when the work demands it.

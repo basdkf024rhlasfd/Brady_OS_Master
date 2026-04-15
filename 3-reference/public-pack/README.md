@@ -26,9 +26,10 @@ Use these files in order:
 
 1. [PUBLIC-OVERVIEW.md](PUBLIC-OVERVIEW.md)
 2. [SETUP-CHECKLIST.md](SETUP-CHECKLIST.md)
-3. [CUSTOMIZATION-WORKSHEET.md](CUSTOMIZATION-WORKSHEET.md)
-4. [ACTIVATION-AGENT.md](ACTIVATION-AGENT.md)
-5. [REBUILD-GUIDE.md](REBUILD-GUIDE.md)
+3. [SKILLS-AND-EXTENSIONS.md](SKILLS-AND-EXTENSIONS.md)
+4. [CUSTOMIZATION-WORKSHEET.md](CUSTOMIZATION-WORKSHEET.md)
+5. [ACTIVATION-AGENT.md](ACTIVATION-AGENT.md)
+6. [REBUILD-GUIDE.md](REBUILD-GUIDE.md)
 
 Then use the files in [templates/](templates/) to create the first live version.
 
@@ -40,8 +41,9 @@ Zip this entire `public-pack/` folder and share that zip, not the full Brady OS 
 
 - `PUBLIC-OVERVIEW.md`: friend-safe explanation of the system
 - `SETUP-CHECKLIST.md`: local prerequisites and tool choices
+- `SKILLS-AND-EXTENSIONS.md`: the skills layer, imported skills governance, and advanced patterns
 - `CUSTOMIZATION-WORKSHEET.md`: the user-specific decisions the recipient must make
 - `ACTIVATION-AGENT.md`: prompt for an AI assistant to walk the recipient through setup
 - `REBUILD-GUIDE.md`: compact implementation guide
-- `STARTER-AGENTS.md`: abstracted starter-agent pack
-- `templates/`: starter files for Areas, Programs, Projects, and custom agents
+- `STARTER-AGENTS.md`: abstracted starter-agent pack (8 roles including dissent and dispatch)
+- `templates/`: starter files for Areas, Programs, Projects, custom agents, and skills

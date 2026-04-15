@@ -31,6 +31,8 @@ Brady OS separates the system into four layers:
 
 The key move is this: Tasks are not where meaning lives. Meaning lives higher up, in Areas and Programs.
 
+The system also supports **Skills** — reusable standard operating procedures that any agent can execute. Skills are not agents. They have no identity or personality. They are repeatable playbooks: a morning sweep, a client engagement sequence, a weekly review. Skills can compose — one skill can orchestrate several others into a pipeline.
+
 ## The Core Governance Rule
 
 The system protects three decision horizons:
@@ -41,6 +43,13 @@ The system protects three decision horizons:
 
 The day is not allowed to decide what matters.
 
+## Extensions and Governance
+
+As you run the system, two patterns will emerge:
+
+- **Imported skills**: external frameworks or SOP packs can be brought into the system as standalone packages. Store them as-is, reference or selectively promote them into core skills, but never blindly merge them in. This keeps the core clean while letting you absorb useful external material.
+- **Governance amendments**: real life will expose gaps between what your SOPs say and what actually works. Record these as amendments that overlay existing rules without rewriting them. An agent that cannot actually access a tool it was designed to use, or a processing step that has no SOP yet — write it down and keep moving.
+
 ## What You Actually Build
 
 A first version usually includes:
@@ -50,6 +59,8 @@ A first version usually includes:
 - 1 current Project
 - one AI activation guide
 - one lightweight Notes/Memory intake flow
+- 1-2 reusable skills (repeatable workflows your agents can execute)
+- one intake path that can detect action items, not just store notes
 
 ## What You Customize Yourself
 
@@ -60,5 +71,6 @@ No one should clone this package without changing these things:
 - the tools you already use
 - your review cadence
 - your custom-agent names, tones, and roles
+- your starter skills and which workflows to automate first
 
 That final 10-20 percent is the point. The package gives you structure, not identity.
