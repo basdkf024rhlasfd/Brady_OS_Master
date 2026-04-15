@@ -57,6 +57,76 @@ runs:
       - "Four Canva images per idea is the right volume — hero, lifestyle, close-up, alternate gives enough visual variety"
       - "RTBs grounded in specific market data (with sources) are dramatically more credible than general trend assertions"
       - "The pitch works best when it connects Brady's specific experience to the product — not generic founder-market fit"
+      - "DELIVERY FIX (run 1): Canva design.canva.ai thumbnail URLs break in HTML — must export via create-from-candidate + export-design + curl download to local PNGs"
+      - "DELIVERY FIX (run 1): Use object-fit: contain (not cover) on hero images — cover crops the product out of frame"
+      - "DELIVERY FIX (run 1): Every product page needs Competitive Landscape (what's already out there) and Operational Complexity (cold chain, multi-temp, co-pack MOQ)"
+      - "DELIVERY FIX (run 1): Font hierarchy must be dramatic — 36px product names, 20px section titles, 14px body. If headers look like body text, the hierarchy is wrong"
+      - "DELIVERY FIX (run 1): page-break-inside: avoid on product pages is non-negotiable — content must never split mid-product"
+
+  - date: "2026-04-15-run2"
+    category: "Functional Indulgence — Performance Bakery & Snacks"
+    input_trends:
+      - "Creatine in snack foods"
+      - "Indulgent treats with clean ingredients (Crumbl model)"
+      - "Protein in fresh baked goods for in-store bakery"
+    input_source: "Eric (3 converging trends)"
+    methods_used: [4, 9, 15, 21, 24, 51, 55, 56, 57, 58]
+    ideas_generated: 32
+    ideas_surviving: 20
+    top_picks:
+      - name: "The Crumbl Model for Protein"
+        method: 15
+        score: 4.5
+        tags: [analogous-inspiration, social-first, weekly-drop, high-impact]
+      - name: "The Anti-Protein Bar"
+        method: 9
+        score: 4.4
+        tags: [blue-ocean, positioning, disruptive, low-effort]
+      - name: "Creatine Blondies"
+        method: 4
+        score: 4.3
+        tags: [creatine, first-mover, low-effort, high-impact]
+      - name: "Gym Rat Donut"
+        method: 24
+        score: 4.3
+        tags: [mashup, viral, indulgent, protein-creatine]
+      - name: "$2 Protein Cookie"
+        method: 57
+        score: 4.3
+        tags: [downmarket, mass-market, disruptive, low-effort]
+    method_performance:
+      4:  { ideas_raw: 4, survivors: 3, hit_rate: 0.75, notes: "JTBD strong again — consumer job framing produces actionable ideas" }
+      9:  { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Blue Ocean Eliminate/Create grid revealed fresh bakery vs protein bar opportunity" }
+      15: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Crumbl model transfer was highest-scored concept but other transfers were too forced" }
+      21: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "SCAMPER maintains 100% hit rate across both runs — Substitute and Reverse both strong" }
+      24: { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Maximum contrast mashups (donut × protein) generated highest viral potential" }
+      51: { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "TikTok drops + That Girl persona validated by massive existing audiences" }
+      55: { ideas_raw: 4, survivors: 1, hit_rate: 0.25, notes: "Performance Bakery endcap is ambitious but high-effort — other concepts were merchandising, not products" }
+      56: { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Heritage cookie + madeleines — premium + protein is underexplored intersection" }
+      57: { ideas_raw: 2, survivors: 1, hit_rate: 0.50, notes: "$2 cookie scored high on market size — quality floor constraint essential" }
+      58: { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Tube format and clear-window system scored well on differentiation" }
+    category_coverage:
+      "Premium Foodservice / CPG": 1
+      "Construction / Industrial Consumables": 0
+      "AI-Powered Physical Products": 0
+      "Dad / Family Consumer Products": 0
+      "Beverage (Functional / Premium)": 0
+      "Professional / B2B Tools": 0
+      "Functional Indulgence — Performance Bakery & Snacks": 1
+    category_gaps_identified:
+      - "Beverage lane still untouched — natural extension with different margin and format dynamics"
+      - "Dad/Family lane leverages Brady's daily experience — high authenticity potential"
+      - "Industrial lane has high margin but low visual testability — pair with AI-powered for tech angle"
+      - "Creatine in beverage format is a natural adjacency from this bakery run"
+    learnings:
+      - "SCAMPER (#21) is the only method to maintain 100% hit rate across 2 runs — it is the anchor method for product innovation"
+      - "Category Design (#55) hit rate dropped from 33% to 25% — consistently low on 'speed to prototype'. Use sparingly (once per run max)."
+      - "External trend inputs (Eric's 3 trends) produced a more focused and productive run than internal category selection alone"
+      - "Convergence framing (3 trends → 1 lane) is more productive than single-trend ideation"
+      - "Creatine is the easiest functional ingredient to integrate into bakery — flavorless, heat-stable, water-soluble, cheap"
+      - "The 'fresh > wrapped' insight (bakery trust > protein bar trust) is the category's core strategic thesis"
+      - "Downmarket Disruption needs a 'quality floor' constraint — confirmed across both runs"
+      - "Maximum contrast mashups (most indulgent format × most functional ingredient) produce the highest viral potential"
 
 # Cumulative idea library — prevents duplicates across runs
 idea_library:
@@ -80,3 +150,24 @@ idea_library:
   - { name: "Dissolvable Seasoning Sheets", category: "CPG", method: 58, date: "2026-04-15" }
   - { name: "$3 Chef Sauce", category: "CPG", method: 57, date: "2026-04-15" }
   - { name: "Window Jar Pantry Line", category: "CPG", method: 58, date: "2026-04-15" }
+  # Run 2 — Functional Indulgence: Performance Bakery & Snacks
+  - { name: "Creatine Blondies", category: "Performance Bakery", method: 4, date: "2026-04-15-run2" }
+  - { name: "Clean-Label Cookie Dough Bites", category: "Performance Bakery", method: 4, date: "2026-04-15-run2" }
+  - { name: "Post-Workout Banana Bread", category: "Performance Bakery", method: 4, date: "2026-04-15-run2" }
+  - { name: "The Anti-Protein Bar", category: "Performance Bakery", method: 9, date: "2026-04-15-run2" }
+  - { name: "Creatine Croissants", category: "Performance Bakery", method: 9, date: "2026-04-15-run2" }
+  - { name: "The Crumbl Model for Protein", category: "Performance Bakery", method: 15, date: "2026-04-15-run2" }
+  - { name: "Builder's Dozen", category: "Performance Bakery", method: 15, date: "2026-04-15-run2" }
+  - { name: "Inside-Out Cinnamon Roll", category: "Performance Bakery", method: 21, date: "2026-04-15-run2" }
+  - { name: "Creatine Sugar Cookies", category: "Performance Bakery", method: 21, date: "2026-04-15-run2" }
+  - { name: "Protein Pretzel Bites", category: "Performance Bakery", method: 21, date: "2026-04-15-run2" }
+  - { name: "Gym Rat Donut", category: "Performance Bakery", method: 24, date: "2026-04-15-run2" }
+  - { name: "Creatine Rice Krispie Treats", category: "Performance Bakery", method: 24, date: "2026-04-15-run2" }
+  - { name: "TikTok Bakery Drops", category: "Performance Bakery", method: 51, date: "2026-04-15-run2" }
+  - { name: "That Girl Breakfast Cookies", category: "Performance Bakery", method: 51, date: "2026-04-15-run2" }
+  - { name: "$8 Heritage Protein Cookie", category: "Performance Bakery", method: 56, date: "2026-04-15-run2" }
+  - { name: "Creatine Madeleines", category: "Performance Bakery", method: 56, date: "2026-04-15-run2" }
+  - { name: "$2 Protein Cookie", category: "Performance Bakery", method: 57, date: "2026-04-15-run2" }
+  - { name: "Creatine Cookie Tubes", category: "Performance Bakery", method: 58, date: "2026-04-15-run2" }
+  - { name: "Clear-Window Protein Boxes", category: "Performance Bakery", method: 58, date: "2026-04-15-run2" }
+  - { name: "Performance Bakery Endcap", category: "Performance Bakery", method: 55, date: "2026-04-15-run2" }

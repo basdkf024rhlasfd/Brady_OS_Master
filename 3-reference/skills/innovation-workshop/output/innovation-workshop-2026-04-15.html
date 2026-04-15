@@ -234,50 +234,36 @@
   .meta-value.med { color: var(--blue); }
   .meta-value.low { color: var(--gray-light); }
 
-  /* Image placeholder cards */
+  /* Image cards */
   .product-images {
-    display: grid; grid-template-columns: 1.8fr 1fr; gap: 12px; margin-bottom: 24px;
+    margin-bottom: 24px;
   }
   .hero-image {
-    grid-row: 1 / 4; border-radius: 8px; overflow: hidden;
-    background: var(--bg-card-alt); min-height: 300px;
+    border-radius: 8px; overflow: hidden;
+    background: var(--bg-card-alt); max-height: 400px;
+    margin-bottom: 16px;
   }
-  .hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .alt-image {
-    border-radius: 6px; overflow: hidden; background: var(--bg-card-alt);
-    height: 96px;
+  .hero-image img {
+    width: 100%; height: 100%; max-height: 400px;
+    object-fit: cover; display: block; border-radius: 8px;
   }
-  .alt-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .alt-label {
-    font-family: 'JetBrains Mono', monospace; font-size: 8px;
-    letter-spacing: 1px; text-transform: uppercase; color: var(--gray);
-    text-align: center; margin-top: 2px;
+  .alt-badges {
+    display: flex; gap: 8px; margin-top: 0;
+  }
+  .alt-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); background: rgba(212,168,67,0.08);
+    border: 1px solid var(--gold-dim); border-radius: 4px;
+    padding: 4px 10px; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .alt-badge:hover {
+    background: rgba(212,168,67,0.15); border-color: var(--gold);
+    color: var(--white);
   }
 
-  /* Image placeholder cards (replacing broken Canva thumbnails) */
-  .img-placeholder {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    border: 2px solid var(--gold-dim); border-radius: 8px;
-    background: var(--bg-card-alt); text-decoration: none; color: var(--white);
-    transition: border-color 0.2s, background 0.2s;
-    width: 100%; height: 100%; min-height: inherit;
-  }
-  .img-placeholder:hover {
-    border-color: var(--gold); background: rgba(212,168,67,0.06);
-  }
-  .img-placeholder .shot-type {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
-    margin-bottom: 6px;
-  }
-  .img-placeholder .open-link {
-    font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--gray-light);
-    text-decoration: underline; text-underline-offset: 2px;
-  }
-  .hero-image .img-placeholder { min-height: 300px; }
-  .alt-image .img-placeholder { min-height: 96px; height: 96px; }
-  .alt-image .img-placeholder .shot-type { font-size: 9px; letter-spacing: 2px; margin-bottom: 3px; }
-  .alt-image .img-placeholder .open-link { font-size: 9px; }
+
 
   /* Pitch + RTBs */
   .product-body {
@@ -648,10 +634,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/HbOw5NZ_UaXxEXS" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/x_TXeAYyCuY1fo-" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/-6LAzOZeTWH4o_C" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/j40k1oII6scfedy" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/01-mise-en-place.png" alt="Chef's Mise en Place Kits — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/x_TXeAYyCuY1fo-" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/-6LAzOZeTWH4o_C" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/j40k1oII6scfedy" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -721,10 +705,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/ScmfbfvjI0X36Hf" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/vvVFc247Z9wv6tG" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/yWQkhAb27bADAOf" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/BF2lIh7XjfrjlkW" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/02-lunchbox-sauces.png" alt="Lunchbox Upgrade Sauces — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/vvVFc247Z9wv6tG" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/yWQkhAb27bADAOf" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/BF2lIh7XjfrjlkW" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -794,10 +776,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/aZSC6yDbxIBaFAo" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/5V7ne3M6d1a15eM" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/wR1ECgDwSmwTg77" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/sETSpet4_hF6ld4" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/03-dinner-party.png" alt="Dinner Party in a Box — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/5V7ne3M6d1a15eM" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/wR1ECgDwSmwTg77" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/sETSpet4_hF6ld4" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -867,10 +847,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/00DJxUar-D7doNE" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/g2ROhlZiprNaxTG" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/9s2WOBarAAFiVql" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/89b7hpNynRnud3Q" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/04-finishing-oils.png" alt="Functional Finishing Oils — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/g2ROhlZiprNaxTG" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/9s2WOBarAAFiVql" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/89b7hpNynRnud3Q" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -940,10 +918,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/qTL1fH8i1lzin-y" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/gKUVg5MODMu96Tw" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/artAM9-kNTpalU9" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/vBzHIHX-ON7Xzvr" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/05-broth-bar.png" alt="Broth Bar Concentrates — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/gKUVg5MODMu96Tw" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/artAM9-kNTpalU9" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/vBzHIHX-ON7Xzvr" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1013,10 +989,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/8pOL7g8cF_Xr-e-" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/jnSGHn_9V1ohVvF" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/Dc-YYKPwriPudmB" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/B7_R7APSOeywHit" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/06-sauce-flights.png" alt="Sauce Flights — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/jnSGHn_9V1ohVvF" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/Dc-YYKPwriPudmB" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/B7_R7APSOeywHit" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1086,10 +1060,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/19-ZLkaziRm0RjR" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/SWYqxR6w95xqUO2" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/GvgeMfTVejVKHL_" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/7gN3aQTw91ipeP2" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/07-chefs-table.png" alt="Chef's Table Seasonings — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/SWYqxR6w95xqUO2" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/GvgeMfTVejVKHL_" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/7gN3aQTw91ipeP2" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1158,10 +1130,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/tBnwG1FM-hDsOgq" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/IHRxuNzibEzozd3" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/KADLdQlTJ4_qQr5" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/oFfsDvUaeqput02" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/08-butter-bricks.png" alt="Butter Bricks — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/IHRxuNzibEzozd3" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/KADLdQlTJ4_qQr5" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/oFfsDvUaeqput02" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1230,10 +1200,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/iyeKxmsIidT_FOX" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/hOEkmNEvIvSVFEN" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/XXW6oViAynBcyWn" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/HziqvecJuxHuLpt" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/09-freeze-dried.png" alt="Freeze-Dried Meal Finishers — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/hOEkmNEvIvSVFEN" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/XXW6oViAynBcyWn" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/HziqvecJuxHuLpt" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1302,10 +1270,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/8fsK5ejMxIrXmhO" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/mwGBPd4H8pt9lnB" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/Da2CB7b_Xz9A6Uw" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/VIWwUrj67RX9nvn" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/10-inverted-condiments.png" alt="Inverted Condiments — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/mwGBPd4H8pt9lnB" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/Da2CB7b_Xz9A6Uw" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/VIWwUrj67RX9nvn" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1374,10 +1340,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/r_GvGpISrFGEXvD" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/TTjJeBn2X0WLy7u" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/tU0y0qdR1h2CiC0" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/SFLgpVBkQ7Il6tk" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/11-bencharcuterie.png" alt="Bencharcuterie — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/TTjJeBn2X0WLy7u" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/tU0y0qdR1h2CiC0" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/SFLgpVBkQ7Il6tk" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1442,10 +1406,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/XQY93mb3OlOnvA5" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/72QX2C8goYsVOJ5" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/jgpGx7YBfQuEQa4" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/sE3ArQUQgpRVMGO" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/12-hype-drop.png" alt="Hype Drop Snacks — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/72QX2C8goYsVOJ5" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/jgpGx7YBfQuEQa4" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/sE3ArQUQgpRVMGO" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1510,10 +1472,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/bWW_7SQTqhCuQ4V" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/rZj1XJY0JDnCFyj" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/VHTtKT26wt1K5FB" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/Ewpb56K1r7jDgg9" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/13-solo-dining.png" alt="Solo Dining Portions — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/rZj1XJY0JDnCFyj" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/VHTtKT26wt1K5FB" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/Ewpb56K1r7jDgg9" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1578,10 +1538,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/gy5YsKtO0FJUsu8" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/NiSJnXd6PFM02ln" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/p0kO4mW6efnO0m4" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/j8ZosmkyIeMfeLq" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/14-finishing-category.png" alt=""Finishing" as a Category — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/NiSJnXd6PFM02ln" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/p0kO4mW6efnO0m4" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/j8ZosmkyIeMfeLq" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1644,10 +1602,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/ndQDkY0DS-VerTP" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/sXez-VYxoO5wIoR" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/ltk1lLABizAyDDo" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/u0i4zXFRqZwM_HE" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/15-ketchup.png" alt="$30 Ketchup — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/sXez-VYxoO5wIoR" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/ltk1lLABizAyDDo" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/u0i4zXFRqZwM_HE" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1712,10 +1668,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/nT7U2oquH-h4O4K" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/7Cov_WqbMw5sMba" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/Ug8DIIEmGhfrFbc" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/qchU0M1HNuDW2gQ" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/16-black-label.png" alt="Black Label Canned Goods — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/7Cov_WqbMw5sMba" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/Ug8DIIEmGhfrFbc" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/qchU0M1HNuDW2gQ" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1780,10 +1734,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/NIL83kJVeVSUVlA" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/bIEQ9f0e1UWcfwn" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/nd1SR-ewZcFsa9Q" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/dtPPaMhqchmo2zb" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/17-squeeze-tube.png" alt="Squeeze Tube Condiments — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/bIEQ9f0e1UWcfwn" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/nd1SR-ewZcFsa9Q" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/dtPPaMhqchmo2zb" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1848,10 +1800,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/W3mi0tXZT8Wo3nq" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/q9Cr6IpXK6L0M1J" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/GftQi6PgmdDExRt" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/bvWQnyj0ixRQOLn" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/18-dissolvable.png" alt="Dissolvable Seasoning Sheets — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/q9Cr6IpXK6L0M1J" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/GftQi6PgmdDExRt" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/bvWQnyj0ixRQOLn" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1915,10 +1865,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/sOri5WuweCyCU38" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/et1fXN1Pmtt5_jH" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/nYVoK7FK62oRNoO" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/WICP5CXQL1RFJrj" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/19-chef-sauce.png" alt="$3 Chef Sauce — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/et1fXN1Pmtt5_jH" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/nYVoK7FK62oRNoO" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/WICP5CXQL1RFJrj" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">
@@ -1983,10 +1931,8 @@
   </div>
 
   <div class="product-images">
-    <div class="hero-image"><a class="img-placeholder" href="https://www.canva.com/d/UBVJpqqR7uBfa89" target="_blank"><span class="shot-type">Hero</span><span class="open-link">Open in Canva</span></a></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/fbNa9zXV3eLWQwZ" target="_blank"><span class="shot-type">Lifestyle</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/rpgEqJpEadsbuEu" target="_blank"><span class="shot-type">Close-Up</span><span class="open-link">Open in Canva</span></a></div></div>
-    <div><div class="alt-image"><a class="img-placeholder" href="https://www.canva.com/d/zuGQb1EDFbXT0rG" target="_blank"><span class="shot-type">Alternate</span><span class="open-link">Open in Canva</span></a></div></div>
+    <div class="hero-image"><img src="images/20-window-jar.png" alt="Window Jar Pantry Line — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/fbNa9zXV3eLWQwZ" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/rpgEqJpEadsbuEu" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/zuGQb1EDFbXT0rG" target="_blank">Alternate</a></div>
   </div>
 
   <div class="product-body">

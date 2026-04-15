@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>PropMatic CMO Agent — Architecture Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --green: #5CA85C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    min-height: 1920px;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    padding: 48px 52px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-height: 1920px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--gold-dim);
+  }
+
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .header h1 span { color: var(--gold); }
+
+  .header .subtitle {
+    font-size: 18px;
+    color: var(--gray-light);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* STAT ROW */
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 20px 24px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .stat-card .number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+  }
+
+  .stat-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+    margin-top: 4px;
+  }
+
+  /* ARCHITECTURE DIAGRAM */
+  .arch-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .arch-level {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .arch-level.orchestrator {
+    border-color: var(--gold-dim);
+    border-width: 2px;
+  }
+
+  .arch-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    min-width: 90px;
+    text-align: center;
+  }
+
+  .badge-arc { background: var(--gold-dim); color: var(--bg); }
+  .badge-coach { background: var(--dark-blue); color: var(--white); }
+  .badge-player { background: var(--bg-card-alt); color: var(--gray-light); }
+
+  .arch-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--white);
+  }
+
+  .arch-desc {
+    font-size: 14px;
+    color: var(--gray);
+    margin-left: auto;
+  }
+
+  /* SUB-AGENT GRID */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  .agent-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .agent-card .agent-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--white);
+  }
+
+  .agent-card .agent-scope {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
+  .agent-card .agent-commands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: auto;
+  }
+
+  .cmd-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bg-card-alt);
+    color: var(--gold);
+  }
+
+  .cmd-tag.new {
+    background: rgba(212,168,67,0.15);
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+  }
+
+  /* NEW CAPABILITIES */
+  .new-section {
+    background: var(--bg-card);
+    border: 2px solid var(--gold-dim);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+
+  .new-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .capability-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+  }
+
+  .capability-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .capability-item .icon {
+    font-size: 14px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+
+  .capability-item .cap-text {
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  .capability-item .cap-text strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* THESIS BAR */
+  .thesis-bar {
+    background: var(--bg-card-alt);
+    border-left: 4px solid var(--gold);
+    padding: 18px 24px;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .thesis-bar p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  .thesis-bar p span { color: var(--gold); }
+
+  /* KB ROW */
+  .kb-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .kb-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--gray-light);
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+  }
+
+  .footer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-tag">AI Agent Architecture</div>
+    <h1>PropMatic <span>CMO Agent</span></h1>
+    <p class="subtitle">Executive-level marketing orchestrator for PropMatic. Voice-matched content, strategic oversight, and 17 marketing commands.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="number">5</div>
+      <div class="label">Sub-Agents</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">17</div>
+      <div class="label">Commands</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">11</div>
+      <div class="label">Marketing SOPs</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">5</div>
+      <div class="label">Knowledge Bases</div>
+    </div>
+  </div>
+
+  <!-- AUTHORITY -->
+  <div class="section-header">Authority Hierarchy</div>
+  <div class="arch-diagram">
+    <div class="arch-level">
+      <span class="arch-badge badge-arc">ARC</span>
+      <span class="arch-title">Mark Schmulen</span>
+      <span class="arch-desc">Brand strategy, budget, market positioning</span>
+    </div>
+    <div class="arch-level orchestrator">
+      <span class="arch-badge badge-coach">COACH</span>
+      <span class="arch-title">CMO Orchestrator</span>
+      <span class="arch-desc">Voice enforcement, quality gates, routing</span>
+    </div>
+    <div class="arch-level">
+      <span class="arch-badge badge-player">PLAYER</span>
+      <span class="arch-title">Director of Marketing + Agents</span>
+      <span class="arch-desc">Content execution, campaigns, calendar</span>
+    </div>
+  </div>
+
+  <!-- SUB-AGENTS -->
+  <div class="section-header">Sub-Agent Registry</div>
+  <div class="agent-grid">
+    <div class="agent-card">
+      <div class="agent-name">Content & MarComms</div>
+      <div class="agent-scope">Blog, LinkedIn, email, social, podcast. Voice-matched.</div>
+      <div class="agent-commands">
+        <span class="cmd-tag">/linkedin-post</span>
+        <span class="cmd-tag">/content-draft</span>
+        <span class="cmd-tag">/email-campaign</span>
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-name">Demand Gen</div>
+      <div class="agent-scope">SEO, paid campaigns, lead gen, outreach, CRO, RevOps.</div>
+      <div class="agent-commands">
+        <span class="cmd-tag">/campaign-plan</span>
+        <span class="cmd-tag">/cold-dm</span>
+        <span class="cmd-tag new">/paid-ads</span>
+        <span class="cmd-tag new">/cro-audit</span>
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-name">Substack</div>
+      <div class="agent-scope">Long-form essays, series planning, repurposing.</div>
+      <div class="agent-commands">
+        <span class="cmd-tag">/substack-draft</span>
+        <span class="cmd-tag">/substack-repurpose</span>
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-name">Analytics</div>
+      <div class="agent-scope">Campaign reports, A/B tests, competitive intel, tracking.</div>
+      <div class="agent-commands">
+        <span class="cmd-tag">/competitive-brief</span>
+        <span class="cmd-tag new">/ab-test</span>
+        <span class="cmd-tag new">/tracking-setup</span>
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-name">Marketing EA</div>
+      <div class="agent-scope">Content calendar, follow-ups, scheduling, coordination.</div>
+      <div class="agent-commands">
+        <span class="cmd-tag">/content-calendar</span>
+      </div>
+    </div>
+    <div class="agent-card" style="border: 1px dashed rgba(212,168,67,0.3);">
+      <div class="agent-name" style="color: var(--gray-light);">Expansion Slots</div>
+      <div class="agent-scope">Brand Strategist, Product Marketing, Creative Director — activate when ready.</div>
+      <div class="agent-commands">
+        <span class="cmd-tag" style="color: var(--gray);">Phase 2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW CAPABILITIES -->
+  <div class="new-section">
+    <h3>New in This Update</h3>
+    <div class="capability-list">
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/paid-ads</strong> — Google, Meta, LinkedIn campaign planning</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/cro-audit</strong> — Landing page conversion optimization</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/sales-collateral</strong> — Battle cards, one-pagers, objection docs</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/pricing-review</strong> — Pricing models for SaaS</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/pipeline-review</strong> — Lead scoring, MQL&rarr;SQL, funnel</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/ab-test</strong> — Experiment design with rigor</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--gold);">+</span>
+        <div class="cap-text"><strong>/tracking-setup</strong> — GA4 + conversion instrumentation</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--blue);">&uarr;</span>
+        <div class="cap-text"><strong>Cold email</strong> — Deeper frameworks, follow-up sequences</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--blue);">&uarr;</span>
+        <div class="cap-text"><strong>Content strategy</strong> — Pillar planning, topic scoring</div>
+      </div>
+      <div class="capability-item">
+        <span class="icon" style="color: var(--blue);">&uarr;</span>
+        <div class="cap-text"><strong>Copywriting</strong> — Conversion-focused landing page copy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THESIS -->
+  <div class="thesis-bar">
+    <p>Same agent. Same voice. <span>More it can do when you ask.</span></p>
+  </div>
+
+  <!-- KNOWLEDGE BASE -->
+  <div class="section-header">Knowledge Base</div>
+  <div class="kb-row">
+    <span class="kb-pill">brand-voice.md</span>
+    <span class="kb-pill">manifesto.md</span>
+    <span class="kb-pill">gtm-strategy.md</span>
+    <span class="kb-pill">competitive-landscape.md</span>
+    <span class="kb-pill">content-history.md</span>
+    <span class="kb-pill">memory/ corrections</span>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-brand">mception.ai</span>
+    <span class="footer-meta">APRIL 2026 &middot; V2.0 UPDATE</span>
+  </div>
+
+</div>
+</body>
+</html>

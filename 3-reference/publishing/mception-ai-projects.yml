@@ -32,3 +32,7 @@ published_projects:
     project: "Project - Kroger"
     approved: 2026-04-12
     notes: "Kroger management OS whitepaper and strategy materials for prospect sharing"
+  - slug: innovation-lab
+    project: "Project - AI Native CPG Innovation"
+    approved: 2026-04-15
+    notes: "Personal R&D innovation pipeline — idea library with stage gates, Notion-backed, 85+ product concepts"

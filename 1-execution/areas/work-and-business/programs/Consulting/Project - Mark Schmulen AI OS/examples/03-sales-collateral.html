@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>PropMatic CMO Agent — /sales-collateral</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #5CA85C;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1080px;
+  min-height: 1920px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  padding: 48px 52px 40px;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,168,67,0.1);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.subtitle {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 28px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.vs-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.vs-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+}
+.vs-divider {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  color: var(--gray);
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+.win-rate-bar {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.win-rate-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--green);
+}
+.win-rate-label {
+  font-size: 18px;
+  color: var(--gray-light);
+}
+.win-rate-label strong { color: var(--white); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray-light);
+  vertical-align: top;
+}
+td:first-child {
+  color: var(--white);
+  font-weight: 500;
+  width: 180px;
+}
+.cell-win {
+  color: var(--green);
+  font-weight: 600;
+}
+.cell-lose {
+  color: var(--red);
+}
+.cell-tie {
+  color: var(--gray-light);
+}
+.bullet-card {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.bullet-card:last-child { margin-bottom: 0; }
+.strength-icon {
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  margin-right: 8px;
+}
+.weakness-icon {
+  color: var(--red);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  margin-right: 8px;
+}
+.two-col {
+  display: flex;
+  gap: 16px;
+}
+.two-col > div { flex: 1; }
+.objection-card {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.objection-card:last-child { margin-bottom: 0; }
+.they-say {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.they-say-text {
+  font-size: 17px;
+  color: var(--gray-light);
+  font-style: italic;
+  margin-bottom: 14px;
+  padding-left: 14px;
+  border-left: 2px solid rgba(196,92,92,0.3);
+}
+.you-say {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.you-say-text {
+  font-size: 17px;
+  color: var(--white);
+  line-height: 1.5;
+  padding-left: 14px;
+  border-left: 2px solid rgba(92,168,92,0.3);
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-left {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gold);
+}
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<div class="tag">/sales-collateral</div>
+<h1>Competitive Battle Card</h1>
+<p class="subtitle">Sales enablement — updated April 2026</p>
+
+<!-- VS Header -->
+<div class="vs-header">
+  <span class="vs-brand" style="color: var(--gold);">PropMatic</span>
+  <span class="vs-divider">VS</span>
+  <span class="vs-brand" style="color: var(--blue);">EliseAI</span>
+</div>
+
+<!-- Win Rate -->
+<div class="win-rate-bar">
+  <div class="win-rate-num">67%</div>
+  <div class="win-rate-label"><strong>Win rate</strong> in competitive deals when this battle card is used.<br>Based on 42 head-to-head opportunities, Q3 2025 &ndash; Q1 2026.</div>
+</div>
+
+<!-- Comparison Table -->
+<div class="card">
+  <div class="section-label">Head-to-Head Comparison</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>PropMatic</th>
+        <th>EliseAI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AI Leasing Agent</td>
+        <td class="cell-win">24/7, multi-channel (SMS, email, web chat, voice)</td>
+        <td class="cell-tie">24/7, multi-channel (SMS, email, web chat)</td>
+      </tr>
+      <tr>
+        <td>Voice Capability</td>
+        <td class="cell-win">Native voice AI with warm transfer</td>
+        <td class="cell-lose">Voice available, no warm transfer</td>
+      </tr>
+      <tr>
+        <td>PMS Integrations</td>
+        <td class="cell-win">Yardi, RealPage, Entrata, AppFolio, ResMan</td>
+        <td class="cell-tie">Yardi, RealPage, Entrata</td>
+      </tr>
+      <tr>
+        <td>Marketing Automation</td>
+        <td class="cell-win">Built-in ILS syndication + retargeting</td>
+        <td class="cell-lose">No native marketing tools</td>
+      </tr>
+      <tr>
+        <td>Pricing</td>
+        <td class="cell-win">$2.50-$4.00/unit/mo</td>
+        <td class="cell-lose">$5.00-$8.00/unit/mo</td>
+      </tr>
+      <tr>
+        <td>Implementation</td>
+        <td class="cell-win">14 days avg</td>
+        <td class="cell-lose">30-45 days avg</td>
+      </tr>
+      <tr>
+        <td>Dedicated CSM</td>
+        <td class="cell-tie">Growth tier and above</td>
+        <td class="cell-tie">All tiers</td>
+      </tr>
+      <tr>
+        <td>Contract Terms</td>
+        <td class="cell-win">Month-to-month available</td>
+        <td class="cell-lose">12-month minimum</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Strengths / Weaknesses -->
+<div class="two-col">
+  <div class="card">
+    <div class="section-label">PropMatic Strengths</div>
+    <div class="bullet-card">
+      <span class="strength-icon">+</span> <strong>Speed to value.</strong> 14-day implementation vs. 30-45 days. Prospects see leads converting within the first week.
+    </div>
+    <div class="bullet-card">
+      <span class="strength-icon">+</span> <strong>All-in-one platform.</strong> Marketing + leasing in one tool eliminates the need for separate ILS management and retargeting vendors.
+    </div>
+    <div class="bullet-card">
+      <span class="strength-icon">+</span> <strong>Flexible contracts.</strong> Month-to-month shows confidence in product stickiness. Removes procurement friction for mid-market operators.
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-label">EliseAI Weaknesses</div>
+    <div class="bullet-card">
+      <span class="weakness-icon">&minus;</span> <strong>Leasing-only.</strong> No marketing automation means customers still need separate tools for ILS, retargeting, and campaign management.
+    </div>
+    <div class="bullet-card">
+      <span class="weakness-icon">&minus;</span> <strong>Expensive at scale.</strong> At $5-8/unit/mo, a 300-unit community pays $18K-$29K/yr vs. PropMatic's $9K-$14K/yr.
+    </div>
+    <div class="bullet-card">
+      <span class="weakness-icon">&minus;</span> <strong>Lock-in contracts.</strong> 12-month minimum with auto-renewal. Multiple G2 reviews cite difficulty canceling.
+    </div>
+  </div>
+</div>
+
+<!-- Objection Handling -->
+<div class="card">
+  <div class="section-label">Objection Handling</div>
+
+  <div class="objection-card">
+    <div class="they-say">When They Say...</div>
+    <div class="they-say-text">"EliseAI is more established. They've been around longer and have bigger customers."</div>
+    <div class="you-say">You Say...</div>
+    <div class="you-say-text">"EliseAI started earlier but hasn't expanded beyond leasing. We built marketing + leasing from day one because operators told us managing two vendors was the real pain point. Our largest customer runs 12,000 units across the Southeast. Happy to connect you with their VP of Marketing."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="they-say">When They Say...</div>
+    <div class="they-say-text">"We already have an ILS strategy. We just need a leasing assistant."</div>
+    <div class="you-say">You Say...</div>
+    <div class="you-say-text">"That's exactly where the gap is. If your ILS drives leads but your leasing team can't respond in under 2 minutes, you're paying for traffic that never converts. PropMatic connects both sides — your ILS leads flow directly into our AI agent, which responds in 90 seconds and books tours. One pipeline, no handoff gaps."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="they-say">When They Say...</div>
+    <div class="they-say-text">"Your pricing seems too low. What's the catch?"</div>
+    <div class="you-say">You Say...</div>
+    <div class="you-say-text">"No catch — we're priced for volume because our model works at scale. EliseAI charges more because they need higher margins to offset slower growth. We're growing 3x year-over-year because operators keep expanding after the first community goes live. We'll put a 90-day performance guarantee in writing."</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">mception.ai</div>
+  <div class="footer-right">PropMatic CMO Agent</div>
+</div>
+
+</body>
+</html>
