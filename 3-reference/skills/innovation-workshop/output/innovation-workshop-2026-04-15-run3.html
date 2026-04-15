@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Stream of Consciousness — April 15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --green: #7CB97A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  /* COVER */
+  .cover {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-after: always;
+  }
+  .cover-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    color: var(--gray-light);
+    margin-bottom: 8px;
+  }
+  .cover .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    margin-top: 32px;
+  }
+  .cover .seed-box {
+    margin-top: 48px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 24px 36px;
+    text-align: left;
+    max-width: 640px;
+  }
+  .cover .seed-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .cover .seed-box ul { list-style: none; padding: 0; }
+  .cover .seed-box li {
+    font-size: 15px;
+    color: var(--white);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .cover .seed-box li:last-child { border-bottom: none; }
+  .cover .seed-box li strong { color: var(--gold); }
+
+  /* SECTION HEADERS */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(212,168,67,0.25);
+  }
+
+  /* EXECUTIVE SUMMARY */
+  .exec-summary { page-break-after: always; }
+  .exec-intro {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+  .top-picks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .top-pick {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .top-pick img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: var(--bg-card-alt);
+    flex-shrink: 0;
+  }
+  .top-pick-rank {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-right: 4px;
+  }
+  .top-pick h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .top-pick p {
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.5;
+  }
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .theme-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .theme-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .theme-card p {
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.5;
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 18px 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-desc {
+    font-size: 12px;
+    color: var(--gray-light);
+    line-height: 1.4;
+  }
+  .stat-src {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+
+  /* SEED GROUP HEADER */
+  .seed-group-header {
+    page-break-before: always;
+    padding-top: 32px;
+    margin-bottom: 8px;
+  }
+  .seed-group-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .seed-group-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--gold);
+  }
+  .seed-group-desc {
+    font-size: 15px;
+    color: var(--gray-light);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+
+  /* PRODUCT PAGES */
+  .product-page {
+    page-break-before: always;
+    page-break-inside: avoid;
+    padding-top: 32px;
+  }
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+  }
+  .product-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .product-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--bg-card-alt);
+    color: var(--gray-light);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .tag-gold { background: rgba(212,168,67,0.15); color: var(--gold); border-color: rgba(212,168,67,0.25); }
+  .tag-blue { background: rgba(74,127,181,0.15); color: var(--blue); border-color: rgba(74,127,181,0.25); }
+  .tag-green { background: rgba(124,185,122,0.15); color: var(--green); border-color: rgba(124,185,122,0.25); }
+  .tag-red { background: rgba(196,92,92,0.15); color: var(--red); border-color: rgba(196,92,92,0.25); }
+
+  .product-score {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .score-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .product-image-block {
+    float: left;
+    margin: 0 24px 16px 0;
+    page-break-inside: avoid;
+  }
+  .product-image-block img {
+    width: 280px;
+    height: 280px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: block;
+  }
+
+  .product-body { page-break-inside: avoid; }
+  .product-body::after { content: ''; display: table; clear: both; }
+
+  .pitch-section { margin-bottom: 24px; }
+  .pitch-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 10px;
+    page-break-after: avoid;
+  }
+  .pitch-text p {
+    margin-bottom: 12px;
+    line-height: 1.65;
+    color: var(--gray-light);
+  }
+
+  .rtb-section { margin-bottom: 24px; }
+  .rtb-list { list-style: none; padding: 0; }
+  .rtb-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--gray-light);
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+  }
+  .rtb-list li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .research-basis {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    line-height: 1.5;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border-radius: 6px;
+    border-left: 3px solid var(--gold-dim);
+    margin-bottom: 20px;
+  }
+
+  .panels-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .competitive-panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--blue);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .ops-panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold-dim);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .panel-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .competitive-panel .panel-title { color: var(--blue); }
+  .ops-panel .panel-title { color: var(--gold); }
+  .panel-content {
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.55;
+  }
+  .panel-content p { margin-bottom: 8px; }
+  .panel-content strong { color: var(--white); }
+  .ops-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .ops-simple { background: rgba(124,185,122,0.2); color: var(--green); }
+  .ops-moderate { background: rgba(212,168,67,0.2); color: var(--gold); }
+  .ops-complex { background: rgba(196,92,92,0.2); color: var(--red); }
+
+  .sidebar-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .metric-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .metric-method {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* APPENDIX */
+  .appendix { page-break-before: always; }
+  .appendix-section { margin-bottom: 32px; }
+  .appendix h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .appendix p {
+    color: var(--gray-light);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .appendix table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 16px;
+  }
+  .appendix th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--bg-card-alt);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .appendix td {
+    font-size: 13px;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--gray-light);
+  }
+  .appendix tr:last-child td { border-bottom: none; }
+  .appendix td:first-child { font-weight: 600; color: var(--white); }
+  .col-gold { color: var(--gold) !important; font-weight: 600; }
+  .appendix .source-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 48px;
+  }
+  .footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .footer-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+  }
+
+  /* PRINT / LIGHT MODE */
+  @media print {
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F5F5F0;
+      --bg-card-alt: #EEEEE8;
+      --white: #1A1A1A;
+      --gray: #666666;
+      --gray-light: #444444;
+    }
+    body::before { display: none; }
+    body { padding: 36px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="cover">
+  <div class="cover-tag">mception.ai innovation workshop</div>
+  <h1><span>Stream of</span><br>Consciousness</h1>
+  <div class="subtitle">20 product ideas across 6 raw seeds</div>
+  <div class="subtitle">Run 3 — April 15, 2026</div>
+  <div class="meta">GENERATED BY BRADY OS &bull; SEED-FIRST IDEATION</div>
+
+  <div class="seed-box">
+    <h3>Brady's 6 Seeds</h3>
+    <ul>
+      <li><strong>1.</strong> Women's clothes with a TON of pockets — but looks good</li>
+      <li><strong>2.</strong> Sourdough bread meets current health / flavor / food trends</li>
+      <li><strong>3.</strong> Dry sourdough starter</li>
+      <li><strong>4.</strong> 15-pound lasagna — actual family-size meals, affordable</li>
+      <li><strong>5.</strong> Fudge ripple cake</li>
+      <li><strong>6.</strong> Southern cuisine turned mainstream</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ EXECUTIVE SUMMARY ═══════════════════ -->
+<div class="exec-summary">
+  <div class="section-header">Executive Summary</div>
+
+  <p class="exec-intro">
+    This workshop inverts the usual process. Instead of picking lanes and running methods to generate ideas, Brady walked in with six raw product seeds — things he's been thinking about — and we expanded each into 3-4 product variations using proven ideation methods. No blending across seeds. Each idea stands on its own. The result: 20 products spanning fashion, fermentation, family meals, nostalgic desserts, and Southern cuisine — the widest category spread of any workshop run to date.
+  </p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">6</div>
+      <div class="stat-desc">Raw Seeds</div>
+      <div class="stat-src">Brady's stream of consciousness</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">24</div>
+      <div class="stat-desc">Ideas Generated</div>
+      <div class="stat-src">4 per seed avg</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">20</div>
+      <div class="stat-desc">Survivors</div>
+      <div class="stat-src">83% survival rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5</div>
+      <div class="stat-desc">Category Lanes</div>
+      <div class="stat-src">First non-food lane (fashion)</div>
+    </div>
+  </div>
+
+  <div class="section-header">Top 5 Picks</div>
+  <div class="top-picks-grid">
+    <div class="top-pick">
+      <img src="images-run3/08-starter-sachets.png" alt="Starter Sachets">
+      <div>
+        <div><span class="top-pick-rank">1.</span></div>
+        <h4>Instant Sourdough Starter Sachets</h4>
+        <p>Single-use packets that eliminate the intimidation barrier. Add water, wait 24 hours, bake. The "sourdough for normal people" play.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run3/09-bakery-cultures.png" alt="Bakery Cultures">
+      <div>
+        <div><span class="top-pick-rank">2.</span></div>
+        <h4>Famous Bakery Cultures</h4>
+        <p>Heritage starter strains from legendary bakeries worldwide. Collectible, provenance-driven. Bake with a 150-year-old culture.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run3/19-pimento-cheese.png" alt="Pimento Cheese">
+      <div>
+        <div><span class="top-pick-rank">3.</span></div>
+        <h4>Craft Pimento Cheese</h4>
+        <p>Premium refrigerated pimento cheese with real sharp cheddar. National distribution of a Southern regional staple. Four varieties.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run3/01-pocket-dress.png" alt="Pocket Dress">
+      <div>
+        <div><span class="top-pick-rank">4.</span></div>
+        <h4>The Pocket Dress</h4>
+        <p>Sleek event-ready dress with 12+ invisible pockets. Fashion-forward solution to the "women's clothes have no pockets" problem.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run3/11-family-lasagna.png" alt="Family Lasagna">
+      <div>
+        <div><span class="top-pick-rank">5.</span></div>
+        <h4>The REAL Family Size Lasagna</h4>
+        <p>15-lb catering-pan lasagna. Stouffer's biggest is 5.6 lbs. This feeds 10-12 for $24.99. Finally, a "family size" that's actually family size.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">Key Themes</div>
+  <div class="themes-grid">
+    <div class="theme-card">
+      <h4>The Accessibility Gap</h4>
+      <p>Multiple ideas attack the same pattern: something that exists in premium/niche form but hasn't been made accessible. Sourdough starters, heritage grains, pimento cheese, Southern pantry staples — all regionally or culturally locked.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Format Over Formula</h4>
+      <p>The winning move isn't inventing new food — it's putting existing food in new formats. Sachets, catering pans, snack crisps, cake mixes with real ingredients. Same product, new container, new occasion.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Solving Actual Problems</h4>
+      <p>The fashion ideas aren't "fashion for fashion's sake." Women literally don't have pockets. Families literally can't find meals that feed 8+. These ideas solve real, daily friction points.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEED 1: POCKETS ═══════════════════ -->
+<div class="seed-group-header">
+  <div class="seed-group-tag">Seed 01 of 06</div>
+  <div class="seed-group-title">Women's Clothes with Pockets</div>
+  <div class="seed-group-desc">Fashion meets function. The pocket gap in women's clothing is a documented frustration with real market demand — cargo-style and multi-pocket accessories are dominating Gen Z fashion through 2026. Budget casual dresses with pockets see 8,000-15,000 weekly unit sales on Amazon.</div>
+</div>
+
+<!-- Product 01: The Pocket Dress -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 01 / 20</div>
+      <div class="product-name">The Pocket Dress</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FASHION</span>
+        <span class="tag tag-blue">HIGH IMPACT</span>
+        <span class="tag tag-green">JTBD</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.95</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/01-pocket-dress.png" alt="The Pocket Dress">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A sleek, event-ready women's dress with 12+ invisible pockets. Phone in the left panel. Keys in the right seam. Wallet in the interior lining. Lipstick in the concealed zip at the waist. From the outside, it looks like any other elegant midi dress — navy, structured, flattering. From the inside, it's an engineering project.</p>
+        <p>The job-to-be-done is dead simple: go out without a purse and still carry everything you need. Every woman who's ever shoved her phone into her waistband or asked her partner to hold her stuff understands this product instantly. The TikTok #pocketgate movement — where women compare the size of their jean pockets to men's — proves the frustration is real and viral.</p>
+        <p>Price it at $89-129 for the hero dress. Expand into blazers, jumpsuits, and joggers once the brand is established. This isn't tactical wear repackaged — it's fashion-first design that happens to solve a genuine daily problem.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Budget casual dresses with pockets see 8,000-15,000 weekly unit sales on Amazon, with PRETTYGARDEN and ANRABESS dominating. Premium tier ($89+) is wide open.</li>
+        <li>Cargo-style and multi-pocket accessories will dominate through 2026, driven by Gen Z's preference for practical fashion (Trendalytics).</li>
+        <li>"Guardian design" — enriching familiar items with smart, solution-led details like hidden pockets and anti-slash materials — is an emerging macro trend.</li>
+        <li>The U.S. women's clothing market exceeds $190B. Functional fashion is the fastest-growing subsegment.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>PRETTYGARDEN / ANRABESS:</strong> Budget Amazon dresses ($18-28) with basic pockets. No fashion cachet. High volume, low margin.</p>
+          <p><strong>Anatomie:</strong> Travel-focused women's clothing with hidden pockets. Premium ($150+) but positioned as travel/utility, not fashion.</p>
+          <p><strong>Gap:</strong> No brand owns "fashionable pockets" as a core identity. The market has budget commodity (Amazon) and travel utility (Anatomie) but nothing in the fashion-forward middle.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Pocket engineering requires custom pattern-making — standard cut-and-sew won't work. Need a garment engineer who understands weight distribution (12 pockets with items creates sag if not engineered properly).</p>
+          <p>MOQ for custom patterns: 200-500 units per style. Fabric sourcing is standard. Can use existing fashion supply chain (Vietnam, Portugal) with custom specs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+        <div class="metric-method">Custom patterns needed</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+        <div class="metric-method">Viral potential</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#4 JTBD</div>
+        <div class="metric-method">Jobs to Be Done</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 02: Carry Everything Blazer -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 02 / 20</div>
+      <div class="product-name">Carry Everything Blazer</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FASHION</span>
+        <span class="tag">PROFESSIONAL</span>
+        <span class="tag tag-blue">SCAMPER</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.65</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/02-blazer.png" alt="Carry Everything Blazer">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A tailored women's blazer in charcoal or navy with 14 internal pockets — phone, wallet, keys, lipstick, pen, glasses, business cards, earbuds, passport, and more. Every pocket is invisible from the outside. The blazer looks like any other sharp, well-cut professional piece.</p>
+        <p>The target is the professional woman who carries a bag because she has to, not because she wants to. Think: the commuter who juggles a laptop bag AND a purse. The conference attendee who needs hands free for handshakes but still needs her phone accessible. The traveler who wants her passport secure without a crossbody.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Men's blazers from brands like SCOTTeVEST have proven the "many pockets" concept works — but they look like dad-tech. No one has done this with women's fashion-forward tailoring.</li>
+        <li>The women's workwear market is $38.4B globally and growing at 5.2% CAGR.</li>
+        <li>Post-pandemic hybrid work has increased demand for versatile pieces that transition from office to dinner.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>SCOTTeVEST:</strong> The OG multi-pocket brand. 20+ pockets in jackets. But it's ugly. Tech-bro aesthetic, not fashion.</p>
+          <p><strong>Argent:</strong> Women's workwear brand. Quality tailoring but no pocket innovation.</p>
+          <p><strong>Gap:</strong> Nobody combines serious tailoring with serious pocket engineering for women.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Same engineering challenge as the dress but blazer construction is more forgiving — structured shoulders and lining hide pocket bulk. Higher price point ($149-199) supports the engineering cost.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#21</div>
+        <div class="metric-method">SCAMPER</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 03: Mom's Tactical Joggers -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 03 / 20</div>
+      <div class="product-name">Mom's Tactical Joggers</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FASHION</span>
+        <span class="tag tag-green">DAD/FAMILY</span>
+        <span class="tag tag-blue">JTBD</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.95</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/03-joggers.png" alt="Mom's Tactical Joggers">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Athleisure joggers with 8 hidden pockets designed for the "mom carry" — phone, snack bar, wipes, keys, cards, lip balm, hair ties, and a pacifier. Looks like Lululemon. Works like cargo pants. Priced at $68-85.</p>
+        <p>Every mom at school pickup, the playground, or Target knows this frustration: you need both hands, you need ten things accessible, and you don't want to look like you're wearing tactical gear. These joggers solve the "diaper bag is too much but pockets aren't enough" gap. The olive green, black, and heather gray colorways are intentionally basic — these are everyday pants, not statement pieces.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>The athleisure market hit $407B in 2025 and is growing at 8.6% CAGR. Joggers are the category's anchor product.</li>
+        <li>"Mom carry" content on TikTok — where mothers show what they carry daily — has 2.1B cumulative views. The need is documented and viral.</li>
+        <li>Lululemon's women's joggers retail at $98-128 with 2 pockets. Adding 6 more pockets at $68-85 is a value play with differentiation.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Lululemon:</strong> Premium joggers, 2 pockets. No pocket innovation.</p>
+          <p><strong>Athleta:</strong> Similar — quality fabric, basic pockets.</p>
+          <p><strong>Amazon basics:</strong> Cheap joggers with cargo pockets. Not fashionable.</p>
+          <p><strong>Gap:</strong> No one makes athleisure joggers specifically designed for the mom carry with hidden pocket engineering.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Jogger construction is simpler than tailored blazers. Stretch fabric forgives pocket bulk. Can co-pack with existing athleisure manufacturers. MOQ: 300-500 units.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#4 JTBD</div>
+        <div class="metric-method">Jobs to Be Done</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 04: The Pocketgate Collection -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 04 / 20</div>
+      <div class="product-name">The Pocketgate Collection</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FASHION</span>
+        <span class="tag tag-red">TIKTOK-NATIVE</span>
+        <span class="tag tag-blue">CULTURAL TREND</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.85</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/04-pocketgate.png" alt="The Pocketgate Collection">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>While the other pocket products hide their pockets, this one makes them the star. A capsule collection where pockets ARE the visible design element — gold zippers, structured pocket silhouettes, oversized utility flaps treated as fashion statements. This is the brand that turns #pocketgate from a complaint into a movement.</p>
+        <p>Think streetwear-meets-high-fashion. Four pieces per drop, released quarterly. Limited runs. The brand identity is built around the cultural frustration itself — every campaign is a direct callout of the pocket inequality. TikTok-native marketing, UGC-driven, zero traditional advertising budget.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>#pocketgate and pocket comparison content consistently goes viral — millions of views across TikTok and Instagram Reels.</li>
+        <li>Drop culture in fashion (Supreme, Corteiz) proves limited releases drive urgency and brand loyalty.</li>
+        <li>DTC fashion brands with strong cultural narratives (Girlfriend Collective, Pangaia) have achieved $100M+ valuations.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>No direct competitor.</strong> No fashion brand has built its entire identity around the pocket inequality narrative. This is pure whitespace — a brand built on a meme with real substance.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Small batch production (200-500 per drop). Higher per-unit cost but premium pricing ($120-200) supports it. Gold hardware sourcing adds complexity.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#51</div>
+        <div class="metric-method">Cultural Trend Mining</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEED 2: SOURDOUGH TRENDS ═══════════════════ -->
+<div class="seed-group-header">
+  <div class="seed-group-tag">Seed 02 of 06</div>
+  <div class="seed-group-title">Sourdough Meets Health & Flavor Trends</div>
+  <div class="seed-group-desc">The global sourdough market is projected at $5.9B in 2025, growing at 6.8-9.9% CAGR. 58% of consumers believe sourdough makes bread healthier. Bakery launches with digestive-health claims grew 22% globally. Sourdough is no longer artisan-only — it's going mass-market.</div>
+</div>
+
+<!-- Product 05: Heritage Grain Sourdough -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 05 / 20</div>
+      <div class="product-name">Heritage Grain Sourdough</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-blue">PREMIUMIZATION</span>
+        <span class="tag">PROVENANCE</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.85</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/05-heritage-sourdough.png" alt="Heritage Grain Sourdough">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Single-origin, heritage grain sourdough with a provenance story on every loaf. Einkorn from an Oregon farm. Emmer from a Utah cooperative. Spelt from a Wisconsin mill. Each grain has a name, a place, and a story. Priced at $8-12 per loaf — well above commodity sourdough but justified by ingredient transparency and baking craft.</p>
+        <p>This is the "single-origin coffee" play applied to bread. The consumer who pays $6 for a pour-over will pay $10 for bread that tells them exactly where the grain came from, who grew it, and why that matters for flavor and nutrition. Heritage grains (einkorn, emmer, spelt) have lower gluten content and different protein structures that many people find more digestible.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Heritage grain bread commands 40-80% price premiums over conventional sourdough at Whole Foods and specialty bakeries.</li>
+        <li>The specialty/artisan bread segment is growing at 7.2% CAGR — faster than commodity bread (2.1%).</li>
+        <li>Einkorn and spelt flour sales grew 34% YoY at natural grocers in 2025 (SPINS data).</li>
+        <li>Provenance storytelling on packaging increases purchase intent by 23% among premium grocery shoppers (Mintel).</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Bread Alone / La Brea Bakery:</strong> Premium sourdough but no heritage grain focus or single-origin storytelling.</p>
+          <p><strong>Jovial Foods:</strong> Einkorn products (pasta, flour) but no fresh bread.</p>
+          <p><strong>Gap:</strong> No national brand combines heritage grains + sourdough fermentation + single-origin provenance in fresh bread.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-complex">Complex</div>
+        <div class="panel-content">
+          <p>Heritage grain supply is limited and seasonal. Requires farmer relationships and forward contracts. Long fermentation (24-48hr) limits throughput. Fresh bread has 3-5 day shelf life — regional distribution only unless par-baked/frozen.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#56</div>
+        <div class="metric-method">Premiumization</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 06: Functional Sourdough -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 06 / 20</div>
+      <div class="product-name">Functional Sourdough</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-green">GUT HEALTH</span>
+        <span class="tag tag-blue">JTBD</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.95</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/06-functional-sourdough.png" alt="Functional Sourdough">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Sourdough as a health platform. Four SKUs, each combining long-fermentation sourdough with a functional ingredient cluster: Turmeric & Black Pepper (anti-inflammatory), Everything Bagel (familiar flavor, gut health benefits), Seeds & Ancient Grains (protein, fiber, omega-3s), and Olive & Rosemary (Mediterranean diet play).</p>
+        <p>Sourdough already has a natural health halo — 58% of consumers believe it's healthier than regular bread. This line leans into that perception with actual functional ingredients, not just the fermentation story. The packaging makes the health claim explicit: "Fermented for your gut." Each loaf lists the fermentation time (24+ hours) and the specific health benefits of each ingredient addition.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>58% of consumers believe sourdough makes bread healthier (Mordor Intelligence, 2026).</li>
+        <li>Bakery launches with digestive-health claims grew 22% globally in 2025.</li>
+        <li>Functional food market is $280B globally, growing at 8.5% CAGR.</li>
+        <li>Sourdough fermentation reduces glycemic response and enhances mineral absorption (NIH/PMC study).</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Dave's Killer Bread:</strong> Health-positioned bread but no sourdough, no functional ingredients.</p>
+          <p><strong>Ezekiel / Food for Life:</strong> Sprouted grains, health focus, but no sourdough fermentation story.</p>
+          <p><strong>Gap:</strong> No brand combines sourdough + functional ingredients + explicit gut-health positioning.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Functional ingredient additions are straightforward — turmeric, seeds, olives are standard bakery ingredients. The complexity is in the sourdough fermentation itself (24-48 hr cycles). Co-pack with an existing artisan bakery that has fermentation capacity.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#4 JTBD</div>
+        <div class="metric-method">Jobs to Be Done</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 07: Sourdough Snack Line -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 07 / 20</div>
+      <div class="product-name">Sourdough Snack Line</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag">SNACKS</span>
+        <span class="tag tag-blue">PACKAGING</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.85</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/07-sourdough-snacks.png" alt="Sourdough Snack Line">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Sourdough crackers, chips, and crisps using fermented dough as the base. Three varieties: Rosemary Sea Salt, Everything Seasoning, and Aged Parmesan. The selling point: "Made with 24-hour fermented sourdough" — transferring the health halo of sourdough bread into the snack aisle.</p>
+        <p>This is the shelf-stable play. Fresh sourdough bread has a 3-5 day shelf life and regional distribution limits. Crackers and crisps have 12+ month shelf life and national distribution potential. Same sourdough story, different format, massively larger addressable market.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>The U.S. cracker market is $10.2B, growing at 3.8% CAGR. Premium/artisan crackers are the fastest-growing segment.</li>
+        <li>Sourdough is being incorporated into crackers, pizza crusts, and desserts as product diversification accelerates.</li>
+        <li>Crackers with "fermented" or "sourdough" claims see 15-20% price premiums over conventional crackers.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Rustic Bakery:</strong> Premium sourdough flatbreads/crackers. Small, regional. $6-8/bag.</p>
+          <p><strong>Simple Mills / Mary's Gone Crackers:</strong> Health-positioned crackers but no sourdough story.</p>
+          <p><strong>Gap:</strong> No national cracker brand leads with "sourdough fermented" as the primary positioning.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Cracker/crisp production is well-established. The sourdough step adds fermentation time but can be batch-processed. Co-pack with existing cracker manufacturers. Long shelf life = national distribution.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#58</div>
+        <div class="metric-method">Packaging Innovation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEED 3: DRY STARTER ═══════════════════ -->
+<div class="seed-group-header">
+  <div class="seed-group-tag">Seed 03 of 06</div>
+  <div class="seed-group-title">Dry Sourdough Starter</div>
+  <div class="seed-group-desc">Dry mix and premix formats led the sourdough market in 2025, accounting for 60.98% of the segment. Competitors include KozyKraft ($5-8/packet on Amazon), Yeast Coast Sourdough, and Cultures for Health. But no one has cracked the "sourdough for normal people" positioning with premium branding.</div>
+</div>
+
+<!-- Product 08: Instant Sourdough Starter Sachets -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 08 / 20</div>
+      <div class="product-name">Instant Sourdough Starter Sachets</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-green">LOW EFFORT</span>
+        <span class="tag tag-blue">HIGH IMPACT</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">4.15</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/08-starter-sachets.png" alt="Instant Sourdough Starter Sachets">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Single-use packets of dehydrated sourdough starter. Add water, wait 24 hours, bake. No feeding schedule. No discard. No 7-day activation ritual. No naming your starter and treating it like a pet. Just bread.</p>
+        <p>The barrier to sourdough baking isn't skill — it's maintenance. Millions of people tried sourdough during COVID, made a few loaves, then let their starter die because feeding it every day felt like a chore. These sachets eliminate the chore entirely. Each packet is a single use — you open it, hydrate it, bake with it, and when you want to bake again, you open a new one. Pack of 4 for $12.99. The yeast packet model applied to sourdough.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Dry mix and premix formats account for 60.98% of the sourdough ingredients market — consumers want convenience.</li>
+        <li>KozyKraft sells dehydrated starter on Amazon for $5-8/packet, proving demand exists. But their branding is craft/niche, not mass-market.</li>
+        <li>The home baking market grew 40% during COVID and retained 60% of that growth post-pandemic.</li>
+        <li>"Sourdough starter" has 450K monthly Google searches. "Easy sourdough starter" has 110K. The intent is there.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>KozyKraft:</strong> $5-8 packets on Amazon. Craft positioning, minimal branding. Single SKU.</p>
+          <p><strong>Cultures for Health:</strong> Live and dehydrated cultures. Homebrew/fermentation brand, not bakery-focused.</p>
+          <p><strong>King Arthur Baking:</strong> Sells sourdough starter (live, $8.95 jar). But it's a live culture that needs maintenance — doesn't solve the convenience problem.</p>
+          <p><strong>Gap:</strong> No brand positions dry sourdough starter as "yeast packets for sourdough" with mass-market branding and grocery distribution.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Dehydrating sourdough culture is well-understood. Shelf-stable for 12+ months. Packet filling is standard food co-pack. The product is literally dried bacteria + flour in a foil packet. Low COGS, high margin ($12.99 for ~$1.50 of product).</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#4 JTBD</div>
+        <div class="metric-method">Jobs to Be Done</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 09: Famous Bakery Cultures -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 09 / 20</div>
+      <div class="product-name">Famous Bakery Cultures</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag">COLLECTIBLE</span>
+        <span class="tag tag-blue">PREMIUMIZATION</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">4.05</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/09-bakery-cultures.png" alt="Famous Bakery Cultures">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Heritage sourdough starter cultures sourced from legendary bakeries around the world, dried and sealed in collectible glass jars with wax seals. San Francisco, 1849. Paris, 1902. Berlin, 1923. Tokyo, 1951. Each culture produces bread with a distinct flavor profile based on its unique microbial community — the terroir of bread.</p>
+        <p>This is the single-malt Scotch play applied to sourdough. The story IS the product. A 150-year-old culture from a San Francisco bakery that survived the 1906 earthquake. A Parisian culture passed down through four generations of boulangerie. The glass jar with the wax seal sits on your counter like a bottle of good wine. $18-24 per culture. Gift-worthy, collectible, shareable.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Boudin Bakery has maintained its San Francisco sourdough culture since 1849 — the provenance story is real, not manufactured.</li>
+        <li>Collectible food products (craft coffee subscriptions, single-origin chocolate) command 3-5x premiums over commodity equivalents.</li>
+        <li>The "bread tourism" trend — traveling to visit famous bakeries — indicates consumer appetite for bakery provenance stories.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>No direct competitor.</strong> Nobody packages heritage bakery cultures as collectible, provenance-driven products. Cultures for Health sells generic cultures. This is the antithesis of generic.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Sourcing cultures from famous bakeries requires relationships and licensing. Some bakeries guard their cultures closely. Dehydration and packaging is simple. Glass jars + wax seals add packaging cost but support premium pricing.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#56</div>
+        <div class="metric-method">Premiumization</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 10: Sourdough Starter Kit -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 10 / 20</div>
+      <div class="product-name">Sourdough Starter Kit</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-green">GIFT</span>
+        <span class="tag tag-blue">PACKAGING</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.80</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/10-starter-kit.png" alt="Sourdough Starter Kit">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>The complete "first loaf" experience in a box: dried sourdough starter, heritage flour (2 lb bag), recipe cards with step-by-step photos, parchment rounds, a bench scraper, and a scoring lame. Everything a beginner needs to bake their first sourdough loaf — no prior experience required. $39.99.</p>
+        <p>This is a gift product. It's what you buy for the person who says "I've always wanted to try sourdough." The unboxing is intentionally beautiful — kraft paper, hand-stamped elements, a recipe booklet that feels like a keepsake. It competes with candle kits, cocktail kits, and cooking class gift cards in the "experiential gift" category.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>DIY food kits (hot sauce kits, cocktail kits, cheese-making kits) are a $2.4B market growing at 9% CAGR.</li>
+        <li>"Sourdough kit" has 22K monthly Google searches with strong seasonal spikes around holidays (gifting intent).</li>
+        <li>Existing sourdough kits on Amazon are poorly packaged — Ziploc bags and printed paper instructions. No premium experience.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Amazon sellers:</strong> Multiple sourdough starter kits at $15-25. Poor packaging, basic contents, no brand identity.</p>
+          <p><strong>King Arthur Baking:</strong> Sells individual components but no curated kit experience.</p>
+          <p><strong>Gap:</strong> No premium, gift-worthy sourdough starter kit with beautiful packaging and complete contents.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Assembly-style co-pack. All components are readily available. Custom box and booklet printing adds upfront cost but per-unit cost is manageable at $39.99 retail (est. COGS $12-15).</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#58</div>
+        <div class="metric-method">Packaging Innovation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEED 4: FAMILY SIZE ═══════════════════ -->
+<div class="seed-group-header">
+  <div class="seed-group-tag">Seed 04 of 06</div>
+  <div class="seed-group-title">15-Pound Lasagna / REAL Family Size</div>
+  <div class="seed-group-desc">The frozen meals market is $89.2B in 2026 (CAGR 4.2%). Stouffer's "Party Size" lasagna — the largest on the market — is 90 oz (5.6 lbs), feeds ~11. Brady's idea: 15 lbs, feeds 10-12, at $24.99. That's nearly 3x the largest available option. The gap is enormous — "family size" currently means 4 servings.</div>
+</div>
+
+<!-- Product 11: The REAL Family Size Lasagna -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 11 / 20</div>
+      <div class="product-name">The REAL Family Size Lasagna</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FROZEN / CPG</span>
+        <span class="tag tag-red">CONTRARIAN</span>
+        <span class="tag tag-green">LOW EFFORT</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.95</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/11-family-lasagna.png" alt="The REAL Family Size Lasagna">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A 15-pound lasagna in a full-size aluminum catering pan. Feeds 10-12 people. $24.99. The biggest frozen lasagna Stouffer's makes is 5.6 lbs and they call it "Party Size." This is almost three times that. Because some families actually need to feed eight people dinner, and they shouldn't have to buy three boxes to do it.</p>
+        <p>The format is the innovation. Restaurant supply companies already make catering-pan meals at this scale — this just brings the format to retail. Same aluminum pan you'd get from a catering company, same generous portions, but in the freezer aisle at Walmart for $25. Cost per serving: ~$2.50. That's cheaper than Stouffer's on a per-serving basis AND you don't have to heat up three separate trays.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Stouffer's Party Size (90 oz / 5.6 lbs) is the largest frozen lasagna widely available. At 15 lbs, this is nearly 3x larger — pure whitespace.</li>
+        <li>Average U.S. household size is 2.5, but 13.6M households have 4+ members. Those large families are underserved by current "family size" portions.</li>
+        <li>Food cost inflation has pushed families toward bulk/value formats. The $2.50/serving price point competes with fast food.</li>
+        <li>Costco's food court and rotisserie chicken prove that large-format, value-priced food generates enormous loyalty.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Stouffer's Party Size:</strong> 90 oz (5.6 lbs), ~$14.99, ~11 servings. The current ceiling.</p>
+          <p><strong>Amy's Kitchen Family Size:</strong> 3-4 servings. Not really "family" for larger families.</p>
+          <p><strong>Costco/Sam's Club:</strong> Sell catering-pan meals in deli but not in frozen aisle. Limited selection.</p>
+          <p><strong>Gap:</strong> No frozen brand goes above 6 lbs. The 10-15 lb format is completely unoccupied.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Catering-pan production is standard foodservice manufacturing. The challenge is freezer-aisle real estate — a 15-lb tray needs significant shelf space. Retail buyers need convincing. Target Costco/Sam's Club first (they have the freezer space), then expand to Walmart.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#21</div>
+        <div class="metric-method">SCAMPER</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 12: Sunday Supper Line -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 12 / 20</div>
+      <div class="product-name">Sunday Supper Line</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FROZEN / CPG</span>
+        <span class="tag tag-blue">LINE EXTENSION</span>
+        <span class="tag">COMFORT FOOD</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.85</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/12-sunday-supper.png" alt="Sunday Supper Line">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>If the 15-lb lasagna works, this is the full product line: catering-pan enchiladas, mac & cheese, pot pie, shepherd's pie. All 10-15 lbs. All under $30. The brand name — "Sunday Supper" — evokes the occasion: the big family meal where everyone sits down together. Not Tuesday night leftovers. Not microwave singles. The Sunday table.</p>
+        <p>Five SKUs at launch, rotating seasonal specials (green bean casserole at Thanksgiving, King Ranch chicken in spring). Each tray is designed for the oven — 90 minutes at 350, foil on for the first hour, foil off for the last 30 to brown. Simple enough that a teenager can manage it.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Supermarkets/hypermarkets dominate frozen meal distribution with 45.77% market share — these trays sell where families already shop.</li>
+        <li>Emerging trend: family-size packaging catering to broad range of household sizes (Future Market Insights, 2026).</li>
+        <li>Amy's Kitchen launched 6 new family-size entrees in 2025 — the category is expanding, but still at 3-4 servings.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Stouffer's:</strong> Has party size in lasagna and mac & cheese but maxes out at 5-6 lbs.</p>
+          <p><strong>Marie Callender's:</strong> Family portions but standard sizes (24-32 oz).</p>
+          <p><strong>Gap:</strong> No frozen brand offers a RANGE of 10-15 lb catering-pan comfort meals.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Multiple SKUs increase complexity but share the same production format (catering pans). Enchiladas and mac & cheese use similar assembly lines. Cold chain logistics for frozen are well-established.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#58</div>
+        <div class="metric-method">Packaging Innovation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 13: Cook Once, Eat All Week -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 13 / 20</div>
+      <div class="product-name">Cook Once, Eat All Week</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">FROZEN / CPG</span>
+        <span class="tag tag-green">MEAL PLANNING</span>
+        <span class="tag tag-blue">SCAMPER</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.70</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/13-cook-once.png" alt="Cook Once, Eat All Week">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>15-lb meals designed with an intentional leftover strategy. The packaging includes three recipes: Day 1 is the main event (lasagna from the pan). Day 2 is the transformation (slice and pan-fry for crispy edges with a fried egg on top). Day 3 is the reinvention (chop leftovers into a soup or stew base). One purchase, three distinct meals, zero food waste.</p>
+        <p>This isn't just big-format meals — it's big-format meals with a meal-planning system built in. The recipes are printed directly on the packaging in large, clear type. QR code links to video tutorials. This product is designed for the parent who meal-plans on Sunday and doesn't want to cook from scratch every night.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>"Meal prep" content on TikTok has 38B cumulative views. "Cook once eat all week" is a proven content category.</li>
+        <li>U.S. households waste $1,500/year in food on average. Intentional leftover systems reduce waste.</li>
+        <li>No frozen meal brand includes transformation recipes on packaging — this is a content play embedded in the product itself.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>No direct competitor.</strong> Meal kit brands (HelloFresh, Blue Apron) sell single-meal kits. No frozen brand designs meals with intentional leftover recipes.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Same production as the REAL Family Lasagna. The only addition is recipe content on the packaging and a QR code to video content. Recipe development and video production are one-time costs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#21</div>
+        <div class="metric-method">SCAMPER (Reverse)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEED 5: FUDGE RIPPLE ═══════════════════ -->
+<div class="seed-group-header">
+  <div class="seed-group-tag">Seed 05 of 06</div>
+  <div class="seed-group-title">Fudge Ripple Cake</div>
+  <div class="seed-group-desc">Nostalgic desserts are surging. Searches for cream-filled desserts jumped 51% in 2025. Layer cake conversations increased 121% online. The "Newstalgia" trend — classic flavors with modern twists — is dominating confectionery. The nostalgic baking market is projected to grow $150M in 2025 alone.</div>
+</div>
+
+<!-- Product 14: Grandma's Fudge Ripple Cake -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 14 / 20</div>
+      <div class="product-name">Grandma's Fudge Ripple Cake</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">DESSERT / CPG</span>
+        <span class="tag">NOSTALGIA</span>
+        <span class="tag tag-green">RETAIL BAKERY</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.90</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/14-grandma-fudge.png" alt="Grandma's Fudge Ripple Cake">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A premium, retro-branded fudge ripple cake made with real butter, real fudge, and no shortening. Two layers of moist yellow cake with thick ribbons of dark fudge swirled through the batter, topped with a fudge glaze. $12.99 at the grocery bakery counter. Vintage-inspired packaging with a cream-colored box and script typography.</p>
+        <p>This is not an "elevated" dessert. It's not a Chef's Table creation. It's the cake your grandmother actually made — rich, heavy, unapologetically sweet — but made with ingredients that matter. Real butter instead of margarine. Real chocolate fudge instead of corn syrup. The nostalgia isn't a marketing gimmick — it's the product specification.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Classic desserts like Bundt cakes and chocolate fudge cake are making a documented comeback in bakery trends for 2026.</li>
+        <li>"Newstalgia" — nostalgic flavors with premium ingredients — is a top 5 confectionery trend (Confectionery News).</li>
+        <li>86% of consumers say a creamy filling adds indulgence to patisserie (Taste Tomorrow, 2026).</li>
+        <li>In-store bakery is the fastest-growing department in grocery, up 6.3% YoY.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Grocery bakery cakes:</strong> Most use shortening, artificial flavors, and corn-syrup based fudge. Low quality, low price ($6-9).</p>
+          <p><strong>Nothing Bundt Cakes:</strong> Premium bakery chain. $25+ per cake. Limited flavors.</p>
+          <p><strong>Gap:</strong> No grocery bakery offers a premium fudge ripple cake with real ingredients at the $12.99 price point.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Standard bakery production. Real ingredients increase COGS slightly but $12.99 price point supports it. Can co-pack with regional bakeries or license to grocery in-store bakeries. No cold chain — ambient shelf life 5-7 days.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#56</div>
+        <div class="metric-method">Premiumization</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 15: Fudge Ripple Everything -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 15 / 20</div>
+      <div class="product-name">Fudge Ripple Everything</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">DESSERT / CPG</span>
+        <span class="tag tag-blue">SUB-BRAND</span>
+        <span class="tag tag-red">MAXIMALIST</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.65</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/15-fudge-everything.png" alt="Fudge Ripple Everything">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A dessert sub-brand built entirely around the fudge ripple concept: cake, brownies, ice cream, cookies, cheesecake, and coffee cake — all featuring the signature dark fudge swirl. The unifying visual is the ripple pattern. Every product, every package, every social media post features that distinctive marble of dark fudge through light batter.</p>
+        <p>This is the Ben & Jerry's approach: take one concept and maximize it across formats. The fudge ripple isn't a flavor — it's a brand identity. The visual alone is iconic and instantly recognizable in a crowded dessert aisle.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Single-concept food brands (Biscoff, Hot Honey, Everything Bagel seasoning) outperform flavor-portfolio brands on social media.</li>
+        <li>The U.S. dessert market is $62B. A recognizable visual identity cuts through cluttered shelf sets.</li>
+        <li>Fudge ripple ice cream was a top-10 ice cream flavor in the 1980s-90s — the nostalgia base exists among 35-55 year olds.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>No direct competitor.</strong> No brand has built an entire product ecosystem around the fudge ripple concept. Individual fudge ripple products exist (ice cream) but no cross-category brand.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-complex">Complex</div>
+        <div class="panel-content">
+          <p>Multi-category production requires multiple co-packers (bakery, ice cream, cookie). Brand management across 6+ SKUs is operationally heavy. Recommend starting with 2-3 core products and expanding.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#21</div>
+        <div class="metric-method">SCAMPER (Adapt)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 16: The $40 Fudge Ripple -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 16 / 20</div>
+      <div class="product-name">The $40 Fudge Ripple</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">DESSERT</span>
+        <span class="tag tag-blue">PREMIUMIZATION</span>
+        <span class="tag">GIFT / SHIP</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.80</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/16-40-dollar-fudge.png" alt="The $40 Fudge Ripple">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Ultra-premium, gift-worthy fudge ripple cake. Belgian Callebaut chocolate. French Normandy butter. Madagascar Bourbon vanilla. Three layers instead of two. Ships nationwide in a magnetic-close gift box with gold foil accents. $40 including shipping. This is the birthday cake you order for someone you actually care about.</p>
+        <p>The DTC celebration cake market is dominated by generic buttercream towers and overpriced fondant nightmares. This occupies the "thoughtful gift" position — the same slot as a box of fancy chocolates or a bottle of good wine, but more personal because it's cake. The $40 price point is intentional: expensive enough to feel special, cheap enough to not feel crazy.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>DTC cake/bakery brands (Milk Bar, Lady M, Goldbelly bakery) prove consumers will pay $40-80 for shipped cakes.</li>
+        <li>The online cake delivery market is growing at 12.4% CAGR.</li>
+        <li>Belgian chocolate and French butter sourcing is straightforward through specialty food distributors.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Milk Bar:</strong> Ships cakes nationwide, $44-58. Trendy, Instagram-forward. No nostalgic positioning.</p>
+          <p><strong>Goldbelly:</strong> Marketplace for regional bakeries. Prices $40-100+. No fudge ripple specialists.</p>
+          <p><strong>Gap:</strong> No DTC cake brand specializes in nostalgic American desserts with premium ingredients.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <div class="panel-content">
+          <p>Shipping perishable cakes requires cold-pack or frozen-ship logistics. 2-day shipping adds cost. Premium packaging (magnetic box, gold foil) adds $5-8 per unit. Target margin: 45-55% after shipping.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#56</div>
+        <div class="metric-method">Premiumization</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 17: Fudge Ripple Cake Mix -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 17 / 20</div>
+      <div class="product-name">Fudge Ripple Cake Mix</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-green">MASS MARKET</span>
+        <span class="tag tag-blue">PACKAGING</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.90</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/17-fudge-cake-mix.png" alt="Fudge Ripple Cake Mix">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A shelf-stable cake mix that produces an actual bakery-quality fudge ripple cake. The key differentiator: inside the box, there's a separate foil packet of REAL fudge sauce — not powder, not flavoring, real fudge. You bake the cake, pour the fudge over the batter before it sets, drag a knife through it for the ripple, and bake. The result looks and tastes like it came from a bakery. $6.99.</p>
+        <p>Every cake mix on the market is a powder. This one includes a wet component (the fudge packet) that makes the finished product dramatically better. It's the kind of "one weird trick" that spreads on TikTok: "this $7 cake mix has a REAL fudge packet inside and the cake looks like this." The viral potential is enormous.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>The U.S. cake mix market is $1.8B. Duncan Hines and Betty Crocker dominate but haven't innovated formats in decades.</li>
+        <li>TikTok "cake hack" content drives massive sales spikes for cake mixes that produce impressive-looking results.</li>
+        <li>Including a real fudge packet increases COGS by ~$0.80 but justifies a $2 price premium over standard mixes ($4.99 vs $6.99).</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Duncan Hines / Betty Crocker:</strong> All-powder mixes. No wet components. $3.99-4.99.</p>
+          <p><strong>Ghirardelli Brownie Mix:</strong> Includes a chocolate syrup packet — the closest analog. Premium-positioned, $5.49.</p>
+          <p><strong>Gap:</strong> No cake mix includes a real fudge packet. The Ghirardelli brownie model proves the "included sauce" format works.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Standard cake mix production + separate fudge sauce packet. Both are common food manufacturing processes. Co-pack with existing cake mix or confectionery manufacturer. Shelf-stable for 12+ months.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#58</div>
+        <div class="metric-method">Packaging Innovation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEED 6: SOUTHERN CUISINE ═══════════════════ -->
+<div class="seed-group-header">
+  <div class="seed-group-tag">Seed 06 of 06</div>
+  <div class="seed-group-title">Southern Cuisine Turned Mainstream</div>
+  <div class="seed-group-desc">Hot honey is on 11% of menus in 2025, projected to reach 26% by 2029. The "swicy" (sweet + spicy) trend is driving double-digit growth. Pimentos Brands (Papa's Pimento Cheese) is expanding through KeHE and Gourmet Foods International but still regional. Cultural flavors once in small ethnic markets are now commanding mainstream shelf space.</div>
+</div>
+
+<!-- Product 18: Southern Pantry -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 18 / 20</div>
+      <div class="product-name">Southern Pantry</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-blue">ECOSYSTEM</span>
+        <span class="tag">CULTURAL TREND</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.95</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/18-southern-pantry.png" alt="Southern Pantry">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A complete CPG line of Southern pantry staples with cohesive branding: cornbread mix, pimento cheese, sweet tea concentrate, hot honey, biscuit mix, pepper jelly, and comeback sauce. Seven products that form the "starter kit" for Southern cooking. For the person in Denver who ate shrimp and grits in Charleston and wants to recreate it at home.</p>
+        <p>The power is in the ecosystem, not any single product. Any one of these exists somewhere — but nobody has packaged them as a cohesive collection with consistent quality, consistent branding, and the cross-merchandising story of "if you liked the cornbread mix, you need the pepper jelly." The end-cap opportunity is massive: "Your Southern Pantry" as a branded grocery destination within the store.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>The sauces market is growing at 5.9% CAGR, driven by demand for ethnic and regional cuisines (Technavio).</li>
+        <li>Southern food tourism is a $4.2B industry. Tourists want to take the flavors home.</li>
+        <li>Cross-merchandised product ecosystems (think: Trader Joe's seasonal collections) increase basket size by 23-35%.</li>
+        <li>Hot honey alone is a category growing double-digits annually — and it's just one product in this line.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Individual brands exist:</strong> Mike's Hot Honey (hot honey), Papa's (pimento cheese), Martha White (cornbread mix). But they're separate brands with no ecosystem play.</p>
+          <p><strong>Stonewall Kitchen:</strong> Regional food brand with broad product line — but New England focused, not Southern.</p>
+          <p><strong>Gap:</strong> No cohesive, cross-merchandised "Southern Pantry" brand exists. Each category is siloed.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-complex">Complex</div>
+        <div class="panel-content">
+          <p>Seven SKUs across different food categories (dry mix, refrigerated, shelf-stable liquid, condiment). Requires 3-4 different co-packers. Supply chain management and brand consistency across categories is the real challenge. Recommend starting with 3 shelf-stable products and expanding.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#51</div>
+        <div class="metric-method">Cultural Trend Mining</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 19: Craft Pimento Cheese -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 19 / 20</div>
+      <div class="product-name">Craft Pimento Cheese</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-green">LOW EFFORT</span>
+        <span class="tag tag-blue">HIGH IMPACT</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">4.05</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/19-pimento-cheese.png" alt="Craft Pimento Cheese">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Premium, refrigerated pimento cheese made with real sharp cheddar, real pimentos, and Duke's mayonnaise. Four varieties: Classic, Jalape&ntilde;o, Smoked, and Bacon. Distributed nationally through KeHE or UNFI. Priced at $6.99 for 12 oz — premium but not absurd.</p>
+        <p>Pimento cheese is the "caviar of the South" — beloved regionally, unknown nationally. Papa's Pimento Cheese is expanding but still covers only 8 states. The opportunity is national distribution with a craft positioning: small-batch look, real ingredient story, four-flavor variety that gives retailers a reason to merchandize a full shelf set. Put it next to the hummus and watch what happens.</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Papa's Pimento Cheese expanded into 8 states in November 2025 via KeHE and Gourmet Foods International — proving distribution demand exists.</li>
+        <li>Pimento cheese is virtually unknown outside the South — but every non-Southerner who tries it becomes a convert. The product sells itself.</li>
+        <li>The U.S. cheese market is $61.6B in 2026. Specialty/craft cheese is the fastest-growing segment.</li>
+        <li>Hummus created a $1B dip category from nothing by going national. Pimento cheese has the same potential trajectory.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Papa's Pimento Cheese:</strong> Growing fast, KeHE distribution, but only in 8 Southern states. Flavors: Original, Jalape&ntilde;o, Fiesta, Smokehouse.</p>
+          <p><strong>Palmetto Cheese:</strong> The original national pimento cheese. Available at Costco and Walmart in select regions.</p>
+          <p><strong>Gap:</strong> National premium pimento cheese with craft positioning (like Sabra did for hummus) doesn't exist yet. The category is where hummus was in 2005.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Pimento cheese is a simple cold-mix product: shredded cheese, mayo, pimentos, seasonings. No cooking required. Refrigerated shelf life 45-60 days. Can co-pack with any deli/cheese manufacturer. Low COGS, high margin.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#4 JTBD</div>
+        <div class="metric-method">Jobs to Be Done</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 20: The Hot Honey Brand -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">PRODUCT 20 / 20</div>
+      <div class="product-name">The Hot Honey Brand</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">CPG</span>
+        <span class="tag tag-red">SWICY</span>
+        <span class="tag">SINGLE PRODUCT</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">3.70</div>
+    </div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-run3/20-hot-honey.png" alt="The Hot Honey Brand">
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A single-product hot honey brand with deep Southern provenance. Small-batch, craft-positioned, with a specific origin story: honey from a specific apiary, peppers from a specific farm, blended in a specific place. Not "artisan" as a marketing buzzword — artisan as a supply chain fact. $9.99 for 12 oz.</p>
+        <p>Mike's Hot Honey proved the category. They went from a Brooklyn pizza shop to ubiquity. But Mike's is a Brooklyn brand. This is a Southern brand — hot honey from the South, where hot honey actually comes from. The positioning is authenticity over trendiness. "We didn't discover hot honey. We've been putting it on biscuits for generations."</p>
+      </div>
+    </div>
+    <div class="rtb-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li>Hot honey is on 11% of menus in 2025, projected to reach 26% by 2029 — one of the fastest-growing condiment trends.</li>
+        <li>The "swicy" (sweet + spicy) trend is driving double-digit growth in bakery and confectionery (Kerry, 2026).</li>
+        <li>Mike's Hot Honey achieved near-ubiquity through strategic foodservice partnerships (Papa John's). A Southern-provenance competitor could differentiate on authenticity.</li>
+        <li>Single-product brands in condiments (Sriracha, Frank's RedHot) build cult followings that defend against competition.</li>
+      </ul>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Mike's Hot Honey:</strong> Category creator. Brooklyn origin. Widely available at $8-10. The benchmark.</p>
+          <p><strong>Bees Knees Spicy Honey:</strong> Smaller competitor. Similar positioning.</p>
+          <p><strong>Store brands:</strong> Walmart, Trader Joe's have introduced private-label hot honey at $5-6.</p>
+          <p><strong>Gap:</strong> No hot honey brand leads with Southern provenance and authenticity as the differentiator.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <div class="panel-content">
+          <p>Hot honey is honey + chili peppers + vinegar. Simple cold-blend or infusion process. Can source from Southern apiaries and co-pack locally. Shelf-stable for 12+ months. Extremely simple supply chain.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value">Medium</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Method</div>
+        <div class="metric-value">#51</div>
+        <div class="metric-method">Cultural Trend Mining</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ WHITEPAPER APPENDIX ═══════════════════ -->
+<div class="appendix">
+  <div class="section-header">Whitepaper Appendix</div>
+
+  <div class="appendix-section">
+    <h3>Methodology: Seed-First Ideation</h3>
+    <p>Unlike Runs 1-2 (method-first, where ideation methods generate ideas), Run 3 inverts the process: Brady provided 6 raw product seeds, and we expanded each using 2-3 proven methods from the full-stack-ideation toolkit. Methods were selected based on cumulative hit rates from prior runs:</p>
+    <table>
+      <tr><th>Method</th><th>Cumulative Hit Rate</th><th>Ideas Generated (Run 3)</th></tr>
+      <tr><td>#4 JTBD</td><td class="col-gold">87.5%</td><td>7</td></tr>
+      <tr><td>#21 SCAMPER</td><td class="col-gold">100%</td><td>5</td></tr>
+      <tr><td>#56 Premiumization</td><td class="col-gold">83.3%</td><td>5</td></tr>
+      <tr><td>#58 Packaging Innovation</td><td class="col-gold">83.3%</td><td>5</td></tr>
+      <tr><td>#51 Cultural Trend Mining</td><td class="col-gold">83.3%</td><td>3</td></tr>
+    </table>
+    <div class="source-note">Hit rates calculated across Runs 1-2 (60 ideas total). Run 3 generated 24 raw ideas, filtered to 20 survivors (83% survival rate).</div>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Market Sizing Summary</h3>
+    <table>
+      <tr><th>Category</th><th>Market Size</th><th>Growth</th><th>Key Signal</th></tr>
+      <tr><td>U.S. Women's Clothing</td><td>$190B+</td><td>5.2% CAGR</td><td>Functional fashion fastest subsegment</td></tr>
+      <tr><td>Global Sourdough</td><td>$5.9B (2025)</td><td>6.8-9.9% CAGR</td><td>58% believe sourdough is healthier</td></tr>
+      <tr><td>U.S. Frozen Meals</td><td>$89.2B (2026)</td><td>4.2% CAGR</td><td>Family-size packaging emerging trend</td></tr>
+      <tr><td>Nostalgic Baking</td><td>$150M growth (2025)</td><td>Accelerating</td><td>Cream-filled dessert searches +51%</td></tr>
+      <tr><td>U.S. Sauces/Condiments</td><td>$37B+ (2026)</td><td>5.9% CAGR</td><td>Hot honey on 11% menus, projected 26%</td></tr>
+      <tr><td>U.S. Cheese (specialty)</td><td>$61.6B (2026)</td><td>4.1% CAGR</td><td>Regional-to-national expansion accelerating</td></tr>
+    </table>
+    <div class="source-note">Sources: MarketsandMarkets, Mordor Intelligence, Future Market Insights, Mintel, SPINS, Technavio, Kerry, Datassential, Confectionery News, Taste Tomorrow, Grand View Research.</div>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Run 3 Learnings</h3>
+    <p><strong>Seed-first ideation produces more focused output.</strong> When Brady arrives with a formed idea, the expansion methods sharpen rather than scatter. The 83% survival rate is the highest across all 3 runs.</p>
+    <p><strong>First non-food run proves the methods transfer.</strong> JTBD and Cultural Trend Mining produced the strongest fashion ideas — the same methods that dominate in food. The toolkit is category-agnostic.</p>
+    <p><strong>Format innovation remains the most reliable pattern.</strong> Sachets (sourdough starters), catering pans (family meals), cake mixes with real fudge packets — same product, new container, new occasion. Packaging Innovation (#58) maintains strong hit rates across all 3 runs.</p>
+    <p><strong>The "accessibility gap" is a repeatable thesis.</strong> Multiple top ideas follow the same structure: take something that exists in premium/niche/regional form and make it accessible to mainstream consumers. This pattern appeared independently across 4 of 6 seeds.</p>
+    <p><strong>Stream-of-consciousness input works.</strong> Brady's unfiltered seed list produced ideas that feel more authentic and personally motivated than lane-selected, method-generated concepts. The emotional connection to the seed (he's a dad of five who needs pockets and lasagna) gives the pitches genuine energy.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="footer">
+  <div class="footer-left">mception.ai &bull; Innovation Workshop</div>
+  <div class="footer-right">Run 3 &bull; April 15, 2026 &bull; Stream of Consciousness</div>
+</div>
+
+</body>
+</html>

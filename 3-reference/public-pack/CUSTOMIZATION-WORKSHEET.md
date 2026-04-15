@@ -74,6 +74,19 @@ What functions do you actually need right now?
 - builder / synthesizer:
 - trusted advisor:
 - domain-specific owner:
+- dissent agent / devil's advocate:
+- dispatch / intake bot:
+
+## Starter Skills
+
+What repeatable workflows do you actually need right now?
+
+- morning / daily sweep:
+- weekly review:
+- client or stakeholder briefing:
+- intake processing:
+
+Which of these should be manual first vs. automated from day one?
 
 ## Hard Constraints
 
@@ -81,3 +94,5 @@ What functions do you actually need right now?
 - What existing system are you not willing to replace?
 - What level of maintenance are you actually willing to sustain?
 - What is the smallest version of this system that would still help you?
+- Which AI tools can write to your system of record, and which are read-only?
+- Do you have external SOP packs or frameworks you want to bring in? If so, will you import them as-is or adapt them?

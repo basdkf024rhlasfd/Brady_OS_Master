@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>PropMatic CMO Agent — /pipeline-review</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #5CA85C;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1080px;
+  min-height: 1920px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  padding: 48px 52px 40px;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,168,67,0.1);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.subtitle {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 28px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.stat-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.stat-box {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--gold);
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.stat-value-green { color: var(--green); }
+.stat-value-blue { color: var(--blue); }
+
+/* Funnel */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 8px 0 16px;
+}
+.funnel-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 16px 0;
+  text-align: center;
+}
+.funnel-bar {
+  height: 52px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.funnel-bar-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--white);
+}
+.funnel-bar-count {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--white);
+}
+.funnel-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+.funnel-rate {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  background: rgba(212,168,67,0.1);
+  padding: 3px 12px;
+  border-radius: 4px;
+}
+.funnel-arrow {
+  color: var(--gray);
+  font-size: 14px;
+  margin: 0 8px;
+}
+
+/* Lead source */
+.source-bar-container {
+  margin-bottom: 12px;
+}
+.source-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.source-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--white);
+}
+.source-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+.source-track {
+  height: 20px;
+  background: var(--bg-card-alt);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.source-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.source-detail {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 2px;
+}
+
+/* Recommendations */
+.rec-item {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.rec-item:last-child { margin-bottom: 0; }
+.rec-stage-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.rec-content { flex: 1; }
+.rec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.rec-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-left {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gold);
+}
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<div class="tag">/pipeline-review</div>
+<h1>Pipeline &amp; Funnel Metrics</h1>
+<p class="subtitle">PropMatic RevOps dashboard &mdash; April 2026</p>
+
+<!-- Key Metrics -->
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="stat-value">$772,800</div>
+    <div class="stat-label">Pipeline Value</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value stat-value-green">$18,400</div>
+    <div class="stat-label">Avg Deal Size / yr</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value stat-value-blue">34 days</div>
+    <div class="stat-label">Avg Sales Cycle</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">42.9%</div>
+    <div class="stat-label">Close Rate (Opp)</div>
+  </div>
+</div>
+
+<!-- Funnel Visualization -->
+<div class="card">
+  <div class="section-label">Conversion Funnel</div>
+
+  <div class="funnel">
+    <div class="funnel-bar" style="width: 920px; background: linear-gradient(90deg, var(--dark-blue), var(--blue));">
+      <span class="funnel-bar-name">Website Visitors</span>
+      <span class="funnel-bar-count">12,400</span>
+    </div>
+    <div class="funnel-connector">
+      <span class="funnel-arrow">&#9660;</span>
+      <span class="funnel-rate">3.06% conversion</span>
+      <span class="funnel-arrow">&#9660;</span>
+    </div>
+
+    <div class="funnel-bar" style="width: 720px; background: linear-gradient(90deg, rgba(74,127,181,0.7), rgba(74,127,181,0.9));">
+      <span class="funnel-bar-name">MQLs</span>
+      <span class="funnel-bar-count">380</span>
+    </div>
+    <div class="funnel-connector">
+      <span class="funnel-arrow">&#9660;</span>
+      <span class="funnel-rate">25.0% conversion</span>
+      <span class="funnel-arrow">&#9660;</span>
+    </div>
+
+    <div class="funnel-bar" style="width: 520px; background: linear-gradient(90deg, var(--gold-dim), var(--gold));">
+      <span class="funnel-bar-name">SQLs</span>
+      <span class="funnel-bar-count">95</span>
+    </div>
+    <div class="funnel-connector">
+      <span class="funnel-arrow">&#9660;</span>
+      <span class="funnel-rate">44.2% conversion</span>
+      <span class="funnel-arrow">&#9660;</span>
+    </div>
+
+    <div class="funnel-bar" style="width: 360px; background: linear-gradient(90deg, rgba(212,168,67,0.6), rgba(212,168,67,0.8));">
+      <span class="funnel-bar-name">Opportunities</span>
+      <span class="funnel-bar-count">42</span>
+    </div>
+    <div class="funnel-connector">
+      <span class="funnel-arrow">&#9660;</span>
+      <span class="funnel-rate">42.9% close rate</span>
+      <span class="funnel-arrow">&#9660;</span>
+    </div>
+
+    <div class="funnel-bar" style="width: 220px; background: linear-gradient(90deg, rgba(92,168,92,0.7), var(--green));">
+      <span class="funnel-bar-name">Closed Won</span>
+      <span class="funnel-bar-count">18</span>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 16px; margin-top: 8px;">
+    <div style="flex: 1; text-align: center; padding: 12px; background: var(--bg-card-alt); border-radius: 6px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px;">Visitor &rarr; Won</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--gold);">0.15%</div>
+    </div>
+    <div style="flex: 1; text-align: center; padding: 12px; background: var(--bg-card-alt); border-radius: 6px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px;">MQL &rarr; Won</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--gold);">4.74%</div>
+    </div>
+    <div style="flex: 1; text-align: center; padding: 12px; background: var(--bg-card-alt); border-radius: 6px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px;">SQL &rarr; Won</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--green);">18.9%</div>
+    </div>
+    <div style="flex: 1; text-align: center; padding: 12px; background: var(--bg-card-alt); border-radius: 6px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px;">Revenue / Mo</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--green);">$331.2K</div>
+    </div>
+  </div>
+</div>
+
+<!-- Lead Source Breakdown -->
+<div class="card">
+  <div class="section-label">Lead Source Breakdown (MQLs)</div>
+
+  <div class="source-bar-container">
+    <div class="source-label">
+      <span class="source-name">Organic Search</span>
+      <span class="source-pct" style="color: var(--green);">42% &mdash; 160 MQLs</span>
+    </div>
+    <div class="source-track"><div class="source-fill" style="width: 42%; background: var(--green);"></div></div>
+    <div class="source-detail">Highest SQL conversion (31%). Blog + SEO driving qualified traffic. Top pages: /ai-leasing, /case-studies, /vs-eliseai</div>
+  </div>
+
+  <div class="source-bar-container">
+    <div class="source-label">
+      <span class="source-name">Paid Search &amp; Social</span>
+      <span class="source-pct" style="color: var(--blue);">28% &mdash; 106 MQLs</span>
+    </div>
+    <div class="source-track"><div class="source-fill" style="width: 28%; background: var(--blue);"></div></div>
+    <div class="source-detail">Google Ads 72%, LinkedIn 28%. CPC trending down ($3.20 &rarr; $2.95). LinkedIn has higher SQL rate but lower volume.</div>
+  </div>
+
+  <div class="source-bar-container">
+    <div class="source-label">
+      <span class="source-name">Referral</span>
+      <span class="source-pct" style="color: var(--gold);">18% &mdash; 68 MQLs</span>
+    </div>
+    <div class="source-track"><div class="source-fill" style="width: 18%; background: var(--gold);"></div></div>
+    <div class="source-detail">Best close rate (52%). Customer referrals + partner channel (Yardi marketplace, NAA events). Underinvested.</div>
+  </div>
+
+  <div class="source-bar-container">
+    <div class="source-label">
+      <span class="source-name">Outbound</span>
+      <span class="source-pct" style="color: var(--gray-light);">12% &mdash; 46 MQLs</span>
+    </div>
+    <div class="source-track"><div class="source-fill" style="width: 12%; background: var(--gray);"></div></div>
+    <div class="source-detail">SDR cold outreach. Lowest SQL rate (14%) but provides pipeline coverage. Needs better ICP targeting &mdash; too broad currently.</div>
+  </div>
+</div>
+
+<!-- Stage-by-Stage Recommendations -->
+<div class="card">
+  <div class="section-label">Stage-by-Stage Recommendations</div>
+
+  <div class="rec-item">
+    <span class="rec-stage-tag" style="background: rgba(74,127,181,0.15); color: var(--blue);">Visitor &rarr; MQL</span>
+    <div class="rec-content">
+      <div class="rec-title">Add gated ROI calculator to top-of-funnel</div>
+      <div class="rec-desc">3.06% visitor-to-MQL is below the 4-5% SaaS benchmark. A "Calculate Your Vacancy Cost" tool would capture intent-rich leads without requiring a demo commitment. Expect +0.8% lift.</div>
+    </div>
+  </div>
+
+  <div class="rec-item">
+    <span class="rec-stage-tag" style="background: rgba(212,168,67,0.15); color: var(--gold);">MQL &rarr; SQL</span>
+    <div class="rec-content">
+      <div class="rec-title">Implement lead scoring to auto-route high-intent MQLs</div>
+      <div class="rec-desc">25% MQL-to-SQL is solid but masks a bimodal distribution: organic converts at 31%, outbound at 14%. Score on portfolio size + engagement signals, route hot leads directly to AE, send cold leads to nurture sequence.</div>
+    </div>
+  </div>
+
+  <div class="rec-item">
+    <span class="rec-stage-tag" style="background: rgba(212,168,67,0.15); color: var(--gold);">SQL &rarr; Opp</span>
+    <div class="rec-content">
+      <div class="rec-title">Shorten time-to-demo from 4.2 days to under 24 hours</div>
+      <div class="rec-desc">44.2% SQL-to-Opp conversion drops to 28% when first demo is scheduled 5+ days out. Add instant Calendly booking in qualification email. Speed kills deals in multifamily &mdash; operators evaluate 2-3 vendors simultaneously.</div>
+    </div>
+  </div>
+
+  <div class="rec-item">
+    <span class="rec-stage-tag" style="background: rgba(92,168,92,0.15); color: var(--green);">Opp &rarr; Won</span>
+    <div class="rec-content">
+      <div class="rec-title">Deploy battle cards + customer reference program</div>
+      <div class="rec-desc">42.9% close rate jumps to 67% when reps use the competitive battle card (see /sales-collateral). Formalize the reference program &mdash; 3 referenceable customers per region, pre-approved to take calls. Referral-sourced deals close at 52%.</div>
+    </div>
+  </div>
+
+  <div class="rec-item">
+    <span class="rec-stage-tag" style="background: rgba(196,92,92,0.15); color: var(--red);">Lost Deal</span>
+    <div class="rec-content">
+      <div class="rec-title">Win/loss interviews on every deal over $15K ACV</div>
+      <div class="rec-desc">24 lost deals last quarter with no documented reason. Implement a 15-min structured interview within 48 hours of loss. Top 3 suspected reasons: pricing confusion, missing Entrata integration (now shipped), and slow follow-up.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">mception.ai</div>
+  <div class="footer-right">PropMatic CMO Agent</div>
+</div>
+
+</body>
+</html>

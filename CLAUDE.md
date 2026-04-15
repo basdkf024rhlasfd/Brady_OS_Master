@@ -54,13 +54,26 @@
 - **Prospect Research Kit:** `3-reference/skills/prospect-research-kit/SKILL.md` — Fast research on a person/company. Fact base + talk track + Notion records. No deliverables sent — Brady's internal prep. Upgrades to client-engagement-kit when ready.
 - **Project Standup Kit:** `3-reference/skills/project-standup-kit/SKILL.md` — Consolidated status across all projects/repos/clients. Sequences DiCaprio (recon) → pipeline-dashboard → client-project-cleanup → air-traffic-control.
 - **Doctrine Sync:** `3-reference/skills/doctrine-sync/SKILL.md` — Detects drift between OS doctrine/governance and agent profiles. Drift report + paste-ready updates. Runs standalone or as weekly sweep step.
+- **Innovation Workshop:** `3-reference/skills/innovation-workshop/SKILL.md` — Full-stack product innovation engine. 20 ideas per run with Canva visuals, research-backed pitches, RTBs, executive summary, whitepaper appendix. Recursive learning engine tracks method performance across runs. Output: HTML + PDF. Orchestrates full-stack-ideation + midjourney-prompt style guidance + mception-design-system.
 - **Midjourney Prompt:** `3-reference/skills/midjourney-prompt/SKILL.md` — Generates one optimal Midjourney prompt per product idea. Handles packaging, industrial, tech, beverage, and lifestyle products with correct text rendering and matchable filenames.
 - **Deck Generator:** `3-reference/skills/deck-generator/SKILL.md` — Branded slide decks via Marp CLI with mception design tokens. Markdown in, HTML + PDF + PPTX out. Custom theme: `references/mception-marp-theme.css`
 - **Marketing Templates:** `3-reference/skills/marketing-templates/SKILL.md` — Template-driven marketing assets (sell sheets, client one-pagers, capability overviews). Placeholder substitution + Playwright PDF. Templates in `references/`.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`
+- **Wyatt Earp:** `0-agents/custom-built-agents/wyatt-earp.md` — Ad hoc dissent agent. Pressure-tests pitches and strategic recommendations for being too timid. Activated under Dissent Protocol.
+- **OS Context Pack:** `3-reference/skills/os-context-pack/SKILL.md` — Generates a portable context pack for Claude Chat Projects. Trigger: "brady os context". Outputs custom instructions + knowledge file.
+- **Agent Debate:** `3-reference/skills/agent-debate/SKILL.md` — Stages structured debates between Brady OS agents on strategic questions. War room transcript format. Trigger: "stage a debate", "agent debate", "war room".
+- **Cascading Accountability:** `3-reference/skills/cascading-accountability/SKILL.md` — AI-native management system for CEO daily briefings. Surfaces performance signals, risk flags, and pre-drafted communications. Templates + OKR tracker + whitepaper.
+- **Weekly OS Recap:** `3-reference/skills/weekly-os-recap/SKILL.md` — Weekly visual changelog of Brady OS. Scans 7-day git history, classifies into plain-language categories, renders mception-styled HTML + PDF. Auto-delivered Friday 7 AM CT via email + text. GAS mailer: `3-reference/scripts/gas/scripts/os-recap-mailer/`
+
+## Imported Skills & Systems
+External frameworks and skill packs stored as standalone packages in `3-reference/imported-skills-and-systems/`. These are NOT core OS skills — they can be summoned as-is or selectively promoted. See `3-reference/imported-skills-and-systems/README.md` for governance.
+
+- **Marketing Skills (Plugin):** `3-reference/imported-skills-and-systems/marketingskills/` — 36 marketing SOPs (CRO, SEO, copywriting, cold email, paid ads, pricing, etc.) from coreyhaines31/marketingskills. Skills: `skills/`. Tools: `tools/REGISTRY.md`.
+- **Pitch Deck Framework:** `3-reference/imported-skills-and-systems/pitch-deck-framework/SKILL.md` — 12-section structured pitch deck framework (Purpose & Vision → Team). Source: VC Corner Newsletter (Ruben). Pairs with deck-generator for rendering.
+- **Infographic Builder:** `3-reference/imported-skills-and-systems/infographic-builder/SKILL.md` — Charlie Hills' 9-step infographic system. 1080x1920 social format, QA gate (80/100), Playwright PNG export. Pairs with mception-design-system for brand tokens.
 
 ## Scripts
-- **GAS Toolkit:** `3-reference/scripts/gas/CLAUDE.md` — Google Apps Script automations (email-classifier). Build/deploy: `3-reference/scripts/gas/build.sh`
+- **GAS Toolkit:** `3-reference/scripts/gas/CLAUDE.md` — Google Apps Script automations (email-classifier, os-recap-mailer). Build/deploy: `3-reference/scripts/gas/build.sh`
 
 ## Notion Architecture
 - **Client Projects DB** (workspace root, shareable): ID `c8a6b2d70d9343839a16c950c95a6066`

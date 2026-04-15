@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>PropMatic CMO Agent — /cro-audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #5CA85C;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1080px;
+  min-height: 1920px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  padding: 48px 52px 40px;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,168,67,0.1);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.subtitle {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 28px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.overall-score {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.score-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  color: var(--gold);
+  line-height: 1;
+}
+.score-denom {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--gray);
+}
+.score-summary {
+  font-size: 18px;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+.score-summary strong {
+  color: var(--white);
+}
+.audit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.audit-item:last-child { border-bottom: none; }
+.audit-score {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.audit-score-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+}
+.audit-score-max {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gray);
+}
+.score-red { background: rgba(196,92,92,0.15); }
+.score-red .audit-score-val { color: var(--red); }
+.score-yellow { background: rgba(212,168,67,0.15); }
+.score-yellow .audit-score-val { color: var(--gold); }
+.score-green { background: rgba(92,168,92,0.15); }
+.score-green .audit-score-val { color: var(--green); }
+.audit-content { flex: 1; }
+.audit-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.audit-detail {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+.rec-card {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.rec-card:last-child { margin-bottom: 0; }
+.rec-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--gold-dim);
+  flex-shrink: 0;
+  width: 40px;
+}
+.rec-content { flex: 1; }
+.rec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.rec-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.impact-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.impact-high {
+  background: rgba(92,168,92,0.15);
+  color: var(--green);
+}
+.impact-med {
+  background: rgba(212,168,67,0.15);
+  color: var(--gold);
+}
+.impact-low {
+  background: rgba(138,141,148,0.15);
+  color: var(--gray-light);
+}
+.before-after {
+  display: flex;
+  gap: 16px;
+}
+.ba-box {
+  flex: 1;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.ba-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+.ba-before {
+  background: rgba(196,92,92,0.08);
+  border: 1px solid rgba(196,92,92,0.2);
+}
+.ba-before .ba-label { color: var(--red); }
+.ba-after {
+  background: rgba(92,168,92,0.08);
+  border: 1px solid rgba(92,168,92,0.2);
+}
+.ba-after .ba-label { color: var(--green); }
+.ba-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--white);
+  line-height: 1.4;
+}
+.url-target {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-left {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gold);
+}
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<div class="tag">/cro-audit</div>
+<h1>Landing Page CRO Audit</h1>
+<div class="url-target">TARGET: propmatic.com/demo</div>
+
+<!-- Overall Score -->
+<div class="card">
+  <div class="overall-score">
+    <div class="score-circle">
+      <div class="score-num">62</div>
+      <div class="score-denom">/100</div>
+    </div>
+    <div class="score-summary">
+      <strong>Below benchmark.</strong> The page communicates product capability but fails to build trust or create urgency. Biggest gaps are social proof and value prop specificity. Estimated <strong>+35% conversion lift</strong> achievable with the three recommendations below.
+    </div>
+  </div>
+</div>
+
+<!-- 7-Point Analysis -->
+<div class="card">
+  <div class="section-label">7-Point Analysis</div>
+
+  <div class="audit-item">
+    <div class="audit-score score-yellow">
+      <div class="audit-score-val">5</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">Value Prop Clarity</div>
+      <div class="audit-detail">"AI-Powered Marketing" is generic and tells the visitor nothing specific. Every competitor says the same thing. Need to lead with a measurable outcome: vacancy reduction, response time, conversion rate.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-score score-red">
+      <div class="audit-score-val">3</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">Social Proof</div>
+      <div class="audit-detail">Zero customer logos, no testimonials, no case studies, no "trusted by X communities" badge. For a B2B SaaS page, this is the single biggest conversion killer. Property managers need peer validation before booking a demo.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-score score-green">
+      <div class="audit-score-val">7</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">CTA Strength</div>
+      <div class="audit-detail">"Book a Demo" is clear and action-oriented. But it sits below the fold on desktop and requires scrolling. Add a sticky header CTA or move the primary button above the fold.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-score score-green">
+      <div class="audit-score-val">8</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">Page Speed</div>
+      <div class="audit-detail">LCP 1.8s, FID 45ms, CLS 0.02. Solid Core Web Vitals. Images are properly compressed and lazy-loaded. No major performance issues.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-score score-yellow">
+      <div class="audit-score-val">6</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">Mobile Experience</div>
+      <div class="audit-detail">Layout adapts but feature comparison table breaks on screens under 400px. Form fields are too small for thumb input. Demo video doesn't autoplay on mobile (missed engagement window).</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-score score-red">
+      <div class="audit-score-val">4</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">Trust Signals</div>
+      <div class="audit-detail">No SOC 2 badge, no integration logos (Yardi, RealPage, Entrata), no security language. Property managers handle PII — they need to see compliance before they'll talk to sales.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-score score-green">
+      <div class="audit-score-val">7</div>
+      <div class="audit-score-max">/10</div>
+    </div>
+    <div class="audit-content">
+      <div class="audit-name">Form Friction</div>
+      <div class="audit-detail">4 fields (name, email, company, portfolio size) is reasonable. Calendar embed for scheduling is good. Consider adding "No credit card required" microcopy to reduce hesitation.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Top 3 Recommendations -->
+<div class="card">
+  <div class="section-label">Top 3 Recommendations</div>
+
+  <div class="rec-card">
+    <div class="rec-num">01</div>
+    <div class="rec-content">
+      <div class="rec-title">Add a logo bar + one testimonial above the fold</div>
+      <div class="rec-desc">Place 4-6 customer logos and a single quote with headshot directly beneath the hero. "PropMatic cut our vacancy from 8% to 3% in 90 days." This alone could lift demo requests 20-30%.</div>
+      <span class="impact-badge impact-high">High Impact</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num">02</div>
+    <div class="rec-content">
+      <div class="rec-title">Rewrite the headline to lead with the outcome</div>
+      <div class="rec-desc">Replace "AI-Powered Marketing for Multifamily" with a specific, measurable claim. See before/after below. Specificity builds credibility and filters for qualified visitors.</div>
+      <span class="impact-badge impact-high">High Impact</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num">03</div>
+    <div class="rec-content">
+      <div class="rec-title">Add integration logos + SOC 2 badge to footer area</div>
+      <div class="rec-desc">Show Yardi, RealPage, Entrata, AppFolio logos with "Integrates with your PMS" label. Add SOC 2 Type II and "256-bit encryption" badges. Removes the silent objection around data security.</div>
+      <span class="impact-badge impact-med">Medium Impact</span>
+    </div>
+  </div>
+</div>
+
+<!-- Before/After Headline -->
+<div class="card">
+  <div class="section-label">Headline Recommendation</div>
+  <div class="before-after">
+    <div class="ba-box ba-before">
+      <div class="ba-label">Before</div>
+      <div class="ba-text">"AI-Powered Marketing for Multifamily"</div>
+    </div>
+    <div class="ba-box ba-after">
+      <div class="ba-label">After</div>
+      <div class="ba-text">"Fill Vacancies 40% Faster with AI That Responds to Every Lead in 90 Seconds"</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">mception.ai</div>
+  <div class="footer-right">PropMatic CMO Agent</div>
+</div>
+
+</body>
+</html>

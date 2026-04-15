@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>PropMatic CMO Agent — /pricing-review</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #5CA85C;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1080px;
+  min-height: 1920px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  padding: 48px 52px 40px;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,168,67,0.1);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.subtitle {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 28px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.stat-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.stat-box {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--gold);
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.stat-value-green { color: var(--green); }
+.stat-value-blue { color: var(--blue); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray-light);
+  vertical-align: top;
+}
+td:first-child { color: var(--white); font-weight: 500; }
+.highlight { color: var(--gold); font-weight: 600; }
+.tier-card {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.tier {
+  flex: 1;
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.tier-recommended {
+  border-color: var(--gold);
+  position: relative;
+}
+.tier-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 2px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.tier-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.tier-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+.tier-price-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+.tier-features {
+  text-align: left;
+  font-size: 14px;
+  color: var(--gray-light);
+  line-height: 1.8;
+}
+.tier-features .check { color: var(--green); margin-right: 6px; }
+.tier-features .x { color: var(--red-dim); margin-right: 6px; }
+.arrow-right {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--gold);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+.rec-box {
+  background: rgba(92,168,92,0.06);
+  border: 1px solid rgba(92,168,92,0.15);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.rec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.rec-desc {
+  font-size: 16px;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+.rec-desc strong { color: var(--white); }
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.wtp-bar-container {
+  margin-bottom: 10px;
+}
+.wtp-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gray-light);
+  margin-bottom: 4px;
+}
+.wtp-bar-track {
+  height: 24px;
+  background: var(--bg-card-alt);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.wtp-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.impact-card {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.impact-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  color: var(--green);
+}
+.impact-text {
+  font-size: 18px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+.impact-text strong { color: var(--white); }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-left {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gold);
+}
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<div class="tag">/pricing-review</div>
+<h1>Pricing Strategy Review</h1>
+<p class="subtitle">PropMatic SaaS pricing analysis and restructure recommendation</p>
+
+<!-- Unit Economics -->
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="stat-value">$380</div>
+    <div class="stat-label">CAC</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">$14,200</div>
+    <div class="stat-label">LTV</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value stat-value-green">37:1</div>
+    <div class="stat-label">LTV:CAC Ratio</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value stat-value-blue">22 mo</div>
+    <div class="stat-label">Avg Retention</div>
+  </div>
+</div>
+
+<!-- Current Pricing -->
+<div class="card">
+  <div class="section-label">Current Pricing Tiers</div>
+  <div class="tier-card">
+    <div class="tier">
+      <div class="tier-name">Starter</div>
+      <div class="tier-price">$299</div>
+      <div class="tier-price-unit">/month</div>
+      <div class="tier-features">
+        <span class="check">&#10003;</span> Up to 100 units<br>
+        <span class="check">&#10003;</span> AI leasing agent<br>
+        <span class="check">&#10003;</span> 1 PMS integration<br>
+        <span class="check">&#10003;</span> Email + chat support<br>
+        <span class="x">&#10005;</span> Marketing automation<br>
+        <span class="x">&#10005;</span> Voice AI<br>
+        <span class="x">&#10005;</span> Dedicated CSM
+      </div>
+    </div>
+    <div class="tier">
+      <div class="tier-name">Growth</div>
+      <div class="tier-price">$799</div>
+      <div class="tier-price-unit">/month</div>
+      <div class="tier-features">
+        <span class="check">&#10003;</span> Up to 500 units<br>
+        <span class="check">&#10003;</span> AI leasing agent<br>
+        <span class="check">&#10003;</span> 3 PMS integrations<br>
+        <span class="check">&#10003;</span> Marketing automation<br>
+        <span class="check">&#10003;</span> Voice AI<br>
+        <span class="check">&#10003;</span> Dedicated CSM<br>
+        <span class="x">&#10005;</span> Custom workflows
+      </div>
+    </div>
+    <div class="tier">
+      <div class="tier-name">Enterprise</div>
+      <div class="tier-price" style="font-size: 28px;">Custom</div>
+      <div class="tier-price-unit">contact sales</div>
+      <div class="tier-features">
+        <span class="check">&#10003;</span> Unlimited units<br>
+        <span class="check">&#10003;</span> All features<br>
+        <span class="check">&#10003;</span> Unlimited integrations<br>
+        <span class="check">&#10003;</span> Custom workflows<br>
+        <span class="check">&#10003;</span> API access<br>
+        <span class="check">&#10003;</span> SLA guarantee<br>
+        <span class="check">&#10003;</span> Quarterly reviews
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Market Comparison -->
+<div class="card">
+  <div class="section-label">Market Comparison</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Competitor</th>
+        <th>Entry Tier</th>
+        <th>Mid Tier</th>
+        <th>Enterprise</th>
+        <th>Pricing Model</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>EliseAI</td>
+        <td>$5.00/unit/mo</td>
+        <td>$7.00/unit/mo</td>
+        <td>Custom</td>
+        <td>Per-unit</td>
+      </tr>
+      <tr>
+        <td>Funnel Leasing</td>
+        <td>$499/mo</td>
+        <td>$999/mo</td>
+        <td>$2,499/mo</td>
+        <td>Flat + overage</td>
+      </tr>
+      <tr>
+        <td>Knock CRM</td>
+        <td>$4.50/unit/mo</td>
+        <td>$6.50/unit/mo</td>
+        <td>Custom</td>
+        <td>Per-unit</td>
+      </tr>
+      <tr>
+        <td style="color: var(--gold); font-weight: 600;">PropMatic</td>
+        <td class="highlight">$299/mo flat</td>
+        <td class="highlight">$799/mo flat</td>
+        <td class="highlight">Custom</td>
+        <td style="color: var(--gold);">Flat rate</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Recommendation -->
+<div class="rec-box">
+  <div class="rec-title">Recommendation: Add a Pro Tier + Raise Growth</div>
+  <div class="rec-desc">
+    <strong>Growth $799 &rarr; $899/mo.</strong> The $100 increase is within willingness-to-pay for current customers (see below). Growth is your most popular tier (62% of new deals) and is significantly underpriced vs. competitors.<br><br>
+    <strong>New "Pro" tier at $1,299/mo</strong> fills the gap between Growth and Enterprise. Includes API access, custom workflows, and priority support. Captures the 500-1,500 unit operators who don't need full Enterprise but want more than Growth.<br><br>
+    <strong>Keep Starter at $299.</strong> It's your entry point and conversion driver. Raising it adds friction without meaningful revenue.
+  </div>
+</div>
+
+<!-- Proposed Tiers -->
+<div class="card">
+  <div class="section-label">Proposed Tier Structure</div>
+  <div class="tier-card">
+    <div class="tier">
+      <div class="tier-name">Starter</div>
+      <div class="tier-price">$299</div>
+      <div class="tier-price-unit">/month &middot; no change</div>
+    </div>
+    <div class="tier">
+      <div class="tier-name">Growth</div>
+      <div class="tier-price" style="color: var(--green);">$899</div>
+      <div class="tier-price-unit" style="color: var(--green);">/month &middot; +$100</div>
+    </div>
+    <div class="tier tier-recommended">
+      <div class="tier-badge">New</div>
+      <div class="tier-name">Pro</div>
+      <div class="tier-price">$1,299</div>
+      <div class="tier-price-unit">/month &middot; new tier</div>
+    </div>
+    <div class="tier">
+      <div class="tier-name">Enterprise</div>
+      <div class="tier-price" style="font-size: 28px;">Custom</div>
+      <div class="tier-price-unit">no change</div>
+    </div>
+  </div>
+</div>
+
+<!-- Price Sensitivity -->
+<div class="card">
+  <div class="section-label">Price Sensitivity Analysis (Growth Tier)</div>
+  <p style="font-size: 15px; color: var(--gray); margin-bottom: 16px;">Survey of 84 current Growth customers: "At what price would you consider this product too expensive?"</p>
+
+  <div class="wtp-bar-container">
+    <div class="wtp-label"><span>$799 (current)</span><span>96% would stay</span></div>
+    <div class="wtp-bar-track"><div class="wtp-bar-fill" style="width: 96%; background: var(--green);"></div></div>
+  </div>
+  <div class="wtp-bar-container">
+    <div class="wtp-label"><span>$899 (recommended)</span><span>91% would stay</span></div>
+    <div class="wtp-bar-track"><div class="wtp-bar-fill" style="width: 91%; background: var(--green);"></div></div>
+  </div>
+  <div class="wtp-bar-container">
+    <div class="wtp-label"><span>$999</span><span>78% would stay</span></div>
+    <div class="wtp-bar-track"><div class="wtp-bar-fill" style="width: 78%; background: var(--gold);"></div></div>
+  </div>
+  <div class="wtp-bar-container">
+    <div class="wtp-label"><span>$1,099</span><span>54% would stay</span></div>
+    <div class="wtp-bar-track"><div class="wtp-bar-fill" style="width: 54%; background: var(--gold-dim);"></div></div>
+  </div>
+  <div class="wtp-bar-container">
+    <div class="wtp-label"><span>$1,299</span><span>31% would stay</span></div>
+    <div class="wtp-bar-track"><div class="wtp-bar-fill" style="width: 31%; background: var(--red);"></div></div>
+  </div>
+</div>
+
+<!-- Revenue Impact -->
+<div class="card">
+  <div class="impact-card">
+    <div class="impact-num">+18%</div>
+    <div class="impact-text">
+      <strong>Projected ARR increase</strong> from tier restructure.<br>
+      Growth tier increase: +$100/mo &times; 148 customers = <strong>+$177,600/yr</strong><br>
+      New Pro tier capture (est. 22% of Enterprise pipeline): <strong>+$342,864/yr</strong><br>
+      Net churn from price increase (est. 5%): <strong>-$71,280/yr</strong><br>
+      <span style="color: var(--green); font-weight: 600;">Net impact: +$449,184/yr</span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">mception.ai</div>
+  <div class="footer-right">PropMatic CMO Agent</div>
+</div>
+
+</body>
+</html>

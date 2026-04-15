@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>/tracking-setup — GA4 Implementation Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #5CA85C;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  min-height: 1920px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  padding: 48px 52px 40px;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,168,67,0.08);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.subtitle {
+  color: var(--gray-light);
+  font-size: 19px;
+  margin-bottom: 32px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.card-alt { background: var(--bg-card-alt); }
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray);
+  text-align: left;
+  padding: 10px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+td {
+  padding: 11px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray-light);
+  vertical-align: top;
+}
+td:first-child { color: var(--white); }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: rgba(255,255,255,0.04);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--gold);
+}
+.priority-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.p0 { background: rgba(196,92,92,0.15); color: var(--red); }
+.p1 { background: rgba(212,168,67,0.12); color: var(--gold); }
+.p2 { background: rgba(74,127,181,0.12); color: var(--blue); }
+
+.conv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.conv-box {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.conv-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.conv-primary .conv-type { color: var(--gold); }
+.conv-secondary .conv-type { color: var(--blue); }
+.conv-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.conv-event {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gray);
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gold-dim);
+  letter-spacing: 1px;
+}
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<div class="tag">/tracking-setup</div>
+<h1>GA4 Implementation Plan</h1>
+<div class="subtitle">propmatic.com &mdash; Event taxonomy, conversions & data layer &mdash; Apr 14, 2026</div>
+
+<!-- Event Taxonomy -->
+<div class="section-title">Event Taxonomy</div>
+<div class="card" style="padding: 0; overflow: hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Trigger</th>
+        <th>Key Parameters</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>page_view</code></td>
+        <td>Every page load</td>
+        <td><code>page_title</code>, <code>page_location</code>, <code>content_group</code></td>
+        <td><span class="priority-tag p0">P0</span></td>
+      </tr>
+      <tr>
+        <td><code>demo_request_start</code></td>
+        <td>Form focus / modal open</td>
+        <td><code>form_location</code>, <code>referrer_section</code>, <code>cta_text</code></td>
+        <td><span class="priority-tag p0">P0</span></td>
+      </tr>
+      <tr>
+        <td><code>demo_request_complete</code></td>
+        <td>Form submission success</td>
+        <td><code>company_size</code>, <code>unit_count</code>, <code>source_page</code></td>
+        <td><span class="priority-tag p0">P0</span></td>
+      </tr>
+      <tr>
+        <td><code>pricing_view</code></td>
+        <td>Pricing page load or tab click</td>
+        <td><code>plan_viewed</code>, <code>toggle_state</code> (monthly/annual)</td>
+        <td><span class="priority-tag p0">P0</span></td>
+      </tr>
+      <tr>
+        <td><code>case_study_download</code></td>
+        <td>PDF download click</td>
+        <td><code>case_study_name</code>, <code>property_type</code>, <code>file_format</code></td>
+        <td><span class="priority-tag p1">P1</span></td>
+      </tr>
+      <tr>
+        <td><code>blog_subscribe</code></td>
+        <td>Newsletter signup submit</td>
+        <td><code>subscribe_location</code>, <code>content_topic</code></td>
+        <td><span class="priority-tag p1">P1</span></td>
+      </tr>
+      <tr>
+        <td><code>chat_initiated</code></td>
+        <td>Chat widget opened</td>
+        <td><code>page_context</code>, <code>time_on_page</code>, <code>chat_type</code></td>
+        <td><span class="priority-tag p1">P1</span></td>
+      </tr>
+      <tr>
+        <td><code>feature_comparison_view</code></td>
+        <td>Comparison table interaction</td>
+        <td><code>competitors_compared</code>, <code>scroll_depth</code></td>
+        <td><span class="priority-tag p2">P2</span></td>
+      </tr>
+      <tr>
+        <td><code>video_engagement</code></td>
+        <td>Play, 25%, 50%, 75%, 100%</td>
+        <td><code>video_title</code>, <code>milestone</code>, <code>duration</code></td>
+        <td><span class="priority-tag p2">P2</span></td>
+      </tr>
+      <tr>
+        <td><code>roi_calculator_use</code></td>
+        <td>Calculator interaction complete</td>
+        <td><code>units_entered</code>, <code>vacancy_rate</code>, <code>estimated_savings</code></td>
+        <td><span class="priority-tag p1">P1</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Conversion Goals -->
+<div class="section-title" style="margin-top: 28px;">Conversion Goals</div>
+<div class="conv-grid">
+  <div class="conv-box conv-primary">
+    <div class="conv-type">Primary Conversion</div>
+    <div class="conv-name">Demo Request Complete</div>
+    <div class="conv-event">demo_request_complete</div>
+  </div>
+  <div class="conv-box conv-primary">
+    <div class="conv-type">Primary Conversion</div>
+    <div class="conv-name">Pricing Page View</div>
+    <div class="conv-event">pricing_view</div>
+  </div>
+  <div class="conv-box conv-primary">
+    <div class="conv-type">Primary Conversion</div>
+    <div class="conv-name">ROI Calculator Completion</div>
+    <div class="conv-event">roi_calculator_use</div>
+  </div>
+  <div class="conv-box conv-secondary">
+    <div class="conv-type">Secondary Conversion</div>
+    <div class="conv-name">Case Study Download</div>
+    <div class="conv-event">case_study_download</div>
+  </div>
+  <div class="conv-box conv-secondary">
+    <div class="conv-type">Secondary Conversion</div>
+    <div class="conv-name">Blog Subscribe</div>
+    <div class="conv-event">blog_subscribe</div>
+  </div>
+  <div class="conv-box conv-secondary">
+    <div class="conv-type">Secondary Conversion</div>
+    <div class="conv-name">Chat Initiated</div>
+    <div class="conv-event">chat_initiated</div>
+  </div>
+  <div class="conv-box conv-secondary">
+    <div class="conv-type">Secondary Conversion</div>
+    <div class="conv-name">Feature Comparison Engaged</div>
+    <div class="conv-event">feature_comparison_view</div>
+  </div>
+</div>
+
+<!-- UTM Convention -->
+<div class="section-title" style="margin-top: 8px;">UTM Convention</div>
+<div class="card" style="padding: 0; overflow: hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Convention</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>utm_source</code></td>
+        <td>Platform name, lowercase</td>
+        <td><code>linkedin</code>, <code>google</code>, <code>substack</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_medium</code></td>
+        <td>Channel type</td>
+        <td><code>paid_social</code>, <code>organic_social</code>, <code>email</code>, <code>cpc</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_campaign</code></td>
+        <td>YYYY-MM_campaign-slug</td>
+        <td><code>2026-04_vacancy-calculator-launch</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_content</code></td>
+        <td>Creative variant ID</td>
+        <td><code>headline-a</code>, <code>video-testimonial</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_term</code></td>
+        <td>Keyword or audience segment</td>
+        <td><code>multifamily-marketing</code>, <code>property-managers</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Data Layer -->
+<div class="section-title" style="margin-top: 28px;">Data Layer Requirements</div>
+<div class="card card-alt">
+  <div class="card-label">Window.dataLayer Push Structure</div>
+  <pre style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--gray-light); line-height: 1.7; white-space: pre-wrap;">window.dataLayer.push({
+  event: 'demo_request_complete',
+  user_properties: {
+    company_size: '500-1000 units',
+    industry_segment: 'multifamily',
+    lead_score: 'high'
+  },
+  event_parameters: {
+    form_location: 'hero_cta',
+    source_page: '/solutions/leasing',
+    time_to_complete: 45
+  }
+});</pre>
+</div>
+
+<!-- Implementation Priority -->
+<div class="section-title" style="margin-top: 28px;">Implementation Roadmap</div>
+<div class="card" style="padding: 0; overflow: hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Events</th>
+        <th>Timeline</th>
+        <th>Dependencies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="priority-tag p0">P0</span> &nbsp;Core Tracking</td>
+        <td><code>page_view</code>, <code>demo_request_*</code>, <code>pricing_view</code></td>
+        <td style="color: var(--white);">Week 1</td>
+        <td>GTM container, consent banner</td>
+      </tr>
+      <tr>
+        <td><span class="priority-tag p1">P1</span> &nbsp;Engagement Layer</td>
+        <td><code>case_study_download</code>, <code>blog_subscribe</code>, <code>chat_initiated</code>, <code>roi_calculator_use</code></td>
+        <td style="color: var(--white);">Week 2</td>
+        <td>P0 deployed, chat widget API</td>
+      </tr>
+      <tr>
+        <td><span class="priority-tag p2">P2</span> &nbsp;Deep Analytics</td>
+        <td><code>feature_comparison_view</code>, <code>video_engagement</code></td>
+        <td style="color: var(--white);">Week 3</td>
+        <td>P1 validated, video player hooks</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card card-alt" style="margin-top: 4px;">
+  <div class="card-label">QA Checklist</div>
+  <div style="font-size: 16px; color: var(--gray-light); line-height: 1.8;">
+    <span style="color: var(--green);">&#9679;</span>&ensp;GA4 DebugView confirmation for each event &nbsp;&nbsp;
+    <span style="color: var(--green);">&#9679;</span>&ensp;Cross-browser validation (Chrome, Safari, Firefox) &nbsp;&nbsp;
+    <span style="color: var(--green);">&#9679;</span>&ensp;Mobile event parity check &nbsp;&nbsp;
+    <span style="color: var(--green);">&#9679;</span>&ensp;Consent mode v2 integration verified &nbsp;&nbsp;
+    <span style="color: var(--green);">&#9679;</span>&ensp;UTM parameter passthrough to CRM validated
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">mception.ai</div>
+  <div class="footer-right">PROPMATIC CMO AGENT</div>
+</div>
+
+</body>
+</html>

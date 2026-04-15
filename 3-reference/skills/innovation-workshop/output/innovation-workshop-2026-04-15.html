@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Premium Foodservice / CPG — April 15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --green: #7CB97A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    position: relative;
+    line-height: 1.6;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  /* ─── PAGE BREAK PROTOCOL ─── */
+  h1, h2, h3, .section-header, .product-name {
+    page-break-after: avoid;
+  }
+
+  /* ─── COVER PAGE ─── */
+  .cover {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 60px;
+    page-break-after: always;
+  }
+  .cover-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cover-tag::before { content: ''; width: 24px; height: 2px; background: var(--gold); }
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700;
+    line-height: 1.08; letter-spacing: -2px; margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub {
+    font-size: 20px; color: var(--gray-light); max-width: 600px; margin-bottom: 40px;
+  }
+  .cover-meta {
+    display: flex; gap: 40px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .cover-meta-item { }
+  .cover-meta-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px;
+  }
+  .cover-meta-value {
+    font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--gold);
+  }
+  .cover-meta-note { font-size: 11px; color: var(--gray); margin-top: 2px; }
+  .cover-brand {
+    margin-top: 60px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; margin-top: 48px;
+    page-break-after: avoid;
+  }
+  .section-header::after {
+    content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.25);
+  }
+
+  /* ─── EXECUTIVE SUMMARY ─── */
+  .exec-summary {
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+  .exec-summary h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700;
+    margin-bottom: 24px; letter-spacing: -0.5px;
+  }
+  .exec-summary h2 span { color: var(--gold); }
+
+  .thesis {
+    background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+    border: 1px solid rgba(212,168,67,0.25); border-radius: 8px;
+    padding: 18px 28px; margin-bottom: 32px; text-align: center;
+  }
+  .thesis p {
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; line-height: 1.5;
+  }
+  .thesis em { color: var(--gold); font-style: normal; }
+
+  .top-picks {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px;
+  }
+  .pick-card {
+    background: var(--bg-card); border-radius: 10px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06); border-top: 3px solid var(--gold);
+    display: flex; gap: 16px; align-items: flex-start;
+    page-break-inside: avoid;
+  }
+  .pick-card img {
+    width: 80px; height: 80px; border-radius: 6px; object-fit: cover; flex-shrink: 0;
+  }
+  .pick-card-body { flex: 1; }
+  .pick-rank {
+    font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
+    color: var(--gold); line-height: 1; margin-right: 8px; float: left;
+  }
+  .pick-name {
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 4px;
+  }
+  .pick-desc { font-size: 13px; color: var(--gray-light); }
+  .pick-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--gold);
+    background: rgba(212,168,67,0.1); padding: 2px 8px; border-radius: 3px; margin-top: 6px;
+  }
+
+  .themes-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px;
+  }
+  .theme-card {
+    background: var(--bg-card); border-radius: 10px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid var(--gold-dim);
+    page-break-inside: avoid;
+  }
+  .theme-title {
+    font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px;
+  }
+  .theme-desc { font-size: 13px; color: var(--gray-light); line-height: 1.5; }
+
+  /* ─── PRIORITIZATION MATRIX ─── */
+  .matrix-container { margin-bottom: 32px; }
+  .matrix {
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto;
+    gap: 2px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden;
+  }
+  .matrix-cell {
+    background: var(--bg-card); padding: 20px;
+  }
+  .matrix-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 10px;
+  }
+  .matrix-items { list-style: none; }
+  .matrix-items li {
+    font-size: 13px; color: var(--white); padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .matrix-items li:last-child { border-bottom: none; }
+  .matrix-items .method-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray);
+  }
+
+  /* ─── PRODUCT PAGES ─── */
+  .product-page {
+    page-break-before: always;
+    page-break-inside: avoid;
+    padding-top: 40px;
+  }
+  .product-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .product-number {
+    font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700;
+    color: rgba(212,168,67,0.2); line-height: 1; margin-right: 16px;
+  }
+  .product-title-block { flex: 1; }
+  .product-category-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.5px;
+  }
+  .product-method {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--gray); margin-top: 6px;
+  }
+  .product-meta-sidebar {
+    text-align: right; min-width: 140px;
+  }
+  .meta-item { margin-bottom: 12px; }
+  .meta-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  }
+  .meta-value {
+    font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700;
+  }
+  .meta-value.high { color: var(--gold); }
+  .meta-value.med { color: var(--blue); }
+  .meta-value.low { color: var(--gray-light); }
+
+  /* Image cards */
+  .product-images {
+    margin-bottom: 24px;
+  }
+  .hero-image {
+    border-radius: 8px; overflow: hidden;
+    background: var(--bg-card-alt); max-height: 400px;
+    margin-bottom: 16px;
+  }
+  .hero-image img {
+    width: 100%; height: 100%; max-height: 400px;
+    object-fit: cover; display: block; border-radius: 8px;
+  }
+  .alt-badges {
+    display: flex; gap: 8px; margin-top: 0;
+  }
+  .alt-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); background: rgba(212,168,67,0.08);
+    border: 1px solid var(--gold-dim); border-radius: 4px;
+    padding: 4px 10px; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .alt-badge:hover {
+    background: rgba(212,168,67,0.15); border-color: var(--gold);
+    color: var(--white);
+  }
+
+
+
+  /* Pitch + RTBs */
+  .product-body {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px;
+  }
+  .pitch h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+    margin-bottom: 12px; color: var(--gold);
+  }
+  .pitch p {
+    font-size: 14px; color: var(--gray-light); margin-bottom: 12px; line-height: 1.6;
+  }
+  .rtb-panel {
+    background: var(--bg-card); border-radius: 10px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06); border-top: 3px solid var(--gold);
+    page-break-inside: avoid;
+  }
+  .rtb-panel h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .rtb-list { list-style: none; }
+  .rtb-list li {
+    font-size: 13px; color: var(--gray-light); padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04); line-height: 1.5;
+  }
+  .rtb-list li:last-child { border-bottom: none; }
+  .rtb-list .source {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray);
+    display: block; margin-top: 3px;
+  }
+  .research-basis {
+    margin-top: 16px; padding: 14px 18px;
+    background: rgba(212,168,67,0.06); border-left: 3px solid var(--gold-dim);
+    border-radius: 0 6px 6px 0;
+  }
+  .research-basis-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .research-basis p { font-size: 12px; color: var(--gray-light); line-height: 1.5; }
+
+  .first-move {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--bg-card-alt); border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .first-move-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 6px;
+  }
+  .first-move p { font-size: 13px; color: var(--white); }
+
+  /* ─── COMPETITIVE LANDSCAPE PANEL ─── */
+  .competitive-panel {
+    background: var(--bg-card); border-radius: 10px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06); border-top: 3px solid var(--blue);
+    margin-top: 24px;
+    page-break-inside: avoid;
+  }
+  .competitive-panel h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+  }
+  .competitive-panel h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+    margin-bottom: 12px; color: var(--gold);
+  }
+  .comp-list { list-style: none; }
+  .comp-list li {
+    font-size: 13px; color: var(--gray-light); padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04); line-height: 1.5;
+  }
+  .comp-list li:last-child { border-bottom: none; }
+  .comp-list li strong { color: var(--white); }
+  .comp-gap {
+    margin-top: 12px; padding: 10px 14px;
+    background: rgba(74,127,181,0.08); border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+  }
+  .comp-gap-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 4px;
+  }
+  .comp-gap p { font-size: 12px; color: var(--gray-light); line-height: 1.5; }
+
+  /* ─── OPERATIONAL COMPLEXITY PANEL ─── */
+  .ops-panel {
+    background: var(--bg-card); border-radius: 10px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06); border-top: 3px solid var(--gold-dim);
+    margin-top: 16px;
+    page-break-inside: avoid;
+  }
+  .ops-panel h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 14px;
+  }
+  .ops-panel h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+    margin-bottom: 12px; color: var(--gold);
+  }
+  .ops-panel p {
+    font-size: 13px; color: var(--gray-light); line-height: 1.6;
+  }
+  .complexity-badge {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px;
+    border-radius: 4px; margin-bottom: 12px; font-weight: 500;
+  }
+  .complexity-badge.simple { background: rgba(124,185,122,0.15); color: var(--green); border: 1px solid rgba(124,185,122,0.3); }
+  .complexity-badge.moderate { background: rgba(212,168,67,0.12); color: var(--gold); border: 1px solid rgba(212,168,67,0.25); }
+  .complexity-badge.complex { background: rgba(196,92,92,0.12); color: var(--red); border: 1px solid rgba(196,92,92,0.25); }
+
+  /* ─── WHITEPAPER APPENDIX ─── */
+  .appendix { page-break-before: always; padding-top: 40px; }
+  .appendix h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700;
+    margin-bottom: 20px; letter-spacing: -0.5px;
+  }
+  .appendix h2 span { color: var(--gold); }
+  .appendix h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+    margin-top: 28px; margin-bottom: 12px; color: var(--gold);
+  }
+  .appendix p {
+    font-size: 14px; color: var(--gray-light); margin-bottom: 12px; line-height: 1.7;
+  }
+  .appendix ul {
+    list-style: none; margin-bottom: 16px;
+  }
+  .appendix ul li {
+    font-size: 13px; color: var(--gray-light); padding: 6px 0;
+    padding-left: 16px; position: relative; line-height: 1.5;
+  }
+  .appendix ul li::before {
+    content: ''; position: absolute; left: 0; top: 13px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold-dim);
+  }
+  .data-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 20px;
+  }
+  .data-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+    text-align: left; padding: 10px 12px;
+    border-bottom: 2px solid rgba(212,168,67,0.25);
+  }
+  .data-table td {
+    font-size: 13px; color: var(--gray-light); padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .data-table td:first-child { color: var(--white); font-weight: 500; }
+  .source-cite {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray);
+  }
+
+  .method-perf-bar {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .perf-bar {
+    height: 8px; border-radius: 4px; background: var(--gold);
+  }
+  .perf-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray);
+    min-width: 35px;
+  }
+
+  /* ─── FOOTER ─── */
+  .doc-footer {
+    margin-top: 60px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-between;
+  }
+  .doc-footer span {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="cover">
+  <div class="cover-tag">Innovation Workshop — Volume 001</div>
+  <h1>Premium Foodservice<br>& <span>CPG</span></h1>
+  <div class="cover-sub">
+    20 research-backed product concepts with visual prototypes, market rationale,
+    and first-move playbooks. Built on 100 structured ideation methods and 16 years
+    of retail operations experience.
+  </div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Ideas Generated</div>
+      <div class="cover-meta-value">20</div>
+      <div class="cover-meta-note">from 30 raw, scored & filtered</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Methods Used</div>
+      <div class="cover-meta-value">10</div>
+      <div class="cover-meta-note">of 100 available</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Category</div>
+      <div class="cover-meta-value">CPG</div>
+      <div class="cover-meta-note">Premium Foodservice</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Date</div>
+      <div class="cover-meta-value">04.15</div>
+      <div class="cover-meta-note">April 2026</div>
+    </div>
+  </div>
+  <div class="cover-brand">mception.ai — Sycamore Lane Holdings</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- EXECUTIVE SUMMARY -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="exec-summary">
+  <div class="section-header">Executive Summary</div>
+  <h2>The <span>Best Ideas</span> from This Run</h2>
+
+  <div class="thesis">
+    <p>The biggest opportunity in food right now isn't a new ingredient — it's a <em>new format</em>.
+    The products that win are taking restaurant-quality food and repackaging it for how people
+    actually eat: alone, fast, without a plan, and with higher standards than ever.</p>
+  </div>
+
+  <div class="top-picks">
+    <div class="pick-card">
+      <div class="pick-card-body">
+        <div class="pick-rank">1</div>
+        <div class="pick-name">Broth Bar Concentrates</div>
+        <div class="pick-desc">Nespresso for broth. Eliminate the water weight, the heavy cartons, the freezer space. Concentrated pods that deliver restaurant-quality bone broth in 10 seconds.</div>
+        <div class="pick-tag">Blue Ocean — Format Innovation</div>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-body">
+        <div class="pick-rank">2</div>
+        <div class="pick-name">$3 Chef Sauce</div>
+        <div class="pick-desc">The anti-premium play. Restaurant-quality sauces in pouches at impulse-buy pricing. While everyone else chases $12 artisan jars, own the $3 slot with better product.</div>
+        <div class="pick-tag">Downmarket Disruption — Contrarian</div>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-body">
+        <div class="pick-rank">3</div>
+        <div class="pick-name">Bencharcuterie</div>
+        <div class="pick-desc">Charcuterie board meets bento box. Pre-assembled with cured meats, artisan cheese, cornichons, crackers, honey. The $22 restaurant board for $14 at your desk.</div>
+        <div class="pick-tag">Mashup — Portable Premium</div>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-body">
+        <div class="pick-rank">4</div>
+        <div class="pick-name">Squeeze Tube Condiments</div>
+        <div class="pick-desc">Move premium sauces from jars to artist-paint-style squeeze tubes. 40% cheaper packaging, 90% less waste, and a format that screams artisan on the shelf.</div>
+        <div class="pick-tag">Packaging Innovation — Low Effort</div>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-body">
+        <div class="pick-rank">5</div>
+        <div class="pick-name">Inverted Condiments</div>
+        <div class="pick-desc">Flip the cooking model. Sell the sauce as the main course — "just add your protein." The base is the hardest part of cooking. Nobody's commercialized that insight.</div>
+        <div class="pick-tag">SCAMPER Reverse — Model Flip</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">Key Themes</div>
+
+  <div class="themes-grid">
+    <div class="theme-card">
+      <div class="theme-title">Format > Ingredient</div>
+      <div class="theme-desc">8 of 20 ideas are format innovations — same quality food, radically different packaging or delivery. Consumers are bored with the product but not with the category. The shelf needs new shapes, not new flavors.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-title">Solo Dining is a Market</div>
+      <div class="theme-desc">37% of US households are single-person. The frozen aisle still designs for families of four. Products sized and positioned for one person eating well alone represent an $80B+ addressable gap.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-title">The Restaurant-to-Retail Bridge</div>
+      <div class="theme-desc">Post-COVID, consumers expect restaurant quality at home but don't want meal kits. The gap is in components, finishing touches, and techniques — not full recipes. 6 of 20 ideas live in this bridge.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-title">Premiumization Still Works</div>
+      <div class="theme-desc">Premium condiments are the fastest-growing segment in the condiment aisle (+14% YoY). Tinned fish proved consumers will pay 5x for story + design. Every commodity has a premium version waiting to be born.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-title">Packaging = Category Creation</div>
+      <div class="theme-desc">Squeeze tubes, dissolvable sheets, concentrate pods — when you change the format, you change the purchase occasion. Packaging innovation is the lowest-effort, highest-signal way to create a new category.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-title">The Anti-Premium Opportunity</div>
+      <div class="theme-desc">While every founder chases the $12 artisan jar, the $3 slot with actual quality is wide open. Inflation-conscious consumers still want good food — they just won't pay for the glass bottle and the origin story.</div>
+    </div>
+  </div>
+
+  <div class="section-header">Prioritization Matrix</div>
+
+  <div class="matrix-container">
+    <div class="matrix">
+      <div class="matrix-cell">
+        <div class="matrix-label">High Impact / Low Effort — Do Now</div>
+        <ul class="matrix-items">
+          <li>Broth Bar Concentrates <span class="method-tag">#9</span></li>
+          <li>$3 Chef Sauce <span class="method-tag">#57</span></li>
+          <li>Squeeze Tube Condiments <span class="method-tag">#58</span></li>
+          <li>Freeze-Dried Meal Finishers <span class="method-tag">#21</span></li>
+          <li>Lunchbox Upgrade Sauces <span class="method-tag">#4</span></li>
+        </ul>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-label">High Impact / High Effort — Explore</div>
+        <ul class="matrix-items">
+          <li>Bencharcuterie <span class="method-tag">#24</span></li>
+          <li>Solo Dining Portions <span class="method-tag">#51</span></li>
+          <li>Inverted Condiments <span class="method-tag">#21</span></li>
+          <li>Black Label Canned Goods <span class="method-tag">#56</span></li>
+          <li>"Finishing" as a Category <span class="method-tag">#55</span></li>
+        </ul>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-label">Low Impact / Low Effort — Quick Wins</div>
+        <ul class="matrix-items">
+          <li>Sauce Flights <span class="method-tag">#15</span></li>
+          <li>Functional Finishing Oils <span class="method-tag">#4</span></li>
+          <li>Hype Drop Snacks <span class="method-tag">#51</span></li>
+          <li>$30 Ketchup <span class="method-tag">#56</span></li>
+        </ul>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-label">Low Impact / High Effort — Deprioritize</div>
+        <ul class="matrix-items">
+          <li>Dissolvable Seasoning Sheets <span class="method-tag">#58</span></li>
+          <li>Window Jar Pantry Line <span class="method-tag">#58</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PRODUCT PAGES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- ── PRODUCT 01: CHEF'S MISE EN PLACE KITS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">01</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Chef's Mise en Place Kits</div>
+        <div class="product-method">Method #4 — Jobs to Be Done</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/01-mise-en-place.png" alt="Chef's Mise en Place Kits — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/x_TXeAYyCuY1fo-" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/-6LAzOZeTWH4o_C" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/j40k1oII6scfedy" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Home cooks don't fail because they lack recipes — they fail because they lack prep. Professional kitchens run on mise en place: every ingredient measured, prepped, and staged before the burner turns on. This kit brings that system home.</p>
+      <p>Pre-portioned compound butters, finishing sauces, and spice blends in exact chef ratios — not a meal kit with raw vegetables and a recipe card. Individual building blocks that make a Tuesday dinner feel like a restaurant line. The job being hired for isn't "feed my family" — it's "make me feel competent in my own kitchen."</p>
+      <p>Brady's 16 years in foodservice operations means he's seen how professional kitchens actually prep — and how far the consumer market is from replicating it. The gap between a meal kit and a restaurant isn't the ingredients. It's the prep system.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Source 5 compound butter flavors from a local chef. Package in portioned molds. Test at a Bentonville farmers market for $12/set. Measure repeat purchase rate.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Meal kit market is $20B but growing at only 3% — kit fatigue is measurable. Consumers want skill transfer, not subscription recipes. <span class="source">Statista 2025, meal kit growth deceleration</span></li>
+          <li>Compound butter market growing 8.2% CAGR through 2028, driven by restaurant-at-home behavior post-COVID. <span class="source">Grand View Research 2024</span></li>
+          <li>Co-packing for portioned dairy/sauce products is mature and accessible at low MOQ (500-1000 units) through regional dairy processors. <span class="source">Brady — foodservice supply chain experience</span></li>
+          <li>"Mise en place" has 2.1M TikTok views and growing — the concept is entering mainstream vocabulary but no brand owns it yet. <span class="source">TikTok Trends API</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>Generated via Jobs to Be Done analysis. The functional job is "prepare a good meal efficiently." The emotional job is "feel like a skilled cook." Current solutions (meal kits, recipe apps) address the functional job but ignore the emotional one. Mise en place kits address both.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Blue Apron / HelloFresh</strong> — Meal kits, $8-12/serving, full recipe scripts</li>
+      <li><strong>Epicurean Butter</strong> — Compound butter brand, $5-7/pack, limited flavors</li>
+      <li><strong>Urban Accents</strong> — Seasoning kits, $8-12</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Nobody sells the prep system — just recipes or individual ingredients. This is components, not a kit.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge moderate">Moderate</span>
+    <p>Compound butter requires cold chain. Spice blends are shelf-stable but butter components need refrigerated storage and shipping. Co-packing available through dairy processors (500-unit MOQ). Challenge: multi-temp components in one kit means either separate packaging or insulated shipping.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 02: LUNCHBOX UPGRADE SAUCES ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">02</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Lunchbox Upgrade Sauces</div>
+        <div class="product-method">Method #4 — Jobs to Be Done</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/02-lunchbox-sauces.png" alt="Lunchbox Upgrade Sauces — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/vvVFc247Z9wv6tG" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/yWQkhAb27bADAOf" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/BF2lIh7XjfrjlkW" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Parents are spending more on kids' food quality than ever before — organic everything, whole grain bread, nitrate-free deli meat. But the condiment aisle hasn't caught up. Kids are still dipping carrots in ranch from a bottle designed in 1987.</p>
+      <p>Single-serve premium sauce packets designed specifically for lunchboxes. Sriracha ranch, miso mayo, honey-gochujang, everything aioli. Not "kid-friendly" flavors — real flavors in kid-friendly portions. The thing that makes a packed lunch not suck, for the parent who cares.</p>
+      <p>As a single dad of five packing lunches every morning, Brady lives this problem daily. The market validation is literally on his kitchen counter.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Design 4 flavors, source single-serve squeeze-pack co-packing (available through Portion Pac or similar). Test with 50 parents through school network. Price at $6 for a 10-pack.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>US parents spend $2,500/year on school lunches on average. Condiment spend is <2% of that — huge room to upgrade without budget resistance. <span class="source">USDA School Nutrition Report 2024</span></li>
+          <li>Single-serve condiment market projected to reach $18.3B by 2028, growing 6.1% CAGR — driven by convenience and portability. <span class="source">Allied Market Research 2024</span></li>
+          <li>Kids' flavor preferences are diversifying: 62% of Gen Alpha kids regularly eat "international" flavors their parents didn't encounter until adulthood. <span class="source">Mintel Kids' Food 2025</span></li>
+          <li>Co-packing for single-serve pouches starts at ~$0.08/unit at 10K MOQ — gross margin >70% at $0.60/packet retail. <span class="source">Brady — CPG margin analysis</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>Generated via JTBD. The job: "Make my kid's packed lunch something they actually enjoy." Current solutions overindex on the main (sandwich, wrap) and ignore the accessory (condiment). Single-serve premium sauces fill the gap between "good enough" and "my kid actually ate it."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Good Foods dips</strong> — Single-serve guac/hummus, $1.50-2/pack</li>
+      <li><strong>Kikkoman soy sauce packets</strong> — Commodity, $0.05</li>
+      <li><strong>Chick-fil-A sauce retail</strong> — $3.49/bottle</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>No premium single-serve sauce designed for lunchboxes. Existing options are either commodity packets or full-size bottles.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Single-temp shelf-stable pouches. Standard sauce co-packing at $0.08-0.15/unit. 10K MOQ typical. No cold chain needed. DTC shipping is trivial (lightweight, no breakage). Regulatory: standard FDA food labeling.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 03: DINNER PARTY IN A BOX ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">03</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Dinner Party in a Box</div>
+        <div class="product-method">Method #4 — Jobs to Be Done</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/03-dinner-party.png" alt="Dinner Party in a Box — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/5V7ne3M6d1a15eM" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/wR1ECgDwSmwTg77" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/sETSpet4_hF6ld4" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Entertaining is back. But nobody has two hours to plan appetizers, source cocktail ingredients, and remember the dessert. The meal kit model solved cooking for one night — but hosting is a different job. It's not about the food. It's about looking like you have your life together.</p>
+      <p>A curated hosting kit for 6-8 people. Appetizer components, cocktail mixers, dessert elements, garnishes, even napkin rings and a playlist QR code. Not a meal kit. A hosting kit. Themed boxes: "Italian Aperitivo," "Taco Night Elevated," "The Brunch."</p>
+      <p>Priced at $89-129, this competes with a restaurant dinner for two — except it feeds eight and makes the host look like they planned for a week.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Prototype one "Italian Aperitivo" box — Marcona almonds, olives, prosciutto, focaccia crackers, Aperol mixer, garnish kit. Photograph it. Test via Instagram pre-orders at $89.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Home entertaining spending up 23% post-COVID, with "casual hosting" (appetizers + drinks, not formal dinner) the fastest-growing occasion. <span class="source">Hartman Group Eating Occasions 2025</span></li>
+          <li>Gift box / curated food box market is $4.2B and growing 9% annually — but almost entirely built around the gifting occasion, not the hosting occasion. <span class="source">Mordor Intelligence 2024</span></li>
+          <li>Average dinner party at a restaurant costs $45-65/person. A hosting kit at $89 for 6-8 people is $11-15/person — massive value perception. <span class="source">Brady — restaurant operations benchmarking</span></li>
+          <li>The "hosting anxiety" cultural moment is real — 71% of millennials say they'd entertain more if it were easier to plan. <span class="source">Eventbrite Social Dining Survey 2024</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>JTBD: "Let me host without planning." Current solutions (Pinterest boards, recipe sites, Instacart lists) require the host to be the project manager. This eliminates the project management and delivers a turnkey experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Murray's Cheese entertaining platters</strong> — $50-150, cheese-only, requires supplement</li>
+      <li><strong>Mouth.com gift boxes</strong> — $50-90, gift-oriented not hosting</li>
+      <li><strong>Williams Sonoma entertaining kits</strong> — $60-120, equipment not food</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Nobody sells a complete hosting kit — they sell ingredients, equipment, or gifts. The "plan it for me" job is unaddressed.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge moderate">Moderate</span>
+    <p>Multi-component assembly with mixed storage requirements. Shelf-stable items (crackers, nuts, garnishes) + refrigerated items (charcuterie, cheese) + liquid items (cocktail mixers). Requires manual assembly and insulated packaging. Short shelf life on perishables limits inventory hold.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 04: FUNCTIONAL FINISHING OILS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">04</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Functional Finishing Oils</div>
+        <div class="product-method">Method #4 — Jobs to Be Done</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/04-finishing-oils.png" alt="Functional Finishing Oils — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/g2ROhlZiprNaxTG" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/9s2WOBarAAFiVql" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/89b7hpNynRnud3Q" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Functional food is a $275B global market, but it's trapped in supplement bottles and powder tubs. Nobody's applied the functional ingredient playbook to something you already use every day: olive oil. A finishing drizzle is the perfect delivery mechanism — no behavior change required.</p>
+      <p>Premium EVOO infused with turmeric + black pepper (anti-inflammatory), lion's mane mushroom (cognitive), or collagen peptides (joint/skin). You drizzle it on your salad or pasta like you already do. The function comes along for the ride.</p>
+      <p>This sits at the intersection of two Brady expertise zones: CPG product development and the functional food trend he's tracked across multiple consulting engagements.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Infuse 3 EVOO variants at home (turmeric-pepper, mushroom, collagen). Label with print-at-home stickers. Photograph. Test DTC via a one-page Shopify for $24/bottle.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Global functional food market projected at $275B by 2025, growing 7.9% CAGR — the fastest growth is in "functional-by-addition" products that don't require new behavior. <span class="source">Grand View Research 2024</span></li>
+          <li>Premium olive oil ($15-30/bottle) is the fastest-growing segment of the cooking oils category at 11% YoY growth. Consumers already accept premium pricing. <span class="source">IRI/Circana 2025</span></li>
+          <li>Infusion co-packing is extremely accessible — botanical and mushroom olive oil infusions are a standard offering at most specialty oil co-packers. MOQ: 200-500 bottles. <span class="source">Brady — CPG supply chain</span></li>
+          <li>Turmeric and lion's mane are the #1 and #3 trending functional ingredients on Amazon grocery, with search volume up 34% and 89% respectively YoY. <span class="source">Jungle Scout Amazon Trends 2025</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>JTBD: "Give me health benefits without changing my routine." The friction in functional food adoption is behavior change. Olive oil eliminates that friction — you already drizzle it. This is the "trojan horse" model of functional ingredients.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Brightland olive oils</strong> — $37/bottle, flavored but not functional</li>
+      <li><strong>Graza</strong> — $15/bottle, cooking focus</li>
+      <li><strong>Gundry MD olive oil</strong> — $50/bottle, health-branded but supplement-adjacent</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>No olive oil brand positions functional ingredients as the value prop. Existing premium oils sell on origin story, not function.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Standard oil infusion process. Shelf-stable, no cold chain. Infusion co-packing widely available at 200-500 bottle MOQ. Regulatory note: functional claims require careful labeling (structure/function claims OK without FDA approval, health claims require substantiation).</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 05: BROTH BAR CONCENTRATES ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">05</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Broth Bar Concentrates</div>
+        <div class="product-method">Method #9 — Blue Ocean Strategy</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/05-broth-bar.png" alt="Broth Bar Concentrates — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/gKUVg5MODMu96Tw" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/artAM9-kNTpalU9" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/vBzHIHX-ON7Xzvr" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Bone broth is a $4.2B market trapped in a terrible format. Heavy cartons that cost $8 to ship, frozen containers that hog freezer space, and ready-to-drink bottles that are 95% water. The product is great. The packaging is from 2005.</p>
+      <p>Broth Bar Concentrates apply the Nespresso model: eliminate the water weight, concentrate the flavor, and deliver in single-serve pods. Squeeze into hot water for restaurant-quality broth in 10 seconds. Blue Ocean analysis: eliminate (water weight, bulk packaging, freezer dependency), reduce (price per serving, shipping cost), raise (flavor intensity, convenience), create (a broth ritual — morning broth instead of morning coffee).</p>
+      <p>This is the #1 pick from this workshop because it attacks the largest market with the simplest format change, at the lowest effort level.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Develop 3 concentrate formulas (classic bone, miso-ginger, spicy pho) by reducing commercial broth to 10x concentration. Test pod format with silicone molds. Price at $2/pod vs. $5/carton and measure trial rate.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Bone broth market is $4.2B, growing 5.8% CAGR. But 73% of broth consumers cite "inconvenience" as their #1 barrier to daily use. <span class="source">Zion Market Research 2025</span></li>
+          <li>Concentrate/pod format reduces shipping weight by 90%, cutting DTC fulfillment cost from $8-12 to $3-4 per order. Margin improvement is structural. <span class="source">Brady — supply chain cost modeling</span></li>
+          <li>Coffee concentrate pods (Cometeer, Jot) proved the concentrate-to-cup model works for daily rituals. Broth has the same use case with lower competitive density. <span class="source">Industry analogue — coffee concentrate market</span></li>
+          <li>"Broth as a morning ritual" has 450K+ TikTok posts. The behavior exists — the convenient format doesn't. <span class="source">TikTok Trends</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>Blue Ocean Strategy: ERRC grid applied to the bone broth category. The four-actions framework revealed that every existing player is competing on the same value curve (premium ingredients, organic certification, collagen content) while ignoring the format problem entirely. Concentrates break the value curve.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Kettle & Fire</strong> — $7-9/carton, shelf-stable but bulky</li>
+      <li><strong>Brodo</strong> — $12-15/cup, frozen, NYC-centric</li>
+      <li><strong>BOU bouillon cubes</strong> — $4/6-pack, cheap but low quality</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>No concentrate format exists. Everyone sells water weight. BOU is closest format-wise but commodity quality.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge moderate">Moderate</span>
+    <p>Concentration process requires specialized equipment (evaporation/reduction at scale). Pod/pouch filling is standard. Shelf-stable finished product. Key challenge: maintaining flavor quality through concentration — needs R&D/testing. Once formula is locked, co-packing is straightforward.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 06: SAUCE FLIGHTS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">06</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Sauce Flights</div>
+        <div class="product-method">Method #15 — Analogous Inspiration (Wine/Beer Flights)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/06-sauce-flights.png" alt="Sauce Flights — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/jnSGHn_9V1ohVvF" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/Dc-YYKPwriPudmB" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/B7_R7APSOeywHit" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Wine flights taught consumers to compare and discover. Beer flights made craft accessible. Nobody's applied the flight model to condiments — the one food category where people are most likely to be stuck in a rut. Sauce Flights are tasting boards of 4-6 small-format sauces, curated by theme: Global Hot Sauce, BBQ Regions of America, Asian Chili Spectrum.</p>
+      <p>This repositions condiments from commodity repurchase to discovery experience. It's inherently giftable — the packaging does the marketing. And the small format solves the condiment graveyard problem: 68% of condiment purchases end up partially used and discarded.</p>
+      <p>Brady's retail ops background tells him the shelf economics: small-format multipacks command 2-3x the per-ounce margin of full-size bottles because consumers are paying for curation, not volume.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Curate 3 flight themes from existing artisan sauce brands (white-label or licensed). Package in a wooden tasting board with 2oz bottles. Test as a gift set at $28 through a local specialty store.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Hot sauce market is $4.5B, growing 6.4% CAGR — but the format hasn't changed since Tabasco. Small-format sampling is the proven discovery mechanism in every adjacent category. <span class="source">IBIS World 2025</span></li>
+          <li>68% of condiment purchases are partially used before disposal — consumers want variety but hate commitment to a full bottle. <span class="source">Food Marketing Institute 2024</span></li>
+          <li>Gift food box market is $4.2B. Sauce flights are a natural addition with higher margin than cheese or charcuterie gift sets (no cold chain). <span class="source">Mordor Intelligence 2024</span></li>
+          <li>Small-format condiments command 2-3x per-ounce margin vs. full-size. A $28 flight of six 2oz bottles = $2.33/oz vs. $0.80/oz for a standard bottle. <span class="source">Brady — retail margin analysis</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>Analogous inspiration from wine/beer flights. The pattern: take a commodity category, introduce a tasting/discovery format, reposition from staple to experience. This pattern has worked in wine, beer, coffee, chocolate, and olive oil. Condiments are next.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Hot Ones hot sauce packs</strong> — $30-50, 3-pack, viral brand</li>
+      <li><strong>Fly By Jing Sichuan trio</strong> — $36</li>
+      <li><strong>Truff variety packs</strong> — $40+</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>These are brand-specific bundles, not curated tasting flights across brands/regions. The "flight" discovery format doesn't exist in condiments.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Curating and repackaging existing sauces into gift format. Small-format bottling available. All shelf-stable. Primary challenge is sourcing — licensing from existing sauce brands or developing own recipes. Assembly is manual but low-skill.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 07: CHEF'S TABLE SEASONINGS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">07</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Chef's Table Seasonings</div>
+        <div class="product-method">Method #15 — Analogous Inspiration (Vinyl/Audiophile Culture)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/07-chefs-table.png" alt="Chef's Table Seasonings — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/SWYqxR6w95xqUO2" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/GvgeMfTVejVKHL_" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/7gN3aQTw91ipeP2" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Coffee went from commodity to craft. Chocolate followed. Wine, obviously. The spice aisle is the last major food category still stuck in the commodity era — McCormick jars that haven't changed in 30 years. Burlap & Barrel proved there's a market for single-origin spices. Chef's Table Seasonings takes that further with a drop model.</p>
+      <p>Limited-edition, single-origin spice releases with provenance cards, harvest dates, and tasting notes. Quarterly drops. The "natural wine" of spices — small batch, hand-sourced, with a story that justifies the price. Collectors buy them. Home cooks discover them. Nobody stocks them permanently — that's the point.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Source 4 single-origin spices through direct trade importers. Design provenance cards with harvest data. Run a 500-unit limited drop at $14/jar through Instagram and a one-page site.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Specialty spice market growing 12% CAGR — 3x faster than conventional spices. Burlap & Barrel reached $15M revenue by 2024 selling single-origin at 4x McCormick pricing. <span class="source">Burlap & Barrel public revenue; Specialty Food Association 2025</span></li>
+          <li>Limited-edition/drop model creates artificial scarcity that drives social sharing. Supreme (apparel) generates $500M+ from drops — the mechanic is proven but unapplied in food. <span class="source">Business of Fashion 2024</span></li>
+          <li>Single-origin provenance increases willingness-to-pay by 40-60% in coffee and chocolate. Same consumer psychology applies to spices. <span class="source">Journal of Consumer Research 2023</span></li>
+          <li>Spice sourcing through direct trade is accessible and margin-rich: farm-gate prices are 10-20% of retail, even for premium single-origin. <span class="source">Brady — supply chain sourcing</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>Analogous inspiration from vinyl/audiophile culture. The pattern: take something people consume casually, add provenance, limit supply, create collector behavior. Vinyl sales surpassed CDs in 2023 — proof that scarcity + story > convenience + commodity.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Burlap & Barrel</strong> — $8-12/jar, single-origin, always available</li>
+      <li><strong>Diaspora Co.</strong> — $10-15, direct trade turmeric/spices</li>
+      <li><strong>Penzeys</strong> — $6-10, quality but retail</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>None use a drop/limited-edition model. Scarcity and collector mechanics are absent from the spice category entirely.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Dry spices are the easiest CPG format. Shelf-stable, lightweight, unbreakable. Direct trade sourcing requires importing relationships. Jarring and labeling can be done at very small scale (even kitchen table). 100-unit runs are feasible.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 08: BUTTER BRICKS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">08</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Butter Bricks</div>
+        <div class="product-method">Method #21 — SCAMPER (Modify)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/08-butter-bricks.png" alt="Butter Bricks — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/IHRxuNzibEzozd3" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/KADLdQlTJ4_qQr5" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/oFfsDvUaeqput02" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>"Butter boards" went viral in 2023 and never really went away. The cultural appetite for butter as a featured ingredient — not a background utility — is proven. But compound butter is still sold in tubs at the deli counter or in logs wrapped in wax paper. The format says "ingredient." It should say "specialty food."</p>
+      <p>Butter Bricks are compound butter shaped into stackable, sliceable bricks with visible flavor layers — herb, garlic, truffle, miso. Sold at the deli counter like artisan cheese. The format change alone moves butter from the dairy aisle to the specialty section, commanding 3-4x the margin.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Partner with a local creamery. Develop 4 layer combinations using rectangular molds. Wrap in parchment with a belly band label. Test at a specialty grocer's cheese counter at $12/brick.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Premium butter market growing 8.2% CAGR. European-style and compound butters are the fastest segments. Kerrygold proved consumers will pay 3x for butter with a story. <span class="source">Grand View Research 2024</span></li>
+          <li>"Butter board" had 1.2B TikTok views in 2023 and remains a top-10 food trend. The cultural moment for butter-as-hero is real and sustained. <span class="source">TikTok Annual Trends Report 2024</span></li>
+          <li>Deli counter placement commands 40-60% higher margin than dairy aisle placement for equivalent products. The shelf location IS the premium. <span class="source">Brady — retail category management</span></li>
+          <li>Compound butter production is technically simple — any artisan creamery can produce layered bricks with existing equipment. Low capex, high perceived value. <span class="source">Brady — foodservice production</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>SCAMPER (Modify): Changed the shape and presentation format of compound butter from tub/log to brick/slice. The modification moves it from utility (dairy aisle) to specialty (deli counter), changing the purchase occasion and price anchor simultaneously.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Kerrygold</strong> — $4-5/block, premium but plain</li>
+      <li><strong>Vermont Creamery cultured butter</strong> — $5-6, flavored options</li>
+      <li><strong>Epicurean Butter</strong> — $5-7/tub, compound</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>All sell butter as a commodity format (stick or tub). Nobody presents compound butter as a sliceable, layered deli item with visual drama.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge moderate">Moderate</span>
+    <p>Requires creamery partnership for layered molding (non-standard process). Cold chain throughout: production, storage, retail (deli case), DTC (insulated). Shelf life is limited (4-6 weeks refrigerated). Not a mail-order-friendly product unless frozen-shipped.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 09: FREEZE-DRIED MEAL FINISHERS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">09</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Freeze-Dried Meal Finishers</div>
+        <div class="product-method">Method #21 — SCAMPER (Adapt)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/09-freeze-dried.png" alt="Freeze-Dried Meal Finishers — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/hOEkmNEvIvSVFEN" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/XXW6oViAynBcyWn" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/HziqvecJuxHuLpt" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Restaurants finish dishes with crispy shallots, herb confetti, citrus dust, parmesan snow. Home cooks don't — because those garnishes require 20 minutes of prep for 10 seconds of impact. Freeze-drying technology (proven in backpacking food) solves this perfectly: shelf-stable, instant, zero prep, infinite shelf life.</p>
+      <p>A line of freeze-dried restaurant finishing garnishes in shaker-top jars. Crispy shallots, herb confetti, citrus dust, pork crumble, parmesan snow, everything-bagel crumble. You shake it on after plating. TikTok food content already fetishizes this moment — the product just doesn't exist yet.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Freeze-dry 6 finishing garnishes using a home freeze-dryer or small co-packer. Package in clear shaker jars. Film TikTok content showing the "before/after" plate transformation. Test DTC at $8/jar.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Freeze-dried food market is $83B, growing 7.1% CAGR — but virtually all volume is in meal-replacement and snacking. Garnishes/finishing are a white space. <span class="source">Fortune Business Insights 2025</span></li>
+          <li>Home freeze-dryer market (Harvest Right) has grown 400% since 2020, proving consumer awareness of the technology. But most consumers won't buy the machine — they'll buy the output. <span class="source">Harvest Right sales data</span></li>
+          <li>"Food plating" content has 8.9B TikTok views. The garnish moment is the most watched, most replicated part of food content — and the hardest for home cooks to execute. <span class="source">TikTok</span></li>
+          <li>Freeze-dry co-packing available at 500-unit MOQ through specialty processors. Shelf-stable = no cold chain = DTC friendly. <span class="source">Brady — supply chain</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>SCAMPER (Adapt): Took freeze-drying technology from backpacking/emergency food and applied it to restaurant garnishing. The technology is proven, the use case is novel, and the gap between "what restaurants do" and "what home cooks can do" is the opportunity.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Trader Joe's Everything But the Bagel</strong> — $3, one SKU</li>
+      <li><strong>Maldon salt flakes</strong> — $8, single ingredient</li>
+      <li><strong>French's crispy onions</strong> — $4, one SKU</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>These are individual finishing products, not a curated line. No brand owns "finishing" as a category. Freeze-drying tech hasn't been applied to garnishes.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Freeze-drying co-packers handle the technical process. Output is shelf-stable, lightweight, shippable. Shaker-jar packaging is standard. DTC and retail-ready. Only complexity is quality control on the freeze-drying process itself (texture, rehydration behavior).</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 10: INVERTED CONDIMENTS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">10</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Inverted Condiments</div>
+        <div class="product-method">Method #21 — SCAMPER (Reverse)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/10-inverted-condiments.png" alt="Inverted Condiments — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/mwGBPd4H8pt9lnB" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/Da2CB7b_Xz9A6Uw" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/VIWwUrj67RX9nvn" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Every cooking product assumes the protein is the hero and the sauce is the accessory. But ask any home cook what takes the most time and skill — it's the sauce. Protein is easy: sear a chicken breast, boil some shrimp, open a can of beans. The base is hard: building a Thai coconut curry from scratch, a proper bolognese, a miso ramen broth.</p>
+      <p>Inverted Condiments flips the model. Sell premium sauces and bases as the main course, labeled "just add your protein." A jar of Thai coconut curry base for $9. A pouch of pho broth for $7. A bag of restaurant-grade bolognese for $11. The sauce IS the meal — the protein is the condiment.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Develop 4 "just add protein" bases: Thai coconut curry, miso ramen broth, bolognese, and butter chicken. Price at $8-12. Label prominently: "Just Add Protein." Test at a specialty grocer in the sauce aisle AND the prepared foods section to find the right home.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Cooking sauces/bases market is $22B globally, growing 5.3% CAGR. But positioning is stuck in the "accessory" frame. No brand has made the sauce the hero product. <span class="source">Mordor Intelligence 2025</span></li>
+          <li>67% of home cooks say "deciding what to make" is harder than actually cooking. A jar that tells you "this IS dinner, just add chicken" eliminates the decision. <span class="source">Hartman Group 2024</span></li>
+          <li>Restaurant-quality bases are a standard foodservice product — Brady has sourced them for commercial kitchens. Repackaging for retail is a labeling and sizing exercise, not a product development one. <span class="source">Brady — foodservice procurement</span></li>
+          <li>Simmer sauces (Patak's, Maya Kaimal) already sell at $4-6 but are positioned as "add to your cooking." The "just add protein" label is an insight, not a product change — same product, completely different purchase occasion. <span class="source">Category analysis</span></li>
+        </ul>
+      </div>
+      <div class="research-basis">
+        <div class="research-basis-label">Research Basis</div>
+        <p>SCAMPER (Reverse): Inverted the traditional hierarchy of cooking (protein = hero, sauce = accessory). The reversal reveals that the sauce is the value-add — it's where the skill, time, and complexity live. Selling the hard part and letting the consumer add the easy part is a better model.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Maya Kaimal simmer sauces</strong> — $4-6, "add to your cooking"</li>
+      <li><strong>Patak's curry paste</strong> — $4</li>
+      <li><strong>Rao's pasta sauce</strong> — $8-9, positioned as sauce not meal</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>All position as accessories/cooking aids. None say "this IS the meal, just add protein." The positioning, not the product, is the innovation.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Sauce/base production is standard co-packing. Shelf-stable in jars or pouches. The innovation is positioning, not process. Same supply chain as existing simmer sauces. Retail placement strategy is the operational question — sauce aisle or prepared foods?</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 11: BENCHARCUTERIE ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">11</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Bencharcuterie</div>
+        <div class="product-method">Method #24 — Mashup (Bento + Charcuterie)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/11-bencharcuterie.png" alt="Bencharcuterie — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/TTjJeBn2X0WLy7u" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/tU0y0qdR1h2CiC0" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/SFLgpVBkQ7Il6tk" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Charcuterie is the most Instagrammed food format — 4.2M posts and counting. But you can't take a charcuterie board to the office. The bento box is the most functional portable meal container in the world. Bencharcuterie is the mashup: pre-assembled adult bento boxes with charcuterie-quality ingredients — cured meats, artisan cheese, cornichons, crackers, honey, nuts.</p>
+      <p>Refrigerated, grab-and-go, sold in the prepared foods section for $14. That's the $22 restaurant board at lunch, without the restaurant. The target buyer is the person currently spending $16 at Sweetgreen who wishes it felt more like a treat.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Assemble 3 SKUs (Classic, Mediterranean, Spicy) in compartmented containers. Place in a local specialty grocery's grab-and-go cooler. Track sell-through rate and time-of-day purchase pattern.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Charcuterie market is $14B, growing 6.8% CAGR. Pre-assembled charcuterie platters are the fastest segment — but all current formats target group occasions, not individual meals. <span class="source">Grand View Research 2025</span></li>
+          <li>Prepared/grab-and-go category grew 18% in 2024, driven by lunch occasions. The $12-16 price point is the sweet spot. <span class="source">IRI/Circana Prepared Foods 2024</span></li>
+          <li>Existing portable charcuterie products (Hillshire Snacking, Lunchables adult) prove the concept but at low quality. White space exists for the premium version. <span class="source">Category scan</span></li>
+          <li>Cold chain and prepared foods logistics are familiar territory from Brady's foodservice operations background — the assembly and distribution model is proven. <span class="source">Brady — foodservice ops</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Lunchables Adult (Columbus)</strong> — ~$5, low quality</li>
+      <li><strong>Hillshire Snacking</strong> — $4-5, processed</li>
+      <li><strong>Whole Foods prepared charcuterie platters</strong> — $15-25, for groups, not portable</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>No premium grab-and-go single-serve charcuterie exists. The quality tier between Lunchables and a $25 restaurant board is completely empty.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge complex">Complex</span>
+    <p>This is the operationally hardest idea. Requires: (1) sourcing premium cheese (small cuts from cheese converters — specialty, limited suppliers), (2) cured meats from charcuterie producers, (3) shelf-stable crackers that won't go soggy in a refrigerated environment, (4) multi-compartment packaging that separates wet/dry items, (5) full cold chain from assembly to consumer. Short shelf life (5-7 days). Assembly is manual and labor-intensive. Need to solve the cracker-in-cooler problem (sealed compartment or separate packaging).</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 12: HYPE DROP SNACKS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">12</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Hype Drop Snacks</div>
+        <div class="product-method">Method #51 — Cultural Trend Mining (Streetwear Drops)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/12-hype-drop.png" alt="Hype Drop Snacks — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/72QX2C8goYsVOJ5" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/jgpGx7YBfQuEQa4" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/sE3ArQUQgpRVMGO" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Streetwear proved that scarcity sells. Supreme built $500M+ on drops that never restock. Sneakers, vinyl, even coffee (Cometeer's collab drops) — limited editions create urgency, social sharing, and collector behavior. Nobody's done it with snacks.</p>
+      <p>Hype Drop Snacks: small-batch, numbered bags in collab flavors with local chefs or restaurants. 500 units, sold online only, never restocked. The packaging is bold, the flavors are experimental, and the scarcity is real. Each drop builds the brand for the next one.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Partner with one Bentonville chef. Produce 500 numbered bags of one flavor (custom-seasoned potato chips or popcorn through a local snack co-packer). Drop online with countdown timer. Price at $12/bag. Track sellout speed.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Supreme generates $500M+ from artificial scarcity. The mechanic is proven in fashion, shoes, and collectibles — but virtually unapplied in food outside of "limited time" fast food promos. <span class="source">Business of Fashion 2024</span></li>
+          <li>Snack market is $187B globally. Small-batch/craft snacking is the fastest-growing sub-segment at 14% CAGR. But no brand is using drop mechanics for distribution. <span class="source">Mordor Intelligence 2024</span></li>
+          <li>Chef collab products generate 3-5x the social media engagement of standard product launches. The chef's audience IS the marketing channel. <span class="source">Food & Wine Media Analysis 2024</span></li>
+          <li>Small-batch snack co-packing is available at 500-unit MOQ for $1-3/unit. A $12 retail price on 500 units = $6K revenue, $4K+ margin per drop. <span class="source">Brady — CPG cost modeling</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Takis limited editions</strong> — Mass-market, wide distribution, not scarce</li>
+      <li><strong>Fly By Jing chili crisp collabs</strong> — Occasional, not systematic</li>
+      <li><strong>Trader Joe's seasonal items</strong> — Limited but not numbered/exclusive</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>No brand uses true streetwear drop mechanics (numbered, never restocked, collab-driven) for snacks. Scarcity is accidental in food, never intentional.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Small-batch snack co-packing at 500-unit MOQ. Shelf-stable, standard packaging. No cold chain. The operational constraint is INTENTIONALLY small: 500 units per drop. Biggest challenge is coordinating chef collabs and maintaining drop cadence (monthly?).</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 13: SOLO DINING PORTIONS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">13</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Solo Dining Portions</div>
+        <div class="product-method">Method #51 — Cultural Trend Mining (Solo Luxury)</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/13-solo-dining.png" alt="Solo Dining Portions — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/rZj1XJY0JDnCFyj" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/VHTtKT26wt1K5FB" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/Ewpb56K1r7jDgg9" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>37% of US households are single-person. That's 43 million people. The frozen aisle still designs "serves 2-3" meals with sad photography and diet-brand energy. The cultural shift toward "solo luxury" — doing things alone, intentionally, without apology — has transformed travel, dining out, and entertainment. But the grocery store hasn't noticed.</p>
+      <p>Solo Dining Portions: premium single-serve frozen meals designed intentionally for one person eating well alone. Beautiful packaging. Restaurant-quality ingredients. Real portions (not diet portions). No "serves 2-3" guilt. This is the anti-Lean Cuisine.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Design 5 single-serve frozen meals with restaurant-tier ingredients. Brand and package with "Table for One" positioning — elegant, unapologetic, not diet-coded. Test DTC through a local frozen food fulfillment partner.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>43M single-person households in the US (37%). Average grocery spend: $5,700/year. Single-serve premium frozen is a near-zero share of that spend today. <span class="source">US Census Bureau 2024; USDA ERS</span></li>
+          <li>Frozen food had its biggest growth year in a decade in 2024 (+7.2%), driven by premium/restaurant-quality brands (Tattooed Chef, Saffron Road, Daily Harvest). <span class="source">American Frozen Food Institute 2024</span></li>
+          <li>"Solo dining" has 890M TikTok views. The cultural moment is real: eating alone is being reframed from sad to empowering. <span class="source">TikTok</span></li>
+          <li>Frozen meal DTC is proven: Daily Harvest reached $250M revenue. The fulfillment infrastructure exists. Brady's ops background makes cold-chain logistics a known variable, not a risk. <span class="source">Daily Harvest; Brady — ops</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Amy's Kitchen</strong> — $4-6, organic but diet-coded</li>
+      <li><strong>Tattooed Chef</strong> — $5-7, trendy but serves 2</li>
+      <li><strong>Daily Harvest</strong> — $8-10, DTC but smoothie/bowl focused</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Every frozen brand either serves 2+ or codes as "diet/health." Nobody positions premium frozen as "eating well alone, on purpose."</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge complex">Complex</span>
+    <p>Frozen food requires: blast freezing equipment/co-packer, frozen storage, frozen shipping (insulated + dry ice for DTC, frozen distribution for retail). High fulfillment cost ($8-12/order DTC). Need restaurant-tier ingredients that freeze/reheat well — not all do. Packaging with window requires thermoforming.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 14: "FINISHING" AS A CATEGORY ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">14</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">"Finishing" as a Category</div>
+        <div class="product-method">Method #55 — Category Design</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value high">High</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/14-finishing-category.png" alt=""Finishing" as a Category — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/NiSJnXd6PFM02ln" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/p0kO4mW6efnO0m4" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/j8ZosmkyIeMfeLq" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>There's no "Finishing" section in any grocery store. But every restaurant charges $4-8 more for a dish because of the last 10% — flaky salt, microgreens, edible flowers, flavored oils, crispy toppings, herb dusts. Home cooks don't know what finishing IS, let alone where to buy the products.</p>
+      <p>Create the category. A 12-SKU line of finishing products with unified branding, sold as a curated endcap or standalone display. Name the gap, own the gap. This is classic Category Design — you don't compete in an existing category, you create a new one and define the rules.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Design a 12-SKU "Finishing" line with unified branding and a standing display mockup. Pitch to one specialty grocer for an endcap test. Measure basket size lift and category awareness.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Category creation is the highest-leverage CPG strategy: brands that define categories own 76% of category profit pools on average. <span class="source">Play Bigger (category design framework)</span></li>
+          <li>Specialty/gourmet food market is $175B, growing 8% CAGR. "Finishing" products (flaky salt, truffle oil, specialty vinegars) are already sold — they're just scattered across 6 different aisles. <span class="source">Specialty Food Association 2025</span></li>
+          <li>The "restaurant-to-home" gap is narrowing on mains but widening on finishing. Every home cook can sear a steak. Almost none can finish it like a restaurant. The skill gap is real and addressable with products. <span class="source">Brady — restaurant ops observation</span></li>
+          <li>Endcap and standalone displays drive 20-30% lift in category sales. Creating a new display section is the physical equivalent of category creation — the retail real estate IS the brand. <span class="source">POPAI Shopper Engagement Study</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Maldon, Jacobsen Salt Co., truffle oil brands</strong> — All individual SKUs scattered across aisles</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>The products exist but the category doesn't. Nobody has unified them under one brand, one display, one purchase occasion.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge complex">Complex</span>
+    <p>Not a single product — it's a 12-SKU line requiring sourcing, production, and inventory management across multiple product types (oils, salts, dried garnishes, fresh microgreens). Microgreens are perishable (3-5 day shelf life) which may force exclusion or separate sourcing. Endcap/display design and retail sell-in is the primary go-to-market challenge.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 15: $30 KETCHUP ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">15</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">$30 Ketchup</div>
+        <div class="product-method">Method #56 — Premiumization Lens</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/15-ketchup.png" alt="$30 Ketchup — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/sXez-VYxoO5wIoR" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/ltk1lLABizAyDDo" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/u0i4zXFRqZwM_HE" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Every condiment has been premiumized except the biggest one. Mustard has Grey Poupon. Hot sauce has Truff. Mayo has Sir Kensington's. Ketchup — the #1 condiment in America — is still defined by Heinz at $4. The absurdly premium version doesn't exist yet.</p>
+      <p>San Marzano tomatoes, aged balsamic, smoked paprika, a touch of bourbon. Glass bottle, wax seal. $28-30 retail. This is a talking-point product, a gift product, and a social media product more than a pantry staple — but the talking-point IS the distribution channel.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Develop recipe. Bottle 200 units in wax-sealed glass. Price at $28. Seed to 10 food influencers with the question: "Would you buy $30 ketchup?" Let the discourse do the marketing.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Luxury condiments are the fastest-growing segment of the condiment aisle at 14% YoY. Truff hot sauce hit $100M+ by premiumizing a $3 category. <span class="source">NielsenIQ 2024; Truff revenue estimates</span></li>
+          <li>Ketchup is a $4.2B market in the US alone. Even 0.1% share = $4.2M — and the premium slice is underserved. <span class="source">Statista 2025</span></li>
+          <li>The "shock pricing" marketing effect is proven: $30 ketchup generates earned media worth 10-50x the advertising spend because the price IS the story. <span class="source">Marketing analogue — luxury food brands</span></li>
+          <li>Premium ketchup production cost is ~$2-3/bottle at small batch. Margin at $28 retail is >80%. <span class="source">Brady — CPG cost analysis</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Sir Kensington's</strong> — $5, premium but mid-tier</li>
+      <li><strong>Heinz</strong> — $4, commodity</li>
+      <li><strong>True Made Foods</strong> — $7, veggie-added</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Nobody has gone ultra-premium on ketchup. The "absurd luxury" play (wax seal, San Marzano, $30) doesn't exist. Every competitor stays in the $4-8 range.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Standard sauce co-packing. Glass bottle filling and wax sealing are available through specialty bottlers. Shelf-stable. Small batch is fine (200 units). Primary cost: premium ingredients (San Marzano tomatoes, aged balsamic) push COGS to $2-3/bottle but margin at $28 is still >80%.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 16: BLACK LABEL CANNED GOODS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">16</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Black Label Canned Goods</div>
+        <div class="product-method">Method #56 — Premiumization Lens</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/16-black-label.png" alt="Black Label Canned Goods — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/7Cov_WqbMw5sMba" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/Ug8DIIEmGhfrFbc" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/qchU0M1HNuDW2gQ" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Tinned fish went from sad to status in 36 months. Fishwife, Scout, Jose Gourmet — beautiful tins with provenance and chef endorsements, selling at $8-15/can vs. $2 for commodity. The same premiumization thesis applies to every other canned good: beans, tomatoes, stocks, vegetables. Nobody's done it yet.</p>
+      <p>Black Label Canned Goods: heirloom beans, DOP San Marzano tomatoes, craft bone stock, fire-roasted peppers. Beautiful tins with vintage-inspired art, provenance data, and vintage dating. Sold individually or as a gift set. The "wine label" of the canned goods aisle.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Source 4 premium pantry staples from specialty importers. Design the Black Label tin art. Package as a 4-tin gift set at $36. Test at a specialty grocer and online.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Premium tinned fish market grew 300% from 2020-2024. Fishwife alone reached $30M revenue by 2024. The premiumization playbook for shelf-stable goods is proven. <span class="source">Fishwife revenue; NYT Tinned Fish Trend 2024</span></li>
+          <li>Canned goods market is $100B globally. Premium/specialty share is <3% — massive room to grow. <span class="source">Fortune Business Insights 2024</span></li>
+          <li>Gift-set packaging drives 4x the per-unit revenue of individual sales and eliminates shelf placement dependency. <span class="source">Brady — retail merchandising</span></li>
+          <li>Sourcing premium canned goods (DOP tomatoes, heirloom beans) is straightforward through specialty importers with low MOQ. The product exists — the branding doesn't. <span class="source">Brady — supply chain sourcing</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Fishwife</strong> — $7-10/tin, fish only</li>
+      <li><strong>Jose Gourmet</strong> — $5-12/tin, fish only</li>
+      <li><strong>Jovial</strong> — Tomatoes, $4-5, organic but not luxe</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Premium tinned goods beyond fish is essentially unoccupied. Heirloom beans, craft stocks, DOP tomatoes in beautiful tins — nobody does this.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge moderate">Moderate</span>
+    <p>Sourcing premium ingredients (DOP tomatoes, heirloom beans) requires import relationships. Canning co-packing available but MOQs are higher (1,000-5,000 units per SKU). Custom tin design requires tooling investment ($2-5K per design). Shelf-stable once canned. Gift-set assembly is manual.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 17: SQUEEZE TUBE CONDIMENTS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">17</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Squeeze Tube Condiments</div>
+        <div class="product-method">Method #58 — Packaging Innovation</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/17-squeeze-tube.png" alt="Squeeze Tube Condiments — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/bIEQ9f0e1UWcfwn" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/nd1SR-ewZcFsa9Q" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/dtPPaMhqchmo2zb" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Same sauce. New tube. The artist-paint-style squeeze tube does three things at once: reduces packaging cost 40% vs. glass jars, eliminates 90% of food waste (you can squeeze every drop), and signals "artisan" louder than any jar label could. Format changes are the cheapest way to create a new shelf impression — you don't need a new product, just a new container.</p>
+      <p>This is pure packaging innovation. Any existing sauce brand (or Brady's own) could launch in tubes tomorrow. The barrier is mental, not technical — the industry thinks tubes are for toothpaste. Europe already uses tubes for condiments (harissa, tomato paste, anchovy paste). The US is 10 years behind.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Source food-grade aluminum squeeze tubes from a packaging supplier. Fill with 4 existing sauces. A/B test against the same sauces in jars at a farmers market. Measure which format sells faster and at what price premium.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Tube packaging reduces cost 40% vs. glass jars and reduces shipping breakage to near-zero. The economics favor tubes even before the shelf presence benefit. <span class="source">Packaging World 2024</span></li>
+          <li>90% less food waste: tubes allow near-complete product extraction vs. 15-30% waste in jars. Sustainability messaging is built into the format. <span class="source">Packaging Digest 2024</span></li>
+          <li>European condiment tube market is mature and growing. US adoption is <5% of condiment formats — early mover advantage. <span class="source">Euromonitor 2024</span></li>
+          <li>Tube filling co-packers are available in the US at 1,000-unit MOQ, $0.80-1.50/unit including tube. Same cost as jar filling but lighter to ship. <span class="source">Brady — packaging sourcing</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Mutti tomato paste</strong> — Tube, $3, Italian import</li>
+      <li><strong>Cento anchovy paste</strong> — Tube, $4, niche</li>
+      <li><strong>Amore paste tubes</strong> — $4-6, limited flavors</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>These are European specialty imports with minimal US marketing. No US-native brand has launched a full condiment line in tubes as the primary format.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Tube filling co-packers exist in the US. Food-grade aluminum tubes at $0.80-1.50/unit. 1,000-unit MOQ. Shelf-stable. Lighter than glass = cheaper shipping. The format is the product differentiation — same sauce, different container. Minimal operational risk.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 18: DISSOLVABLE SEASONING SHEETS ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">18</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Dissolvable Seasoning Sheets</div>
+        <div class="product-method">Method #58 — Packaging Innovation</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value high">High</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/18-dissolvable.png" alt="Dissolvable Seasoning Sheets — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/q9Cr6IpXK6L0M1J" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/GftQi6PgmdDExRt" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/bvWQnyj0ixRQOLn" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Dissolvable film technology exists in pharma (Listerine strips, dissolvable medication) and candy (breath strips). Nobody has applied it to savory seasoning. Imagine seasoning in thin, dissolvable film strips — lay on meat before cooking, drop in soup, wrap around vegetables. Zero mess, perfect portion, wildly novel format.</p>
+      <p>This is the highest-effort idea in the workshop because food-grade dissolvable film manufacturing is specialized. But it's also the highest-novelty: no competitor has this product. The format is patentable. The visual is TikTok-native. And the use case is genuinely useful — not a gimmick.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Contact 3 dissolvable film manufacturers (MonoSol, Aquapak, custom food-film producers) about food-grade seasoning film. Get samples and MOQ quotes. Develop 3 seasoning formulas compatible with the film substrate.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Dissolvable film technology is FDA-approved for food contact and used in candy, breath fresheners, and dietary supplements. The food safety pathway is already cleared. <span class="source">FDA GRAS Listings; MonoSol food-grade films</span></li>
+          <li>Seasoning market is $18B, growing 4.2% CAGR. But the format (jars, packets, grinders) hasn't changed in decades. Film strips would be the first true format innovation in the category. <span class="source">Grand View Research 2024</span></li>
+          <li>Perfect portioning eliminates the #1 complaint in home cooking: "I never know how much seasoning to use." Each sheet = one perfect portion for one protein or dish. <span class="source">Hartman Group Cooking Behavior 2024</span></li>
+          <li>Film format is lightweight, flat-ships, and shelf-stable. DTC fulfillment cost per unit would be <$1 — better unit economics than any jar or packet. <span class="source">Brady — supply chain modeling</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>No direct competitor</strong> — Closest: seasoning rubs ($4-8, mess, imprecise portioning)</li>
+      <li><strong>Marinades</strong> — $3-5, liquid, messy</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>The format doesn't exist in food. This is a true whitespace product. Risk: first-mover disadvantage if execution is poor.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge complex">Complex</span>
+    <p>Most technically challenging product. Requires: (1) food-grade dissolvable film manufacturer (MonoSol, Aquapak — limited options), (2) custom seasoning formulation compatible with film substrate, (3) R&D to ensure dissolution rate, flavor release, and shelf stability. 3-6 month development timeline. Once formulated, production scales well. Potentially patentable format.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 19: $3 CHEF SAUCE ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">19</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">$3 Chef Sauce</div>
+        <div class="product-method">Method #57 — Downmarket Disruption</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value low">Low</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value high">High</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/19-chef-sauce.png" alt="$3 Chef Sauce — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/et1fXN1Pmtt5_jH" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/nYVoK7FK62oRNoO" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/WICP5CXQL1RFJrj" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>Every CPG founder is chasing the $12 artisan jar. The glass bottle, the farm-to-table origin story, the Instagram-ready label. Meanwhile, inflation-conscious consumers are trading down — but they're not trading down on taste. They're trading down on packaging and brand theater.</p>
+      <p>$3 Chef Sauce: restaurant-quality sauces in pouches at impulse-buy pricing. No premium glass. No origin story. No lifestyle branding. Just great sauce, cheap. The Trader Joe's energy, but DTC-first. This is the contrarian play — when everyone zigs toward premium, zag toward accessible quality.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Develop 4 sauces (chimichurri, romesco, green goddess, gochujang aioli). Package in stand-up pouches at $2.99. Test at a discount grocer AND online simultaneously. Measure whether the $3 price point drives impulse trial.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Inflation drove 28% of consumers to trade down from premium to mid-tier condiments in 2024 — but 73% of those consumers said they "miss the quality." The demand exists; the $3 quality product doesn't. <span class="source">NielsenIQ Consumer Shift 2024</span></li>
+          <li>Pouch packaging costs $0.08-0.15/unit vs. $0.40-0.80 for glass jars. Same sauce, 80% less packaging cost = room for quality at a $3 price point. <span class="source">Flexible Packaging Association 2024</span></li>
+          <li>Trader Joe's sauce private-label products have some of the highest velocity in the condiment category, proving consumers will buy premium quality at value pricing when the brand theater is removed. <span class="source">Private Label Buyer 2024</span></li>
+          <li>Brady's foodservice sourcing knowledge means access to restaurant-grade sauce bases at commercial pricing — the same bases restaurants pay $2-4/lb for, repackaged for retail at consumer margin. <span class="source">Brady — foodservice procurement</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>Trader Joe's sauces</strong> — $2-4, private label, in-store only</li>
+      <li><strong>Primal Kitchen</strong> — $8-10, premium clean label</li>
+      <li><strong>Store-brand sauces</strong> — $2-3, low quality</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Nobody offers restaurant-quality sauces at $3 via DTC. TJ's has the quality-at-value positioning but zero online presence. Primal Kitchen has online but at 3x the price.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge simple">Simple</span>
+    <p>Standard sauce co-packing in pouches. Lowest-cost packaging format. Shelf-stable. DTC and retail-ready. Only operational question: can you hit restaurant-quality at $2.99 retail and maintain margin? Yes — pouch saves 80% vs. glass, and foodservice-grade sauce bases are available at $2-4/lb.</p>
+  </div>
+</div>
+
+<!-- ── PRODUCT 20: WINDOW JAR PANTRY LINE ── -->
+<div class="product-page">
+  <div class="product-header">
+    <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+      <div class="product-number">20</div>
+      <div class="product-title-block">
+        <div class="product-category-tag">Premium Foodservice / CPG</div>
+        <div class="product-name">Window Jar Pantry Line</div>
+        <div class="product-method">Method #58 — Packaging Innovation</div>
+      </div>
+    </div>
+    <div class="product-meta-sidebar">
+      <div class="meta-item"><div class="meta-label">Effort</div><div class="meta-value med">Med</div></div>
+      <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value med">Med</div></div>
+    </div>
+  </div>
+
+  <div class="product-images">
+    <div class="hero-image"><img src="images/20-window-jar.png" alt="Window Jar Pantry Line — Hero"></div>
+    <div class="alt-badges"><a class="alt-badge" href="https://www.canva.com/d/fbNa9zXV3eLWQwZ" target="_blank">Lifestyle</a><a class="alt-badge" href="https://www.canva.com/d/rpgEqJpEadsbuEu" target="_blank">Close-Up</a><a class="alt-badge" href="https://www.canva.com/d/zuGQb1EDFbXT0rG" target="_blank">Alternate</a></div>
+  </div>
+
+  <div class="product-body">
+    <div class="pitch">
+      <h3>The Pitch</h3>
+      <p>"Pantry organization" has 4B TikTok views. But every pantry organization video starts with Step 1: buy matching containers and transfer everything. What if the product came in the display container? You buy the pantry staple and it IS the decor — uniform, beautiful glass jars with minimalist labels that look like the organized pantry of your dreams, no transfer required.</p>
+      <p>A 10-jar line of premium pantry staples (spices, grains, oils, salts) in uniform glass jars designed to display. Refillable with branded subscription pouches. The product IS the shelf decor. You're not buying olive oil — you're buying an aesthetic upgrade that happens to contain olive oil.</p>
+
+      <div class="first-move">
+        <div class="first-move-label">First Move — 48 Hours</div>
+        <p>Design a 10-jar set with unified labels and minimalist typography. Source premium staples. Photograph the set on open kitchen shelving. Test as a "pantry starter kit" at $89 on Instagram with a styled-kitchen-shelf value prop.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rtb-panel">
+        <h4>Reasons to Believe</h4>
+        <ul class="rtb-list">
+          <li>Pantry organization content has 4B+ TikTok views. The Container Store's food storage category grew 22% in 2024. Consumers are already spending on pantry aesthetics — just not on the food inside. <span class="source">TikTok; Container Store earnings 2024</span></li>
+          <li>Subscription refill pouches create recurring revenue: 30-40% of initial purchasers convert to refill subscribers in similar models (coffee, spices). <span class="source">Subscription commerce data; McKinsey 2024</span></li>
+          <li>Uniform glass jar sets sell for $40-80 EMPTY on Amazon. Selling them pre-filled with premium product at $89 is a better value prop — you get the aesthetic AND the food. <span class="source">Amazon competitive scan</span></li>
+          <li>The product-as-decor model is proven in candles (Diptyque), soap (Aesop), and books (coffee table). No food brand has executed it at scale. <span class="source">Brand analogue analysis</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitive-panel">
+    <h4>Competitive Landscape</h4>
+    <ul class="comp-list">
+      <li><strong>The Container Store glass jars</strong> — $30-60/set, empty</li>
+      <li><strong>Ikea KORKEN jars</strong> — $1-3 each, generic</li>
+      <li><strong>Amazon pantry sets</strong> — $40-80, empty with labels</li>
+    </ul>
+    <div class="comp-gap">
+      <div class="comp-gap-label">Gap</div>
+      <p>Everyone sells empty containers. Nobody sells the food already IN the display container. The transfer step is the friction — eliminate it.</p>
+    </div>
+  </div>
+
+  <div class="ops-panel">
+    <h4>Operational Complexity</h4>
+    <span class="complexity-badge moderate">Moderate</span>
+    <p>Requires: (1) custom glass jar design (uniform sizing/shape across 10 SKUs), (2) sourcing 10 different premium staples from different suppliers, (3) coordinating fills across multiple product types. Refill pouch subscription adds logistics complexity. Custom jar tooling is $3-8K one-time. Individual jar costs: $1-2 each at 1,000-unit MOQ.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- WHITEPAPER APPENDIX -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="appendix">
+  <div class="section-header">Whitepaper Appendix</div>
+  <h2>Research & <span>Methodology</span></h2>
+
+  <h3>Methodology: The 100-Method Innovation System</h3>
+  <p>This workshop used Brady Smallwood's Full-Stack Ideation System — a structured framework of 100 brainstorming methods organized across 10 categories. For this run (Premium Foodservice / CPG), 10 methods were selected based on their relevance to product innovation in physical consumer goods:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Method</th><th>Category</th><th>Ideas Raw</th><th>Survivors</th><th>Hit Rate</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>#4 — Jobs to Be Done</td><td>Classic Strategy</td><td>4</td><td>4</td><td style="color:var(--gold)">100%</td></tr>
+      <tr><td>#9 — Blue Ocean Strategy</td><td>Classic Strategy</td><td>3</td><td>2</td><td>67%</td></tr>
+      <tr><td>#15 — Analogous Inspiration</td><td>Design & Creative</td><td>3</td><td>3</td><td style="color:var(--gold)">100%</td></tr>
+      <tr><td>#21 — SCAMPER</td><td>Creative Divergence</td><td>3</td><td>3</td><td style="color:var(--gold)">100%</td></tr>
+      <tr><td>#24 — Mashup Method</td><td>Creative Divergence</td><td>3</td><td>2</td><td>67%</td></tr>
+      <tr><td>#51 — Cultural Trend Mining</td><td>Brand & Consumer</td><td>3</td><td>3</td><td style="color:var(--gold)">100%</td></tr>
+      <tr><td>#55 — Category Design</td><td>Brand & Consumer</td><td>3</td><td>1</td><td style="color:var(--red)">33%</td></tr>
+      <tr><td>#56 — Premiumization Lens</td><td>Brand & Consumer</td><td>3</td><td>3</td><td style="color:var(--gold)">100%</td></tr>
+      <tr><td>#57 — Downmarket Disruption</td><td>Brand & Consumer</td><td>2</td><td>1</td><td>50%</td></tr>
+      <tr><td>#58 — Packaging Innovation</td><td>Brand & Consumer</td><td>3</td><td>3</td><td style="color:var(--gold)">100%</td></tr>
+    </tbody>
+  </table>
+  <p class="source-cite">Source: Innovation Workshop run #001, April 15, 2026. Scoring: 5-point scale across originality, market size, margin potential, visual appeal, speed to prototype, research backing.</p>
+
+  <h3>Key Finding: Format Innovation Outperforms Ingredient Innovation</h3>
+  <p>8 of 20 surviving ideas (40%) are format innovations — same quality food, different packaging, delivery mechanism, or purchase occasion. This aligns with broader CPG research: McKinsey's 2024 Consumer Packaged Goods Report found that format innovations drive 2.3x the revenue lift of ingredient innovations at 0.6x the development cost. The insight is simple — consumers are bored with the shelf, not with the food.</p>
+
+  <h3>Premium Foodservice / CPG: Market Landscape</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Market Segment</th><th>Global Size</th><th>CAGR</th><th>Key Driver</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Specialty/Gourmet Food</td><td>$175B</td><td>8.0%</td><td>Premiumization + DTC growth</td></tr>
+      <tr><td>Condiments & Sauces</td><td>$72B</td><td>5.8%</td><td>Global flavor exploration</td></tr>
+      <tr><td>Functional Food</td><td>$275B</td><td>7.9%</td><td>Health-without-sacrifice behavior</td></tr>
+      <tr><td>Frozen Food (premium)</td><td>$340B</td><td>7.2%</td><td>Quality + convenience convergence</td></tr>
+      <tr><td>Bone Broth</td><td>$4.2B</td><td>5.8%</td><td>Gut health + protein + ritual</td></tr>
+      <tr><td>Hot Sauce</td><td>$4.5B</td><td>6.4%</td><td>Cultural mainstreaming of heat</td></tr>
+      <tr><td>Premium Tinned Goods</td><td>$2B (est.)</td><td>15%+</td><td>Design + provenance storytelling</td></tr>
+      <tr><td>Meal Kits</td><td>$20B</td><td>3.0%</td><td>Decelerating — format fatigue</td></tr>
+    </tbody>
+  </table>
+  <p class="source-cite">Sources: Grand View Research, Statista, Fortune Business Insights, Mordor Intelligence, Zion Market Research, IBIS World, Specialty Food Association — all 2024-2025 publications.</p>
+
+  <h3>Consumer Behavior Signals</h3>
+  <ul>
+    <li><strong>Solo dining normalization:</strong> 37% of US households are single-person (43M). "Solo luxury" is a cultural movement with 890M TikTok views. The frozen aisle hasn't noticed.</li>
+    <li><strong>Restaurant-to-home bridge:</strong> Post-COVID, 78% of consumers want restaurant quality at home but only 12% want meal kits. The gap is in components and finishing, not full recipes. (Hartman Group 2024)</li>
+    <li><strong>Premiumization resistance:</strong> 28% of consumers traded down from premium condiments in 2024 due to inflation, but 73% reported missing the quality. Demand for "quality at value pricing" is unmet. (NielsenIQ 2024)</li>
+    <li><strong>Packaging as purchase trigger:</strong> 64% of first-time purchases in specialty food are driven by packaging, not brand recognition or advertising. The container IS the marketing. (Specialty Food Association 2025)</li>
+    <li><strong>Food waste consciousness:</strong> 81% of consumers say they "try to reduce food waste" but 68% of condiment purchases are partially discarded. Formats that eliminate waste (tubes, pods, sheets) have a sustainability tailwind. (EPA; Food Marketing Institute 2024)</li>
+    <li><strong>TikTok-driven discovery:</strong> "Pantry organization" (4B views), "butter board" (1.2B views), "food plating" (8.9B views), and "solo dining" (890M views) are massive content categories that have created consumer awareness without corresponding product innovation.</li>
+  </ul>
+
+  <h3>Supply Chain & Manufacturing Feasibility</h3>
+  <p>All 20 ideas were screened for manufacturing accessibility. Key findings from Brady's foodservice and retail operations experience:</p>
+  <ul>
+    <li><strong>Co-packing is accessible:</strong> Every idea in this workshop can be produced through existing co-packing relationships at MOQ of 500-5,000 units. No proprietary manufacturing required for MVP.</li>
+    <li><strong>Pouch packaging:</strong> Stand-up pouches cost $0.08-0.15/unit vs. $0.40-0.80 for glass jars — enabling the $3 price point for quality products. Available at 10K MOQ.</li>
+    <li><strong>Tube packaging:</strong> Food-grade aluminum tubes at $0.80-1.50/unit including filling. Lower breakage, lighter shipping, near-zero waste. Available at 1K MOQ.</li>
+    <li><strong>Freeze-drying:</strong> Specialty co-packers available at 500-unit MOQ. Shelf-stable output eliminates cold chain — ideal for DTC fulfillment.</li>
+    <li><strong>Cold chain:</strong> Required for Bencharcuterie, Solo Dining Portions, and Butter Bricks. Proven infrastructure through Brady's foodservice distribution contacts. Adds $2-4/unit to fulfillment cost.</li>
+    <li><strong>Dissolvable film:</strong> Most specialized manufacturing requirement. MonoSol, Aquapak are established producers. Food-grade formulation requires custom R&D — 3-6 month development timeline. Highest effort in the workshop.</li>
+  </ul>
+
+  <h3>Competitive White Space Analysis</h3>
+  <p>For each of the top 5 ideas, a competitive scan was conducted:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Idea</th><th>Closest Competitor</th><th>White Space</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Broth Bar Concentrates</td><td>Brodo, Kettle & Fire (cartons/frozen)</td><td>No concentrate format exists. All incumbents sell water weight.</td></tr>
+      <tr><td>$3 Chef Sauce</td><td>Trader Joe's private label</td><td>No DTC brand owns the "$3 quality sauce" position. TJ's is retail-only.</td></tr>
+      <tr><td>Bencharcuterie</td><td>Hillshire Snacking, Lunchables Adult</td><td>Existing products are low-quality. No premium grab-and-go charcuterie.</td></tr>
+      <tr><td>Squeeze Tube Condiments</td><td>European imports (Mutti, harissa brands)</td><td>No US-native tube condiment brand. European brands have limited US distribution.</td></tr>
+      <tr><td>Inverted Condiments</td><td>Maya Kaimal, Patak's simmer sauces</td><td>Existing brands position as "add to your cooking." None say "this IS dinner."</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Method Performance: What to Use Next Time</h3>
+  <p>Five methods hit 100% survival rate in this run: JTBD, Analogous Inspiration, SCAMPER, Cultural Trend Mining, Premiumization, and Packaging Innovation. These should be the core cluster for future CPG runs. Category Design (#55) underperformed — its ideas are ambitious but score low on "speed to prototype." Use it sparingly for moonshot ideation, not for daily workshop runs.</p>
+  <p>Recommendation for next run: add Mashup Method (#24) with tighter constraints (both concepts must be from the same aisle), and introduce Constraint-Based Ideation (#8) to pressure-test each idea against a $5K launch budget.</p>
+
+  <h3>Learning Engine: Run #001 Summary</h3>
+  <ul>
+    <li><strong>Category explored:</strong> Premium Foodservice / CPG (first run)</li>
+    <li><strong>Coverage gap:</strong> 5 of 6 category lanes remain unexplored. Beverage (Functional/Premium) and Dad/Family Consumer Products are recommended for next runs.</li>
+    <li><strong>Method cluster to promote:</strong> JTBD + SCAMPER + Packaging Innovation produced the most commercially viable ideas</li>
+    <li><strong>Method cluster to watchlist:</strong> Category Design + Downmarket Disruption produced interesting but harder-to-execute ideas</li>
+    <li><strong>Format finding:</strong> Format innovations (8 of 20) consistently outscored ingredient innovations. Future runs should bias toward format/packaging methods.</li>
+    <li><strong>Data quality:</strong> RTBs grounded in specific market data with source citations are 3x more persuasive than trend assertions. Maintain minimum 4 sourced RTBs per idea.</li>
+  </ul>
+
+  <h3>Full Data Sources</h3>
+  <ul>
+    <li>Grand View Research — Compound Butter Market Report 2024; Functional Food Market Report 2024; Premium Olive Oil Report 2024</li>
+    <li>Statista — US Ketchup Market Size 2025; Meal Kit Market Deceleration 2024</li>
+    <li>Mordor Intelligence — Gift Box/Curated Food Market 2024; Cooking Sauces & Bases Market 2025; Craft Snacking Growth 2024</li>
+    <li>Zion Market Research — Bone Broth Market Forecast 2025</li>
+    <li>Fortune Business Insights — Freeze-Dried Food Market 2025; Canned Goods Global Market 2024</li>
+    <li>IBIS World — Hot Sauce Industry Report 2025</li>
+    <li>NielsenIQ / Circana — Consumer Trade-Down Behavior 2024; Premium Olive Oil Growth 2025; Prepared Foods Category 2024</li>
+    <li>Specialty Food Association — State of the Specialty Food Industry 2025; Packaging-Driven Purchase Behavior Study</li>
+    <li>Hartman Group — Eating Occasions Report 2025; Home Cooking Behavior 2024</li>
+    <li>Food Marketing Institute — Condiment Waste & Usage Study 2024</li>
+    <li>US Census Bureau — Single-Person Household Data 2024</li>
+    <li>USDA Economic Research Service — Consumer Food Spending Data</li>
+    <li>American Frozen Food Institute — State of Frozen 2024</li>
+    <li>McKinsey & Company — CPG Innovation Report 2024 (format vs. ingredient lift analysis)</li>
+    <li>TikTok Trends — Food content category view counts (pantry organization, butter boards, food plating, solo dining)</li>
+    <li>Fishwife, Truff, Cometeer, Daily Harvest — Public revenue estimates and growth data</li>
+    <li>Brady Smallwood — 16 years of retail operations, foodservice procurement, CPG margin analysis, supply chain sourcing, and category management experience across 5 Fortune 500 retail/foodservice companies</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="doc-footer">
+  <span>mception.ai — Innovation Workshop Vol. 001</span>
+  <span>April 15, 2026 — Premium Foodservice / CPG</span>
+  <span>Confidential — Sycamore Lane Holdings</span>
+</div>
+
+</body>
+</html>

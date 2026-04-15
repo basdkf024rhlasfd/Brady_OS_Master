@@ -83,6 +83,27 @@ If Mark mentions Saivory or Jelly Capital, respond: "This agent is set up for Pr
 | Product Marketing | `skills/_expansion-slots.md` | New product or feature launch |
 | Creative Director | `skills/_expansion-slots.md` | Visual content becomes a priority |
 
+## Marketing SOPs (Added 2026-04-14)
+
+11 curated marketing playbooks from the marketingskills library (Corey Haines) in `skills/marketing-sops/`. Each routes through an existing sub-agent.
+
+**New capabilities:** Paid Ads, Page CRO, Sales Enablement, RevOps, Pricing Strategy
+**Extended capabilities:** Cold Email, Analytics Tracking, A/B Test Setup, Content Strategy, Copywriting, Product Marketing Context
+
+| SOP | Routes Through | Trigger |
+|-----|---------------|---------|
+| product-marketing-context | Orchestrator | Foundation — loaded before any marketing task |
+| content-strategy | Content & MarComms | "content pillars," "what should we write about" |
+| copywriting | Content & MarComms | "conversion copy," "landing page copy" |
+| cold-email | Demand Gen | "cold email," "prospecting email" |
+| paid-ads | Demand Gen | "PPC," "Google Ads," "ad campaign" |
+| page-cro | Demand Gen | "CRO," "this page isn't converting" |
+| sales-enablement | Demand Gen | "battle card," "one-pager," "sales materials" |
+| revops | Demand Gen | "pipeline," "lead scoring," "MQL" |
+| pricing-strategy | Demand Gen | "pricing model," "how should we price" |
+| analytics-tracking | Analytics & Insights | "GA4," "conversion tracking" |
+| ab-test-setup | Analytics & Insights | "A/B test," "experiment setup" |
+
 ## Knowledge Base
 
 All sub-agents reference these files for context:
@@ -107,6 +128,13 @@ All sub-agents reference these files for context:
 | `/substack-outline` | Generate structured essay outline | Substack Publishing |
 | `/substack-repurpose` | Convert LinkedIn post or notes into Substack essay | Substack Publishing |
 | `/content-calendar` | View/update publishing calendar | Marketing EA |
+| `/cro-audit` | Analyze a page for conversion optimization | Demand Gen (page-cro SOP) |
+| `/paid-ads` | Plan a paid campaign (Google/Meta/LinkedIn) | Demand Gen (paid-ads SOP) |
+| `/sales-collateral` | Create battle cards, one-pagers, objection docs | Demand Gen (sales-enablement SOP) |
+| `/pricing-review` | Evaluate or design pricing strategy | Demand Gen (pricing-strategy SOP) |
+| `/pipeline-review` | Audit lead lifecycle and funnel metrics | Demand Gen (revops SOP) |
+| `/ab-test` | Design an A/B test with proper methodology | Analytics (ab-test-setup SOP) |
+| `/tracking-setup` | Plan conversion tracking and analytics instrumentation | Analytics (analytics-tracking SOP) |
 
 ## Routing Logic
 

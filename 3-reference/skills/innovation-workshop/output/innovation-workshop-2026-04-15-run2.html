@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Functional Indulgence: Performance Bakery & Snacks — April 15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --green: #7CB97A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-after: always;
+  }
+  .cover-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    color: var(--gray-light);
+    margin-bottom: 8px;
+  }
+  .cover .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    margin-top: 32px;
+  }
+  .cover .trend-box {
+    margin-top: 48px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 24px 36px;
+    text-align: left;
+    max-width: 600px;
+  }
+  .cover .trend-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .cover .trend-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .cover .trend-box li {
+    font-size: 15px;
+    color: var(--white);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .cover .trend-box li:last-child { border-bottom: none; }
+  .cover .trend-box li strong { color: var(--gold); }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(212,168,67,0.25);
+  }
+
+  /* ─── EXECUTIVE SUMMARY ─── */
+  .exec-summary {
+    page-break-after: always;
+  }
+  .exec-intro {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+  .top-picks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .top-pick {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .top-pick img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: var(--bg-card-alt);
+    flex-shrink: 0;
+  }
+  .top-pick-rank {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-right: 4px;
+  }
+  .top-pick h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .top-pick p {
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.5;
+  }
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .theme-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .theme-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .theme-card p {
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.5;
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 18px 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-desc {
+    font-size: 12px;
+    color: var(--gray-light);
+    line-height: 1.4;
+  }
+  .stat-src {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+
+  /* ─── PRODUCT PAGES ─── */
+  .product-page {
+    page-break-before: always;
+    page-break-inside: avoid;
+    padding-top: 32px;
+  }
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+  }
+  .product-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .product-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--bg-card-alt);
+    color: var(--gray-light);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .tag-gold { background: rgba(212,168,67,0.15); color: var(--gold); border-color: rgba(212,168,67,0.25); }
+  .tag-blue { background: rgba(74,127,181,0.15); color: var(--blue); border-color: rgba(74,127,181,0.25); }
+  .tag-green { background: rgba(124,185,122,0.15); color: var(--green); border-color: rgba(124,185,122,0.25); }
+  .tag-red { background: rgba(196,92,92,0.15); color: var(--red); border-color: rgba(196,92,92,0.25); }
+
+  .product-score {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .score-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .product-image-block {
+    float: left;
+    margin: 0 24px 16px 0;
+    page-break-inside: avoid;
+  }
+  .product-image-block img {
+    width: 280px;
+    height: 280px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: block;
+  }
+
+  .product-body {
+    page-break-inside: avoid;
+  }
+  .product-body::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .pitch-section {
+    margin-bottom: 24px;
+  }
+  .pitch-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 10px;
+    page-break-after: avoid;
+  }
+  .pitch-text p {
+    margin-bottom: 12px;
+    line-height: 1.65;
+    color: var(--gray-light);
+  }
+
+  .rtb-section {
+    margin-bottom: 24px;
+  }
+  .rtb-list {
+    list-style: none;
+    padding: 0;
+  }
+  .rtb-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--gray-light);
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+  }
+  .rtb-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .research-basis {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    line-height: 1.5;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border-radius: 6px;
+    border-left: 3px solid var(--gold-dim);
+    margin-bottom: 20px;
+  }
+
+  /* Competitive & Ops panels */
+  .panels-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .competitive-panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--blue);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .ops-panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 3px solid var(--gold-dim);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .panel-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .competitive-panel .panel-title { color: var(--blue); }
+  .ops-panel .panel-title { color: var(--gold); }
+  .panel-content {
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.55;
+  }
+  .panel-content p { margin-bottom: 8px; }
+  .panel-content strong { color: var(--white); }
+  .ops-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .ops-simple { background: rgba(124,185,122,0.2); color: var(--green); }
+  .ops-moderate { background: rgba(212,168,67,0.2); color: var(--gold); }
+  .ops-complex { background: rgba(196,92,92,0.2); color: var(--red); }
+
+  /* Sidebar metrics */
+  .sidebar-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .metric-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .metric-method {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* ─── WHITEPAPER APPENDIX ─── */
+  .appendix {
+    page-break-before: always;
+  }
+  .appendix-section {
+    margin-bottom: 32px;
+  }
+  .appendix h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .appendix p {
+    color: var(--gray-light);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .appendix table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 16px;
+  }
+  .appendix th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--bg-card-alt);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .appendix td {
+    font-size: 13px;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--gray-light);
+  }
+  .appendix tr:last-child td { border-bottom: none; }
+  .appendix td:first-child { font-weight: 600; color: var(--white); }
+  .col-gold { color: var(--gold) !important; font-weight: 600; }
+  .appendix .source-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 48px;
+  }
+  .footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--gray);
+  }
+  .footer-right {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-tag">Innovation Workshop — Run 2</div>
+  <h1>Functional <span>Indulgence</span></h1>
+  <div class="subtitle">Performance Bakery & Snacks — 20 Research-Backed Product Concepts</div>
+  <div class="meta">APRIL 15, 2026 &nbsp;·&nbsp; mception.ai</div>
+  <div class="trend-box">
+    <h3>Three Input Trends (via Eric)</h3>
+    <ul>
+      <li><strong>1.</strong> Creatine in snack foods</li>
+      <li><strong>2.</strong> Indulgent treats with clean ingredients (think Crumbl)</li>
+      <li><strong>3.</strong> Protein in fresh baked goods for the in-store bakery category</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- EXECUTIVE SUMMARY -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="exec-summary">
+  <div class="section-header">Executive Summary</div>
+
+  <p class="exec-intro">
+    Three seemingly unrelated trends — creatine going mainstream in snack foods, the Crumbl-fueled rise of indulgent-but-clean treats, and grocers scrambling to add protein to in-store bakery — converge into a single white-space category we're calling <strong>Performance Bakery</strong>. The in-store bakery aisle is a $25B category that hasn't been functionally innovated since the introduction of the croissant. Meanwhile, the creatine market is growing 12%+ annually, the protein snack market cleared $7B in 2025, and consumer demand for clean-label indulgence has never been higher. This workshop generated 32 raw concepts across 10 methods, scored and filtered to 20 survivors.
+  </p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">$25B</div>
+      <div class="stat-desc">U.S. in-store bakery market (2025)</div>
+      <div class="stat-src">IDDBA / IRI 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">12%</div>
+      <div class="stat-desc">Annual creatine supplement market growth rate</div>
+      <div class="stat-src">Grand View Research 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$7.2B</div>
+      <div class="stat-desc">U.S. protein snack market (2025)</div>
+      <div class="stat-src">Mordor Intelligence</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">73%</div>
+      <div class="stat-desc">of consumers seek "clean label" on baked goods</div>
+      <div class="stat-src">Innova Market Insights 2025</div>
+    </div>
+  </div>
+
+  <div class="section-header">Top 5 Concepts</div>
+  <div class="top-picks-grid">
+    <div class="top-pick">
+      <img src="images-run2/06-crumbl-protein-cookies.png" alt="The Crumbl Model for Protein">
+      <div>
+        <div><span class="top-pick-rank">1</span></div>
+        <h4>The Crumbl Model for Protein</h4>
+        <p>Weekly rotating protein cookie flavors with social-first drops. Proven business model meets the hottest functional ingredient trend.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run2/04-anti-protein-bar.png" alt="The Anti-Protein Bar">
+      <div>
+        <div><span class="top-pick-rank">2</span></div>
+        <h4>The Anti-Protein Bar</h4>
+        <p>Fresh bakery item positioned explicitly against the processed protein bar aisle. Real food, real ingredients, no wrapper.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run2/01-creatine-blondies.png" alt="Creatine Blondies">
+      <div>
+        <div><span class="top-pick-rank">3</span></div>
+        <h4>Creatine Blondies</h4>
+        <p>5g creatine monohydrate in a chewy blondie bar. First mover in creatine + bakery = owns the category.</p>
+      </div>
+    </div>
+    <div class="top-pick">
+      <img src="images-run2/11-gym-rat-donut.png" alt="Gym Rat Donut">
+      <div>
+        <div><span class="top-pick-rank">4</span></div>
+        <h4>Gym Rat Donut</h4>
+        <p>Full-size glazed donut with 20g protein and 5g creatine. Maximum indulgence meets maximum function. Viral potential.</p>
+      </div>
+    </div>
+    <div class="top-pick" style="grid-column: span 2;">
+      <img src="images-run2/17-two-dollar-protein-cookie.png" alt="$2 Protein Cookie">
+      <div>
+        <div><span class="top-pick-rank">5</span></div>
+        <h4>$2 Protein Cookie</h4>
+        <p>No-frills, 20g protein, clean label, fresh-baked. Undercuts Quest and Lenny & Larry's at half the price point. Mass market accessibility.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">Key Themes</div>
+  <div class="themes-grid">
+    <div class="theme-card">
+      <h4>Creatine Goes Mainstream</h4>
+      <p>Creatine is no longer a bodybuilder supplement — it's going mainstream via TikTok, wellness culture, and cognitive health research. First brand to put it in bakery owns the category.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Fresh > Wrapped</h4>
+      <p>Consumers trust the bakery case more than the protein bar aisle. Fresh-baked with a short ingredient list beats processed bars with 40 ingredients every time.</p>
+    </div>
+    <div class="theme-card">
+      <h4>In-Store Bakery Renaissance</h4>
+      <p>Grocers are desperate to differentiate the bakery department. Functional baked goods give them a new reason-to-visit that Amazon can't replicate.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PRODUCT PAGES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── PRODUCT 01 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 01 / 20</div>
+      <div class="product-name">Creatine Blondies</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Creatine</span>
+        <span class="tag tag-blue">Bakery Grab-and-Go</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">4.3</div>
+    </div>
+  </div>
+
+  <div class="product-image-block">
+    <img src="images-run2/01-creatine-blondies.png" alt="Creatine Blondies">
+  </div>
+
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Chewy, golden-brown blondie bars loaded with 5g creatine monohydrate per serving — sold in the bakery grab-and-go case, not the supplement aisle. This is creatine for people who don't want another scoop of powder in their shake. It's the first product that treats creatine as a baking ingredient rather than a gym supplement.</p>
+        <p>The insight: creatine is flavorless, heat-stable, and water-soluble — it was built for baking. The fact that nobody has put it in fresh bakery items yet is a timing gap, not a technical barrier. TikTok has already normalized creatine for non-lifters (cognitive benefits, hydration, longevity). The format just hasn't caught up.</p>
+        <p>The execution path is clear: creatine monohydrate is cheap ($8-12/kg wholesale), shelf-stable, and requires no special equipment. Any regional bakery co-packer can add it to an existing blondie recipe and test within a week.</p>
+      </div>
+    </div>
+
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Global creatine market growing 12.1% CAGR, projected $590M by 2028 (Grand View Research). No major bakery brand has entered.</li>
+        <li><strong>Consumer signal:</strong> "Creatine in food" TikTok searches up 340% YoY. Mainstream wellness consumers now take creatine who never would have 3 years ago.</li>
+        <li><strong>Supply chain:</strong> Creatine monohydrate is cheap ($8-12/kg wholesale), shelf-stable, and requires no special handling. Any bakery co-packer can add it.</li>
+        <li><strong>Competitive gap:</strong> Zero branded creatine bakery products in market. Supplement brands (Thorne, Momentous) haven't moved into food formats.</li>
+      </ul>
+    </div>
+
+    <div class="research-basis">
+      <strong>Method:</strong> Jobs to Be Done (#4) — Identified the job: "I want my daily creatine dose without another supplement ritual." Blondie format dissolves the friction between wanting creatine and not wanting to drink another shake.
+    </div>
+
+    <div class="sidebar-metrics">
+      <div class="metric-card">
+        <div class="metric-label">Effort</div>
+        <div class="metric-value" style="color: var(--green);">Low</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Impact</div>
+        <div class="metric-value" style="color: var(--gold);">High</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">First Move</div>
+        <div class="metric-value" style="font-size:12px;">Test batch with local bakery co-packer</div>
+      </div>
+    </div>
+
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Bare Performance Nutrition:</strong> Creatine gummies ($30/60ct) — supplement format, not food. Pharmacy/online only.</p>
+          <p><strong>Create Creatine:</strong> Creatine-infused drinks ($3-4/can). Beverage, not bakery. Limited distribution.</p>
+          <p><strong>The Gap:</strong> No one has put creatine into a fresh-baked, in-store bakery item. The entire category is unoccupied. Supplement brands think in supplements; bakery brands don't think in functional ingredients.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard bakery co-pack. Creatine monohydrate is a dry powder — mix into batter like any other ingredient. No equipment changes.</p>
+          <p><strong>Supply chain:</strong> Ambient temp, no cold chain. Creatine is shelf-stable. Standard bakery packaging.</p>
+          <p><strong>Fulfillment:</strong> Bakery grab-and-go case or DTC ship. No special handling.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 02 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 02 / 20</div>
+      <div class="product-name">Clean-Label Cookie Dough Bites</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-blue">Snack</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score">
+      <div class="score-label">Score</div>
+      <div class="score-num">4.2</div>
+    </div>
+  </div>
+  <div class="product-image-block">
+    <img src="images-run2/02-cookie-dough-bites.png" alt="Clean-Label Cookie Dough Bites">
+  </div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Bite-size raw cookie dough balls with 10g protein each, heat-treated flour, no artificial ingredients. Sold in the bakery case in a clear cup so you can see exactly what you're getting. This is the "I deserve a treat" product for people who read ingredient labels.</p>
+        <p>The cookie dough snack category is growing fast (Dō, Deux) but it lives in the freezer aisle with processed positioning. Moving it to the fresh bakery case with a clean label and protein changes the perception entirely — from guilty pleasure to smart snack.</p>
+        <p>What bakery case buyers actually care about: margin per linear foot, spoilage rates, and whether the product drives incremental trips. Cookie dough bites check all three.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Cookie dough snack market grew 28% in 2024 (IRI). Deux raised $10M Series A on clean-label cookie dough positioning.</li>
+        <li><strong>Consumer signal:</strong> 73% of consumers say "clean label" is important when buying baked goods (Innova 2025). Cookie dough is the #3 most-craved dessert format among 18-34.</li>
+        <li><strong>Supply chain:</strong> Heat-treated flour eliminates food safety concern. Protein addition via whey isolate. Standard ambient packaging. 14-day shelf life.</li>
+        <li><strong>Competitive gap:</strong> Deux and Dō are frozen/shipped. Nobody is doing fresh, bakery-case cookie dough bites with protein.</li>
+      </ul>
+    </div>
+    <div class="research-basis">
+      <strong>Method:</strong> Jobs to Be Done (#4) — The job: "I want to feel like I'm treating myself without derailing my nutrition goals." Cookie dough is emotional comfort food; adding protein turns it into a permissible indulgence.
+    </div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Source heat-treated flour supplier + test recipe</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Deux:</strong> $6-8/jar, frozen, DTC-first. Clean label, viral TikTok presence. But frozen = friction.</p>
+          <p><strong>Dō:</strong> NYC-based cookie dough shop. $7-9/cup. Retail presence growing but no protein positioning.</p>
+          <p><strong>Lenny & Larry's:</strong> "Complete Cookie" — packaged, processed, 16g protein. Not fresh, not premium.</p>
+          <p><strong>The Gap:</strong> Fresh bakery case, clean label, protein-fortified, bite-size format. Nobody occupies this intersection.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Mix and portion. No baking required. Heat-treated flour is the key input — readily available from suppliers like Ardent Mills.</p>
+          <p><strong>Supply chain:</strong> Refrigerated (not frozen). 14-day shelf life. Standard bakery case temps (35-40°F).</p>
+          <p><strong>Packaging:</strong> Clear cups with snap lids. Macro label front-of-pack.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 03 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 03 / 20</div>
+      <div class="product-name">Post-Workout Banana Bread</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-blue">Fresh Bakery</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.0</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/03-protein-banana-bread.png" alt="Post-Workout Banana Bread"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Fresh-baked banana bread with 25g protein per slice, sold in the bakery case in individual kraft-wrapped slices. Optional creatine add-on as a variant SKU. This is the product that replaces the post-gym protein bar with something that tastes like your mom's kitchen.</p>
+        <p>Banana bread is the #1 comfort baked good in America — it's emotionally loaded. Nobody has positioned it as a recovery food. The protein comes from whey isolate and Greek yogurt baked into the batter, which actually improves moisture and texture. It's better banana bread that happens to be functional.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> "Protein banana bread" searches on Google up 180% since 2023. Banana bread was the #1 searched recipe during COVID and remains in the top 10.</li>
+        <li><strong>Consumer signal:</strong> Post-workout nutrition is a $3.4B category. Consumers increasingly want whole-food recovery options over processed shakes/bars.</li>
+        <li><strong>Supply chain:</strong> Standard bakery ingredients + whey isolate. Banana bread is one of the simplest baked goods to produce at scale.</li>
+        <li><strong>Competitive gap:</strong> Kodiak makes a frozen protein banana bread mix but nobody sells fresh, grab-and-go protein banana bread slices in the bakery case.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Jobs to Be Done (#4) — The job: "I want post-workout nutrition that feels like real food, not a supplement." Banana bread delivers emotional satisfaction that a protein bar never can.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Recipe test with local bakery — whey isolate + Greek yogurt blend</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Kodiak Cakes:</strong> Frozen protein banana bread mix ($5.99). Make-at-home, not grab-and-go. Processed feel.</p>
+          <p><strong>Simple Mills:</strong> Clean-label banana bread mix ($5.49). No protein positioning. Mix format only.</p>
+          <p><strong>The Gap:</strong> Fresh-baked, single-serve, protein-fortified banana bread in the bakery case. Zero competition.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard banana bread recipe with whey isolate substitution. Any bakery co-packer can produce.</p>
+          <p><strong>Shelf life:</strong> 5-7 days (standard banana bread). Individual kraft wrap extends by 1-2 days.</p>
+          <p><strong>Fulfillment:</strong> Ambient temp. Bakery case or wrapped grab-and-go.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 04 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 04 / 20</div>
+      <div class="product-name">The Anti-Protein Bar</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-red">Disruptive</span>
+        <span class="tag tag-blue">Fresh Bakery</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.4</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/04-anti-protein-bar.png" alt="The Anti-Protein Bar"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A fresh-baked protein cookie positioned explicitly against the processed protein bar aisle. The name says it: NOT A BAR. Eliminate the wrapper. Eliminate the preservatives. Eliminate the chalky texture. Raise the taste. Raise the freshness. Create "bakery as performance fuel" as a positioning.</p>
+        <p>The protein bar aisle is a $5.6B category where every brand competes on the same axis: more protein, fewer calories, more flavors. Nobody is attacking the category from the fresh bakery direction. The Anti-Protein Bar doesn't compete with Quest — it makes Quest feel like eating cardboard.</p>
+        <p>This is a Blue Ocean play: don't fight for share in the protein bar aisle, create a new purchasing occasion in the bakery department.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> U.S. protein bar market is $5.6B (2025) but growth is slowing to 4% as consumers report "bar fatigue" — 47% say bars taste too processed (Mintel 2025).</li>
+        <li><strong>Consumer signal:</strong> "Anti-diet" and "whole food" movements gaining traction. 62% of protein bar buyers say they'd prefer a fresh alternative if one existed (Hartman Group).</li>
+        <li><strong>Positioning:</strong> Contrarian positioning ("NOT A BAR") is inherently viral and memeable. It's a marketing gift.</li>
+        <li><strong>Supply chain:</strong> It's a cookie. Any bakery can make it. The innovation is positioning, not ingredients.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Blue Ocean Strategy (#9) — Eliminate/Reduce/Raise/Create grid applied to protein bars revealed that freshness and taste are systematically sacrificed for shelf life and portability. A fresh bakery item inverts those trade-offs.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Brand name + packaging mockup + test batch</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Quest ($2.50-3.00):</strong> Market leader. 20g protein. Processed, long shelf life. Available everywhere.</p>
+          <p><strong>RXBAR ($2.50-3.00):</strong> Clean label pioneer ("No B.S."). Still a wrapped, processed bar.</p>
+          <p><strong>Lenny & Larry's ($2.99):</strong> "Complete Cookie" — closer to bakery, but packaged and processed.</p>
+          <p><strong>The Gap:</strong> None of these are fresh. None live in the bakery case. The "anti" positioning doesn't exist.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> It's a cookie with whey protein. Standard bakery production.</p>
+          <p><strong>Shelf life:</strong> 5-7 days. This is a feature, not a bug — freshness is the positioning.</p>
+          <p><strong>Scale:</strong> Start with one bakery partner. Brand and positioning do the heavy lifting, not manufacturing complexity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 05 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 05 / 20</div>
+      <div class="product-name">Creatine Croissants</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Creatine</span>
+        <span class="tag tag-blue">Premium Bakery</span>
+        <span class="tag tag-red">High Impact</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.1</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/05-creatine-croissants.png" alt="Creatine Croissants"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A flaky, butter-forward croissant with 3g creatine monohydrate baked in. The most indulgent bakery format meets the most talked-about supplement ingredient. This is the product that kills the assumption that functional food has to taste like health food.</p>
+        <p>Croissants are the ultimate indulgence signal — they say "I chose pleasure." Adding creatine (which is tasteless) doesn't change the experience. It just adds a reason to choose this croissant over any other croissant. That's the insight: you're not sacrificing anything. You're just getting more.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Premium croissant segment growing 15% annually in U.S. grocers. Artisan bakery items outperform standard bakery 3:1 on margin.</li>
+        <li><strong>Consumer signal:</strong> "Functional indulgence" is the #2 food trend for 2026 (Whole Foods trend report). Consumers want to feel smart about their indulgences.</li>
+        <li><strong>Technical feasibility:</strong> Creatine is heat-stable up to 300°F. Croissants bake at 375°F but internal temp stays well below degradation point.</li>
+        <li><strong>Competitive gap:</strong> Nobody has put creatine in a croissant. Period.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Blue Ocean Strategy (#9) — Create quadrant: "functional croissant" doesn't exist as a concept. Maximum contrast between format (pure indulgence) and function (performance ingredient) creates maximum talk value.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Partner with artisan bakery for creatine croissant test run</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>La Boulange / Panera:</strong> Premium croissants ($3-4). No functional ingredients.</p>
+          <p><strong>Trader Joe's:</strong> Almond croissants ($4.49/4ct). Clean label but no performance angle.</p>
+          <p><strong>The Gap:</strong> Functional croissant is a category that doesn't exist. First mover defines the rules.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-moderate">Moderate</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Laminated dough is more complex than standard baking. Requires a co-packer with croissant capability.</p>
+          <p><strong>Creatine integration:</strong> Needs testing to confirm no impact on lamination quality. Likely mix into butter block.</p>
+          <p><strong>Shelf life:</strong> 2-3 days fresh. Frozen par-bake extends to weeks — bake off in-store.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 06 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 06 / 20</div>
+      <div class="product-name">The Crumbl Model for Protein</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-red">Category Creator</span>
+        <span class="tag tag-blue">Social-First</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.5</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/06-crumbl-protein-cookies.png" alt="The Crumbl Model for Protein"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Weekly rotating flavors of protein cookies with limited-edition drops, social-first marketing, and a "Weekly Drop" box format. Borrow Crumbl's proven hype model — rotating flavors, FOMO-driven purchasing, Instagram-native presentation — and apply it to functional protein cookies. Each cookie: 20g protein, clean label, thick and indulgent.</p>
+        <p>Crumbl proved that cookies can be a hype product. They did $1B+ in revenue with zero functional differentiation — just sugar, butter, and social media. Imagine that same energy applied to a product that actually gives the consumer something beyond a sugar crash. The protein angle adds a reason to buy weekly beyond novelty — it's a guilt-free repeat purchase.</p>
+        <p>This is the highest-scored concept because it combines a validated business model (Crumbl's weekly drop), the hottest functional ingredient trend (protein), and a proven consumer behavior (FOMO-driven purchasing) into a single product.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Crumbl did $1B+ revenue in 2024 with 900+ locations. Proves weekly-rotating bakery model at scale.</li>
+        <li><strong>Consumer signal:</strong> 68% of Crumbl customers discover new flavors via social media (internal data via SEC filing). The model is inherently viral.</li>
+        <li><strong>Protein demand:</strong> Protein cookie searches up 95% YoY. Consumers want permission to eat cookies — protein provides it.</li>
+        <li><strong>Unit economics:</strong> Thick cookies cost $0.80-1.20 to produce, sell for $4-5 each. 75%+ gross margin even with protein ingredients.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Analogous Inspiration (#15) — Borrowed directly from Crumbl's hype model + supplement industry's flavor rotation cycle. Cross-pollination of bakery retail model with functional food positioning.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Develop 12-flavor rotation + brand identity</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Crumbl ($4-5/cookie):</strong> $1B+ revenue. Weekly rotating flavors. Zero functional positioning — pure sugar indulgence.</p>
+          <p><strong>Lenny & Larry's ($2.99):</strong> Protein cookies but packaged, processed, no rotation, no hype model.</p>
+          <p><strong>Quest Cookies ($2.50):</strong> 15g protein, wrapped, shelf-stable. Anti-fresh. Anti-hype.</p>
+          <p><strong>The Gap:</strong> Nobody combines weekly-drop hype model + fresh bakery + protein. This is three proven elements that haven't been combined.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-moderate">Moderate</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Requires a flavor development pipeline — new recipes every week. Protein baking R&D needed for each flavor to maintain texture.</p>
+          <p><strong>Supply chain:</strong> Fresh = short shelf life (5-7 days). Need local production or frozen ship + thaw model.</p>
+          <p><strong>Social ops:</strong> Weekly content production is a separate operational stream. Need dedicated social team/creator partnerships.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 07 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 07 / 20</div>
+      <div class="product-name">Builder's Dozen</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-blue">Bakery Pack</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">3.9</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/07-builders-dozen.png" alt="Builder's Dozen"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A 13-pack of mini protein muffins in a black-and-gold box branded for the gym crowd. "Builder's Dozen" — a play on "baker's dozen" that immediately signals who this product is for. Each mini muffin delivers 8g protein. Eat 3-4 as a pre-workout snack or post-gym recovery.</p>
+        <p>The name does the positioning work. It's instantly understood by the target consumer (anyone who lifts, builds, or trains) and it borrows the familiarity of a classic bakery concept (baker's dozen). The mini format makes it portion-flexible — eat 2 for a light snack, eat 5 for a meal replacement.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Protein muffin searches up 120% since 2023. Mini muffin format growing 2x faster than standard muffins in grocery (IRI).</li>
+        <li><strong>Branding:</strong> "Builder's Dozen" is instantly memeable and shareable. Name-as-marketing reduces customer acquisition cost.</li>
+        <li><strong>Consumer behavior:</strong> Mini formats reduce purchase hesitation — lower commitment, easier to share, better for portion control.</li>
+        <li><strong>Margin:</strong> 13 mini muffins at $7.99-9.99/box = premium positioning vs. standard muffin 6-packs at $3.99.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Analogous Inspiration (#15) — Borrowed from bodybuilding culture naming conventions + classic baker's dozen format. The name is the product.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Trademark "Builder's Dozen" + develop 3 core flavors</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Kodiak Cakes Muffins ($4.99/4ct):</strong> Protein muffins, frozen, standard flavors. No brand personality for gym crowd.</p>
+          <p><strong>Costco Protein Muffins ($9.99/6ct):</strong> Massive muffins, decent protein. Generic bakery presentation.</p>
+          <p><strong>The Gap:</strong> No mini-format, gym-branded, premium-packaged protein muffin exists. The name alone is defensible IP.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard mini muffin production with whey protein. Any bakery co-packer with mini muffin pans.</p>
+          <p><strong>Packaging:</strong> Custom branded box (key differentiator). Box design = brand.</p>
+          <p><strong>Fulfillment:</strong> Ambient or refrigerated. DTC shipping feasible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 08 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 08 / 20</div>
+      <div class="product-name">Inside-Out Cinnamon Roll</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-blue">Format Innovation</span>
+        <span class="tag tag-red">High Impact</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.1</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/08-inside-out-cinnamon-roll.png" alt="Inside-Out Cinnamon Roll"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Protein-enriched dough on the outside, clean-label cream cheese frosting core on the inside. Reverse the ratio: more filling, less bread. 15g protein per roll. This isn't just a protein cinnamon roll — it's a cinnamon roll that's been redesigned from the inside out to maximize the part people actually crave (the frosting center) while making the structural part (the dough) do nutritional work.</p>
+        <p>SCAMPER's "Reverse" prompt produced this. What if the frosting was the core instead of the topping? What if the dough was the protein delivery mechanism instead of empty carbs? The result is a product that's visually distinctive (cut one open and the cross-section is Instagram content) and functionally superior.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Cinnamon rolls are a $2.1B segment in U.S. bakery. Pillsbury alone sells $400M+ annually.</li>
+        <li><strong>Visual appeal:</strong> Cross-section photography of filled pastries consistently outperforms standard bakery content on Instagram (3-5x engagement).</li>
+        <li><strong>Consumer signal:</strong> "Inside-out" formats trending across food (inside-out grilled cheese, inside-out sushi). Consumers love the reveal moment.</li>
+        <li><strong>Technical feasibility:</strong> Filled dough products are standard in bakery production. The format is novel; the manufacturing process is not.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> SCAMPER (#21) — Reverse: flip dough-outside/frosting-outside to dough-outside/frosting-inside. Adapt: make the dough the protein carrier. Result: better product, better story, better content.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Recipe development — protein dough that holds shape around filling</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Cinnabon ($5-7):</strong> Premium cinnamon rolls. No protein. Traditional format.</p>
+          <p><strong>Pillsbury ($3.99/5ct):</strong> Mass market, tube format. Zero innovation in 30 years.</p>
+          <p><strong>The Gap:</strong> No "inside-out" format exists in bakery. No protein cinnamon roll at retail. This is two white spaces stacked.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-moderate">Moderate</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Filled dough products need injector/depositor equipment. Not every bakery co-packer has this.</p>
+          <p><strong>R&D:</strong> Protein dough behaves differently — needs testing for elasticity and rise around filling.</p>
+          <p><strong>Cold chain:</strong> Cream cheese filling = refrigerated. 7-10 day shelf life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 09 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 09 / 20</div>
+      <div class="product-name">Creatine Sugar Cookies</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Creatine</span>
+        <span class="tag tag-blue">Classic Format</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.0</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/09-creatine-sugar-cookies.png" alt="Creatine Sugar Cookies"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Classic iced sugar cookies with creatine monohydrate blended into the royal icing. Zero taste difference. The creatine is in the frosting — the sweetest, most flavorful part of the cookie — where it's completely undetectable. This is SCAMPER's "Substitute" at its simplest: swap regular icing for creatine icing. Same cookie. Better cookie.</p>
+        <p>Sugar cookies are the ultimate bakery commodity — every grocery bakery makes them, and they all taste the same. Adding creatine doesn't change the experience, but it gives the consumer a reason to choose your sugar cookie over every other sugar cookie. First-mover advantage in the most commoditized bakery product.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Technical:</strong> Creatine is water-soluble and dissolves perfectly in royal icing. No taste, no texture change, no visual difference.</li>
+        <li><strong>Market size:</strong> Sugar cookies are the #2 cookie format in U.S. bakery by volume. Massive existing demand.</li>
+        <li><strong>Consumer behavior:</strong> "Stealth health" — consumers increasingly want function without sacrifice. A sugar cookie that's also functional is permission to indulge.</li>
+        <li><strong>Execution speed:</strong> Can be tested in 48 hours. Buy creatine, mix into icing, bake cookies. Done.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> SCAMPER (#21) — Substitute: replace standard icing with creatine-enriched icing. The simplest possible product innovation with the lowest possible execution barrier.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Test creatine in royal icing — confirm dissolution and taste</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Grocery bakery sugar cookies ($3.99-5.99/dozen):</strong> Every grocer has them. Zero differentiation.</p>
+          <p><strong>Crumbl:</strong> Premium sugar cookies ($4-5 each) but no functional angle.</p>
+          <p><strong>The Gap:</strong> Functional icing is a concept that doesn't exist in any bakery format. First to market owns it.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard sugar cookie production. Only change: creatine added to icing mix.</p>
+          <p><strong>Zero equipment change.</strong> Zero process change. Zero training required.</p>
+          <p><strong>Scale:</strong> Any bakery currently making sugar cookies can make this tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 10 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 10 / 20</div>
+      <div class="product-name">Protein Pretzel Bites</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-blue">Snack</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">3.8</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/10-protein-pretzel-bites.png" alt="Protein Pretzel Bites"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Soft pretzel bites with whey protein baked into the dough, sold in a kraft paper bag in the bakery grab-and-go section. 15g protein per bag. Coarse salt, warm, chewy, and satisfying. This is SCAMPER's "Adapt" — take a universally loved snack format and adapt it for the protein-seeking consumer.</p>
+        <p>Soft pretzels are already the #1 "impulse bakery buy" at grocery — they're bought on emotion and craving, not on a list. Adding protein gives the consumer retroactive justification for the impulse: "It's fine, it has 15 grams of protein." That post-purchase rationalization is the unlock.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Soft pretzel market $1.2B (2025), growing 6% CAGR. Bite-size format is the fastest-growing segment.</li>
+        <li><strong>Consumer signal:</strong> Savory snacks outperform sweet in the functional food category 2:1 — protein pretzels serve the under-addressed savory side.</li>
+        <li><strong>Texture:</strong> Whey protein actually improves soft pretzel texture — more chew, better moisture retention during cooling.</li>
+        <li><strong>Impulse buy:</strong> Bakery grab-and-go is the highest-margin, highest-impulse real estate in the store.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> SCAMPER (#21) — Adapt: take the most impulse-driven bakery format and adapt it for functional nutrition. The impulse purchase psychology + protein rationalization = higher conversion.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Test protein pretzel dough with regional soft pretzel bakery</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Auntie Anne's (mall):</strong> Dominates soft pretzels but no grocery presence and no protein.</p>
+          <p><strong>SuperPretzel (frozen, $4.49):</strong> Grocery leader but frozen and standard. No protein.</p>
+          <p><strong>The Gap:</strong> Fresh, protein-enriched, bakery-case soft pretzel bites. Zero competition.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard soft pretzel production + whey in dough mix. Lye bath unchanged.</p>
+          <p><strong>Shelf life:</strong> Same day to 2 days. Matches standard soft pretzel fresh-bake cadence.</p>
+          <p><strong>Packaging:</strong> Kraft paper bag, sticker label. Low packaging cost.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 11 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 11 / 20</div>
+      <div class="product-name">Gym Rat Donut</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein + Creatine</span>
+        <span class="tag tag-red">Viral Potential</span>
+        <span class="tag tag-blue">Mashup</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.3</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/11-gym-rat-donut.png" alt="Gym Rat Donut"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A full-size glazed donut with 20g protein and 5g creatine. The most indulgent bakery format meets peak performance positioning. Named for the person who'd eat it — the gym rat who trained hard enough to earn this. "I earned this" is the entire brand ethos.</p>
+        <p>This is the Mashup Method at its most provocative: take the most "anti-health" bakery item (a donut) and combine it with the most "pro-health" supplement stack (protein + creatine). The cognitive dissonance is the marketing. Nobody can scroll past "protein creatine donut" without stopping.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> U.S. donut market is $19B (2025). Functional donuts are <0.1% of the category. Massive white space.</li>
+        <li><strong>Viral mechanics:</strong> "Protein donut" content consistently goes viral on TikTok — 50M+ cumulative views on the hashtag. The content makes itself.</li>
+        <li><strong>Consumer psychology:</strong> "Earned indulgence" is one of the strongest purchase motivators in food. Post-workout is peak permission-to-indulge moment.</li>
+        <li><strong>Production:</strong> Cake donuts (vs. yeast) are ideal for protein addition. Dense, moist, forgiving of ingredient substitutions.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Mashup Method (#24) — Donut (maximum indulgence) × Protein + Creatine (maximum performance) = maximum contrast and maximum talk value. The wider the mashup gap, the more memorable the product.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Partner with craft donut shop for "Gym Rat" test batch</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Dunkin' ($1.50-3):</strong> 12,000 locations, zero functional products. Legacy brand.</p>
+          <p><strong>Krispy Kreme ($1.79-2.99):</strong> Same — mass market, zero protein or functional angle.</p>
+          <p><strong>The Dough Bar ($5.99):</strong> Online-only protein donuts. Small brand, DTC-first, frozen shipped. Proves demand exists.</p>
+          <p><strong>The Gap:</strong> Fresh, in-store, protein + creatine donut with bold branding. Nobody.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Cake donut base + whey protein + creatine. Standard donut production equipment.</p>
+          <p><strong>Glaze:</strong> Standard glaze recipe. Can add creatine to glaze for even distribution.</p>
+          <p><strong>Shelf life:</strong> Same-day to 2 days. Standard donut cadence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 12 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 12 / 20</div>
+      <div class="product-name">Creatine Rice Krispie Treats</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Creatine</span>
+        <span class="tag tag-blue">Nostalgic Format</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.0</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/12-creatine-rice-krispie.png" alt="Creatine Rice Krispie Treats"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Classic rice cereal treats with creatine and collagen mixed in. Three ingredients you know (rice, marshmallow, butter) plus two ingredients that make it functional. Individually wax-paper wrapped, sold in the bakery grab-and-go. Nostalgia meets function.</p>
+        <p>Rice Krispie treats are one of the cleanest "junk foods" in existence — they have almost no ingredients. Adding creatine and collagen doesn't complicate the label. It stays a 6-ingredient product. That clean-label simplicity is the trust signal that health-conscious consumers need to feel good about eating what is, at its core, a marshmallow square.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Rice Krispie treats segment is $800M+ (2025). Growing as nostalgia snacking trends upward with millennials.</li>
+        <li><strong>Clean label:</strong> Base recipe is 3 ingredients. Adding creatine + collagen = 5 ingredients. Still cleaner than any protein bar.</li>
+        <li><strong>Gym culture:</strong> Rice crispy treats are already a popular pre-workout snack among bodybuilders (fast carbs). Adding creatine makes this an actual functional product.</li>
+        <li><strong>Production simplicity:</strong> Mix, press, cut, wrap. No baking required. Can be produced at home kitchen scale for testing.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Mashup Method (#24) — Nostalgia snack format (emotional) + creatine/collagen (functional). The contrast between childhood treat and adult performance ingredient creates the story.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Home kitchen test — confirm creatine dissolves in marshmallow</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Kellogg's Rice Krispie Treats ($4.49/8ct):</strong> Mass market, packaged, no functional ingredients.</p>
+          <p><strong>Treat Yourself (DTC):</strong> "Gourmet" rice treats with flavors. No protein or creatine.</p>
+          <p><strong>The Gap:</strong> Functional rice cereal treats. Nobody has combined the nostalgic format with performance ingredients.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Melt marshmallow, add creatine + collagen, mix with cereal, press, cut. No ovens needed.</p>
+          <p><strong>Shelf life:</strong> 7-14 days at ambient temp. Very forgiving.</p>
+          <p><strong>Packaging:</strong> Individual wax paper wrap. Low cost, classic feel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 13 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 13 / 20</div>
+      <div class="product-name">TikTok Bakery Drops</div>
+      <div class="product-tags">
+        <span class="tag tag-red">Trend-Forward</span>
+        <span class="tag tag-blue">Social-First</span>
+        <span class="tag tag-gold">Creatine + Protein</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.2</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/13-tiktok-bakery-drops.png" alt="TikTok Bakery Drops"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Weekly limited-edition functional bakery items designed for virality first, flavor second. Creatine gummy bear cookies one week, protein matcha scones the next, collagen red velvet brownies the week after. Each drop is a content event — announced on TikTok, available for 7 days, then gone forever.</p>
+        <p>This is streetwear's "drop model" applied to bakery. Supreme proved that artificial scarcity drives demand. Crumbl proved it works for cookies. This takes it one step further: every drop has a functional angle, so the content isn't just "look how pretty" — it's "look what this cookie does." The educational component (what is creatine? what does collagen do?) adds a second layer of shareable content.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> TikTok food content generates 40B+ views per month. "Food drops" and "limited edition food" are growing search categories.</li>
+        <li><strong>Consumer behavior:</strong> FOMO purchasing accounts for 60% of impulse food buys among 18-34 (McKinsey Consumer Pulse 2025).</li>
+        <li><strong>Content economics:</strong> Each drop generates organic content — customer unboxing, taste tests, ingredient education. CAC approaches zero.</li>
+        <li><strong>Competitive moat:</strong> Speed of innovation is the moat. Incumbents can't rotate flavors weekly.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Cultural Trend Mining (#51) — Identified the convergence of streetwear drop culture + TikTok food content + functional ingredient education as a three-trend overlap that creates a sustainable content flywheel.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--red);">High</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Create TikTok account + plan first 4 drops</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Crumbl:</strong> Weekly drops but zero functional angle. Pure indulgence.</p>
+          <p><strong>Mr. Beast / Feastables:</strong> Hype-driven food brand. Chocolate bars, not bakery. No function.</p>
+          <p><strong>The Gap:</strong> Nobody is doing functional food drops. The combination of FOMO + education + function hasn't been assembled.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-complex">Complex</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> New recipe every week. Requires dedicated R&D capability or a very flexible co-packer.</p>
+          <p><strong>Content:</strong> Weekly content production cycle — photography, video, copy. Need creator partnerships or in-house team.</p>
+          <p><strong>Logistics:</strong> Small-batch production with rapid turnaround. DTC shipping or local retail only.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 14 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 14 / 20</div>
+      <div class="product-name">"That Girl" Breakfast Cookies</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein + Creatine</span>
+        <span class="tag tag-blue">Wellness Aesthetic</span>
+        <span class="tag tag-green">Low Effort</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.0</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/14-that-girl-breakfast-cookies.png" alt="That Girl Breakfast Cookies"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Aesthetic, clean-label breakfast cookies with oats, protein, creatine, chia, and dark chocolate. Positioned for the "That Girl" wellness consumer — the person who journals, does pilates, and photographs their morning routine. The cookie has to be as photogenic as it is functional.</p>
+        <p>"That Girl" is a cultural archetype, not a demographic. She exists on TikTok and Instagram as the aspirational version of wellness — organized, intentional, put-together. A breakfast cookie that fits her morning routine (coffee + protein cookie + journal) becomes part of her identity expression, not just a food purchase. The aesthetic IS the product.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Cultural signal:</strong> "That Girl" has 12B+ views on TikTok. The aesthetic-wellness consumer is a massive, commercially underserved cohort.</li>
+        <li><strong>Breakfast cookie market:</strong> Growing 18% annually as consumers reject traditional cereal. Lenny & Larry's proved the format; nobody has nailed the aesthetic.</li>
+        <li><strong>Ingredient story:</strong> Oats + chia + protein + creatine is a clean, photogenic ingredient list. Every ingredient is "wellness-coded."</li>
+        <li><strong>Packaging opportunity:</strong> Matte pastel packaging with watercolor-style branding signals premium wellness without trying too hard.</p>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Cultural Trend Mining (#51) — "That Girl" aesthetic is the defining wellness consumer identity of 2024-26. Products that fit this identity expression (photogenic, clean, morning-routine-compatible) capture a purchase behavior driven by aspiration, not hunger.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Brand identity + packaging design + recipe with oat-chia-protein base</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Partake ($5.99/box):</strong> Clean-label cookies, allergy-friendly. Not breakfast-positioned, no protein.</p>
+          <p><strong>Kakookies ($3.50/cookie):</strong> Oat-based breakfast cookies. Clean but not aesthetic or protein-focused.</p>
+          <p><strong>The Gap:</strong> No breakfast cookie brand owns the "That Girl" aesthetic. The visual identity is unclaimed.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Oat-based cookie with protein and chia. Standard bakery production.</p>
+          <p><strong>Packaging:</strong> Brand packaging is the key investment. Product is simple; shelf appeal is everything.</p>
+          <p><strong>Distribution:</strong> DTC-first (the target consumer shops online). Retail expansion into Whole Foods / Erewhon tier.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 15 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 15 / 20</div>
+      <div class="product-name">$8 Heritage Protein Cookie</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-red">Premium</span>
+        <span class="tag tag-blue">Artisan</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.1</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/15-heritage-protein-cookie.png" alt="$8 Heritage Protein Cookie"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A single, large artisan cookie made with European butter, single-origin vanilla, grass-fed whey protein, and dark chocolate from a named estate. Sold individually for $8 in gold foil wrapping. This isn't a health food — it's a luxury treat that happens to deliver 20g protein. The premiumization lens says: don't compete on health claims, compete on craft and ingredient story.</p>
+        <p>The premium cookie market is exploding ($8-12 single cookies at Levain, Chip City, etc.) but none of them have a functional angle. Adding grass-fed whey protein doesn't compromise the cookie — it actually improves chewiness and moisture. You're not sacrificing to add protein. You're making a better cookie that also happens to be functional.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Premium single-serve cookies ($5-12) are the fastest-growing bakery segment. Levain expanded from 1 to 12 locations in 3 years.</li>
+        <li><strong>Margin:</strong> $8 retail on a cookie that costs $1.50-2.00 to produce = 75%+ gross margin even with premium ingredients.</li>
+        <li><strong>Consumer behavior:</strong> "Affordable luxury" food purchases have increased 23% since 2023. An $8 cookie is cheaper than a cocktail.</li>
+        <li><strong>Ingredient story:</strong> "European butter, single-origin vanilla, grass-fed whey" — each ingredient is a talking point. The story sells the cookie.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Premiumization Lens (#56) — Applied luxury brand thinking to a bakery commodity. The conclusion: protein is not a health add-on, it's a premium ingredient when sourced correctly (grass-fed, cold-processed whey).</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Source grass-fed whey + European butter + develop hero recipe</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Levain ($5-6/cookie):</strong> Premium, NYC-famous. No protein, no functional angle.</p>
+          <p><strong>Chip City ($4-5/cookie):</strong> Premium, rotating flavors. No protein.</p>
+          <p><strong>Quest Protein Cookies ($2.50):</strong> Protein but processed, wrapped, mass market. Anti-premium.</p>
+          <p><strong>The Gap:</strong> Nobody has combined artisan/luxury cookie positioning with functional protein. Two separate markets waiting to collide.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard cookie production with premium ingredients. The recipe is simple; sourcing is the differentiator.</p>
+          <p><strong>Packaging:</strong> Individual gold foil wrap. Premium feel at low packaging cost.</p>
+          <p><strong>Distribution:</strong> Start with specialty retail (Erewhon, Whole Foods) and DTC. Premium positioning demands premium channels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 16 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 16 / 20</div>
+      <div class="product-name">Creatine Madeleines</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Creatine</span>
+        <span class="tag tag-blue">Luxury Bakery</span>
+        <span class="tag tag-red">Niche</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">3.8</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/16-creatine-madeleines.png" alt="Creatine Madeleines"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>French madeleines with creatine, sold in elegant boxes of 6 for $12. Shell-shaped, dusted with powdered sugar, individually nestled in tissue paper. This is the gift-box play: madeleines are already the most "giftable" bakery item. Adding creatine gives the gift a narrative — you're not just giving someone cookies, you're giving them cookies with benefits.</p>
+        <p>The premiumization lens reveals that creatine doesn't have to be "gym culture." Positioned inside a French patisserie format, creatine becomes "the ingredient that supports cognitive function and recovery" — wellness language, not bodybuilding language. The audience shifts from gym-goers to high-income wellness consumers.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Luxury bakery gifts is a $1.8B category. Madeleines are the #1 "food gift" format on Goldbelly.</li>
+        <li><strong>Cognitive angle:</strong> New research positions creatine as a cognitive supplement (5g/day improves short-term memory per Avgerinos et al. 2018). This opens the wellness/nootropic audience.</li>
+        <li><strong>Gift economics:</strong> Gift purchases have 2x lower price sensitivity than self-purchases. The $12/box price point is impulse for gifting.</li>
+        <li><strong>Visual appeal:</strong> Shell-shaped madeleines are inherently photogenic. They're the most Instagram-friendly pastry format.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Premiumization Lens (#56) — Reframe creatine from gym supplement to cognitive wellness ingredient. Place it inside the most elegant bakery format. Audience shifts from bodybuilders to wellness consumers and gift buyers.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Source madeleine molds + test creatine integration in batter</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Donsuemor ($8.99/box):</strong> Leading U.S. madeleine brand. Traditional, no functional ingredients.</p>
+          <p><strong>Ladurée:</strong> Luxury French pastry. Madeleines + macarons. No functional angle.</p>
+          <p><strong>The Gap:</strong> Functional premium pastry for gifting. Zero competition in this intersection.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-moderate">Moderate</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Madeleine production requires specific molds and technique (resting batter). Not every co-packer has capability.</p>
+          <p><strong>Packaging:</strong> Gift box is a key cost center. Needs to feel premium — tissue paper, box insert, branded sleeve.</p>
+          <p><strong>Shelf life:</strong> 5-7 days. Limits to DTC or local retail. Frozen ship is an option but reduces "fresh" positioning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 17 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 17 / 20</div>
+      <div class="product-name">$2 Protein Cookie</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-red">Disruptive</span>
+        <span class="tag tag-green">Mass Market</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.3</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/17-two-dollar-protein-cookie.png" alt="$2 Protein Cookie"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>A no-frills, 20g protein, clean-label cookie sold individually in the bakery for $2. No luxury positioning, no heritage story, no aesthetic packaging. Just a big, good cookie with 20g protein at a price that makes Quest and Lenny & Larry's look like a ripoff. Downmarket disruption in its purest form.</p>
+        <p>Every other protein cookie on the market is $3-5 and packaged to justify the price. This cookie strips out everything except the thing the consumer actually wants: protein in a cookie at a price they don't have to think about. The $2 price point puts it in impulse-buy range for everyone — not just the macro-tracking gym crowd. This is how you take protein bakery from niche to mass market.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Market data:</strong> Average protein cookie retails for $3.50-5.00. A $2 protein cookie at fresh-baked quality would be the only option under $2.50 in any grocery.</li>
+        <li><strong>Unit economics:</strong> Fresh-baked cookie costs $0.40-0.60 to produce with whey protein. $2 retail = 60-70% gross margin. Still highly profitable.</li>
+        <li><strong>Consumer behavior:</strong> 78% of grocery shoppers say price is the #1 barrier to buying functional foods (FMI 2025). Remove the price barrier, unlock mass adoption.</li>
+        <li><strong>Distribution advantage:</strong> At $2, bakery buyers will stock it because it creates incremental sales, not trade-downs from existing items.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Downmarket Disruption (#57) — Applied the "good enough at half the price" framework. The question: "What if protein cookies were priced like regular cookies?" The answer: mass market adoption.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--green);">Low</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Cost model + bakery buyer pitch at target price</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Quest ($2.50-3.00):</strong> Packaged, processed, available everywhere. The incumbent to undercut.</p>
+          <p><strong>Lenny & Larry's ($2.99):</strong> "Complete Cookie." Processed, wrapped, 16g protein.</p>
+          <p><strong>The Gap:</strong> No one offers a fresh-baked protein cookie under $2.50. The entire market is overpriced for what it delivers.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-simple">Simple</span>
+        <div class="panel-content">
+          <p><strong>Manufacturing:</strong> Standard cookie + whey protein. Simplest recipe possible to hit cost target.</p>
+          <p><strong>Packaging:</strong> Minimal — clear clamshell or paper bag. No premium packaging cost.</p>
+          <p><strong>Scale:</strong> Designed for grocery bakery volume production. Scale is the strategy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 18 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 18 / 20</div>
+      <div class="product-name">Creatine Cookie Tubes</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Creatine</span>
+        <span class="tag tag-blue">Packaging Innovation</span>
+        <span class="tag tag-red">Format Innovation</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.0</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/18-creatine-cookie-tubes.png" alt="Creatine Cookie Tubes"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Five creatine cookies stacked in a clear cylindrical tube — like Pringles or tennis balls. Each cookie contains 1g creatine. One tube per week = your daily creatine dose, delivered via cookie. The packaging makes dosing intuitive and visual: you can see how many are left, and "one cookie a day" is the simplest supplement protocol ever designed.</p>
+        <p>This is Packaging Innovation (#58) at its best — same product (creatine cookie), radically different format. The tube transforms a commodity bakery item into a structured supplement delivery system. It looks different on the shelf, it creates a daily ritual, and it gives the consumer a reason to buy the entire tube instead of individual cookies.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Behavioral insight:</strong> The #1 reason people stop taking creatine is forgetting. A cookie tube by the coffee maker = visible daily reminder.</li>
+        <li><strong>Dosing precision:</strong> 1g per cookie × 5 cookies/week × daily = 5g/day (recommended dose). The format IS the dosing protocol.</li>
+        <li><strong>Packaging standout:</strong> Tube format is visually distinctive on any bakery shelf. It doesn't look like anything else in the category.</li>
+        <li><strong>Subscription potential:</strong> Weekly tube = natural subscription cadence. DTC subscription model built into the format.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Packaging Innovation (#58) — The question: "What if the packaging was the product innovation?" The tube format makes dosing, visibility, and shelf differentiation all happen simultaneously through packaging alone.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Source clear tube packaging + test cookie size/stack</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>No direct competitor exists.</strong> Tube-format cookies are rare (some European brands). Tube-format functional cookies = zero.</p>
+          <p><strong>Pringles:</strong> Proved that tube format creates distinctive shelf presence and repeat purchase behavior in snacks.</p>
+          <p><strong>The Gap:</strong> The format itself is the competitive moat. First to market with tube-format functional cookies owns the visual space.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-moderate">Moderate</span>
+        <div class="panel-content">
+          <p><strong>Packaging:</strong> Custom tube sourcing required. Need consistent cookie diameter for stacking. Tubes need food-safe lining.</p>
+          <p><strong>Manufacturing:</strong> Cookies must be uniform size (critical for tube stacking). Requires portioning discipline.</p>
+          <p><strong>Fulfillment:</strong> Tubes are sturdy for shipping. DTC-friendly format.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 19 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 19 / 20</div>
+      <div class="product-name">Clear-Window Protein Boxes</div>
+      <div class="product-tags">
+        <span class="tag tag-gold">Protein</span>
+        <span class="tag tag-blue">Packaging Innovation</span>
+        <span class="tag tag-green">Trust Builder</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">3.9</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/19-clear-window-protein-boxes.png" alt="Clear-Window Protein Boxes"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Bakery items packaged in clear-top boxes that show the product AND display macros prominently on the front. The clear window says "nothing to hide." Every item — muffin, cookie, brownie — is visible through the top. And right next to it: protein, creatine, calories, fiber, all in a clean, scannable format.</p>
+        <p>This is a packaging system, not a single product. Any functional bakery item can go into a Clear-Window box. The packaging becomes the brand — consistent clear-top boxes with macro labels become instantly recognizable on any bakery shelf. When a consumer sees the clear window + macro label, they know exactly what they're getting without reading the fine print.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Consumer behavior:</strong> 67% of consumers say visible product through packaging increases purchase likelihood (Packaging World 2025).</li>
+        <li><strong>Trust signal:</strong> "Clean label" consumers rank transparency as their #1 purchase driver. Literal transparency (seeing the product) amplifies this.</li>
+        <li><strong>Macro tracking:</strong> 31% of Americans track macros at least occasionally (IFIC 2025). Front-of-pack macro labels save them from reading the nutrition panel.</li>
+        <li><strong>Platform play:</strong> One packaging system for multiple products = brand scalability without product-line proliferation.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Packaging Innovation (#58) — The insight: the packaging IS trust. In a category where consumers are skeptical of functional claims, literal transparency (you can see the food) + macro transparency (you can see the numbers) = maximum trust.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">Medium</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Design clear-window box template + macro label system</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>Standard bakery packaging:</strong> Opaque boxes, no macro labels, no differentiation. The default is anti-transparent.</p>
+          <p><strong>RXBar:</strong> Proved that front-of-pack ingredient transparency drives purchase. But it's a bar company, not bakery.</p>
+          <p><strong>The Gap:</strong> No bakery brand has built a packaging system around visible product + macro transparency. The system is the moat.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-moderate">Moderate</span>
+        <div class="panel-content">
+          <p><strong>Packaging:</strong> Custom clear-top box design. Food-safe clear PET or PLA windows. MOQs for custom packaging can be 5,000-10,000 units.</p>
+          <p><strong>Labeling:</strong> Each product variant needs its own macro label. Label printing and management adds SKU complexity.</p>
+          <p><strong>Standardization:</strong> Products must fit standardized box sizes for the system to work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT 20 ─── -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-number">CONCEPT 20 / 20</div>
+      <div class="product-name">Performance Bakery Endcap</div>
+      <div class="product-tags">
+        <span class="tag tag-red">Category Creator</span>
+        <span class="tag tag-blue">Retail Concept</span>
+        <span class="tag tag-gold">Platform</span>
+      </div>
+    </div>
+    <div class="product-score"><div class="score-label">Score</div><div class="score-num">4.2</div></div>
+  </div>
+  <div class="product-image-block"><img src="images-run2/20-performance-bakery-endcap.png" alt="Performance Bakery Endcap"></div>
+  <div class="product-body">
+    <div class="pitch-section">
+      <div class="pitch-title">The Pitch</div>
+      <div class="pitch-text">
+        <p>Not a product — a category. Dedicate a section of the in-store bakery to functional baked goods under the "Performance Bakery" banner. Branded signage, macro labels on every shelf tag, black-and-gold visual identity. The endcap houses all the products from this workshop (or any functional bakery brand that qualifies). You're not selling cookies — you're creating the category that cookies live in.</p>
+        <p>Category Design (#55) says: don't compete in an existing category, create a new one and own the rules. "Performance Bakery" doesn't exist as a category in any grocery retailer today. The retailer who creates it first gets credit for innovating the bakery department — and the brand that supplies it gets default distribution into every location.</p>
+      </div>
+    </div>
+    <div class="pitch-section">
+      <div class="pitch-title">Reasons to Believe</div>
+      <ul class="rtb-list">
+        <li><strong>Retailer incentive:</strong> Grocers are desperate for bakery innovation. In-store bakery is a differentiator vs. Amazon — but it hasn't been meaningfully innovated in decades.</li>
+        <li><strong>Category creation precedent:</strong> "Plant-based" didn't exist as a grocery category 10 years ago. Now it has dedicated sections in every major grocer. "Performance Bakery" follows the same playbook.</li>
+        <li><strong>Consumer behavior:</strong> 41% of shoppers visit the bakery section on every grocery trip (FMI 2025). A dedicated functional section captures a new purchase occasion.</li>
+        <li><strong>Platform economics:</strong> The endcap can house 10-20 SKUs. Own the signage and merchandising standards → control the shelf.</li>
+      </ul>
+    </div>
+    <div class="research-basis"><strong>Method:</strong> Category Design (#55) — Create "Performance Bakery" as a grocery category. Don't compete in existing bakery or existing protein snacks — create a new section that bridges both. The category creator sets the standards, the signage, and the default product lineup.</div>
+    <div class="sidebar-metrics">
+      <div class="metric-card"><div class="metric-label">Effort</div><div class="metric-value" style="color:var(--red);">High</div></div>
+      <div class="metric-card"><div class="metric-label">Impact</div><div class="metric-value" style="color:var(--gold);">High</div></div>
+      <div class="metric-card"><div class="metric-label">First Move</div><div class="metric-value" style="font-size:12px;">Pitch "Performance Bakery" concept to one regional grocer</div></div>
+    </div>
+    <div class="panels-row">
+      <div class="competitive-panel">
+        <div class="panel-title">Competitive Landscape</div>
+        <div class="panel-content">
+          <p><strong>No dedicated "Performance Bakery" section exists</strong> in any U.S. grocery retailer. This is a category creation play.</p>
+          <p><strong>Protein bar aisle:</strong> Closest analog — but it's processed, packaged, and separate from bakery. Not fresh.</p>
+          <p><strong>Plant-based sections:</strong> Precedent for creating a new grocery category from scratch. Took ~5 years from niche to standard.</p>
+          <p><strong>The Gap:</strong> The entire concept is the gap. First mover defines the category, sets the standards, and gets default shelf placement.</p>
+        </div>
+      </div>
+      <div class="ops-panel">
+        <div class="panel-title">Operational Complexity</div>
+        <span class="ops-badge ops-complex">Complex</span>
+        <div class="panel-content">
+          <p><strong>Retail sales:</strong> Requires convincing bakery category buyers to dedicate space. Need a compelling deck, data, and ideally a pilot store partnership.</p>
+          <p><strong>Product supply:</strong> Need 10-20 SKUs to fill an endcap. Requires either a broad product line or partnerships with other functional bakery brands.</p>
+          <p><strong>Merchandising:</strong> Custom signage, shelf tags, and POS materials. Upfront investment in retail branding.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- WHITEPAPER APPENDIX -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="appendix">
+  <div class="section-header">Whitepaper Appendix</div>
+
+  <div class="appendix-section">
+    <h3>Methodology</h3>
+    <p>This workshop ran 10 ideation methods from the Full-Stack Ideation System against three converging trends identified by Eric: (1) creatine in snack foods, (2) indulgent treats with clean ingredients (Crumbl model), and (3) protein in fresh baked goods for the in-store bakery category. These three inputs defined the category lane: <strong>Functional Indulgence — Performance Bakery & Snacks</strong>.</p>
+    <p>32 raw ideas were generated across all 10 methods. Each idea was scored on six criteria: Originality (20%), Market Size (20%), Margin Potential (20%), Visual Appeal (15%), Speed to Prototype (15%), and Research Backing (10%). The bottom 37% was cut, leaving 20 survivors.</p>
+
+    <table>
+      <thead>
+        <tr><th>Method</th><th>Raw Ideas</th><th>Survivors</th><th>Hit Rate</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Jobs to Be Done (#4)</td><td>4</td><td>3</td><td class="col-gold">75%</td><td>Consumer job framing produced actionable, low-effort ideas</td></tr>
+        <tr><td>Blue Ocean Strategy (#9)</td><td>3</td><td>2</td><td class="col-gold">67%</td><td>Eliminate/Create grid revealed fresh bakery vs. protein bar opportunity</td></tr>
+        <tr><td>Analogous Inspiration (#15)</td><td>4</td><td>2</td><td>50%</td><td>Crumbl model transfer was highest-scored overall concept</td></tr>
+        <tr><td>SCAMPER (#21)</td><td>3</td><td>3</td><td class="col-gold">100%</td><td>Substitute and Reverse both produced distinctive formats</td></tr>
+        <tr><td>Mashup Method (#24)</td><td>3</td><td>2</td><td class="col-gold">67%</td><td>Maximum contrast mashups (donut × protein) generated highest viral potential</td></tr>
+        <tr><td>Cultural Trend Mining (#51)</td><td>3</td><td>2</td><td class="col-gold">67%</td><td>TikTok drop model + "That Girl" persona both validated by massive existing audiences</td></tr>
+        <tr><td>Premiumization Lens (#56)</td><td>3</td><td>2</td><td class="col-gold">67%</td><td>Premium positioning + protein = untapped intersection. Heritage cookie scored highest.</td></tr>
+        <tr><td>Downmarket Disruption (#57)</td><td>2</td><td>1</td><td>50%</td><td>$2 cookie concept scored high on market size, needs "quality floor" to avoid commodity trap</td></tr>
+        <tr><td>Packaging Innovation (#58)</td><td>3</td><td>2</td><td class="col-gold">67%</td><td>Tube format and clear-window system both received strong scores on differentiation</td></tr>
+        <tr><td>Category Design (#55)</td><td>4</td><td>1</td><td>25%</td><td>"Performance Bakery" category concept is ambitious but high-effort. Other concepts were merchandising ideas, not products.</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">Methods from Full-Stack Ideation System (100 methods). Selection based on product innovation cluster + category-specific relevance.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Market Analysis: Functional Bakery Convergence</h3>
+    <p>Three markets are converging to create the "Performance Bakery" opportunity:</p>
+
+    <p><strong>1. The Creatine Expansion ($590M projected by 2028)</strong><br>
+    Creatine monohydrate has crossed from bodybuilding to mainstream wellness. TikTok normalized it for non-lifters — cognitive benefits, hydration, longevity. The supplement form factor (powder, pills) is being disrupted by food-format delivery (gummies first, now snacks). Creatine's properties (flavorless, heat-stable, water-soluble) make it ideal for baking. No bakery brand has entered.</p>
+
+    <p><strong>2. The Clean-Label Indulgence Movement ($7.2B protein snack market)</strong><br>
+    Crumbl proved consumers will pay $5 for a cookie if it's thick, indulgent, and Instagram-worthy. But Crumbl has no functional angle — it's pure sugar and butter. Meanwhile, Lenny & Larry's proved consumers will buy protein cookies, but they're processed and wrapped. The gap: fresh, clean-label, indulgent cookies with protein. Nobody occupies this intersection.</p>
+
+    <p><strong>3. The In-Store Bakery Renaissance ($25B category)</strong><br>
+    Grocery bakery departments are the last bastion of in-store differentiation that Amazon can't replicate. But they haven't been functionally innovated since the introduction of the croissant. Grocers are actively seeking ways to drive bakery traffic and margin. Functional baked goods give them a new reason-to-visit and a premium pricing opportunity.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Competitive Landscape Summary</h3>
+    <table>
+      <thead>
+        <tr><th>Brand</th><th>Format</th><th>Protein</th><th>Creatine</th><th>Fresh</th><th>Price</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Quest</td><td>Wrapped bar/cookie</td><td>20g</td><td>No</td><td>No</td><td>$2.50-3.00</td></tr>
+        <tr><td>Lenny & Larry's</td><td>Wrapped cookie</td><td>16g</td><td>No</td><td>No</td><td>$2.99</td></tr>
+        <tr><td>RXBAR</td><td>Wrapped bar</td><td>12g</td><td>No</td><td>No</td><td>$2.50-3.00</td></tr>
+        <tr><td>Crumbl</td><td>Fresh cookie</td><td>0g</td><td>No</td><td>Yes</td><td>$4-5</td></tr>
+        <tr><td>Kodiak Cakes</td><td>Frozen mix/muffin</td><td>12-14g</td><td>No</td><td>No</td><td>$4.99-5.99</td></tr>
+        <tr><td>Deux</td><td>Frozen dough</td><td>0g</td><td>No</td><td>No</td><td>$6-8/jar</td></tr>
+        <tr><td style="color:var(--gold);font-weight:700;">Performance Bakery</td><td style="color:var(--gold);">Fresh bakery</td><td class="col-gold">20g</td><td class="col-gold">Yes</td><td class="col-gold">Yes</td><td style="color:var(--gold);">$2-8</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">No existing brand combines fresh bakery format, high protein, creatine, and clean-label positioning. The entire intersection is unoccupied.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Supply Chain Considerations</h3>
+    <p><strong>Creatine monohydrate</strong> is the easiest functional ingredient to integrate into bakery. It's shelf-stable (no cold chain), heat-stable (survives baking temps), water-soluble (dissolves in batters and icings), flavorless, and cheap ($8-12/kg wholesale). Any bakery co-packer can add it to existing recipes with zero equipment changes.</p>
+    <p><strong>Whey protein isolate</strong> requires more recipe development. It affects texture (can make baked goods dense or dry if over-added) and browning (Maillard reaction accelerates). Best practices: stay under 25% of flour weight, use isolate over concentrate, add extra moisture (Greek yogurt, applesauce). Most bakery co-packers have experience with protein addition.</p>
+    <p><strong>Shelf life</strong> is the primary constraint. Fresh bakery = 2-7 days. This limits distribution to local/regional. Frozen par-bake extends to 90+ days but adds cold chain cost. The operational model depends on which distribution strategy you choose: local fresh (higher quality, limited reach) vs. frozen ship (broader reach, more complexity).</p>
+    <p><strong>Co-packing landscape:</strong> Regional bakery co-packers are abundant and hungry for innovation projects. MOQs as low as 500 units for test runs. Key requirement: NSF or GMP certification for supplement-grade ingredient handling. Not all bakery co-packers have this — it's the primary screening criterion.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Method Performance Analysis (Run 2 vs Run 1)</h3>
+    <p>Comparing method hit rates across both workshop runs:</p>
+    <table>
+      <thead>
+        <tr><th>Method</th><th>Run 1 (CPG)</th><th>Run 2 (Bakery)</th><th>Combined</th><th>Assessment</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>JTBD (#4)</td><td>100%</td><td>75%</td><td class="col-gold">88%</td><td>Consistently strong — real consumer jobs = defensible ideas</td></tr>
+        <tr><td>Blue Ocean (#9)</td><td>67%</td><td>67%</td><td class="col-gold">67%</td><td>Reliable. Eliminate/Create grid forces novel formats.</td></tr>
+        <tr><td>Analogous (#15)</td><td>100%</td><td>50%</td><td>75%</td><td>Hit rate drops when cross-industry transfers are too forced</td></tr>
+        <tr><td>SCAMPER (#21)</td><td>100%</td><td>100%</td><td class="col-gold">100%</td><td>Best performing method across both runs. Modify/Reverse always produces.</td></tr>
+        <tr><td>Mashup (#24)</td><td>67%</td><td>67%</td><td class="col-gold">67%</td><td>Consistent. Wide contrast mashups score highest.</td></tr>
+        <tr><td>Cultural Trend (#51)</td><td>100%</td><td>67%</td><td>83%</td><td>Strong when tied to specific audiences (TikTok, "That Girl")</td></tr>
+        <tr><td>Premiumization (#56)</td><td>100%</td><td>67%</td><td>83%</td><td>Premiumization + function is an underexplored intersection</td></tr>
+        <tr><td>Downmarket (#57)</td><td>50%</td><td>50%</td><td>50%</td><td>Needs "quality floor" constraint to avoid commodity trap</td></tr>
+        <tr><td>Packaging (#58)</td><td>100%</td><td>67%</td><td>83%</td><td>Format innovation consistently scores on differentiation</td></tr>
+        <tr><td>Category Design (#55)</td><td>33%</td><td>25%</td><td>29%</td><td>Ambitious but consistently low on "speed to prototype"</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">SCAMPER (#21) is the only method to maintain 100% hit rate across both runs. Category Design (#55) consistently produces ambitious concepts that score low on execution feasibility. Recommend: use SCAMPER as anchor method, use Category Design sparingly (once per run max).</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Data Sources</h3>
+    <p class="source-note" style="font-size:11px; line-height:1.7;">
+      IDDBA / IRI (2025) — U.S. in-store bakery market sizing<br>
+      Grand View Research (2025) — Global creatine supplement market report<br>
+      Mordor Intelligence (2025) — U.S. protein snack market analysis<br>
+      Innova Market Insights (2025) — Clean label consumer survey<br>
+      Mintel (2025) — Protein bar consumer attitudes report<br>
+      Hartman Group (2025) — Fresh vs. packaged protein preferences survey<br>
+      FMI (2025) — Power of In-Store Bakery report<br>
+      IFIC (2025) — Macro tracking consumer behavior survey<br>
+      Packaging World (2025) — Packaging transparency consumer study<br>
+      McKinsey Consumer Pulse (2025) — Gen Z food purchasing behaviors<br>
+      Avgerinos et al. (2018) — Effects of creatine supplementation on cognitive function<br>
+      Whole Foods Market (2026) — Annual food trend predictions
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Innovation Workshop — Run 2 — Functional Indulgence: Performance Bakery & Snacks — April 15, 2026</div>
+  <div class="footer-right">mception.ai</div>
+</div>
+
+</body>
+</html>
