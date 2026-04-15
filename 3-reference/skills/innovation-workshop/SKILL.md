@@ -41,19 +41,33 @@ friction-heavy to sustain daily. This skill does the whole thing in one pipeline
 
 ## Workflow
 
-### Step 1: Category Lane Selection
+### Step 1: Theme & Lane Selection
 
-Present Brady with 5-6 product category lanes. Each lane scored on:
+**If Brady provides specific trends or inputs** (from a conversation, a client, Eric, etc.):
+- Use those directly as the convergence point
+- Frame them as "3 converging trends → 1 lane" (this produces the best results)
+- Skip the category menu — go straight to ideation
+
+**If Brady says "run the workshop" without specific input**:
+- Help brainstorm themes first — don't just present a menu
+- Pull from: learning log category gaps, recent news/trends Brady has discussed,
+  client conversations, cultural signals
+- Propose 3-4 theme convergences (not just categories) and let Brady pick or riff
+- Example: "Creatine going mainstream + Crumbl's hype model + in-store bakery stagnation
+  → Performance Bakery" is better than "pick from: CPG, Beverage, Industrial"
+
+**If running on auto-pilot** (no input at all):
+- The learning engine suggests the least-explored lane with highest signal strength
+- Check `references/learning-log.yml` for category coverage gaps
+
+**Lane scoring criteria:**
 
 | Criterion | What It Measures |
 |-----------|-----------------|
-| **Brady's Edge** | Where his background gives unfair insight (retail ops, foodservice, CPG, construction, AI/tech) |
 | **Market Signal Strength** | Visible consumer pain, regulatory shifts, supply chain disruption |
 | **Margin Structure** | Where a new entrant can capture margin (DTC, premium, B2B consumables) |
 | **Visual Testability** | Products that can be validated visually (packaging, physical goods) |
-
-Brady picks 3-4 lanes. If running daily on auto-pilot, the learning engine suggests lanes
-based on coverage gaps and recent performance.
+| **Convergence Quality** | How many independent trends intersect in this lane? More = better. |
 
 **Canonical lanes** (expand as needed):
 1. Premium Foodservice / CPG
@@ -62,6 +76,9 @@ based on coverage gaps and recent performance.
 4. Dad / Family Consumer Products
 5. Beverage (Functional / Premium)
 6. Professional / B2B Tools
+7. Functional Indulgence / Performance Bakery
+8. Global Snacks / Cultural Format Transfer
+9. Fermented Foods / Gut Health
 
 ### Step 2: Run Ideation Methods
 
@@ -285,10 +302,52 @@ After each run, update the learning log at `references/learning-log.yml`:
     - "Downmarket disruption ideas score high on market size but low on margin"
 ```
 
-### Step 9: Publish (Optional)
+### Step 9: Sync to Notion + Idea Library
 
-If Brady says "push it" or "publish," deploy the HTML to mception.ai using the
-v0-to-portal skill pattern or direct GitHub Pages deployment.
+After each run, automatically:
+
+1. **Push all 20 new ideas to the Notion database** ("Innovation Idea Pipeline"):
+   - Database data source ID: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597`
+   - Parent: Consulting Practice page (`333ed43b89c58123b019d1d108c53c11`)
+   - Each idea gets: Idea (title), Stage, Category, Score, Run, Method, Date, Effort,
+     Impact, Ops Complexity. Page content includes pitch and RTBs.
+   - Set Stage to "2: Researched + Imaged" for ideas with Canva visuals,
+     "1: Text Pitch" for text-only ideas.
+
+2. **Regenerate the idea library viewer** (`output/idea-library.html`):
+   - Add the new ideas to the IDEAS array in the HTML file
+   - Preserve all existing ideas — append only, never overwrite
+   - Include all research details (pitch, RTBs, competitive, ops, method, scores)
+   - Include image paths for any ideas with Canva visuals
+
+3. **Ask Brady before deploying to mception.ai**:
+   - "Ready to push to mception.ai? This will update the live Innovation Lab viewer."
+   - If yes: copy updated idea-library.html + any new image folders to
+     `/tmp/innovation-lab/`, push to GitHub (`basdkf024rhlasfd/innovation-lab`),
+     and deploy via `npx vercel --prod`
+   - If no: leave the local file updated but don't deploy
+
+**Stage gate changes**: When Brady says to change an idea's stage, update both:
+- The Notion database page (via `notion-update-page`)
+- The IDEAS array in `idea-library.html` (change the `stage` property)
+
+### Step 10: Stage Gate Definitions
+
+Ideas move through these stages. No idea skips a stage.
+
+| Stage | Name | What It Means | Exit Criteria |
+|-------|------|---------------|---------------|
+| **0** | Trend Identified | Problem or trend spotted, no product proposed | Has a clear consumer/market signal |
+| **1** | Text Pitch | Brief pitch written, no deep research or images | Pitch + 2-3 RTBs exist |
+| **2** | Researched + Imaged | Filtered, scored, Canva visuals created, competitive + ops analysis | Score ≥ 3.5, hero image, competitive panel, ops assessment |
+| **3** | Deep Research | Narrower set gets deeper investigation | Supply chain validated, consumer research, pricing model |
+| **4** | Concept Finalized | One product at a time, refined to buyer-ready | Final name, positioning, pack size, price point, hero visual |
+| **5** | Buyer-Ready Teaser | Teaser deck ready for first buyer conversation | One-pager or mini-deck that can be emailed |
+| **6** | Full Proposal | Complete product proposal with manufacturing, sourcing, financials, forecast, testing plan | Buyer can sign a contract from this document |
+| **7** | Approved | Item approved by buyer but not in stores | PO or LOI signed |
+| **8** | Testing Live | In-market tests running | Live in at least one location |
+| **9** | Early Growth | Learning from live data, iterating | Sales data, consumer feedback, repeat rate |
+| **10** | Scaled Business | Hardened concept, multiple locations/retailers | Managed as a business, not an idea |
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -317,27 +376,59 @@ The learning engine lives at `references/learning-log.yml` and grows with every 
 
 ## Dependencies
 
-| Skill | Role |
-|-------|------|
+| Skill / System | Role |
+|----------------|------|
 | **full-stack-ideation** | The 100 methods — this skill selects and runs them |
 | **midjourney-prompt** | Visual style guidance (category → shot type mapping) |
 | **mception-design-system** | Document styling tokens, layout patterns, PDF generation |
-| **v0-to-portal** | Optional mception.ai deployment |
+| **Canva MCP** | Image generation: generate-design → create-from-candidate → export-design → curl download |
+| **Notion MCP** | Idea pipeline database sync (data source: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597`) |
+| **Playwright** | PDF generation from HTML (Tabloid format, print_background=True) |
 
 ## Output Files
 
 ```
 output/
-├── innovation-workshop-YYYY-MM-DD.html     (dark mode, primary)
-├── innovation-workshop-YYYY-MM-DD-light.html (light mode, for PDF)
-├── innovation-workshop-YYYY-MM-DD.pdf       (print-ready)
+├── innovation-workshop-YYYY-MM-DD.html       (dark mode, per-run deliverable)
+├── innovation-workshop-YYYY-MM-DD.pdf        (print-ready, per-run)
+├── idea-library.html                         (cumulative viewer — ALL ideas across ALL runs)
+├── images/                                   (Run 1 hero PNGs)
+├── images-run2/                              (Run 2 hero PNGs)
+├── images-runN/                              (Future run PNGs — one folder per run)
 references/
-├── learning-log.yml                         (cumulative learning data)
+├── learning-log.yml                          (cumulative learning data)
 ```
+
+## External Systems
+
+| System | What It Holds | ID / URL |
+|--------|---------------|----------|
+| **Notion DB** | Innovation Idea Pipeline (all ideas, stages, notes) | Data source: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597` |
+| **Vercel (standalone)** | Innovation Lab viewer (idea-library.html) | `innovation-lab-silk.vercel.app` |
+| **GitHub repo** | Standalone deploy source | `basdkf024rhlasfd/innovation-lab` |
+| **mception.ai** | Portal route `/innovation-lab` | ProjectFrame → Vercel standalone |
+
+## End-to-End Pipeline Summary
+
+The full innovation workshop pipeline runs in this order:
+
+1. **Theme selection** — brainstorm or receive trend inputs
+2. **Ideation** — run 8-10 methods, generate ~30 raw ideas
+3. **Scoring** — filter to 20 survivors (score 0-5)
+4. **Canva images** — generate hero images for all 20, download locally
+5. **HTML assembly** — build per-run deliverable with mception design system
+6. **PDF generation** — Playwright Tabloid format
+7. **Learning log** — update method performance, category coverage, idea library
+8. **Notion sync** — push all 20 new ideas to Innovation Idea Pipeline database
+9. **Idea library viewer** — append new ideas to idea-library.html
+10. **Deploy check** — ask Brady before pushing to mception.ai
+
+Steps 1-9 run without direction. Step 10 requires confirmation.
 
 ## What This Skill Does NOT Do
 
 - Replace full-stack-ideation (it orchestrates it, doesn't duplicate the methods)
 - Generate ideas without visuals (that's full-stack-ideation standalone)
-- Publish without Brady's approval (publish step is always manual)
+- Deploy without Brady's confirmation (always ask before pushing to mception.ai)
 - Run without scoring — every idea must survive the filter
+- Pitch Brady's background — ideas speak for themselves (see Tone Rule in Step 5)
