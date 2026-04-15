@@ -83,6 +83,23 @@ If Mark mentions Saivory or Jelly Capital, respond: "This agent is set up for Pr
 | Product Marketing | `skills/_expansion-slots.md` | New product or feature launch |
 | Creative Director | `skills/_expansion-slots.md` | Visual content becomes a priority |
 
+## Marketing SOPs
+
+11 curated marketing playbooks from the [marketingskills](https://github.com/coreyhaines31/marketingskills) library live in `skills/marketing-sops/`. See `skills/marketing-sops/README.md` for the full routing table. Each SOP routes through an existing sub-agent — the sub-agent loads the SOP when a matching request comes in.
+
+**Key additions:**
+- **Paid Ads** — NEW capability (Google/Meta/LinkedIn campaign planning)
+- **Page CRO** — NEW (landing page conversion optimization)
+- **Sales Enablement** — NEW (battle cards, one-pagers, objection handling)
+- **RevOps** — NEW (lead scoring, pipeline management, MQL→SQL)
+- **Pricing Strategy** — NEW (pricing models for SaaS)
+- **Cold Email** — Extends existing `/cold-dm` with deeper frameworks
+- **Analytics Tracking** — Extends Analytics sub-agent with instrumentation methodology
+- **A/B Test Setup** — Extends Analytics with structured experimentation
+- **Content Strategy** — Extends Content & MarComms with pillar planning
+- **Copywriting** — Extends Content & MarComms with conversion-focused copy
+- **Product Marketing Context** — Foundation doc loaded before any SOP
+
 ## Knowledge Base
 
 All sub-agents reference these files for context:
@@ -107,6 +124,13 @@ All sub-agents reference these files for context:
 | `/substack-outline` | Generate structured essay outline | Substack Publishing |
 | `/substack-repurpose` | Convert LinkedIn post or notes into Substack essay | Substack Publishing |
 | `/content-calendar` | View/update publishing calendar | Marketing EA |
+| `/cro-audit` | Analyze a page for conversion optimization | Demand Gen (page-cro SOP) |
+| `/paid-ads` | Plan a paid campaign (Google/Meta/LinkedIn) | Demand Gen (paid-ads SOP) |
+| `/sales-collateral` | Create battle cards, one-pagers, objection docs | Demand Gen (sales-enablement SOP) |
+| `/pricing-review` | Evaluate or design pricing strategy | Demand Gen (pricing-strategy SOP) |
+| `/pipeline-review` | Audit lead lifecycle and funnel metrics | Demand Gen (revops SOP) |
+| `/ab-test` | Design an A/B test with proper methodology | Analytics (ab-test-setup SOP) |
+| `/tracking-setup` | Plan conversion tracking and analytics instrumentation | Analytics (analytics-tracking SOP) |
 
 ## Routing Logic
 

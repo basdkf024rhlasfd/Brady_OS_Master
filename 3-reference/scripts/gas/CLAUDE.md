@@ -111,10 +111,16 @@ brady-gas-toolkit/
 - **Prompt:** Based on canonical Email Classification Prompt Spec (see classifier.js)
 - **Output:** Gmail labels applied, structured JSON logged to Sheets, optional Notion sync
 
+### 2. os-recap-mailer (v0.1 — ready to deploy)
+- **Purpose:** Email Brady's weekly OS recap HTML + PDF attachment every Friday morning
+- **Trigger:** Weekly, Friday ~7:15 AM CT
+- **Flow:** Find latest recap in Google Drive `OS-Recaps/` folder → Send self-email with HTML body + PDF attachment
+- **Subject:** `[OS-RECAP] Week N — headline` (triggers Apple Shortcut for text notification)
+- **Output:** Email to Brady with full recap; notice email if no recap was generated
+
 ## Future Script Ideas
 - Calendar auto-blocking (protect focus time, family time)
 - Gmail auto-draft from templates
-- Daily digest generator (morning briefing email)
 - Expense receipt auto-categorizer
 - Meeting prep auto-assembler (pull context before calendar events)
 - Newsletter auto-summarizer

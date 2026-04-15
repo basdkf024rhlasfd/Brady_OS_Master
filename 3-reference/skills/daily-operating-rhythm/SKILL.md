@@ -57,6 +57,12 @@ Brady's full daily cycle from wake to archive. Each block triggers the skill tha
 **What:** Archive the day's Get Ready event, morning sweep output, whitepaper, and session activity into structured local file system and Notion log. Create persistent, searchable daily journal entry.
 **Output:** Daily archive file + Notion evening log
 
+### Fridays 7:00 AM CT — Weekly OS Recap
+**Skill:** weekly-os-recap
+**What:** Scan past 7 days of git history, classify changes into plain-language categories (skills, agents, projects, infrastructure, publishing), render mception-styled HTML + PDF recap. Upload to Google Drive for GAS email delivery + Apple Shortcut text notification.
+**Output:** HTML + PDF recap emailed to Brady with text ping
+**Note:** Runs automatically via Conductor scheduled trigger. No manual action required.
+
 ## Weekly Override (Sundays 3-5 PM CT)
 **Skill:** weekly-sweep
 **What:** Replaces the daily rhythm with strategic planning. Reviews full week ahead, clears last week's decks, sets priorities for next 7 days. Scans all capture surfaces, reviews project status, family logistics, financial obligations.
