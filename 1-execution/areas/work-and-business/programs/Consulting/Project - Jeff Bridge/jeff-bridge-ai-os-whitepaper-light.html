@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Operating System for National Pipe & Fittings</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #FFFFFF;
+    --bg-card: #F5F5F3;
+    --bg-card-alt: #EDECEA;
+    --gold: #D4A843;
+    --gold-dim: #B8922E;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #1A1A1A;
+    --gray: #6B6E75;
+    --gray-light: #4A4D54;
+    --red: #B83A3A;
+    --red-dim: #C45C5C;
+    --green: #7CB97A;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    position: relative;
+    line-height: 1.6;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  /* ─── HEADER ─── */
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid var(--gold-dim);
+  }
+  .header-left { max-width: 680px; }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .header-tag::before { content: ''; width: 18px; height: 2px; background: var(--gold); }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-size: 38px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 10px; color: var(--white); }
+  h1 span { color: var(--gold); }
+  .header-sub { font-size: 15px; color: var(--gray-light); line-height: 1.5; }
+  .header-right { text-align: right; padding-top: 8px; flex-shrink: 0; }
+  .header-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+  .header-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 54px; font-weight: 700; color: var(--red); line-height: 1; }
+  .header-stat-note { font-size: 12px; color: var(--gray); margin-top: 4px; max-width: 180px; }
+
+  /* ─── THESIS ─── */
+  .thesis {
+    background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+    border: 1px solid rgba(212,168,67,0.25); border-radius: 8px;
+    padding: 20px 28px; margin-bottom: 36px; text-align: center;
+  }
+  .thesis p { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; line-height: 1.5; }
+  .thesis em { color: var(--gold); font-style: normal; }
+
+  /* ─── SECTIONS ─── */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px; margin-top: 40px;
+  }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.2); }
+  .section-header:first-of-type { margin-top: 0; }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700;
+    margin-bottom: 6px; color: var(--white);
+  }
+  h2 span { color: var(--gold); }
+
+  .module-subtitle {
+    font-size: 14px; color: var(--gray); margin-bottom: 18px; font-style: italic;
+  }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--bg-card); border-radius: 10px; padding: 24px 26px;
+    border: 1px solid rgba(0,0,0,0.06); margin-bottom: 16px;
+  }
+  .card--gold { border-top: 3px solid var(--gold); }
+  .card--red { border-top: 3px solid var(--red-dim); }
+  .card--blue { border-top: 3px solid var(--blue); }
+  .card--green { border-top: 3px solid var(--green); }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .card-label--gold { color: var(--gold); }
+  .card-label--red { color: var(--red); }
+  .card-label--blue { color: var(--blue); }
+  .card-label--green { color: var(--green); }
+
+  .card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+    margin-bottom: 10px; color: var(--white);
+  }
+
+  .card p, .card li {
+    font-size: 14px; color: var(--gray-light); line-height: 1.6;
+  }
+  .card ul { padding-left: 18px; margin-top: 8px; }
+  .card li { margin-bottom: 6px; }
+  .card li strong { color: var(--white); font-weight: 600; }
+
+  /* ─── STATS ROW ─── */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  .stat-card { background: var(--bg-card); border-radius: 8px; padding: 18px 16px; border: 1px solid rgba(0,0,0,0.06); text-align: center; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .stat-num--red { color: var(--red); }
+  .stat-desc { font-size: 12px; color: var(--gray-light); line-height: 1.4; }
+  .stat-src { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray); margin-top: 6px; }
+
+  /* ─── TWO-COL GRID ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+  /* ─── THREE-COL GRID ─── */
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+
+  /* ─── PROOF POINT CALLOUT ─── */
+  .proof {
+    background: linear-gradient(135deg, rgba(212,168,67,0.08), rgba(212,168,67,0.02));
+    border: 1px solid rgba(212,168,67,0.2); border-radius: 8px;
+    padding: 16px 20px; margin-bottom: 16px;
+  }
+  .proof-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+  }
+  .proof-tag::before { content: '✓'; }
+  .proof p { font-size: 13px; color: var(--gray-light); line-height: 1.5; }
+  .proof strong { color: var(--white); }
+
+  /* ─── QUOTE CARDS ─── */
+  .quote-card {
+    background: var(--bg-card); border-left: 3px solid var(--gold-dim);
+    border-radius: 0 8px 8px 0; padding: 16px 18px; margin-bottom: 16px;
+  }
+  .quote-card p { font-size: 14px; line-height: 1.55; font-weight: 500; color: var(--white); }
+
+  /* ─── TABLE ─── */
+  .bench-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); margin-bottom: 16px; }
+  .bench-table th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); padding: 14px 16px; text-align: left; background: var(--bg-card-alt); border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .bench-table td { font-size: 13px; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.04); color: var(--gray-light); }
+  .bench-table tr:last-child td { border-bottom: none; }
+  .bench-table td:first-child { font-weight: 600; color: var(--white); }
+
+  /* ─── BOTTOM BAR ─── */
+  .bottom-bar { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 40px; }
+  .bottom-bar-left { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--gray); }
+  .bottom-bar-right { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--gold); }
+
+  /* ─── MODULE DIVIDER ─── */
+  .module-divider {
+    height: 1px; background: linear-gradient(to right, transparent, rgba(212,168,67,0.15), transparent);
+    margin: 40px 0;
+  }
+
+  /* ─── FINE PRINT ─── */
+  .fine-print {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray);
+    line-height: 1.6; padding: 0 4px; margin-top: 8px;
+  }
+
+  /* ─── INLINE EMPHASIS ─── */
+  .gold { color: var(--gold); }
+  .red { color: var(--red); }
+  .green { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-tag">AI Operating System — National Pipe & Fittings</div>
+    <h1>What I'd Build <span>If This Were My Company</span></h1>
+    <p class="header-sub">Ten systems I've been building for a year — configured for a PVC pipe manufacturer getting crushed by a resin spike, running two plants with a skeleton crew, and answering to a parent company that doesn't accept excuses.</p>
+  </div>
+  <div class="header-right">
+    <div class="header-stat-label">PVC Resin Spike</div>
+    <div class="header-stat-num">+41%</div>
+    <div class="header-stat-note">Since Feb 28, 2026 (Iran/Hormuz)</div>
+  </div>
+</div>
+
+<div class="thesis">
+  <p>You cut the analysts. You can't hedge upstream. Your boss wants you to reprice the backlog.<br>
+  <em>The AI isn't the strategy. It's the operating capacity you no longer have.</em></p>
+</div>
+
+<!-- ═══ COST CRISIS CONTEXT ═══ -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-num stat-num--red">+41%</div>
+    <div class="stat-desc">PVC resin price surge since Iran war onset (Feb 28)</div>
+    <div class="stat-src">ICIS / PlasticsToday</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num stat-num--red">+88.6%</div>
+    <div class="stat-desc">NE Asia ethylene spike in March alone — EU contracts up €450/t to record €1,595/t</div>
+    <div class="stat-src">Syntex America / ICIS</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num stat-num--red">94%</div>
+    <div class="stat-desc">Decline in Hormuz vessel traffic — 220 transits in March vs. normal 3,600-4,200</div>
+    <div class="stat-src">Syntex America</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num stat-num--red">12-18mo</div>
+    <div class="stat-desc">ICIS estimate for ME petrochemical export recovery — even after Strait reopens</div>
+    <div class="stat-src">ICIS / Syntex America</div>
+  </div>
+</div>
+<p class="fine-print">Context: ICIS Global Petrochemical Index posted a 32.7% MoM surge in March 2026 — steepest since the index launched in 2000. Physical Brent crude hit $141.36 (highest since 2008). 600+ vessels stranded in Persian Gulf. 31+ force majeure declarations across 3 continents. Brazil PVC up 70% since late February. This is the most broadly synchronized upward pressure across resin categories in decades.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 1: DAILY INTELLIGENCE LAYER
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 01 — Already Demonstrated</div>
+<h2>Daily <span>Intelligence Layer</span></h2>
+<p class="module-subtitle">Your morning brief — before the market opens, before the first email.</p>
+
+<div class="proof">
+  <div class="proof-tag">Already Built & Delivered — April 7, 2026</div>
+  <p>I built you a daily intelligence brief as a proof of concept. It ran April 7. PVC resin prices, competitor moves, IIJA deployment signals, demand indicators — all synthesized into a single scannable document before 7 AM. <strong>This already exists. It's not theoretical.</strong></p>
+</div>
+
+<div class="two-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">What it does</div>
+    <h3>Commodity Cost Stack — Real Time</h3>
+    <ul>
+      <li><strong>Full chain tracking:</strong> Crude → naphtha → ethylene → PVC resin → your margin. Every link, every day.</li>
+      <li><strong>Competitor watch:</strong> Auto-rotation through JM Eagle, Westlake, Charlotte Pipe, Diamond Plastics, Ipex, NAPCO, and HDPE alternatives on a 7-day cycle.</li>
+      <li><strong>Demand signals:</strong> IIJA project releases near Endicott and Greensboro. Data center permits. Housing starts. Municipal budget cycles.</li>
+      <li><strong>Supply disruptions:</strong> Force majeure alerts, Hormuz shipping status, ethylene cracker outages.</li>
+    </ul>
+  </div>
+  <div class="card card--blue">
+    <div class="card-label card-label--blue">What it replaces</div>
+    <h3>The Analyst You Had to Cut</h3>
+    <ul>
+      <li><strong>Manual monitoring:</strong> No more checking ICIS, Platts, competitor sites, and trade publications individually.</li>
+      <li><strong>Morning prep:</strong> Shows up at 6 AM when your actual analysts don't — because they don't exist anymore.</li>
+      <li><strong>Boss updates:</strong> Pre-drafted talking points on cost position, so you control the narrative upward.</li>
+      <li><strong>Decision support:</strong> "Here's what changed overnight that affects your decisions today."</li>
+    </ul>
+  </div>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 2: THE REPRICING WAR ROOM
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 02 — Immediate, Tactically Urgent</div>
+<h2>The <span>Repricing War Room</span></h2>
+<p class="module-subtitle">Your boss wants you to reprice the backlog. Here's how to do it without torching relationships.</p>
+
+<div class="card card--red">
+  <div class="card-label card-label--red">The Problem</div>
+  <h3>Reprice Wrong and You Lose Volume. Don't Reprice and You Lose Margin.</h3>
+  <p>PVC resin is up 41%. Your backlog was priced at old costs. Boss is pushing to pass it through. But you didn't pass savings to customers when resin dropped the last two years — so you've got no moral high ground and limited contractual leverage. Every conversation is a judgment call: who can absorb it, who'll walk, and what's the number.</p>
+</div>
+
+<div class="two-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">What AI builds</div>
+    <h3>Customer Segmentation Engine</h3>
+    <ul>
+      <li><strong>Margin contribution ranking:</strong> Every customer scored by gross margin, volume, and cost-to-serve. Who actually matters.</li>
+      <li><strong>Price sensitivity modeling:</strong> Which customers have alternatives (HDPE, competitive PVC)? Which are locked into spec?</li>
+      <li><strong>Scenario simulator:</strong> "Reprice Tier 2 customers by 12% → projected volume loss X, margin gain Y, net impact Z."</li>
+      <li><strong>Timing optimization:</strong> Sequence the conversations — start with customers who can absorb it, build momentum.</li>
+    </ul>
+  </div>
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">What AI drafts</div>
+    <h3>The Sales Conversation Kit</h3>
+    <ul>
+      <li><strong>Per-customer scripts:</strong> AI drafts the exact conversation for each segment — different tone for a municipal utility vs. a residential builder.</li>
+      <li><strong>Data-backed justification:</strong> "Resin is up 41%, NE Asia ethylene spiked 88.6% in March alone, 600+ vessels stranded in the Gulf — here's the ICIS data. We held pricing through the downturn. This is the defensible version."</li>
+      <li><strong>Boss-ready narrative:</strong> The package Jeff takes to his boss showing the repricing logic is systematic, not seat-of-pants.</li>
+      <li><strong>Escalation triggers:</strong> If a customer pushes back, the system flags the risk tier and suggests the concession range.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 3: PROCUREMENT & COMMODITY INTELLIGENCE
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 03 — Cost Defense</div>
+<h2>Procurement & <span>Commodity Intelligence</span> Engine</h2>
+<p class="module-subtitle">You can't hedge upstream. But you can buy smarter than you do today.</p>
+
+<div class="two-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">Daily Intelligence</div>
+    <h3>Resin Price Tracking vs. Cost Basis</h3>
+    <ul>
+      <li><strong>Daily cost-basis gap:</strong> Current resin spot vs. what you paid for inventory in house. Real-time margin visibility.</li>
+      <li><strong>Contract vs. spot decision modeling:</strong> Under this volatility, when does locking a 90-day contract beat spot? The math changes weekly.</li>
+      <li><strong>Supply disruption alerts:</strong> 31+ force majeure declarations across 3 continents — QatarEnergy extended to mid-June, LG Chem shut Yeosu plants, Formosa FM on olefins. The system watches for new ones and models supply tightening.</li>
+      <li><strong>De-escalation scenarios:</strong> Only 220 vessels transited Hormuz in March vs. normal 3,600-4,200. 600+ stranded in the Gulf. ICIS says 12-18 months to recover even after reopening. Don't overbuy at the top — but don't get caught short either.</li>
+    </ul>
+  </div>
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">Decision Support</div>
+    <h3>Inventory Optimization Under Volatility</h3>
+    <ul>
+      <li><strong>Buy-now vs. wait modeling:</strong> Probability-weighted scenarios for resin price paths. War extends 3 months, 6 months, ceasefire.</li>
+      <li><strong>Supplier diversification:</strong> US ethane-based producers are the clear winners — Dow +25%, LyondellBasell +88% YTD. They run on natural gas liquids, not naphtha. The system maps which domestic suppliers have the widest cost advantage right now.</li>
+      <li><strong>Westlake watch:</strong> They're vertically integrated — they make resin AND pipe. Their margin expands when yours shrinks. Stock surged 6.7% on pricing power expectations. That's not just a competitor signal — it's a resin price forecast.</li>
+      <li><strong>Historical pattern matching:</strong> How did PVC prices behave during previous oil shocks? 2008, 2022 — what's the reversion timeline?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 4: FREIGHT & LOGISTICS
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 04 — Margin Recovery</div>
+<h2>Freight & <span>Logistics Optimizer</span></h2>
+<p class="module-subtitle">PVC pipe is heavy, bulky, and expensive to ship. Freight is your second-biggest cost lever after resin.</p>
+
+<div class="card card--red">
+  <div class="card-label card-label--red">The Problem</div>
+  <p>Diesel is up 20.3% month-over-month (Feb 2026). You're shipping heavy pipe out of two plants on the East Coast. Oldcastle is piloting a TMS at Mansfield and Northlake, TX — unclear when that reaches National Pipe. In the meantime, every freight dollar is coming straight out of margin you're already losing to resin.</p>
+</div>
+
+<div class="two-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">What AI optimizes</div>
+    <h3>Lane Analysis & Carrier Benchmarking</h3>
+    <ul>
+      <li><strong>Lane-level cost analysis:</strong> Which routes from Endicott and Greensboro are overpriced? Where are you paying above market?</li>
+      <li><strong>Carrier benchmarking:</strong> Rate comparison across carriers for your actual shipment profiles — weight, dimensions, frequency.</li>
+      <li><strong>Backhaul opportunities:</strong> Pipe shipments are outbound-heavy. Where can you match with carriers who need eastbound loads?</li>
+      <li><strong>Mode optimization:</strong> Rail vs. truck breakeven by distance. For some lanes, rail saves 30-40% — but only if lead times allow.</li>
+    </ul>
+  </div>
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">What it replaces</div>
+    <h3>The TMS You Don't Have Yet</h3>
+    <ul>
+      <li><strong>Routing optimization:</strong> Which plant serves which customer at lowest total cost (production + freight)?</li>
+      <li><strong>Fuel surcharge tracking:</strong> Automated diesel index monitoring → flag when carrier surcharges don't match actual fuel cost moves.</li>
+      <li><strong>Consolidation opportunities:</strong> Multiple small shipments to the same region? Consolidate and save.</li>
+      <li><strong>Bridge to Oldcastle TMS:</strong> When the corporate system arrives, you'll have clean lane data and benchmarks to feed it — instead of starting from scratch.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 5: DEMAND FORECASTING
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 05 — Volume Intelligence</div>
+<h2>Demand Forecasting & <span>Production Planning</span></h2>
+<p class="module-subtitle">Stop guessing which shifts to run. Let the signals tell you.</p>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-num">$55B</div>
+    <div class="stat-desc">IIJA water infrastructure — largest federal water investment in US history</div>
+    <div class="stat-src">EPA / White House</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">15-25%</div>
+    <div class="stat-desc">Projected PVC pipe volume uplift from IIJA (above baseline, 2025-2027)</div>
+    <div class="stat-src">Plastics Pipe Institute (est.)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">888</div>
+    <div class="stat-desc">Planned US data center projects — $100B construction spending forecast for 2026 alone</div>
+    <div class="stat-src">Cleanview / MOCA Systems 2026</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">18%</div>
+    <div class="stat-desc">Of SRF water funds actually deployed — 82% still coming. The rush is now.</div>
+    <div class="stat-src">Funding Landscape 2026</div>
+  </div>
+</div>
+
+<div class="three-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">IIJA Tracker</div>
+    <h3>Infrastructure Money</h3>
+    <p>$55B for water infrastructure — largest federal water investment in US history. $23.4B in SRFs untouched by rescissions. Only 18% reached recipients — 2026 is "shovels in the ground" year. NY allocated ~$3.5B, NC ~$1.5B — your two plant geographies. PPI projects 15-25% PVC pipe volume uplift above baseline through 2027. Authorization expires Sept 30, 2026 — use-it-or-lose-it pressure is your volume tailwind.</p>
+  </div>
+  <div class="card card--blue">
+    <div class="card-label card-label--blue">Data Centers</div>
+    <h3>The Boom You're Not Tracking</h3>
+    <p>888 planned data center projects in the US. $100B in construction spending forecast for 2026. PVC holds 36% of the cable conduit market — US plastic conduit growing at 13.9% CAGR. Virginia has 136 projects under construction, Texas 140, Georgia 56. Your Greensboro plant is adjacent to the densest buildout corridor in America. Each large facility needs 1-5M gallons of water/day — requiring substantial PVC supply piping.</p>
+  </div>
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">Leading Indicators</div>
+    <h3>Signal Matching</h3>
+    <p>Housing starts + municipal budget cycles + permit data = demand signal. Match production schedule to signals instead of running both plants and hoping. Stop burning margin on underutilized shifts.</p>
+  </div>
+</div>
+
+<div class="card card--gold">
+  <div class="card-label card-label--gold">Production Planning</div>
+  <h3>What This Looks Like in Practice</h3>
+  <ul>
+    <li><strong>Weekly demand forecast:</strong> Probability-weighted volume outlook by product line, geography, and end market.</li>
+    <li><strong>Plant loading optimization:</strong> Endicott vs. Greensboro — which plant runs which product at which volume? Factor in resin supply, freight cost, and customer proximity.</li>
+    <li><strong>Shift scheduling:</strong> When demand signals soften, reduce shifts before you eat the overhead. When IIJA projects release, ramp before competitors fill the orders.</li>
+    <li><strong>Inventory positioning:</strong> Pre-position finished goods near high-probability projects. Don't wait for the PO to start production.</li>
+  </ul>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 6: CASCADING MANAGEMENT OS
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 06 — The Big One</div>
+<h2>Cascading <span>Management OS</span></h2>
+<p class="module-subtitle">You run two plants, report to a boss who doesn't accept excuses, and cut the people who used to prep your updates. This replaces that capacity.</p>
+
+<div class="card card--red">
+  <div class="card-label card-label--red">The Gap</div>
+  <p>You cut headcount in 2025. The analysts who built cost models, prepped boss updates, and tracked plant performance — they're gone. But the accountability didn't go with them. CRH culture is decentralized, high-autonomy, intense accountability: "never a good excuse not to perform." The AI doesn't replace your judgment. It replaces the staff work that used to feed your judgment.</p>
+</div>
+
+<div class="card card--gold">
+  <div class="card-label card-label--gold">Three Layers</div>
+  <h3>How the Cascade Works</h3>
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Recipient</th>
+        <th>What They Get</th>
+        <th>Cadence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jeff's Brief</td>
+        <td>You</td>
+        <td>Daily situational brief: costs, signals, decisions needed, competitor moves. The Module 1 intelligence layer, plus action items from all other modules.</td>
+        <td>Daily, 6 AM</td>
+      </tr>
+      <tr>
+        <td>Plant Packages</td>
+        <td>Endicott GM, Greensboro GM</td>
+        <td>AI-generated weekly priority packages: production targets, quality flags, safety items, cost-per-unit trends, upcoming orders, maintenance windows.</td>
+        <td>Weekly, Monday AM</td>
+      </tr>
+      <tr>
+        <td>Boss Narratives</td>
+        <td>Jeff's boss at Oldcastle</td>
+        <td>Pre-drafted performance narratives: what happened, why, what you're doing about it. Jeff controls his story upward instead of being on his heels.</td>
+        <td>Weekly + ad hoc</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="quote-card">
+  <p>"The cascading system isn't about surveillance or micromanagement. It's about making sure the right information reaches the right person at the right altitude — without someone in the middle spending 6 hours building a PowerPoint that says the same thing every week."</p>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 7: COMPETITIVE INTELLIGENCE
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 07 — Market Awareness</div>
+<h2>Competitive <span>Intelligence System</span></h2>
+<p class="module-subtitle">Know what JM Eagle is doing before your customers tell you.</p>
+
+<div class="card card--gold">
+  <div class="card-label card-label--gold">7-Day Rotation — Already Built</div>
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Competitor</th>
+        <th>What the System Watches</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Monday</td><td>JM Eagle</td><td>Price leader — largest PVC pipe manufacturer in NA. Pricing signals, capacity moves, distributor chatter.</td></tr>
+      <tr><td>Tuesday</td><td>Charlotte Pipe</td><td>Employee-owned, strong Southeast. PVC + cast iron. Geographic overlap with Greensboro.</td></tr>
+      <tr><td>Wednesday</td><td>Diamond / Ipex</td><td>Diamond (Grand Island NE) + Ipex (Canadian, expanding US). Water/wastewater competition.</td></tr>
+      <tr><td>Thursday</td><td>Westlake (WLK)</td><td>Integrated producer — makes resin AND pipe. Their margin expands when yours shrinks. Earnings, guidance, stock moves.</td></tr>
+      <tr><td>Friday</td><td>NAPCO</td><td>PVC pipe in water/sewer infrastructure. Regional competition patterns.</td></tr>
+      <tr><td>Saturday</td><td>HDPE producers</td><td>ADS, WL Plastics. Material substitution threat — HDPE vs. PVC in infrastructure specs.</td></tr>
+      <tr><td>Sunday</td><td>Wild card</td><td>Based on the week's signals. New entrants, tariff impacts, international competitors, material substitution.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="proof">
+  <div class="proof-tag">Already Operational</div>
+  <p>This rotation is already built into the daily intelligence brief. The system monitors each competitor's public filings, job postings, news mentions, industry association activity, and distributor feedback. <strong>Westlake is the one to watch right now</strong> — their stock surged 6.7% on expectations that they'll benefit from the resin spike because they're vertically integrated.</p>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 8: ANALYST-IN-A-BOX
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 08 — Capacity Replacement</div>
+<h2><span>Analyst</span>-in-a-Box</h2>
+<p class="module-subtitle">The work of 2-3 analysts you no longer have. Available at 6 AM.</p>
+
+<div class="two-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">On-Demand Analysis</div>
+    <h3>What You Can Ask It</h3>
+    <ul>
+      <li><strong>Cost modeling:</strong> "What happens to my margin if resin stays at $X for 6 months?"</li>
+      <li><strong>Scenario planning:</strong> "Model three scenarios: war ends in 60 days, extends 6 months, Hormuz stays closed a year."</li>
+      <li><strong>Market research:</strong> "How big is the electrical conduit market for data centers in the Southeast?"</li>
+      <li><strong>Customer profiling:</strong> "Build a risk profile on our top 20 customers. Who's most likely to defect to JM Eagle?"</li>
+    </ul>
+  </div>
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">Draft Anything</div>
+    <h3>Communication & Narrative</h3>
+    <ul>
+      <li><strong>Customer communications:</strong> Price increase letters, surcharge notifications, relationship-preserving language.</li>
+      <li><strong>Boss updates:</strong> Weekly performance narratives, quarterly business reviews, strategic initiative proposals.</li>
+      <li><strong>Board-level materials:</strong> CRH-style reporting packages that match corporate expectations.</li>
+      <li><strong>Force majeure responses:</strong> When a supplier declares force majeure, draft your response and contingency plan within the hour.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="proof">
+  <div class="proof-tag">Already Demonstrated</div>
+  <p>The Innovation Workshop I built you on April 7 — 15 ideas across cost reduction, margin defense, new markets, and strategic optionality — was the analyst-in-a-box running at full speed. <strong>That took 45 minutes. Your old team would have spent a week.</strong></p>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 9: STRATEGIC OPTIONALITY
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 09 — Growth & Hedge</div>
+<h2>Strategic <span>Optionality</span> Layer</h2>
+<p class="module-subtitle">You're in a cost crisis. But cost crises create openings for people who are paying attention.</p>
+
+<div class="two-col">
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">Resin Hedge — Product Level</div>
+    <h3>PVC-O: Use 15-40% Less Resin Per Meter</h3>
+    <p>Molecularly oriented PVC (PVC-O) uses 15-40% less resin per meter of pipe while delivering higher pressure ratings. When resin is up 41%, a product that uses a third less of it is a direct cost hedge — not a sustainability play. The AI models the capex, time-to-market, and margin improvement at current resin prices.</p>
+  </div>
+  <div class="card card--gold">
+    <div class="card-label card-label--gold">Margin Expansion</div>
+    <h3>CPVC: Higher Margin, Same Equipment</h3>
+    <p>CPVC (chlorinated PVC) serves hot water, fire sprinkler, and industrial applications. Higher margin than commodity PVC pressure pipe. Some of it runs on the same extrusion lines you already have. The question isn't "should you do this" — it's "what's the volume threshold where it's worth the changeover time?"</p>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="card card--blue">
+    <div class="card-label card-label--blue">Regulatory Tailwind</div>
+    <h3>Recycled Content Positioning</h3>
+    <p>Multiple states are moving toward recycled content mandates for construction materials. Getting ahead of this isn't altruism — it's positioning. If you can use recycled PVC compound at lower cost than virgin resin AND meet upcoming mandates, you've turned a compliance requirement into a cost advantage.</p>
+  </div>
+  <div class="card card--blue">
+    <div class="card-label card-label--blue">Demand Upside</div>
+    <h3>Electrical Conduit for Data Centers</h3>
+    <p>888 planned US data center projects. $100B construction spending in 2026 alone. Virginia (136 projects under construction) and North Carolina are your backyard. PVC conduit holds 36% market share — US plastic conduit growing 13.9% CAGR. Atkore and Hubbell are expanding capacity to serve this market. Conduit pricing already up 9% from Gulf Coast resin outages + demand. The AI sizes your addressable slice and tracks procurement contacts before RFQs go out.</p>
+  </div>
+</div>
+
+<div class="module-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODULE 10: NO BAD SURPRISES
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="section-header">Module 10 — Risk Radar</div>
+<h2>The "No <span>Bad Surprises</span>" System</h2>
+<p class="module-subtitle">You can't prevent a war. But you can stop being the last person to know what it means for your business.</p>
+
+<div class="three-col">
+  <div class="card card--red">
+    <div class="card-label card-label--red">Geopolitical</div>
+    <h3>War → Margin Impact</h3>
+    <p>If Hormuz stays closed for 3 months: here's your resin cost path. 6 months: here's the path. Ceasefire tomorrow: here's the path. Pre-modeled, updated daily. You don't need to ask the question — the answer is waiting.</p>
+  </div>
+  <div class="card card--red">
+    <div class="card-label card-label--red">Customer Risk</div>
+    <h3>At-Risk Alerts</h3>
+    <p>Which customers are shopping JM Eagle right now? Signals: reduced order frequency, requests for quotes on smaller quantities, new contacts from competitor sales reps at the same accounts. Flag before they leave.</p>
+  </div>
+  <div class="card card--red">
+    <div class="card-label card-label--red">Corporate</div>
+    <h3>CRH Signal Tracking</h3>
+    <p>What's Mintern saying that Jeff needs to be ready for? CRH earnings calls, investor days, M&A moves, strategic initiative announcements. Be prepared for the question before your boss asks it.</p>
+  </div>
+</div>
+
+<div class="card card--gold">
+  <div class="card-label card-label--gold">Also Watching</div>
+  <ul>
+    <li><strong>Tariff impact modeling:</strong> Steel, aluminum, and copper tariffs are hitting project budgets across construction. PVC gains when metal alternatives get more expensive — but only if you're positioned to capture the switch.</li>
+    <li><strong>HDPE substitution threat:</strong> ADS and WL Plastics are pushing HDPE into specs that used to be PVC-only. Track which municipalities and engineers are changing their standards.</li>
+    <li><strong>Labor market signals:</strong> Endicott, NY and Greensboro, NC manufacturing labor markets. Turnover risk, wage pressure, competitor hiring near your plants.</li>
+  </ul>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     WHAT'S ALREADY BUILT / WHAT'S NEXT
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="module-divider"></div>
+
+<div class="section-header">Where This Stands</div>
+<h2>What Exists, <span>What's Next</span></h2>
+
+<div class="card card--gold">
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Module</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="color:var(--green);font-weight:700;">✓ Live</td><td>Daily Intelligence Layer</td><td>Built and delivered April 7. Running. Can be daily within 24 hours of saying "go."</td></tr>
+      <tr><td style="color:var(--green);font-weight:700;">✓ Live</td><td>Competitive Intelligence</td><td>7-day competitor rotation already operational inside the intel brief.</td></tr>
+      <tr><td style="color:var(--green);font-weight:700;">✓ Live</td><td>Analyst-in-a-Box</td><td>Innovation Workshop (15 ideas) already delivered. On-demand analysis available now.</td></tr>
+      <tr><td style="color:var(--gold);font-weight:700;">~ 1 Week</td><td>Repricing War Room</td><td>Needs your customer data (margins, volumes, segments). I build the model, you feed it.</td></tr>
+      <tr><td style="color:var(--gold);font-weight:700;">~ 1 Week</td><td>Procurement Intelligence</td><td>Commodity tracking layer exists. Decision support models need your contract terms and supplier list.</td></tr>
+      <tr><td style="color:var(--gold);font-weight:700;">~ 1 Week</td><td>Cascading Management OS</td><td>Jeff's layer is live. Plant packages and boss narratives need your org chart and reporting cadence.</td></tr>
+      <tr><td style="color:var(--blue);font-weight:700;">2-3 Weeks</td><td>Freight Optimizer</td><td>Needs your lane data, carrier list, and shipment history. AI does the analysis once data is in.</td></tr>
+      <tr><td style="color:var(--blue);font-weight:700;">2-3 Weeks</td><td>Demand Forecasting</td><td>IIJA and data center trackers can start now. Production planning integration needs plant data.</td></tr>
+      <tr><td style="color:var(--gray);font-weight:700;">Ongoing</td><td>Strategic Optionality</td><td>Research-driven. PVC-O feasibility, CPVC analysis, recycled content — each is a standalone research sprint.</td></tr>
+      <tr><td style="color:var(--gray);font-weight:700;">Ongoing</td><td>No Bad Surprises</td><td>War scenario models and customer risk alerts can start immediately. Corporate signal tracking is already in the daily brief.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="quote-card">
+  <p>"I've been building this OS for a year. For myself, for a couple other people I'm working with. These aren't slide concepts — they're running systems. The question isn't whether this works. It's whether you want me to configure it for your specific situation. The intel brief is already proof it does."</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     BOTTOM BAR
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="bottom-bar">
+  <div class="bottom-bar-left">Prepared for Jeff Bridge — National Pipe & Fittings at Oldcastle Infrastructure · April 2026 · Confidential<br>Sources: ICIS · PlasticsToday · Syntex America · CNBC · Argus Media · Funding Landscape · Cleanview · MOCA Systems · Cushman & Wakefield · Federal Reserve · Freedonia Group · Plastics Pipe Institute · EPA</div>
+  <div class="bottom-bar-right">mception.ai</div>
+</div>
+
+</body>
+</html>

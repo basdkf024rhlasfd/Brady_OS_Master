@@ -1,0 +1,82 @@
+# Innovation Workshop — Recursive Learning Log
+# This file grows with every run. The learning engine reads it to improve future sessions.
+
+runs:
+  - date: "2026-04-15"
+    category: "Premium Foodservice / CPG"
+    methods_used: [4, 9, 15, 21, 24, 51, 55, 56, 57, 58]
+    ideas_generated: 30
+    ideas_surviving: 20
+    top_picks:
+      - name: "Broth Bar Concentrates"
+        method: 9
+        score: 4.5
+        tags: [format-innovation, convenience, low-effort, high-impact]
+      - name: "$3 Chef Sauce"
+        method: 57
+        score: 4.3
+        tags: [downmarket, contrarian, impulse-buy, low-effort]
+      - name: "Bencharcuterie"
+        method: 24
+        score: 4.2
+        tags: [mashup, grab-and-go, instagram, high-impact]
+      - name: "Inverted Condiments"
+        method: 21
+        score: 4.1
+        tags: [model-flip, cooking-hack, high-impact]
+      - name: "Squeeze Tube Condiments"
+        method: 58
+        score: 4.0
+        tags: [packaging, format-innovation, low-effort, waste-reduction]
+    method_performance:
+      4:  { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "JTBD consistently strong — real consumer jobs produce defensible ideas" }
+      9:  { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Blue Ocean eliminate/reduce/raise/create grid forced novel formats" }
+      15: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Cross-industry borrowing (wine flights, vinyl culture, razor model) highest novelty" }
+      21: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "SCAMPER modify/adapt/reverse all produced visually distinctive concepts" }
+      24: { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Mashup hit rate lower when combinations are too forced" }
+      51: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Cultural trends (streetwear drops, solo dining, TikTok pantry) produced most timely ideas" }
+      55: { ideas_raw: 3, survivors: 1, hit_rate: 0.33, notes: "Category design ideas are ambitious but hard to prototype — high effort" }
+      56: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Premiumization always works in food — consumers pay for story + design" }
+      57: { ideas_raw: 2, survivors: 1, hit_rate: 0.50, notes: "Downmarket needs careful positioning to avoid commodity trap" }
+      58: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Packaging innovation consistently high — same product, new format = new category" }
+    category_coverage:
+      "Premium Foodservice / CPG": 1
+      "Construction / Industrial Consumables": 0
+      "AI-Powered Physical Products": 0
+      "Dad / Family Consumer Products": 0
+      "Beverage (Functional / Premium)": 0
+      "Professional / B2B Tools": 0
+    category_gaps_identified:
+      - "Beverage lane untouched — natural extension of CPG with different margin structure"
+      - "Dad/Family lane leverages Brady's daily lived experience — high authenticity"
+      - "Industrial lane has high margin but low visual testability — pair with AI-powered for tech angle"
+    learnings:
+      - "SCAMPER, Analogous Inspiration, Cultural Trend Mining, Premiumization, and Packaging Innovation all hit 100% survival rate — these are the core product innovation methods"
+      - "Category Design (#55) produces ambitious concepts but they consistently score low on 'speed to prototype' — use sparingly or pair with a prototyping method"
+      - "Downmarket Disruption needs a 'quality floor' constraint — without it, ideas slide toward commodity"
+      - "Four Canva images per idea is the right volume — hero, lifestyle, close-up, alternate gives enough visual variety"
+      - "RTBs grounded in specific market data (with sources) are dramatically more credible than general trend assertions"
+      - "The pitch works best when it connects Brady's specific experience to the product — not generic founder-market fit"
+
+# Cumulative idea library — prevents duplicates across runs
+idea_library:
+  - { name: "Chef's Mise en Place Kits", category: "CPG", method: 4, date: "2026-04-15" }
+  - { name: "Lunchbox Upgrade Sauces", category: "CPG", method: 4, date: "2026-04-15" }
+  - { name: "Dinner Party in a Box", category: "CPG", method: 4, date: "2026-04-15" }
+  - { name: "Functional Finishing Oils", category: "CPG", method: 4, date: "2026-04-15" }
+  - { name: "Broth Bar Concentrates", category: "CPG", method: 9, date: "2026-04-15" }
+  - { name: "Sauce Flights", category: "CPG", method: 15, date: "2026-04-15" }
+  - { name: "Chef's Table Seasonings", category: "CPG", method: 15, date: "2026-04-15" }
+  - { name: "Butter Bricks", category: "CPG", method: 21, date: "2026-04-15" }
+  - { name: "Freeze-Dried Meal Finishers", category: "CPG", method: 21, date: "2026-04-15" }
+  - { name: "Inverted Condiments", category: "CPG", method: 21, date: "2026-04-15" }
+  - { name: "Bencharcuterie", category: "CPG", method: 24, date: "2026-04-15" }
+  - { name: "Hype Drop Snacks", category: "CPG", method: 51, date: "2026-04-15" }
+  - { name: "Solo Dining Portions", category: "CPG", method: 51, date: "2026-04-15" }
+  - { name: "Finishing as a Category", category: "CPG", method: 55, date: "2026-04-15" }
+  - { name: "$30 Ketchup", category: "CPG", method: 56, date: "2026-04-15" }
+  - { name: "Black Label Canned Goods", category: "CPG", method: 56, date: "2026-04-15" }
+  - { name: "Squeeze Tube Condiments", category: "CPG", method: 58, date: "2026-04-15" }
+  - { name: "Dissolvable Seasoning Sheets", category: "CPG", method: 58, date: "2026-04-15" }
+  - { name: "$3 Chef Sauce", category: "CPG", method: 57, date: "2026-04-15" }
+  - { name: "Window Jar Pantry Line", category: "CPG", method: 58, date: "2026-04-15" }
