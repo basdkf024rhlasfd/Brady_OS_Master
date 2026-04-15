@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Idea Library — mception.ai</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#0C0F14; --bg-card:#13161D; --bg-card-alt:#181C25;
+  --gold:#D4A843; --gold-dim:#9A7B32; --blue:#4A7FB5; --dark-blue:#1E3A5F;
+  --white:#F0EDE6; --gray:#8A8D94; --gray-light:#B0B3BA;
+  --red:#C45C5C; --red-dim:#8B3A3A; --green:#7CB97A; --purple:#C47BD4;
+  --orange:#E8826A;
+}
+body { background:var(--bg); color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; line-height:1.5; }
+body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(212,168,67,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+
+/* ─── HEADER ─── */
+.app-header { max-width:1400px; margin:0 auto; padding:32px 40px 20px; position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--gold-dim); margin-bottom:0; }
+.app-header h1 { font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; letter-spacing:-1px; }
+.app-header h1 span { color:var(--gold); }
+.app-header .tag { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.header-stats { display:flex; gap:24px; text-align:center; }
+.header-stat { }
+.header-stat .num { font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; color:var(--gold); line-height:1; }
+.header-stat .label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-top:4px; }
+
+/* ─── NAV ─── */
+.nav-bar { max-width:1400px; margin:0 auto; padding:16px 40px; position:relative; z-index:1; display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,0.06); }
+.nav-btn { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:var(--bg-card); color:var(--gray-light); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:8px 16px; cursor:pointer; transition:all 0.2s; }
+.nav-btn:hover { border-color:var(--gold-dim); color:var(--white); }
+.nav-btn.active { border-color:var(--gold); color:var(--gold); background:rgba(212,168,67,0.08); }
+
+/* ─── FILTERS ─── */
+.filter-bar { max-width:1400px; margin:0 auto; padding:12px 40px; position:relative; z-index:1; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.filter-bar select, .filter-bar input { font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--bg-card); color:var(--white); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:6px 12px; outline:none; }
+.filter-bar select:focus, .filter-bar input:focus { border-color:var(--gold); }
+.filter-bar label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; color:var(--gray); text-transform:uppercase; }
+
+/* ─── MAIN CONTENT ─── */
+.main { max-width:1400px; margin:0 auto; padding:20px 40px 60px; position:relative; z-index:1; }
+.view-panel { display:none; }
+.view-panel.active { display:block; }
+
+/* ─── CARD GRID ─── */
+.card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+.idea-card { background:var(--bg-card); border:1px solid rgba(255,255,255,0.06); border-radius:10px; overflow:hidden; cursor:pointer; transition:all 0.2s; position:relative; }
+.idea-card:hover { border-color:var(--gold-dim); transform:translateY(-2px); }
+.idea-card .card-img { width:100%; height:180px; object-fit:contain; background:var(--bg-card-alt); }
+.idea-card .card-img-placeholder { width:100%; height:180px; background:var(--bg-card-alt); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray); letter-spacing:2px; }
+.idea-card .card-body { padding:16px; }
+.idea-card .card-id { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gray); letter-spacing:1.5px; }
+.idea-card .card-name { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; margin:4px 0 8px; line-height:1.2; }
+.idea-card .card-pitch { font-size:13px; color:var(--gray-light); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.idea-card .card-footer { padding:0 16px 12px; display:flex; justify-content:space-between; align-items:center; }
+.idea-card .card-tags { display:flex; gap:6px; flex-wrap:wrap; }
+.card-tag { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:4px; }
+.card-tag.stage { background:rgba(212,168,67,0.15); color:var(--gold); border:1px solid rgba(212,168,67,0.25); }
+.card-tag.cat { background:rgba(74,127,181,0.15); color:var(--blue); border:1px solid rgba(74,127,181,0.25); }
+.card-score { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--gold); }
+
+/* ─── DETAIL MODAL ─── */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:100; overflow-y:auto; padding:40px; }
+.modal-overlay.open { display:flex; justify-content:center; align-items:flex-start; }
+.modal { background:var(--bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; max-width:900px; width:100%; padding:40px; position:relative; }
+.modal-close { position:absolute; top:16px; right:20px; font-size:24px; color:var(--gray); cursor:pointer; background:none; border:none; }
+.modal-close:hover { color:var(--white); }
+.modal h2 { font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; margin-bottom:4px; }
+.modal .modal-meta { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gray); letter-spacing:1.5px; margin-bottom:16px; }
+.modal .modal-img { max-width:300px; border-radius:10px; float:left; margin:0 24px 16px 0; background:var(--bg-card); }
+.modal .section-title { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--gold); margin:20px 0 8px; clear:none; }
+.modal .section-title.clear { clear:both; }
+.modal p { color:var(--gray-light); margin-bottom:10px; line-height:1.65; }
+.modal ul { list-style:none; padding:0; margin-bottom:12px; }
+.modal ul li { padding:6px 0 6px 16px; border-bottom:1px solid rgba(255,255,255,0.04); color:var(--gray-light); position:relative; line-height:1.5; }
+.modal ul li::before { content:'→'; position:absolute; left:0; color:var(--gold); }
+.modal .research-box { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray); background:var(--bg-card); border-left:3px solid var(--gold-dim); padding:12px 16px; border-radius:6px; margin:12px 0; line-height:1.5; }
+.modal .panels-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; clear:both; }
+.modal .panel { background:var(--bg-card); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:16px; }
+.modal .panel h4 { font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; margin-bottom:8px; }
+.modal .panel.comp { border-top:3px solid var(--blue); }
+.modal .panel.comp h4 { color:var(--blue); }
+.modal .panel.ops { border-top:3px solid var(--gold-dim); }
+.modal .panel.ops h4 { color:var(--gold); }
+.modal .panel p { font-size:13px; margin-bottom:6px; }
+.modal .panel strong { color:var(--white); }
+.ops-badge { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:8px; }
+.ops-simple { background:rgba(124,185,122,0.2); color:var(--green); }
+.ops-moderate { background:rgba(212,168,67,0.2); color:var(--gold); }
+.ops-complex { background:rgba(196,92,92,0.2); color:var(--red); }
+
+/* Stage selector in modal */
+.stage-selector { margin:16px 0; display:flex; align-items:center; gap:12px; clear:both; }
+.stage-selector label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); }
+.stage-selector select { font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--bg-card); color:var(--gold); border:1px solid var(--gold-dim); border-radius:6px; padding:6px 12px; }
+
+/* Notes area in modal */
+.notes-area { margin-top:16px; clear:both; }
+.notes-area label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); display:block; margin-bottom:6px; }
+.notes-area textarea { width:100%; min-height:80px; background:var(--bg-card); color:var(--white); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px; font-family:'DM Sans',sans-serif; font-size:13px; resize:vertical; outline:none; }
+.notes-area textarea:focus { border-color:var(--gold); }
+
+/* ─── KANBAN ─── */
+.kanban-wrapper { overflow-x:auto; padding-bottom:20px; }
+.kanban { display:flex; gap:12px; min-width:max-content; }
+.kanban-col { min-width:260px; max-width:280px; background:var(--bg-card); border-radius:10px; border:1px solid rgba(255,255,255,0.06); flex-shrink:0; }
+.kanban-col-header { padding:14px 16px 10px; border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; background:var(--bg-card); border-radius:10px 10px 0 0; }
+.kanban-col-header h3 { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; }
+.kanban-col-header .count { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; color:var(--gold); }
+.kanban-col-body { padding:8px; max-height:600px; overflow-y:auto; }
+.kanban-card { background:var(--bg-card-alt); border:1px solid rgba(255,255,255,0.04); border-radius:8px; padding:10px 12px; margin-bottom:8px; cursor:pointer; transition:all 0.15s; }
+.kanban-card:hover { border-color:var(--gold-dim); }
+.kanban-card .kc-name { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:600; margin-bottom:2px; }
+.kanban-card .kc-cat { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gray); letter-spacing:1px; }
+.kanban-card .kc-score { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--gold); float:right; margin-top:-20px; }
+
+/* ─── PERCEPTUAL MAP ─── */
+#map-container { position:relative; width:100%; height:680px; background:var(--bg-card); border-radius:10px; border:1px solid rgba(255,255,255,0.06); overflow:hidden; cursor:crosshair; margin-bottom:12px; }
+#map-container canvas { display:block; width:100%; height:100%; }
+.axis-label { position:absolute; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); pointer-events:none; }
+.axis-label.x-left { bottom:12px; left:20px; }
+.axis-label.x-right { bottom:12px; right:20px; }
+.axis-label.y-top { top:12px; left:20px; }
+#map-tooltip { position:absolute; background:var(--bg-card-alt); border:1px solid rgba(212,168,67,0.3); border-radius:8px; padding:14px 18px; pointer-events:none; opacity:0; transition:opacity 0.15s; max-width:320px; z-index:10; }
+#map-tooltip .tt-name { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; margin-bottom:4px; }
+#map-tooltip .tt-meta { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:1.5px; margin-bottom:6px; }
+#map-tooltip .tt-desc { font-size:13px; color:var(--gray-light); line-height:1.45; }
+.map-legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; }
+.map-legend-item { display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gray-light); letter-spacing:1px; }
+.map-legend-dot { width:10px; height:10px; border-radius:50%; }
+
+/* ─── CHARTS ─── */
+.chart-container { background:var(--bg-card); border-radius:10px; border:1px solid rgba(255,255,255,0.06); padding:24px; margin-bottom:20px; }
+.chart-container h3 { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; margin-bottom:16px; }
+.chart-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.bar-chart { margin-bottom:16px; }
+.bar-row { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.bar-label { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-light); width:160px; flex-shrink:0; text-align:right; }
+.bar-track { flex:1; height:24px; background:var(--bg-card-alt); border-radius:4px; overflow:hidden; position:relative; }
+.bar-fill { height:100%; border-radius:4px; transition:width 0.5s; display:flex; align-items:center; padding-left:8px; }
+.bar-fill span { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--white); }
+
+/* Effort/Impact Scatter */
+#scatter-container { position:relative; width:100%; height:600px; background:var(--bg-card); border-radius:10px; border:1px solid rgba(255,255,255,0.06); overflow:hidden; margin-bottom:12px; }
+#scatter-container canvas { display:block; width:100%; height:100%; }
+
+/* ─── FOOTER ─── */
+.app-footer { max-width:1400px; margin:0 auto; padding:20px 40px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; position:relative; z-index:1; }
+.app-footer .left { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gray); letter-spacing:1px; }
+.app-footer .right { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:600; color:var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div>
+    <div class="tag">Innovation Pipeline</div>
+    <h1>Idea <span>Library</span></h1>
+  </div>
+  <div class="header-stats">
+    <div class="header-stat"><div class="num" id="total-count">0</div><div class="label">Total Ideas</div></div>
+    <div class="header-stat"><div class="num" id="cat-count">0</div><div class="label">Categories</div></div>
+    <div class="header-stat"><div class="num" id="run-count">0</div><div class="label">Runs</div></div>
+  </div>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" data-view="grid">Card Grid</button>
+  <button class="nav-btn" data-view="kanban">Pipeline</button>
+  <button class="nav-btn" data-view="map">Perceptual Map</button>
+  <button class="nav-btn" data-view="scatter">Effort vs Impact</button>
+  <button class="nav-btn" data-view="charts">Score & Method</button>
+</div>
+
+<div class="filter-bar">
+  <div style="display:flex;gap:2px;margin-right:12px;">
+    <button class="nav-btn active" id="toggle-all" onclick="setTypeFilter('all')" style="padding:6px 14px;">All</button>
+    <button class="nav-btn" id="toggle-cpg" onclick="setTypeFilter('cpg')" style="padding:6px 14px;">CPG</button>
+    <button class="nav-btn" id="toggle-b2b" onclick="setTypeFilter('b2b')" style="padding:6px 14px;">B2B</button>
+  </div>
+  <label>Category</label>
+  <select id="filter-cat"><option value="all">All Categories</option></select>
+  <label>Stage</label>
+  <select id="filter-stage"><option value="all">All Stages</option></select>
+  <label>Run</label>
+  <select id="filter-run"><option value="all">All Runs</option></select>
+  <label>Search</label>
+  <input type="text" id="filter-search" placeholder="Search ideas..." style="width:200px;">
+</div>
+
+<div class="main">
+  <!-- CARD GRID -->
+  <div class="view-panel active" id="view-grid">
+    <div class="card-grid" id="card-grid"></div>
+  </div>
+
+  <!-- KANBAN -->
+  <div class="view-panel" id="view-kanban">
+    <div class="kanban-wrapper"><div class="kanban" id="kanban"></div></div>
+  </div>
+
+  <!-- PERCEPTUAL MAP -->
+  <div class="view-panel" id="view-map">
+    <div id="map-container">
+      <canvas id="map-canvas"></canvas>
+      <div class="axis-label x-left">← Familiar</div>
+      <div class="axis-label x-right">Novel →</div>
+      <div class="axis-label y-top">Premium ↑</div>
+      <div id="map-tooltip">
+        <div class="tt-meta"></div>
+        <div class="tt-name"></div>
+        <div class="tt-desc"></div>
+      </div>
+    </div>
+    <div class="map-legend" id="map-legend"></div>
+  </div>
+
+  <!-- EFFORT VS IMPACT -->
+  <div class="view-panel" id="view-scatter">
+    <div id="scatter-container">
+      <canvas id="scatter-canvas"></canvas>
+      <div class="axis-label x-left">← Low Effort</div>
+      <div class="axis-label x-right">High Effort →</div>
+      <div class="axis-label y-top">High Impact ↑</div>
+      <div id="scatter-tooltip" style="position:absolute;background:var(--bg-card-alt);border:1px solid rgba(212,168,67,0.3);border-radius:8px;padding:12px 16px;pointer-events:none;opacity:0;transition:opacity 0.15s;max-width:280px;z-index:10;">
+        <div class="tt-name" style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;"></div>
+        <div class="tt-meta" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:1.5px;"></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:1px;font-style:italic;">Quadrants: Top-Left = Do Now · Top-Right = Invest · Bottom-Left = Quick Wins · Bottom-Right = Deprioritize</div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="view-panel" id="view-charts">
+    <div class="chart-row">
+      <div class="chart-container">
+        <h3>Score Distribution</h3>
+        <div id="score-chart"></div>
+      </div>
+      <div class="chart-container">
+        <h3>Ideas by Category</h3>
+        <div id="cat-chart"></div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <h3>Method Performance (Hit Rate Across Runs)</h3>
+      <div id="method-chart"></div>
+    </div>
+    <div class="chart-container">
+      <h3>Stage Distribution</h3>
+      <div id="stage-chart"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<div class="app-footer">
+  <div class="left">Innovation Idea Library — Last updated April 15, 2026</div>
+  <div class="right">mception.ai</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// IDEA DATABASE — All ~85 ideas with full research details
+// ═══════════════════════════════════════════════════════════
+const STAGES = [
+  {id:0,name:"Trend Identified",color:"#8A8D94"},
+  {id:1,name:"Text Pitch",color:"#4A7FB5"},
+  {id:2,name:"Researched + Imaged",color:"#7CB97A"},
+  {id:3,name:"Deep Research",color:"#D4A843"},
+  {id:4,name:"Concept Finalized",color:"#E8826A"},
+  {id:5,name:"Buyer-Ready Teaser",color:"#C47BD4"},
+  {id:6,name:"Full Proposal",color:"#C45C5C"},
+  {id:7,name:"Approved",color:"#4A7FB5"},
+  {id:8,name:"Testing Live",color:"#7CB97A"},
+  {id:9,name:"Early Growth",color:"#D4A843"},
+  {id:10,name:"Scaled Business",color:"#D4A843"}
+];
+
+const IDEAS = [
+  // ─── RUN 1: Premium Foodservice / CPG (April 15, 2026) ───
+  {id:"r1-01",name:"Chef's Mise en Place Kits",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"JTBD (#4)",score:4.0,stage:2,effort:0.3,impact:0.7,novelty:0.5,premium:0.8,
+   image:"images/01-mise-en-place.png",
+   pitch:"Pre-portioned, restaurant-quality ingredient kits for home cooks who want the mise en place experience without the prep work. Each kit contains precisely measured aromatics, sauces, and finishing elements for one dish. The insight: home cooks don't lack recipes — they lack prep. Mise en place is what separates a restaurant kitchen from a home kitchen, and nobody has productized it.",
+   rtbs:["$12B meal kit market but 70% churn — consumers want the convenience without the subscription lock-in","Mise en place is the #1 technique taught in culinary school but zero consumer products deliver it","Single-use portioning eliminates food waste from buying full-size ingredients for one recipe","Co-pack with existing sauce/spice manufacturers — no new production capability needed"],
+   competitive:"Blue Apron/HelloFresh ($8-12/kit): Full meal kits with protein. Over-engineered, high churn. UrbanPlates/Tastefully Simple: Sauce-only kits. No mise en place positioning. The Gap: Nobody sells the prep experience as a standalone product.",
+   ops:"Simple",opsDetail:"Standard co-pack with portioning. Ambient shelf life. Retail-ready packaging.",
+   research:"Method: JTBD (#4) — The job: 'I want to cook like a chef without spending 45 minutes on prep.' Mise en place kits eliminate the highest-friction step in home cooking."},
+
+  {id:"r1-02",name:"Lunchbox Upgrade Sauces",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"JTBD (#4)",score:3.9,stage:2,effort:0.2,impact:0.6,novelty:0.35,premium:0.55,
+   image:"images/02-lunchbox-sauces.png",
+   pitch:"Single-serve, kid-safe dipping sauces in squeeze pods designed for school lunchboxes. Ranch, honey mustard, teriyaki — but clean label, no artificial colors, and in a format that doesn't leak. The job: parents packing lunches want their kids to actually eat the food. A good dipping sauce makes carrots, chicken strips, and wraps disappear.",
+   rtbs:["School lunch is a $14B market. Dipping sauces are the #1 requested lunchbox addition by kids","Single-serve sauce packets exist but they're restaurant-grade (messy, not kid-friendly, not clean label)","Clean label is table stakes for school lunch — no artificial colors/flavors is a hard requirement","Squeeze pod format eliminates the leak problem that kills every lunchbox sauce attempt"],
+   competitive:"Hidden Valley Ranch packets ($3.99/8ct): Restaurant-style, not kid-formatted. Chick-fil-A sauce packs: beloved but not retail. The Gap: Clean-label, leak-proof, kid-sized sauce pods for lunchboxes.",
+   ops:"Simple",opsDetail:"Standard sauce co-pack with single-serve portioning. Squeeze pod packaging readily available.",
+   research:"Method: JTBD (#4) — The job: 'I need my kid to eat the lunch I packed.' Dipping sauce is the unlock."},
+
+  {id:"r1-03",name:"Dinner Party in a Box",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"JTBD (#4)",score:3.8,stage:2,effort:0.5,impact:0.65,novelty:0.6,premium:0.85,
+   image:"images/03-dinner-party.png",
+   pitch:"A curated box containing everything needed to host a dinner party for 6-8 people — appetizer spreads, cocktail garnishes, table cards, playlist QR code, and conversation starter cards. Not a meal kit. A hosting kit. The job: people want to host but hosting is stressful. This eliminates the planning, shopping, and coordination anxiety.",
+   rtbs:["Entertaining at home is up 23% post-COVID but 'hosting anxiety' searches are up 180%","$18B party supplies market has zero premium, food-adjacent options","Gifting angle: 'dinner party in a box' is a $40-60 gift that nobody else is offering","Seasonal rotation creates repeat purchase behavior (holiday edition, summer edition, etc.)"],
+   competitive:"Boarderie ($50-100): Charcuterie boards shipped. Food only, no hosting experience. Cratejoy subscription boxes: Generic themes, not dinner-party specific. The Gap: Complete hosting experience in a box.",
+   ops:"Moderate",opsDetail:"Multi-component assembly. Requires food + non-food items in one box. Cold chain for perishable components.",
+   research:"Method: JTBD (#4) — The job: 'I want to be a great host without the stress of planning everything.'"},
+
+  {id:"r1-04",name:"Functional Finishing Oils",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"JTBD (#4)",score:3.9,stage:2,effort:0.3,impact:0.65,novelty:0.55,premium:0.85,
+   image:"images/04-finishing-oils.png",
+   pitch:"Premium finishing oils infused with functional ingredients — turmeric-black pepper olive oil, garlic-rosemary MCT oil, chili-ginger sesame oil. Positioned as the last ingredient you add to any dish. Not cooking oils. Finishing oils. The distinction matters: finishing oils are used in small quantities for maximum flavor impact, which justifies premium pricing.",
+   rtbs:["Finishing oil category growing 18% annually. Truffle oil proved the format at $15-20/bottle","Functional food market is $275B but almost entirely supplements and beverages — food-format delivery is underserved","MCT oil is a $1.2B market but only sold as a supplement. Nobody has made it a culinary product","Small-bottle format (100-200ml) supports premium pricing and repeat purchase"],
+   competitive:"Brightland ($37/bottle): Premium olive oil, beautiful design. No functional angle. Graza ($15/bottle): Squeeze-bottle olive oil. Great format, no function. The Gap: Finishing oil + functional ingredient stack.",
+   ops:"Simple",opsDetail:"Oil infusion is standard food manufacturing. Small-batch bottling. Ambient shelf life 12+ months.",
+   research:"Method: JTBD (#4) — The job: 'I want to make any dish taste restaurant-quality with one ingredient.'"},
+
+  {id:"r1-05",name:"Broth Bar Concentrates",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Blue Ocean (#9)",score:4.5,stage:2,effort:0.35,impact:0.85,novelty:0.7,premium:0.75,
+   image:"images/05-broth-bar.png",
+   pitch:"Concentrated broth pods that dissolve in hot water — like a Nespresso capsule for bone broth. Each pod makes one perfect cup. Flavors: Classic Bone, Mushroom Umami, Turmeric Ginger, Spicy Miso. The Blue Ocean insight: eliminate the boiling, the cartons, the refrigeration. Reduce the sodium. Raise the flavor concentration. Create 'broth as a beverage ritual' — not broth as an ingredient.",
+   rtbs:["Bone broth market $3.4B and growing 8% CAGR. But the format hasn't changed — still sold in cartons and jars","Nespresso proved that concentrating a beverage into a pod and adding ritual transforms a commodity into a premium product","Single-serve eliminates waste — 67% of consumers report throwing away unused broth from cartons","Concentrate format is 90% lighter than liquid broth — massive shipping cost advantage"],
+   competitive:"Kettle & Fire ($7.99/carton): Market leader. Liquid format, refrigerated. Expensive to ship. BrothMasters ($12.99/jar): Concentrate but jar format, not single-serve. The Gap: Single-serve concentrate pod. Nespresso for broth.",
+   ops:"Moderate",opsDetail:"Concentration process requires specialized equipment. Shelf-stable pod packaging. No cold chain.",
+   research:"Method: Blue Ocean (#9) — Eliminate/Reduce/Raise/Create grid applied to bone broth. Eliminated: boiling time, carton waste, refrigeration. Created: beverage ritual, single-serve precision."},
+
+  {id:"r1-06",name:"Sauce Flights",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Analogous (#15)",score:3.8,stage:2,effort:0.3,impact:0.55,novelty:0.6,premium:0.75,
+   image:"images/06-sauce-flights.png",
+   pitch:"Tasting flights of 4 mini sauces (2oz each), curated by cuisine or occasion — borrowed from wine/beer flight culture. A 'Hot Sauce Flight' with 4 ascending heat levels. A 'Global BBQ Flight' with Korean, Argentinian, Jamaican, Carolina styles. The format transforms sauce buying from a single-bottle commitment into an exploration experience.",
+   rtbs:["Craft hot sauce market growing 12% annually — consumers want variety but hate committing to a full bottle","Wine/beer flight format is proven — it reduces purchase hesitation and increases total spend per visit","Gift market: sauce flights are a natural $15-20 gift item. Hot sauce is the #2 food gift after chocolate","Mini format creates trial behavior — consumers find their favorite, then buy full-size"],
+   competitive:"Hot Ones ($12-15/bottle): Single bottles, brand-driven. Heatonist ($40/3-pack): Gift packs but full-size bottles. The Gap: True tasting-flight format with mini portions designed for exploration.",
+   ops:"Simple",opsDetail:"Standard sauce co-pack with mini-bottle filling. Gift-box assembly. Ambient shelf life.",
+   research:"Method: Analogous Inspiration (#15) — Borrowed from wine/beer tasting flight culture. The flight format reduces commitment anxiety and increases discovery."},
+
+  {id:"r1-07",name:"Chef's Table Seasonings",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Analogous (#15)",score:3.7,stage:2,effort:0.25,impact:0.55,novelty:0.45,premium:0.8,
+   image:"images/07-chefs-table.png",
+   pitch:"Premium seasoning blends developed with named chefs, sold in vinyl-record-style collectible tins. Borrowed from the vinyl culture of collecting, displaying, and curating. Each 'album' is a chef's signature blend with liner notes about the flavor story. Limited runs create collectibility. The format makes spice rack curation feel like building a record collection.",
+   rtbs:["Premium seasoning market $8.4B, growing 9% CAGR. Consumers trading up from commodity spices","Collectible food packaging drives 2.3x repeat purchase rate vs standard packaging (Packaging Digest 2024)","Chef-branded products command 40-60% price premium over private label","Vinyl record sales hit $1.2B in 2024 — proof that physical collectibility is a durable consumer behavior"],
+   competitive:"Diaspora Co ($12-18/jar): Premium single-origin spices. Beautiful design but not collectible format. Fly By Jing ($15/jar): Chef-branded, cult following. Single product, not collection. The Gap: Collectible series format with named-chef collaboration.",
+   ops:"Simple",opsDetail:"Standard seasoning blend + custom tin packaging. Limited runs create scarcity without supply chain complexity.",
+   research:"Method: Analogous Inspiration (#15) — Borrowed from vinyl record collecting culture. Physical collectibility + named artist (chef) collaboration."},
+
+  {id:"r1-08",name:"Butter Bricks",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"SCAMPER (#21)",score:4.0,stage:2,effort:0.3,impact:0.7,novelty:0.65,premium:0.7,
+   image:"images/08-butter-bricks.png",
+   pitch:"Compound butter in pre-scored brick format — like a chocolate bar you snap into portions. Each segment is one tablespoon, pre-measured. Flavors: Garlic Herb, Miso Brown Butter, Everything Bagel, Honey Truffle. SCAMPER's 'Modify': change the form factor of butter from a stick to a snappable brick. Eliminates the knife, the cutting board, and the guesswork of 'one tablespoon.'",
+   rtbs:["Compound butter market growing 15% annually — driven by restaurant-to-home trend","Pre-portioned format solves the #1 compound butter complaint: inconsistent portions","Chocolate bar format is universally understood — zero learning curve for the consumer","Premium compound butter commands $8-12/block vs $5 for plain butter — high margin"],
+   competitive:"Vermont Creamery ($6-8/log): Compound butter in log format. No portioning. Kerrygold ($5/block): Premium plain butter. No flavors. The Gap: Pre-scored, snappable, portioned compound butter.",
+   ops:"Simple",opsDetail:"Standard butter production with flavor incorporation. Custom mold for scored brick format. Refrigerated.",
+   research:"Method: SCAMPER (#21) — Modify: change butter's form factor from stick to snappable brick. The portioning IS the innovation."},
+
+  {id:"r1-09",name:"Freeze-Dried Meal Finishers",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"SCAMPER (#21)",score:3.8,stage:2,effort:0.4,impact:0.6,novelty:0.7,premium:0.7,
+   image:"images/09-freeze-dried.png",
+   pitch:"Freeze-dried garnish packets that you crush and sprinkle on any meal — micro herbs, citrus zest, edible flowers, crispy shallots. Restaurant-quality finishing in a shelf-stable packet. SCAMPER's 'Adapt': take the restaurant garnish station and adapt it for home kitchens. Fresh garnishes are perishable and wasteful. Freeze-dried versions last months and deliver 90% of the visual and flavor impact.",
+   rtbs:["Freeze-dried food market $78B by 2028. Fastest-growing preservation method in food","Restaurant garnishes are the #1 thing home cooks say they can't replicate (Bon Appétit survey 2024)","Shelf-stable format means zero waste — the biggest barrier to buying fresh herbs at home","Small-packet format ($3-5) is impulse-buy pricing with 80%+ gross margin"],
+   competitive:"Litehouse freeze-dried herbs ($3.99/jar): Commodity herbs, no garnish positioning. Burlap & Barrel ($10-15/jar): Premium single-origin spices. Not garnish format. The Gap: Curated garnish blends in crush-and-sprinkle format.",
+   ops:"Moderate",opsDetail:"Freeze-drying requires specialized equipment or freeze-dry co-packer. Packet portioning is standard.",
+   research:"Method: SCAMPER (#21) — Adapt: take restaurant garnish station and make it shelf-stable for home use."},
+
+  {id:"r1-10",name:"Inverted Condiments",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"SCAMPER (#21)",score:4.1,stage:2,effort:0.3,impact:0.75,novelty:0.7,premium:0.65,
+   image:"images/10-inverted-condiments.png",
+   pitch:"Take traditional condiments and flip the flavor ratio. Ketchup where tomato is the accent and roasted garlic is the base. Mustard where mustard seed is the accent and caramelized onion is the base. Mayo where egg is the accent and miso is the base. SCAMPER's 'Reverse': invert the primary/secondary flavor relationship. The result: familiar-enough condiments that taste completely different.",
+   rtbs:["Condiment market is $30B+ but product innovation has stalled — same flavors for decades","'Flavor inversion' is trending in restaurants (miso caramel, umami ketchup) but not productized for retail","Familiar format (squeeze bottle, same shelf) means zero behavior change required from the consumer","Premium condiments ($6-8/bottle) have 75%+ margins and are growing 3x faster than commodity"],
+   competitive:"Sir Kensington's ($5-6/bottle): Premium condiments but traditional flavor profiles. Fly By Jing ($15/jar): Novel flavors but unfamiliar format for mainstream buyers. The Gap: Familiar condiment format, inverted flavor ratios.",
+   ops:"Simple",opsDetail:"Standard condiment co-pack. Existing shelf set, existing packaging. The innovation is the recipe, not the production.",
+   research:"Method: SCAMPER (#21) — Reverse: flip the primary/secondary ingredient ratio in classic condiments."},
+
+  {id:"r1-11",name:"Bencharcuterie",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Mashup (#24)",score:4.2,stage:2,effort:0.4,impact:0.75,novelty:0.75,premium:0.7,
+   image:"images/11-bencharcuterie.png",
+   pitch:"A grab-and-go charcuterie board for one person — artisan meats, cheeses, crackers, cornichons, honey, and a branded wooden mini-board, all in one clear-top package. Mashup: charcuterie board experience + convenience store grab-and-go format. The insight: people love charcuterie but it's positioned as a group/hosting format. This is charcuterie for lunch, for the office, for one.",
+   rtbs:["Charcuterie searches up 300% since 2020 but single-serve charcuterie barely exists at retail","Lunchables proved the compartmentalized snack format at scale — this is the adult premium version","Clear-top packaging lets the product sell itself — visual merchandising in a grab-and-go case","$8-10 price point is impulse-accessible for premium deli shoppers"],
+   competitive:"Lunchables ($3-5): Kids version. Processed. Anti-premium. Columbus/Applegate snack packs ($5-6): Meat + cheese but no board, no crackers, no experience. The Gap: Premium, Instagram-worthy, complete charcuterie experience for one.",
+   ops:"Moderate",opsDetail:"Multi-component assembly. Refrigerated. Short shelf life (7-10 days). Need deli/bakery co-packer with compartmented packaging capability.",
+   research:"Method: Mashup (#24) — Charcuterie board experience × grab-and-go convenience format."},
+
+  {id:"r1-12",name:"Hype Drop Snacks",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Cultural Trend (#51)",score:3.9,stage:2,effort:0.5,impact:0.7,novelty:0.8,premium:0.65,
+   image:"images/12-hype-drop.png",
+   pitch:"Limited-edition snack drops released weekly, announced on social media, available for 7 days then gone. Streetwear's drop model applied to food. Each drop is a unique flavor/format combination that's designed for content first, consumption second. The scarcity drives urgency. The novelty drives shares. The format drives repeat visits.",
+   rtbs:["Supreme proved drop model drives 10-40x demand vs continuous availability","Food content on TikTok generates 40B+ views/month — the content opportunity is massive","FOMO purchasing accounts for 60% of impulse food buys among 18-34 (McKinsey 2025)","Small-batch production means low inventory risk — produce to demand, not to forecast"],
+   competitive:"Crumbl: Weekly cookie drops, $1B+ revenue. Proved the model for bakery. The Gap: Nobody doing weekly limited-edition snack drops across categories (not just cookies).",
+   ops:"Complex",opsDetail:"New recipe every week. Content production pipeline. Small-batch manufacturing with rapid turnaround.",
+   research:"Method: Cultural Trend Mining (#51) — Streetwear drop culture × food content virality × FOMO purchasing behavior."},
+
+  {id:"r1-13",name:"Solo Dining Portions",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Cultural Trend (#51)",score:3.7,stage:2,effort:0.3,impact:0.55,novelty:0.5,premium:0.5,
+   image:"images/13-solo-dining.png",
+   pitch:"Premium single-serve portions of foods traditionally sold in multi-serve formats — a single-serve lasagna, a one-person cheese fondue kit, a solo charcuterie tray. The cultural signal: 37% of Americans live alone (Census 2024) but the grocery store is designed for families. Solo dining is growing but the products haven't caught up.",
+   rtbs:["Single-person households are 37% of US households and growing — largest household type","68% of solo diners report 'food waste guilt' from buying multi-serve packages (FMI 2025)","Premium single-serve commands 2-3x per-unit premium over multi-serve — margin is excellent","Solo dining destigmatization is a macro cultural trend — 'table for one' is aspirational now, not sad"],
+   competitive:"Lean Cuisine/Healthy Choice ($3-5): Single-serve but processed, frozen, anti-premium. Trader Joe's single-serve: Better quality but limited selection. The Gap: Premium, restaurant-quality single-serve meals.",
+   ops:"Moderate",opsDetail:"Portion control is key. Need single-serve packaging across multiple food types. Refrigerated or frozen depending on item.",
+   research:"Method: Cultural Trend Mining (#51) — Solo dining culture + single-person household growth + food waste guilt."},
+
+  {id:"r1-14",name:"Finishing as a Category",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Category Design (#55)",score:3.6,stage:2,effort:0.7,impact:0.7,novelty:0.65,premium:0.8,
+   image:"images/14-finishing-category.png",
+   pitch:"Not a product — a retail category. 'Finishing' — everything you add to a dish in the last 30 seconds. Flaky salt, finishing oils, micro herbs, compound butters, specialty vinegars. Currently scattered across 6 different aisles. Create a dedicated 'Finishing' section in grocery that aggregates these products into one shoppable destination.",
+   rtbs:["Specialty food market $175B, growing 8% CAGR. 'Finishing' products already sell — they're just scattered","Category creation precedent: 'Plant-based' went from scattered to dedicated section in 5 years","Cross-merchandising increases basket size 23% vs single-aisle placement (IRI)","The brand that creates the category gets default shelf placement and defines the standards"],
+   competitive:"No dedicated 'Finishing' section exists in any US grocer. Products are scattered across condiments, oils, spices, and specialty aisles. The Gap: The entire category concept is the gap.",
+   ops:"Complex",opsDetail:"Requires retailer buy-in for dedicated shelf space. Need either a broad product line or partnerships. Merchandising standards must be established.",
+   research:"Method: Category Design (#55) — Create 'Finishing' as a grocery category. Don't compete in existing aisles — create a new destination."},
+
+  {id:"r1-15",name:"$30 Ketchup",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Premiumization (#56)",score:3.9,stage:2,effort:0.25,impact:0.6,novelty:0.55,premium:0.95,
+   image:"images/15-ketchup.png",
+   pitch:"Ultra-premium ketchup made with San Marzano tomatoes, aged balsamic, and Bourbon barrel smoked. Sold in a 200ml glass bottle for $30. This is the 'Pappy Van Winkle of ketchup' — a condiment so premium it becomes a conversation piece, a gift, and a status signal. The premiumization lens says: if olive oil and salt can be premium, why can't ketchup?",
+   rtbs:["Premium condiment segment growing 15% annually. Consumers proved willing to pay $15-20 for hot sauce, $37 for olive oil","Ketchup is the most consumed condiment in America — 97% household penetration. Zero premium options exist","$30 is in the gift/novelty price range — it doesn't need to be a weekly purchase to succeed","Story-driven ingredients (San Marzano, Bourbon barrel) create built-in marketing content"],
+   competitive:"Heinz ($3-4): Category default. Zero premium positioning. Sir Kensington's ($5-6): 'Better' ketchup but still mass market pricing. The Gap: Ultra-premium, gift-worthy, story-driven ketchup. $30 territory is completely unoccupied.",
+   ops:"Simple",opsDetail:"Standard ketchup production with premium ingredient sourcing. Glass bottle packaging. Small-batch to start.",
+   research:"Method: Premiumization Lens (#56) — If every other condiment has a $20-40 premium version, why doesn't ketchup?"},
+
+  {id:"r1-16",name:"Black Label Canned Goods",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Premiumization (#56)",score:3.8,stage:2,effort:0.35,impact:0.6,novelty:0.6,premium:0.85,
+   image:"images/16-black-label.png",
+   pitch:"Premium canned goods with all-black labels — black beans, black olives, blackberries — sold as a curated 'Black Label' collection with striking matte-black packaging. Premiumization through design: the product inside is genuinely premium (organic, single-origin, small-batch) but the black-label design system is what creates shelf standout and brand cohesion.",
+   rtbs:["Premium canned goods growing 12% annually as consumers rediscover pantry cooking","Black packaging drives 35% higher shelf attention in grocery (Packaging World eye-tracking study)","'Black label' is a universally understood premium signal (Johnnie Walker, Angus beef)","Platform brand: once established, any black food can join the collection — black rice, black garlic, black lentils"],
+   competitive:"Mutti ($4-5/can): Premium Italian tomatoes. Great product, traditional label. Jovial ($4-5/jar): Organic Italian pantry. The Gap: Design-led premium canned goods. Black as a brand identity.",
+   ops:"Simple",opsDetail:"Source premium ingredients, design labels, co-pack in standard cans. The brand design is the moat, not the manufacturing.",
+   research:"Method: Premiumization Lens (#56) — Premium through design system. Black-label visual identity creates instant shelf differentiation."},
+
+  {id:"r1-17",name:"Squeeze Tube Condiments",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Packaging (#58)",score:4.0,stage:2,effort:0.25,impact:0.65,novelty:0.5,premium:0.55,
+   image:"images/17-squeeze-tube.png",
+   pitch:"Premium condiments in artist-paint-tube format — squeeze tubes with a metal crimp at the bottom and a cap at the top. Harissa, pesto, romesco, gochujang. The tube format means zero waste (you can squeeze out every last drop), precise portioning, and a visual that looks nothing like anything else on the condiment shelf.",
+   rtbs:["Squeeze tubes reduce food waste by 85% vs jars (you can flatten and roll them like toothpaste)","Artist-paint-tube format is visually distinctive on shelf — zero competition for the visual space","Tube format is standard in European food (tomato paste, mustard, wasabi) but barely used in US","$5-7 price point at 70%+ margin. Tube packaging is cheaper than glass jars"],
+   competitive:"Amore ($4-5/tube): Tomato paste and anchovy paste in tubes. Commodity positioning. Mutti ($3/tube): Italian tomato paste tube. The Gap: Premium, curated condiments in tube format. Not paste — finished condiments.",
+   ops:"Simple",opsDetail:"Tube filling is standard food manufacturing. Metal crimp tubes available from multiple packaging suppliers.",
+   research:"Method: Packaging Innovation (#58) — Same condiment, radically different format. The tube IS the differentiation."},
+
+  {id:"r1-18",name:"Dissolvable Seasoning Sheets",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Packaging (#58)",score:3.7,stage:2,effort:0.5,impact:0.6,novelty:0.85,premium:0.65,
+   image:"images/18-dissolvable.png",
+   pitch:"Thin, dissolvable seasoning sheets — like Listerine breath strips but for food. Drop a sheet into soup, onto pasta, into a stir-fry. It dissolves and seasons perfectly. Zero mess, zero measuring, zero waste. The packaging innovation: seasoning as a flat, portable, precise-dose delivery system.",
+   rtbs:["Dissolvable film technology is proven in pharma and oral care — applying it to food is a format transfer","Zero-waste packaging trend: sheets produce no container waste","Portioning precision: each sheet is exactly one serving of seasoning","Portable format opens travel, camping, office lunch occasions that bottles/jars can't serve"],
+   competitive:"No dissolvable seasoning sheets exist at retail. Closest analog: bouillon cubes ($2-3/box) but those are for liquid only. The Gap: Dissolvable seasoning for any food format. Entirely new product form.",
+   ops:"Moderate",opsDetail:"Dissolvable film manufacturing requires specialized equipment. Food-grade film suppliers exist but MOQs may be high for initial runs.",
+   research:"Method: Packaging Innovation (#58) — Format transfer from pharma (dissolvable strips) to food (seasoning). The format IS the product innovation."},
+
+  {id:"r1-19",name:"$3 Chef Sauce",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Downmarket (#57)",score:4.3,stage:2,effort:0.2,impact:0.8,novelty:0.4,premium:0.3,
+   image:"images/19-chef-sauce.png",
+   pitch:"Restaurant-quality finishing sauces at $3/bottle — half the price of premium brands, double the quality of commodity. Beurre blanc, chimichurri, mole, romesco. The downmarket disruption: chef sauces currently live at $8-15/bottle in specialty stores. At $3, they move to the main condiment aisle and become impulse buys for everyone.",
+   rtbs:["Average premium sauce is $8-15/bottle. At $3, you undercut every specialty brand while still maintaining 60% gross margin","$3 is impulse-buy territory — no deliberation, no guilt, just grab and try","Mass distribution (Walmart, Kroger, Target) becomes possible at this price point — specialty stores are optional","Unit economics work: sauce costs $0.60-0.80 to produce at scale. $3 retail is highly profitable"],
+   competitive:"Stonewall Kitchen ($8-12/bottle): Premium, gift-focused. Too expensive for weekly use. Rao's ($7-9/jar): Premium pasta sauce that proved mass market will pay more for quality. The Gap: Chef-quality sauces at mass-market price. Nobody occupies $3 premium sauce.",
+   ops:"Simple",opsDetail:"Standard sauce co-pack. The product is the recipe, not the manufacturing. Scale is the strategy.",
+   research:"Method: Downmarket Disruption (#57) — 'Good enough at half the price.' Chef sauces at $3 unlocks mass market adoption."},
+
+  {id:"r1-20",name:"Window Jar Pantry Line",category:"Premium CPG",run:"Run 1 — CPG",date:"2026-04-15",method:"Packaging (#58)",score:3.7,stage:2,effort:0.35,impact:0.55,novelty:0.55,premium:0.65,
+   image:"images/20-window-jar.png",
+   pitch:"Pantry staples in jars with a clear window cut into the label — so you can see the actual product inside without opening the lid. Rice, beans, granola, spice blends. The window says 'nothing to hide.' In a world of opaque packaging and misleading food photography, literal transparency is a trust signal. The label design frames the window like a viewport into quality.",
+   rtbs:["67% of consumers say visible product through packaging increases purchase likelihood (Packaging World 2025)","'Clean label' consumers rank transparency as #1 purchase driver — literal transparency amplifies this","Window-label format is standard in bakery but barely used in pantry staples","Platform play: one packaging system for an entire pantry line creates brand recognition"],
+   competitive:"Bob's Red Mill ($4-5/bag): Clean-label pantry staples but opaque packaging. 365 by Whole Foods ($3-4): Private label, no design identity. The Gap: Design-led transparency in pantry packaging.",
+   ops:"Simple",opsDetail:"Standard jar filling with custom label die-cut. Window-label printing is widely available.",
+   research:"Method: Packaging Innovation (#58) — Literal transparency as a trust signal. The window in the label IS the brand."},
+
+  // ─── RUN 2: Performance Bakery & Snacks (April 15, 2026 Run 2) ───
+  {id:"r2-01",name:"Creatine Blondies",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"JTBD (#4)",score:4.3,stage:2,effort:0.3,impact:0.8,novelty:0.65,premium:0.6,
+   image:"images-run2/01-creatine-blondies.png",
+   pitch:"Chewy, golden-brown blondie bars loaded with 5g creatine monohydrate per serving — sold in the bakery grab-and-go case, not the supplement aisle. Creatine is flavorless, heat-stable, and water-soluble — it was built for baking. The fact that nobody has put it in fresh bakery items yet is a timing gap, not a technical barrier. TikTok has already normalized creatine for non-lifters (cognitive benefits, hydration, longevity). The format just hasn't caught up.",
+   rtbs:["Global creatine market growing 12.1% CAGR, projected $590M by 2028. No major bakery brand has entered.","'Creatine in food' TikTok searches up 340% YoY. Mainstream wellness consumers now take creatine.","Creatine monohydrate is cheap ($8-12/kg wholesale), shelf-stable, requires no special handling.","Zero branded creatine bakery products in market. Supplement brands haven't moved into food formats."],
+   competitive:"Bare Performance Nutrition: Creatine gummies ($30/60ct) — supplement format, not food. Create Creatine: Creatine drinks ($3-4/can). Beverage, not bakery. The Gap: No one has put creatine into a fresh-baked, in-store bakery item.",
+   ops:"Simple",opsDetail:"Standard bakery co-pack. Creatine is a dry powder — mix into batter. No equipment changes. Ambient temp, no cold chain.",
+   research:"Method: JTBD (#4) — The job: 'I want my daily creatine dose without another supplement ritual.'"},
+
+  {id:"r2-02",name:"Clean-Label Cookie Dough Bites",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"JTBD (#4)",score:4.2,stage:2,effort:0.2,impact:0.75,novelty:0.5,premium:0.6,
+   image:"images-run2/02-cookie-dough-bites.png",
+   pitch:"Bite-size raw cookie dough balls with 10g protein each, heat-treated flour, no artificial ingredients. Sold in the bakery case in a clear cup. The cookie dough snack category is growing fast (Dō, Deux) but it lives in the freezer aisle with processed positioning. Moving it to the fresh bakery case with a clean label and protein changes the perception entirely.",
+   rtbs:["Cookie dough snack market grew 28% in 2024. Deux raised $10M Series A on clean-label positioning.","73% of consumers say 'clean label' is important when buying baked goods (Innova 2025).","Heat-treated flour eliminates food safety concern. Protein via whey isolate. 14-day shelf life.","Deux and Dō are frozen/shipped. Nobody is doing fresh, bakery-case cookie dough bites with protein."],
+   competitive:"Deux ($6-8/jar): Frozen, DTC-first. Viral but frozen = friction. Dō ($7-9/cup): NYC-based, retail growing. No protein. Lenny & Larry's ($2.99): Packaged, processed. The Gap: Fresh bakery case, clean label, protein-fortified, bite-size.",
+   ops:"Simple",opsDetail:"Mix and portion. No baking required. Heat-treated flour from Ardent Mills. Refrigerated (35-40°F), 14-day shelf life.",
+   research:"Method: JTBD (#4) — The job: 'I want to feel like I'm treating myself without derailing my nutrition goals.'"},
+
+  {id:"r2-03",name:"Post-Workout Banana Bread",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"JTBD (#4)",score:4.0,stage:2,effort:0.25,impact:0.65,novelty:0.45,premium:0.55,
+   image:"images-run2/03-protein-banana-bread.png",
+   pitch:"Fresh-baked banana bread with 25g protein per slice, sold in individual kraft-wrapped slices. The #1 comfort baked good in America positioned as recovery food. The protein comes from whey isolate and Greek yogurt baked into the batter, which actually improves moisture and texture.",
+   rtbs:["'Protein banana bread' searches up 180% since 2023. Banana bread was #1 searched recipe during COVID.","Post-workout nutrition is a $3.4B category. Consumers want whole-food recovery options.","Standard bakery ingredients + whey isolate. One of the simplest baked goods to produce at scale.","Kodiak makes frozen protein banana bread mix but nobody sells fresh grab-and-go protein banana bread slices."],
+   competitive:"Kodiak Cakes ($5.99): Frozen mix, make-at-home. Simple Mills ($5.49): Clean-label mix, no protein. The Gap: Fresh-baked, single-serve, protein-fortified banana bread in the bakery case.",
+   ops:"Simple",opsDetail:"Standard banana bread recipe with whey isolate substitution. 5-7 day shelf life. Individual kraft wrap.",
+   research:"Method: JTBD (#4) — The job: 'I want post-workout nutrition that feels like real food, not a supplement.'"},
+
+  {id:"r2-04",name:"The Anti-Protein Bar",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Blue Ocean (#9)",score:4.4,stage:2,effort:0.2,impact:0.85,novelty:0.7,premium:0.6,
+   image:"images-run2/04-anti-protein-bar.png",
+   pitch:"A fresh-baked protein cookie positioned explicitly against the processed protein bar aisle. The name says it: NOT A BAR. Eliminate the wrapper, preservatives, chalky texture. Raise the taste and freshness. Create 'bakery as performance fuel.' The protein bar aisle is $5.6B where every brand competes on the same axis. Nobody is attacking from the fresh bakery direction.",
+   rtbs:["U.S. protein bar market $5.6B but growth slowing to 4%. 47% say bars taste too processed (Mintel 2025).","62% of protein bar buyers would prefer a fresh alternative if one existed (Hartman Group).","Contrarian positioning ('NOT A BAR') is inherently viral and memeable.","It's a cookie. Any bakery can make it. The innovation is positioning, not ingredients."],
+   competitive:"Quest ($2.50-3): Market leader, processed. RXBAR ($2.50-3): Clean label but still a wrapped bar. Lenny & Larry's ($2.99): Closer to bakery but packaged. The Gap: Fresh, bakery-case, anti-bar positioning.",
+   ops:"Simple",opsDetail:"Standard cookie + whey protein. 5-7 day shelf life. Freshness is the feature.",
+   research:"Method: Blue Ocean (#9) — Eliminate/Reduce/Raise/Create applied to protein bars. Fresh bakery inverts every trade-off."},
+
+  {id:"r2-05",name:"Creatine Croissants",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Blue Ocean (#9)",score:4.1,stage:2,effort:0.5,impact:0.75,novelty:0.75,premium:0.8,
+   image:"images-run2/05-creatine-croissants.png",
+   pitch:"A flaky, butter-forward croissant with 3g creatine monohydrate baked in. The most indulgent bakery format meets the most talked-about supplement ingredient. Creatine is tasteless — adding it doesn't change the experience. It just adds a reason to choose this croissant over any other.",
+   rtbs:["Premium croissant segment growing 15% annually. Artisan items outperform standard bakery 3:1 on margin.","'Functional indulgence' is #2 food trend for 2026 (Whole Foods trend report).","Creatine is heat-stable up to 300°F. Internal croissant temp stays below degradation point.","Nobody has put creatine in a croissant. Period."],
+   competitive:"La Boulange/Panera ($3-4): Premium croissants, no function. Trader Joe's ($4.49/4ct): Clean label, no performance angle. The Gap: Functional croissant doesn't exist as a concept.",
+   ops:"Moderate",opsDetail:"Laminated dough is more complex. Needs testing to confirm no impact on lamination quality. Frozen par-bake extends shelf life.",
+   research:"Method: Blue Ocean (#9) — Create quadrant: 'functional croissant' doesn't exist. Maximum contrast = maximum talk value."},
+
+  {id:"r2-06",name:"The Crumbl Model for Protein",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Analogous (#15)",score:4.5,stage:2,effort:0.55,impact:0.9,novelty:0.65,premium:0.65,
+   image:"images-run2/06-crumbl-protein-cookies.png",
+   pitch:"Weekly rotating protein cookie flavors with limited-edition drops, social-first marketing, and a 'Weekly Drop' box format. Borrow Crumbl's proven hype model and apply it to functional protein cookies. Crumbl did $1B+ with zero functional differentiation — imagine that energy applied to a product that actually gives the consumer something beyond a sugar crash.",
+   rtbs:["Crumbl did $1B+ revenue in 2024 with 900+ locations. Proves weekly-rotating bakery model at scale.","68% of Crumbl customers discover new flavors via social media. The model is inherently viral.","Protein cookie searches up 95% YoY. Consumers want permission to eat cookies — protein provides it.","Thick cookies cost $0.80-1.20 to produce, sell for $4-5. 75%+ gross margin even with protein."],
+   competitive:"Crumbl ($4-5/cookie): $1B+ revenue, zero functional positioning. Lenny & Larry's ($2.99): Protein but no rotation, no hype. Quest ($2.50): Anti-fresh, anti-hype. The Gap: Weekly-drop hype model + fresh bakery + protein.",
+   ops:"Moderate",opsDetail:"New recipes weekly. Protein baking R&D for each flavor. Fresh = short shelf life. Weekly content production stream.",
+   research:"Method: Analogous Inspiration (#15) — Crumbl's hype model + supplement industry flavor rotation. Cross-pollination."},
+
+  {id:"r2-07",name:"Builder's Dozen",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Analogous (#15)",score:3.9,stage:2,effort:0.25,impact:0.6,novelty:0.5,premium:0.55,
+   image:"images-run2/07-builders-dozen.png",
+   pitch:"13-pack of mini protein muffins in a black-and-gold box branded for the gym crowd. 'Builder's Dozen' — a play on 'baker's dozen' that immediately signals who this product is for. Each mini muffin delivers 8g protein. The name does the positioning work.",
+   rtbs:["Protein muffin searches up 120%. Mini muffin format growing 2x faster than standard (IRI).","'Builder's Dozen' is instantly memeable and shareable. Name-as-marketing.","13 mini muffins at $7.99-9.99/box = premium vs standard 6-packs at $3.99.","Standard mini muffin production with whey protein. Any bakery co-packer can produce."],
+   competitive:"Kodiak Cakes Muffins ($4.99/4ct): Protein muffins, frozen, generic. Costco Protein Muffins ($9.99/6ct): Massive, no brand personality. The Gap: Mini-format, gym-branded, premium-packaged protein muffin.",
+   ops:"Simple",opsDetail:"Standard mini muffin production. Custom branded box is the key investment.",
+   research:"Method: Analogous Inspiration (#15) — Bodybuilding culture naming + classic baker's dozen format. The name IS the product."},
+
+  {id:"r2-08",name:"Inside-Out Cinnamon Roll",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"SCAMPER (#21)",score:4.1,stage:2,effort:0.45,impact:0.75,novelty:0.75,premium:0.65,
+   image:"images-run2/08-inside-out-cinnamon-roll.png",
+   pitch:"Protein-enriched dough on the outside, clean-label cream cheese frosting core on the inside. Reverse the ratio: more filling, less bread. 15g protein. The cross-section is Instagram content. Visually distinctive and functionally superior.",
+   rtbs:["Cinnamon rolls are a $2.1B segment. Pillsbury alone sells $400M+ annually.","Cross-section photography of filled pastries gets 3-5x engagement on Instagram.","'Inside-out' formats trending across food. Consumers love the reveal moment.","Filled dough products are standard in bakery production. The format is novel; the manufacturing is not."],
+   competitive:"Cinnabon ($5-7): Premium, traditional format. Pillsbury ($3.99/5ct): Mass market, zero innovation in 30 years. The Gap: Inside-out format + protein. Two white spaces stacked.",
+   ops:"Moderate",opsDetail:"Filled dough needs injector/depositor equipment. Protein dough needs testing for elasticity. Cream cheese filling = refrigerated.",
+   research:"Method: SCAMPER (#21) — Reverse: flip dough-outside/frosting-outside. Adapt: make the dough the protein carrier."},
+
+  {id:"r2-09",name:"Creatine Sugar Cookies",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"SCAMPER (#21)",score:4.0,stage:2,effort:0.15,impact:0.6,novelty:0.55,premium:0.45,
+   image:"images-run2/09-creatine-sugar-cookies.png",
+   pitch:"Classic iced sugar cookies with creatine blended into the royal icing. Zero taste difference. The creatine is in the frosting — completely undetectable. SCAMPER's 'Substitute' at its simplest: swap regular icing for creatine icing. Same cookie. Better cookie.",
+   rtbs:["Creatine is water-soluble, dissolves perfectly in royal icing. No taste, no texture change.","Sugar cookies are #2 cookie format by volume. Massive existing demand.","Can be tested in 48 hours. Buy creatine, mix into icing, bake cookies. Done.","Functional icing is a concept that doesn't exist in any bakery format."],
+   competitive:"Grocery bakery sugar cookies ($3.99-5.99/dozen): Zero differentiation. Crumbl ($4-5 each): Premium but no functional angle. The Gap: Functional icing. First to market owns it.",
+   ops:"Simple",opsDetail:"Standard sugar cookie production. Only change: creatine added to icing mix. Zero equipment change. Zero process change.",
+   research:"Method: SCAMPER (#21) — Substitute: replace standard icing with creatine-enriched icing."},
+
+  {id:"r2-10",name:"Protein Pretzel Bites",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"SCAMPER (#21)",score:3.8,stage:2,effort:0.2,impact:0.6,novelty:0.4,premium:0.45,
+   image:"images-run2/10-protein-pretzel-bites.png",
+   pitch:"Soft pretzel bites with whey protein baked into the dough. 15g protein per bag. The #1 impulse bakery buy adapted for the protein-seeking consumer. Adding protein gives retroactive justification for the impulse: 'It's fine, it has 15 grams of protein.'",
+   rtbs:["Soft pretzel market $1.2B, growing 6% CAGR. Bite-size is fastest-growing segment.","Savory snacks outperform sweet in functional food 2:1 — protein pretzels serve the under-addressed savory side.","Whey protein actually improves soft pretzel texture — more chew, better moisture retention.","Bakery grab-and-go is the highest-margin, highest-impulse real estate in the store."],
+   competitive:"Auntie Anne's: Dominates soft pretzels but no grocery and no protein. SuperPretzel ($4.49): Grocery leader, frozen, standard. The Gap: Fresh, protein-enriched, bakery-case soft pretzel bites.",
+   ops:"Simple",opsDetail:"Standard soft pretzel production + whey in dough. Same-day to 2-day shelf life. Kraft paper bag packaging.",
+   research:"Method: SCAMPER (#21) — Adapt: take the most impulse-driven bakery format and add functional nutrition."},
+
+  {id:"r2-11",name:"Gym Rat Donut",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Mashup (#24)",score:4.3,stage:2,effort:0.25,impact:0.85,novelty:0.8,premium:0.55,
+   image:"images-run2/11-gym-rat-donut.png",
+   pitch:"Full-size glazed donut with 20g protein and 5g creatine. The most indulgent bakery format meets peak performance positioning. 'I earned this' is the entire brand ethos. The cognitive dissonance is the marketing — nobody can scroll past 'protein creatine donut' without stopping.",
+   rtbs:["U.S. donut market is $19B. Functional donuts are <0.1% of the category.","'Protein donut' content on TikTok: 50M+ cumulative views. The content makes itself.","Cake donuts are ideal for protein addition — dense, moist, forgiving of substitutions.","Post-workout is peak permission-to-indulge moment. 'Earned indulgence' is a powerful purchase motivator."],
+   competitive:"Dunkin' ($1.50-3): 12,000 locations, zero functional products. Krispy Kreme ($1.79-2.99): Same. The Dough Bar ($5.99): Online-only protein donuts, proves demand. The Gap: Fresh, in-store, protein+creatine donut with bold branding.",
+   ops:"Simple",opsDetail:"Cake donut base + whey + creatine. Standard donut production. Creatine can go in the glaze. Same-day shelf life.",
+   research:"Method: Mashup (#24) — Donut (maximum indulgence) × Protein+Creatine (maximum performance) = maximum contrast and talk value."},
+
+  {id:"r2-12",name:"Creatine Rice Krispie Treats",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Mashup (#24)",score:4.0,stage:2,effort:0.15,impact:0.6,novelty:0.6,premium:0.4,
+   image:"images-run2/12-creatine-rice-krispie.png",
+   pitch:"Classic rice cereal treats with creatine and collagen. Three ingredients you know (rice, marshmallow, butter) plus two that make it functional. Already a popular pre-workout snack among bodybuilders (fast carbs). Adding creatine makes it an actual functional product.",
+   rtbs:["Rice Krispie treats segment $800M+. Growing as nostalgia snacking trends upward.","Base recipe is 3 ingredients. Adding creatine+collagen = 5. Still cleaner than any protein bar.","No baking required. Can be produced at home kitchen scale for testing.","7-14 day ambient shelf life. Very forgiving."],
+   competitive:"Kellogg's Rice Krispie Treats ($4.49/8ct): Mass market, no functional. The Gap: Functional rice cereal treats with performance ingredients.",
+   ops:"Simple",opsDetail:"Melt marshmallow, add creatine+collagen, mix with cereal, press, cut. No ovens needed. Wax paper wrap.",
+   research:"Method: Mashup (#24) — Nostalgia snack (emotional) + creatine/collagen (functional). Contrast creates the story."},
+
+  {id:"r2-13",name:"TikTok Bakery Drops",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Cultural Trend (#51)",score:4.2,stage:2,effort:0.8,impact:0.85,novelty:0.85,premium:0.6,
+   image:"images-run2/13-tiktok-bakery-drops.png",
+   pitch:"Weekly limited-edition functional bakery items designed for virality first. Creatine gummy bear cookies one week, protein matcha scones the next. Each drop is a content event — 7 days, then gone forever. Streetwear's drop model applied to bakery with a functional twist.",
+   rtbs:["TikTok food content: 40B+ views/month. 'Food drops' growing search category.","FOMO purchasing: 60% of impulse food buys among 18-34 (McKinsey 2025).","Each drop generates organic content — customer unboxing, taste tests, ingredient education. CAC approaches zero.","Speed of innovation is the moat. Incumbents can't rotate flavors weekly."],
+   competitive:"Crumbl: Weekly drops but zero functional angle. Mr. Beast/Feastables: Hype-driven, chocolate bars not bakery. The Gap: Functional food drops. FOMO + education + function.",
+   ops:"Complex",opsDetail:"New recipe every week. Dedicated R&D or very flexible co-packer. Weekly content production cycle. Small-batch, rapid turnaround.",
+   research:"Method: Cultural Trend Mining (#51) — Streetwear drop culture + TikTok food content + functional ingredient education = content flywheel."},
+
+  {id:"r2-14",name:"\"That Girl\" Breakfast Cookies",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Cultural Trend (#51)",score:4.0,stage:2,effort:0.25,impact:0.6,novelty:0.55,premium:0.65,
+   image:"images-run2/14-that-girl-breakfast-cookies.png",
+   pitch:"Aesthetic, clean-label breakfast cookies with oats, protein, creatine, chia, and dark chocolate. Positioned for the 'That Girl' wellness consumer. The cookie has to be as photogenic as it is functional. The aesthetic IS the product.",
+   rtbs:["'That Girl' has 12B+ views on TikTok. Massive, commercially underserved cohort.","Breakfast cookie market growing 18% annually as consumers reject traditional cereal.","Every ingredient is 'wellness-coded' — oats, chia, protein, creatine.","Matte pastel packaging signals premium wellness without trying too hard."],
+   competitive:"Partake ($5.99/box): Clean-label, allergy-friendly. Not breakfast. Kakookies ($3.50/cookie): Oat-based but not aesthetic or protein-focused. The Gap: No breakfast cookie brand owns the 'That Girl' aesthetic.",
+   ops:"Simple",opsDetail:"Oat-based cookie with protein and chia. Standard bakery. Brand packaging is the key investment. DTC-first, Whole Foods/Erewhon tier retail.",
+   research:"Method: Cultural Trend Mining (#51) — 'That Girl' aesthetic is the defining wellness consumer identity of 2024-26."},
+
+  {id:"r2-15",name:"$8 Heritage Protein Cookie",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Premiumization (#56)",score:4.1,stage:2,effort:0.25,impact:0.75,novelty:0.5,premium:0.9,
+   image:"images-run2/15-heritage-protein-cookie.png",
+   pitch:"A single, large artisan cookie made with European butter, single-origin vanilla, grass-fed whey protein, and named-estate dark chocolate. $8 in gold foil. This isn't health food — it's luxury that happens to deliver 20g protein. Premiumization: protein as a premium ingredient when sourced correctly.",
+   rtbs:["Premium single-serve cookies ($5-12) are fastest-growing bakery segment. Levain expanded 1 to 12 locations in 3 years.","$8 retail on $1.50-2.00 COGS = 75%+ gross margin even with premium ingredients.","'Affordable luxury' food purchases up 23% since 2023. $8 cookie < cocktail.","Each ingredient is a talking point. The story sells the cookie."],
+   competitive:"Levain ($5-6): Premium, NYC-famous. No protein. Chip City ($4-5): Premium, rotating. No protein. Quest ($2.50): Protein but anti-premium. The Gap: Artisan/luxury + functional protein. Two markets waiting to collide.",
+   ops:"Simple",opsDetail:"Standard cookie with premium ingredients. Gold foil wrap. Specialty retail (Erewhon, Whole Foods) and DTC.",
+   research:"Method: Premiumization Lens (#56) — Protein is not a health add-on — it's a premium ingredient when sourced correctly."},
+
+  {id:"r2-16",name:"Creatine Madeleines",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Premiumization (#56)",score:3.8,stage:2,effort:0.45,impact:0.6,novelty:0.65,premium:0.9,
+   image:"images-run2/16-creatine-madeleines.png",
+   pitch:"French madeleines with creatine, sold in elegant boxes of 6 for $12. The gift-box play: madeleines are the most giftable bakery item. Adding creatine gives the gift a narrative. Positioned for high-income wellness consumers via cognitive benefit framing, not gym culture.",
+   rtbs:["Luxury bakery gifts is a $1.8B category. Madeleines are #1 food gift on Goldbelly.","Creatine cognitive research (Avgerinos et al. 2018): 5g/day improves short-term memory. Opens nootropic audience.","Gift purchases have 2x lower price sensitivity than self-purchases. $12/box is impulse for gifting.","Shell-shaped madeleines are inherently photogenic. Most Instagram-friendly pastry format."],
+   competitive:"Donsuemor ($8.99/box): Leading US madeleine brand, traditional. Ladurée: Luxury French, no functional angle. The Gap: Functional premium pastry for gifting.",
+   ops:"Moderate",opsDetail:"Madeleine production requires specific molds. Gift box is key cost center. 5-7 day shelf life limits to DTC or local.",
+   research:"Method: Premiumization Lens (#56) — Reframe creatine from gym to cognitive wellness. Place inside most elegant bakery format."},
+
+  {id:"r2-17",name:"$2 Protein Cookie",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Downmarket (#57)",score:4.3,stage:2,effort:0.15,impact:0.85,novelty:0.3,premium:0.25,
+   image:"images-run2/17-two-dollar-protein-cookie.png",
+   pitch:"No-frills, 20g protein, clean-label cookie sold individually for $2. No luxury positioning, no heritage story. Just a big, good cookie with protein at a price that makes Quest look like a ripoff. The $2 price point puts it in impulse-buy range for everyone — not just macro-tracking gym crowd.",
+   rtbs:["Average protein cookie retails $3.50-5.00. A $2 fresh-baked option would be the only one under $2.50.","Fresh-baked cookie costs $0.40-0.60 to produce with whey. $2 retail = 60-70% gross margin. Still profitable.","78% say price is #1 barrier to functional foods (FMI 2025). Remove the barrier, unlock mass adoption.","At $2, bakery buyers stock it because it creates incremental sales, not trade-downs."],
+   competitive:"Quest ($2.50-3): Packaged, processed, everywhere. Lenny & Larry's ($2.99): 16g protein, wrapped. The Gap: Fresh-baked under $2.50. Entire market overpriced.",
+   ops:"Simple",opsDetail:"Standard cookie + whey. Simplest recipe possible to hit cost target. Minimal packaging. Scale is the strategy.",
+   research:"Method: Downmarket Disruption (#57) — 'Good enough at half the price.' Mass market adoption."},
+
+  {id:"r2-18",name:"Creatine Cookie Tubes",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Packaging (#58)",score:4.0,stage:2,effort:0.45,impact:0.65,novelty:0.75,premium:0.55,
+   image:"images-run2/18-creatine-cookie-tubes.png",
+   pitch:"Five creatine cookies stacked in a clear cylindrical tube. Each cookie: 1g creatine. One tube/week = daily dose. The packaging makes dosing intuitive — you can see how many are left, and 'one cookie a day' is the simplest supplement protocol ever designed.",
+   rtbs:["#1 reason people stop taking creatine is forgetting. A cookie tube by the coffee maker = visible daily reminder.","1g/cookie × 5/week = 5g/day (recommended dose). The format IS the dosing protocol.","Tube format is visually distinctive on any shelf. Doesn't look like anything else.","Weekly tube = natural subscription cadence. DTC subscription model built into the format."],
+   competitive:"No tube-format functional cookies exist. Pringles proved tube format creates distinctive shelf presence. The Gap: First to market with tube-format functional cookies owns the visual space.",
+   ops:"Moderate",opsDetail:"Custom tube sourcing. Cookies must be uniform diameter for stacking. Food-safe tube lining required. DTC-friendly format.",
+   research:"Method: Packaging Innovation (#58) — The packaging IS the product innovation. Tube makes dosing, visibility, and differentiation happen simultaneously."},
+
+  {id:"r2-19",name:"Clear-Window Protein Boxes",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Packaging (#58)",score:3.9,stage:2,effort:0.45,impact:0.6,novelty:0.5,premium:0.5,
+   image:"images-run2/19-clear-window-protein-boxes.png",
+   pitch:"Bakery items in clear-top boxes with prominent macro labels. The clear window says 'nothing to hide.' This is a packaging system, not a single product — any functional bakery item can go in. Consistent format becomes instantly recognizable on any bakery shelf.",
+   rtbs:["67% say visible product through packaging increases purchase likelihood (Packaging World 2025).","31% of Americans track macros occasionally (IFIC 2025). Front-of-pack macros save them time.","One packaging system for multiple products = brand scalability without product-line proliferation.","RXBAR proved front-of-pack ingredient transparency drives purchase."],
+   competitive:"Standard bakery packaging: opaque, no macros, no differentiation. The Gap: Packaging system built around visible product + macro transparency.",
+   ops:"Moderate",opsDetail:"Custom clear-top box design. Food-safe PET or PLA windows. MOQs 5,000-10,000. Each variant needs its own macro label.",
+   research:"Method: Packaging Innovation (#58) — Literal transparency + macro transparency = maximum trust."},
+
+  {id:"r2-20",name:"Performance Bakery Endcap",category:"Performance Bakery",run:"Run 2 — Bakery",date:"2026-04-15",method:"Category Design (#55)",score:4.2,stage:2,effort:0.8,impact:0.9,novelty:0.7,premium:0.6,
+   image:"images-run2/20-performance-bakery-endcap.png",
+   pitch:"Not a product — a category. Dedicate a section of in-store bakery to functional baked goods under 'Performance Bakery' banner. Branded signage, macro labels on every shelf tag. The retailer who creates it first gets credit for innovation. The brand that supplies it gets default distribution.",
+   rtbs:["Grocers are desperate for bakery innovation. In-store bakery is a differentiator vs Amazon.","'Plant-based' went from scattered to dedicated grocery section in 5 years. Same playbook.","41% of shoppers visit bakery on every trip (FMI 2025). Dedicated functional section captures new occasion.","The endcap can house 10-20 SKUs. Own the signage and merchandising → control the shelf."],
+   competitive:"No 'Performance Bakery' section exists in any US grocer. Protein bar aisle is closest analog but it's processed, packaged, separate from bakery. The Gap: Entire concept is the gap. First mover defines the category.",
+   ops:"Complex",opsDetail:"Requires convincing bakery category buyers. Need 10-20 SKUs. Custom signage, shelf tags, POS materials. Upfront retail branding investment.",
+   research:"Method: Category Design (#55) — Create 'Performance Bakery' as a grocery category. Don't compete — create a new section that bridges bakery and protein."},
+
+  // ─── NATIONAL PIPE INNOVATION WORKSHOP (April 7, 2026) ───
+  {id:"np-01",name:"Resin Per Unit, Not Per Pound",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Blue Ocean (#9)",score:0,stage:1,effort:0.3,impact:0.9,novelty:0.7,premium:0.6,
+   pitch:"The bottleneck isn't resin cost — it's resin cost per unit of pipe output. PVC-O technology uses up to 50% less resin per meter of pipe. When resin spikes 42%, a product that uses half the resin per foot is suddenly a massive margin play, not just an innovation story. First move: Commission a PVC-O feasibility study. Molecor (Spain) is the global tech leader. Westlake already selected Rolepaai partnership.",
+   rtbs:["PVC-O uses up to 50% less raw material savings vs conventional PVC","Molecor is the global leader — continuous, fully automatic manufacturing process","Westlake already building PVC-O capacity in Wichita Falls, TX","If Jeff doesn't move, Westlake owns both integrated cost AND PVC-O efficiency advantage"],
+   competitive:"Molecor (Spain, est. 2006): Global PVC-O leader. Class 500 orientation. ~50% raw material savings. Westlake chose Rolepaai (Dutch) for their Wichita Falls build.",
+   ops:"Complex",opsDetail:"High capex + licensing. Transformational. 18-24 month timeline to production.",
+   research:"Method: Blue Ocean + Category Design. Reframe from cost crisis survival to structural repositioning up the value chain."},
+
+  {id:"np-02",name:"Tiered Repricing With Industry Air Cover",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Analogous (#15)",score:0,stage:1,effort:0.2,impact:0.8,novelty:0.4,premium:0.5,
+   pitch:"Charlotte Pipe raised 10% on 3/26. IPEX raised 10% on 4/8. The whole PHCP-PVF industry is moving. Jeff has a 2-week window to reprice while it looks proactive rather than reactive. But don't reprice uniformly — segment by margin contribution, relationship stickiness, and competitive exposure.",
+   rtbs:["Industry-wide repricing in motion provides cover for margin recovery","Game theory: if Westlake raises prices too (they will), Jeff's customers have nowhere cheaper to go","Segmented repricing protects key relationships while recovering margin on commodity accounts","First move: analytics on top 20 accounts, identify which ones absorb vs defect"],
+   competitive:"Charlotte Pipe: +10% (3/26). IPEX: +10% (4/8). Westlake likely to follow. Everyone is repricing.",
+   ops:"Simple",opsDetail:"Low effort — analytics + calls. Direct margin recovery. Implement this week.",
+   research:"Constraint-based ideation + game theory framing. The industry is moving — be second, not last."},
+
+  {id:"np-03",name:"Unbundle Freight From Delivery",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Premiumization (#56)",score:0,stage:1,effort:0.2,impact:0.65,novelty:0.5,premium:0.4,
+   pitch:"PVC pipe has terrible freight economics — heavy, bulky, low value-to-weight. Diesel at $5.38/gal, flatbed at $2.80/mile. Instead of eating freight in the pipe price, break it out as a separate line item with a fuel surcharge index. Customers already accept this from carriers. First move: freight-as-percentage-of-COGS analysis on top 20 accounts.",
+   rtbs:["Customers already accept fuel surcharges from carriers — will accept from suppliers if framed correctly","Indexed freight pricing on new orders immediately protects margin on volatile fuel costs","Transparency builds trust — hiding freight in pipe price creates suspicion when prices rise","Migrate existing customers over 90 days"],
+   competitive:"Many industrial distributors already use fuel surcharge indexes. PVC pipe is behind this practice.",
+   ops:"Simple",opsDetail:"Low effort. Medium impact on margin recovery. 20-day implementation.",
+   research:"Method: Premiumization / unbundling — separate value streams to price each appropriately."},
+
+  {id:"np-04",name:"Index-Linked Pricing on All New Contracts",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Blue Ocean (#9)",score:0,stage:1,effort:0.2,impact:0.85,novelty:0.55,premium:0.5,
+   pitch:"Jeff is 100% exposed to resin market with zero upstream hedge. Fix this structurally: all new contracts should include PVC resin index escalation clauses (ICIS or Plastics News index). This is standard in steel, aluminum, and lumber. PVC pipe is behind. The current crisis is the perfect moment to introduce it.",
+   rtbs:["Standard in steel, aluminum, and lumber — PVC pipe is behind on this practice","Current crisis makes customers understand costs are volatile — easiest time to introduce","Test on 3-5 new bids this month — if pushback is minimal, make it default","High impact: permanent structural fix to margin exposure"],
+   competitive:"Steel, aluminum, lumber industries all use index-linked pricing. PVC pipe hasn't adopted it yet.",
+   ops:"Simple",opsDetail:"Draft standard escalation clause template. Test on new bids. Full adoption within 6 months.",
+   research:"Method: Blue Ocean — Eliminate the exposure to raw material volatility structurally, not reactively."},
+
+  {id:"np-05",name:"Recycled PVC Core in Non-Pressure Conduit",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"SCAMPER (#21)",score:0,stage:1,effort:0.5,impact:0.75,novelty:0.7,premium:0.55,
+   pitch:"Europe puts 60%+ recycled content in underground PVC ducts. The US is behind but the technology is proven: multilayer pipe with recycled PVC in the middle, virgin on inside and outside. For electrical conduit — which is non-pressure — this could cut resin costs 20-30% per unit while maintaining ASTM compliance.",
+   rtbs:["European proven technology — multilayer with recycled core is standard practice","Recycled materials at least 50% cheaper than virgin raw materials","Non-pressure applications (electrical conduit) have less stringent requirements","Sustainability narrative is powerful for municipal and institutional buyers"],
+   competitive:"European manufacturers already doing this at scale. No North American producer has commercialized it for US specs.",
+   ops:"Moderate",opsDetail:"Source recycled PVC compound samples. Trial extrusion on one conduit SKU. Test mechanical properties against spec. 3-6 months to qualified product.",
+   research:"Method: SCAMPER — Substitute virgin resin with recycled core in non-pressure applications."},
+
+  {id:"np-06",name:"CPVC Expansion — Higher-Margin Territory",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Premiumization (#56)",score:0,stage:1,effort:0.6,impact:0.8,novelty:0.5,premium:0.7,
+   pitch:"CPVC handles temps up to 93°C — fire sprinklers, HVAC, hot water, industrial chemical. $1.6B market growing 11.7% CAGR. Fire sprinkler applications alone are 18% of CPVC installations. If Jeff is only doing standard PVC, CPVC is a natural adjacency that commands premium pricing and has different competitive dynamics.",
+   rtbs:["$1.6B market growing 11.7% CAGR — significantly faster than standard PVC","Fire sprinkler applications are spec-driven, less price-sensitive, growing fast with building codes","Premium pricing vs commodity PVC pipe. Different competitive dynamics.","Assess whether Endicott or Greensboro extrusion lines can run CPVC compound"],
+   competitive:"Different processing temps. Spec-driven. Less price-sensitive. Growing fast with building code requirements.",
+   ops:"Moderate",opsDetail:"Medium effort — line modification + certifications. 6-12 months to qualified product line.",
+   research:"Method: Premiumization — Move into higher-margin adjacent product category."},
+
+  {id:"np-07",name:"Resin Purchasing Consortium",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Analogous (#15)",score:0,stage:1,effort:0.6,impact:0.7,novelty:0.6,premium:0.5,
+   pitch:"Lumber fabricators solved raw material volatility decades ago with forward contracts and purchasing cooperatives. What if National Pipe organized a consortium with other non-integrated PVC fabricators? Collectively, they'd have more leverage against Westlake and Formosa than any one alone. Alternative: explore resin forward contracts or financial hedging instruments.",
+   rtbs:["Collective purchasing gives leverage against integrated producers","Even a 30-60 day forward buy with price caps would smooth current volatility","Multiple non-integrated fabricators share the same structural disadvantage","Could explore ethylene futures on CME as partial hedge"],
+   competitive:"Lumber industry has well-established purchasing cooperatives. PVC pipe hasn't organized this way.",
+   ops:"Moderate",opsDetail:"Medium effort — legal + relationships. 3-6 months to establish. Structural cost advantage.",
+   research:"Method: Analogous Inspiration — Borrow from lumber industry's forward contract and consortium practices."},
+
+  {id:"np-08",name:"Attack as Westlake, Then Defend",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Blue Ocean (#9)",score:0,stage:1,effort:0.2,impact:0.7,novelty:0.6,premium:0.5,
+   pitch:"Red team exercise: play as Westlake. Vertically integrated, controls resin supply. Can hold pipe prices flat while making margin upstream. Will use cost crisis to steal municipal contracts from non-integrated fabricators. The defense: (1) lock in relationships now with service commitments Westlake can't match, (2) introduce PVC-O before Westlake's plant is online, (3) add value-added services that integrated producers won't bother with.",
+   rtbs:["Westlake's counter: they don't do custom runs, fast-turn orders, or relationship-based selling","Jeff's territory coverage is deep — Westlake's sales team covers the continent, not the territory","Value-added services (cut-to-length, kitting, delivery scheduling) are moats Westlake won't build","Run the exercise now for competitive clarity"],
+   competitive:"Westlake: Integrated, building PVC-O capacity. Blue team: Jeff's deep territory relationships, service flexibility, custom capability.",
+   ops:"Simple",opsDetail:"Low effort — strategic planning exercise. Run the exercise now.",
+   research:"Method: Red team/blue team exercise for competitive clarity."},
+
+  {id:"np-09",name:"Data Center Infrastructure Pipe",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Category Design (#55)",score:0,stage:1,effort:0.5,impact:0.8,novelty:0.8,premium:0.8,
+   pitch:"Data centers account for 25%+ of nonresidential construction in some markets. Each needs massive underground infrastructure: water (cooling), electrical conduit, power distribution, drainage. 80% of US data centers are within 25 miles of a CRH location. Jeff could create a 'data center infrastructure package' — bundled pipe solutions specifically spec'd and marketed for data center builds. Pre-configured, guaranteed delivery windows, premium pricing.",
+   rtbs:["Data center construction is the fastest-growing nonresidential segment","Builders care about speed and reliability more than price — premium positioning is natural","Bundled solutions package positions National Pipe as solutions provider, not commodity supplier","80% of US data centers within 25 miles of CRH location — geographic fit"],
+   competitive:"Nobody is selling 'data center pipe packages.' Everyone sells commodity pipe to general contractors who happen to be building data centers.",
+   ops:"Moderate",opsDetail:"Packaging + sales effort. 3-6 months to pilot. Premium pricing + secular growth.",
+   research:"Method: Category Design — Create 'data center infrastructure pipe' as a category. Solutions provider, not commodity."},
+
+  {id:"np-10",name:"PVC-O via Molecor Technology License",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"SCAMPER (#21)",score:0,stage:1,effort:0.85,impact:0.95,novelty:0.8,premium:0.7,
+   pitch:"Molecor (Spain, est. 2006) is the global leader in PVC-O manufacturing. Their process achieves Class 500 orientation — ~50% raw material savings vs conventional PVC. PVC-O pipe is thinner-walled, lighter, 15-40% more hydraulic capacity than ductile iron in pressurized water. If Jeff goes with Molecor, he gets a differentiated technology stack from Westlake's. This is transformational.",
+   rtbs:["~50% raw material savings vs conventional PVC. At current resin prices, this is massive.","15-40% more hydraulic capacity than ductile iron in pressurized water applications","Competes against ductile iron — a market PVC currently doesn't address","It's a new product category, not incremental improvement"],
+   competitive:"Westlake chose Rolepaai (Dutch competitor) for Wichita Falls. If Jeff goes Molecor, he gets different technology stack.",
+   ops:"Complex",opsDetail:"High capex + licensing. Transformational timeline: 18-24 months to production.",
+   research:"Method: SCAMPER — Apply proven international technology to domestic market. Leapfrog competition."},
+
+  {id:"np-11",name:"Smart Pipe — Sensor-Embedded PVC",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Category Design (#55)",score:0,stage:1,effort:0.8,impact:0.85,novelty:0.9,premium:0.85,
+   pitch:"CRH already invested in FIDO AI (acoustic leak detection) and VODA.ai (water infrastructure management). Nobody is manufacturing pipe with embedded sensors at the extrusion stage. If National Pipe built sensor-ready PVC pipe with embedded pressure/flow/acoustic monitoring — municipalities would pay premium for 'smart infrastructure' that reduces their 30%+ water loss rates.",
+   rtbs:["Municipal water systems lose 30%+ to leaks — massive cost driver for utilities","CRH already has strategic partnerships with FIDO Tech — connects manufacturing to CRH corporate AI/tech thesis","Nobody manufacturing pipe with embedded sensors at extrusion stage","This is the kind of initiative that gets CRH corporate attention and funding"],
+   competitive:"FIDO AI: Acoustic leak detection, post-installation. VODA.ai: Infrastructure management software. The Gap: Nobody embedding sensors during pipe manufacturing.",
+   ops:"Complex",opsDetail:"High R&D + partnerships. Category creating. 2-3 year horizon.",
+   research:"Method: Category Design + technology convergence — connect CRH's tech investments to manufacturing innovation."},
+
+  {id:"np-12",name:"Trenchless-Ready Pipe",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Blue Ocean (#9)",score:0,stage:1,effort:0.55,impact:0.75,novelty:0.65,premium:0.75,
+   pitch:"Westlake explicitly sees 'a bright future for PVC and trenchless technology.' Trenchless installation (pipe bursting, HDD, sliplining) is growing fast because it avoids digging up streets. PVC pipe optimized for trenchless applications — with specific wall profiles, joint systems, and pull-head compatibility — commands premium pricing and locks out competitors who only make standard pipe.",
+   rtbs:["Trenchless installation growing because it avoids digging up streets — cities love it","Trenchless-optimized pipe is a different product with different buyers (trenchless contractors, not general plumbing)","Premium pricing, less price-sensitive, installation cost savings for the buyer","Westlake is targeting but hasn't dominated yet"],
+   competitive:"Most PVC fabricators make standard pipe. Trenchless-optimized pipe with specific specs is a differentiated product.",
+   ops:"Moderate",opsDetail:"Spec development needed. 6-12 months. Medium-high impact at premium price niche.",
+   research:"Method: Blue Ocean — Compete in a space Westlake is targeting but hasn't dominated. Different buyers, different value props."},
+
+  {id:"np-13",name:"The Existential Question: Stay a Fabricator?",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Category Design (#55)",score:0,stage:0,effort:0.9,impact:0.95,novelty:0.5,premium:0.5,
+   pitch:"First principles: Jeff is a fabricator competing against integrated producers in a commodity market during a supply shock. The structural disadvantage gets worse every year. At 10-year horizon, there are only three outcomes: (1) integrate backward (acquire or build resin capacity), (2) differentiate forward (PVC-O, CPVC, smart pipe, bundled solutions), or (3) get acquired by an integrated producer. CRH did 38 acquisitions last year for $4.18. If Jeff builds a compelling case for backward integration or forward differentiation, the capital might be there.",
+   rtbs:["CRH did 38 acquisitions last year at $4.1B — capital allocation strategy supports expansion","Every non-integrated fabricator faces the same structural disadvantage","Three paths: integrate, differentiate, or get acquired. Which does CRH's strategy support?","This is the conversation Jeff needs to have with CRH capital allocation"],
+   competitive:"Westlake: integrated. Formosa: integrated. OxyChem: integrated. Jeff buys resin at market. The structural gap widens every cycle.",
+   ops:"Complex",opsDetail:"Strategic conversation. Existential. 3-10 year horizon.",
+   research:"First principles / provocative thinking — what is the long-term structural position?"},
+
+  {id:"np-14",name:"Acquire Distressed Competitors",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Blue Ocean (#9)",score:0,stage:1,effort:0.6,impact:0.8,novelty:0.5,premium:0.5,
+   pitch:"Opposite thinking: instead of fighting the resin spike, use it. If every non-integrated fabricator is struggling, some will fail or sell. Jeff could position National Pipe (via CRH's balance sheet) to acquire a struggling competitor's customer book, territory, or manufacturing footprint at distressed pricing. The cost crisis is temporary. The market share is permanent.",
+   rtbs:["CRH's M&A process and balance sheet make bolt-on acquisitions feasible","Distressed pricing on assets that would be expensive in normal times","Customer relationships and territory are the most valuable assets — not the physical plant","Cost crisis is the cover for market share consolidation"],
+   competitive:"Smaller regional PVC fabricators who can't weather the spike are potential targets.",
+   ops:"Moderate",opsDetail:"M&A process through CRH. 6-12 months. High impact — market share in a downturn.",
+   research:"Method: Opposite thinking — lean into the crisis instead of defending against it."},
+
+  {id:"np-15",name:"The Caustic Soda Signal",category:"National Pipe / B2B",run:"National Pipe",date:"2026-04-07",method:"Cultural Trend (#51)",score:0,stage:1,effort:0.15,impact:0.55,novelty:0.7,premium:0.5,
+   pitch:"Second-order effect: PVC production uses chlorine (57% by weight). Chlorine and caustic soda are co-products in a fixed ratio. When PVC demand softens, chlorine pull drops, and caustic soda tightens. If Jeff can identify customers who buy BOTH pipe AND caustic soda-dependent products, he has an information advantage — he can see the tightening before the market does. This is a stretch — but it's the kind of signal a daily intelligence system can track.",
+   rtbs:["Chlorine/caustic soda are co-products in fixed ratio — PVC production directly affects caustic supply","Information advantage: seeing production cuts in PVC fabricator network signals caustic tightening","Low effort to track — intelligence only, no product or operational change","Could become an ongoing signal for supply chain intelligence"],
+   competitive:"Nobody is systematically tracking this cross-commodity signal in the PVC pipe industry.",
+   ops:"Simple",opsDetail:"Intelligence only. Low effort. Ongoing signal tracking.",
+   research:"Method: Second-order thinking / Cultural Trend Mining — find the non-obvious signal in the supply chain."},
+
+  // ─── AI NATIVE CPG / CONSOLIDATED FAVORITES ───
+  {id:"cpg-01",name:"Miso Caramel Corn",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.7,novelty:0.7,premium:0.8,
+   pitch:"Replace butter-sugar caramel with white miso-based caramel. Umami meets sweet. Miso is fermented, naturally savory-sweet, and carries a premium perception. Caramel corn is a $20B+ category dominated by Cracker Jack and store brands with zero innovation. The fermentation angle opens a gut-health positioning. Launch as premium popcorn brand. $5.99 bag. Target Whole Foods and Sprouts first. Three SKUs: White Miso Caramel, Red Miso Dark Chocolate, and Shiro Miso Honey.",
+   rtbs:["$20B+ caramel corn category with zero innovation","White miso caramel already a hit in craft bakeries and high-end restaurants","Fermentation angle opens gut-health positioning","Three-SKU launch with clear flavor architecture"],
+   competitive:"Cracker Jack: Category default, mass market. No premium miso-based caramel corn exists at retail.",
+   ops:"Simple",opsDetail:"Standard popcorn production with miso caramel recipe. Ambient shelf life. $5.99/bag.",
+   research:"Method: SCAMPER — Substitute butter-sugar caramel with miso-based caramel."},
+
+  {id:"cpg-02",name:"Brigadeiro Protein Bites",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.7,novelty:0.55,premium:0.6,
+   pitch:"Brazilian chocolate truffle format meets functional protein. 12g protein, 2-bite indulgence. Brigadeiros are universally loved but never been productized for the US mass market. Protein snacking is $7B+ growing 8% annually. Condensed milk base provides creamy, fudgy texture. Three flavors: Classic Chocolate, Coconut Beijinho, Coffee Dulce de Leche. $5.49 for 6-pack.",
+   rtbs:["$7B+ protein snacking category growing 8% annually","Brigadeiro format never productized for US mass market","Condensed milk base = creamy fudgy texture without protein bar chalkiness","Quest proved protein + indulgence = velocity"],
+   competitive:"Quest: protein bars/cookies. No Brazilian-inspired protein confection exists.",
+   ops:"Simple",opsDetail:"Standard confection production. Ambient or refrigerated depending on formulation.",
+   research:"Method: SCAMPER — Combine Brazilian truffle format with functional protein."},
+
+  {id:"cpg-03",name:"The Last Bite: Mochi Heat Challenge",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Worst Idea First",score:0,stage:1,effort:0.4,impact:0.65,novelty:0.9,premium:0.65,
+   pitch:"Worst idea: a snack so spicy nobody can eat it. Invert: a single-serve mochi challenge pack. Paqui's One Chip Challenge generated $100M+ in media impressions. The format (single-serve extreme challenge) is proven commercially safe. Mochi's chewy texture extends the heat experience. Three tiers: Ghost (warm-up), Reaper (challenge), and The Last Bite (unknown Scoville, limited edition).",
+   rtbs:["Paqui One Chip Challenge: $100M+ in media impressions before being pulled","Single-serve challenge format is commercially proven","Mochi texture extends heat experience — different from chip or candy","TikTok challenge content drives organic reach"],
+   competitive:"Paqui One Chip Challenge (pulled for safety). No mochi-format heat challenge exists.",
+   ops:"Moderate",opsDetail:"Safety testing critical. Single-serve packaging. Limited edition creates scarcity.",
+   research:"Method: Worst Idea First — invert 'snack nobody can eat' into a single-serve challenge product."},
+
+  {id:"cpg-04",name:"Inside-Out Mochi Pops",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.5,impact:0.6,novelty:0.8,premium:0.55,
+   pitch:"Flip the mochi format: crunchy shell outside, chewy mochi center inside. Every mochi product follows soft/chewy exterior wrapping a filling. Nobody has inverted it. The texture disruption is real: a crispy snap that gives way to a chewy, stretchy center. Ball-shaped snack in resealable bag. Crunchy rice-flour shell, mochi center. Flavors: Matcha Cream, Strawberry Milk, Black Sesame, Mango Yuzu.",
+   rtbs:["Every mochi product on market follows same format — nobody has inverted","Multi-texture snacks growing rapidly (Hi-Chew proved US market pays for texture novelty)","Japanese consumers already love multi-texture snacks","Ball-shaped format is snackable and shareable"],
+   competitive:"My/Mo Mochi: Standard mochi ice cream. No inside-out format exists.",
+   ops:"Moderate",opsDetail:"Needs R&D for crunchy shell that maintains crunch around moist mochi center. Target Asian snack aisle first.",
+   research:"Method: SCAMPER — Reverse: flip the mochi format inside-out."},
+
+  {id:"cpg-05",name:"Queijo Puffs",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.8,novelty:0.4,premium:0.45,
+   pitch:"Shrink Brazilian cheese bread (pão de queijo) into a poppable puff chip. Naturally gluten-free. Trader Joe's already validated frozen format. But frozen limits distribution, requires freezer space, adds logistics cost. A shelf-stable puff made from tapioca starch and real cheese captures the same flavor in a snackable format. $6B+ dietary category. Three SKUs: Original Queijo, Catupiry Cream Cheese, Calabresa Spicy. $4.49.",
+   rtbs:["Trader Joe's pão de queijo is one of their top frozen sellers — demand is validated","Shelf-stable format eliminates freezer requirement and logistics cost","Cassava/tapioca is naturally gluten-free — addresses $6B+ dietary category","Cheetos dominates cheese puff aisle with corn and artificial cheese. Real cheese is the disruption."],
+   competitive:"Trader Joe's Brazilian Cheese Bread: Frozen, top seller. No shelf-stable cheese puff from real cheese and tapioca exists.",
+   ops:"Simple",opsDetail:"Shelf-stable puff production with tapioca starch and real cheese. Gluten-free certification front-of-pack.",
+   research:"Method: SCAMPER — Modify: shrink pão de queijo from bread to puff chip format."},
+
+  {id:"cpg-06",name:"Bitter & Better: Digestif Bark",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Worst Idea First",score:0,stage:1,effort:0.25,impact:0.5,novelty:0.75,premium:0.92,
+   pitch:"Worst idea: a snack that tastes like medicine. Invert: premium bitter-herb dark chocolate bark. European bitters culture (Aperol, Fernet, amaro) has exploded in the US cocktail scene. Dark chocolate (70%+) is already health-conscious indulgence. Traditional digestive herbs (gentian, dandelion, chamomile) have centuries of folk use. Two SKUs: After Dinner (gentian + orange peel + dark chocolate) and Wind Down (chamomile + lavender + milk chocolate). $7.99 per bar.",
+   rtbs:["Amaro/bitters culture exploding in US — Aperol Spritz is now mainstream","Dark chocolate 70%+ already positioned as health-conscious indulgence","Digestive herbs have centuries of folk use as stomach-settlers","Intersection of three growing trends: bitter is aspirational now"],
+   competitive:"No premium bitter-herb chocolate bark exists. Hu Chocolate is closest in premium dark chocolate but no herbal/digestif angle.",
+   ops:"Simple",opsDetail:"Standard chocolate bark production with botanical infusion. Ambient shelf life. Premium packaging.",
+   research:"Method: Worst Idea First — invert 'tastes like medicine' into premium digestif positioning."},
+
+  {id:"cpg-07",name:"Furikake Everything Chips",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.2,impact:0.75,novelty:0.55,premium:0.5,
+   pitch:"Japanese rice seasoning jumps from condiment to primary snack flavor. Furikake (seaweed, sesame, bonito, salt) is a staple in Asian-American kitchens and increasingly mainstream. Everything Bagel seasoning proved that a condiment can become an entire product line (Trader Joe's). Furikake is the next Everything Bagel: savory, umami-rich, visually distinctive. Launch as flavor platform: Furikake Kettle Chips, Furikake Popcorn, Furikake Pretzel Thins. The seasoning blend is the brand. Think Tajín but Japanese.",
+   rtbs:["Everything Bagel seasoning generated an entire product line at Trader Joe's — proves the model","Furikake already in mainstream recipes and restaurants — consumer awareness is building","Savory, umami-rich, visually distinctive with green, white, and red flakes","Platform brand: the seasoning IS the brand, not any single product"],
+   competitive:"Trader Joe's Everything But The Bagel: Proved condiment-to-snack-flavor model. No furikake snack platform exists.",
+   ops:"Simple",opsDetail:"Standard snack production with furikake seasoning blend. Multiple product formats from one seasoning. $4.99/bag.",
+   research:"Method: SCAMPER — Put to Other Use: condiment becomes primary snack flavor."},
+
+  {id:"cpg-08",name:"Yuzu Ginger Chews 2.0",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Home Remedy",score:0,stage:1,effort:0.2,impact:0.55,novelty:0.45,premium:0.65,
+   pitch:"Upgrade the boring medicinal ginger chew with premium Japanese citrus. Ginger chews are a proven category (The Ginger People, Reed's) but positioned as functional and medicinal, not delicious. Yuzu's bright citrus profile transforms ginger chews from pharmacy-adjacent to premium confection. Four SKUs: Yuzu Ginger, Lychee Ginger, Matcha Ginger, Honey Citrus Ginger. $4.99. Target natural grocery first.",
+   rtbs:["Ginger chews are proven category — format is right, branding is wrong","Yuzu-ginger already a proven flavor pairing in craft cocktails and Japanese cuisine","Functional angle broadens: anti-nausea for pregnant women, travelers, chemo patients","Premium packaging transforms perception from pharmacy to confection"],
+   competitive:"The Ginger People ($3-4): Functional, medicinal positioning. Reed's: Same. The Gap: Premium, actually-delicious ginger chew.",
+   ops:"Simple",opsDetail:"Soft chew production with yuzu flavoring. Premium packaging. Ambient shelf life.",
+   research:"Method: Home Remedy — upgrade a folk remedy format with premium ingredients."},
+
+  {id:"cpg-09",name:"Taiyaki Toaster Bites",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.5,impact:0.7,novelty:0.82,premium:0.5,
+   pitch:"Japanese fish-shaped waffle cake meets American toaster pastry format. Taiyaki generates enormous social media engagement. The toaster pastry category ($1.2B) has seen almost zero innovation since Pop-Tarts launched in 1964. Toaster Strudel proved filled, heated pastry has staying power. Taiyaki brings novel shape, authentic fillings, and TikTok-ready visual distinctiveness. Three flavors: Red Bean, Matcha Custard, Chocolate Hazelnut. $5.99/4-pack. Fish shape preserved — the shape IS the branding.",
+   rtbs:["Toaster pastry is $1.2B with zero innovation since Pop-Tarts (1964)","Taiyaki is one of the most recognized Japanese street food icons — built-in social media appeal","Toaster Strudel proved filled, heated pastry format has staying power","Fish shape alone generates free social media content"],
+   competitive:"Pop-Tarts ($1.2B): Zero innovation in 60 years. Toaster Strudel: Filled format but no novelty. The Gap: Novel shape + authentic fillings + social media appeal.",
+   ops:"Moderate",opsDetail:"Frozen toaster-ready format. Fish-shaped molds needed. Target Asian snack aisle first, then expand. 6-9 month shelf life.",
+   research:"Method: SCAMPER — Combine Japanese street food icon with American toaster pastry format."},
+
+  {id:"cpg-10",name:"Banana Peel Chips",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Worst Idea First",score:0,stage:1,effort:0.4,impact:0.5,novelty:0.88,premium:0.35,
+   pitch:"Worst idea: chips made from something people throw away. Invert: upcycled, sustainable, delicious. Banana peels are consumed as chips and stir-fry across Southeast Asia and India. They're nutrient-dense (potassium, fiber, magnesium) with a mild, slightly sweet flavor when dried and seasoned. The upcycled food movement is gaining real traction. Sustainability narrative is powerful: Americans throw away 3.5 million tons of banana waste annually. Three SKUs: Sea Salt, Cinnamon Sugar, Chili Lime. $3.99.",
+   rtbs:["Banana peels consumed as food across Southeast Asia — proven edible","Upcycled ingredients identified by SNAC International as core trend","Sustainability narrative: 3.5M tons banana waste annually in US","Nutrient-dense: potassium, fiber, magnesium"],
+   competitive:"No banana peel chips at US retail. Upcycled snack category is emerging but early.",
+   ops:"Moderate",opsDetail:"Banana peel sourcing operation needed. Thin-sliced, seasoned, dried/baked. Partner with banana supplier for supply chain narrative.",
+   research:"Method: Worst Idea First — invert 'chips from trash' into upcycled sustainability story."},
+
+  {id:"cpg-11",name:"Cassava Tortilla Chips",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.2,impact:0.8,novelty:0.3,premium:0.4,
+   pitch:"Replace corn with cassava for AIP/Paleo-friendly tortilla chips. Cassava (tapioca, yuca) is naturally grain-free, gluten-free, and AIP-compliant. Siete Foods proved alternative-flour tortilla chips scale massively (acquired by PepsiCo for $1.2B in 2024). Siete used almond flour; cassava offers a different texture profile and lower cost basis. Emphasize Brazilian/African heritage ingredient. Five flavors: Sea Salt, Lime, Chipotle, and Everything. $4.49.",
+   rtbs:["Siete Foods acquired by PepsiCo for $1.2B — proves alternative-flour tortilla chips scale","Cassava is grain-free, gluten-free, AIP-compliant — addresses massive dietary community","Lower cost basis than almond flour — better unit economics than Siete","Brazilian/African heritage ingredient adds authentic origin story"],
+   competitive:"Siete ($4-5/bag): Almond flour, acquired by PepsiCo. The Gap: Cassava-based alternative with different texture, lower cost, and Brazilian/African heritage.",
+   ops:"Simple",opsDetail:"Standard tortilla chip production with cassava flour substitution. Ambient shelf life. Target Paleo/AIP community first.",
+   research:"Method: SCAMPER — Substitute corn with cassava flour."},
+
+  {id:"cpg-12",name:"Acai Guarana Energy Bites",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Home Remedy",score:0,stage:1,effort:0.25,impact:0.6,novelty:0.45,premium:0.6,
+   pitch:"Brazil's folk energy stack: acai antioxidants plus guarana natural caffeine. Acai is validated as a superfood but trapped in smoothie bowl format. Guarana is the primary caffeine source in Brazil — smoother energy curve than coffee. Together they're the traditional Brazilian energy pairing. Date-and-nut base with acai powder and guarana extract. 80mg caffeine per serving. Three SKUs: Acai Guarana Classic, Acai Cacao, Guarana Coconut. $5.49/5-pack.",
+   rtbs:["Acai validated as superfood — but trapped in smoothie bowl format","Guarana provides smoother energy curve than coffee — 80mg caffeine per serving","Energy bite/ball category growing rapidly but dominated by generic date-nut formulations","Genuine cultural origin story differentiates from generic energy bites"],
+   competitive:"Generic energy bites (Lara Bar, RXBAR): No cultural identity, no specific energy stack. The Gap: Culturally authentic Brazilian energy pairing.",
+   ops:"Simple",opsDetail:"Standard energy bite production. Date-and-nut base with acai powder and guarana extract. Ambient shelf life.",
+   research:"Method: Home Remedy — productize Brazil's traditional energy pairing."},
+
+  {id:"cpg-13",name:"Black Sesame Everything",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.65,novelty:0.72,premium:0.72,
+   pitch:"Jet-black color disruption plus nutrient density. Visually impossible to ignore on shelf. Black sesame is wildly popular in Japan and Korea but barely exists in the US snack aisle. The ingredient is striking: jet black, rich, slightly sweet, and packed with calcium, iron, and antioxidants. Visual differentiation on shelf is one of the highest-leverage factors in snack sales, and nothing on the current shelf is black. Launch as platform brand. First three SKUs: Black Sesame Shortbread Cookies, Black Sesame Tahini Cups (like Reese's but black sesame), and Black Sesame Mochi Bites. The color IS the brand. $5.99/SKU.",
+   rtbs:["Visual differentiation is highest-leverage factor in snack sales — nothing on shelf is black","Black sesame is versatile enough to support cookies, bars, spreads, and mochi","Packed with calcium, iron, antioxidants — functional story without trying","Platform brand: color IS the brand identity"],
+   competitive:"No black sesame platform brand exists in US snack aisle. Individual products exist in Asian grocery but not as a cohesive brand.",
+   ops:"Simple",opsDetail:"Standard snack production with black sesame ingredient. Multiple formats from one hero ingredient.",
+   research:"Method: SCAMPER — Modify (change color): use black sesame's natural jet-black color as brand identity."},
+
+  {id:"cpg-14",name:"No-Fry Tempura Veggie Crisps",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.6,novelty:0.6,premium:0.6,
+   pitch:"Take tempura's umami flavor profile and eliminate the deep-frying. Tempura batter has distinctive light, airy, savory flavor (dashi, ginger, soy). Vegetable chips are a growing category but most taste like sad kale. Tempura-style seasoning applied to baked vegetable chips creates an entirely new flavor profile in the veggie chip aisle. Sweet potato, kabocha squash, lotus root, and green bean varieties. 120 calories per serving. $4.99.",
+   rtbs:["Veggie chip category growing but flavor innovation is minimal — most taste like kale","Tempura seasoning (dashi, ginger, soy) is a proven beloved flavor profile","Eliminating frying makes it better-for-you without losing the flavor identity","Position as Japanese-inspired alternative to Terra Chips"],
+   competitive:"Terra Chips ($4-5): Vegetable chips, no specific flavor identity. Trader Joe's tempura seaweed snacks: Seaweed only. The Gap: Baked veggie chips with tempura-style seasoning.",
+   ops:"Simple",opsDetail:"Standard baked vegetable chip production with tempura seasoning blend. Ambient shelf life. $4.99.",
+   research:"Method: SCAMPER — Eliminate: remove deep-frying. Keep: tempura's umami flavor profile."},
+
+  {id:"cpg-15",name:"Phase Shift Candy",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Worst Idea First",score:0,stage:1,effort:0.7,impact:0.6,novelty:0.92,premium:0.85,
+   pitch:"Worst idea: a snack that changes flavor. Invert: a multi-phase candy experience. Japan's layered candy tradition (different flavors revealed as you eat through layers) is proven domestically but never adapted for the US market. A flavor journey within a single piece. Start sweet-citrus (yuzu), transition through floral (sakura), finish savory (shiso). Three SKU stories: Tokyo Spring, Kyoto Autumn (persimmon, hojicha, black sesame), Osaka Night (plum, ginger, wasabi). Premium packaging. $6.99/12-piece tin.",
+   rtbs:["Japan's layered candy format proven domestically but never adapted for US","Flavor journey is inherently shareable and content-worthy","Premium positioning: each piece tells a story","Hard candy with 3 flavor phases — technically achievable"],
+   competitive:"No multi-phase flavor journey candy exists in US market. Japanese imports are niche.",
+   ops:"Complex",opsDetail:"Multi-layer hard candy production requires specialized equipment. Premium tin packaging. High R&D but high differentiation.",
+   research:"Method: Worst Idea First — invert 'snack that changes flavor' into structured flavor journey."},
+
+  {id:"cpg-16",name:"Dorayaki Snack Cakes",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.4,impact:0.65,novelty:0.75,premium:0.45,
+   pitch:"Japan's beloved pancake sandwich adapted for American convenience snacking. Dorayaki is Doraemon's favorite food — one of the most recognized characters in Asian pop culture. Two small, fluffy pancakes sandwiching a sweet filling. The Japanese equivalent of a Twinkie or MoonPie but with premium positioning. US snack cake category is $4B+ dominated by products that haven't innovated in decades. Four fillings: Traditional Red Bean, Matcha Cream, Peanut Butter (American adaptation), and Strawberry. $5.99/4-pack.",
+   rtbs:["US snack cake category is $4B+ with zero meaningful innovation in decades","Dorayaki brings authentic craft, novel fillings, and built-in character IP potential","Individually wrapped, shelf-stable — standard convenience format","The format is simple: two pancakes + filling. Manufacturing is straightforward"],
+   competitive:"Hostess/Little Debbie: Dominate snack cakes, zero innovation. No dorayaki exists at US mainstream retail.",
+   ops:"Moderate",opsDetail:"Pancake production + filling injection. Individually wrapped. Shelf-stable 6-9 months. Target Asian snack aisle first.",
+   research:"Method: SCAMPER — Adapt: Japanese pancake sandwich for American convenience format."},
+
+  {id:"cpg-17",name:"Savory Mochi Sticks",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.4,impact:0.55,novelty:0.78,premium:0.5,
+   pitch:"Everyone does sweet mochi. Flip it: savory mochi in a stick format. In Japan, mochi is equally common in savory applications — grilled with soy sauce, in soup, wrapped in nori. The entire US mochi market is oriented around sweet. By launching savory mochi, you own a completely empty category without competing directly with My/Mo or other dessert-oriented brands. Four SKUs: Soy Sauce Nori, Cheese Furikake, Kimchi, and Garlic Butter. $4.99. Position as beer snack and party food.",
+   rtbs:["Entire US mochi market oriented around sweet — savory is completely empty","In Japan, mochi is equally common in savory applications — proven format","Chewy-stretchy texture works with savory flavors — different mouthfeel than any existing snack","Position as beer snack / party food — different occasion than sweet mochi"],
+   competitive:"My/Mo: Sweet mochi ice cream. No savory mochi product exists at US retail.",
+   ops:"Moderate",opsDetail:"Baked mochi sticks in savory flavors. Need to solve shelf stability for mochi texture. Target Asian snack aisle and beer snack occasion.",
+   research:"Method: SCAMPER — Combine + Reverse: savory mochi in a stick format."},
+
+  {id:"cpg-18",name:"Hibiscus Chili Fruit Leather",category:"Global Snacks",run:"AI Native CPG",date:"2026-04-01",method:"Home Remedy",score:0,stage:1,effort:0.2,impact:0.55,novelty:0.5,premium:0.35,
+   pitch:"Mexican agua de jamaica meets Tajín in a dehydrated fruit leather format. Hibiscus (jamaica) is the most popular traditional beverage in Mexico and Central America. Naturally tart, deeply red, rich in vitamin C. Chili-lime seasoning (Tajín) has crossed over into mainstream American snacking. Combining hibiscus, chili, and lime creates a product that is visually stunning (bright magenta), culturally authentic, and flavor-forward. Three SKUs: Hibiscus Chili Lime, Hibiscus Mango, Hibiscus Tamarind. $3.99/6-pack.",
+   rtbs:["Fruit leather is a $500M+ category with almost zero flavor innovation","Hibiscus + chili + lime: visually stunning (bright magenta) and flavor-forward","Tajín has proven chili-lime seasoning crosses over to mainstream","The color pops on shelf — instant visual differentiation"],
+   competitive:"Bear Fruit Rolls, Stretch Island: Generic fruit leathers, no cultural identity. The Gap: Culturally authentic hibiscus-based fruit leather with chili-lime seasoning.",
+   ops:"Simple",opsDetail:"Standard fruit leather production with hibiscus base and chili-lime seasoning. Ambient shelf life. $3.99/6-pack.",
+   research:"Method: Home Remedy — productize traditional Mexican agua de jamaica in a snackable format."},
+
+  // Consolidated Favorites additions (not in AI Native CPG whitepaper)
+  {id:"fav-01",name:"Castella Bites",category:"Global Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.55,novelty:0.65,premium:0.55,
+   pitch:"Japanese sponge cake meets American snack format. 5-ingredient clean-label. 6-9 month shelf life. The $1.2B snack cake category hasn't seen meaningful innovation in decades. Castella (kasutera) is a 400-year-old Japanese sponge cake with simple ingredients (flour, eggs, sugar, honey). Zero direct competition in mainstream snack cake. Snack-size portions bridge premium bakery and mass convenience.",
+   rtbs:["$1.2B snack cake category with zero innovation since Pop-Tarts","5-ingredient, clean-label — flour, eggs, sugar, honey, mizuame","400-year old format with built-in heritage story","6-9 month ambient shelf life"],
+   competitive:"Hostess/Little Debbie: Mass market, processed. No Japanese sponge cake at mainstream US retail.",
+   ops:"Simple",opsDetail:"Standard sponge cake production. Individually wrapped. Target Asian snack aisle first.",
+   research:"Method: SCAMPER — Adapt: 400-year-old Japanese format for American convenience."},
+
+  {id:"fav-02",name:"Morning Protocol RTD",category:"Functional Beverage",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.5,impact:0.75,novelty:0.65,premium:0.55,
+   pitch:"Non-carbonated morning performance beverage: BCAAs + creatine + 150mg caffeine. Zero sugar. Still format (not carbonated). The white space is verified: NOCCO hit carbonated creatine, but no still RTD combines creatine+BCAAs+caffeine in a clean, morning-focused format. Global creatine market $1.5B growing at 25% CAGR. Two-SKU strategy captures both performance buyers and intermittent-fasting audience.",
+   rtbs:["No still RTD combines creatine + BCAAs + caffeine. White space verified.","Global creatine market $1.5B growing 25% CAGR","Still format avoids carbonation fatigue — different occasion than energy drinks","Morning-focused positioning = daily ritual = repeat purchase"],
+   competitive:"NOCCO: Carbonated creatine + caffeine. No still, morning-focused RTD with this stack.",
+   ops:"Moderate",opsDetail:"Beverage co-pack with functional ingredients. Shelf-stable RTD. Premium packaging needed.",
+   research:"Method: SCAMPER — Combine creatine + BCAAs + caffeine in still morning format."},
+
+  {id:"fav-03",name:"Kimchi Crunch Chips",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.6,novelty:0.55,premium:0.55,
+   pitch:"Kimchi is the fastest-growing fermented food in US households already. The production path is clear: cross between freeze-dried kimchi crunch and a shelf-stable chip format. Direct fermented flavor without the cold-case requirement.",
+   rtbs:["Kimchi consumption growing rapidly in US households","Freeze-dried kimchi crunch format already exists in Korean snack market","Shelf-stable chip format expands distribution beyond cold case","Fermented flavor profile is unique in the chip aisle"],
+   competitive:"No shelf-stable kimchi chip exists at mainstream US retail.",
+   ops:"Simple",opsDetail:"Freeze-dried or baked kimchi-flavored chips. Ambient shelf life.",
+   research:"Method: SCAMPER — format transfer from Korean snack market."},
+
+  {id:"fav-04",name:"Pickle Brine Shots",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"Home Remedy",score:0,stage:1,effort:0.2,impact:0.55,novelty:0.6,premium:0.45,
+   pitch:"Concentrated pickle brine in single-serve shot format for gut health, electrolytes, and post-workout recovery. Pickle juice is vinegar-based, not fermented — but it's already consumed for cramps by athletes. Concentrated shots in premium packaging. Multiple flavor variants possible.",
+   rtbs:["Athletes already drink pickle juice for cramps — behavior exists","Electrolyte content is genuinely functional","Single-serve shot format is trending across functional beverages","Premium packaging elevates from 'drinking pickle juice' to 'functional shot'"],
+   competitive:"Some pickle juice brands exist (Pickle Juice Sport) but not as premium gut-health shots.",
+   ops:"Simple",opsDetail:"Concentrate and bottle. Simple production. Ambient shelf life.",
+   research:"Method: Home Remedy — upgrade existing athlete behavior into a premium functional product."},
+
+  {id:"fav-05",name:"Gochujang Pickles",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.2,impact:0.55,novelty:0.6,premium:0.6,
+   pitch:"Gochujang is one of the fastest-growing condiments in the US. Pickles already have fermentation traditions. Cross them: gochujang-marinated pickles. Spicy, sweet, umami, fermented. Two proven things combined into something nobody has done at retail.",
+   rtbs:["Gochujang already hip-level Korean condiment — crossing over to mainstream","Pickles are having a moment — pickle-flavored everything is trending","Two proven flavor profiles that haven't been combined at retail","Easy to test: pickle producer + gochujang = done"],
+   competitive:"No gochujang pickles exist at mainstream US retail. Some Korean grocery options.",
+   ops:"Simple",opsDetail:"Standard pickle production with gochujang in brine. Refrigerated. Easy co-pack.",
+   research:"Method: SCAMPER — Combine two trending fermented flavor profiles."},
+
+  {id:"fav-06",name:"Miso Kraut",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.2,impact:0.5,novelty:0.55,premium:0.6,
+   pitch:"Miso and sauerkraut are both fermented — dramatically's competitive. White miso adds umami, sweet, cream-like sweetness that makes sauerkraut more approachable. Easier entry point for consumers who find plain sauerkraut too sour.",
+   rtbs:["Both products are fermented — natural pairing","Miso adds umami sweetness that softens sauerkraut's sharpness","Makes fermented foods more approachable for mainstream consumers","Easy to produce: add miso to existing sauerkraut production"],
+   competitive:"No miso kraut exists at mainstream retail. Some artisanal versions at farmers markets.",
+   ops:"Simple",opsDetail:"Standard sauerkraut production with white miso incorporation. Refrigerated.",
+   research:"Method: SCAMPER — Combine two fermented traditions."},
+
+  {id:"fav-07",name:"Curtido",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"Cultural Trend (#51)",score:0,stage:1,effort:0.2,impact:0.5,novelty:0.6,premium:0.5,
+   pitch:"Lightly fermented Salvadoran cabbage slaw alongside pupusas. Every Central American and South American dining has a version. Zero national brand presence at US retail. Hispanic foods growing faster than any other ethnic cuisine at grocery.",
+   rtbs:["Hispanic foods are fastest-growing ethnic cuisine at US grocery","Every Central American culture has a version — massive addressable audience","Lightly fermented = more approachable than full sauerkraut","Zero national brand presence — first mover advantage"],
+   competitive:"No branded curtido exists at mainstream US retail. Only restaurant-made.",
+   ops:"Simple",opsDetail:"Standard fermented vegetable production. Refrigerated. Short ingredient list.",
+   research:"Method: Cultural Trend Mining — identify underrepresented global fermented foods."},
+
+  {id:"fav-08",name:"Bubbles Hot Sauce",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.55,novelty:0.65,premium:0.55,
+   pitch:"Lacto-fermented pepper hot sauce with real fermentation (not vinegar-based). Bubbly, alive, probiotic. Frank's/Cholula are vinegar-based. Fermented hot sauce is a real category — Yellowbird is closest but not 'no vinegar' positioning. Position as craft, alive, no vinegar alternative.",
+   rtbs:["$4.8B hot sauce market. Most major brands are vinegar-based, not fermented","Fermented = probiotic positioning without claiming it on label","Craft hot sauce movement growing rapidly","'No vinegar' positioning is a distinctive market claim"],
+   competitive:"Yellowbird: Closest to fermented positioning. Frank's/Cholula: Vinegar-based. The Gap: Explicitly fermented, no-vinegar hot sauce.",
+   ops:"Simple",opsDetail:"Lacto-fermentation + bottling. Standard hot sauce production with fermentation step. Refrigerated or shelf-stable depending on process.",
+   research:"Method: SCAMPER — Substitute vinegar with lacto-fermentation in hot sauce."},
+
+  {id:"fav-09",name:"Kraut Crisps",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.3,impact:0.5,novelty:0.6,premium:0.5,
+   pitch:"Dehydrated sauerkraut crisps. Shelf-stable probiotic snacking. Sauerkraut's best even in US market. Tangy, salty, crunchy dehydrated kraut chips. Probiotic positioning if dehydration process preserves cultures.",
+   rtbs:["Fermented snacks are growing category","Shelf-stable format expands distribution beyond refrigerated section","Dehydration technology for fermented foods is advancing","Unique texture and flavor in chip aisle"],
+   competitive:"No sauerkraut chip/crisp exists at mainstream retail.",
+   ops:"Moderate",opsDetail:"Dehydration process needs to be validated for flavor and probiotic preservation.",
+   research:"Method: SCAMPER — format shift from refrigerated jar to shelf-stable crisp."},
+
+  {id:"fav-10",name:"Pickle Ranch",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.15,impact:0.6,novelty:0.4,premium:0.35,
+   pitch:"Ranch dressing made with real fermented brine. Pickle ranch. The #1 trending flavor in US condiments (2024-25: 'pickle everything') meets the #1 dressing in America. Pickle Ranch is already a menu item at several fast-casual chains. Nobody has bottled it for retail. First mover in a $6.5B dressing market.",
+   rtbs:["Pickle is #1 trending flavor in US condiments 2024-25","Ranch is #1 dressing in America — $6.5B market","Several fast-casual chains already serve pickle ranch — validates demand","Easy to produce: standard ranch base + pickle brine"],
+   competitive:"Hidden Valley: Standard ranch. Grillo's: Pickle brand but no ranch. The Gap: Pickle ranch at retail.",
+   ops:"Simple",opsDetail:"Standard ranch production with pickle brine incorporation. Refrigerated.",
+   research:"Method: SCAMPER — Combine #1 trending flavor with #1 dressing."},
+
+  {id:"fav-11",name:"Fermented Salsa",category:"Fermented Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"Cultural Trend (#51)",score:0,stage:1,effort:0.2,impact:0.5,novelty:0.5,premium:0.55,
+   pitch:"Salsa is a $3.7B market. Almost every jar is heat-pasteurized or vinegar-based. Truly fermented salsa exists — consumers make it at home — but no national brand offers it. The probiotic angle, combined with the depth of flavor that fermentation adds, creates a differentiated product in an enormous category.",
+   rtbs:["$3.7B salsa market — enormous but commoditized","Fermented salsa already has home-fermentation following","Probiotic positioning without needing supplement claims","Fermentation adds depth of flavor that heat-processed salsa lacks"],
+   competitive:"Pace/Tostitos: Heat-processed. No fermented salsa at national retail.",
+   ops:"Simple",opsDetail:"Lacto-fermented salsa production. Refrigerated. Standard salsa ingredients.",
+   research:"Method: Cultural Trend Mining — fermentation applied to America's #1 condiment category."},
+
+  {id:"fav-12",name:"Pistachio Seasoning",category:"Global Snacks",run:"Favorites Portfolio",date:"2026-04-01",method:"SCAMPER (#21)",score:0,stage:1,effort:0.15,impact:0.5,novelty:0.55,premium:0.7,
+   pitch:"Pistachio-based everything seasoning — ground pistachio with dukkah-style spice blend. Pistachio is having a cultural moment (pistachio latte, pistachio ice cream, Dubai chocolate). Take the ingredient and make it a shelf-stable seasoning you can put on everything. The 'everything bagel seasoning' playbook applied to pistachio.",
+   rtbs:["Pistachio is having a massive cultural moment across food categories","Dukkah (nut-based seasoning) is proven format in Middle Eastern cuisine","'Everything seasoning' playbook proved by Trader Joe's","Ground pistachio + spice blend = unique color, texture, and flavor"],
+   competitive:"No pistachio-based seasoning blend exists at mainstream retail. Dukkah exists in specialty stores.",
+   ops:"Simple",opsDetail:"Standard seasoning blend production. Grind pistachio, blend with spices. Ambient shelf life.",
+   research:"Method: SCAMPER — Apply 'everything bagel seasoning' playbook to pistachio."},
+];
+
+// ═══════════════════════════════════════════════════════════
+// PERSISTENCE — localStorage for notes and stage overrides
+// ═══════════════════════════════════════════════════════════
+function loadUserData() {
+  try { return JSON.parse(localStorage.getItem('idea-library-data') || '{}'); } catch { return {}; }
+}
+function saveUserData(data) {
+  localStorage.setItem('idea-library-data', JSON.stringify(data));
+}
+function getUserNote(id) { return loadUserData()[id + '_note'] || ''; }
+function setUserNote(id, note) { const d = loadUserData(); d[id + '_note'] = note; saveUserData(d); }
+function getUserStage(id, defaultStage) {
+  const d = loadUserData();
+  return d[id + '_stage'] !== undefined ? d[id + '_stage'] : defaultStage;
+}
+function setUserStage(id, stage) { const d = loadUserData(); d[id + '_stage'] = stage; saveUserData(d); }
+
+// Apply user overrides
+IDEAS.forEach(idea => { idea.stage = getUserStage(idea.id, idea.stage); });
+
+// ═══════════════════════════════════════════════════════════
+// FILTERS & RENDERING
+// ═══════════════════════════════════════════════════════════
+const categories = [...new Set(IDEAS.map(i => i.category))].sort();
+const runs = [...new Set(IDEAS.map(i => i.run))].sort();
+
+// Populate filter dropdowns
+const catSelect = document.getElementById('filter-cat');
+categories.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; catSelect.appendChild(o); });
+const runSelect = document.getElementById('filter-run');
+runs.forEach(r => { const o = document.createElement('option'); o.value = r; o.textContent = r; runSelect.appendChild(o); });
+const stageSelect = document.getElementById('filter-stage');
+STAGES.forEach(s => { const o = document.createElement('option'); o.value = s.id; o.textContent = `${s.id}: ${s.name}`; stageSelect.appendChild(o); });
+
+// Header stats
+document.getElementById('total-count').textContent = IDEAS.length;
+document.getElementById('cat-count').textContent = categories.length;
+document.getElementById('run-count').textContent = runs.length;
+
+const B2B_CATEGORIES = ['National Pipe / B2B'];
+let typeFilter = 'all'; // 'all', 'cpg', 'b2b'
+
+function setTypeFilter(type) {
+  typeFilter = type;
+  document.querySelectorAll('#toggle-all,#toggle-cpg,#toggle-b2b').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + type).classList.add('active');
+  renderGrid();
+  renderKanban();
+}
+
+function getFiltered() {
+  const cat = catSelect.value;
+  const stage = stageSelect.value;
+  const run = runSelect.value;
+  const search = document.getElementById('filter-search').value.toLowerCase();
+  return IDEAS.filter(i => {
+    if (typeFilter === 'cpg' && B2B_CATEGORIES.includes(i.category)) return false;
+    if (typeFilter === 'b2b' && !B2B_CATEGORIES.includes(i.category)) return false;
+    if (cat !== 'all' && i.category !== cat) return false;
+    if (stage !== 'all' && i.stage !== parseInt(stage)) return false;
+    if (run !== 'all' && i.run !== run) return false;
+    if (search && !i.name.toLowerCase().includes(search) && !(i.pitch||'').toLowerCase().includes(search)) return false;
+    return true;
+  });
+}
+
+// Category colors
+const catColors = {};
+const palette = ['#D4A843','#4A7FB5','#7CB97A','#C47BD4','#E8826A','#C45C5C','#5BC0BE','#E8D44D'];
+categories.forEach((c,i) => catColors[c] = palette[i % palette.length]);
+
+// ─── CARD GRID ───
+function renderGrid() {
+  const grid = document.getElementById('card-grid');
+  const filtered = getFiltered();
+  grid.innerHTML = filtered.map(idea => `
+    <div class="idea-card" onclick="openModal('${idea.id}')">
+      ${idea.image ? `<img class="card-img" src="${idea.image}" alt="${idea.name}" onerror="this.outerHTML='<div class=card-img-placeholder>No Image</div>'">` : '<div class="card-img-placeholder">STAGE ' + idea.stage + '</div>'}
+      <div class="card-body">
+        <div class="card-id">${idea.run} · ${idea.method}</div>
+        <div class="card-name">${idea.name}</div>
+        <div class="card-pitch">${(idea.pitch||'').substring(0,180)}...</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="card-tag stage">Stage ${idea.stage}</span>
+          <span class="card-tag cat" style="background:${catColors[idea.category]}22;color:${catColors[idea.category]};border-color:${catColors[idea.category]}44">${idea.category}</span>
+        </div>
+        ${idea.score ? `<div class="card-score">${idea.score}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── KANBAN ───
+function renderKanban() {
+  const kanban = document.getElementById('kanban');
+  const filtered = getFiltered();
+  kanban.innerHTML = STAGES.map(stage => {
+    const items = filtered.filter(i => i.stage === stage.id);
+    return `
+      <div class="kanban-col">
+        <div class="kanban-col-header" style="border-top:3px solid ${stage.color}">
+          <div class="count">${items.length}</div>
+          <h3 style="color:${stage.color}">${stage.id}: ${stage.name}</h3>
+        </div>
+        <div class="kanban-col-body">
+          ${items.map(idea => `
+            <div class="kanban-card" onclick="openModal('${idea.id}')">
+              <div class="kc-name">${idea.name}</div>
+              <div class="kc-cat">${idea.category}</div>
+              ${idea.score ? `<div class="kc-score">${idea.score}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ─── MODAL ───
+function openModal(id) {
+  const idea = IDEAS.find(i => i.id === id);
+  if (!idea) return;
+  const note = getUserNote(id);
+  const stageOpts = STAGES.map(s => `<option value="${s.id}" ${s.id === idea.stage ? 'selected' : ''}>${s.id}: ${s.name}</option>`).join('');
+
+  document.getElementById('modal-content').innerHTML = `
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-meta">${idea.run} · ${idea.method} · ${idea.category} · ${idea.date}</div>
+    <h2>${idea.name}</h2>
+
+    <div class="stage-selector">
+      <label>Stage Gate</label>
+      <select onchange="changeStage('${idea.id}', this.value)">${stageOpts}</select>
+      ${idea.score ? `<span style="margin-left:auto;font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--gold);">${idea.score}/5</span>` : ''}
+    </div>
+
+    ${idea.image ? `<img class="modal-img" src="${idea.image}" alt="${idea.name}" onerror="this.style.display='none'">` : ''}
+
+    <div class="section-title">The Pitch</div>
+    ${(idea.pitch||'').split('\n').filter(Boolean).map(p => `<p>${p}</p>`).join('')}
+
+    ${idea.rtbs && idea.rtbs.length ? `
+      <div class="section-title">Reasons to Believe</div>
+      <ul>${idea.rtbs.map(r => `<li>${r}</li>`).join('')}</ul>
+    ` : ''}
+
+    ${idea.research ? `<div class="research-box">${idea.research}</div>` : ''}
+
+    ${idea.competitive || idea.ops ? `
+      <div class="panels-row">
+        ${idea.competitive ? `
+          <div class="panel comp">
+            <h4>Competitive Landscape</h4>
+            <div class="panel-content">${idea.competitive.split('. ').map(s => `<p>${s}.</p>`).join('')}</div>
+          </div>
+        ` : '<div></div>'}
+        ${idea.ops ? `
+          <div class="panel ops">
+            <h4>Operational Complexity</h4>
+            <span class="ops-badge ops-${idea.ops.toLowerCase()}">${idea.ops}</span>
+            <div class="panel-content"><p>${idea.opsDetail || ''}</p></div>
+          </div>
+        ` : '<div></div>'}
+      </div>
+    ` : ''}
+
+    <div class="notes-area">
+      <label>Your Notes</label>
+      <textarea id="note-input" placeholder="Add your notes about this idea...">${note}</textarea>
+    </div>
+  `;
+
+  document.getElementById('modal-overlay').classList.add('open');
+
+  // Auto-save notes
+  const noteInput = document.getElementById('note-input');
+  if (noteInput) {
+    noteInput.addEventListener('input', () => setUserNote(id, noteInput.value));
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function changeStage(id, newStage) {
+  const stage = parseInt(newStage);
+  setUserStage(id, stage);
+  const idea = IDEAS.find(i => i.id === id);
+  if (idea) idea.stage = stage;
+  renderGrid();
+  renderKanban();
+  renderCharts();
+}
+
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ─── PERCEPTUAL MAP ───
+function renderMap() {
+  const canvas = document.getElementById('map-canvas');
+  const container = document.getElementById('map-container');
+  const ctx = canvas.getContext('2d');
+  const tooltip = document.getElementById('map-tooltip');
+
+  const dpr = window.devicePixelRatio || 1;
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const PAD = 80;
+  const filtered = getFiltered().filter(i => i.novelty !== undefined);
+
+  function cx(c) { return PAD + (c.novelty||0.5) * (W - PAD*2); }
+  function cy(c) { return H - PAD - (c.premium||0.5) * (H - PAD*2); }
+  function getR(c) { return c.score ? 10 + c.score * 4 : 14; }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 6]);
+    ctx.beginPath();
+    ctx.moveTo(W/2, PAD-20); ctx.lineTo(W/2, H-PAD+20);
+    ctx.moveTo(PAD-20, H/2); ctx.lineTo(W-PAD+20, H/2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Dots
+    filtered.forEach((c, i) => {
+      const x = cx(c), y = cy(c), r = getR(c);
+      const col = catColors[c.category] || '#8A8D94';
+
+      // Glow
+      const grd = ctx.createRadialGradient(x, y, 0, x, y, r*2.5);
+      grd.addColorStop(0, col + '20');
+      grd.addColorStop(1, col + '00');
+      ctx.beginPath(); ctx.arc(x, y, r*2.5, 0, Math.PI*2); ctx.fillStyle = grd; ctx.fill();
+
+      // Circle
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+      ctx.fillStyle = col + 'CC'; ctx.fill();
+      ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.stroke();
+
+      // Label
+      ctx.font = "500 10px 'DM Sans', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#F0EDE690';
+      const label = c.name.length > 18 ? c.name.slice(0,16)+'…' : c.name;
+      ctx.fillText(label, x + r + 5, y + 3);
+    });
+  }
+  draw();
+
+  // Hover
+  canvas.onmousemove = e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    let found = null;
+    filtered.forEach(c => {
+      const dx = mx - cx(c), dy = my - cy(c);
+      if (Math.sqrt(dx*dx+dy*dy) < getR(c)+6) found = c;
+    });
+    if (found) {
+      tooltip.querySelector('.tt-meta').textContent = `${found.category} · ${found.method} · Stage ${found.stage}`;
+      tooltip.querySelector('.tt-name').textContent = found.name;
+      tooltip.querySelector('.tt-desc').textContent = (found.pitch||'').substring(0,120)+'...';
+      tooltip.style.opacity = 1;
+      let tx = e.clientX - rect.left + 16, ty = e.clientY - rect.top - 20;
+      if (tx + 330 > W) tx -= 350;
+      tooltip.style.left = tx+'px'; tooltip.style.top = ty+'px';
+    } else { tooltip.style.opacity = 0; }
+  };
+  canvas.onmouseleave = () => { tooltip.style.opacity = 0; };
+  canvas.onclick = e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    filtered.forEach(c => {
+      const dx = mx - cx(c), dy = my - cy(c);
+      if (Math.sqrt(dx*dx+dy*dy) < getR(c)+6) openModal(c.id);
+    });
+  };
+
+  // Legend
+  const legend = document.getElementById('map-legend');
+  legend.innerHTML = categories.map(c => `<div class="map-legend-item"><div class="map-legend-dot" style="background:${catColors[c]}"></div>${c}</div>`).join('');
+}
+
+// ─── EFFORT VS IMPACT SCATTER ───
+function renderScatter() {
+  const canvas = document.getElementById('scatter-canvas');
+  const container = document.getElementById('scatter-container');
+  const ctx = canvas.getContext('2d');
+  const tooltip = document.getElementById('scatter-tooltip');
+
+  const dpr = window.devicePixelRatio || 1;
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const PAD = 80;
+  const filtered = getFiltered();
+
+  function cx(c) { return PAD + (c.effort||0.5) * (W - PAD*2); }
+  function cy(c) { return H - PAD - (c.impact||0.5) * (H - PAD*2); }
+
+  // Quadrant backgrounds
+  ctx.fillStyle = 'rgba(124,185,122,0.04)'; ctx.fillRect(PAD, PAD, (W-PAD*2)/2, (H-PAD*2)/2); // top-left: Do Now
+  ctx.fillStyle = 'rgba(212,168,67,0.04)'; ctx.fillRect(PAD+(W-PAD*2)/2, PAD, (W-PAD*2)/2, (H-PAD*2)/2); // top-right: Invest
+  ctx.fillStyle = 'rgba(74,127,181,0.03)'; ctx.fillRect(PAD, PAD+(H-PAD*2)/2, (W-PAD*2)/2, (H-PAD*2)/2); // bottom-left: Quick Wins
+  ctx.fillStyle = 'rgba(138,141,148,0.03)'; ctx.fillRect(PAD+(W-PAD*2)/2, PAD+(H-PAD*2)/2, (W-PAD*2)/2, (H-PAD*2)/2); // bottom-right: Deprioritize
+
+  // Quadrant labels
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = '#7CB97A60'; ctx.textAlign = 'left'; ctx.fillText('DO NOW', PAD+10, PAD+20);
+  ctx.fillStyle = '#D4A84360'; ctx.textAlign = 'right'; ctx.fillText('INVEST', W-PAD-10, PAD+20);
+  ctx.fillStyle = '#4A7FB560'; ctx.textAlign = 'left'; ctx.fillText('QUICK WINS', PAD+10, H-PAD-10);
+  ctx.fillStyle = '#8A8D9460'; ctx.textAlign = 'right'; ctx.fillText('DEPRIORITIZE', W-PAD-10, H-PAD-10);
+
+  // Crosshairs
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+  ctx.setLineDash([4,6]);
+  ctx.beginPath(); ctx.moveTo(W/2, PAD); ctx.lineTo(W/2, H-PAD); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(PAD, H/2); ctx.lineTo(W-PAD, H/2); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Dots
+  filtered.forEach(c => {
+    const x = cx(c), y = cy(c), r = 12;
+    const col = catColors[c.category] || '#8A8D94';
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+    ctx.fillStyle = col + 'CC'; ctx.fill();
+    ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.stroke();
+  });
+
+  // Hover
+  canvas.onmousemove = e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    let found = null;
+    filtered.forEach(c => {
+      const dx = mx - cx(c), dy = my - cy(c);
+      if (Math.sqrt(dx*dx+dy*dy) < 16) found = c;
+    });
+    if (found) {
+      tooltip.querySelector('.tt-name').textContent = found.name;
+      tooltip.querySelector('.tt-meta').textContent = `Effort: ${Math.round(found.effort*100)}% · Impact: ${Math.round(found.impact*100)}%`;
+      tooltip.style.opacity = 1;
+      tooltip.style.left = (e.clientX - rect.left + 16) + 'px';
+      tooltip.style.top = (e.clientY - rect.top - 20) + 'px';
+    } else { tooltip.style.opacity = 0; }
+  };
+  canvas.onclick = e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    filtered.forEach(c => {
+      const dx = mx - cx(c), dy = my - cy(c);
+      if (Math.sqrt(dx*dx+dy*dy) < 16) openModal(c.id);
+    });
+  };
+}
+
+// ─── CHARTS ───
+function renderCharts() {
+  // Score distribution
+  const scoreChart = document.getElementById('score-chart');
+  const scored = IDEAS.filter(i => i.score > 0);
+  const scoreBuckets = [
+    {label:'4.5-5.0', min:4.5, max:5.01},
+    {label:'4.0-4.4', min:4.0, max:4.5},
+    {label:'3.5-3.9', min:3.5, max:4.0},
+    {label:'3.0-3.4', min:3.0, max:3.5},
+    {label:'Unscored', min:-1, max:0.01}
+  ];
+  const maxScore = Math.max(...scoreBuckets.map(b => {
+    if (b.min < 0) return IDEAS.filter(i => !i.score || i.score === 0).length;
+    return scored.filter(i => i.score >= b.min && i.score < b.max).length;
+  }));
+  scoreChart.innerHTML = scoreBuckets.map(b => {
+    const count = b.min < 0 ? IDEAS.filter(i => !i.score || i.score === 0).length : scored.filter(i => i.score >= b.min && i.score < b.max).length;
+    const pct = maxScore ? (count / maxScore * 100) : 0;
+    return `<div class="bar-row"><div class="bar-label">${b.label}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:var(--gold)"><span>${count}</span></div></div></div>`;
+  }).join('');
+
+  // Category chart
+  const catChart = document.getElementById('cat-chart');
+  const maxCat = Math.max(...categories.map(c => IDEAS.filter(i => i.category === c).length));
+  catChart.innerHTML = categories.map(c => {
+    const count = IDEAS.filter(i => i.category === c).length;
+    const pct = maxCat ? (count / maxCat * 100) : 0;
+    return `<div class="bar-row"><div class="bar-label">${c}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${catColors[c]}"><span>${count}</span></div></div></div>`;
+  }).join('');
+
+  // Method performance
+  const methodChart = document.getElementById('method-chart');
+  const methods = [...new Set(IDEAS.map(i => i.method))].sort();
+  const maxMethod = Math.max(...methods.map(m => IDEAS.filter(i => i.method === m).length));
+  methodChart.innerHTML = methods.map(m => {
+    const count = IDEAS.filter(i => i.method === m).length;
+    const pct = maxMethod ? (count / maxMethod * 100) : 0;
+    return `<div class="bar-row"><div class="bar-label">${m}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:var(--blue)"><span>${count}</span></div></div></div>`;
+  }).join('');
+
+  // Stage distribution
+  const stageChart = document.getElementById('stage-chart');
+  const maxStage = Math.max(...STAGES.map(s => IDEAS.filter(i => i.stage === s.id).length));
+  stageChart.innerHTML = STAGES.map(s => {
+    const count = IDEAS.filter(i => i.stage === s.id).length;
+    const pct = maxStage ? (count / maxStage * 100) : 0;
+    return `<div class="bar-row"><div class="bar-label">${s.id}: ${s.name}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${s.color}"><span>${count}</span></div></div></div>`;
+  }).join('');
+}
+
+// ─── VIEW SWITCHING ───
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('view-' + btn.dataset.view).classList.add('active');
+    if (btn.dataset.view === 'map') setTimeout(renderMap, 50);
+    if (btn.dataset.view === 'scatter') setTimeout(renderScatter, 50);
+    if (btn.dataset.view === 'charts') renderCharts();
+  });
+});
+
+// Filter listeners
+[catSelect, stageSelect, runSelect].forEach(el => el.addEventListener('change', () => { renderGrid(); renderKanban(); }));
+document.getElementById('filter-search').addEventListener('input', () => { renderGrid(); renderKanban(); });
+
+// Initial render
+renderGrid();
+renderKanban();
+renderCharts();
+</script>
+</body>
+</html>

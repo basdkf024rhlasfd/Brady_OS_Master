@@ -120,12 +120,18 @@ Pick the best hero. Present all 4 on the product page.
 **IMPORTANT — Image Embedding Protocol:**
 Canva `design.canva.ai` thumbnail URLs are authenticated and short-lived — they will NOT
 render in standalone HTML files or PDFs. Instead:
-1. After generating designs, use `mcp__claude_ai_Canva__create-design-from-candidate` to
-   save the hero to Brady's Canva account
+1. After generating ALL designs, use `mcp__claude_ai_Canva__create-design-from-candidate` to
+   save ALL 4 images per product (hero, lifestyle, close-up, alternate) to Brady's Canva account
 2. Then use `mcp__claude_ai_Canva__export-design` to get a permanent public URL
-3. If export isn't feasible for all 20, use styled placeholder cards with product description
-   and a clickable link to the Canva design page (the `canva.com/d/` URL)
-4. Never embed `design.canva.ai` URLs as `<img src>` — they will break
+3. Download ALL exported PNGs locally to `output/images/` using curl
+   Naming: `XX-product-name-hero.png`, `XX-product-name-lifestyle.png`,
+   `XX-product-name-closeup.png`, `XX-product-name-alt.png`
+4. Embed ALL 4 in HTML per product: hero image large, 3 alternates as smaller thumbnails
+5. Never embed `design.canva.ai` URLs as `<img src>` — they will break
+6. CSS for ALL images: use `object-fit: contain` (NOT `cover`) so the full image displays
+   without cropping. No max-height constraint — let images show in their entirety.
+7. Layout: hero image at ~60% width, 3 alternates stacked vertically alongside it at ~35%
+   width, each labeled (LIFESTYLE, CLOSE-UP, ALTERNATE)
 
 ### Step 5: Write Pitch + RTBs + Competitive Landscape + Ops Complexity
 
@@ -134,7 +140,12 @@ For each idea, write:
 **Pitch** (2-3 paragraphs):
 - What the product is and who it's for
 - The insight that makes it work (consumer behavior, market gap, format innovation)
-- Why Brady is positioned to build it (connect to his specific experience)
+- Execution path: what the first move looks like, why it's feasible
+
+**Tone rule**: Lead with the idea, not with Brady. Do NOT pitch Brady's background as a
+selling point ("Brady's edge," "16 years in..."). The ideas should speak for themselves.
+If specific industry experience or network connections are directly relevant to an idea's
+feasibility, mention them briefly in context — but never as a braggadocious callout.
 
 **RTBs (Reasons to Believe)** — 3-4 bullets, each grounded in data or experience:
 - Market data point with source
@@ -171,6 +182,16 @@ Every product page MUST stay together as one unit. Apply these CSS rules:
 - Headers, image blocks, and body content must be inside the same container
 - Never let a header print at the bottom of a page with its body on the next page
 - Test by printing to PDF — if any product splits across pages, fix the layout
+
+**Image Layout — CRITICAL:**
+Product images must float left with text wrapping around them — NOT stacked vertically
+with the image taking up the full width. This keeps each product page compact and prevents
+the image from consuming a full page by itself.
+- Image floats left at 280px width
+- Text (pitch, RTBs, etc.) wraps to the right and below
+- Clear the float after `.product-body` so panels below render correctly
+- CSS: `.product-image-block { float: left; margin: 0 24px 16px 0; }`
+- CSS: `.product-image-block img { width: 280px; height: 280px; object-fit: contain; }`
 
 **Font Hierarchy — CRITICAL:**
 Maintain clear visual hierarchy between content levels:
