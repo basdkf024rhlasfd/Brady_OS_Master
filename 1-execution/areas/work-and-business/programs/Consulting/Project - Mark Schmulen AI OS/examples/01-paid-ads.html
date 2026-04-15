@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>PropMatic CMO Agent — /paid-ads</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #5CA85C;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1080px;
+  min-height: 1920px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  padding: 48px 52px 40px;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,168,67,0.1);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.subtitle {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 32px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.card-alt {
+  background: var(--bg-card-alt);
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.stat-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.stat-box {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--gold);
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.campaign-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.campaign-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gray);
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.ad-group {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.ad-group:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.ag-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.keyword {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: rgba(74,127,181,0.12);
+  color: var(--blue);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 2px 4px 2px 0;
+}
+.match-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+  margin-left: 2px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray-light);
+}
+td:first-child { color: var(--white); }
+.highlight { color: var(--gold); font-weight: 600; }
+.ad-copy-card {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.ad-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.ad-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+.ad-url {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-left {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gold);
+}
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.target-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: rgba(212,168,67,0.1);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 2px 4px 2px 0;
+}
+</style>
+</head>
+<body>
+
+<div class="tag">/paid-ads</div>
+<h1>Google Ads Campaign Plan</h1>
+<p class="subtitle">Q2 2026 — Multifamily Decision Makers</p>
+
+<!-- Campaign Overview -->
+<div class="card" style="margin-bottom: 20px;">
+  <div class="section-label">Campaign Overview</div>
+  <div class="campaign-name">Q2 2026 — Multifamily Decision Makers</div>
+  <div class="campaign-meta" style="margin-bottom: 12px;">GOOGLE ADS &middot; SEARCH &middot; APRIL&ndash;JUNE 2026</div>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+    <span class="target-badge">Property Managers</span>
+    <span class="target-badge">50&ndash;500 Units</span>
+    <span class="target-badge">Southeast US</span>
+    <span class="target-badge">Decision Makers</span>
+  </div>
+</div>
+
+<!-- Key Metrics -->
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="stat-value">$4,500</div>
+    <div class="stat-label">Monthly Budget</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">$3.20</div>
+    <div class="stat-label">Est. CPC</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">4.2%</div>
+    <div class="stat-label">Est. CTR</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">8.1%</div>
+    <div class="stat-label">Conv Rate</div>
+  </div>
+</div>
+
+<!-- Ad Groups -->
+<div class="card">
+  <div class="section-label">Ad Groups &amp; Keywords</div>
+
+  <div class="ad-group">
+    <div class="ag-name">AG1: AI Leasing Automation</div>
+    <div>
+      <span class="keyword">"ai leasing assistant"<span class="match-type"> PHRASE</span></span>
+      <span class="keyword">[automated leasing software]<span class="match-type"> EXACT</span></span>
+      <span class="keyword">ai leasing multifamily<span class="match-type"> BROAD</span></span>
+      <span class="keyword">"virtual leasing agent"<span class="match-type"> PHRASE</span></span>
+      <span class="keyword">[multifamily leasing automation]<span class="match-type"> EXACT</span></span>
+    </div>
+  </div>
+
+  <div class="ad-group">
+    <div class="ag-name">AG2: Multifamily Marketing Platform</div>
+    <div>
+      <span class="keyword">"multifamily marketing software"<span class="match-type"> PHRASE</span></span>
+      <span class="keyword">[apartment marketing platform]<span class="match-type"> EXACT</span></span>
+      <span class="keyword">property marketing ai<span class="match-type"> BROAD</span></span>
+      <span class="keyword">"apartment advertising tool"<span class="match-type"> PHRASE</span></span>
+      <span class="keyword">[rental marketing automation]<span class="match-type"> EXACT</span></span>
+    </div>
+  </div>
+
+  <div class="ad-group">
+    <div class="ag-name">AG3: Resident Conversion</div>
+    <div>
+      <span class="keyword">"improve lease conversion rate"<span class="match-type"> PHRASE</span></span>
+      <span class="keyword">[tenant conversion software]<span class="match-type"> EXACT</span></span>
+      <span class="keyword">reduce vacancy multifamily<span class="match-type"> BROAD</span></span>
+      <span class="keyword">"lead to lease software"<span class="match-type"> PHRASE</span></span>
+      <span class="keyword">[apartment lead nurturing]<span class="match-type"> EXACT</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- Ad Copy Examples -->
+<div class="card">
+  <div class="section-label">Ad Copy Variations</div>
+
+  <div class="ad-copy-card">
+    <div class="ad-url">propmatic.com/demo</div>
+    <div class="ad-headline">AI That Leases Apartments 24/7 | PropMatic</div>
+    <div class="ad-headline" style="font-size: 16px; color: var(--gold-dim);">Cut Vacancy by 40% — No Extra Headcount</div>
+    <div class="ad-desc" style="margin-top: 8px;">PropMatic's AI handles tours, follow-ups, and applications while your team sleeps. 200+ multifamily communities trust us. Book a 15-min demo.</div>
+  </div>
+
+  <div class="ad-copy-card">
+    <div class="ad-url">propmatic.com/demo</div>
+    <div class="ad-headline">Stop Losing Leads After Hours | PropMatic</div>
+    <div class="ad-headline" style="font-size: 16px; color: var(--gold-dim);">AI Leasing That Converts 3x More Prospects</div>
+    <div class="ad-desc" style="margin-top: 8px;">67% of renter inquiries come outside office hours. PropMatic responds in under 90 seconds, every time. See it in action.</div>
+  </div>
+</div>
+
+<!-- Monthly Projection Table -->
+<div class="card">
+  <div class="section-label">Monthly Projection</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>April</th>
+        <th>May</th>
+        <th>June</th>
+        <th>Q2 Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Impressions</td>
+        <td>33,400</td>
+        <td>36,100</td>
+        <td>38,800</td>
+        <td class="highlight">108,300</td>
+      </tr>
+      <tr>
+        <td>Clicks</td>
+        <td>1,403</td>
+        <td>1,516</td>
+        <td>1,630</td>
+        <td class="highlight">4,549</td>
+      </tr>
+      <tr>
+        <td>Leads</td>
+        <td>114</td>
+        <td>123</td>
+        <td>132</td>
+        <td class="highlight">369</td>
+      </tr>
+      <tr>
+        <td>SQLs</td>
+        <td>28</td>
+        <td>31</td>
+        <td>34</td>
+        <td class="highlight">93</td>
+      </tr>
+      <tr>
+        <td>Est. Pipeline</td>
+        <td>$51,520</td>
+        <td>$57,040</td>
+        <td>$62,560</td>
+        <td class="highlight">$171,120</td>
+      </tr>
+      <tr>
+        <td>Spend</td>
+        <td>$4,500</td>
+        <td>$4,500</td>
+        <td>$4,500</td>
+        <td class="highlight">$13,500</td>
+      </tr>
+      <tr>
+        <td>Cost per SQL</td>
+        <td>$160.71</td>
+        <td>$145.16</td>
+        <td>$132.35</td>
+        <td class="highlight">$145.16</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  <div class="footer-left">mception.ai</div>
+  <div class="footer-right">PropMatic CMO Agent</div>
+</div>
+
+</body>
+</html>
