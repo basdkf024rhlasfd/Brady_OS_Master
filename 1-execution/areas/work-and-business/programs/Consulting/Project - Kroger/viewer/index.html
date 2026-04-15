@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <title>Kroger Management Operating System</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,6 +68,30 @@
   .prose td { padding: 8px 12px; border-bottom: 1px solid #1a1a1a; color: #bbb; }
   .prose tr:hover td { background: #111; }
 
+  /* SCR Infographic */
+  .scr-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0 32px; }
+  .scr-card {
+    background: #13161D; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;
+    padding: 20px; border-top: 3px solid #D4A843;
+  }
+  .scr-card.complication { border-top-color: #C45C5C; }
+  .scr-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: #D4A843; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .scr-card.complication .scr-label { color: #C45C5C; }
+  .scr-label::after {
+    content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.25);
+  }
+  .scr-card.complication .scr-label::after { background: rgba(196,92,92,0.25); }
+  .scr-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: #F0EDE6; margin: 0 0 10px; letter-spacing: -0.3px; }
+  .scr-card p { font-family: 'DM Sans', sans-serif; font-size: 13px; line-height: 1.65; color: #B0B3BA; margin: 0; }
+  .scr-card .scr-stat { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #D4A843; margin: 8px 0 4px; }
+  .scr-card.complication .scr-stat { color: #C45C5C; }
+  .scr-card .scr-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #8A8D94; text-transform: uppercase; letter-spacing: 1.5px; }
+  @media (max-width: 768px) { .scr-grid { grid-template-columns: 1fr; } }
+
   /* Iframe sections */
   .embedded-html { width: 100%; height: calc(100vh - 80px); border: none; border-radius: 8px; background: #0f1419; }
 
@@ -122,7 +149,31 @@
   <div class="content-wrap" id="content-area">
     <div class="section-content" id="content-overview" style="display:none"><div class="prose"><h1>Kroger / Ocado Project Primer</h1>
 
-<p><strong>Owner:</strong> Brady Smallwood<br><strong>Last Updated:</strong> April 11, 2026</p>
+<p><strong>Team:</strong> Chad Yoes, Bill Bennett, Brady Smallwood<br><strong>Last Updated:</strong> April 15, 2026</p>
+
+<div class="scr-grid">
+  <div class="scr-card">
+    <div class="scr-label">Situation</div>
+    <h3>New CEO. Clean Slate.</h3>
+    <div class="scr-stat">$2.5B</div>
+    <div class="scr-stat-label">Ocado write-down cleared</div>
+    <p style="margin-top:12px">Greg Foran took office Feb 2026. Twenty divisions running independently. $1.5B+ marketplace pipeline stalled. First 100 days = maximum leverage window for a stores-first operator who ran Walmart US.</p>
+  </div>
+  <div class="scr-card complication">
+    <div class="scr-label">Complication</div>
+    <h3>No Operating System</h3>
+    <div class="scr-stat">0</div>
+    <div class="scr-stat-label">Unified management frameworks</div>
+    <p style="margin-top:12px">AI capability gap vs Walmart widening every quarter. Bain embedded on-site, McKinsey running network strategy — but neither has insider deal knowledge or operator-grade retail merchandising depth. Capital decisions went to committee votes for six months.</p>
+  </div>
+  <div class="scr-card">
+    <div class="scr-label">Resolution</div>
+    <h3>PinnacleOS</h3>
+    <div class="scr-stat">Day 1</div>
+    <div class="scr-stat-label">Merch ops module ready</div>
+    <p style="margin-top:12px">An operator-grade management system built by a team that was in the room for every deal on the table. AI-accelerated intelligence production. Playbook depth no consulting firm can replicate. The system doesn't just advise — it operates.</p>
+  </div>
+</div>
 
 <hr>
 
@@ -137,9 +188,7 @@
 
 <h2>The Team</h2>
 
-<ul><li><strong>Brady Smallwood</strong> — Former Kroger e-commerce executive. Owns AI strategy, competitive intelligence, and insider deal knowledge (Uber, DoorDash, Instacart negotiations). The operator perspective.</li>
-<li><strong>Bill Bennett</strong> — Brady's former boss. VP Head of E-Commerce at Kroger (2020–2023), previously led pricing at Walmart.com under Foran. Authored "What's Broken at Kroger" whitepaper. Has direct outreach to Foran as of March 4, 2026.</li>
-<li><strong>Chad</strong> — Third collaborator. Covers internal Kroger political landscape and operator credibility. Higher confidentiality layer — some content is Chad-only.</li></ul>
+<p>Chad Yoes, Bill Bennett, and Brady Smallwood are former Kroger and Walmart colleagues working together to present Greg Foran with options — whether that's a consulting engagement, direct employment, or a hybrid arrangement. Between them they cover merchandising, pricing, e-commerce, AI strategy, competitive intelligence, and every marketplace deal currently on the table.</p>
 
 <p><strong>Target audience:</strong> Greg Foran, CEO of Kroger.</p>
 
@@ -169,7 +218,7 @@
 <table><thead><tr><th>Document</th><th>Role</th></tr></thead><tbody><tr><td><code>Whats_broken_at_Kroger.pdf</code></td><td>Bill's whitepaper — the anchor document for the pitch</td></tr>
 <tr><td><code>AI_Gap_Combined_Final.docx</code></td><td>Brady's AI gap memo (Kroger vs. Walmart) with C/V scoring</td></tr>
 <tr><td><code>AI_Retail_Competitive_Intel_March_2026.docx</code></td><td>Competitive intel brief across 9 retailers/platforms</td></tr>
-<tr><td><code>strategic-notes-kroger-opportunities.md</code></td><td>Brady's insider notes — deals, contacts, political landscape</td></tr>
+<tr><td><code>strategic-notes-kroger-opportunities.md</code></td><td>Team insider notes — deals, contacts, political landscape</td></tr>
 <tr><td><code>FINAL_v7KRQ425EarningsPRtables.pdf</code></td><td>Kroger Q4/FY25 earnings PR — primary source doc</td></tr>
 <tr><td><code>Mar_9_Earnings_Recap</code></td><td>Combined Kroger + Ocado recap synthesizing everything</td></tr>
 <tr><td><code>Deep_Research_Greg_Foran_2026-04-11.md</code></td><td>Deep research on Foran's leadership style and career</td></tr>
@@ -185,9 +234,9 @@
 <ul><li><strong>C (Confidentiality):</strong> 0–10. How much legal/professional risk if this leaks. 10 = lawsuit territory.</li>
 <li><strong>V (Verification):</strong> 0–10. How certain we are this is true. 10 = direct public quotes or firsthand experience.</li></ul>
 
-<p><strong>Routing rules:</strong><br><ul><li><strong>Greg-ready:</strong> High V, low C. No scores, no source headers, no editorial notes.</li><br><li><strong>Bill-facing:</strong> Same substance, no scores/delta tables/action items.</li><br><li><strong>Chad-facing:</strong> Full version with scores, insider deal context, political notes.</li><br><li><strong>Verbal-only:</strong> Anything C:7+. Never written down for external audiences.</li></ul></p>
+<p><strong>Routing rules:</strong><br><ul><li><strong>Greg-ready:</strong> High V, low C. No scores, no source headers, no editorial notes.</li><br><li><strong>Team-facing (Bill &amp; Chad):</strong> Full version with scores, insider deal context, strategic notes.</li><br><li><strong>Verbal-only:</strong> Anything C:7+. Never written down for external audiences.</li></ul></p>
 
-<p>Brady's firsthand deal knowledge (Uber ~$140M offer, DoorDash Dashmarts, Instacart MFC deployment) scores C:5–6 / V:10. These stay in Chad-facing docs and verbal conversations — not in Greg-facing materials.</p>
+<p>The team's firsthand deal knowledge (Uber ~$140M offer, DoorDash Dashmarts, Instacart MFC deployment) scores C:5–6 / V:10. These stay in team-facing docs and verbal conversations — not in Greg-facing materials.</p>
 
 <hr>
 
@@ -199,7 +248,7 @@
 
 <p><strong>Voice:</strong> Operator language. Foran ran Walmart US — don't explain Walmart to him. Concrete, actionable, sequenced. No consultant theater.</p>
 
-<p><strong>Source hierarchy:</strong> Brady's insider knowledge → Bill's whitepaper → Project files → External research.</p>
+<p><strong>Source hierarchy:</strong> Team insider knowledge → Bill's whitepaper → Project files → External research.</p>
 
 <hr>
 
@@ -216,8 +265,8 @@
 <h2>Key People</h2>
 
 <table><thead><tr><th>Person</th><th>Role</th><th>Relevance</th></tr></thead><tbody><tr><td>Greg Foran</td><td>Kroger CEO (Feb 2026–)</td><td>Target client. Stores-first operator, former Walmart US CEO.</td></tr>
-<tr><td>Bill Bennett</td><td>Consulting collaborator</td><td>Whitepaper author. Direct Foran access via shared Walmart history.</td></tr>
-<tr><td>Chad</td><td>Consulting collaborator</td><td>Political landscape, operator credibility. Higher confidentiality tier.</td></tr>
+<tr><td>Bill Bennett</td><td>Director, E-Commerce (Kroger)</td><td>Whitepaper author. Direct Foran access via shared Walmart history. Deep pricing and merchandising expertise.</td></tr>
+<tr><td>Chad Yoes</td><td>Consulting collaborator</td><td>Direct channel to Foran. Strategic leadership and organizational navigation.</td></tr>
 <tr><td>Milen Mahadevan</td><td>Kroger Chief Data & AI Officer</td><td>Key figure in AI gap analysis</td></tr>
 <tr><td>Yael Cosset</td><td>Kroger CTO</td><td>Referenced in Bill's whitepaper as potential replacement</td></tr>
 <tr><td>Rebekah Manis</td><td>Kroger E-Commerce GM</td><td>Current e-com leadership</td></tr>
@@ -2150,21 +2199,21 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <hr>
 
-<h2>Part 2: Complexity — What I've Already Built</h2>
+<h2>Part 2: Complexity — What We've Already Built</h2>
 
-<p>I've spent the last year building something I didn't set out to build.</p>
+<p>We've spent the last year building something we didn't set out to build.</p>
 
-<p>It started as consulting prep — AI competitive analysis, marketplace deal intelligence, org structure assessments. But as the work expanded across merchandising, e-commerce, vendor negotiation, forecasting, capital allocation, pricing, assortment, item setup, OKRs, and competitive intel, I realized I wasn't writing a strategy document. I was building the management operating system for a retail merchandising organization.</p>
+<p>It started as consulting prep — AI competitive analysis, marketplace deal intelligence, org structure assessments. But as the work expanded across merchandising, e-commerce, vendor negotiation, forecasting, capital allocation, pricing, assortment, item setup, OKRs, and competitive intel, we realized we weren't writing a strategy document. We were building the management operating system for a retail merchandising organization.</p>
 
 <p>Here's what it actually is:</p>
 
 <p><strong>A modular operating system with three layers:</strong></p>
 
-<p><strong>Layer 1 — Functional swimlanes.</strong> Each core function (pricing, assortment, vendor negotiation, eCommerce, forecasting, etc.) gets its own module. Some I've gone deep on — marketplace partnerships, AI capability gap, competitive intelligence. Others I've built the governance skeleton and the right domain expert fills the content. The swimlanes are the <em>what</em>.</p>
+<p><strong>Layer 1 — Functional swimlanes.</strong> Each core function (pricing, assortment, vendor negotiation, eCommerce, forecasting, etc.) gets its own module. Some we've gone deep on — marketplace partnerships, AI capability gap, competitive intelligence. Others we've built the governance skeleton and the right domain expert fills the content. The swimlanes are the <em>what</em>.</p>
 
 <p><strong>Layer 2 — Governance infrastructure.</strong> Every swimlane runs on the same backbone: OKR-to-evaluation cycles, financial AOP integration, capital/IRR frameworks, project and product management cadence (morning/evening rhythms, not quarterly reviews). This is the <em>how</em> — and it's the piece Kroger has never had. Legacy at Walmart had this. Kroger's TMO was a ghost of it.</p>
 
-<p><strong>Layer 3 — The accelerator.</strong> This is the part nobody else can offer. I've built and personally operate an AI-native management system — agents that handle recursive learning, competitive intelligence gathering, document production, decision support, and accountability tracking. Not as a concept. As working infrastructure I run my own operation on every day.</p>
+<p><strong>Layer 3 — The accelerator.</strong> This is the part nobody else can offer. We've built and operate an AI-native management system — agents that handle recursive learning, competitive intelligence gathering, document production, decision support, and accountability tracking. Not as a concept. As working infrastructure we run our operation on every day.</p>
 
 <p>The accelerator layer is what turns a 12-month transformation into a 6-month one. It's the difference between "we need to hire a McKinsey team to benchmark our vendor negotiation process" and "the system already has the competitive data, the framework is templated, the OKRs are structured — now your merchant team fills in the specifics and we're running in weeks."</p>
 
@@ -2184,7 +2233,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 <li>eCommerce (marketplace integration, delivery partnerships, digital shelf — with firsthand knowledge of deals already on the table)</li>
 <li>OKR to evaluation (accountability infrastructure, not OKR purism)</li>
 <li>Ocado exit strategy</li>
-<li>eComm marketplaces (the specific deal structures, partner capabilities, and execution playbooks — this is where I have knowledge no one else can offer you)</li>
+<li>eComm marketplaces (the specific deal structures, partner capabilities, and execution playbooks — this is where we have knowledge no one else can offer you)</li>
 <li>Insights & competitive intelligence (continuously updated, not point-in-time reports)</li>
 <li>Services innovation</li>
 <li>Customer communication (including how Kroger talks to small-town America — your core customer — not how a Cincinnati HQ thinks they should be talked to)</li></ul>
@@ -2199,11 +2248,11 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p>You need a management system. Not a strategy deck, not a consulting engagement that produces a binder. A system your leaders plug into on day one and operate through every day after.</p>
 
-<p>I've built it. The merch ops module is ready. The governance layer works across any function. The AI accelerator means your teams move at a speed Kroger has never moved at — not because they're working harder, but because the system does the work that used to take headcount, consultants, and months of alignment.</p>
+<p>We've built it. The merch ops module is ready. The governance layer works across any function. The AI accelerator means your teams move at a speed Kroger has never moved at — not because they're working harder, but because the system does the work that used to take headcount, consultants, and months of alignment.</p>
 
-<p>You bring the leaders with decades of retail experience. You bring the IT team to execute. I bring the operating system they all run on.</p>
+<p>You bring the leaders with decades of retail experience. You bring the IT team to execute. We bring the operating system they all run on.</p>
 
-<p>Bill Bennett gives you the diagnostic and the merchandising depth — he already sent you the memo, and he's right about almost everything in it. Chad gives you the political landscape and the operator credibility to navigate the people decisions. I give you the architecture that makes all of it execute as one coordinated system instead of 15 parallel workstreams that never converge.</p>
+<p>Bill Bennett gives you the diagnostic and the merchandising depth — he already sent you the memo, and he's right about almost everything in it. Chad gives you the executive leadership and strategic navigation to make the people decisions land. Brady gives you the system architecture that makes all of it execute as one coordinated system instead of 15 parallel workstreams that never converge.</p>
 
 <p><strong>What this means practically:</strong></p>
 
@@ -2217,8 +2266,8 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p>You ran Legacy. You know what a real management system feels like. This is that — upgraded for an era where AI isn't a department, it's the infrastructure the whole company runs on.</p>
 
-<p>I'm ready to show you how it works.</p></div></div>
-<div class="section-content" id="content-foran-debate" style="display:none"><div class="prose"><h1>War Room Transcript: "Is Brady OS What Greg Foran Needs?"</h1>
+<p>We're ready to show you how it works.</p></div></div>
+<div class="section-content" id="content-foran-debate" style="display:none"><div class="prose"><h1>War Room Transcript: "Is PinnacleOS What Greg Foran Needs?"</h1>
 
 <p><strong>Date:</strong> April 11, 2026<br><strong>Classification:</strong> Internal only — not Greg-facing<br><strong>Moderator:</strong> Project Shepherd<br><strong>Participants:</strong> Claudine, Phil, Burt, Bo, Musashi San, Mason, Bertha, DiCaprio</p>
 
@@ -2228,13 +2277,13 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>PROJECT SHEPHERD:</strong> All right. Seats, please.</p>
 
-<p>We're here because Claudine wrote something provocative — a pitch that doesn't just use Brady OS as back-office scaffolding but positions the OS <em>itself</em> as the product we sell Greg Foran. Three-part structure: Simplicity, Complexity, Simplicity. The Retail Operating System. She's calling it the playbook's secret weapon and wants to make it explicit.</p>
+<p>We're here because Claudine wrote something provocative — a pitch that doesn't just use PinnacleOS as back-office scaffolding but positions the OS <em>itself</em> as the product we sell Greg Foran. Three-part structure: Simplicity, Complexity, Simplicity. The Retail Operating System. She's calling it the playbook's secret weapon and wants to make it explicit.</p>
 
 <p>That's a big swing for a Fortune 50 CEO who's been on the job for two months, has Bain on-site supporting him directly, and McKinsey running network strategy down the hall.</p>
 
 <p>Three rounds. Here's the question on the table for each:</p>
 
-<ol><li><strong>Is the thesis right?</strong> Does Brady OS actually give Brady a structural advantage — or is that a story we tell ourselves?</li>
+<ol><li><strong>Is the thesis right?</strong> Does PinnacleOS actually give Brady a structural advantage — or is that a story we tell ourselves?</li>
 <li><strong>How does it land?</strong> If the thesis holds, how do you package it for someone who stacked shelves at 17 and has never used the word "governance framework" in his life?</li>
 <li><strong>What do we ship?</strong> Concrete deliverables, scope, timeline. What goes in the room.</li></ol>
 
@@ -2250,7 +2299,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p>Here's my claim, stated plainly: Kroger doesn't have a management operating system. They have org charts, OKRs that KTD treats as religion but nobody else follows, and a capital allocation process that took six months to approve a McKinsey engagement during the interim CEO period. Twenty divisions running twenty different versions of how to make decisions.</p>
 
-<p>Brady OS is a management operating system. Authority horizons that protect strategic decisions from daily urgency. Governance contracts that define who decides what. An agent layer that compresses twelve-month consulting deliverables into weeks. A merch ops module that's already built — org structure, pricing, assortment, vendor negotiation, forecasting, capital allocation, OKR-to-evaluation cycles.</p>
+<p>PinnacleOS is a management operating system. Authority horizons that protect strategic decisions from daily urgency. Governance contracts that define who decides what. An agent layer that compresses twelve-month consulting deliverables into weeks. A merch ops module that's already built — org structure, pricing, assortment, vendor negotiation, forecasting, capital allocation, OKR-to-evaluation cycles.</p>
 
 <p>The pitch is three moves:</p>
 
@@ -2274,7 +2323,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>CLAUDINE:</strong> You're right that the current instantiation is solo-operator. But the <em>architecture</em> isn't. Authority horizons aren't a solo concept — they're how you prevent a $2.5 billion Ocado write-down. Governance contracts aren't personal productivity tools — they're how you stop capital allocation from going to committee votes for six months. The merch ops module's swimlanes map directly to Kroger's functional structure.</p>
 
-<p>The system analysis is honest about where we are today. What I'm pitching isn't "install Brady OS on Kroger's servers." I'm pitching the <em>framework</em> — the decision architecture, the governance model, the AI-accelerated operating cadence — adapted for Kroger's scale by the team that built it.</p>
+<p>The system analysis is honest about where we are today. What I'm pitching isn't "install PinnacleOS on Kroger's servers." I'm pitching the <em>framework</em> — the decision architecture, the governance model, the AI-accelerated operating cadence — adapted for Kroger's scale by the team that built it.</p>
 
 <p><strong>PHIL:</strong> "Adapted for Kroger's scale" is doing a lot of work in that sentence. How, specifically?</p>
 
@@ -2302,7 +2351,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p>What does Foran buy in his first six months? He buys <em>ammunition</em>. Things he can use in the next board meeting, the next leadership team session, the next investor call. He needs to show the Street he's moving fast.</p>
 
-<p>So the question isn't whether Brady OS is good. It's whether any of this gives Foran something he can <em>use</em> in the next ninety days. The merch ops module, the marketplace execution framework, the AI gap analysis — those are ammunition. The governance philosophy is not.</p>
+<p>So the question isn't whether PinnacleOS is good. It's whether any of this gives Foran something he can <em>use</em> in the next ninety days. The merch ops module, the marketplace execution framework, the AI gap analysis — those are ammunition. The governance philosophy is not.</p>
 
 <p><strong>CLAUDINE:</strong> Agreed on the ammunition point. The merch ops module IS ammunition — it's not abstract governance, it's "here's exactly how your chief merchant should run their function, here's the org target state, here's the capital allocation model, here's the vendor negotiation framework." That's day-one usable. What I'm arguing is that the system that produced that ammunition is itself a differentiator worth naming.</p>
 
@@ -2314,17 +2363,17 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p>Three things the room should factor:</p>
 
-<p>One — Bain is already on-site supporting Greg directly. This was new intelligence as of April 2. They're not doing a bounded engagement. They're embedded. That means Foran already has a consulting relationship providing strategic scaffolding. Brady isn't competing with McKinsey's network strategy project. Brady is competing with Bain's embedded advisory position.</p>
+<p>One — Bain is already on-site supporting Greg directly. This was new intelligence as of April 2. They're not doing a bounded engagement. They're embedded. That means Foran already has a consulting relationship providing strategic scaffolding. The team isn't competing with McKinsey's network strategy project. The team is competing with Bain's embedded advisory position.</p>
 
-<p>Two — the marketplace pipeline stall is the single strongest argument for Brady's team. Instacart, DoorDash, Uber — big pipeline of ideas, zero execution. Same Kroger people, persistent bottleneck. Brady negotiated the Uber deal (~$140M in marketing funds), was in the room for DoorDash Dashmart discussions, knows the Instacart near-breakup details from 2024. No one at Bain has that. No one at McKinsey has that.</p>
+<p>Two — the marketplace pipeline stall is the single strongest argument for the team. Instacart, DoorDash, Uber — big pipeline of ideas, zero execution. Same Kroger people, persistent bottleneck. Brady negotiated the Uber deal (~$140M in marketing funds), was in the room for DoorDash Dashmart discussions, knows the Instacart near-breakup details from 2024. No one at Bain has that. No one at McKinsey has that.</p>
 
-<p>Three — Foran's Air New Zealand failure mode was going in too hard, too hierarchical, alienating the culture. The "grumpy grocer" reputation. If Brady's pitch feels like "your company is broken and here's my system to fix it," it could trigger the same allergic reaction Foran himself caused at Air NZ. Frame it as a tool <em>for</em> Foran, not a judgment <em>of</em> Kroger.</p>
+<p>Three — Foran's Air New Zealand failure mode was going in too hard, too hierarchical, alienating the culture. The "grumpy grocer" reputation. If the pitch feels like "your company is broken and here's my system to fix it," it could trigger the same allergic reaction Foran himself caused at Air NZ. Frame it as a tool <em>for</em> Foran, not a judgment <em>of</em> Kroger.</p>
 
 <hr>
 
 <p><strong>BERTHA:</strong> I've been listening for the state-story alignment, and I want to flag something.</p>
 
-<p>The <em>state</em> is: Brady has a four-person team, a twelve-section playbook that's four sections drafted and eight empty, a meeting target of May 2026, and a dual track where he's also pursuing a Walmart Agent Builders role that Foran can never know about. The OS is built for one operator and has known gaps in financial operations, multi-user scalability, and commercial systems.</p>
+<p>The <em>state</em> is: the team has a twelve-section playbook in active development, a meeting target of May 2026, and a system that's been proven in a consulting context with known areas for expansion into financial operations, multi-user scalability, and commercial systems.</p>
 
 <p>The <em>story</em> Claudine is telling is: "We have a management operating system that can transform how a $150 billion company makes decisions."</p>
 
@@ -2366,7 +2415,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>BO:</strong> Burt just said the thing. Let me make it operational.</p>
 
-<p>The deliverable for the May meeting is not "Brady OS presentation." The deliverable is:</p>
+<p>The deliverable for the May meeting is not "PinnacleOS presentation." The deliverable is:</p>
 
 <ol><li>The playbook — twelve sections, finished, specific, full of insider knowledge that no consulting firm can replicate</li>
 <li>A one-page "how we work" brief — not the OS philosophy, just: daily intel briefs, weekly playbook updates, real-time marketplace tracking, AI-accelerated research. Think of it as a capability sheet, not a manifesto</li>
@@ -2380,15 +2429,15 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <hr>
 
-<p><strong>PHIL:</strong> I want to raise something nobody's addressed.</p>
+<p><strong>PHIL:</strong> I want to raise something nobody's addressed — confidentiality discipline.</p>
 
-<p>Brady is pursuing a Walmart Agent Builders role — confidentiality score 9 out of 10. Foran must never know. But think about what that means for the pitch: Brady is simultaneously positioning himself as an independent advisor to Kroger's CEO and as a potential employee of Kroger's primary competitor. If this leaks — through LinkedIn, through mutual Walmart contacts, through the Bentonville network — the engagement is dead. Not paused. Dead. And potentially Brady's consulting reputation with it.</p>
+<p>This team has deep insider knowledge across multiple retailers and competitive relationships. The C/V scoring framework exists for exactly this reason. Every piece of deal-level intelligence needs to be properly scored and routed before it touches a deliverable. If confidentiality management isn't airtight — through casual references, through the Bentonville network, through any channel — the engagement is at risk.</p>
 
-<p>This isn't a packaging question. It's a structural integrity question. Is the OS thesis partly a hedge — "if the Walmart role doesn't happen, at least I have the Kroger engagement"? Because if it is, Bertha's state-story gap is wider than we discussed.</p>
+<p>This isn't a packaging question. It's a structural integrity question. The playbook's credibility depends on the team's discipline in protecting sources and properly classifying every data point.</p>
 
-<p><strong>BERTHA:</strong> Phil's right to name it. I won't psychoanalyze Brady in this room. But I'll say this: the pitch to Foran has to come from a place of genuine conviction, not optionality. If Brady is hedging, Foran will sense it. Operators at that level read commitment the way traders read price action. The playbook's quality will reflect whether this is a primary commitment or a side bet.</p>
+<p><strong>BERTHA:</strong> Phil's right to name it. The pitch to Foran has to come from a place of genuine conviction and professional rigor. Operators at that level read commitment the way traders read price action. The playbook's quality will reflect the team's discipline and focus.</p>
 
-<p><strong>CLAUDINE:</strong> The dual track is a fact. It doesn't change the thesis. The Kroger playbook is excellent work regardless of Brady's employment status — it's built on four years of insider knowledge, real deal data, and a team with direct Foran channels. Whether Brady delivers it as an independent consultant or as background intelligence for Bill doesn't change its value. But yes — the confidentiality management has to be flawless. That's an operational discipline question, and Bo should own it.</p>
+<p><strong>CLAUDINE:</strong> Agreed. The Kroger playbook is excellent work — it's built on four years of insider knowledge, real deal data, and a team with direct Foran channels. The confidentiality management has to be flawless. That's an operational discipline question, and Bo should own it.</p>
 
 <p><strong>BO:</strong> Already on my list.</p>
 
@@ -2430,7 +2479,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p>Title: <em>How This Team Operates</em></p>
 
-<p>Not "Brady OS." Not "management operating system." Just a clean sheet that says:</p>
+<p>Not "PinnacleOS." Not "management operating system." Just a clean sheet that says:</p>
 
 <ul><li><strong>Daily:</strong> Competitive intelligence brief delivered to your inbox. Market moves, competitor actions, relevant regulatory changes.</li>
 <li><strong>Weekly:</strong> Playbook section updated based on new intelligence and execution progress. Marketplace pipeline status. Leadership assessment updates.</li>
@@ -2447,11 +2496,11 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>BURT:</strong> I want to close my contribution with the thing nobody wants to say.</p>
 
-<p>This pitch lives or dies on Bill Bennett. Not on the playbook. Not on Brady OS. Not on the AI gap analysis. On Bill.</p>
+<p>This pitch lives or dies on Bill Bennett. Not on the playbook. Not on PinnacleOS. Not on the AI gap analysis. On Bill.</p>
 
-<p>Bill has the Walmart connection. Bill has the shared history. Bill is the one who walks into the room. If Bill's presentation of this material is crisp, credible, and operator-grade, we're in. If Bill fumbles it, or if Bill's political baggage — which Chad flagged — gets in the way, nothing else matters.</p>
+<p>Bill has the Walmart connection. Bill has the shared history. Bill is the one who walks into the room. Bill's presentation of this material will be crisp, credible, and operator-grade — his shared Walmart history with Foran opens the door, and his merchandising depth keeps it open.</p>
 
-<p>So the question for Brady is: how much rehearsal time do we get with Bill? Is Bill bought in on the full scope, or is he going to cherry-pick the sections he's comfortable with? Does Bill understand the AI angle well enough to hold up under questioning?</p>
+<p>The preparation focus: rehearsal time with Bill to ensure alignment on the full scope, and making sure the AI narrative is as sharp as the merch and pricing sections Bill already owns.</p>
 
 <p>The playbook is the product. Bill is the channel. The channel has to be as strong as the product.</p>
 
@@ -2465,13 +2514,13 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>What I changed:</strong></p>
 
-<p>My original thesis was "pitch Brady OS directly to Foran." That was wrong. Not because the OS isn't real — it is. Not because it doesn't provide structural advantage — it does. But because the packaging has to match the buyer, and Greg Foran is an operator who buys ammunition, not architecture.</p>
+<p>My original thesis was "pitch PinnacleOS directly to Foran." That was wrong. Not because the OS isn't real — it is. Not because it doesn't provide structural advantage — it does. But because the packaging has to match the buyer, and Greg Foran is an operator who buys ammunition, not architecture.</p>
 
 <p>The OS is the engine. The playbook is the car. You sell the car.</p>
 
 <p><strong>What I held firm on:</strong></p>
 
-<p>Brady OS gives this team something McKinsey, Bain, and BCG structurally cannot offer: the ability to produce operator-grade intelligence at consulting-firm speed with three people. The daily competitive briefs, the weekly playbook updates, the real-time marketplace tracking — that throughput isn't possible without the system. When Foran asks "how is this different?", the answer is speed, specificity, and sustained output. And the reason for that answer is the OS.</p>
+<p>PinnacleOS gives this team something McKinsey, Bain, and BCG structurally cannot offer: the ability to produce operator-grade intelligence at consulting-firm speed with three people. The daily competitive briefs, the weekly playbook updates, the real-time marketplace tracking — that throughput isn't possible without the system. When Foran asks "how is this different?", the answer is speed, specificity, and sustained output. And the reason for that answer is the OS.</p>
 
 <p><strong>What the pitch becomes:</strong></p>
 
@@ -2479,7 +2528,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>The structural risk I'm watching:</strong></p>
 
-<p>Bertha and Phil are right about the state-story gap. The playbook is 33% complete. The dual track with Walmart creates confidentiality exposure. Bill's channel reliability is unproven at this scale. These are real constraints, not objections to wave away. If the playbook isn't excellent — genuinely, verifiably excellent — by end of April, we should delay the meeting rather than pitch below the quality line. Foran gets one first impression. A mediocre playbook in May is worse than an excellent playbook in June.</p>
+<p>Bertha and Phil are right about execution discipline. The playbook needs to reach A+ quality across every section before it goes in the room. Confidentiality management must be flawless — Bo owns this operationally. Bill's channel to Foran is the team's strongest asset, and preparation investment needs to match the opportunity. If the playbook isn't excellent — genuinely, verifiably excellent — by end of April, we should delay the meeting rather than pitch below the quality line. Foran gets one first impression. A mediocre playbook in May is worse than an excellent playbook in June.</p>
 
 <hr>
 
@@ -2489,7 +2538,7 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>Consensus points:</strong></p>
 
-<ol><li><strong>The thesis evolved, not collapsed.</strong> Brady OS is a real structural advantage — but it's the engine, not the pitch. The room unanimously agrees: sell the output, reveal the system only when asked.</li></ol>
+<ol><li><strong>The thesis evolved, not collapsed.</strong> PinnacleOS is a real structural advantage — but it's the engine, not the pitch. The room unanimously agrees: sell the output, reveal the system only when asked.</li></ol>
 
 <ol><li><strong>Information advantage is the door-opener.</strong> Deal-level knowledge on marketplace partnerships, insider assessments, AI gap specifics — this is what Bain can't replicate. The playbook's value is proportional to how much of this intelligence makes the page.</li></ol>
 
@@ -2499,17 +2548,17 @@ A massive pay cut from Walmart-era earnings. Base salary was NZ$1.8M with the re
 
 <p><strong>Unresolved tensions:</strong></p>
 
-<ol><li><strong>Bill as channel.</strong> Burt named it plainly: the pitch lives or dies on Bill. Political baggage flagged by Chad. Preparation depth unknown. This is the highest-risk variable and the one Brady has least control over.</li></ol>
+<ol><li><strong>Bill as channel.</strong> Bill's Walmart credibility and merchandising depth make him the ideal person to walk into the room. Preparation and rehearsal investment before May will ensure the full scope lands as designed.</li></ol>
 
-<ol><li><strong>Dual-track exposure.</strong> Phil raised the Walmart Agent Builders conflict. The room agrees confidentiality management must be flawless. Bo owns this operationally. But the structural risk remains: if it leaks, the engagement is dead.</li></ol>
+<ol><li><strong>Confidentiality management.</strong> Phil raised the importance of airtight C/V scoring discipline across all deal-level intelligence. The room agrees confidentiality management must be flawless. Bo owns this operationally.</li></ol>
 
-<ol><li><strong>State-story gap.</strong> The playbook is four of twelve sections at draft quality with three weeks to deadline. Claudine's recommendation to delay if quality isn't met is correct. Better to miss a May meeting than to walk in underprepared against a CEO who fires people for wasting his time.</li></ol>
+<ol><li><strong>Execution timeline.</strong> The playbook is in active development with a May deadline. Claudine's recommendation to delay if quality isn't met is correct. Better to miss a May meeting than to walk in underprepared against a CEO who fires people for wasting his time.</li></ol>
 
-<ol><li><strong>Bain's embedded position.</strong> DiCaprio flagged that the real competition isn't McKinsey's bounded engagement — it's Bain's embedded advisory relationship with Foran directly. Brady needs to offer something Bain structurally cannot: insider deal knowledge plus ongoing AI-native intelligence production. If the pitch overlaps with what Bain already provides, Foran has no reason to add another advisor.</li></ol>
+<ol><li><strong>Bain's embedded position.</strong> DiCaprio flagged that the real competition isn't McKinsey's bounded engagement — it's Bain's embedded advisory relationship with Foran directly. The team needs to offer something Bain structurally cannot: insider deal knowledge plus ongoing AI-native intelligence production. If the pitch overlaps with what Bain already provides, Foran has no reason to add another advisor.</li></ol>
 
 <p><strong>Recommended next action:</strong></p>
 
-<p>Lock Musashi San's five-section priority list. Assign each section an owner and a completion date. Get Brady and Bill on a call to confirm Bill's buy-in on the full scope and test his comfort with the AI narrative. Ship the one-pager to Bill as a rehearsal tool. Reconvene in one week to assess whether the April deadline is realistic or whether we recommend a June pivot.</p>
+<p>Lock Musashi San's five-section priority list. Assign each section an owner and a completion date. Get the full team on a call to confirm alignment on the full scope and sharpen the AI narrative. Ship the one-pager to Bill as a rehearsal tool. Reconvene in one week to assess whether the April deadline is realistic or whether we recommend a June pivot.</p>
 
 <p>The thesis is right. The packaging is better. Now build the playbook.</p>
 
@@ -3112,7 +3161,7 @@ strong {
 
   <p><strong>But it won't get a transformation.</strong></p>
 
-  <p>Greg Foran didn't come to Kroger to run a slightly-better version of what Ron was doing. He came to break things and rebuild them. Bill's whitepaper gives him the merchandising and org structure playbook. Chad's political map gives him the navigation system. Brady's AI section should give him the <strong>single most aggressive, forward-looking, quantified case for why the next 18 months determine whether Kroger becomes a modern AI-native retailer or a legacy grocer that Walmart, Amazon, and Albertsons box out permanently.</strong></p>
+  <p>Greg Foran didn't come to Kroger to run a slightly-better version of what Ron was doing. He came to break things and rebuild them. Bill's whitepaper gives him the merchandising and org structure playbook. Chad's executive relationships give him the navigation system. Brady's AI section should give him the <strong>single most aggressive, forward-looking, quantified case for why the next 18 months determine whether Kroger becomes a modern AI-native retailer or a legacy grocer that Walmart, Amazon, and Albertsons box out permanently.</strong></p>
 
   <p>Don't give him a gap analysis. Give him a battle plan.</p>
 </div>
