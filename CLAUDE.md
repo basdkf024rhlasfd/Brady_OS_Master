@@ -63,6 +63,13 @@
 - **Agent Debate:** `3-reference/skills/agent-debate/SKILL.md` — Stages structured debates between Brady OS agents on strategic questions. War room transcript format. Trigger: "stage a debate", "agent debate", "war room".
 - **Cascading Accountability:** `3-reference/skills/cascading-accountability/SKILL.md` — AI-native management system for CEO daily briefings. Surfaces performance signals, risk flags, and pre-drafted communications. Templates + OKR tracker + whitepaper.
 
+## Imported Skills & Systems
+External frameworks and skill packs stored as standalone packages in `3-reference/imported-skills-and-systems/`. These are NOT core OS skills — they can be summoned as-is or selectively promoted. See `3-reference/imported-skills-and-systems/README.md` for governance.
+
+- **Marketing Skills (Plugin):** `3-reference/imported-skills-and-systems/marketingskills/` — 36 marketing SOPs (CRO, SEO, copywriting, cold email, paid ads, pricing, etc.) from coreyhaines31/marketingskills. Skills: `skills/`. Tools: `tools/REGISTRY.md`.
+- **Pitch Deck Framework:** `3-reference/imported-skills-and-systems/pitch-deck-framework/SKILL.md` — 12-section structured pitch deck framework (Purpose & Vision → Team). Source: VC Corner Newsletter (Ruben). Pairs with deck-generator for rendering.
+- **Infographic Builder:** `3-reference/imported-skills-and-systems/infographic-builder/SKILL.md` — Charlie Hills' 9-step infographic system. 1080x1920 social format, QA gate (80/100), Playwright PNG export. Pairs with mception-design-system for brand tokens.
+
 ## Scripts
 - **GAS Toolkit:** `3-reference/scripts/gas/CLAUDE.md` — Google Apps Script automations (email-classifier). Build/deploy: `3-reference/scripts/gas/build.sh`
 
