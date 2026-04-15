@@ -104,6 +104,23 @@ Flag:
 - Cross-reference with calendar events for kid-specific activities today
 - Check Gmail for any school/teacher/activity emails from last 24 hours
 
+### 1.9 Build Request Detection
+Scan two sources for anything that looks like a build/dev request. These get turned into
+proposed dev plans that Brady can review and execute in Conductor.build.
+
+**Source A — Telly captures in Streaming Notes DB** (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`)
+- Query: (Type = "To Do" OR Tags contains "Product Backlog"), Status = "Not Started", created in last 24 hours
+- Also scan Type = "Pulse Note" / "Note" where the Name or body contains build-signal keywords:
+  `build`, `deploy`, `create`, `ship`, `app`, `feature`, `fix`, `automate`, `script`, `integrate`,
+  `set up`, `wire up`, `add support for`
+- For each hit, extract: title, body content, any linked files, source prefix (task/idea/bug/pulse)
+
+**Source B — Google Calendar events (today + tomorrow)**
+- Reuse data already gathered in 1.4 — no new API call
+- Filter for events whose title or description contains build-signal keywords (same list above),
+  OR events explicitly tagged with `[build]` or `[dev]` in the title
+- Exclude recurring logistics events (school, chores, Get Ready, Email Catchup)
+
 ## Phase 2: REPORT (Structured Output)
 
 Now write the brief. Every section is scannable. No fluff.
@@ -177,6 +194,18 @@ Pending Instructions: [any system instructions not yet executed]
 [Otter recordings with unprocessed instructions]
 
 ───────────────────────────────────────────────────
+🔧 BUILD REQUESTS ([N] detected → dev plans drafted)
+───────────────────────────────────────────────────
+[For each detected build request:]
+• [Source: Telly/Calendar] — "[title]" → Dev plan written to .context/plans/[slug].md
+  Summary: [1-line description of what the plan proposes]
+  Estimated scope: [small / medium / large]
+  Ready for: conductor.build review
+
+[If none detected:]
+No build requests detected in Telly captures or calendar.
+
+───────────────────────────────────────────────────
 🎙️ OTTER
 ───────────────────────────────────────────────────
 [Recent recordings — title, date, any flagged action items]
@@ -218,7 +247,55 @@ Include in the description: the count of emails needing reply and who they're fr
 If the scan surfaced commitments from texts, emails, or Notion that aren't on the calendar yet,
 create them. Don't ask — just do it and report what was added.
 
-### 3.4 Report Applied Feedback
+### 3.4 Generate Dev Plans for Build Requests
+
+For each build request detected in scan 1.9, generate a dev plan file at
+`.context/plans/sweep-[YYYY-MM-DD]-[slug].md` in the Brady OS workspace.
+
+**Dev plan template:**
+```markdown
+# Dev Plan: [Descriptive Name]
+
+> Source: [Telly capture / Calendar event] — [original title]
+> Generated: [date] by morning sweep
+> Status: Proposed — awaiting Brady's review
+> Execute in: conductor.build
+
+## What
+[2-3 sentences: what needs to be built, based on the captured request]
+
+## Why
+[1-2 sentences: context inferred from the request, related projects, or client work]
+
+## Proposed Steps
+
+### Step 1: [Action]
+- **Repo:** [target repo if known, otherwise "TBD — Brady to confirm"]
+- **File(s):** [paths if inferable]
+- **Action:** [what to create/modify]
+
+### Step 2: [Action]
+[repeat as needed]
+
+## Open Questions
+- [Anything ambiguous from the original capture that Brady should clarify before executing]
+
+## To Execute
+Paste this plan into a Conductor workspace targeting [repo]. Or review and refine first — this is a proposal, not a commitment.
+```
+
+**Rules:**
+- Keep plans lightweight — propose, don't over-engineer. Brady refines before executing.
+- If the request is vague (e.g., "build the thing we talked about"), still generate a plan but
+  load the Open Questions section and flag it as `⚠️ Needs clarification` in the BUILD REQUESTS report.
+- If the request maps to an existing skill (e.g., "set up intel brief for new client"), reference
+  that skill instead of writing steps from scratch.
+- After generating the plan, mark the Streaming Notes item Status = "Processing" so it doesn't
+  get re-detected tomorrow.
+- Build requests with estimated scope "medium" or "large" are candidates for the TOP 3 if nothing
+  more urgent is present.
+
+### 3.5 Report Applied Feedback
 If any Sweep Feedback notes were applied in Pre-Flight step 4, report what changed:
 ```
 🔄 APPLIED FEEDBACK:
@@ -226,7 +303,7 @@ If any Sweep Feedback notes were applied in Pre-Flight step 4, report what chang
 • [feedback flagged for permanent Section B update] → will be reviewed in weekly sweep
 ```
 
-### 3.5 Flag Prompt Improvements
+### 3.6 Flag Prompt Improvements
 If Claudine notices something about this sweep that could be better — a scan that returned nothing
 useful, a section that's always empty, a source that should be added — propose it:```
 💡 PROMPT IMPROVEMENT SUGGESTION:
@@ -234,17 +311,17 @@ useful, a section that's always empty, a source that should be added — propose
 Say "sweep feedback: [approve/modify]" to log it.
 ```
 
-### 3.6 Pipeline Dashboard
+### 3.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 
-### 3.7 Config Sync Check
+### 3.8 Config Sync Check
 Run the config-sync skill (`3-reference/skills/config-sync/SKILL.md`) as a lightweight drift check.
 Compare the Conductor workspace against the Claude Code CLI checkout and `~/.claude/` config.
 - If everything is current: output one line — `✅ Config sync: all [N] files current`
 - If drift detected: output the summary table (not the full report) and flag it in TOP 3 if critical
 - Do not auto-sync — just surface the drift so Brady can fix it when ready
 
-### 3.8 Refresh OS Cockpit
+### 3.9 Refresh OS Cockpit
 Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).
 This file powers the local HTML cockpit dashboard. Use the data already gathered in Phase 1 to populate
 all fields — do not re-scan. The file format is `window.COCKPIT_DATA = { ... }` with these sections:
@@ -269,7 +346,7 @@ Score health dimensions based on scan results:
 - 6-8 = yellow (watch)
 - 0-5 = red (needs attention)
 
-### 3.9 Close
+### 3.10 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)
