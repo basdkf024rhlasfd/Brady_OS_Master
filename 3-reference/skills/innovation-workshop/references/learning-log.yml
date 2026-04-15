@@ -128,6 +128,73 @@ runs:
       - "Downmarket Disruption needs a 'quality floor' constraint — confirmed across both runs"
       - "Maximum contrast mashups (most indulgent format × most functional ingredient) produce the highest viral potential"
 
+  - date: "2026-04-15-run3"
+    category: "Stream of Consciousness — Cross-Category"
+    input_seeds:
+      - "Women's clothes with pockets that look good"
+      - "Sourdough bread meets health/flavor trends"
+      - "Dry sourdough starter"
+      - "15-pound lasagna / actual family size meals"
+      - "Fudge ripple cake"
+      - "Southern cuisine turned mainstream"
+    input_source: "Brady (6 raw seeds, stream of consciousness)"
+    methods_used: [4, 21, 51, 56, 58]
+    ideas_generated: 24
+    ideas_surviving: 20
+    top_picks:
+      - name: "Instant Sourdough Starter Sachets"
+        method: 4
+        score: 4.15
+        tags: [convenience, mass-market, low-effort, high-impact]
+      - name: "Famous Bakery Cultures"
+        method: 56
+        score: 4.05
+        tags: [collectible, provenance, premiumization, gift]
+      - name: "Craft Pimento Cheese"
+        method: 4
+        score: 4.05
+        tags: [regional-to-national, low-effort, high-impact]
+      - name: "The Pocket Dress"
+        method: 4
+        score: 3.95
+        tags: [fashion, first-non-food, viral, jtbd]
+      - name: "The REAL Family Size Lasagna"
+        method: 21
+        score: 3.95
+        tags: [contrarian, format-innovation, mass-market]
+    method_performance:
+      4:  { ideas_raw: 7, survivors: 7, hit_rate: 1.00, notes: "JTBD dominated Run 3 — personal seeds produce natural job framing" }
+      21: { ideas_raw: 5, survivors: 5, hit_rate: 1.00, notes: "SCAMPER maintains 100% across all 3 runs. Scale-up and format-flip both strong" }
+      56: { ideas_raw: 5, survivors: 5, hit_rate: 1.00, notes: "Premiumization maintains 100%. Heritage grains, famous cultures, $40 cake all scored well" }
+      58: { ideas_raw: 5, survivors: 5, hit_rate: 1.00, notes: "Packaging Innovation at 100%. Sachets, kits, catering pans, cake-mix-with-fudge-packet" }
+      51: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Cultural Trend Mining strong — Pocketgate, Southern food wave, hot honey all validated" }
+    category_coverage:
+      "Premium Foodservice / CPG": 1
+      "Construction / Industrial Consumables": 0
+      "AI-Powered Physical Products": 0
+      "Dad / Family Consumer Products": 0
+      "Beverage (Functional / Premium)": 0
+      "Professional / B2B Tools": 0
+      "Functional Indulgence — Performance Bakery & Snacks": 1
+      "Fashion / Consumer Products": 1
+      "Sourdough / Fermentation": 1
+      "Family Meals / Frozen": 1
+      "Nostalgic Desserts": 1
+      "Southern Cuisine / Regional-to-National": 1
+    category_gaps_identified:
+      - "Beverage lane still untouched across 3 runs — natural adjacency (sourdough kombucha, Southern sweet tea, functional drinks)"
+      - "Construction/Industrial lane untouched — high margin but low personal connection for Brady"
+      - "AI-Powered Physical Products untouched — could combine with fashion (smart pockets?) or food (AI recipe generation)"
+    learnings:
+      - "Seed-first ideation produces higher survival rates (83% vs 67% in Run 1, 63% in Run 2) — Brady's formed ideas generate more focused expansions"
+      - "All 5 methods used hit 100% survival rate — restricting to proven methods eliminates waste"
+      - "First non-food run (fashion/pockets) proves JTBD and Cultural Trend Mining are category-agnostic"
+      - "The 'accessibility gap' pattern (regional/niche → mainstream) appeared independently in 4 of 6 seeds"
+      - "Format innovation (#58) remains the most reliable product innovation pattern across all 3 runs"
+      - "Stream-of-consciousness input produces more emotionally authentic pitches than lane-selected ideation"
+      - "Dropping Category Design (#55) and Downmarket Disruption (#57) from the method set eliminated low-hit-rate ideas entirely"
+      - "One hero image per product (vs 4 in Runs 1-2) is sufficient for the ideation document — save multi-image for production-ready concepts"
+
 # Cumulative idea library — prevents duplicates across runs
 idea_library:
   - { name: "Chef's Mise en Place Kits", category: "CPG", method: 4, date: "2026-04-15" }
@@ -171,3 +238,24 @@ idea_library:
   - { name: "Creatine Cookie Tubes", category: "Performance Bakery", method: 58, date: "2026-04-15-run2" }
   - { name: "Clear-Window Protein Boxes", category: "Performance Bakery", method: 58, date: "2026-04-15-run2" }
   - { name: "Performance Bakery Endcap", category: "Performance Bakery", method: 55, date: "2026-04-15-run2" }
+  # Run 3 — Stream of Consciousness (6 seeds, cross-category)
+  - { name: "The Pocket Dress", category: "Fashion / Pockets", method: 4, date: "2026-04-15-run3" }
+  - { name: "Carry Everything Blazer", category: "Fashion / Pockets", method: 21, date: "2026-04-15-run3" }
+  - { name: "Mom's Tactical Joggers", category: "Fashion / Pockets", method: 4, date: "2026-04-15-run3" }
+  - { name: "The Pocketgate Collection", category: "Fashion / Pockets", method: 51, date: "2026-04-15-run3" }
+  - { name: "Heritage Grain Sourdough", category: "Sourdough / CPG", method: 56, date: "2026-04-15-run3" }
+  - { name: "Functional Sourdough", category: "Sourdough / CPG", method: 4, date: "2026-04-15-run3" }
+  - { name: "Sourdough Snack Line", category: "Sourdough / CPG", method: 58, date: "2026-04-15-run3" }
+  - { name: "Instant Sourdough Starter Sachets", category: "Dry Starter / CPG", method: 4, date: "2026-04-15-run3" }
+  - { name: "Famous Bakery Cultures", category: "Dry Starter / CPG", method: 56, date: "2026-04-15-run3" }
+  - { name: "Sourdough Starter Kit", category: "Dry Starter / CPG", method: 58, date: "2026-04-15-run3" }
+  - { name: "The REAL Family Size Lasagna", category: "Family Meals / Frozen", method: 21, date: "2026-04-15-run3" }
+  - { name: "Sunday Supper Line", category: "Family Meals / Frozen", method: 58, date: "2026-04-15-run3" }
+  - { name: "Cook Once Eat All Week", category: "Family Meals / Frozen", method: 21, date: "2026-04-15-run3" }
+  - { name: "Grandma's Fudge Ripple Cake", category: "Fudge Ripple / Dessert", method: 56, date: "2026-04-15-run3" }
+  - { name: "Fudge Ripple Everything", category: "Fudge Ripple / Dessert", method: 21, date: "2026-04-15-run3" }
+  - { name: "The $40 Fudge Ripple", category: "Fudge Ripple / Dessert", method: 56, date: "2026-04-15-run3" }
+  - { name: "Fudge Ripple Cake Mix", category: "Fudge Ripple / Dessert", method: 58, date: "2026-04-15-run3" }
+  - { name: "Southern Pantry", category: "Southern Cuisine / CPG", method: 51, date: "2026-04-15-run3" }
+  - { name: "Craft Pimento Cheese", category: "Southern Cuisine / CPG", method: 4, date: "2026-04-15-run3" }
+  - { name: "The Hot Honey Brand", category: "Southern Cuisine / CPG", method: 51, date: "2026-04-15-run3" }
