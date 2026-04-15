@@ -114,6 +114,24 @@ Use Idea Scoring Systems (#69) + Brutal Editing (#20).
 
 Cut bottom 50% to land at ~20 survivors.
 
+### ⏸ GATE 1 — Vet Before Image Generation
+
+**STOP HERE.** Present the ~20 survivors as a numbered list with: name, score, method, and
+a 1-line pitch summary. Wait for Brady's feedback before proceeding.
+
+Brady can:
+- Cut weak ideas from the list
+- Swap in alternates from the raw pool
+- Adjust scores or reorder
+- Say "go" to advance to image generation
+
+**Do NOT proceed to Step 4 unless Brady explicitly approves the survivor list.**
+Image generation is the most expensive step in the pipeline (time + tokens). The whole
+point of this gate is to avoid burning resources on ideas that won't survive.
+
+**Escape hatch:** If Brady says "run it all" or "full auto" at the start of the workshop,
+skip this gate and run the entire pipeline without pausing.
+
 ### Step 4: Generate Visuals via Canva
 
 For each surviving idea, generate 4 Canva images using `mcp__claude_ai_Canva__generate-design`:
@@ -254,6 +272,20 @@ WHITEPAPER APPENDIX (3-5 pages)
 ├── Full data sources and citations
 ├── Method performance analysis (which methods produced best ideas)
 ```
+
+### ⏸ GATE 2 — Review Before PDF + Deploy
+
+**STOP HERE.** Show Brady the assembled HTML file path so he can review it locally.
+Wait for feedback before proceeding.
+
+Brady can:
+- Request layout fixes, copy edits, or image swaps
+- Cut or reorder products in the final document
+- Say "looks good" to advance to PDF generation
+
+**Do NOT proceed to Step 7 unless Brady explicitly approves the HTML.**
+
+**Escape hatch:** Same as Gate 1 — "run it all" / "full auto" skips this gate.
 
 ### Step 7: Generate PDF
 
@@ -414,21 +446,26 @@ The full innovation workshop pipeline runs in this order:
 
 1. **Theme selection** — brainstorm or receive trend inputs
 2. **Ideation** — run 8-10 methods, generate ~30 raw ideas
-3. **Scoring** — filter to 20 survivors (score 0-5)
-4. **Canva images** — generate hero images for all 20, download locally
-5. **HTML assembly** — build per-run deliverable with mception design system
-6. **PDF generation** — Playwright Tabloid format
-7. **Learning log** — update method performance, category coverage, idea library
-8. **Notion sync** — push all 20 new ideas to Innovation Idea Pipeline database
-9. **Idea library viewer** — append new ideas to idea-library.html
-10. **Deploy check** — ask Brady before pushing to mception.ai
+3. **Scoring** — filter to ~20 survivors (score 0-5)
+   ⏸ **GATE 1** — Present survivors. Wait for Brady to vet/cut/approve.
+4. **Canva images** — generate hero images for approved ideas, download locally
+5. **Write pitches** — pitch + RTBs + competitive + ops for each idea
+6. **HTML assembly** — build per-run deliverable with mception design system
+   ⏸ **GATE 2** — Show assembled HTML. Wait for Brady to review.
+7. **PDF generation** — Playwright Tabloid format
+8. **Learning log** — update method performance, category coverage, idea library
+9. **Notion sync** — push all new ideas to Innovation Idea Pipeline database
+10. **Idea library viewer** — append new ideas to idea-library.html
+11. **Deploy check** — ask Brady before pushing to mception.ai
 
-Steps 1-9 run without direction. Step 10 requires confirmation.
+**Default: gates are ON.** The pipeline pauses at Gates 1 and 2.
+If Brady says "run it all" or "full auto" at the start, skip gates and run end-to-end.
 
 ## What This Skill Does NOT Do
 
 - Replace full-stack-ideation (it orchestrates it, doesn't duplicate the methods)
 - Generate ideas without visuals (that's full-stack-ideation standalone)
+- Advance past stage gates without Brady's explicit approval (Gates 1 and 2)
 - Deploy without Brady's confirmation (always ask before pushing to mception.ai)
 - Run without scoring — every idea must survive the filter
 - Pitch Brady's background — ideas speak for themselves (see Tone Rule in Step 5)
