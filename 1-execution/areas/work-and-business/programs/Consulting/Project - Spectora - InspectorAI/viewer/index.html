@@ -159,6 +159,37 @@
     main { overflow-y: visible; }
     .content-wrap { padding: 20px 16px 60px; }
   }
+
+  /* Feedback widget (Binder pitch deck) */
+  .feedback-widget {
+    margin-top: 48px; padding: 24px; background: #0a1a2a;
+    border: 1px solid #1a3a5a; border-radius: 10px;
+  }
+  .feedback-widget h2 { border: none; padding: 0; margin: 0 0 6px; color: #7dd3fc; font-size: 18px; }
+  .feedback-widget .feedback-sub { color: #888; font-size: 13px; margin-bottom: 18px; line-height: 1.6; }
+  .feedback-widget .feedback-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .feedback-widget .feedback-row > div { flex: 1; min-width: 180px; }
+  .feedback-widget label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 4px; }
+  .feedback-widget select, .feedback-widget input, .feedback-widget textarea {
+    width: 100%; padding: 8px 10px; background: #050d1a; border: 1px solid #1a3a5a;
+    border-radius: 6px; color: #e0e0e0; font-size: 13.5px; outline: none; font-family: inherit;
+  }
+  .feedback-widget select:focus, .feedback-widget input:focus, .feedback-widget textarea:focus { border-color: #38bdf8; }
+  .feedback-widget textarea { min-height: 120px; resize: vertical; margin-bottom: 12px; }
+  .feedback-widget .feedback-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+  .feedback-widget button {
+    background: #0a1a2a; border: 1px solid #38bdf8; color: #38bdf8; font-size: 13px;
+    padding: 9px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.15s;
+  }
+  .feedback-widget button:hover { background: #38bdf8; color: #0a0a0a; }
+  .feedback-widget button.secondary { border-color: #555; color: #aaa; background: transparent; }
+  .feedback-widget button.secondary:hover { border-color: #888; color: #ccc; background: #111; }
+  .feedback-widget .feedback-status { font-size: 12px; color: #9ece6a; margin-left: auto; min-height: 18px; }
+  .feedback-widget .feedback-log { margin-top: 20px; padding-top: 16px; border-top: 1px solid #1a3a5a; }
+  .feedback-widget .feedback-log h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; color: #888; margin: 0 0 10px; }
+  .feedback-widget .feedback-log-item { padding: 8px 10px; background: #050d1a; border-left: 3px solid #38bdf8; border-radius: 0 6px 6px 0; margin-bottom: 6px; font-size: 12.5px; color: #aaa; }
+  .feedback-widget .feedback-log-item .meta { color: #555; font-size: 11px; margin-bottom: 3px; }
+  .feedback-widget .feedback-log-item .body { color: #ccc; white-space: pre-wrap; }
 </style>
 </head>
 <body>
@@ -194,11 +225,18 @@
 // ─── File definitions ───
 const files = [
   { id: 'welcome', file: '../kb/00-welcome.md', label: 'Welcome' },
+  { id: 'binder-pitch-deck', file: '../kb/01-binder-pitch-deck.md', label: 'Binder Pitch Deck (v1)' },
 ];
 
 const sections = [
   { name: 'Files', ids: ['welcome'], defaultOpen: true },
+  { name: 'Binder — Pitch', ids: ['binder-pitch-deck'], defaultOpen: true },
 ];
+
+// Feedback submission endpoint (mception.ai API → Notion)
+const FEEDBACK_API_URL = 'https://mception.ai/api/binder-feedback';
+const FEEDBACK_SECTIONS = ['General', 'Vision (§1)', 'Audience (§2)', 'Problem (§3)', 'Solution (§4)', 'Pricing (§5)', 'Market (§6)', 'Viability (§7)', 'Evidence (§8)', 'Growth (§9)', 'Moat (§10)', 'Horizons (§11)', 'Team (§12)', 'Design/Format'];
+const FEEDBACK_VERDICTS = ['Approve', 'Edit — see notes', 'Reject — rewrite', 'Question'];
 
 const fileMap = {};
 files.forEach(f => fileMap[f.id] = f);
@@ -453,6 +491,143 @@ function renderMarkdown(el, md, f) {
   document.querySelector('main').scrollTop = 0;
   window._currentPageSource = f;
   window._currentPageMd = md;
+  if (f.id === 'binder-pitch-deck') mountFeedbackWidget(el);
+}
+
+// ─── Feedback widget (Binder pitch deck) ───
+const FEEDBACK_DRAFT_KEY = STORAGE_PREFIX + 'binder-feedback-draft';
+const FEEDBACK_LOG_KEY = STORAGE_PREFIX + 'binder-feedback-log';
+
+function getFeedbackLog() {
+  try { return JSON.parse(localStorage.getItem(FEEDBACK_LOG_KEY) || '[]'); } catch { return []; }
+}
+
+function saveFeedbackLog(log) {
+  localStorage.setItem(FEEDBACK_LOG_KEY, JSON.stringify(log.slice(0, 20)));
+}
+
+function getFeedbackDraft() {
+  try { return JSON.parse(localStorage.getItem(FEEDBACK_DRAFT_KEY) || '{}'); } catch { return {}; }
+}
+
+function saveFeedbackDraft(draft) {
+  localStorage.setItem(FEEDBACK_DRAFT_KEY, JSON.stringify(draft));
+}
+
+function mountFeedbackWidget(el) {
+  const draft = getFeedbackDraft();
+  const sectionOpts = FEEDBACK_SECTIONS.map(s =>
+    `<option value="${s}"${draft.section === s ? ' selected' : ''}>${s}</option>`).join('');
+  const verdictOpts = FEEDBACK_VERDICTS.map(v =>
+    `<option value="${v}"${draft.verdict === v ? ' selected' : ''}>${v}</option>`).join('');
+  const logHtml = renderFeedbackLog();
+
+  const widget = document.createElement('div');
+  widget.className = 'feedback-widget';
+  widget.innerHTML = `
+    <h2>Leave Feedback</h2>
+    <div class="feedback-sub">
+      Pick a section, mark a verdict, and write your notes. Drafts auto-save locally.
+      Hit <strong>Submit</strong> and Brady gets it instantly.
+    </div>
+    <div class="feedback-row">
+      <div>
+        <label>Section</label>
+        <select id="fb-section">${sectionOpts}</select>
+      </div>
+      <div>
+        <label>Verdict</label>
+        <select id="fb-verdict">${verdictOpts}</select>
+      </div>
+      <div>
+        <label>Short title</label>
+        <input type="text" id="fb-name" placeholder="e.g. Rework pricing tiers" value="${(draft.name || '').replace(/"/g, '&quot;')}" />
+      </div>
+    </div>
+    <label>Feedback</label>
+    <textarea id="fb-feedback" placeholder="What should change, why, and any specific numbers / wording you'd prefer.">${(draft.feedback || '').replace(/</g, '&lt;')}</textarea>
+    <div class="feedback-actions">
+      <button id="fb-submit">Submit</button>
+      <button id="fb-clear" class="secondary">Clear draft</button>
+      <div class="feedback-status" id="fb-status"></div>
+    </div>
+    <div class="feedback-log" id="fb-log">${logHtml}</div>
+  `;
+  el.appendChild(widget);
+
+  const $ = id => widget.querySelector('#' + id);
+  const status = $('fb-status');
+
+  const captureDraft = () => ({
+    section: $('fb-section').value,
+    verdict: $('fb-verdict').value,
+    name: $('fb-name').value.trim(),
+    feedback: $('fb-feedback').value.trim(),
+  });
+
+  ['fb-section', 'fb-verdict', 'fb-name', 'fb-feedback'].forEach(id => {
+    $(id).addEventListener('input', () => {
+      saveFeedbackDraft(captureDraft());
+      status.style.color = '#888';
+      status.textContent = 'Draft saved locally.';
+      setTimeout(() => { if (status.textContent === 'Draft saved locally.') status.textContent = ''; }, 1500);
+    });
+  });
+
+  $('fb-submit').addEventListener('click', async () => {
+    const d = captureDraft();
+    if (!d.feedback) { status.style.color = '#f7768e'; status.textContent = 'Add a feedback note first.'; return; }
+    const btn = $('fb-submit');
+    btn.disabled = true; btn.textContent = 'Submitting…';
+    status.style.color = '#888'; status.textContent = '';
+    try {
+      const res = await fetch(FEEDBACK_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(d),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || ('Server returned ' + res.status));
+      }
+      const log = getFeedbackLog();
+      log.unshift({ ...d, submittedAt: new Date().toISOString() });
+      saveFeedbackLog(log);
+      localStorage.removeItem(FEEDBACK_DRAFT_KEY);
+      $('fb-name').value = ''; $('fb-feedback').value = '';
+      $('fb-log').innerHTML = renderFeedbackLog();
+      status.style.color = '#9ece6a';
+      status.textContent = 'Sent. Brady will see it.';
+    } catch (e) {
+      status.style.color = '#f7768e';
+      status.textContent = 'Submit failed: ' + (e && e.message ? e.message : 'network error') + '. Draft kept locally — try again.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Submit';
+    }
+  });
+
+  $('fb-clear').addEventListener('click', () => {
+    if (!confirm('Clear the current feedback draft?')) return;
+    localStorage.removeItem(FEEDBACK_DRAFT_KEY);
+    $('fb-name').value = ''; $('fb-feedback').value = '';
+    $('fb-section').value = FEEDBACK_SECTIONS[0]; $('fb-verdict').value = FEEDBACK_VERDICTS[0];
+    status.style.color = '#888';
+    status.textContent = 'Draft cleared.';
+  });
+}
+
+function renderFeedbackLog() {
+  const log = getFeedbackLog();
+  if (!log.length) return '';
+  const items = log.slice(0, 5).map(e => {
+    const d = new Date(e.submittedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    const body = (e.feedback || '').replace(/</g, '&lt;');
+    return `<div class="feedback-log-item">
+      <div class="meta">${d} · ${e.section} · ${e.verdict}${e.name ? ' · ' + e.name.replace(/</g, '&lt;') : ''}</div>
+      <div class="body">${body}</div>
+    </div>`;
+  }).join('');
+  return `<h4>Recently sent (last 5)</h4>${items}`;
 }
 
 function saveCurrentPage() {
