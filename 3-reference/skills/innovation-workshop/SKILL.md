@@ -15,6 +15,11 @@ description: |
   This skill ORCHESTRATES full-stack-ideation (methods), midjourney-prompt (visual style
   guidance), and mception-design-system (document styling). It does NOT replace those
   skills — it sequences them into a single pipeline with a unified output.
+
+  DISAMBIGUATION: This is the PRODUCT innovation engine. For OPERATIONS innovation
+  (process, tech, format, labor — concept-heavy, no Canva visuals, problem-first P1-PN
+  framing), use `operations-innovation-engine` instead. If Brady says just "innovation
+  workshop" without "product" or "ops," ask which engine.
 ---
 
 # Innovation Workshop
@@ -41,35 +46,158 @@ friction-heavy to sustain daily. This skill does the whole thing in one pipeline
 
 ## Workflow
 
-### Step 1: Theme & Lane Selection
+### Stage 0: Problem Formation
 
-**If Brady provides specific trends or inputs** (from a conversation, a client, Eric, etc.):
-- Use those directly as the convergence point
-- Frame them as "3 converging trends → 1 lane" (this produces the best results)
-- Skip the category menu — go straight to ideation
+**The purpose of Stage 0 is to produce a sharp prompt, not pick a lane.** Stage 1's
+ideation methods (SCAMPER, Blue Ocean, etc.) will produce generic output if they receive
+a thin framing. The job here is to make sure they don't.
 
-**If Brady says "run the workshop" without specific input**:
-- Help brainstorm themes first — don't just present a menu
-- Pull from: learning log category gaps, recent news/trends Brady has discussed,
-  client conversations, cultural signals
-- Propose 3-4 theme convergences (not just categories) and let Brady pick or riff
-- Example: "Creatine going mainstream + Crumbl's hype model + in-store bakery stagnation
-  → Performance Bakery" is better than "pick from: CPG, Beverage, Industrial"
+Stage 0 runs in **dialogue mode** — Brady can riff, pivot, mashup clusters, or scan again
+for as long as he wants. The gate isn't leaving Stage 0; the gate is the **sharpness
+check** that the final prompt must pass before Stage 1 starts.
 
-**If running on auto-pilot** (no input at all):
-- The learning engine suggests the least-explored lane with highest signal strength
-- Check `references/learning-log.yml` for category coverage gaps
+Built on three principles:
+1. **Readiness ladder** — auto-detect how "done" Brady's input is, scale research depth accordingly
+2. **Dialogue mode** — Stage 0 is conversation, not a one-shot prompt
+3. **Sharpness gate** — the exit into Stage 1 requires the prompt to pass a 5-criteria quality check
 
-**Lane scoring criteria:**
+#### 0.1 Check the Category Intel DB first
 
-| Criterion | What It Measures |
-|-----------|-----------------|
-| **Market Signal Strength** | Visible consumer pain, regulatory shifts, supply chain disruption |
-| **Margin Structure** | Where a new entrant can capture margin (DTC, premium, B2B consumables) |
-| **Visual Testability** | Products that can be validated visually (packaging, physical goods) |
-| **Convergence Quality** | How many independent trends intersect in this lane? More = better. |
+Before doing anything else, query the Notion **Category Intel DB** (data source ID:
+`<TBD — pending Phil coherence review + DB creation>`) for clusters with Status =
+`Fresh` or `Active`. Surface this as context:
 
-**Canonical lanes** (expand as needed):
+```
+📚 ACTIVE CATEGORY INTEL (as of [date])
+• [Cluster name] — [1-line behavioral shift] (Status: Fresh, 14d old)
+• [Cluster name] — [1-line shift] (Status: Active, 62d old)
+• [Cluster name] — [1-line shift] (Status: Active, 88d old — refresh soon)
+
+You can:
+- Run Stage 1 against one of these (say "use [cluster name]")
+- Scan for something new (say "what are you seeing?" or give me a theme)
+- Mash two clusters (say "combine A with B")
+```
+
+If the DB is empty or doesn't exist yet, skip this step and treat the run as a cold start.
+
+#### 0.2 Detect readiness level
+
+Read Brady's input and classify it into one of four levels. This drives research depth.
+
+| Level | Input signature | Stage 0 runs | Research depth |
+|-------|-----------------|--------------|----------------|
+| **0 — Cold start** | "What are you seeing?" / "Tell me what's out there" / "Run the workshop" with no theme | Full multi-source scan → synthesize 3-5 opportunity clusters | Deep (deep-research, type: `category-intel`) |
+| **1 — Raw theme** | Single theme or observation ("creatine is going mainstream," "bakery is dying") | Targeted validation + find the behavioral shift underneath | Standard |
+| **2 — Trend convergence** | 2-3 converging trends Brady has already spotted | Light validation — confirm each trend is real, find the JTBD | Quick |
+| **3 — Sharp thesis** | Fully-formed cluster ("run workshop against Performance Bakery cluster") or reference to an existing Category Intel DB entry | Skip research, run sharpness gate only | None |
+
+When ambiguous, ask Brady which level he's at rather than guessing wrong.
+
+#### 0.3 Run the scan (Levels 0-2)
+
+Call the `deep-research` skill with `research_type: category-intel` (see deep-research
+SKILL.md for full sub-query profile). This composes the scan across five source layers:
+
+- **Behavioral signals** — Reddit, TikTok surface via Bright Data, niche forums
+- **Global retail scouting** — Japanese, Korean, European premium grocery
+- **Trade show + industry signals** — Expo West, Fancy Food, Vitafoods, PLMA
+- **Pre-commercial signals** — Kickstarter, patent filings (USPTO), Product Hunt
+- **Structured macro layer** — Google Trends, earnings transcripts, USDA/BLS
+
+**Tool stack:**
+- `WebSearch` — baseline
+- `mcp__claude_ai_Bright_Data__search_engine` + `scrape_as_markdown` — power tool for anti-bot sources
+- **Exa API** (when available) — semantic trend hunting via "find pages by meaning";
+  catches pre-mainstream signals keyword search misses. See `references/exa-setup.md`
+  for install + auth notes. Falls back to WebSearch if Exa is not configured.
+
+Invoke deep-research with `silent: true`. Depth auto-scales based on readiness level
+(deep for Level 0, standard for Level 1, quick for Level 2).
+
+#### 0.4 Render synthesis for dialogue
+
+deep-research returns the synthesis document. Present it to Brady like this:
+
+```
+🔍 TOP CLUSTER: [Name]
+  Behavioral shift: [1-2 sentences]
+  Why now: [timing insight — what opened up in 2026]
+  JTBD: [what consumer is hiring this for]
+  Margin location: [DTC / Premium / B2B / Private label / Mixed]
+  Evidence: [3-5 source citations]
+  NOT-to-generate: [explicit guardrails, e.g., "no protein X, no keto Y"]
+
+📊 ALTERNATE CLUSTERS (shorter)
+  • [Cluster B] — [1-line hook]
+  • [Cluster C] — [1-line hook]
+
+🔗 CROSS-LINKS
+  • Combine A's behavioral shift with B's timing → new cluster possibility
+
+🕳️ BLIND SPOTS (push on these)
+  • What I'm NOT seeing that you might know from your network: [specific ask]
+```
+
+Brady can respond in any of these modes (this is the riff loop):
+
+- **Accept** — "go with the top" → advance to sharpness gate
+- **Pivot** — "I like A but the margin angle is wrong, it should be DTC not retail"
+- **Mashup** — "combine A's shift with C's timing"
+- **Drill** — "tell me more about the evidence for cluster B"
+- **Skip alternates** — "show me something entirely different" → fresh scan
+- **Bring external input** — "what about [theme from a client conversation]?"
+
+**Pivots, mashups, and drills are LIGHT passes** — recombine from the already-cached
+research artifacts. Only "something entirely different" triggers a fresh deep-research call.
+
+#### 0.5 Sharpness gate (exit into Stage 1)
+
+Before advancing to Stage 1, the selected cluster must answer all 5 criteria. See
+`references/stage-0-quality-gate.md` for the full checklist.
+
+1. **Behavioral shift** — what are consumers actually doing that brands haven't caught up to?
+2. **Why now** — what specifically opened up in 2026 that wasn't true 18 months ago?
+3. **Job-to-be-done** — what is the consumer hiring this product to do?
+4. **Margin location** — DTC? premium retail? B2B? private label? mixed?
+5. **NOT-to-generate guardrails** — explicit territory Stage 1 must avoid
+
+If any criterion is generic or missing, don't block — **surface what's weak** and suggest
+either (a) more research, (b) a sharper question, or (c) pivot to a different cluster.
+
+**Override is allowed.** If Brady says "run it anyway" or "send it," advance to Stage 1
+with the gate failure logged to run metadata. Brady is the operator — the skill advises,
+doesn't refuse. This mirrors the "run it all" / "full auto" escape hatches at Gates 1 and 2.
+
+#### 0.6 Write cluster to Category Intel DB
+
+Once Brady approves a cluster (whether from a fresh scan or after a riff), write or update
+the cluster record in the Notion Category Intel DB. Fields:
+
+| Field | Value |
+|-------|-------|
+| Cluster Name | Human-readable ("Stealth health snacking") |
+| Category | Maps to canonical lanes below |
+| Behavioral Shift | Rich text |
+| Why Now | Rich text |
+| JTBD | Rich text |
+| Margin Location | DTC / Premium retail / B2B / Private label / Mixed |
+| Evidence | Source citations with URLs |
+| Status | Fresh (new clusters default to Fresh; Active after 30 days) |
+| Last Refreshed | Today |
+| Linked Ideas | Relation → Innovation Idea Pipeline (populated in Step 9 after ideas generated) |
+| Runs Spawned | +1 |
+| Readiness Level Origin | 0 / 1 / 2 / 3 |
+
+If the cluster already exists (Brady picked it from the DB in Step 0.1), just increment
+`Runs Spawned` and refresh `Last Refreshed`.
+
+#### 0.7 Canonical lanes (reference)
+
+Clusters are tagged to one of these lanes in the Category Intel DB. This is still useful
+for learning-engine analytics (which lanes produce best ideas) and for cold-start
+coverage-gap detection. Lanes are a tag, not a starting point.
+
 1. Premium Foodservice / CPG
 2. Construction / Industrial Consumables
 3. AI-Powered Physical Products
@@ -194,6 +322,34 @@ that's close to this?" Include:
 - What the gap is (why this idea is different/better)
 - Whether incumbents could easily copy this
 
+**Closest Comparables** — REQUIRED: 2-3 real products on the market today with retailer
+product-page URLs. Emit as a list of `{name, retailer, url, price}`. Feeds the viewer's
+Comparables strip and anchors the competitive framing in the pitch. Prefer links to
+Walmart, Target, Kroger, Whole Foods, Amazon, or the brand's own DTC site. If nothing
+close exists, say so explicitly rather than inventing a URL.
+
+**Retailer Fit** — REQUIRED: pick 1-3 best-fit channels from this canonical list:
+Walmart, Target, Kroger, Whole Foods, Sprouts, Costco, Amazon, DTC-subscription,
+DTC-one-time, B2B-foodservice. Emit as an ordered array with a one-line `why` on the
+top pick. This populates the viewer's Retailer filter and replaces vague retail hand-
+waving with a structured recommendation.
+
+**Cost Model** — REQUIRED: defensible cost breakdown, one source per line. Emit as:
+```yaml
+cost:
+  cogs:
+    - { input: "grass-fed ground beef 80/20", wholesale: "$4.20/lb", source: "supplier-kb:midwest-meats" }
+    - { input: "frozen pasta sheets", wholesale: "$1.15/lb", source: "assumption" }
+  labor_or_copack: { amount: "$0.85/unit", source: "public-data:co-man-benchmarks" }
+  target_retail: "$18.99"
+  gross_margin_assumption: "42%"
+  defensibility: "supplier-kb"  # supplier-kb | public-data | assumption
+```
+Rules:
+- Every dollar figure needs a source field.
+- Missing supplier-kb data → flag as `assumption` and note in pitch. Do NOT fake numbers.
+- If flagged `assumption`, the viewer will surface a "needs cost model" hint.
+
 **Operational Complexity** — REQUIRED for every idea. Call out the real operational
 challenges:
 - Manufacturing: co-pack availability, MOQ, lead time
@@ -313,6 +469,11 @@ After each run, update the learning log at `references/learning-log.yml`:
 ```yaml
 - date: 2026-04-15
   category: "Premium Foodservice / CPG"
+  stage_0_readiness_level: 2                     # 0=cold, 1=raw theme, 2=convergence, 3=sharp thesis
+  cluster_id_used: "cat-intel-uuid-here"         # Category Intel DB page ID, or null if cold-start
+  cluster_name: "Functional Indulgence"
+  sharpness_gate_passes: 1                       # 1 = passed first try; >1 = weak cluster, loops
+  sharpness_gate_override: false                 # true if Brady said "run it anyway"
   methods_used: [4, 9, 15, 21, 24, 51, 55, 56, 57, 58]
   ideas_generated: 30
   ideas_surviving: 20
@@ -345,12 +506,22 @@ After each run, automatically:
      Impact, Ops Complexity. Page content includes pitch and RTBs.
    - Set Stage to "2: Researched + Imaged" for ideas with Canva visuals,
      "1: Text Pitch" for text-only ideas.
+   - **If the run came from a Category Intel cluster** (readiness level 0-3 with a
+     cluster_id), populate each idea's Linked Ideas relation back to the cluster in
+     the Category Intel DB. Then update the cluster record: increment `Runs Spawned`,
+     refresh `Last Refreshed`.
 
 2. **Regenerate the idea library viewer** (`output/idea-library.html`):
    - Add the new ideas to the IDEAS array in the HTML file
    - Preserve all existing ideas — append only, never overwrite
    - Include all research details (pitch, RTBs, competitive, ops, method, scores)
    - Include image paths for any ideas with Canva visuals
+   - Include new Stage 2 fields introduced in Batch D:
+     - `cost`: full cost model object (see Step 5 schema)
+     - `retailerFit`: array of `{channel, why}` — top pick first
+     - `comparables`: array of `{name, retailer, url, price}`
+     - `clusterId`: Category Intel cluster ID if the run came from one
+   - All new fields are optional on existing ideas; viewer renders them conditionally.
 
 3. **Ask Brady before deploying to mception.ai**:
    - "Ready to push to mception.ai? This will update the live Innovation Lab viewer."
@@ -383,6 +554,78 @@ Ideas move through these stages. No idea skips a stage.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+### Step 11: Stage 3 Deep Research Protocol
+
+Stage 3 is a separate, on-demand invocation — NOT part of a standard 20-idea run. Brady
+advances selected Stage 2 ideas (typically 3-10) by saying "deep research on [idea names]"
+or by marking them in the viewer. Each idea gets its own focused research pass plus a
+concentric-circles variant scan.
+
+**Trigger**: Brady explicitly names Stage 2 ideas to promote. The skill does NOT auto-
+promote ideas to Stage 3 — Brady picks.
+
+**Per-idea output (adds to the IDEAS record as `deepResearch`):**
+
+```yaml
+deepResearch:
+  supplyChain:
+    # Named suppliers or co-packers that could produce this. Cite supplier-kb entries.
+    # Lead times, MOQ ranges, packaging constraints, cold-chain requirements.
+  consumerResearch:
+    # Real demand signals: search volume, trend data, adjacent category growth,
+    # specific consumer quotes/reviews if relevant. No hand-waving.
+  pricingModel:
+    # Fully loaded unit economics: COGS (from Cost Model) + labor + margin stack
+    # from co-man to distributor to retailer. What's the shelf price?
+  risks:
+    # Top 2-3 concrete risks (regulatory, supply, consumer acceptance, substitution)
+  goNoGo:
+    # Explicit recommendation + why
+  variants:  # CONCENTRIC-CIRCLES REQUIREMENT — see below
+    - name: ""
+      change: ""    # what parameter moved (size, format, channel, price, occasion)
+      rationale: "" # why this might beat the center idea
+      promote: false  # true → pull into Stage 2 queue as a new candidate
+```
+
+**Concentric-Circles Variant Exploration (REQUIRED for every Stage 3 idea):**
+
+Don't just validate the idea — stress-test the parameters around it. For every Stage 3
+idea, emit **3-5 variants** that shift one parameter at a time. Example on "Real Family
+Size Lasagna — 15 lb frozen":
+- **10 lb version** → smaller fridge footprint, lower sticker shock, broader household fit
+- **20 lb version** → bulk/costco play, different retail channel
+- **DTC subscription, 30 lb monthly (3x10 lb)** → direct-to-consumer, recurring revenue
+- **Single-serve multi-pack** → occasion shift (workday lunch) vs. family-dinner shift
+- **Lasagna kit (assemble-at-home)** → format shift, shorter shelf-life but lower CapEx
+
+Rules for variants:
+- DO NOT generate images for variants (expensive, redundant — the image logic lives in
+  Stage 2). Variants are text-only until promoted.
+- If Brady likes a variant, he marks `promote: true` → it enters the Stage 2 pipeline as a
+  new candidate idea (gets pitched, imaged, researched from scratch).
+- If the variant is clearly worse than the center idea, keep it in the record anyway as
+  proof you considered it. Don't silently drop parameter sweeps.
+
+**Invocation pattern:**
+
+1. Brady names the ideas (in chat or via a `stage3` tag in the viewer) → skill loads
+   their full Stage 2 records.
+2. For each idea, invoke `deep-research` skill with `research_type: concept-validation`
+   and the idea's pitch + RTBs + competitive panel as the seed.
+3. Emit the `deepResearch` object for each idea, including `variants`.
+4. Update the Notion page for each idea (append Deep Research block).
+5. Update `idea-library.html` — add `deepResearch` to the idea's record. Viewer renders
+   the block conditionally.
+6. Brady reviews variants, flags `promote: true` on winners → those re-enter Stage 2.
+
+**Currently queued for first Stage 3 run** (from 2026-04-16 voice note):
+butter bricks · dissolvable seasoning sheets · post-workout banana bread · gym rat donut ·
+brigadeiro protein bites · phase shift candy · morning protocol RTD · fermented salsa ·
+real family size lasagna · cook-once-eat-all-week
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 ## Recursive Learning Engine
 
 The learning engine lives at `references/learning-log.yml` and grows with every run.
@@ -396,6 +639,9 @@ The learning engine lives at `references/learning-log.yml` and grows with every 
 | **Idea library** | Cumulative list of all ideas generated. Prevents duplicates. Enables cross-pollination between runs. |
 | **Score trends** | Are ideas getting better over time? Detects creative fatigue in a category. |
 | **RTB patterns** | Which types of research backing (market data, consumer signal, supply chain, competitive) are strongest? |
+| **Cluster yield** | For each Category Intel cluster, how many ideas has it produced and what's the average score? Low-yield clusters get archived; high-yield ones get refreshed more often. |
+| **Readiness level outcomes** | Do Level 0 (cold-start) runs produce better or worse ideas than Level 2/3 runs? Signal for when deep scans pay off. |
+| **Sharpness gate failures** | When the gate fails, was it overridden? Did those runs produce lower-scoring ideas? Detects whether the gate's 5 criteria are actually predictive. |
 
 ### How It Influences Future Runs
 
@@ -410,11 +656,14 @@ The learning engine lives at `references/learning-log.yml` and grows with every 
 
 | Skill / System | Role |
 |----------------|------|
-| **full-stack-ideation** | The 100 methods — this skill selects and runs them |
+| **deep-research** | Stage 0 scan engine — invoked with `research_type: category-intel` for cold-start / raw-theme / convergence runs |
+| **full-stack-ideation** | The 100 methods — this skill selects and runs them in Stage 1 |
 | **midjourney-prompt** | Visual style guidance (category → shot type mapping) |
 | **mception-design-system** | Document styling tokens, layout patterns, PDF generation |
 | **Canva MCP** | Image generation: generate-design → create-from-candidate → export-design → curl download |
-| **Notion MCP** | Idea pipeline database sync (data source: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597`) |
+| **Bright Data MCP** | Stage 0 research — scrape anti-bot sources (Reddit, TikTok surface, retail sites, trade show pages) |
+| **Exa API** (optional) | Stage 0 semantic trend hunting — `exa_search` / `exa_find_similar`. Install + auth per `references/exa-setup.md`. Falls back to WebSearch when unavailable. |
+| **Notion MCP** | Idea pipeline + Category Intel DB sync (Idea Pipeline data source: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597`; Category Intel DB: TBD pending Phil) |
 | **Playwright** | PDF generation from HTML (Tabloid format, print_background=True) |
 
 ## Output Files
@@ -436,30 +685,33 @@ references/
 | System | What It Holds | ID / URL |
 |--------|---------------|----------|
 | **Notion DB** | Innovation Idea Pipeline (all ideas, stages, notes) | Data source: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597` |
+| **Notion DB** | Category Intel (opportunity clusters — Stage 0 living state) | Data source: `<TBD — pending Phil coherence review + DB creation>` |
 | **Vercel (standalone)** | Innovation Lab viewer (idea-library.html) | `innovation-lab-silk.vercel.app` |
 | **GitHub repo** | Standalone deploy source | `basdkf024rhlasfd/innovation-lab` |
 | **mception.ai** | Portal route `/innovation-lab` | ProjectFrame → Vercel standalone |
 
 ## End-to-End Pipeline Summary
 
-The full innovation workshop pipeline runs in this order:
+The full innovation workshop pipeline runs in this order (numbering matches the `Step N`
+headers above):
 
-1. **Theme selection** — brainstorm or receive trend inputs
-2. **Ideation** — run 8-10 methods, generate ~30 raw ideas
-3. **Scoring** — filter to ~20 survivors (score 0-5)
+- **Stage 0: Problem Formation** — query Category Intel DB, detect readiness level (0-3),
+  run deep-research (`category-intel` type) if needed, present cluster + alternates + blind
+  spots, riff loop with Brady, sharpness gate, write/update cluster in Category Intel DB
+- **Step 2: Ideation** — run 8-10 methods on the sharp prompt, generate ~30 raw ideas
+- **Step 3: Score and filter** to ~20 survivors (score 0-5)
    ⏸ **GATE 1** — Present survivors. Wait for Brady to vet/cut/approve.
-4. **Canva images** — generate hero images for approved ideas, download locally
-5. **Write pitches** — pitch + RTBs + competitive + ops for each idea
-6. **HTML assembly** — build per-run deliverable with mception design system
+- **Step 4: Canva images** — generate hero images for approved ideas, download locally
+- **Step 5: Write pitches** — pitch + RTBs + competitive + ops for each idea
+- **Step 6: HTML assembly** — build per-run deliverable with mception design system
    ⏸ **GATE 2** — Show assembled HTML. Wait for Brady to review.
-7. **PDF generation** — Playwright Tabloid format
-8. **Learning log** — update method performance, category coverage, idea library
-9. **Notion sync** — push all new ideas to Innovation Idea Pipeline database
-10. **Idea library viewer** — append new ideas to idea-library.html
-11. **Deploy check** — ask Brady before pushing to mception.ai
+- **Step 7: PDF generation** — Playwright Tabloid format
+- **Step 8: Learning log** — update method performance, category coverage, idea library, cluster yield, readiness-level outcomes, sharpness gate performance
+- **Step 9: Notion sync** — push all new ideas to Innovation Idea Pipeline database; update cluster's Linked Ideas relation in Category Intel DB
+- **Deploy check** — ask Brady before pushing idea-library.html + new images to mception.ai
 
-**Default: gates are ON.** The pipeline pauses at Gates 1 and 2.
-If Brady says "run it all" or "full auto" at the start, skip gates and run end-to-end.
+**Default: gates are ON.** The pipeline pauses at the Stage 0 sharpness gate, Gate 1, and Gate 2.
+If Brady says "run it all" or "full auto" at the start, skip all gates and run end-to-end.
 
 ## What This Skill Does NOT Do
 

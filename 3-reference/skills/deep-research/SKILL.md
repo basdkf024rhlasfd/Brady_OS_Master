@@ -46,7 +46,7 @@ Default is **standard** unless Brady specifies otherwise or the calling skill re
 
 ## Research Types
 
-The skill classifies every request into one of five types, which drives sub-query strategy:
+The skill classifies every request into one of six types, which drives sub-query strategy:
 
 | Type | When to Use |
 |------|-------------|
@@ -55,6 +55,7 @@ The skill classifies every request into one of five types, which drives sub-quer
 | `competitive-analysis` | Multiple companies in a market |
 | `tech-evaluation` | Technology, tool, or platform assessment |
 | `market-research` | Market sizing, segments, trends, opportunity analysis |
+| `category-intel` | Multi-source scan for **opportunity clusters** (not product ideas) — behavioral shifts, white space, timing insights. Used by `innovation-workshop` Stage 0. |
 
 ---
 
@@ -112,6 +113,39 @@ Based on research type, generate sub-queries using these templates:
 5. Key players — "[Market] leading companies market leaders"
 6. Consumer trends — "[Market] consumer behavior preferences"
 7. Regulatory — "[Market] regulatory compliance requirements"
+
+**category-intel:**
+
+Unlike other research types, `category-intel` runs across **five source layers** rather
+than asking linear sub-queries. The goal is opportunity cluster synthesis, not a report.
+Each layer contributes signal to the final synthesis.
+
+1. **Behavioral edge** — "[category] consumer behavior reddit", "[category] hack workaround",
+   "[category] what i eat in a day", "[category] routine tiktok"
+   → Source stack: Reddit, TikTok surface (via Bright Data scrape), niche forums
+   → Extract: what people actually DO, not what brands sell
+2. **Global retail scouting** — "[category] japan don quijote", "[category] olive young korea",
+   "[category] waitrose premium", "[category] new launches Europe"
+   → Source stack: Japanese/Korean/European retail sites via Bright Data
+   → Extract: products already validated abroad but not in US
+3. **Trade show + industry signals** — "Expo West [year] [category] trends", "Fancy Food Show
+   exhibitors [category]", "Vitafoods new products", "PLMA private label [category]"
+   → Source stack: Web search, trade press
+   → Extract: what industry insiders are betting on
+4. **Pre-commercial signals** — "[category] kickstarter trending", "[category] patent filing
+   USPTO [year]", "[category] product hunt launch"
+   → Source stack: Kickstarter, USPTO, Product Hunt
+   → Extract: what exists but hasn't scaled
+5. **Structured macro layer** — "[category] google trends", "[category] earnings transcript
+   [top CPG brands]", "USDA [category] consumption data"
+   → Source stack: Google Trends, public earnings transcripts, USDA/BLS
+   → Extract: macro validation anchors
+
+**Tool prioritization for category-intel:**
+- **Exa API** (if configured) — run first, covers semantic search across all 5 layers
+- **Bright Data MCP** — `scrape_as_markdown` for Reddit, TikTok, retail sites, trade show
+  pages; `search_engine` for hard-to-reach queries
+- **WebSearch / WebFetch** — baseline fallback
 
 Scale to depth level:
 - Quick: use first 4 sub-queries only
@@ -258,6 +292,71 @@ or surprises.]
 | 2 | ... | ... | ... | ... |
 ...
 ```
+
+### Step 3.2b: Alternate Synthesis for `category-intel`
+
+When `research_type: category-intel`, the output is NOT the standard report template.
+It's a **cluster synthesis** — the downstream consumer (innovation-workshop Stage 0) needs
+opportunity clusters with evidence and timing, not a linear analysis.
+
+Use this template instead:
+
+```markdown
+# Category Intel — [Category / Theme]
+
+**Date:** [YYYY-MM-DD]
+**Depth:** [Quick / Standard / Deep]
+**Sources analyzed:** [N across 5 source layers]
+
+---
+
+## Behavioral Shifts (5-10)
+
+Each shift answers: what are consumers actually doing that brands haven't caught up to?
+
+1. **[Shift]** — [1-2 sentence description]
+   - Evidence: [source types that confirm, with citations]
+   - Why it matters commercially: [1 sentence]
+   - Stage: [Early / Emerging / Scaling]
+
+2. ...
+
+## White Space Map
+
+[2x2 or 3-axis framework. Example axes: Fresh vs Packaged × Functional vs Indulgent.
+Call out overcrowded zones, underserved zones, completely unoccupied zones.]
+
+## Opportunity Clusters (3-5)
+
+Each cluster is a coherent theme that ties multiple behavioral shifts together with a
+single job-to-be-done and a timing insight. Clusters feed innovation-workshop Stage 0.
+
+### Cluster 1: [Name]
+
+- **Behavioral shift:** [core consumer behavior this cluster serves]
+- **Why now:** [specific 2026 timing — what opened up recently that wasn't true 18 months ago]
+- **Job-to-be-done:** [what the consumer hires products in this cluster to do]
+- **Margin location:** [DTC / Premium retail / B2B / Private label / Mixed]
+- **Evidence:** [3-5 source citations, tagged by layer — behavioral / retail / trade / pre-commercial / macro]
+- **NOT-to-generate guardrails:** [what Stage 1 should AVOID when ideating in this cluster — e.g., "no protein snacks, no keto"]
+
+### Cluster 2: [Name]
+...
+
+## Blind Spots
+
+- [What the scan could NOT surface — unknowns worth Brady's network judgment]
+- [Where sources were thin or the signal was ambiguous]
+
+## Sources
+
+[Standard sources table: # | Source | URL | Date | Tier | Layer (behavioral/retail/trade/pre-commercial/macro)]
+```
+
+**Why this format matters:** innovation-workshop Stage 0 presents this synthesis back to
+Brady in dialogue mode. Having clusters with structured fields (behavioral shift, why now,
+JTBD, margin, guardrails) lets the skill run the 5-criteria sharpness gate directly against
+the synthesis without re-interpretation.
 
 ### Step 3.3: PDF Generation (Optional)
 

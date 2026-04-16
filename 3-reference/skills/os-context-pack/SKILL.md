@@ -43,6 +43,18 @@ Read all of these files fresh. Do not skip any. Do not rely on memory or prior c
 
 Also glob `3-reference/skills/*/SKILL.md` to get the current skills list (names + first-line descriptions only).
 
+### Also pull from Notion (live state)
+
+Query the Notion Category Intel DB for active opportunity clusters so Chat Projects know
+what intelligence is alive right now:
+
+- **Category Intel DB** (data source ID: `<TBD — pending Phil coherence review + DB creation>`)
+- Filter: `Status in [Fresh, Active]` (exclude Stale and Archived)
+- Fields to include: Cluster Name, Category, Behavioral Shift, Why Now, JTBD, Margin Location, Last Refreshed
+
+If the DB doesn't exist yet or returns empty, skip this and note in the output: "No active
+Category Intel briefs."
+
 ---
 
 ## Step 2: Generate Output 1 — Custom Instructions
@@ -216,6 +228,29 @@ This file gets uploaded to the Project's knowledge base as `brady-os-knowledge.m
 ## 12. Key Decisions & Guardrails
 
 [Consolidated from memory feedback files — app setup pattern, email not viewer, internal-first, consulting OS sync, agent vs skill location, no password gates]
+
+## 13. Active Category Intel Briefs
+
+> Weekly snapshot from the Notion Category Intel DB. These are the **opportunity clusters
+> currently alive** in Brady's innovation work. Chat Projects can reference these during
+> brainstorming to stay aligned with active research.
+>
+> This section is READ-ONLY in Chat Projects. Chat cannot write back to Notion. To promote
+> a brainstorm into Category Intel, Brady says "save this as a category intel seed" and
+> Claude outputs paste-ready markdown that Brady pastes into Notion or runs on Conductor.
+
+[For each Fresh/Active cluster from the Notion pull:]
+
+### [Cluster Name]
+- **Category:** [lane]
+- **Behavioral shift:** [rich text]
+- **Why now:** [timing insight]
+- **JTBD:** [job-to-be-done]
+- **Margin location:** [DTC / Premium / B2B / Private label / Mixed]
+- **Status:** [Fresh / Active]
+- **Last refreshed:** [date]
+
+[If empty: "No active Category Intel briefs. Run innovation-workshop Stage 0 to generate some."]
 ```
 
 ---
@@ -254,3 +289,46 @@ Done. These two pieces give any Claude Chat Project the full Brady OS context.
 4. **Client data is sensitive.** The knowledge file contains real names, companies, and engagement details. Remind Brady this file should only be uploaded to his own Projects.
 5. **If a source file is missing or unreadable,** note what's missing in the output rather than silently omitting it.
 6. **Voice check:** Before delivering, re-read the custom instructions. If any sentence sounds like it came from a consulting firm's website, rewrite it.
+
+---
+
+## Regeneration Cadence
+
+This skill runs on demand any time Brady says "brady os context" or "brady os context refresh."
+
+It also runs **automatically as part of the Sunday weekly-sweep** so that Chat Projects
+always have a fresh snapshot of active Category Intel at the start of each week. Weekly
+regeneration is how the brainstorm layer (Chat) stays aligned with the canonical
+intelligence state in Notion without polluting Chat's freedom to explore.
+
+---
+
+## Chat Projects Promotion Escape Hatch
+
+Chat Projects is Brady's brainstorm layer. The default posture is: nothing in Chat writes
+back to Notion. But when a brainstorm turns into a real insight worth capturing as a
+Category Intel seed, Brady says:
+
+> "Save this as a category intel seed"
+
+Claude in Chat responds with paste-ready markdown using this exact format:
+
+```markdown
+## Category Intel Seed — [YYYY-MM-DD]
+
+- **Cluster Name:** [proposed name]
+- **Category:** [canonical lane]
+- **Behavioral Shift:** [what consumers are doing that brands haven't caught up to]
+- **Why Now:** [timing insight — what opened up recently]
+- **JTBD:** [what consumer hires this cluster to do]
+- **Margin Location:** [DTC / Premium retail / B2B / Private label / Mixed]
+- **Evidence:** [what the brainstorm surfaced as signal — Brady adds sources later]
+- **NOT-to-generate guardrails:** [territory to avoid]
+- **Source:** Brainstorm in Claude Chat, [date]
+- **Status:** Fresh (needs validation before promotion to Active)
+```
+
+Brady then pastes this into the Notion Category Intel DB directly, OR hands it to
+Conductor/CLI to run a validation pass via deep-research and formally create the cluster.
+Chat never writes to Notion itself — this keeps the brainstorm layer fast and
+consequence-free.
