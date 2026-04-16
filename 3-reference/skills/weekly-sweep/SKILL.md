@@ -259,6 +259,22 @@ propose changes to Section B of the 📋 Weekly Planning Sweep event using the s
 ### 5.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 
+### 5.7b Update Canonical Index
+Review the Routing Log (`344ed43b-89c5-816a-ab54-ca49ca239748`) for all entries added since the last weekly sweep.
+
+For any routed item that represents durable institutional knowledge — systemic findings, architecture decisions, SOPs, governance changes, client engagement milestones — add it to the Canonical Index page (`344ed43b-89c5-814e-a402-f0646f1ed635`) in the appropriate section (System Governance, Architecture & Skills, Project Records, Client Engagement History, Planning Artifacts).
+
+The Canonical Index is **curated** — not everything that gets routed goes here. Only entries that change how the OS operates or that Brady/agents will need to reference repeatedly.
+
+### 5.7c Review Rules & Preferences
+Fetch the Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`). Check for:
+- **Contradictory rules** (newer rule overrides older — flag the conflict)
+- **Stale rules** that haven't been relevant in 30+ days (flag for removal)
+- **Rules that should be promoted** to CLAUDE.md or Onboarding if not already
+- **Missing categories** (any repeated feedback pattern that doesn't have a section yet)
+
+Report findings in the weekly sweep output. Do not delete or modify rules without Brady's explicit approval — only flag.
+
 ### 5.8 Doctrine Sync Check
 Run the doctrine-sync skill (`3-reference/skills/doctrine-sync/SKILL.md`) to detect drift between
 OS doctrine/governance and agent profiles. Output the summary + priority list in the sweep report.
@@ -266,10 +282,23 @@ If any agent is flagged CRITICAL (council member missing key governance knowledg
 with paste-ready updates. This is how the OS stays self-aware — doctrine changes get caught weekly,
 not when someone notices an agent giving stale advice.
 
-### 5.8 Close
+### 5.9 Regenerate OS Context Pack (for Chat Projects)
+Run the os-context-pack skill (`3-reference/skills/os-context-pack/SKILL.md`) to produce a
+fresh snapshot of Brady's OS state — including **active Category Intel briefs** from the
+Notion DB. Outputs both the custom instructions block and the `brady-os-knowledge.md` file.
+
+Report the output paths so Brady can paste/upload them into his Claude Chat Projects before
+the week starts. This is how the Chat brainstorm layer stays aligned with canonical
+intelligence state without needing Chat to write back to Notion.
+
+### 5.10 Close
 - Report all calendar changes made
 - Report all prompt changes applied
 - Ask: "Anything to adjust before the week starts?"
+
+## Done/Status Consistency Rule
+
+Whenever this sweep sets `Status = "Complete"` or `Status = "Remove"` on any Streaming Note, ALSO set `Done = "__YES__"`. These two fields must always move together. No exceptions.
 
 ## Edge Cases
 

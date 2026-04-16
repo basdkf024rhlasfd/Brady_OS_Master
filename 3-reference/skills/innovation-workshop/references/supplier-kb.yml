@@ -1,0 +1,153 @@
+# Supplier Knowledge Base — Innovation Workshop
+#
+# Feeds the Cost Model section in Stage 2 idea generation (SKILL.md Step 5).
+# When the Cost Model cites `source: supplier-kb:<slug>:<sku>`, the generator
+# MUST reference a real entry in the catalog. If no matching entry exists,
+# flag the cost line as `source: assumption` and do NOT fabricate numbers.
+#
+# Schema (per supplier):
+#   slug:
+#     name:             # legal / trade name
+#     kind:             # distributor | co-manufacturer | producer | broker
+#     location:         # city, state
+#     channels: []      # airline | foodservice | retail | DTC | B2B
+#     capabilities:
+#       retail_packaging, copack, moq_notes
+#     catalog_file:     # path to raw/<supplier>-catalog.jsonl (full SKU table)
+#     brands_file:      # path to raw/<supplier>-brands.jsonl (brand rollup)
+#     catalog_summary:  # derived stats + category/brand rollups
+#     dtc_resources:    # ship calculator if applicable
+#     brady_relationship, sources, last_updated, confidence
+
+artisan-specialty-foods:
+  name: Artisan Specialty Foods
+  kind: distributor
+  location: Broadview, IL
+  channels:
+    - foodservice
+    - airline  # zoned pricing maps to airline-hub geographies
+  capabilities:
+    retail_packaging: unknown
+    copack: false
+    moq_notes: |
+      Sold by CASE (CS) or EACH (EA). Zoned pricing across 4 airline-hub
+      geographies:
+        Zone 1: LGA, EWR, IAD, BOS
+        Zone 2: JFK, LAX, MIA, LAS, SFO, SEA, ORD, ATL, DFW
+        Zone 3: SAN, FLL, MCO, CVG, MSY, SAT, DTW, STL, DEN, TPA, IND
+        Zone 4: HNL, OGG (Hawaii — highest cost)
+      Shipping methods on pricing calc: Ground, 2-Day, Priority.
+
+  catalog_file: references/raw/artisan-catalog.jsonl
+  brands_file: references/raw/artisan-brands.jsonl
+
+  catalog_summary:
+    source_tab: New Pricing File (Airline_Price_List_Master.xlsx)
+    total_skus: 960
+    active_skus: 732                 # status = Approved
+    skus_with_vendor_cost: 687       # GP_CURRCOST from Error Report tab
+    skus_with_brand: 167             # extracted via "by Brand" / "Brand's" regex
+    distinct_brands_detected: 80
+    avg_zone1_margin_over_vendor_cost: 48.7%   # (z1 - vendor_cost) / z1 across 670 SKUs
+    top_categories_active:
+      Cheese: 58
+      Rubs, Spices & Seasonings: 25
+      Sauces & Marinades: 21
+      Chips, Crisps & Crackers: 17
+      Condiments & Spreads: 14
+      Olives & Antipasti: 12
+      Juice & Fruit Purees: 10
+      Rice, Beans & Grains: 9
+      Pasta & Noodles: 9
+      Jam, Preserves & Nut Butter: 8
+      Breads: 8
+      Baking Ingredients: 8
+      Salami & Chorizo: 7
+    top_brands_detected:
+      Lee Kum Kee: 10        # also appears as "Lkk" in 6 SKUs
+      Vermont Creamery: 9
+      Les Vergers Boiron: 7  # French frozen fruit purees
+      Girl Meets Dirt: 5
+      Sabatino Tartufi: 5    # truffles
+      Goya: 4
+      Menu: 3
+      Del Destino: 3
+      Divina: 3
+      Mitica: 3
+      Harmless Harvest: 2
+      Stonefire: 2
+      Kikkoman: 2
+      Cowgirl Creamery: 2
+      Cypress Grove: 2
+      Les Trois Petits Cochons: 2
+      Beretta: 2
+    notable_sku_prefixes:
+      SWR: Swift River (Artisan's own branded line — grains, beans, dried fruit)
+      AF: Acme (16 SKUs)
+      US: US-produced / domestic (12 SKUs)
+      BREAD: Bread category codes (9 SKUs, e.g. Tribeca Oven, Rotella's)
+      PAST: Pasta category codes (7 SKUs)
+      TRU: Truffle products (4 SKUs)
+      SHR: Shrimp (4 SKUs)
+      GOY: Goya-branded (3 SKUs)
+
+  # Example consumer references Brady flagged from Kim's email:
+  flagged_skus:
+    - sku: 7791
+      description: French Pumpkin Seed Oil by Roland
+      z1_price: 102.37
+    - sku: 4982
+      description: Roasted Pumpkin Seeds (Pepitas) by Stony Brook
+      z1_price: 129.38
+    - sku: PEPSEED5
+      description: SEEDS, PUMPKIN, SHELLED, ROASTED 5 LB
+      z1_price: 45.31
+    - sku: 16378
+      description: Thai Jasmine Rice 25LB Bag (literal row 42 anchor)
+      z1_price: 35.27
+
+  dtc_resources:
+    fedex_calculator: references/fedex_calc.py
+    fedex_rates_raw: references/raw/fedex-rates.jsonl
+    fedex_rates_last_updated: 2025-02-11
+    fedex_notes: |
+      Calculator exposes fedex_cost(schedule, zone, weight) and higher-level
+      helpers zone_for_state(), quote(), all_options(), cheapest_ground(),
+      and dtc_landed_model() for a full vendor-cost → suggested-retail pass.
+      Artisan's negotiated rate card — treat as a floor for their origin
+      (Broadview, IL → zone 2). Other origins should flag as assumption.
+      Schedules available: 2-Day, 3-Day, Ground, Home, Priority, Standard.
+      Zones: 2-8 plus 13 (AK/HI/PR).
+
+  # How Cost Models should cite this KB in Stage 2 generation:
+  #   source: supplier-kb:artisan-specialty-foods:<product_sku>
+  # Example:
+  #   cogs:
+  #     - input: "Vermont Creamery crème fraîche, 5 lb tub"
+  #       wholesale: "$28.40/tub"
+  #       source: "supplier-kb:artisan-specialty-foods:10523"
+  # For DTC ideas, call fedex_calc.dtc_landed_model() and cite:
+  #   shipping: "$22.50"
+  #   source: "supplier-kb:artisan-specialty-foods/fedex_calc"
+
+  brady_relationship: >
+    Kim Olson, Director of Customer Relations — Airlines, sent the airline
+    Price List Master (Gmail id 19c715263811f53e) on 2026-02-18. Brady has
+    buyer-side access from his prior airline foodservice work. The original
+    xlsx stays in .context/attachments/ (gitignored). Parsed artifacts in
+    references/raw/ are committed.
+
+  sources:
+    - gmail: 19c715263811f53e
+    - url: https://www.artisanspecialty.com
+    - contact: Kim Olson <kim@artisanspecialty.com>
+    - raw_catalog: references/raw/artisan-catalog.jsonl
+    - raw_brands: references/raw/artisan-brands.jsonl
+    - raw_fedex: references/raw/fedex-rates.jsonl
+    - calc: references/fedex_calc.py
+
+  last_updated: 2026-04-16
+  confidence: high
+
+# ─────────────────────────────────────────────────────────────────────────
+# Future entries will slot in below this line — keep alphabetized by slug.
