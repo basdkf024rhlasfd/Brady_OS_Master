@@ -36,3 +36,7 @@ published_projects:
     project: "Project - AI Native CPG Innovation"
     approved: 2026-04-15
     notes: "Personal R&D innovation pipeline — idea library with stage gates, Notion-backed, 85+ product concepts"
+  - slug: panda
+    project: "Project - Panda"
+    approved: 2026-04-15
+    notes: "Panda Restaurant Group research brief and meeting prep for James Ku CDO engagement"

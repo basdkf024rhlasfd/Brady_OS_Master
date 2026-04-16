@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panda Restaurant Group — Research Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    display: flex;
+    height: 100vh;
+  }
+
+  /* Sidebar */
+  nav {
+    width: 280px; min-width: 280px;
+    background: var(--bg-card);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  nav .brand {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav .brand .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  nav .brand .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-top: 8px;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+  }
+  nav .brand .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .nav-group { padding: 0; }
+  .nav-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--gold-dim);
+    padding: 20px 20px 8px;
+    user-select: none;
+  }
+  .nav-items a {
+    display: block; padding: 10px 20px;
+    color: var(--gray-light);
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .nav-items a:hover {
+    background: var(--bg-card-alt);
+    color: var(--white);
+  }
+  .nav-items a.active {
+    background: rgba(212,168,67,0.08);
+    color: var(--gold);
+    border-left-color: var(--gold);
+  }
+
+  /* Main */
+  main { flex: 1; overflow-y: auto; padding: 0; }
+  .content-wrap { max-width: 860px; margin: 0 auto; padding: 40px 52px 80px; }
+
+  /* Prose — mception design system */
+  .prose h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 16px;
+    line-height: 1.25;
+    letter-spacing: -1px;
+  }
+  .prose h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 36px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212,168,67,0.2);
+  }
+  .prose h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin: 28px 0 10px;
+  }
+  .prose h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gold);
+    margin: 24px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .prose p {
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.75;
+    margin: 0 0 14px;
+    color: var(--gray-light);
+    font-size: 15px;
+  }
+  .prose strong { color: var(--white); }
+  .prose em { color: var(--gray-light); font-style: italic; }
+  .prose a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,168,67,0.3);
+  }
+  .prose a:hover { border-bottom-color: var(--gold); }
+  .prose hr { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 28px 0; }
+  .prose ul, .prose ol { margin: 0 0 14px 24px; }
+  .prose li {
+    line-height: 1.7;
+    margin-bottom: 4px;
+    color: var(--gray-light);
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .prose blockquote {
+    border-left: 3px solid var(--gold-dim);
+    padding: 10px 18px;
+    margin: 16px 0;
+    background: var(--bg-card);
+    border-radius: 6px;
+  }
+  .prose blockquote p { color: var(--gold); margin: 0; font-style: italic; }
+  .prose pre {
+    background: var(--bg-card-alt);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+  .prose code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+  }
+  .prose pre code { color: var(--gray-light); }
+  .prose table {
+    width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px;
+  }
+  .prose th {
+    font-family: 'JetBrains Mono', monospace;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid rgba(212,168,67,0.3);
+    color: var(--gold);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .prose td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--gray-light);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .prose tr:hover td { background: var(--bg-card); }
+
+  /* Section visibility */
+  .section-content { display: none; }
+  .section-content.active { display: block; }
+
+  /* Mobile */
+  .mobile-header { display: none; }
+  .mobile-overlay { display: none; }
+
+  @media (max-width: 768px) {
+    body { flex-direction: column; height: auto; min-height: 100vh; }
+    nav {
+      position: fixed; top: 0; left: -300px; width: 280px; min-width: 0;
+      height: 100vh; z-index: 200; transition: left 0.25s;
+    }
+    nav.open { left: 0; }
+    .mobile-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 199;
+    }
+    .mobile-overlay.show { display: block; }
+    .mobile-header {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg-card);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 20px; position: sticky; top: 0; z-index: 50;
+    }
+    .mobile-header .hamburger {
+      background: none; border: none; color: var(--white); font-size: 22px; cursor: pointer; padding: 4px;
+    }
+    .mobile-header .mob-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; color: var(--white); font-weight: 600;
+    }
+    .content-wrap { padding: 24px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-header">
+  <button class="hamburger" onclick="openMobileNav()">&#9776;</button>
+  <span class="mob-title">Panda Restaurant Group</span>
+</div>
+
+<nav id="sidebar">
+  <div class="brand">
+    <div class="eyebrow">mception.ai</div>
+    <div class="title">Panda Restaurant Group</div>
+    <div class="subtitle">Research Brief &amp; Meeting Prep</div>
+  </div>
+  <div class="nav-group" data-group="Featured"><div class="nav-group-label">Featured</div><div class="nav-items"><a href="#company-overview" data-section="company-overview">Company Overview</a><a href="#james-ku" data-section="james-ku">James Ku — CDO Profile</a><a href="#talk-track" data-section="talk-track">Talk Track</a></div></div><div class="nav-group" data-group="Store Innovation"><div class="nav-group-label">Store Innovation</div><div class="nav-items"><a href="#store-innovation" data-section="store-innovation">Store Innovation Benchmark</a></div></div>
+</nav>
+
+<main>
+  <div class="content-wrap" id="content-area">
+    <div class="section-content" id="content-company-overview" style="display:none"><div class="prose"><h1>Panda Restaurant Group — Company Deep Research</h1>
+
+<p><strong>Date:</strong> April 15, 2026 | <strong>Depth:</strong> Standard | <strong>Sources Analyzed:</strong> 25+ | <strong>Research Type:</strong> Company</p>
+
+<hr>
+
+<h2>Executive Summary</h2>
+
+<p>Panda Restaurant Group (PRG) is the largest Asian-concept QSR chain in the United States, with ~2,800 locations and estimated system-wide sales approaching $6.5–7B. The company is private, family-owned by founders Andrew and Peggy Cherng, and has no plans to go public. PRG is in a period of aggressive expansion (123 new company-owned outlets planned for FY2025), format innovation ("Panda Home" prototype), and technology investment (GridPoint smart buildings, automated woks, kitchen display systems). The recent CEO departure (role previously held by external hire) leaves the Cherng family reasserting direct control. Digital sales now account for ~42% of total revenue — a massive channel shift that is reshaping the box.</p>
+
+<hr>
+
+<h2>1. Company Overview</h2>
+
+<table><thead><tr><th>Field</th><th>Detail</th></tr></thead><tbody><tr><td><strong>Founded</strong></td><td>1973 (Panda Inn, Pasadena, CA)</td></tr>
+<tr><td><strong>Headquarters</strong></td><td>Rosemead, California</td></tr>
+<tr><td><strong>Founders</strong></td><td>Andrew Cherng & Peggy Cherng</td></tr>
+<tr><td><strong>Ownership</strong></td><td>Privately held, Cherng family — "a family business that will remain within the Cherng family for generations to come" (CFO David Landsberg)</td></tr>
+<tr><td><strong>Brand Portfolio</strong></td><td>Panda Express (QSR), Panda Inn (casual dining), Hibachi-San (Japanese teppanyaki, limited)</td></tr>
+<tr><td><strong>Mission</strong></td><td>"Delivering exceptional Asian dining experiences by building an organization where people are inspired to better their lives"</td></tr>
+<tr><td><strong>Employees</strong></td><td>~47,000+ (est.)</td></tr></tbody></table>
+<h3>Brand Portfolio Detail</h3>
+
+<ul><li><strong>Panda Express</strong> — The flagship. ~2,500+ US locations. American Chinese fast food. Steam table / made-to-order format with signature Orange Chicken. Drive-thru expanding rapidly.</li>
+<li><strong>Panda Inn</strong> — Full-service Chinese restaurant. ~5 locations in Southern California. The original concept that predates Panda Express.</li>
+<li><strong>Hibachi-San</strong> — Japanese teppanyaki concept. Very limited presence, primarily in malls.</li>
+<li><strong>Panda Tea Bar</strong> — Emerging concept-within-a-concept. Bubble tea, artisanal tea infusions, pastries. Expanded to 39 locations by 2025. Designed by a Taiwanese tea master. Being tested as an add-on to Panda Express locations.</li></ul>
+
+<hr>
+
+<h2>2. Scale & Financials</h2>
+
+<table><thead><tr><th>Metric</th><th>Value</th><th>Year</th><th>Source Confidence</th></tr></thead><tbody><tr><td><strong>System-wide sales</strong></td><td>~$6.2–6.5B (est.)</td><td>2024</td><td>Medium — private company, multiple estimates</td></tr>
+<tr><td><strong>Revenue target</strong></td><td>$7.5B projected</td><td>2025–2026</td><td>Medium — management projections via trade press</td></tr>
+<tr><td><strong>Long-term vision</strong></td><td>$10B brand</td><td>"not-too-distant future"</td><td>CFO quote, Restaurant Business Online</td></tr>
+<tr><td><strong>Total locations</strong></td><td>~2,800 worldwide</td><td>Early 2026</td><td>High — company website</td></tr>
+<tr><td><strong>US locations</strong></td><td>~2,500+</td><td>2025</td><td>High</td></tr>
+<tr><td><strong>Net new stores (2024)</strong></td><td>+85–89</td><td>2024</td><td>High — trade press</td></tr>
+<tr><td><strong>Planned new stores (2025)</strong></td><td>123 company-owned</td><td>2025</td><td>Medium — industry reports</td></tr>
+<tr><td><strong>Average unit volume (AUV)</strong></td><td>~$2.5M</td><td>2024 (est.)</td><td>Medium — nearly doubled from ~$1.3M pre-2020</td></tr>
+<tr><td><strong>Average check</strong></td><td>$14.50+</td><td>2025</td><td>Medium</td></tr>
+<tr><td><strong>Digital sales share</strong></td><td>~42% of revenue</td><td>Early 2026</td><td>Medium</td></tr>
+<tr><td><strong>Sales ranking (US)</strong></td><td>#14 nationally (Top 500)</td><td>2022–2023</td><td>High — Technomic</td></tr>
+<tr><td><strong>Asian QSR market share</strong></td><td>~38%</td><td>Jan 2026</td><td>Medium</td></tr></tbody></table>
+<h3>Growth Trajectory</h3>
+
+<ul><li><strong>2021:</strong> $4.4B system sales, 2,316 locations</li>
+<li><strong>2022:</strong> $5.1B system sales (+16% YoY), 2,374 locations, Sales Per Unit $2.18M</li>
+<li><strong>2023:</strong> ~$5.5B (est.), continued unit growth</li>
+<li><strong>2024:</strong> ~$6.2–6.5B (est.), 2,505 locations, +85–89 net new</li>
+<li><strong>2025:</strong> ~$6.8B projected, 123 new units planned</li>
+<li><strong>Long-term:</strong> $10B vision</li></ul>
+
+<p><strong>Key insight:</strong> Panda has surpassed Popeyes, KFC, Olive Garden, Dairy Queen, and Arby's in total US sales. No other Asian concept has annual sales exceeding half of Panda's yearly <em>gains</em>.</p>
+
+<hr>
+
+<h2>3. Leadership Team</h2>
+
+<table><thead><tr><th>Name</th><th>Title</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Andrew Cherng</strong></td><td>Co-Founder, Co-Chair, Co-CEO</td><td>Founded original Panda Inn in 1973. Actively involved.</td></tr>
+<tr><td><strong>Peggy Cherng</strong></td><td>Co-Founder, Co-Chair, Co-CEO</td><td>Computer science / electrical engineering background. Oversees tech + supply chain. Net worth est. $4.3B (Forbes).</td></tr>
+<tr><td><strong>Andrea Cherng</strong></td><td>Chief Brand Officer</td><td>Daughter of Andrew & Peggy. Next-gen leadership. Brand strategy, marketing, culture.</td></tr>
+<tr><td><strong>Jeff Wang</strong></td><td>Chief Operating Officer</td><td>Day-to-day restaurant operations</td></tr>
+<tr><td><strong>James Ku</strong></td><td>Chief Development Officer</td><td><strong>Store development, design, real estate, construction, facilities.</strong> Former Walmart (Head of Facility Services, COO Walmart China). Wharton + Harvard Kennedy School.</td></tr>
+<tr><td><strong>David Landsberg</strong></td><td>Chief Financial Officer</td><td>Public spokesperson for financial strategy. Articulated the $10B vision.</td></tr>
+<tr><td><strong>Heather Kane Haberer</strong></td><td>Chief People Officer</td><td>HR, talent, associate development</td></tr>
+<tr><td><strong>Monte Baier</strong></td><td>SVP & General Counsel</td><td>Legal</td></tr>
+<tr><td><strong>Roland Ornelas</strong></td><td>SVP, Supply Chain Management</td><td>Procurement, logistics</td></tr></tbody></table>
+<h3>Recent Leadership Changes</h3>
+
+<ul><li><strong>CEO departure:</strong> David McKillips (noted in some sources as having a CEO role) departed Feb 13, 2026. The Cherng family appears to be maintaining direct control rather than hiring another external CEO.</li>
+<li><strong>Implication:</strong> The Cherng family's decision to not immediately replace with an external CEO suggests a tightening of family governance — consistent with their stated commitment to generational family ownership.</li></ul>
+
+<hr>
+
+<h2>4. Store Footprint & Growth</h2>
+
+<h3>Location Types</h3>
+<ul><li><strong>Traditional freestanding</strong> — Majority of new builds. Drive-thru becoming standard.</li>
+<li><strong>Inline / strip center</strong> — Historically the dominant format (mall food court + strip center).</li>
+<li><strong>Non-traditional</strong> — Airports, universities, military bases, hospitals, stadiums, theme parks. ~170 licensed locations (not company-operated).</li>
+<li><strong>Drive-thru penetration</strong> — 75% of recent new builds include drive-thru. This is a major strategic shift from Panda's mall-heavy heritage.</li></ul>
+
+<h3>International Presence</h3>
+<ul><li><strong>Mexico</strong> — Largest international market (~24 locations). First opened 2011 in Mexico City.</li>
+<li><strong>Canada</strong> — Small presence, Calgary and Ontario.</li>
+<li><strong>Guatemala, El Salvador</strong> — Central American expansion.</li>
+<li><strong>Japan, South Korea</strong> — Asian markets.</li>
+<li><strong>Saudi Arabia, UAE</strong> — Middle East presence.</li>
+<li><strong>Philippines</strong> — Southeast Asian market.</li></ul>
+
+<h3>Growth Strategy</h3>
+<ul><li><strong>Company-operated model:</strong> All units are company-operated except ~170 nontraditional licensed locations. No franchising. This gives PRG complete control over store design, operations, and brand execution.</li>
+<li><strong>Suburban drive-thru pivot:</strong> Historically mall-centric, now aggressively building freestanding drive-thru locations in suburban markets.</li>
+<li><strong>International cautious:</strong> International expansion is deliberate, not rapid. Most growth remains domestic.</li></ul>
+
+<hr>
+
+<h2>5. Digital & Technology</h2>
+
+<h3>Ordering & Digital</h3>
+<ul><li><strong>Digital sales:</strong> ~42% of revenue by early 2026 — a transformative channel shift</li>
+<li><strong>Mobile app:</strong> Panda Express app for mobile ordering, pickup</li>
+<li><strong>Delivery partnerships:</strong> DoorDash, Uber Eats, Grubhub</li>
+<li><strong>Kitchen Display Systems (KDS):</strong> Rolling out across system — digital screens replacing paper tickets</li>
+<li><strong>Digital pickup screens:</strong> In-store screens for guests to track orders</li></ul>
+
+<h3>Kitchen Technology</h3>
+<ul><li><strong>Automated woks:</strong> Deployed to improve consistency and speed</li>
+<li><strong>Clamshell grills:</strong> Faster-cooking equipment for protein items</li>
+<li><strong>Innovation Kitchen:</strong> Testing ground in Pasadena, CA — "living laboratory" per founders. Tests new menu items, formats, and equipment.</li></ul>
+
+<h3>Smart Building / Facilities</h3>
+<ul><li><strong>GridPoint partnership (Jan 2024):</strong> Deploying smart building technology across all ~2,500 US locations over 18 months</li></ul>
+  - Controls HVAC and lighting automatically
+  - Real-time operational and environmental performance data
+  - Based on 200-store pilot showing measurable energy cost savings and CO2 reductions
+  - Restaurants use 5–7x more energy per square foot than other commercial buildings
+  - <strong>James Ku's domain</strong> — this falls directly under the CDO's purview
+
+<hr>
+
+<h2>6. Menu & Product Strategy</h2>
+
+<ul><li><strong>Core:</strong> Orange Chicken (accounts for ~30% of all orders), Beijing Beef, Kung Pao Chicken, Chow Mein, Fried Rice</li>
+<li><strong>Innovation:</strong> Beyond Orange Chicken (plant-based collab with Beyond Meat), regional LTOs, seasonal items</li>
+<li><strong>Tea Bar expansion:</strong> 39 locations with specialized bubble tea, artisanal infusions</li>
+<li><strong>Pricing:</strong> Average check ~$14.50, positioned as affordable but premium to McDonald's/Taco Bell</li>
+<li><strong>Philosophy:</strong> "No best. Only better." — continuous small improvements rather than dramatic pivots</li></ul>
+
+<hr>
+
+<h2>7. Competitive Position</h2>
+
+<h3>Direct Asian QSR Competitors</h3>
+<table><thead><tr><th>Chain</th><th>US Locations</th><th>Sales</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Panda Express</strong></td><td>~2,500+</td><td>~$6.5B</td><td>Dominant. No close second.</td></tr>
+<tr><td><strong>Teriyaki Madness</strong></td><td>~150</td><td>~$200M (est.)</td><td>Franchise model. Teriyaki bowls.</td></tr>
+<tr><td><strong>Yoshinoya</strong></td><td>~90 (US)</td><td>~$100M (est.)</td><td>Japanese. Shrinking US footprint.</td></tr>
+<tr><td><strong>Bonchon</strong></td><td>~100+ (US)</td><td>~$150M (est.)</td><td>Korean fried chicken. Growing.</td></tr>
+<tr><td><strong>Waba Grill</strong></td><td>~200</td><td>~$150M (est.)</td><td>Southern California focus.</td></tr></tbody></table>
+<strong>Key insight:</strong> Panda has no real direct competitor at scale. The competitive set is more meaningfully Chipotle (format comp), Chick-fil-A (operational comp), and Wingstop (growth comp) than any other Asian concept.
+
+<h3>Format Competitors (QSR broadly)</h3>
+<ul><li><strong>Chipotle:</strong> $9.4B+ sales, Chipotlane digital drive-thru in 80% of stores by 2026</li>
+<li><strong>Chick-fil-A:</strong> $21B+ sales, elevated drive-thru prototype with 4 lanes</li>
+<li><strong>Wingstop:</strong> Fastest-growing QSR, digital-first, small footprint</li>
+<li><strong>Sweetgreen:</strong> Infinite Kitchen robotic makeline, automation pioneer</li></ul>
+
+<hr>
+
+<h2>8. Culture & People</h2>
+
+<ul><li><strong>"Panda Way"</strong> — Strong internal culture focused on personal development, not just job skills</li>
+<li><strong>Wage investment:</strong> Hourly wages increased ~$4 (30%) over three years. Nearly half of managers earn $100K+ in combined base + bonus.</li>
+<li><strong>Panda Cares Foundation:</strong> Philanthropic arm focused on health, education, and disaster relief. Raised $300M+ since inception.</li>
+<li><strong>Andrew & Peggy Cherng:</strong> Known for personal involvement, values-driven leadership, significant philanthropic giving (Caltech, other institutions)</li>
+<li><strong>Glassdoor rating:</strong> Generally positive for QSR industry</li></ul>
+
+<hr>
+
+<h2>9. Recent News & Developments (2024–2026)</h2>
+
+<ul><li><strong>Jan 2024:</strong> GridPoint smart building technology deployment announced for all US locations</li>
+<li><strong>2024:</strong> Panda Home prototype store design expanding to new markets after Dripping Springs, TX debut</li>
+<li><strong>2024:</strong> Net 85–89 new stores opened, reaching 2,505 locations</li>
+<li><strong>2024:</strong> Tea Bar concept expanded to 39 locations</li>
+<li><strong>Early 2025:</strong> 123 new company-owned stores planned</li>
+<li><strong>Feb 2026:</strong> CEO departure — Cherng family maintaining direct control</li>
+<li><strong>March 2026:</strong> North Platte, Nebraska debuts updated restaurant design as first location with new look</li>
+<li><strong>2026:</strong> Digital sales hit ~42% of revenue</li>
+<li><strong>2026:</strong> Company approaches ~2,800 locations worldwide</li></ul>
+
+<hr>
+
+<h2>10. Knowledge Gaps</h2>
+
+<ul><li><strong>Exact financials:</strong> Private company — all revenue/sales figures are estimates from industry reports</li>
+<li><strong>International strategy detail:</strong> Limited public information on expansion plans beyond current markets</li>
+<li><strong>Technology roadmap:</strong> No public detail on AI/data initiatives beyond GridPoint and kitchen equipment</li>
+<li><strong>James Ku's specific initiatives:</strong> Limited public statements from the CDO about his strategic priorities</li>
+<li><strong>Franchise consideration:</strong> No indication they're considering franchising, but worth asking about</li>
+<li><strong>Real estate pipeline:</strong> No public detail on site selection methodology or build pipeline size</li></ul>
+
+<hr>
+
+<h2>Sources</h2>
+
+<table><thead><tr><th>Source</th><th>URL</th></tr></thead><tbody><tr><td>Panda Restaurant Group Leadership</td><td>https://www.pandarg.com/about-us/leadership.html</td></tr>
+<tr><td>Restaurant Business Online — $10B Mom & Pop</td><td>https://www.restaurantbusinessonline.com/operations/will-panda-express-be-first-10b-mom-pop</td></tr>
+<tr><td>NRN — Top 500 Growth</td><td>https://www.nrn.com/top-500-restaurants/panda-express-small-incremental-improvements-catapult-the-brand-into-the-top-15</td></tr>
+<tr><td>QSR Magazine — Panda Home Design</td><td>https://www.qsrmagazine.com/operations/design/panda-express-infuses-cultural-heritage-new-store-design/</td></tr>
+<tr><td>Chain Store Age — GridPoint Smart Building</td><td>https://chainstoreage.com/panda-express-deploy-smart-building-technology-across-all-us-locations</td></tr>
+<tr><td>Restaurant Dive — GridPoint Deployment</td><td>https://www.restaurantdive.com/news/gridpoint-panda-express-smart-building-hvac-carbon-reductions/705498/</td></tr>
+<tr><td>Chain Store Age — New Store Model</td><td>https://chainstoreage.com/panda-express-unveils-new-store-model</td></tr>
+<tr><td>Expanded Ramblings — Panda Stats</td><td>https://expandedramblings.com/index.php/panda-restaurant-group-statistics-and-facts/</td></tr>
+<tr><td>Wikipedia — Panda Express</td><td>https://en.wikipedia.org/wiki/Panda_Express</td></tr>
+<tr><td>Fortune — Company Profile</td><td>https://fortune.com/company/panda-restaurant-group/</td></tr>
+<tr><td>KNOP News — North Platte New Design</td><td>https://www.knopnews2.com/2026/03/14/panda-express-opens-north-platte-debuts-new-store-design/</td></tr>
+<tr><td>Restaurant Business — Top 500</td><td>https://www.restaurantbusinessonline.com/top-500-chains-2025/panda-express</td></tr></tbody></table></div></div>
+<div class="section-content" id="content-james-ku" style="display:none"><div class="prose"><h1>James Ku — Person Deep Research</h1>
+
+<p><strong>Date:</strong> April 15, 2026 | <strong>Research Type:</strong> Person / Executive Due Diligence</p>
+
+<hr>
+
+<h2>Executive Summary</h2>
+
+<p>James Ku is the Chief Development Officer at Panda Restaurant Group, responsible for store development, restaurant design, real estate, construction, and facilities management across ~2,800 locations. His background is unusually diverse: Wharton + Harvard Kennedy School education, international development work (USAID in Pakistan/Afghanistan), Wells Fargo, Brookfield Logistics Properties, and an eight-year tenure at Walmart spanning facility services and COO of Walmart China. He overlapped with Brady at Walmart from January 2019 to December 2020. His CDO role at Panda puts him at the center of format innovation, the drive-thru buildout, smart building technology deployment, and the company's physical growth strategy.</p>
+
+<hr>
+
+<h2>1. Current Role — Chief Development Officer, Panda Restaurant Group</h2>
+
+<h3>Scope</h3>
+<ul><li><strong>Restaurant design</strong> — New store prototypes, remodel programs, interior/exterior design</li>
+<li><strong>Real estate</strong> — Site selection, lease negotiation, market planning</li>
+<li><strong>Construction</strong> — New builds, remodels, project management at scale</li>
+<li><strong>Facilities management</strong> — Maintenance, energy management, smart building tech across ~2,500+ US locations</li>
+<li><strong>Brand environment</strong> — "Creating strategic direction and leading the team to enhance the Panda restaurant spaces and brand in existing and new markets"</li></ul>
+
+<h3>Known Initiatives Under His Watch</h3>
+<ol><li><strong>Panda Home prototype</strong> — New store design debuted in Dripping Springs, TX (May 2023). Features cultural heritage design language, expanded BOH, 15% smaller dining room, enhanced digital pickup areas, immersive drive-thru pictograms.</li>
+<li><strong>GridPoint smart building deployment</strong> — Announced Jan 2024. Deploying IoT energy management across all ~2,500 US locations within 18 months. Based on successful 200-store pilot. Controls HVAC/lighting, provides real-time performance data.</li>
+<li><strong>Drive-thru expansion</strong> — 75% of recent new builds include drive-thru, pivoting from Panda's historically mall-centric footprint.</li>
+<li><strong>Format rollout</strong> — North Platte, NE became first city with the updated restaurant design as of March 2026.</li>
+<li><strong>Tea Bar integration</strong> — Physical design for in-restaurant tea bar concept (39 locations and growing).</li></ol>
+
+<h3>What CDO Means at a Restaurant Company</h3>
+CDO is NOT a digital/tech role. At a restaurant group, Chief Development Officer owns the <strong>physical plant</strong>:
+<ul><li>How many stores get built per year (pipeline)</li>
+<li>What those stores look like (format/prototype)</li>
+<li>Where they go (real estate/site selection)</li>
+<li>How much they cost to build (construction management)</li>
+<li>How they're maintained (facilities/smart building)</li>
+<li>How the box evolves over time (remodel programs)</li></ul>
+
+<p>This is a capital-intensive, operationally complex role — James likely oversees hundreds of millions in annual capital expenditure.</p>
+
+<hr>
+
+<h2>2. Career Path</h2>
+
+<h3>Timeline</h3>
+
+<table><thead><tr><th>Period</th><th>Role</th><th>Organization</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Education</strong></td><td>B.S. Economics</td><td><strong>Wharton School, University of Pennsylvania</strong></td><td>Undergraduate</td></tr>
+<tr><td><strong>Education</strong></td><td>Master of Public Policy</td><td><strong>Harvard Kennedy School</strong></td><td>Graduate — public policy, not MBA</td></tr>
+<tr><td><strong>Early Career</strong></td><td>International development</td><td><strong>USAID Competitive Support Fund</strong></td><td>Pakistan, Afghanistan — economic development</td></tr>
+<tr><td><strong>Early Career</strong></td><td>Real estate / finance</td><td><strong>Wells Fargo</strong></td><td>US-based</td></tr>
+<tr><td><strong>Mid Career</strong></td><td>Logistics real estate</td><td><strong>Brookfield Logistics Properties</strong></td><td>Industrial/logistics RE development</td></tr>
+<tr><td><strong>~2013–2020</strong></td><td>Multiple leadership roles (8 years)</td><td><strong>Walmart</strong></td><td>See detailed Walmart section below</td></tr>
+<tr><td><strong>~2019–2020</strong></td><td>Head of Facility Services, Walmart US</td><td><strong>Walmart</strong></td><td>Managed 700M+ SF across 4,700 stores</td></tr>
+<tr><td><strong>Earlier at Walmart</strong></td><td>COO, Walmart China</td><td><strong>Walmart</strong></td><td>International operations leadership</td></tr>
+<tr><td><strong>~2021–Present</strong></td><td>Chief Development Officer</td><td><strong>Panda Restaurant Group</strong></td><td>Current role</td></tr></tbody></table>
+<h3>Key Observations</h3>
+<ul><li><strong>Unusual trajectory:</strong> International development (USAID) → finance (Wells Fargo) → industrial RE (Brookfield) → mega-scale retail (Walmart) → restaurant development (Panda). This is not a typical QSR career path.</li>
+<li><strong>Scale experience:</strong> Managing 700M+ SF of Walmart US facilities (4,700 stores) is one of the largest physical plant portfolios in the world. Panda's ~2,500 locations is smaller in absolute square footage but more complex per unit (kitchen equipment, dining, drive-thru).</li>
+<li><strong>China experience:</strong> COO of Walmart China gives him international operations perspective and understanding of Asian market dynamics.</li>
+<li><strong>Policy background:</strong> Harvard Kennedy School MPP suggests comfort with government relations, regulatory environments, and public-private partnerships — relevant for zoning, permitting, and international expansion.</li></ul>
+
+<hr>
+
+<h2>3. Walmart Tenure (Key for Brady Connection)</h2>
+
+<h3>Timeline: ~2013–2020 (8 years total)</h3>
+
+<p><strong>Brady overlap: January 2019 – December 2020</strong></p>
+
+<h3>Roles at Walmart</h3>
+<ol><li><strong>COO, Walmart China</strong> — Led operations for Walmart's China business. This would have included store operations, supply chain, and possibly store development for the China market.</li>
+<li><strong>Head of Facility Services, Walmart US</strong> — Managed a team of in-house technicians maintaining over 700 million square feet across 4,700 stores in the US. This is essentially running one of the largest facilities management operations in the world.</li>
+<li><strong>Other roles</strong> — "Various leadership positions in new store development, real estate, and operations" per LinkedIn. Likely included roles in real estate portfolio management and new store construction.</li></ol>
+
+<h3>What Was Happening at Walmart 2019–2020</h3>
+<ul><li>Doug McMillon era, aggressive e-commerce investment</li>
+<li>Walmart+ launch (September 2020)</li>
+<li>COVID-19 pandemic response — Walmart as essential retail</li>
+<li>Massive facilities adaptation (plexiglass, crowd management, curbside pickup infrastructure)</li>
+<li>If James was Head of Facility Services during COVID, he managed the physical transformation of 4,700 stores during the pandemic — plexiglass barriers, temperature checks, modified layouts, pickup infrastructure, all at unprecedented speed.</li></ul>
+
+<h3>Connection Points with Brady</h3>
+<ul><li>Both at Walmart during a transformative period (2019–2020)</li>
+<li>Brady was in e-commerce/analytics; James was in facilities/real estate</li>
+<li>They would have had natural overlap in store-level execution of digital initiatives (pickup infrastructure, facility modifications for online orders)</li>
+<li>Bentonville-based overlap (though James may have been in different locations given his facility services scope)</li></ul>
+
+<hr>
+
+<h2>4. Public Presence</h2>
+
+<h3>Search Results</h3>
+<ul><li><strong>LinkedIn:</strong> Active profile (linkedin.com/in/james-ku-46096113)</li>
+<li><strong>Conference appearances:</strong> No significant public speaking events found in search results</li>
+<li><strong>Published articles:</strong> None found</li>
+<li><strong>Press quotes:</strong> Not found in major QSR trade press (QSR Magazine, NRN, Restaurant Business)</li>
+<li><strong>Industry associations:</strong> Board member, Public Policy Institute of California (PPIC) — noted on PPIC website</li></ul>
+
+<h3>Assessment</h3>
+James Ku has a <strong>low public profile</strong> for a C-suite executive at a major restaurant chain. This is consistent with:
+<ul><li>Panda's culture of humility (the Cherng family is relatively private despite their wealth)</li>
+<li>His role being operational/development rather than brand/marketing facing</li>
+<li>A development-focused career rather than a media-facing one</li></ul>
+
+<p><strong>Implication for Brady:</strong> James is not someone who broadcasts his strategy publicly. Brady will need to draw him out in conversation. The probing questions matter more than the background research here — James's value is in what he knows but hasn't said publicly.</p>
+
+<hr>
+
+<h2>5. Professional Expertise Map</h2>
+
+<p>Based on his career arc, James Ku likely has deep expertise in:</p>
+
+<table><thead><tr><th>Domain</th><th>Confidence</th><th>Source</th></tr></thead><tbody><tr><td><strong>Large-scale facilities management</strong></td><td>Very High</td><td>Head of Facility Services, 700M SF</td></tr>
+<tr><td><strong>Real estate portfolio management</strong></td><td>Very High</td><td>Brookfield + Walmart RE roles</td></tr>
+<tr><td><strong>Construction project management</strong></td><td>High</td><td>CDO at Panda, Walmart new store development</td></tr>
+<tr><td><strong>International operations</strong></td><td>High</td><td>COO Walmart China, USAID Pakistan/Afghanistan</td></tr>
+<tr><td><strong>Energy management / sustainability</strong></td><td>High</td><td>GridPoint deployment under his watch</td></tr>
+<tr><td><strong>Store format innovation</strong></td><td>High</td><td>Panda Home prototype, drive-thru buildout</td></tr>
+<tr><td><strong>Vendor/contractor management</strong></td><td>High</td><td>Running 4,700-store maintenance operation</td></tr>
+<tr><td><strong>Government / regulatory</strong></td><td>Medium</td><td>Harvard Kennedy School MPP, USAID background</td></tr>
+<tr><td><strong>Digital integration in physical spaces</strong></td><td>Medium</td><td>Digital pickup areas, KDS rollout</td></tr>
+<tr><td><strong>Kitchen design / equipment</strong></td><td>Medium</td><td>CDO scope but not his career origin</td></tr></tbody></table>
+<h3>What He Probably Cares About</h3>
+<ul><li>Speed-to-open for new stores (pipeline velocity)</li>
+<li>Construction cost per unit</li>
+<li>Energy efficiency and sustainability</li>
+<li>Format standardization vs. localization</li>
+<li>Kitchen throughput and BOH efficiency</li>
+<li>Real estate strategy (mall → suburban freestanding transition)</li>
+<li>Technology that reduces facilities management burden</li></ul>
+
+<hr>
+
+<h2>6. Education Detail</h2>
+
+<ul><li><strong>Wharton School, University of Pennsylvania</strong> — B.S. Economics. One of the top undergraduate business programs globally. Quantitative foundation.</li>
+<li><strong>Harvard Kennedy School</strong> — Master of Public Policy (MPP). This is distinctive — not an MBA, not a real estate degree. Suggests early-career orientation toward public service / international development (consistent with USAID work).</li></ul>
+
+<hr>
+
+<h2>Sources</h2>
+
+<table><thead><tr><th>Source</th><th>URL</th></tr></thead><tbody><tr><td>Panda Restaurant Group Leadership</td><td>https://www.pandarg.com/about-us/leadership.html</td></tr>
+<tr><td>RocketReach — James Ku Contact Info</td><td>https://rocketreach.co/james-ku-email_12508401</td></tr>
+<tr><td>Muraena AI — James Ku Profile</td><td>https://muraena.ai/profile/james_ku_24d44e95</td></tr>
+<tr><td>Chain Store Age — Smart Building Tech</td><td>https://chainstoreage.com/panda-express-deploy-smart-building-technology-across-all-us-locations</td></tr>
+<tr><td>PPIC — James Ku Board Member</td><td>https://www.ppic.org/person/james-ku/</td></tr>
+<tr><td>LinkedIn — James Ku</td><td>https://www.linkedin.com/in/james-ku-46096113/</td></tr></tbody></table></div></div>
+<div class="section-content" id="content-talk-track" style="display:none"><div class="prose"><h1>Talk Track — James Ku Conversation</h1>
+
+<p><strong>Prep for:</strong> Brady Smallwood ↔ James Ku (CDO, Panda Restaurant Group)<br><strong>Context:</strong> Warm reconnection via LinkedIn. Former Walmart colleagues (overlap Jan 2019–Dec 2020). James mentioned "innovation team" at Panda Express and openness to consulting on "leadership, strategic planning, ops experience."</p>
+
+<hr>
+
+<h2>Mindset Frame</h2>
+
+<p>This is a <strong>reconnection, not a pitch.</strong> James reached out. He mentioned consulting. Brady's job is to:<br><ol><li>Rebuild the personal connection</li><br><li>Demonstrate CDO-relevant depth (prove you understand his world)</li><br><li>Listen for pain points and opportunities</li><br><li>Plant seeds — don't harvest</li></ol></p>
+
+<hr>
+
+<h2>1. Opening & Reconnection (5 min)</h2>
+
+<ul><li><strong>"James, great to reconnect. I've been following Panda's growth — you guys are on a tear."</strong></li>
+<li>Reference the Walmart days: "Those were wild years at Walmart. 2019-2020 with COVID hitting, I remember how fast everything had to change."</li>
+<li><strong>If he asks about you:</strong> Brief — "Left corporate, doing independent consulting now. AI and analytics applied to retail and foodservice operations. Love the work, love the flexibility with the kids."</li>
+<li><strong>Personal touch:</strong> "Still in Bentonville. Five kids, still chaotic."</li>
+<li><strong>Transition:</strong> "Tell me about the CDO role at Panda. That's a massive scope — you went from 700 million square feet at Walmart to building one of the fastest-growing restaurant brands."</li></ul>
+
+<hr>
+
+<h2>2. Discovery — James's World (15-20 min)</h2>
+
+<h3>Must-Ask Questions (CDO-Specific)</h3>
+
+<p><strong>Build pipeline:</strong><br><ul><li><strong>"What does your build pipeline look like? How many new stores per year?"</strong></li></ul><br>  - (You know: ~123 planned for 2025. But let him tell you.)<br><ul><li><strong>"What's the split between new builds vs. remodels?"</strong></li><br><li><strong>"How long from site selection to opening day?"</strong></li></ul></p>
+
+<p><strong>Format evolution:</strong><br><ul><li><strong>"I saw the Panda Home prototype in Dripping Springs. How is that performing vs. legacy format?"</strong></li><br><li><strong>"Are you testing anything beyond Panda Home? Any next-gen prototypes?"</strong></li><br><li><strong>"How are you thinking about the drive-thru buildout? 75% of new builds is aggressive — what's the goal?"</strong></li></ul></p>
+
+<p><strong>The innovation team he mentioned:</strong><br><ul><li><strong>"You mentioned the innovation team on LinkedIn. What's the mandate? What are they working on?"</strong></li><br><li><strong>"Is that format innovation, kitchen innovation, or broader?"</strong></li></ul></p>
+
+<p><strong>Kitchen and automation:</strong><br><ul><li><strong>"I've been tracking what Sweetgreen is doing with the Infinite Kitchen — robotic makeline. Are you looking at any of the automation stuff for Panda's kitchen?"</strong></li><br><li><strong>"The automated woks are interesting. How far can you push that?"</strong></li></ul></p>
+
+<p><strong>International perspective:</strong><br><ul><li><strong>"You had the China experience at Walmart. Are you looking at what's happening in Asian markets for restaurant innovation? The robotics stuff in China is years ahead."</strong></li></ul></p>
+
+<p><strong>Smart building / facilities:</strong><br><ul><li><strong>"The GridPoint deployment is smart. How is that performing? Are you seeing the energy savings you expected?"</strong></li></ul></p>
+
+<h3>Listen-For Cues</h3>
+
+<table><thead><tr><th>Signal</th><th>What It Means</th><th>Follow-Up</th></tr></thead><tbody><tr><td>Frustration with <strong>speed of construction</strong></td><td>Pipeline bottleneck — modular/prefab opportunity</td><td>"Have you looked at modular construction? Some chains are cutting 30-50% off build time."</td></tr>
+<tr><td>Desire for <strong>data-driven site selection</strong></td><td>Still using traditional RE methods</td><td>"There's some interesting AI work happening in trade area analysis. I've been looking at this."</td></tr>
+<tr><td><strong>Kitchen throughput</strong> challenges</td><td>BOH is the constraint, not demand</td><td>"That's where the format innovation really matters — the kitchen is the factory."</td></tr>
+<tr><td><strong>Standardization vs. localization</strong> tension</td><td>Scale vs. relevance debate</td><td>"How do you think about the Tea Bar — is that everywhere eventually or market-specific?"</td></tr>
+<tr><td><strong>Cost pressure</strong> on new builds</td><td>Capital efficiency focus</td><td>"Modular construction + smart energy management could meaningfully change the per-unit economics."</td></tr>
+<tr><td><strong>Talent/contractor</strong> challenges</td><td>Execution bottleneck</td><td>"That's one of the hardest parts of scaling development. The Walmart facility services background must help."</td></tr></tbody></table>
+<hr>
+
+<h2>3. Brady's Angle — Where AI/Analytics Meets Store Development (10 min)</h2>
+
+<p><strong>Bridge from his answers. Do NOT monologue. Plant seeds based on what resonated.</strong></p>
+
+<p>Possible threads:</p>
+
+<ul><li><strong>AI-driven site selection:</strong> "There's a version of trade area analysis where you feed the model not just demographics but traffic patterns, competitor proximity, weather data, delivery density — and it predicts AUV within 10% before you break ground. That's an area where I've been doing work."</li></ul>
+
+<ul><li><strong>Predictive new store performance:</strong> "If you're building 120+ stores a year, even a 5% improvement in site selection accuracy is worth millions in avoided mistakes."</li></ul>
+
+<ul><li><strong>Kitchen layout optimization:</strong> "With the KDS data and throughput metrics you're collecting, there's a way to optimize kitchen flow — equipment placement, station sequencing — based on actual production data rather than historical assumptions."</li></ul>
+
+<ul><li><strong>Competitive intelligence engine:</strong> "One of the things I've built for other clients is an automated competitive intelligence system — tracks what Chipotle, Chick-fil-A, Sweetgreen, Taco Bell are doing with format innovation in real time. It's like having a research team running 24/7."</li></ul>
+
+<ul><li><strong>Construction project management:</strong> "AI-powered scheduling and cost tracking for the build pipeline. When you're managing 100+ construction projects simultaneously, the data-driven approach to contractor management and timeline prediction is a real unlock."</li></ul>
+
+<p><strong>Calibrate to his energy.</strong> If he lights up on one topic, go deeper. If he's polite but not engaged, move on.</p>
+
+<hr>
+
+<h2>4. Close & Next Steps (5 min)</h2>
+
+<ul><li><strong>"James, this has been great. I'd love to dig deeper on [whatever resonated]. Could we set up a longer working session?"</strong></li></ul>
+
+<ul><li><strong>Offer something concrete:</strong></li></ul>
+  - "Let me put together a quick benchmark on what other chains are doing with [topic he cared about] — drive-thru innovation, kitchen automation, whatever was most interesting."
+  - "I'll send you something this week. No pitch, just research. If it's useful, we can talk about doing more."
+
+<ul><li><strong>Logistics:</strong> "I can come to SoCal anytime. Or happy to start on Zoom and do a deeper session in person."</li></ul>
+
+<ul><li><strong>Leave the door open:</strong> "And if there's anything on the AI/analytics side where you want a sounding board, I'm always around."</li></ul>
+
+<hr>
+
+<h2>5. Do-Not List</h2>
+
+<table><thead><tr><th>Do NOT</th><th>Why</th></tr></thead><tbody><tr><td>Lead with a consulting pitch</td><td>This is a reconnection. James reached out. Let it breathe.</td></tr>
+<tr><td>Pretend to know Panda's internals</td><td>You have zero insider knowledge. Everything you know is public.</td></tr>
+<tr><td>Talk about Kroger or other clients by name</td><td>Confidentiality. Say "another client" or "a retailer I work with."</td></tr>
+<tr><td>Oversell AI as a silver bullet</td><td>James builds physical stores. He's a construction/RE guy. Keep it grounded and practical.</td></tr>
+<tr><td>Confuse CDO with CTO/CIO</td><td>James is not a tech executive. He builds physical things. Respect the domain.</td></tr>
+<tr><td>Talk too much about yourself</td><td>Discovery mode. 70/30 listening-to-talking ratio.</td></tr>
+<tr><td>Push for commitment on the first call</td><td>Let the relationship develop. The ask is a follow-up conversation, not a contract.</td></tr>
+<tr><td>Mention his Wharton/Harvard credentials</td><td>Don't be the guy who name-drops someone's resume at them.</td></tr></tbody></table>
+<hr>
+
+<h2>6. Background Quick-Reference (Glance Before Call)</h2>
+
+<table><thead><tr><th>Fact</th><th>Detail</th></tr></thead><tbody><tr><td><strong>Company</strong></td><td>Panda Restaurant Group — ~2,800 locations, ~$6.5B revenue, private (Cherng family)</td></tr>
+<tr><td><strong>His title</strong></td><td>Chief Development Officer — store design, real estate, construction, facilities</td></tr>
+<tr><td><strong>His background</strong></td><td>Wharton + Harvard Kennedy School. USAID (Pakistan/Afghanistan). Wells Fargo. Brookfield. Walmart (8 years — Head of Facility Services US, COO China).</td></tr>
+<tr><td><strong>Walmart overlap</strong></td><td>You were both there Jan 2019–Dec 2020. He managed 700M SF across 4,700 stores.</td></tr>
+<tr><td><strong>Key initiative</strong></td><td>Panda Home prototype (Dripping Springs, TX). GridPoint smart building tech deployment. Drive-thru buildout (75% of new builds).</td></tr>
+<tr><td><strong>Recent news</strong></td><td>CEO departed Feb 2026. Cherng family maintaining direct control. Digital sales hit 42%. North Platte debuted new design March 2026.</td></tr>
+<tr><td><strong>His likely priorities</strong></td><td>Pipeline velocity, construction cost per unit, format standardization, kitchen throughput, energy efficiency</td></tr></tbody></table>
+<hr>
+
+<h2>7. Follow-Up Actions</h2>
+
+<table><thead><tr><th>Action</th><th>Timing</th></tr></thead><tbody><tr><td>Send the store innovation benchmark as a value-add</td><td>Within 48 hours</td></tr>
+<tr><td>Create Notion record for James Ku in People DB</td><td>Same day</td></tr>
+<tr><td>Create Streaming Notes entry for conversation notes</td><td>During/after call</td></tr>
+<tr><td>If engagement interest: trigger prospect-research-kit → client-engagement-kit</td><td>Within 1 week</td></tr>
+<tr><td>If specific topic resonated: build a targeted one-pager on that topic</td><td>Within 1 week</td></tr></tbody></table></div></div>
+<div class="section-content" id="content-store-innovation" style="display:none"><div class="prose"><h1>Store Development & Format Innovation Benchmark</h1>
+
+<p><strong>Date:</strong> April 15, 2026 | <strong>Focus:</strong> QSR/Fast-Casual Store Design, Kitchen Innovation, International Benchmarks</p>
+
+<hr>
+
+<h2>Executive Summary</h2>
+
+<p>The QSR industry is in the middle of the most aggressive format innovation cycle in decades. The common thread: <strong>smaller dining rooms, larger kitchens, digital-first throughput, and drive-thru reimagination.</strong> Panda Express's "Panda Home" prototype fits this trend but lags the boldest movers (Chick-fil-A's elevated drive-thru, Sweetgreen's robotic makeline, Taco Bell Defy). Internationally, China leads in kitchen automation and robotics. The CDO opportunity at Panda is to leapfrog incrementalism with data-driven format decisions and bolder physical innovation.</p>
+
+<hr>
+
+<h2>Section 1: Panda's Own Store Development Moves</h2>
+
+<h3>Panda Home Prototype (May 2023)</h3>
+Panda Express debuted its new "Panda Home" store design in <strong>Dripping Springs, Texas</strong> — a cultural heritage-inspired prototype that represents the company's first major format evolution.
+
+<p><strong>Design language:</strong><br><ul><li>Black and white color palette with red accents and wood tones</li><br><li>Moon gate-inspired entrance</li><br><li>Neon signs and murals celebrating Chinese-American culture</li><br><li>Custom artwork by local Asian American artists (Steffi Lynn for the Texas location)</li><br><li>Terrazzo tables symbolizing Chinese New Year confetti</li><br><li>Traditional fretwork tiling and red lanterns</li><br><li>Drive-thru lined with pictograms telling an "American Chinese story"</li></ul></p>
+
+<p><strong>Operational changes:</strong><br><ul><li><strong>Back-of-house expanded</strong> — larger kitchen footprint to improve speed of service</li><br><li><strong>Dining room reduced ~15%</strong> — reflecting the industry-wide shift toward off-premise</li><br><li><strong>Digital pickup area enhanced</strong> — additional screens for order tracking as digital orders increase</li><br><li><strong>Kitchen display systems</strong> — digital screens replacing paper tickets</li></ul></p>
+
+<p><strong>Rollout status:</strong><br><ul><li>Debuted: Dripping Springs, TX (May 2023)</li><br><li><strong>March 2026:</strong> North Platte, NE became first city with updated restaurant design</li><br><li>Rolling out to new locations in multiple US markets</li></ul></p>
+
+<h3>Drive-Thru Buildout</h3>
+<ul><li><strong>75% of recent new builds</strong> include drive-thru — a fundamental shift from Panda's mall-heritage</li>
+<li>This is arguably the most important format decision in the company's recent history</li>
+<li>Drive-thru was crucial during COVID and continues to drive traffic as dine-in hasn't fully recovered</li></ul>
+
+<h3>Tea Bar Integration</h3>
+<ul><li><strong>39 locations</strong> feature an in-restaurant Tea Bar as of 2025</li>
+<li>Bubble tea, artisanal tea infusions (designed by a Taiwanese tea master), pastries</li>
+<li>A concept-within-a-concept: adds a beverage daypart and incremental revenue per location</li>
+<li>Physical design requires dedicated counter space and equipment within the box</li></ul>
+
+<h3>Smart Building Technology (GridPoint)</h3>
+<ul><li><strong>Jan 2024:</strong> Partnership announced to deploy smart building tech across all ~2,500 US locations</li>
+<li><strong>18-month timeline</strong> — should be substantially complete by mid-2025</li>
+<li>Automates HVAC and lighting controls</li>
+<li>Real-time operational and environmental performance monitoring</li>
+<li>Based on 200-store pilot with measurable energy savings and CO2 reductions</li>
+<li>Restaurants use 5–7x more energy per square foot than commercial buildings</li></ul>
+
+<h3>Kitchen Innovation</h3>
+<ul><li><strong>Automated woks</strong> deployed for consistency and speed</li>
+<li><strong>Clamshell grills</strong> — faster-cooking equipment for protein items</li>
+<li><strong>Innovation Kitchen</strong> in Pasadena, CA — "living laboratory" for testing new menu, format, and equipment innovations</li>
+<li>Kitchen innovations are tested here before system-wide rollout</li></ul>
+
+<hr>
+
+<h2>Section 2: US QSR Competitive Benchmark — Format Innovation</h2>
+
+<h3>Chick-fil-A — Elevated Drive-Thru</h3>
+<strong>The boldest format innovation in US QSR.</strong>
+
+<ul><li><strong>Concept:</strong> Two-story building with kitchen elevated to second level, four drive-thru lanes threading underneath</li>
+<li><strong>First location:</strong> McDonough, Georgia (August 2024)</li>
+<li><strong>Capacity:</strong> Space for 75 cars. Handles 2–3x the volume of a standard drive-thru</li>
+<li><strong>Lane configuration:</strong> 2 lanes for Mobile Thru (app orders, QR check-in), 2 lanes for on-site ordering with team members</li>
+<li><strong>Kitchen:</strong> 2x larger than typical Chick-fil-A. Food conveyor delivers a meal every 6 seconds</li>
+<li><strong>No dining room</strong> — drive-thru only format</li>
+<li><strong>Same footprint</strong> as traditional freestanding, but vertical arrangement maximizes throughput</li>
+<li><strong>2025 expansion:</strong> Deerfield Beach and University at Sunrise locations with multilane drive-throughs</li>
+<li><strong>Why it matters for Panda:</strong> Chick-fil-A is proving that vertical construction + lane multiplication can dramatically increase throughput without more land. Panda's drive-thru buildout could benefit from similar thinking.</li></ul>
+
+<h3>Chipotle — Chipotlane</h3>
+<strong>Digital-only drive-thru at scale.</strong>
+
+<ul><li><strong>Concept:</strong> Dedicated lane for mobile order pickup only — no ordering at the window</li>
+<li><strong>Transaction time:</strong> Under 30 seconds (vs. 3–5 minutes for traditional QSR drive-thru)</li>
+<li><strong>Sales lift:</strong> 10–15% increase at Chipotlane-equipped locations vs. traditional format</li>
+<li><strong>Penetration:</strong> ~80% of company-owned stores will have Chipotlane by 2026</li>
+<li><strong>Scale:</strong> ~2,000 locations with full new equipment package by end of 2026</li>
+<li><strong>Why it matters for Panda:</strong> Chipotlane proves that a dedicated digital pickup lane is a profit driver, not just a convenience. With 42% digital sales, Panda is ripe for a dedicated digital-order lane.</li></ul>
+
+<h3>Taco Bell — Defy</h3>
+<strong>The most radical QSR format experiment.</strong>
+
+<ul><li><strong>Concept:</strong> Two-story, four drive-thru lane restaurant with vertical lift system</li>
+<li><strong>First location:</strong> Suburban Minneapolis</li>
+<li><strong>Lane functions:</strong> One for app pre-orders, one for delivery drivers, one for traditional ordering, one flexible</li>
+<li><strong>Unique feature:</strong> Vertical lift system transports food from second-story kitchen to cars — contactless delivery</li>
+<li><strong>Order time:</strong> Under 2 minutes</li>
+<li><strong>Why it matters for Panda:</strong> Defy shows that QSR brands are willing to radically rethink the box. The delivery-driver dedicated lane is particularly relevant as delivery grows.</li></ul>
+
+<h3>Sweetgreen — Infinite Kitchen (Robotic Makeline)</h3>
+<strong>Automation as a core format strategy.</strong>
+
+<ul><li><strong>Concept:</strong> Robotic assembly line that builds salads/bowls automatically</li>
+<li><strong>Throughput:</strong> ~500 orders per hour</li>
+<li><strong>Performance:</strong> 7 percentage points labor savings, 1 point COGS improvement vs. traditional stores</li>
+<li><strong>Ticket lift:</strong> 10% higher average tickets at automated locations</li>
+<li><strong>Deployment:</strong> 25 new Infinite Kitchen locations in 2025, targeting all new locations within 5 years</li>
+<li><strong>Business move:</strong> Sold robotics subsidiary Spyce to Wonder for ~$186M, licensing the technology back</li>
+<li><strong>Drive-thru combo:</strong> First "Sweetlane" location combines automated makeline with drive-thru in California</li>
+<li><strong>Why it matters for Panda:</strong> Panda's steam table / wok-to-order format could benefit from automation — automated woks are already deployed, but a fully automated kitchen assembly system would be the next frontier.</li></ul>
+
+<h3>McDonald's — CosMc's (Cautionary Tale)</h3>
+<strong>Small-format experiment that didn't survive.</strong>
+
+<ul><li><strong>Concept:</strong> Small-format, beverage-led spinoff brand inspired by alien mascot</li>
+<li><strong>First location:</strong> Bolingbrook, Illinois (2023)</li>
+<li><strong>Plan:</strong> ~10 pilot locations in Dallas-Fort Worth and San Antonio metros</li>
+<li><strong>Result:</strong> All 5 CosMc's locations closed by end of June 2025 — less than 2 years</li>
+<li><strong>Pivot:</strong> Beverages inspired by CosMc's will be tested at regular McDonald's locations</li>
+<li><strong>Why it matters for Panda:</strong> Cautionary tale about spinoff formats. Panda's Tea Bar strategy (concept-within-a-concept, not standalone) may be the wiser approach. Innovation inside the existing box > standalone experiments.</li></ul>
+
+<h3>Shake Shack — Drive-Thru Pilots</h3>
+<ul><li>Testing drive-thru at select locations — historically a dine-in/walk-up brand</li>
+<li>Smaller footprint tests in suburban markets</li>
+<li>Digital ordering integration with pickup windows</li></ul>
+
+<h3>Wingstop — Digital-First Small Format</h3>
+<ul><li>Ghost kitchen and delivery-focused strategy</li>
+<li>Small footprint, minimal dining room</li>
+<li>98%+ digital ordering penetration at some locations</li>
+<li>Fastest-growing QSR chain by unit economics</li></ul>
+
+<h3>Raising Cane's — Rapid Growth Standardization</h3>
+<ul><li>Extremely standardized box design enables rapid buildout</li>
+<li>Simple menu (chicken fingers only) = simplified kitchen design</li>
+<li>One of the fastest-growing chains by new unit openings</li></ul>
+
+<hr>
+
+<h2>Section 3: International QSR Innovation</h2>
+
+<h3>China — The Global Leader in Restaurant Automation</h3>
+
+<p><strong>Haidilao Smart Restaurant (Beijing)</strong><br><ul><li>First "smart" restaurant opened 2018, built with Panasonic robotics</li><br><li>Giant robotic arms select and prepare ingredients with perfect portion control</li><br><li>Six humanoid robots serve between kitchen and dining area</li><br><li><strong>~30% kitchen staff reduction</strong> through automation</li><br><li>AI assistant "Xiaolaolao" handles reservations, table booking, group size confirmation</li><br><li><strong>March 2026:</strong> A humanoid robot server at Haidilao in Cupertino, CA went viral after "going berserk" while dancing — showing both the ambition and the growing pains of restaurant robotics</li></ul></p>
+
+<p><strong>Keenon Robotics & Pudu Robotics (Chinese Startups)</strong><br><ul><li>China accounted for <strong>18%+ of global restaurant robot unit sales</strong> in 2025</li><br><li>Tens of thousands of delivery/serving robots deployed in hotpot chains, hospital canteens, hotel restaurants</li><br><li>These robots are now being exported globally — showing up in US and European restaurants</li></ul></p>
+
+<p><strong>China's Catering Industry Tech Push</strong><br><ul><li>AI-powered ingredient tracking</li><br><li>Smart reservation systems</li><br><li>Robotic chefs in multiple chain formats</li><br><li>The Chinese restaurant industry is essentially a living laboratory for restaurant automation at scale</li></ul></p>
+
+<h3>Japan — Conveyor Innovation & Robot Pioneers</h3>
+
+<p><strong>Kura Sushi</strong><br><ul><li>600+ locations worldwide</li><br><li>Pioneered conveyor-belt delivery system</li><br><li><strong>"Kurabot"</strong> robot brings drinks and condiments to tables</li><br><li><strong>April 2025:</strong> Unveiled world's longest sushi conveyor belt (135 meters) at Osaka-Kansai Expo, serving 338 diners simultaneously</li><br><li>Japan has led restaurant robotics since the early 2000s, with robot-staffed eateries as cultural norm</li></ul></p>
+
+<h3>South Korea — Labor Shortage Driving Automation</h3>
+<ul><li>Aging workforce and rising labor costs accelerating kitchen automation investment</li>
+<li>Substantial franchise restaurant sector adopting robotic solutions</li>
+<li>Delivery robot deployment in urban areas</li></ul>
+
+<h3>Europe — Sustainability-Forward Design</h3>
+<ul><li>UK, Germany, France leading adoption of robotic food prep and AI customer engagement</li>
+<li><strong>Sustainability and energy regulations</strong> driving adoption of robotics for optimized operations and reduced food waste</li>
+<li>Net-zero restaurant concepts emerging (LEED-certified builds, renewable energy, zero-waste kitchens)</li>
+<li>Urban micro-formats for dense European city centers</li></ul>
+
+<h3>Middle East — Premium QSR Formats</h3>
+<ul><li>Technology-forward ordering (kiosks, app integration standard)</li>
+<li>Premium QSR positioning — higher-end interiors for the same fast-food concepts</li>
+<li>Panda Express already has presence in Saudi Arabia and UAE</li></ul>
+
+<h3>Market Scale</h3>
+<ul><li><strong>Global restaurant robotics market:</strong> $3.8B in 2025</li>
+<li><strong>QSR segment:</strong> $1.67B (44% of total)</li>
+<li><strong>Asia-Pacific CAGR:</strong> 17.4% through 2034</li>
+<li><strong>AI + Robotics in QSR market:</strong> Expected to reach $12.91B by 2032 (11.54% CAGR)</li>
+<li><strong>North America:</strong> 40% market share</li></ul>
+
+<hr>
+
+<h2>Section 4: Restaurant Design & Construction Trends</h2>
+
+<h3>Modular / Prefab Construction</h3>
+<ul><li><strong>Speed:</strong> 30–50% faster than traditional construction</li>
+<li><strong>Cost:</strong> 20–30% less per square foot</li>
+<li><strong>Process:</strong> Up to 90% of construction completed off-site (kitchen systems, plumbing, electrical, HVAC, finishes all pre-assembled)</li>
+<li><strong>Global market:</strong> $103B in 2024, projected $162B by 2030 (7.9% CAGR)</li>
+<li><strong>QSR relevance:</strong> Enables faster pipeline velocity — critical when adding 100+ stores per year</li>
+<li><strong>Why it matters for Panda:</strong> With 123 new stores planned for 2025, modular construction could dramatically accelerate the build pipeline and reduce per-unit costs</li></ul>
+
+<h3>Drive-Thru Design Evolution</h3>
+<ul><li><strong>Dual/multi-lane</strong> becoming standard for high-volume locations</li>
+<li><strong>Dedicated digital lanes</strong> (Chipotlane model) separating mobile orders from traditional ordering</li>
+<li><strong>Delivery driver lanes</strong> (Taco Bell Defy) — dedicated infrastructure for third-party delivery</li>
+<li><strong>Vertical/elevated</strong> concepts (Chick-fil-A) — going up when you can't go out</li>
+<li><strong>Pickup windows vs. cubbies</strong> — some brands testing order-ahead lockers instead of windows</li></ul>
+
+<h3>Smaller Footprints</h3>
+<ul><li>Industry-wide trend: reduce dining room, expand kitchen/BOH</li>
+<li><strong>Panda's approach:</strong> 15% smaller dining room in Panda Home prototype</li>
+<li><strong>Others going further:</strong> Chick-fil-A's elevated concept has zero dining room</li>
+<li><strong>Ghost kitchens:</strong> Delivery-only facilities with no customer-facing space (Wingstop, many virtual brands)</li>
+<li><strong>The math:</strong> Less dining room = lower rent, fewer front-of-house staff, more kitchen capacity for digital orders</li></ul>
+
+<h3>Kitchen Automation Equipment</h3>
+<ul><li><strong>Robotic fryers:</strong> Deployed at multiple chains (Flippy by Miso Robotics at Jack in the Box, White Castle, others)</li>
+<li><strong>Automated assembly:</strong> Sweetgreen's Infinite Kitchen is the leader</li>
+<li><strong>Smart ventilation:</strong> AI-controlled ventilation systems that adjust to cooking activity</li>
+<li><strong>Automated woks:</strong> Already at Panda (competitive advantage in Asian QSR — the wok is harder to automate than a fryer)</li>
+<li><strong>Kitchen display systems:</strong> Replacing paper tickets across the industry. Panda rolling out.</li></ul>
+
+<h3>AI Applications in Store Development</h3>
+<ul><li><strong>Site selection:</strong> AI models predicting new store performance based on demographics, traffic, competition, weather patterns</li>
+<li><strong>Trade area analysis:</strong> Machine learning for defining optimal trade areas and cannibalization avoidance</li>
+<li><strong>Layout optimization:</strong> Using throughput data to optimize kitchen flow and equipment placement</li>
+<li><strong>Energy management:</strong> GridPoint-style smart building platforms (Panda is already doing this)</li>
+<li><strong>Predictive maintenance:</strong> Anticipating equipment failures before they cause downtime</li>
+<li><strong>Construction project management:</strong> AI-powered scheduling, cost tracking, contractor management</li></ul>
+
+<h3>Sustainability in Restaurant Construction</h3>
+<ul><li><strong>Net-zero builds</strong> emerging (LEED-certified restaurants)</li>
+<li><strong>Energy efficiency:</strong> Smart building tech (GridPoint), solar panels, LED lighting, high-efficiency HVAC</li>
+<li><strong>Materials innovation:</strong> Sustainable materials, reduced concrete/steel, timber construction</li>
+<li><strong>Water efficiency:</strong> Low-flow fixtures, greywater recycling</li>
+<li><strong>Panda's position:</strong> GridPoint deployment puts them ahead of most QSR chains on energy management. Opportunity to go further with net-zero prototypes.</li></ul>
+
+<hr>
+
+<h2>Key Takeaways for the James Ku Conversation</h2>
+
+<ol><li><strong>Panda is doing the right things but incrementally.</strong> Panda Home is a solid evolution, but competitors are making bolder bets (Chick-fil-A elevated, Sweetgreen robotics, Taco Bell Defy).</li></ol>
+
+<ol><li><strong>The drive-thru buildout is the most important strategic move.</strong> Transitioning from mall-centric to drive-thru freestanding is existentially important. 75% of new builds with drive-thru is good — the question is whether the drive-thru format itself is bold enough.</li></ol>
+
+<ol><li><strong>Digital sales at 42% demand a physical response.</strong> When nearly half your revenue comes through digital channels, the box needs to be designed around digital fulfillment, not retrofitted for it. Dedicated digital pickup lanes (Chipotlane model) should be on the table.</li></ol>
+
+<ol><li><strong>Kitchen automation is the next frontier.</strong> Automated woks are a start, but the Sweetgreen Infinite Kitchen model shows that full makeline automation delivers real margin improvement (7 pts labor, 1 pt COGS). Panda's wok format is harder to automate than salad assembly, but not impossible.</li></ol>
+
+<ol><li><strong>International innovation is moving faster.</strong> China's restaurant robotics (Haidilao, Keenon, Pudu) are 3–5 years ahead of US deployment. James's Walmart China experience makes him the right person to bridge this gap.</li></ol>
+
+<ol><li><strong>Modular construction could unlock pipeline velocity.</strong> At 123 new stores per year, even a 30% time reduction per build is significant.</li></ol>
+
+<ol><li><strong>AI in site selection is underexploited.</strong> Most chains still use traditional real estate methods. AI-powered site selection is an enormous opportunity for a chain building 100+ stores annually.</li></ol>
+
+<hr>
+
+<h2>Sources</h2>
+
+<table><thead><tr><th>Source</th><th>URL</th></tr></thead><tbody><tr><td>QSR Magazine — Panda Home Design</td><td>https://www.qsrmagazine.com/operations/design/panda-express-infuses-cultural-heritage-new-store-design/</td></tr>
+<tr><td>Chain Store Age — Panda New Store Model</td><td>https://chainstoreage.com/panda-express-unveils-new-store-model</td></tr>
+<tr><td>Chick-fil-A Press Room — Elevated Drive-Thru</td><td>https://www.chick-fil-a.com/press-room/chick-fil-a-opens-first-elevated-drive-thru-concept</td></tr>
+<tr><td>QSR Magazine — Chick-fil-A 4-Lane</td><td>https://www.qsrmagazine.com/operations/fast-food/chick-fil-a-is-building-a-four-lane-drive-thru-for-75-cars/</td></tr>
+<tr><td>NRN — Chipotlane</td><td>https://www.restaurantdive.com/news/chipotlanes-are-chipotles-future/637022/</td></tr>
+<tr><td>NRN — Taco Bell Defy</td><td>Referenced via QSR search results</td></tr>
+<tr><td>QSR Magazine — Sweetgreen Infinite Kitchen</td><td>https://www.qsrmagazine.com/growth/finance/sweetgreens-automated-infinite-kitchen-readies-for-a-step-up-in-2025/</td></tr>
+<tr><td>Restaurant Dive — Sweetgreen Robotic Kitchen</td><td>https://www.restaurantdive.com/news/sweetgreen-says-automated-makelines-boosts-tickets-10-percent-in-test/709027/</td></tr>
+<tr><td>Restaurant Business — CosMc's Closure</td><td>https://fortune.com/2025/05/27/mcdonalds-cosmcs-closing/</td></tr>
+<tr><td>Restaurant Dive — GridPoint Panda</td><td>https://www.restaurantdive.com/news/gridpoint-panda-express-smart-building-hvac-carbon-reductions/705498/</td></tr>
+<tr><td>SCMP — Haidilao Smart Restaurant</td><td>https://www.scmp.com/tech/article/2171402/first-hand-review-haidilaos-smart-hotpot-restaurant-beijing</td></tr>
+<tr><td>CGTN — Haidilao Robot Kitchen</td><td>https://news.cgtn.com/news/3d3d414d3141544f32457a6333566d54/index.html</td></tr>
+<tr><td>Guangming Online — China Catering Tech</td><td>https://en.gmw.cn/2025-12/03/content_38455696.htm</td></tr>
+<tr><td>QSR Magazine — Restaurant Trends 2026</td><td>https://www.qsrmagazine.com/story/restaurant-trends-for-2026-hospitality-reenters-the-innovation-cycle/</td></tr>
+<tr><td>American Builders Quarterly — Chick-fil-A Vertical</td><td>https://americanbuildersquarterly.com/2026/chick-fil-a-goes-vertical-in-new-design-layout/</td></tr>
+<tr><td>Emerging — Modular Construction</td><td>https://emerging.com/insights/real-estate/going-modular-benefits-of-modular-construction-in-the-restaurant-industry</td></tr></tbody></table></div></div>
+
+  </div>
+</main>
+
+<script>
+(function() {
+  const links = document.querySelectorAll('.nav-items a');
+  const sections = document.querySelectorAll('.section-content');
+
+  function show(id) {
+    sections.forEach(s => { s.style.display = 'none'; s.classList.remove('active'); });
+    links.forEach(a => a.classList.remove('active'));
+    const target = document.getElementById('content-' + id);
+    const link = document.querySelector('a[data-section="' + id + '"]');
+    if (target) { target.style.display = 'block'; target.classList.add('active'); }
+    if (link) link.classList.add('active');
+  }
+
+  links.forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const id = this.dataset.section;
+      history.replaceState(null, '', '#' + id);
+      show(id);
+      closeMobileNav();
+      document.querySelector('main').scrollTop = 0;
+    });
+  });
+
+  const hash = location.hash.slice(1);
+  const firstId = links.length ? links[0].dataset.section : null;
+  show(hash || firstId);
+})();
+
+function openMobileNav() {
+  document.getElementById('sidebar').classList.add('open');
+  document.querySelector('.mobile-overlay').classList.add('show');
+}
+function closeMobileNav() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.querySelector('.mobile-overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
