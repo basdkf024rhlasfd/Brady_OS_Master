@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ops Innovation Library — mception.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --border: rgba(240, 237, 230, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; }
+  a { color: var(--gold); text-decoration: none; }
+
+  /* layout */
+  .shell { max-width: 1280px; margin: 0 auto; padding: 48px 52px; }
+  header { border-bottom: 1px solid var(--border); padding-bottom: 32px; margin-bottom: 32px; }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.05; letter-spacing: -0.8px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .sub { color: var(--gray-light); font-size: 15px; margin-top: 8px; }
+
+  /* filters */
+  .filters { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  .filter { display: flex; flex-direction: column; gap: 6px; }
+  .filter label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+  .filter select, .filter input {
+    background: var(--bg-card);
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    border-radius: 2px;
+  }
+  .filter select:focus, .filter input:focus { outline: none; border-color: var(--gold-dim); }
+
+  /* stats bar */
+  .stats { display: flex; gap: 32px; margin-bottom: 32px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; color: var(--gold); }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+
+  /* cards grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+  .card:hover { border-color: var(--gold-dim); cursor: pointer; }
+  .card-tier { position: absolute; top: 18px; right: 18px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; border: 1px solid; }
+  .tier-1 { color: var(--gold); border-color: var(--gold); }
+  .tier-2 { color: var(--blue); border-color: var(--blue); }
+  .tier-3 { color: var(--gray); border-color: var(--gray); }
+  .card h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.25; padding-right: 80px; }
+  .card-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .chip { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 6px; background: var(--bg-card-alt); color: var(--gray-light); border: 1px solid var(--border); }
+  .chip-score { color: var(--gold); border-color: var(--gold-dim); }
+  .card-what { color: var(--gray-light); font-size: 13px; }
+
+  /* modal */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: none; align-items: flex-start; justify-content: center; padding: 48px 24px; overflow-y: auto; z-index: 100; }
+  .modal-backdrop.open { display: flex; }
+  .modal { background: var(--bg-card); max-width: 920px; width: 100%; padding: 48px; border: 1px solid var(--border); }
+  .modal h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; margin-bottom: 8px; }
+  .modal section { margin-top: 28px; }
+  .modal h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .modal p { margin-bottom: 10px; color: var(--white); }
+  .modal ul { margin-left: 20px; color: var(--white); }
+  .modal-close { position: absolute; top: 28px; right: 36px; background: none; border: 1px solid var(--border); color: var(--gray); padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; }
+  .modal-close:hover { color: var(--white); border-color: var(--white); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header>
+    <div class="eyebrow">Operations Innovation Engine · Cumulative Library</div>
+    <h1>Ops Innovation Library</h1>
+    <p class="sub">Every ops concept across every run. Filter by client, tier, problem, method, or framework.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-value" id="stat-total">0</div><div class="stat-label">Total Ideas</div></div>
+    <div class="stat"><div class="stat-value" id="stat-tier1">0</div><div class="stat-label">Tier 1</div></div>
+    <div class="stat"><div class="stat-value" id="stat-runs">0</div><div class="stat-label">Runs</div></div>
+    <div class="stat"><div class="stat-value" id="stat-clients">0</div><div class="stat-label">Clients</div></div>
+  </div>
+
+  <div class="filters">
+    <div class="filter"><label for="f-client">Client</label><select id="f-client"><option value="">All</option></select></div>
+    <div class="filter"><label for="f-tier">Tier</label><select id="f-tier"><option value="">All</option><option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option></select></div>
+    <div class="filter"><label for="f-problem">Problem</label><select id="f-problem"><option value="">All</option></select></div>
+    <div class="filter"><label for="f-framework">Framework</label><select id="f-framework"><option value="">All</option></select></div>
+    <div class="filter"><label for="f-search">Search</label><input id="f-search" type="text" placeholder="Name or keyword…" /></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">Close ×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// IDEAS array — each run appends entries; DO NOT delete existing entries
+// schema: id, name, client, run_id, run_date, tier, score, problems, method,
+//         frameworks, what, why_now, pilot_spec, impact, precedent, competitive,
+//         ops_complexity, risks
+const IDEAS = [
+  // {{EXAMPLE ENTRY}}
+  // {
+  //   id: "panda-2026-04-15-01",
+  //   name: "Predictive Build Sequencer",
+  //   client: "Panda",
+  //   run_id: "panda-2026-04-15",
+  //   run_date: "2026-04-15",
+  //   tier: 1,
+  //   score: 4.5,
+  //   problems: ["P3"],
+  //   method: "#45 Bottleneck Analysis",
+  //   frameworks: ["toc-five-focusing-steps"],
+  //   what: "AI model that sequences construction tasks across 100+ simultaneous builds...",
+  //   why_now: "At 123 new stores/year, 10% improvement saves millions.",
+  //   pilot_spec: "10 active builds, 6 months, measure days-to-open vs historical",
+  //   impact: "10-15% faster construction velocity; $6M+ annual savings at scale",
+  //   precedent: "Palantir for construction; no purpose-built QSR solution exists",
+  //   competitive: "Procore, PlanGrid exist but don't do predictive sequencing",
+  //   ops_complexity: "Moderate — contractor schedule + permit integration",
+  //   risks: ["Data quality from contractors", "Model accuracy on new market types"]
+  // },
+];
+
+// --- render ---
+const $grid = document.getElementById('grid');
+const $fClient = document.getElementById('f-client');
+const $fTier = document.getElementById('f-tier');
+const $fProblem = document.getElementById('f-problem');
+const $fFramework = document.getElementById('f-framework');
+const $fSearch = document.getElementById('f-search');
+
+function unique(arr, key) {
+  const set = new Set();
+  arr.forEach(i => { const v = i[key]; if (Array.isArray(v)) v.forEach(x => set.add(x)); else if (v) set.add(v); });
+  return Array.from(set).sort();
+}
+
+function populateFilter(select, values) {
+  values.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; select.appendChild(o); });
+}
+
+function renderStats(filtered) {
+  document.getElementById('stat-total').textContent = filtered.length;
+  document.getElementById('stat-tier1').textContent = filtered.filter(i => i.tier === 1).length;
+  document.getElementById('stat-runs').textContent = new Set(filtered.map(i => i.run_id)).size;
+  document.getElementById('stat-clients').textContent = new Set(filtered.map(i => i.client)).size;
+}
+
+function render() {
+  const client = $fClient.value;
+  const tier = $fTier.value;
+  const problem = $fProblem.value;
+  const framework = $fFramework.value;
+  const search = $fSearch.value.toLowerCase().trim();
+
+  const filtered = IDEAS.filter(i => {
+    if (client && i.client !== client) return false;
+    if (tier && String(i.tier) !== tier) return false;
+    if (problem && !(i.problems || []).includes(problem)) return false;
+    if (framework && !(i.frameworks || []).includes(framework)) return false;
+    if (search) {
+      const hay = (i.name + ' ' + (i.what || '') + ' ' + (i.method || '')).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  renderStats(filtered);
+
+  $grid.innerHTML = filtered.map(i => `
+    <div class="card" onclick="openModal('${i.id}')">
+      <div class="card-tier tier-${i.tier}">Tier ${i.tier}</div>
+      <h3>${i.name}</h3>
+      <div class="card-meta">
+        <span class="chip chip-score">${i.score.toFixed(1)}</span>
+        <span class="chip">${i.client}</span>
+        ${(i.problems || []).map(p => `<span class="chip">${p}</span>`).join('')}
+      </div>
+      <div class="card-what">${i.what || ''}</div>
+    </div>
+  `).join('') || '<p style="color:var(--gray);padding:24px;">No ideas match the current filters.</p>';
+}
+
+function openModal(id) {
+  const idea = IDEAS.find(i => i.id === id);
+  if (!idea) return;
+  document.getElementById('modal-body').innerHTML = `
+    <h2>${idea.name}</h2>
+    <div class="card-meta">
+      <span class="chip chip-score">${idea.score.toFixed(1)}</span>
+      <span class="chip">Tier ${idea.tier}</span>
+      <span class="chip">${idea.client} · ${idea.run_date}</span>
+      ${(idea.problems || []).map(p => `<span class="chip">${p}</span>`).join('')}
+    </div>
+    <section><h4>What</h4><p>${idea.what || ''}</p></section>
+    <section><h4>Why Now</h4><p>${idea.why_now || ''}</p></section>
+    <section><h4>Pilot Spec</h4><p>${idea.pilot_spec || ''}</p></section>
+    <section><h4>Labor / Throughput / Cost Impact</h4><p>${idea.impact || ''}</p></section>
+    <section><h4>Precedent</h4><p>${idea.precedent || ''}</p></section>
+    <section><h4>Competitive Landscape</h4><p>${idea.competitive || ''}</p></section>
+    <section><h4>Ops Complexity</h4><p>${idea.ops_complexity || ''}</p></section>
+    <section><h4>Risks / Failure Modes</h4><ul>${(idea.risks || []).map(r => `<li>${r}</li>`).join('')}</ul></section>
+    <section><h4>Attribution</h4><p>Method: ${idea.method || ''}<br/>Frameworks: ${(idea.frameworks || []).join(', ')}</p></section>
+  `;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
+document.getElementById('modal-backdrop').addEventListener('click', (e) => { if (e.target.id === 'modal-backdrop') closeModal(); });
+
+// populate filters
+populateFilter($fClient, unique(IDEAS, 'client'));
+populateFilter($fProblem, unique(IDEAS, 'problems'));
+populateFilter($fFramework, unique(IDEAS, 'frameworks'));
+
+[$fClient, $fTier, $fProblem, $fFramework, $fSearch].forEach(el => el.addEventListener('input', render));
+render();
+</script>
+</body>
+</html>

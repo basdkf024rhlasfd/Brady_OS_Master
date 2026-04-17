@@ -64,7 +64,7 @@ Built on three principles:
 #### 0.1 Check the Category Intel DB first
 
 Before doing anything else, query the Notion **Category Intel DB** (data source ID:
-`<TBD — pending Phil coherence review + DB creation>`) for clusters with Status =
+`collection://608fdc94-9986-4d63-9f74-22a29a091115`) for clusters with Status =
 `Fresh` or `Active`. Surface this as context:
 
 ```
@@ -685,7 +685,7 @@ references/
 | System | What It Holds | ID / URL |
 |--------|---------------|----------|
 | **Notion DB** | Innovation Idea Pipeline (all ideas, stages, notes) | Data source: `d7f77313-3bfc-42e6-9c6d-53aa7d2b2597` |
-| **Notion DB** | Category Intel (opportunity clusters — Stage 0 living state) | Data source: `<TBD — pending Phil coherence review + DB creation>` |
+| **Notion DB** | Category Intel (opportunity clusters — Stage 0 living state) | Data source: `collection://608fdc94-9986-4d63-9f74-22a29a091115` |
 | **Vercel (standalone)** | Innovation Lab viewer (idea-library.html) | `innovation-lab-silk.vercel.app` |
 | **GitHub repo** | Standalone deploy source | `basdkf024rhlasfd/innovation-lab` |
 | **mception.ai** | Portal route `/innovation-lab` | ProjectFrame → Vercel standalone |
