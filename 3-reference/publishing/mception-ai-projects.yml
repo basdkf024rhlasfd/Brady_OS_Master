@@ -40,3 +40,7 @@ published_projects:
     project: "Project - Panda"
     approved: 2026-04-15
     notes: "Panda Restaurant Group research brief and meeting prep for James Ku CDO engagement"
+  - slug: grocery-assistant
+    project: "Project - Grocery Assistant"
+    approved: 2026-04-16
+    notes: "Personal family grocery list module — Smallwood weekly Walmart run with meal plan and categorized items"
