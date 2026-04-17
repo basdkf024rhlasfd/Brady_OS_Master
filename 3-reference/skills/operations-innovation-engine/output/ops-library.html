@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ops Innovation Library — mception.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+    --border: rgba(240, 237, 230, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; }
+  a { color: var(--gold); text-decoration: none; }
+
+  /* layout */
+  .shell { max-width: 1280px; margin: 0 auto; padding: 48px 52px; }
+  header { border-bottom: 1px solid var(--border); padding-bottom: 32px; margin-bottom: 32px; }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.05; letter-spacing: -0.8px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .sub { color: var(--gray-light); font-size: 15px; margin-top: 8px; }
+
+  /* filters */
+  .filters { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  .filter { display: flex; flex-direction: column; gap: 6px; }
+  .filter label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+  .filter select, .filter input {
+    background: var(--bg-card);
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    border-radius: 2px;
+  }
+  .filter select:focus, .filter input:focus { outline: none; border-color: var(--gold-dim); }
+
+  /* stats bar */
+  .stats { display: flex; gap: 32px; margin-bottom: 32px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; color: var(--gold); }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+
+  /* cards grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+  .card:hover { border-color: var(--gold-dim); cursor: pointer; }
+  .card-tier { position: absolute; top: 18px; right: 18px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; border: 1px solid; }
+  .tier-1 { color: var(--gold); border-color: var(--gold); }
+  .tier-2 { color: var(--blue); border-color: var(--blue); }
+  .tier-3 { color: var(--gray); border-color: var(--gray); }
+  .card h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.25; padding-right: 80px; }
+  .card-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .chip { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 6px; background: var(--bg-card-alt); color: var(--gray-light); border: 1px solid var(--border); }
+  .chip-score { color: var(--gold); border-color: var(--gold-dim); }
+  .card-what { color: var(--gray-light); font-size: 13px; }
+
+  /* modal */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: none; align-items: flex-start; justify-content: center; padding: 48px 24px; overflow-y: auto; z-index: 100; }
+  .modal-backdrop.open { display: flex; }
+  .modal { background: var(--bg-card); max-width: 920px; width: 100%; padding: 48px; border: 1px solid var(--border); }
+  .modal h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; margin-bottom: 8px; }
+  .modal section { margin-top: 28px; }
+  .modal h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .modal p { margin-bottom: 10px; color: var(--white); }
+  .modal ul { margin-left: 20px; color: var(--white); }
+  .modal-close { position: absolute; top: 28px; right: 36px; background: none; border: 1px solid var(--border); color: var(--gray); padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; }
+  .modal-close:hover { color: var(--white); border-color: var(--white); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header>
+    <div class="eyebrow">Operations Innovation Engine · Cumulative Library</div>
+    <h1>Ops Innovation Library</h1>
+    <p class="sub">Every ops concept across every run. Filter by client, tier, problem, method, or framework.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-value" id="stat-total">0</div><div class="stat-label">Total Ideas</div></div>
+    <div class="stat"><div class="stat-value" id="stat-tier1">0</div><div class="stat-label">Tier 1</div></div>
+    <div class="stat"><div class="stat-value" id="stat-runs">0</div><div class="stat-label">Runs</div></div>
+    <div class="stat"><div class="stat-value" id="stat-clients">0</div><div class="stat-label">Clients</div></div>
+  </div>
+
+  <div class="filters">
+    <div class="filter"><label for="f-client">Client</label><select id="f-client"><option value="">All</option></select></div>
+    <div class="filter"><label for="f-tier">Tier</label><select id="f-tier"><option value="">All</option><option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option></select></div>
+    <div class="filter"><label for="f-problem">Problem</label><select id="f-problem"><option value="">All</option></select></div>
+    <div class="filter"><label for="f-framework">Framework</label><select id="f-framework"><option value="">All</option></select></div>
+    <div class="filter"><label for="f-search">Search</label><input id="f-search" type="text" placeholder="Name or keyword…" /></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">Close ×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// IDEAS array — each run appends entries; DO NOT delete existing entries
+// schema: id, name, client, run_id, run_date, tier, score, problems, method,
+//         frameworks, what, why_now, pilot_spec, impact, precedent, competitive,
+//         ops_complexity, risks
+const IDEAS = [
+  // ─── Run 0: Panda Restaurant Group — Tier 1 (8 ideas, score ≥4.0) ───
+  {
+    id: "panda-2026-04-15-01", name: "Predictive Build Sequencer",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.5, problems: ["P3"],
+    method: "#45 Bottleneck Analysis", frameworks: ["toc-five-focusing-steps"],
+    what: "AI model that sequences construction tasks across 100+ simultaneous builds, predicts delays 2-3 weeks before they happen, and auto-reschedules contractors. Palantir for restaurant construction.",
+    why_now: "At 123 new stores/year, even a 10% improvement in on-time delivery saves millions in carrying costs and lost revenue days.",
+    pilot_spec: "10 active builds, 6-month pilot. Feed historical data from last 50 builds. Measure days-to-open vs baseline. Success = 10% faster on-time rate.",
+    impact: "10-15% construction velocity lift; $6M+ annual savings at 123 stores/year. Capital: faster turn on real estate deployment.",
+    precedent: "Palantir-class predictive analytics in construction sequencing. No purpose-built QSR solution exists.",
+    competitive: "Procore, PlanGrid offer general construction management. None do predictive sequencing.",
+    ops_complexity: "Moderate — requires integration with contractor scheduling and permit tracking systems.",
+    risks: ["Data quality from contractors", "Model accuracy on new market types", "Change management with established RE teams"]
+  },
+  {
+    id: "panda-2026-04-15-02", name: "Digital Lane Splitter",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.4, problems: ["P1", "P7"],
+    method: "#9 Blue Ocean Strategy", frameworks: ["chipotle-throughput-model"],
+    what: "Dedicated digital-order drive-thru lane (Chipotlane model) retrofitted into existing Panda locations. Pre-paid app orders only. Sub-60-second pickup.",
+    why_now: "42% digital sales with no dedicated physical infrastructure. Chipotle proved this drives 10-15% sales lift.",
+    pilot_spec: "20 highest-digital-sales locations. Design retrofit package. Pilot in 5 for 6 months. Success = 10% digital sales lift + <60s pickup.",
+    impact: "Throughput: +10-15% digital sales. Unlocks the off-premise channel without cannibalizing in-store line.",
+    precedent: "Chipotle Chipotlane — 20% sales comp at Chipotlane stores vs non-Chipotlane.",
+    competitive: "No Asian QSR chain has done this. First-mover in the category.",
+    ops_complexity: "Moderate — retrofit requires second window/lane to existing stores. New builds easier.",
+    risks: ["Retrofit cost on older sites", "App adoption rate", "Order-accuracy if menu remains complex"]
+  },
+  {
+    id: "panda-2026-04-15-03", name: "Kitchen Flow Optimizer",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.3, problems: ["P2"],
+    method: "#15 Analogous Inspiration", frameworks: ["toyota-way-pillars", "value-stream-mapping"],
+    what: "Sensor array + ML model monitors every kitchen station (wok, prep, steam table, assembly) and optimizes labor allocation in real-time. 'Your wok station is the bottleneck right now — move one person from prep.'",
+    why_now: "KDS data + IoT sensors make this possible now. Panda's kitchen is repetitive enough for ML to learn optimal patterns.",
+    pilot_spec: "3 instrumented kitchens, 90-day data collection, model build. Compare labor cost/hour to control stores.",
+    impact: "Labor: 3-7% reduction in hours/shift via dynamic allocation. Throughput: 10-15% peak-hour capacity unlock.",
+    precedent: "Toyota Production System line balancing. Sweetgreen Infinite Kitchen applies similar logic.",
+    competitive: "No one does real-time line balancing in QSR. First-mover advantage.",
+    ops_complexity: "High — IoT sensor install, KDS integration, real-time analytics platform.",
+    risks: ["Sensor reliability in kitchen environment", "Manager resistance to ML recommendations", "Model calibration across diverse store footprints"]
+  },
+  {
+    id: "panda-2026-04-15-04", name: "AI Site Selection Engine",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.3, problems: ["P5"],
+    method: "#32 Platform Thinking", frameworks: ["sam-walton-retail-doctrine"],
+    what: "ML platform predicts new store AUV within 10% accuracy using traffic, demographics, delivery demand density (DoorDash heat maps), weather, competitor proximity, and existing Panda cannibalization risk.",
+    why_now: "123+ stores/year with traditional RE methods = flying blind. One bad site = $2-3M sunk cost.",
+    pilot_spec: "Get DoorDash demand data for top 50 MSAs. Correlate with existing store performance. Build v1 model. Validate on 20 stores retroactively.",
+    impact: "Capital efficiency: avoid $20-30M in bad-site investments per year. Faster time-to-viability for new markets.",
+    precedent: "Walmart's site-selection discipline (Walton). Starbucks' Placer-backed approach. DoorDash data partnership via Fuad Hannon.",
+    competitive: "Placer.ai offers generic traffic data. No purpose-built QSR site selection AI at this sophistication.",
+    ops_complexity: "Moderate — data integration challenge, no physical build required.",
+    risks: ["DoorDash data access", "Model generalization to new markets", "Adoption by RE committee"]
+  },
+  {
+    id: "panda-2026-04-15-05", name: "Modular Restaurant Kit",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.2, problems: ["P3"],
+    method: "#6 Zero-Based Design", frameworks: ["toyota-way-pillars"],
+    what: "Prefab restaurant modules (kitchen pod, dining pod, drive-thru pod) manufactured off-site and assembled in 60 days vs 180. Kitchen module ships with all equipment pre-installed and tested.",
+    why_now: "Modular construction is 30-50% faster and 20-30% cheaper. At 123 stores/year, compound savings are enormous.",
+    pilot_spec: "Partner with modular firm. Design one kitchen module prototype. Test assembly on one site. 12-18 month pilot.",
+    impact: "Time-to-open: 180d → 60d (3x). Capital per build: -20-30%. Structural reset of construction economics.",
+    precedent: "Container restaurants (several chains experimenting). Prefab has proven in hospitality. No major QSR has standardized it yet.",
+    competitive: "Chipotle and Wendy's have explored modular. No chain at Panda's volume has committed.",
+    ops_complexity: "Complex — new manufacturing partnership, design-for-modularity, permitting adaptation per jurisdiction.",
+    risks: ["Permit variability by market", "Supplier concentration risk", "Design inflexibility for atypical sites"]
+  },
+  {
+    id: "panda-2026-04-15-06", name: "Smart Energy Command Center",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.1, problems: ["P8"],
+    method: "#79 Copy and Improve", frameworks: [],
+    what: "Centralized dashboard managing HVAC, lighting, equipment, and energy across 2,500+ locations. Extends GridPoint investment into predictive maintenance — AI detects when a wok/fryer/HVAC unit will fail before it does.",
+    why_now: "GridPoint deployment gives the data foundation. Next step is predictive models that dispatch repair before downtime.",
+    pilot_spec: "Analyze GridPoint data for failure patterns. Build prediction model for top 3 failure-prone equipment types. 6-month pilot at 50 stores.",
+    impact: "Cost: 5-10% reduction in energy + maintenance costs per store. Uptime: 1-2% improvement = significant revenue lift at scale.",
+    precedent: "GridPoint as energy layer. Predictive maintenance standard in manufacturing; new for QSR.",
+    competitive: "GridPoint is the incumbent energy layer. Adding predictive maintenance on top is novel for QSR at this scale.",
+    ops_complexity: "Moderate — builds on existing GridPoint infrastructure.",
+    risks: ["Sensor retrofit cost per store", "Model accuracy on diverse equipment", "Integration with existing service dispatch"]
+  },
+  {
+    id: "panda-2026-04-15-07", name: "Wok Automation 2.0 — Botinkit Integration",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.1, problems: ["P2"],
+    method: "#15 + #79", frameworks: ["toyota-way-pillars"],
+    what: "Deploy Botinkit Omni-class wok robots that execute entire recipes autonomously — measured ingredient dispensing, AI-optimized heat curves, consistent wok hei. Target: reduce kitchen staff from 8 to 3 per location.",
+    why_now: "Botinkit Omni is production-ready in Asia. 30% ingredient loss reduction, 40% energy reduction, 2x throughput vs manual. Panda's menu is IDEAL — simple, repetitive, wok-based.",
+    pilot_spec: "Fly to Shenzhen. Visit Botinkit factory. Run 5-store pilot with Omni systems. 12-month measurement.",
+    impact: "Labor: 60%+ kitchen staff reduction at scale. Structural cost-curve reset. Throughput: 2x vs manual.",
+    precedent: "Botinkit deployed in Asia. Sweetgreen Infinite Kitchen (US): 7 pts labor savings, 500 orders/hour. Haidilao Beijing: 30% staff reduction.",
+    competitive: "No US QSR chain has deployed this level of wok automation. First-mover owns narrative and labor-cost advantage.",
+    ops_complexity: "High — equipment integration, recipe programming, maintenance training, regulatory compliance.",
+    risks: ["Downtime from first-gen robots", "Crew transition and union dynamics", "Customer perception of 'robot food' brand risk"]
+  },
+  {
+    id: "panda-2026-04-15-08", name: "Dynamic Menu Board Optimizer",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 1, score: 4.0, problems: ["P4"],
+    method: "#51 Cultural Trend Mining", frameworks: ["cfa-drive-thru-model"],
+    what: "AI-driven digital menu boards that adjust item placement, combo presentation, pricing display, and featured items by daypart, weather, local demand, and queue length. Show higher-value combos when value perception needs reinforcement.",
+    why_now: "Shrinkflation backlash means Panda needs to manage value perception actively. Menu board psychology is a proven lever.",
+    pilot_spec: "Install digital boards in 50 test locations. A/B test layout and combo presentation. 90-day pilot. Success = check avg +3% with satisfaction stable.",
+    impact: "Check avg: +2-4%. Margin mix: shift toward higher-value combos. Customer value perception: managed actively.",
+    precedent: "McDonald's pioneered dynamic menu boards. Most chains at basic level. AI-optimized per-location is next level.",
+    competitive: "Broad tooling exists (Coates, Samsung VXT). AI optimization layer is the differentiator.",
+    ops_complexity: "Moderate — requires digital menu board hardware + cloud-based optimization engine.",
+    risks: ["Hardware cost per store", "Customer confusion if changes are too frequent", "Regulatory constraints on calorie display dynamism"]
+  },
+  // ─── Run 0: Panda — Tier 2 (12 ideas, score 3.5-3.9) ───
+  {
+    id: "panda-2026-04-15-09", name: "Ghost Kitchen Insertion",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 4.0, problems: ["P7", "P9"],
+    method: "#46 Unbundling/Rebundling", frameworks: ["chipotle-throughput-model"],
+    what: "Delivery-only kitchen-only units in high-delivery-demand areas. 1,200 SF, no dining room, no drive-thru. 40% of the build cost of a full location. Optimized for DoorDash/Uber Eats throughput.",
+    why_now: "42% digital revenue means proven demand. Some markets have delivery demand but no viable freestanding site.",
+    pilot_spec: "Identify 10 zip codes with highest Panda delivery + longest delivery times. Design 1,200 SF kitchen module. Pilot 3 for 12 months.",
+    impact: "Capital per unit: -60% vs full build. Addressable market: opens delivery-only geography. Throughput: delivery-specialized.",
+    precedent: "Wingstop built its model on this. Virtual brands proliferating. DoorDash angle via Fuad Hannon.",
+    competitive: "No major Asian QSR chain has purpose-built ghost kitchens.",
+    ops_complexity: "Simple — smaller build, standardized kitchen, no FOH staffing.",
+    risks: ["Delivery platform dependency", "Brand awareness in delivery-only markets", "Fixed cost if delivery demand shifts"]
+  },
+  {
+    id: "panda-2026-04-15-10", name: "Crew Scheduling AI",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.9, problems: ["P2"],
+    method: "#4 Jobs to Be Done", frameworks: ["jobs-to-be-done-ops"],
+    what: "Demand-responsive scheduling that predicts rushes from historical patterns, weather, local events, and real-time app order queue. Auto-schedules optimal coverage 2 weeks out, adjusts day-of.",
+    why_now: "Labor is most expensive line item. 5% improvement in schedule-to-demand matching saves millions across 2,500 locations.",
+    pilot_spec: "Pilot at 20 locations. Compare AI schedules to manager-generated. Measure labor cost/sales $. 6-month pilot.",
+    impact: "Labor cost %: -2-4%. Turnover: lower (crew gets predictable, JTBD-aligned schedules).",
+    precedent: "HotSchedules, 7shifts exist but don't integrate real-time demand signals.",
+    competitive: "Legion, UKG Dimensions advancing. Differentiator = real-time signal integration.",
+    ops_complexity: "Moderate — POS integration, weather API, event DB, schedule optimization engine.",
+    risks: ["Crew trust in algorithmic scheduling", "Manager override discipline", "Local labor law compliance"]
+  },
+  {
+    id: "panda-2026-04-15-11", name: "Panda Counter — Japanese-Inspired Small Format",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.9, problems: ["P6", "P9"],
+    method: "#15 Analogous Inspiration", frameworks: ["in-n-out-menu-restriction"],
+    what: "800 SF counter-only Panda. U-shaped counter seating (12-16 seats). Ticket machine ordering. Visible wok station. Self-serve water. No tables. 12-min avg visit.",
+    why_now: "Urban rents are prohibitive for full-format stores. Japan has proven this model at massive scale (Yoshinoya 1,200, Sukiya 2,000).",
+    pilot_spec: "Visit Tokyo. Study Yoshinoya, Matsuya, CoCo Ichibanya in person. Design prototype. Test in one dense urban market (Manhattan, SF, or LA). 18-month pilot.",
+    impact: "Build cost: -60% vs full format. New addressable market (dense urban + transit + food halls). 4-6x table turns.",
+    precedent: "Yoshinoya, Matsuya, Sukiya, CoCo Ichibanya — all 1,000+ locations on this model. Shokken ticket machines ubiquitous in Japan.",
+    competitive: "NO American QSR has adopted the Japanese counter model at scale.",
+    ops_complexity: "Moderate — simpler kitchen, fewer staff, smaller space. Requires new prototype and operational playbook.",
+    risks: ["US consumer acceptance of ticket machine", "Limited menu acceptance", "Urban permitting variability"]
+  },
+  {
+    id: "panda-2026-04-15-12", name: "Construction Cost Tracker",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.8, problems: ["P3"],
+    method: "#32 Platform Thinking", frameworks: [],
+    what: "Real-time construction cost benchmarking across all active builds. Tracks cost/SF, contractor performance, permit timelines, materials by market. Flags overruns before they compound.",
+    why_now: "With 100+ builds simultaneously, cost variance is invisible without a platform. $50K overrun × 123 stores = $6M.",
+    pilot_spec: "Standardize cost tracking template across 20 active builds. Build dashboard. Identify top 3 cost variance drivers. 3-month setup.",
+    impact: "Cost: 3-5% reduction in overrun exposure. Capital: cleaner forecasting for future builds.",
+    precedent: "Procore does general construction mgmt. No purpose-built restaurant construction analytics platform.",
+    competitive: "Procore, Autodesk Construction Cloud generalists. Panda-specific logic is differentiator.",
+    ops_complexity: "Moderate — data integration with contractors, suppliers, permit offices.",
+    risks: ["Contractor data quality", "Integration latency", "Legacy reporting comfort zone"]
+  },
+  {
+    id: "panda-2026-04-15-13", name: "Automated Inventory Replenishment",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.8, problems: ["P2", "P4"],
+    method: "#79 Copy and Improve", frameworks: ["sam-walton-retail-doctrine"],
+    what: "Walmart-style auto-replenishment applied to restaurant-level inventory. POS predicts tomorrow's Orange Chicken demand → auto-generates prep lists and supplier orders. Reduces waste and stockouts.",
+    why_now: "Panda's predictable, limited menu makes demand forecasting highly accurate. James Ku ran this at Walmart.",
+    pilot_spec: "Pilot auto-forecasting at 50 stores, top 5 SKUs. Measure waste and stockout frequency. 6-month pilot.",
+    impact: "Food cost: -1-2%. Waste: -15-25% on piloted SKUs. Stockout: -50% on piloted SKUs.",
+    precedent: "Walmart's auto-replenishment (James Ku background). McDonald's has sophisticated supply chain.",
+    competitive: "Crunchtime, Jolt offer restaurant inventory tools. Predictive layer is the advantage.",
+    ops_complexity: "Moderate — POS integration, demand model, supplier EDI connections.",
+    risks: ["Supplier EDI readiness", "Forecast accuracy on promotions", "Store manager override discipline"]
+  },
+  {
+    id: "panda-2026-04-15-14", name: "Drive-Thru Voice AI",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.8, problems: ["P1", "P2"],
+    method: "#51 Cultural Trend Mining", frameworks: [],
+    what: "Conversational AI order-taking at the drive-thru window. Handles 80%+ of standard orders without human intervention. Escalates to human for complex customizations.",
+    why_now: "Wendy's, McDonald's, Taco Bell all piloting. Tech is production-ready. Panda's relatively simple menu is ideal (fewer edge cases).",
+    pilot_spec: "Pilot at 10 drive-thru locations. Measure accuracy, speed, satisfaction vs human. 6-month pilot.",
+    impact: "Labor: -1 headcount per peak shift. Throughput: +10-15% order-point cycle time. Accuracy: parity or better.",
+    precedent: "Presto, SoundHound, Google drive-thru voice AI. Multiple chains piloting. Not yet standard.",
+    competitive: "Many vendors, few at scale. Early adopter advantage still available.",
+    ops_complexity: "Moderate — voice AI vendor integration, menu training, escalation workflow.",
+    risks: ["Accent/noise robustness", "Customer trust in AI ordering", "Vendor lock-in"]
+  },
+  {
+    id: "panda-2026-04-15-15", name: "Format Performance Scorecard",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.7, problems: ["P6"],
+    method: "#42 Game Theory Lens", frameworks: [],
+    what: "Real-time competitive intelligence dashboard tracking every format innovation move by Chipotle, CFA, Taco Bell, McDonald's, Sweetgreen, Wingstop. Format specs, performance data, response playbook.",
+    why_now: "Format innovation cycle is accelerating. A CDO needs to know what just opened, how it's performing, and whether Panda should respond.",
+    pilot_spec: "Build v1 for James Ku as sample deliverable. Track 6 competitors' format moves monthly. 3-month build.",
+    impact: "Strategic: faster response to format shifts. Time: CDO team saves 20+ hrs/month on manual monitoring.",
+    precedent: "No standardized competitive format intelligence product exists for restaurant development teams.",
+    competitive: "Ad-hoc consulting. Brady's AI research system can produce this as consulting deliverable.",
+    ops_complexity: "Simple — web scraping, trade press monitoring, structured database.",
+    risks: ["Data accuracy on private chain performance", "Interpretation bias", "Signal vs noise ratio"]
+  },
+  {
+    id: "panda-2026-04-15-16", name: "Vertical Kitchen Concept",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.7, problems: ["P6", "P9"],
+    method: "#6 Zero-Based Design", frameworks: ["cfa-drive-thru-model"],
+    what: "CFA-inspired elevated kitchen for high-density urban lots. Drive-thru lanes underneath, kitchen above. 2-3x throughput on the same footprint.",
+    why_now: "CFA proved this (McDonough, GA, Aug 2024). No other chain has followed. Urban land is expensive — vertical is the only way to scale in dense markets.",
+    pilot_spec: "Identify 5 highest-performing urban Panda locations with constrained lots. Commission architecture study. 18-month feasibility.",
+    impact: "Throughput: 2-3x on same footprint. Addressable market: urban dense markets currently off-limits.",
+    precedent: "CFA McDonough vertical (2024). Taco Bell Defy similar concept. First Asian QSR to try it owns the format.",
+    competitive: "CFA and Taco Bell only. Niche but defensible.",
+    ops_complexity: "Very complex — structural engineering, vertical transport, different permitting.",
+    risks: ["Permitting variability", "Capital intensity", "Customer acceptance of elevated format"]
+  },
+  {
+    id: "panda-2026-04-15-17", name: "Predictive Equipment Maintenance",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.7, problems: ["P8"],
+    method: "#45 Bottleneck Analysis", frameworks: ["toc-five-focusing-steps"],
+    what: "IoT sensors on woks, fryers, HVAC, refrigeration predicting failures 72 hours before downtime. Auto-dispatches repair tech with the right parts.",
+    why_now: "Equipment downtime during peak = lost revenue. With 2,500+ locations, 1% improvement in uptime is significant.",
+    pilot_spec: "Install sensors on top 3 failure-prone equipment types in 50 locations. 6-month vibration/temp data collection. Build prediction model.",
+    impact: "Uptime: +0.5-1%. Labor: reduced emergency repair premium. Cost: smoother parts inventory.",
+    precedent: "Manufacturing has done predictive maintenance for decades. Emerging in QSR. GridPoint foundation exists.",
+    competitive: "Novel for QSR at this scale.",
+    ops_complexity: "High — IoT deployment across thousands of equipment units, model training.",
+    risks: ["Sensor reliability in kitchen environment", "Model false positives", "Tech dispatch capacity"]
+  },
+  {
+    id: "panda-2026-04-15-18", name: "Trade Area Cannibalization Model",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.6, problems: ["P5"],
+    method: "#42 Game Theory Lens", frameworks: ["sam-walton-retail-doctrine"],
+    what: "ML model that maps cannibalization risk for every potential new site against every existing Panda within the trade area. Prevents self-competition as chain densifies.",
+    why_now: "At 2,500+ locations growing 5% annually, cannibalization risk increases with every new store. A $2M AUV store stealing $500K from a neighbor is a net loss.",
+    pilot_spec: "Analyze last 50 new openings. Measure comp sales impact on nearest 3 existing stores. Build model. 3-month build.",
+    impact: "Capital efficiency: avoid $5-10M in cannibalizing builds per year.",
+    precedent: "Starbucks manages cannibalization famously. Most QSR chains do this manually.",
+    competitive: "Placer.ai adjacent, not QSR-specific. Panda-tuned model is advantage.",
+    ops_complexity: "Moderate — clean sales data by location, traffic flow, geographic modeling.",
+    risks: ["Data cleanliness", "Halo vs cannibalization attribution", "RE committee acceptance"]
+  },
+  {
+    id: "panda-2026-04-15-19", name: "Sustainable Build Standard / Net-Zero Panda",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.6, problems: ["P6", "P8"],
+    method: "#51 Cultural Trend Mining", frameworks: [],
+    what: "Net-zero restaurant prototype — solar, smart HVAC (GridPoint), reclaimed materials, water recycling, LED-only. First QSR to market with a certified net-zero build owns the sustainability narrative.",
+    why_now: "Consumer + regulatory pressure on sustainability is accelerating. Energy costs are real. PR value of being 'first net-zero QSR' is enormous.",
+    pilot_spec: "Commission net-zero feasibility study for Panda Home prototype. Calculate incremental cost and payback period. 6-month study.",
+    impact: "Cost per store: -10-15% on energy long-term (after higher upfront CapEx). Brand narrative: high.",
+    precedent: "No major QSR chain has a certified net-zero prototype. LEED-certified restaurants exist.",
+    competitive: "First-mover on certified net-zero. Defensible narrative.",
+    ops_complexity: "Complex — energy consultants, certification bodies, potentially new supply chains.",
+    risks: ["CapEx payback period", "Certification complexity", "Marketing execution risk"]
+  },
+  {
+    id: "panda-2026-04-15-20", name: "Experience Scoring System",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 2, score: 3.5, problems: ["P4"],
+    method: "#46 Unbundling/Rebundling", frameworks: ["sqdcp-boards"],
+    what: "Unified guest experience score combining speed (KDS timestamps), order accuracy (POS vs delivered), food temp (IoT), cleanliness (inspection), and customer ratings (app + review sites). One number per store per day.",
+    why_now: "Customer complaints are rising. Need a single metric that captures 'is this store good?' beyond just sales.",
+    pilot_spec: "Define score formula. Pilot at 50 stores for 90 days. Correlate with sales trends and ratings.",
+    impact: "Ops visibility: each store has a daily score. Satisfaction: managed proactively. DM effectiveness: focused interventions.",
+    precedent: "CFA famous for operational consistency. Their secret is measurement.",
+    competitive: "No chain has a unified experience score at this granularity.",
+    ops_complexity: "Moderate — data integration from 5+ sources, scoring algorithm, dashboard.",
+    risks: ["Gaming of individual metrics", "Weighting contention", "Store-level acceptance"]
+  },
+  // ─── Run 0: Panda — Tier 3 (12 ideas, score 3.0-3.4) ───
+  {
+    id: "panda-2026-04-15-21", name: "DoorDash Co-Branded Virtual Kitchen",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.4, problems: ["P4", "P7"],
+    method: "#24 Mashup Method", frameworks: [],
+    what: "Delivery-only virtual brand 'Panda Wok Bar' — elevated bowls, premium ingredients, different price point, DoorDash only. Runs out of existing Panda kitchens with minimal incremental equipment.",
+    why_now: "Virtual brands let you test new concepts without new real estate. DoorDash partnership (Fuad Hannon) gives distribution.",
+    pilot_spec: "Design menu. Pitch Fuad. Launch in 10 markets as DoorDash exclusive. 6-month pilot.",
+    impact: "New revenue stream with minimal incremental cost. Data on premium positioning.",
+    precedent: "Wingstop, MrBeast Burger run virtual brands through existing kitchens.",
+    competitive: "Virtual brand space is crowded. Panda's kitchen quality is the edge.",
+    ops_complexity: "Simple — same kitchen, different menu programming, different packaging.",
+    risks: ["Brand dilution if execution inconsistent", "Channel cannibalization", "DoorDash exclusivity tradeoffs"]
+  },
+  {
+    id: "panda-2026-04-15-22", name: "Walmart Outparcel Development Program",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.4, problems: ["P3", "P5"],
+    method: "#32 Platform Thinking", frameworks: ["sam-walton-retail-doctrine"],
+    what: "Systematic program to develop Panda on Walmart Supercenter outparcels. Standardized 2,600 SF freestanding with drive-thru. James Ku's Walmart relationships open the door.",
+    why_now: "Walmart is actively developing outparcels. Panda already has an outparcel at St Johns County. This could be systematized.",
+    pilot_spec: "James Ku calls Walmart RE contact. Propose 10-site co-development pilot for 2027.",
+    impact: "Site velocity: +10-20 sites/year via partnership pipeline. Capital: shared RE costs.",
+    precedent: "Chipotle co-locates near Walmart frequently. Formal partnership program would be novel.",
+    competitive: "No chain has a Walmart outparcel program at scale.",
+    ops_complexity: "Moderate — co-development agreement, site selection criteria, standardized build package.",
+    risks: ["Walmart strategic priority shifts", "Customer overlap uncertainty", "Landlord/Walmart negotiating dynamics"]
+  },
+  {
+    id: "panda-2026-04-15-23", name: "Portion Transparency Redesign",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.4, problems: ["P4"],
+    method: "#7 Opposite Thinking", frameworks: ["danny-meyer-hospitality"],
+    what: "Lean into transparency instead of hiding. Redesign containers as clear/translucent so customers can see exactly what they're getting. Standardize scoops with visible portion guides. Post calories/weight on menu board.",
+    why_now: "TikTok shrinkflation backlash is a brand risk. Meeting it with transparency is a jiu-jitsu move.",
+    pilot_spec: "Test translucent containers in 20 stores. Measure satisfaction vs control group. 90-day pilot.",
+    impact: "Trust: brand recovery. Complaints: directly reduces shrinkflation-related feedback.",
+    precedent: "No QSR has responded to shrinkflation with radical transparency. First-mover wins trust.",
+    competitive: "Easy to copy but first-mover narrative matters.",
+    ops_complexity: "Simple — container redesign, portion standardization, signage.",
+    risks: ["Container cost increase", "Highlighting small portions in clear packaging", "Operations training for scoop discipline"]
+  },
+  {
+    id: "panda-2026-04-15-24", name: "Delivery Driver Staging Area",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.3, problems: ["P7"],
+    method: "#4 Jobs to Be Done", frameworks: ["jobs-to-be-done-ops"],
+    what: "Dedicated pickup area inside or adjacent to store for delivery drivers. Separate entrance, dedicated shelf with labeled orders, no waiting in customer line.",
+    why_now: "Delivery drivers currently wait in the same line as dine-in customers. A dedicated staging area improves driver speed (DoorDash loves this) and customer experience.",
+    pilot_spec: "Test in 20 high-delivery-volume stores. Measure avg driver wait time before/after. 90-day pilot.",
+    impact: "Driver pickup time: -2-5 min per order. DoorDash algorithm: sends more orders. Customer wait time: improved.",
+    precedent: "Taco Bell Defy has driver lane. CFA has dedicated mobile order pickup.",
+    competitive: "Widely imitable. Execution quality matters.",
+    ops_complexity: "Simple — designated shelf, signage, separate pickup window or door.",
+    risks: ["Space constraints at smaller stores", "Labor to manage order staging"]
+  },
+  {
+    id: "panda-2026-04-15-25", name: "Tea Bar as Profit Center Spin",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.3, problems: ["P4", "P9"],
+    method: "#46 Unbundling/Rebundling", frameworks: [],
+    what: "Spin the Tea Bar concept into standalone micro-format (200-400 SF) for food halls, airports, transit. Bubble tea + a few grab-and-go Panda items. Lower build cost. Incremental revenue + brand exposure.",
+    why_now: "39 Tea Bar locations proving concept. Boba market $4B+. Lower-risk international expansion format.",
+    pilot_spec: "Design 300 SF Tea Bar standalone kit. Test in one airport and one food hall. 12-month pilot.",
+    impact: "Build cost: <$500K/unit. New channel: transit + airports. Brand exposure in high-traffic zones.",
+    precedent: "Kung Fu Tea, Tiger Sugar, Gong Cha — standalone boba shops. None backed by $6B+ parent with kitchen infrastructure.",
+    competitive: "Niche but crowded. Panda's brand + Tea Bar proven formula differentiates.",
+    ops_complexity: "Simple — minimal kitchen, beverage-focused, standardized equipment.",
+    risks: ["Brand dilution", "Seasonal demand variability", "Food hall tenancy dynamics"]
+  },
+  {
+    id: "panda-2026-04-15-26", name: "Walmart In-Store Kiosk Format",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.3, problems: ["P9", "P10"],
+    method: "#15 Analogous Inspiration", frameworks: ["sam-walton-retail-doctrine"],
+    what: "Mini Panda counter inside Walmart stores. 400 SF, 6-item menu, 2 staff, no seating. Captive Walmart shopper traffic. Licensed to Walmart's food service operator.",
+    why_now: "James Ku ran Walmart Facility Services. He knows the in-store concession model. Walmart has traffic, Panda has brand.",
+    pilot_spec: "James Ku calls Walmart RE. Propose 5-store pilot inside Supercenters in markets where Panda has no nearby freestanding. 12-month pilot.",
+    impact: "Build cost: <$200K/unit. New unit type: captive traffic. International expansion playbook.",
+    precedent: "Subway-in-Walmart ran for decades. McDonald's-in-Walmart existed.",
+    competitive: "Subway wound down its Walmart presence — there's an opening.",
+    ops_complexity: "Moderate — licensing agreement, simplified menu, small footprint equipment.",
+    risks: ["Walmart policy shifts on food tenants", "Brand impression from small format", "Staffing in Walmart labor market"]
+  },
+  {
+    id: "panda-2026-04-15-27", name: "Central Kitchen / Commissary Model",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.2, problems: ["P2", "P3"],
+    method: "#5 Value Chain Expansion", frameworks: ["toyota-way-pillars"],
+    what: "Regional commissary kitchens prep sauces, marinate proteins, pre-portion ingredients. Store kitchens do final cook only. Reduces BOH complexity and staff requirement per store.",
+    why_now: "Panera, CFA, many chains use commissary. Panda's menu is centralized enough to benefit.",
+    pilot_spec: "Audit current prep vs cook labor split. Identify which prep steps could move. Model cost savings for 100-store region. 6-month study.",
+    impact: "Store labor: -10-15%. Kitchen size needed: -15-25%. Food consistency: up.",
+    precedent: "Panera, CFA, McDonald's at scale. Standard practice for high-scale QSR.",
+    competitive: "Standard practice when executed well.",
+    ops_complexity: "Very complex — cold chain logistics, food safety compliance, commissary facility construction.",
+    risks: ["Cold chain failure risk", "Commissary capital intensity", "Regional rollout sequencing"]
+  },
+  {
+    id: "panda-2026-04-15-28", name: "Visible Kitchen Theater",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.2, problems: ["P4", "P6"],
+    method: "#15 Analogous Inspiration", frameworks: ["danny-meyer-hospitality"],
+    what: "Redesign store layout so wok station is visible to customers — behind glass or open counter. Customers see their food being made fresh. Directly counters 'reheated steam table food' perception.",
+    why_now: "Japanese curry and ramen shops prove watching food being prepared increases perceived value. Panda's steam table model looks 'pre-made' even when freshly cooked.",
+    pilot_spec: "Retrofit one store with visible wok station behind glass. Film customer reactions. Measure satisfaction. 6-month pilot.",
+    impact: "Perceived value: up. Freshness perception: up. Potential check avg lift.",
+    precedent: "Chipotle's visible assembly line is US gold standard. No Asian QSR chain has adopted this.",
+    competitive: "Imitable but depends on format redesign commitment.",
+    ops_complexity: "Moderate — store layout redesign, potentially moving the wok line.",
+    risks: ["Retrofit capital", "Noise/heat from visible wok station", "Crew performance anxiety"]
+  },
+  {
+    id: "panda-2026-04-15-29", name: "Recipe Intelligence Platform",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.1, problems: ["P2", "P4"],
+    method: "#32 Platform Thinking", frameworks: ["toyota-way-pillars"],
+    what: "Centralized recipe management system that pushes cook times, temps, ingredient ratios, prep instructions to every kitchen via KDS. Ensures Orange Chicken tastes the same in 2,500 locations.",
+    why_now: "KDS rollout gives the delivery mechanism. Consistency is the #1 driver of brand trust in QSR.",
+    pilot_spec: "Digitize top 10 recipes into KDS-deliverable format. Pilot in 100 stores. Measure consistency via mystery shops. 6-month pilot.",
+    impact: "Consistency: measurable improvement. Menu rollout velocity: faster.",
+    precedent: "McDonald's built this decades ago. Panda is at the scale where they need it.",
+    competitive: "Standard at peer chains. Table-stakes infrastructure.",
+    ops_complexity: "Moderate — recipe standardization, KDS integration, training protocols.",
+    risks: ["Crew adoption of digitized recipes", "Local adaptation tension", "Change management"]
+  },
+  {
+    id: "panda-2026-04-15-30", name: "International Micro-Format (Export Kit)",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.1, problems: ["P10"],
+    method: "#8 Constraint-Based Ideation", frameworks: ["in-n-out-menu-restriction"],
+    what: "Standardized 600-800 SF international Panda prototype. Counter-service, ticket machine, localized menu (70% core + 30% local), modular kitchen. Designed to deploy in any country with minimal adaptation.",
+    why_now: "<300 international locations across 9 countries is underwhelming for $6B+ brand. Current model (export full US format) is too expensive for most international markets.",
+    pilot_spec: "Study CoCo Ichibanya international playbook (200+ intl locations). Design Panda Export Kit spec. 12-month design phase.",
+    impact: "International growth unlock. Capital/unit: -50% vs full format.",
+    precedent: "McDonald's, KFC adapted formats brilliantly for international. Panda hasn't.",
+    competitive: "Novel for Asian QSR exporting from US.",
+    ops_complexity: "Complex — local sourcing, regulatory compliance, menu adaptation, local hiring.",
+    risks: ["Franchisee quality control", "Cultural menu fit", "Regulatory variability by country"]
+  },
+  {
+    id: "panda-2026-04-15-31", name: "Order-Ahead Locker Wall",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.0, problems: ["P1", "P7"],
+    method: "#79 Copy and Improve", frameworks: [],
+    what: "Temperature-controlled pickup lockers on the exterior of stores. Customer gets code via app, opens locker, grabs food. No waiting in line. Works for customer pickup and delivery driver staging.",
+    why_now: "Several chains testing this. Technology is mature (Amazon Lockers, Brightloom). Reduces in-store congestion from mobile orders.",
+    pilot_spec: "Install locker system at 10 locations. Measure adoption and impact on in-store congestion. 6-month pilot.",
+    impact: "In-store congestion: reduced. Driver pickup time: reduced. Customer satisfaction: up for mobile orders.",
+    precedent: "Panera and Chipotle testing lockers. Not yet standard.",
+    competitive: "Emerging category. First-mover on QSR side still available.",
+    ops_complexity: "Moderate — locker hardware, temperature management, app integration.",
+    risks: ["Locker hardware cost", "Temperature control reliability", "Order stacking in peak hours"]
+  },
+  {
+    id: "panda-2026-04-15-32", name: "Panda Express + DoorDash Kitchen-as-a-Service",
+    client: "Panda", run_id: "panda-2026-04-15", run_date: "2026-04-15",
+    tier: 3, score: 3.0, problems: ["P7", "P9"],
+    method: "#24 Mashup Method", frameworks: [],
+    what: "Partner with DoorDash to put Panda kitchens inside DoorDash's kitchen hubs (DashMart or future shared kitchens). DoorDash provides space + delivery. Panda provides brand + recipes. Revenue share.",
+    why_now: "DoorDash acquired Deliveroo + SevenRooms — they're building restaurant infrastructure. Fuad Hannon angle.",
+    pilot_spec: "Call Fuad. Propose 3-location pilot in high-delivery markets. 12-month pilot.",
+    impact: "Asset-light expansion. New channel.",
+    precedent: "Multiple virtual brands in shared kitchens. A $6B brand entering DoorDash kitchens would be headline news.",
+    competitive: "Scarce precedent at this brand scale.",
+    ops_complexity: "Moderate — recipe standardization for non-Panda staff, quality control, brand standards enforcement.",
+    risks: ["Quality control with non-Panda staff", "DoorDash platform dependency", "Brand protection in shared kitchen"]
+  },
+];
+
+// --- render ---
+const $grid = document.getElementById('grid');
+const $fClient = document.getElementById('f-client');
+const $fTier = document.getElementById('f-tier');
+const $fProblem = document.getElementById('f-problem');
+const $fFramework = document.getElementById('f-framework');
+const $fSearch = document.getElementById('f-search');
+
+function unique(arr, key) {
+  const set = new Set();
+  arr.forEach(i => { const v = i[key]; if (Array.isArray(v)) v.forEach(x => set.add(x)); else if (v) set.add(v); });
+  return Array.from(set).sort();
+}
+
+function populateFilter(select, values) {
+  values.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; select.appendChild(o); });
+}
+
+function renderStats(filtered) {
+  document.getElementById('stat-total').textContent = filtered.length;
+  document.getElementById('stat-tier1').textContent = filtered.filter(i => i.tier === 1).length;
+  document.getElementById('stat-runs').textContent = new Set(filtered.map(i => i.run_id)).size;
+  document.getElementById('stat-clients').textContent = new Set(filtered.map(i => i.client)).size;
+}
+
+function render() {
+  const client = $fClient.value;
+  const tier = $fTier.value;
+  const problem = $fProblem.value;
+  const framework = $fFramework.value;
+  const search = $fSearch.value.toLowerCase().trim();
+
+  const filtered = IDEAS.filter(i => {
+    if (client && i.client !== client) return false;
+    if (tier && String(i.tier) !== tier) return false;
+    if (problem && !(i.problems || []).includes(problem)) return false;
+    if (framework && !(i.frameworks || []).includes(framework)) return false;
+    if (search) {
+      const hay = (i.name + ' ' + (i.what || '') + ' ' + (i.method || '')).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  renderStats(filtered);
+
+  $grid.innerHTML = filtered.map(i => `
+    <div class="card" onclick="openModal('${i.id}')">
+      <div class="card-tier tier-${i.tier}">Tier ${i.tier}</div>
+      <h3>${i.name}</h3>
+      <div class="card-meta">
+        <span class="chip chip-score">${i.score.toFixed(1)}</span>
+        <span class="chip">${i.client}</span>
+        ${(i.problems || []).map(p => `<span class="chip">${p}</span>`).join('')}
+      </div>
+      <div class="card-what">${i.what || ''}</div>
+    </div>
+  `).join('') || '<p style="color:var(--gray);padding:24px;">No ideas match the current filters.</p>';
+}
+
+function openModal(id) {
+  const idea = IDEAS.find(i => i.id === id);
+  if (!idea) return;
+  document.getElementById('modal-body').innerHTML = `
+    <h2>${idea.name}</h2>
+    <div class="card-meta">
+      <span class="chip chip-score">${idea.score.toFixed(1)}</span>
+      <span class="chip">Tier ${idea.tier}</span>
+      <span class="chip">${idea.client} · ${idea.run_date}</span>
+      ${(idea.problems || []).map(p => `<span class="chip">${p}</span>`).join('')}
+    </div>
+    <section><h4>What</h4><p>${idea.what || ''}</p></section>
+    <section><h4>Why Now</h4><p>${idea.why_now || ''}</p></section>
+    <section><h4>Pilot Spec</h4><p>${idea.pilot_spec || ''}</p></section>
+    <section><h4>Labor / Throughput / Cost Impact</h4><p>${idea.impact || ''}</p></section>
+    <section><h4>Precedent</h4><p>${idea.precedent || ''}</p></section>
+    <section><h4>Competitive Landscape</h4><p>${idea.competitive || ''}</p></section>
+    <section><h4>Ops Complexity</h4><p>${idea.ops_complexity || ''}</p></section>
+    <section><h4>Risks / Failure Modes</h4><ul>${(idea.risks || []).map(r => `<li>${r}</li>`).join('')}</ul></section>
+    <section><h4>Attribution</h4><p>Method: ${idea.method || ''}<br/>Frameworks: ${(idea.frameworks || []).join(', ')}</p></section>
+  `;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
+document.getElementById('modal-backdrop').addEventListener('click', (e) => { if (e.target.id === 'modal-backdrop') closeModal(); });
+
+// populate filters
+populateFilter($fClient, unique(IDEAS, 'client'));
+populateFilter($fProblem, unique(IDEAS, 'problems'));
+populateFilter($fFramework, unique(IDEAS, 'frameworks'));
+
+[$fClient, $fTier, $fProblem, $fFramework, $fSearch].forEach(el => el.addEventListener('input', render));
+render();
+</script>
+</body>
+</html>

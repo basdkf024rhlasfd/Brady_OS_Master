@@ -48,7 +48,7 @@ Also glob `3-reference/skills/*/SKILL.md` to get the current skills list (names 
 Query the Notion Category Intel DB for active opportunity clusters so Chat Projects know
 what intelligence is alive right now:
 
-- **Category Intel DB** (data source ID: `<TBD — pending Phil coherence review + DB creation>`)
+- **Category Intel DB** (data source ID: `collection://608fdc94-9986-4d63-9f74-22a29a091115`)
 - Filter: `Status in [Fresh, Active]` (exclude Stale and Archived)
 - Fields to include: Cluster Name, Category, Behavioral Shift, Why Now, JTBD, Margin Location, Last Refreshed
 
