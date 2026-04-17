@@ -222,11 +222,20 @@ Append today's entry to `~/Documents/Daily-Journal/index.md`:
 ```
 ### Phase 4: LOG TO NOTION
 
-#### 4.1 Create/Update Daily State
+#### 4.1 Create/Update + Close Today's Daily State
 In Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`):
-- Create or update today's Daily State entry (Type="Daily State")
-- Include: summary, decisions, open loops, Jarvis score, tags
-- Link to any Thread Logs from today
+- Query for `Type = "Daily State"` AND `Status = "In Progress"` AND `date_field = today`
+- Should be exactly 1 result (today's Daily State, opened by morning sweep)
+- Update / set:
+  - `Status = "Complete"`
+  - `Done = "__YES__"`
+  - `where_you_left_off` = summary of last active task
+  - `what_moved_today` = summary of completed items
+  - `what_did_NOT_get_done` = anything from `today_P1` that didn't happen
+  - Page body: full summary, decisions, open loops, Jarvis score, tags
+  - Link to any Thread Logs from today
+
+If for some reason no Daily State exists for today, create one and immediately close it with the same fields.
 
 #### 4.2 Process Unresolved Items
 For any open loops or deferred tasks:
@@ -238,6 +247,38 @@ Score today's log quality (per the standard Phil audit). Flag if < 4.
 
 #### 4.4 Update Jarvis Score (if substantive work happened)
 Score the 7 dimensions, compute weighted composite, log to Jarvis Score Log DB.
+
+#### 4.5 Action Triage
+Query Streaming Notes where `Status != "Complete"` AND `Status != "Remove"` AND `Action is null` AND `Created Date < (now - 24 hours)`.
+
+For each item, assign `Action` based on `Type`:
+- **Pulse Note** → evaluate content: `Create Task` (if actionable), `Move to Notes db` (if reference), or set `Status = "Remove"` (if noise)
+- **Thread Log** (Status=Complete) → `Move to Context Hub` (if systemic/architectural) or `Move to Notes db` (if historical)
+- **System Instruction** → `Move to Context Hub` (should already be processed by morning sweep; if not, process now)
+- **To Do** → `Create Task` in Execution Layer
+- **Execution Request** → `Create Task` in Execution Layer
+- **Keep Handy** / **Pin to Top** → leave in place (intentionally persistent)
+- **Pulse Log** → no action needed (auto-archive handles these)
+- **Daily State** → no action needed (auto-close handles these)
+
+For each routed item, append a row to the Routing Log (`344ed43b-89c5-816a-ab54-ca49ca239748`).
+
+#### 4.6 Archive Old Pulse Logs
+Query Streaming Notes where `Type = "Pulse Log"` AND `Created Date < (now - 7 days)` AND `Status != "Remove"`.
+
+For each, set `Status = "Remove"` and `Done = "__YES__"`.
+
+Report count in sweep output: `Archived X Pulse Logs older than 7 days.`
+
+#### 4.7 Escalate Stale Pulse Notes
+Query Streaming Notes where `Type = "Pulse Note"` AND `Status = "Not Started"` AND `Created Date < (now - 5 days)`.
+
+For each, add to sweep output as a forced decision:
+```
+🚨 STALE PULSE NOTE (Day [N]): [Title]. Process, park (Status=Remove), or create task?
+```
+
+If Brady is not present (automated overnight run), auto-set `Status = "Remove"` and `Done = "__YES__"` and log: `Auto-archived after 5 days unprocessed. Brady can restore if needed.`
 
 ### Phase 5: REFRESH OS COCKPIT
 
@@ -272,6 +313,10 @@ Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.m
 End with something that gives Brady permission to close the laptop.
 Match the energy — if it was a hard day, acknowledge it. If it was productive, celebrate it.
 Don't be saccharine. Be real.
+## Done/Status Consistency Rule
+
+Whenever this sweep sets `Status = "Complete"` or `Status = "Remove"` on any Streaming Note, ALSO set `Done = "__YES__"`. These two fields must always move together. No exceptions.
+
 ## How Other Skills Access the Archive
 
 ### Morning Sweep

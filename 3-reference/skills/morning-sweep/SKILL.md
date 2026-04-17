@@ -50,6 +50,10 @@ Before generating any output, silently execute ALL of these in parallel where po
 
 Execute all scans before writing anything. Gather raw data into working memory.
 
+### 1.0 Load Rules & Preferences
+Fetch the Rules & Preferences page from Reference Layer (page ID `344ed43b-89c5-813d-bded-f1d5689510e2`).
+Apply all rules to this sweep's behavior and output. This must run before any other scan or report step.
+
 ### 1.1 Gmail Scan
 - Search: last 24 hours, skip `category:promotions` and `category:social`
 - For each message: read full body (subject lines aren't enough)
@@ -311,6 +315,26 @@ useful, a section that's always empty, a source that should be added — propose
 Say "sweep feedback: [approve/modify]" to log it.
 ```
 
+### 3.6b Process System Instructions
+Query Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`) for `Type = "System Instruction"` AND `Status = "Not Started"`.
+
+For each entry:
+1. Read the rule/preference text
+2. Determine the correct section in Rules & Preferences (Agent Defaults, Voice, Confidentiality, Topic Rules, Client-Specific, Platform-Specific)
+3. Append a new row to that section's table on the Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`): Rule | Date Added | Source (include platform + conversation context)
+4. Set the Streaming Note's `Status = "Complete"`, `Done = "__YES__"`, `Action = "Move to Context Hub"`
+5. Append a row to the Routing Log (`344ed43b-89c5-816a-ab54-ca49ca239748`): date, original title, "Rules & Preferences", reason, summary
+6. If the rule affects CLAUDE.md or Claudine Onboarding, flag it in the brief output: `⚠️ New rule added: [x]. CLAUDE.md / Onboarding update recommended.`
+
+### 3.6c Propagate Rules to Config Files
+If any new System Instructions were processed in step 3.6b:
+- Read current `~/.claude/CLAUDE.md`
+- Check if the new rule is already represented
+- If not, append it to the appropriate section
+- Same check for `3-reference/skills/claudine-onboarding/SKILL.md`
+
+This step only ADDS rules. It never removes or modifies existing rules without Brady's explicit instruction.
+
 ### 3.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 
@@ -387,6 +411,10 @@ texts from Dax" or "Otter scan is useless"), Claudine should proactively offer t
 - **Otter approval popup**: If MCP returns "No approval received", output: "⚠️ Otter needs Mac approval — check for the popup in Claude Desktop, then say 'retry otter'."
 - **Tool failure**: If any scan fails, report it and move on. Don't block the whole sweep.
 - **Late start (after noon)**: Switch to mid-day mode — skip morning logistics, focus on "what's left today" and blockers.
+
+## Done/Status Consistency Rule
+
+Whenever this sweep sets `Status = "Complete"` on any Streaming Note, ALSO set `Done = "__YES__"`. These two fields must always move together. No exceptions. The reverse is also true — if you set `Done = "__YES__"` for a closing action, set `Status` to either `"Complete"` or `"Remove"` (never leave it as `In Progress` or `Not Started`).
 
 ## What This Skill Does NOT Do
 
