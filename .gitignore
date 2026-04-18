@@ -2,3 +2,6 @@
 .env
 3-reference/skills/*/references/family-data.md
 3-reference/skills/*/references/school-calendar.md
+
+# Live cockpit data (contains PII, financials, family schedules)
+os-cockpit/data.js
