@@ -89,11 +89,16 @@ Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - Flag any with upcoming deadlines in the next 2 weeks
 - Check Conductor.build and GitHub for activity (if accessible)
 
-### 2.4 Financial Week
-- Bills due this week (check calendar and email)
-- Monarch check (or flag for manual review)
-- Any financial emails from last 7 days (invoices, payments, tax items)
-- Upcoming financial deadlines in next 30 days
+### 2.4 Financial Week (via Financial Assistant)
+- Run the `financial-assistant` skill in `weekly-summary` mode
+- Reads Monarch CSV exports from `3-reference/skills/financial-assistant/data/`
+- Full analysis: spending by category vs budget, cash flow MTD, consulting revenue,
+  upcoming obligations (next 7 days + 30-day horizon), trend detection
+- Scans Gmail for invoices/receipts/payments (last 7 days)
+- Scans Calendar for all financial events in next 30 days
+- Queries Notion consulting pipeline for revenue + pipeline status
+- Produces the detailed `💰 FINANCIAL WEEK` block (see Phase 2 output below)
+- If no CSV data: falls back to Gmail/Calendar/Notion with degraded output
 
 ### 2.5 Otter Review
 - Search recordings from the past 7 days
