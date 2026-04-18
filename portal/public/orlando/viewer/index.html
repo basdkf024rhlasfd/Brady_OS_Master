@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orlando Real Estate Knowledge Base</title>
+<meta name="description" content="Comprehensive Orlando FL real estate knowledge base across 24 markdown files, including agent workflows and community concierge guidance.">
+<meta property="og:title" content="Orlando Real Estate Knowledge Base">
+<meta property="og:description" content="24-file Orlando real estate knowledge base with neighborhoods, costs, laws, buying guides, agent workflows, and community concierge guidance.">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  // Config loader — tries config.js, falls back gracefully
+  window.ORLANDO_CONFIG = window.ORLANDO_CONFIG || {};
+</script>
+<script src="/api/orlando/config" onerror=""></script>
+<link rel="stylesheet" href="brand.css">
+</head>
+<body>
+
+<div class="client-banner" id="client-banner">
+  Private client experience for: <strong id="banner-client-name">Ana Thurman</strong>
+</div>
+
+<div class="app-shell">
+<nav>
+  <div class="nav-logo" id="nav-logo">
+    <img id="nav-logo-img" src="" alt="" style="display:none" />
+    <span id="nav-logo-text">Orlando RE</span>
+  </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search knowledge base..." />
+  </div>
+  <div id="search-results" class="search-results" style="display:none"></div>
+  <div id="nav-links"></div>
+</nav>
+
+<main>
+  <div class="content-wrap" id="content">
+    <div class="loading">Loading...</div>
+  </div>
+  <noscript>
+    <div style="max-width:820px;margin:0 auto;padding:40px 48px;color:#e0e0e0;">
+      <!-- GENERATED: VIEWER_NOSCRIPT START -->
+      <h1 style="font-size:28px;color:#fff;margin:0 0 16px;">Orlando Real Estate Knowledge Base</h1>
+      <p style="color:#bbb;line-height:1.7;margin-bottom:24px;">
+        A comprehensive knowledge base covering Orlando FL real estate across 24 markdown files.
+        This viewer requires JavaScript. The source content lives in the <code>kb/</code> directory of this repository.
+      </p>
+
+      <h2 style="font-size:18px;color:#c9a84c;margin:0 0 12px;">How to use this efficiently</h2>
+      <p style="color:#bbb;line-height:1.7;margin-bottom:24px;">
+        <strong style="color:#c9a84c;">Do NOT load all files at once.</strong> Load only what is relevant to the question at hand.
+        Each file covers a specific topic — pick the 1-3 files that match the query.
+      </p>
+
+      <h2 style="font-size:18px;color:#c9a84c;margin:0 0 12px;">File Index</h2>
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:24px;">
+        <tr><th style="text-align:left;padding:8px 12px;background:#1a1a22;color:#6b8cae;border:1px solid #2a2a2a;">Topic</th><th style="text-align:left;padding:8px 12px;background:#1a1a22;color:#6b8cae;border:1px solid #2a2a2a;">File</th></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Market stats, prices, trends, affordability</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/01-market-overview.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Neighborhoods, where to live, area comparisons</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/02-neighborhoods.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Property tax, insurance, HOA, CDD, closing costs</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/03-taxes-insurance-costs.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">FL laws, contracts, disclosures, FIRPTA, STR rules</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/04-florida-laws-regulations.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">New construction, builders, communities, 55+</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/05-new-construction.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Rentals, investment analysis, cap rates, STR revenue</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/06-investment-rentals.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Economy, employers, demographics, cost of living</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/07-economy-demographics.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Commutes, SunRail, Brightline, road projects, growth</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/08-infrastructure-transportation.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Schools, districts, recreation, healthcare, climate</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/09-schools-quality-of-life.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Hurricanes, floods, sinkholes, insurance crisis, risks</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/10-risks-considerations.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">FHA, VA, USDA, down payment assistance, loan types</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/11-financing-programs.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Luxury homes, Isleworth, Golden Oak, custom builders</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/12-luxury-market.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Step-by-step buying process for all buyer types</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/13-buying-process.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Agent transaction guide, commission, MLS</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/14-agent-transaction-guide.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Brazilian buyers, FIRPTA, ITIN, foreign nationals</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/15-brazilian-buyer-guide.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Investment case studies, cash flow, pro forma</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/16-investment-case-studies.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Brazilian businesses, restaurants, services, community</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/17-brazilian-business-directory.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Data sources, APIs, public records, research links</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/18-data-sources.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Agent templates: scoring, decision trees, playbooks, reports</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/19-agent-templates.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Pricing: absorption rates, DOM mapping, stale risk, adjustments</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/20-pricing-methodology.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Post-close: vendor lists, scripts, review requests, nurture calendar</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/21-nurture-system.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Sphere: segmentation, cadence, life events, referral scripts</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/22-sphere-referral.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">Utilities, schools, healthcare, banking, bilingual referrals, first-90-days onboarding</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/23-community-concierge.md</td></tr>
+        <tr><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#bbb;">24 buyer persona profiles for testing</td><td style="padding:6px 12px;border:1px solid #1a1a1a;color:#6b9e5a;">kb/buyer-profiles.md</td></tr>
+      </table>
+
+      <h2 style="font-size:18px;color:#c9a84c;margin:0 0 12px;">Quick routing guide</h2>
+      <ul style="color:#bbb;line-height:1.8;padding-left:20px;">
+        <li>Neighborhood questions → kb/02-neighborhoods.md</li>
+        <li>Cost/affordability questions → kb/03-taxes-insurance-costs.md</li>
+        <li>Buying process questions → kb/13-buying-process.md</li>
+        <li>Brazilian/foreign buyer questions → kb/15-brazilian-buyer-guide.md</li>
+        <li>Investment analysis or "should I buy" → kb/16-investment-case-studies.md</li>
+        <li>Brazilian community/business → kb/17-brazilian-business-directory.md</li>
+        <li>Post-close onboarding, utilities, schools, healthcare, or bilingual referrals → kb/23-community-concierge.md</li>
+      </ul>
+
+      <p style="color:#555;font-size:12px;margin-top:24px;">Data compiled February 2026. Enable JavaScript to use the interactive viewer.</p>
+<!-- GENERATED: VIEWER_NOSCRIPT END -->
+    </div>
+  </noscript>
+</main>
+
+<script>
+// GENERATED: VIEWER_MANIFEST START
+const files = [
+  { id: 'readme', file: '../README.md', label: 'Overview' },
+  { id: 'market', file: '../kb/01-market-overview.md', label: 'Market Overview' },
+  { id: 'neighborhoods', file: '../kb/02-neighborhoods.md', label: 'Neighborhoods' },
+  { id: 'taxes', file: '../kb/03-taxes-insurance-costs.md', label: 'Taxes & Insurance' },
+  { id: 'laws', file: '../kb/04-florida-laws-regulations.md', label: 'Laws & Regulations' },
+  { id: 'construction', file: '../kb/05-new-construction.md', label: 'New Construction' },
+  { id: 'investment', file: '../kb/06-investment-rentals.md', label: 'Investment & Rentals' },
+  { id: 'economy', file: '../kb/07-economy-demographics.md', label: 'Economy & Demographics' },
+  { id: 'infrastructure', file: '../kb/08-infrastructure-transportation.md', label: 'Infrastructure' },
+  { id: 'schools', file: '../kb/09-schools-quality-of-life.md', label: 'Schools & QoL' },
+  { id: 'risks', file: '../kb/10-risks-considerations.md', label: 'Risks & Considerations' },
+  { id: 'financing', file: '../kb/11-financing-programs.md', label: 'Financing & Programs' },
+  { id: 'luxury', file: '../kb/12-luxury-market.md', label: 'Luxury Market' },
+  { id: 'buying', file: '../kb/13-buying-process.md', label: 'Buying Process' },
+  { id: 'agent', file: '../kb/14-agent-transaction-guide.md', label: 'Agent Guide' },
+  { id: 'brazilian', file: '../kb/15-brazilian-buyer-guide.md', label: 'Brazilian Buyers' },
+  { id: 'casestudies', file: '../kb/16-investment-case-studies.md', label: 'Case Studies' },
+  { id: 'directory', file: '../kb/17-brazilian-business-directory.md', label: 'Brazilian Directory' },
+  { id: 'datasources', file: '../kb/18-data-sources.md', label: 'Data Sources' },
+  { id: 'templates', file: '../kb/19-agent-templates.md', label: 'Agent Templates' },
+  { id: 'pricing', file: '../kb/20-pricing-methodology.md', label: 'Pricing Methodology' },
+  { id: 'nurture', file: '../kb/21-nurture-system.md', label: 'Nurture System' },
+  { id: 'sphere', file: '../kb/22-sphere-referral.md', label: 'Sphere & Referral' },
+  { id: 'concierge', file: '../kb/23-community-concierge.md', label: 'Community Concierge' },
+  { id: 'profiles', file: '../kb/buyer-profiles.md', label: 'Buyer Profiles' }
+];
+
+const sections = [
+  { name: 'Market & Area', ids: ['readme', 'market', 'neighborhoods', 'economy', 'infrastructure', 'schools'] },
+  { name: 'Property & Costs', ids: ['construction', 'luxury', 'taxes', 'risks'] },
+  { name: 'Buying & Financing', ids: ['buying', 'financing', 'laws'] },
+  { name: 'Buyer Tools', ids: ['casestudies', 'brazilian', 'profiles'] },
+  { name: 'Investment', ids: ['investment'] },
+  { name: 'Social & Community', ids: ['directory', 'concierge', 'sphere', 'nurture'] },
+  { name: 'Agent Tools', ids: ['agent', 'templates', 'pricing', 'datasources'] }
+];
+// GENERATED: VIEWER_MANIFEST END
+
+const fileMap = {};
+files.forEach(f => fileMap[f.id] = f);
+
+const cache = {};
+let currentFile = null;
+
+// ─── Flow Definitions ───
+const flows = [
+  { id: 'flow-lead', label: 'Lead Qualification', complete: 100, type: 'strategic', gap: 'No intake framework or scoring system', steps: [
+    { label: 'New lead comes in', desc: 'Lead captured via website, referral, or inquiry', status: 'trigger' },
+    { label: 'Budget realism check', desc: 'Income vs Orlando cost of ownership — monthly cost tables, DTI thresholds', status: 'link', linkId: 'taxes' },
+    { label: 'Financing path', desc: 'Conventional, FHA, VA, DPA eligibility screening', status: 'link', linkId: 'financing' },
+    { label: 'Foreign buyer detection', desc: 'Route to Foreign Buyer flow if international', status: 'link', linkId: 'brazilian' },
+    { label: 'Neighborhood shortlist', desc: 'Match needs and budget to 2-3 target areas', status: 'link', linkId: 'neighborhoods' },
+    { label: 'Lead scoring', desc: 'Urgency and readiness assessment', status: 'link', linkId: 'templates', anchor: 'Lead Scoring' },
+    { label: 'Timeline estimate', desc: 'Likely close window prediction', status: 'link', linkId: 'templates', anchor: 'Timeline Estimate Decision Tree' },
+    { label: 'Buyer strategy brief', desc: 'One-page summary combining all inputs for first call', status: 'link', linkId: 'templates', anchor: 'Buyer Strategy Brief' },
+  ]},
+  { id: 'flow-showing', label: 'Showing Prep', complete: 78, type: 'strategic', gap: 'No pricing intelligence or seller signal methodology', steps: [
+    { label: 'Showings scheduled', desc: 'Buyer has selected properties to tour', status: 'trigger' },
+    { label: 'Per-property risk flags', desc: 'Flood zone, sinkhole exposure, roof age alerts', status: 'link', linkId: 'risks' },
+    { label: 'HOA/CDD/tax cost lookup', desc: 'True monthly cost stack per property', status: 'link', linkId: 'taxes' },
+    { label: 'STR eligibility check', desc: 'Zoning and regulation check if investor buyer', status: 'link', linkId: 'laws' },
+    { label: 'Neighborhood context', desc: 'Area profile, schools, commute for each property', status: 'link', linkId: 'neighborhoods' },
+    { label: 'Pricing intelligence', desc: 'Is it overpriced, fair, or an opportunity?', status: 'link', linkId: 'pricing', anchor: 'Quick Comp Methodology' },
+    { label: 'Seller motivation signals', desc: 'DOM, price drops, relisted history analysis', status: 'link', linkId: 'pricing', anchor: 'Seller Motivation Signals' },
+    { label: 'Route optimization', desc: 'Efficient showing order with drive times', status: 'tbd', tbd: 'Google Maps multi-stop link generator, or integration with ShowingTime' },
+    { label: 'Per-property briefing sheet', desc: 'One-page sheet per property for the showing', status: 'link', linkId: 'templates', anchor: 'Per-Property Briefing Sheet' },
+  ]},
+  { id: 'flow-pricing', label: 'Dynamic Pricing', complete: 100, type: 'strategic', gap: 'No probability model or absorption rate methodology', steps: [
+    { label: 'Listing appointment', desc: 'Seller wants to know what their home is worth', status: 'trigger' },
+    { label: 'Market stats and trends', desc: 'Current pricing, DOM, inventory for the area', status: 'link', linkId: 'market' },
+    { label: 'Tax/insurance/CDD context', desc: 'Cost factors affecting net proceeds and buyer affordability', status: 'link', linkId: 'taxes' },
+    { label: 'MLS comp mechanics', desc: 'How to pull and evaluate comparable sales', status: 'link', linkId: 'agent' },
+    { label: 'Absorption rate analysis', desc: 'Months of supply at micro-neighborhood level', status: 'link', linkId: 'pricing', anchor: 'Absorption Rate Analysis' },
+    { label: 'Probability-based pricing', desc: 'Price point mapped to estimated DOM and sell probability', status: 'link', linkId: 'pricing', anchor: 'Probability-Based Pricing' },
+    { label: 'Stale risk monitoring', desc: 'Triggers for when a listing needs a price adjustment', status: 'link', linkId: 'pricing', anchor: 'Stale Risk Monitoring' },
+    { label: 'Pricing recommendation', desc: '3-scenario output with probability and estimated DOM', status: 'link', linkId: 'templates', anchor: 'Pricing Recommendation' },
+  ]},
+  { id: 'flow-offer', label: 'Offer Strategy', complete: 100, type: 'strategic', gap: 'No negotiation decision trees', steps: [
+    { label: 'Buyer ready to offer', desc: 'Found the property, time to negotiate', status: 'trigger' },
+    { label: 'FL contract basics', desc: 'FAR/BAR As-Is vs Standard, contingencies, timelines', status: 'link', linkId: 'laws' },
+    { label: 'Closing cost estimate', desc: 'Buyer-side costs: title, taxes, insurance, prepaids', status: 'link', linkId: 'taxes' },
+    { label: 'Inspection expectations', desc: 'What to inspect, typical costs, Orlando red flags', status: 'link', linkId: 'buying', anchor: 'Step 7: Inspection Period' },
+    { label: 'Appraisal gap risk', desc: 'When appraisals come in low and what to do', status: 'link', linkId: 'buying', anchor: 'Step 8: Appraisal' },
+    { label: 'Escalation / counter strategy', desc: 'How to structure offer based on competition and seller signals', status: 'link', linkId: 'templates', anchor: 'Escalation / Counter Strategy' },
+    { label: 'Negotiation leverage analysis', desc: 'Scoring buyer leverage based on market signals', status: 'link', linkId: 'templates', anchor: 'Negotiation Leverage Analysis' },
+    { label: 'Offer playbook', desc: 'Complete recommendation document', status: 'link', linkId: 'templates', anchor: 'Offer Playbook' },
+  ]},
+  { id: 'flow-foreign', label: 'Foreign Buyer', complete: 100, type: 'strategic', gap: 'Needs live vendor data and messaging automation', steps: [
+    { label: 'International buyer inquiry', desc: 'Brazilian or foreign national interested in Orlando property', status: 'trigger' },
+    { label: 'Visa and residency check', desc: 'Determine visa type and impact on purchase/financing options', status: 'link', linkId: 'brazilian' },
+    { label: 'ITIN application', desc: 'Timeline and process for Individual Taxpayer ID', status: 'link', linkId: 'brazilian' },
+    { label: 'Currency transfer optimization', desc: 'Wise vs bank wire — save $8K-$10K on $400K purchase', status: 'link', linkId: 'brazilian' },
+    { label: 'US entity structure', desc: 'LLC decision tree — liability, tax, estate implications', status: 'link', linkId: 'brazilian' },
+    { label: 'FIRPTA planning', desc: '15% withholding on future sale — plan for it now', status: 'link', linkId: 'brazilian' },
+    { label: 'Foreign national financing', desc: 'Lenders, rates, requirements for non-US borrowers', status: 'link', linkId: 'brazilian' },
+    { label: 'Community orientation', desc: 'Brazilian businesses, restaurants, churches, schools', status: 'link', linkId: 'directory' },
+    { label: 'Arrival concierge plan', desc: 'Utilities, schools, healthcare, banking, and bilingual referral handoff', status: 'link', linkId: 'concierge' },
+    { label: 'STR strategy', desc: 'If investor, route to Investment Underwriting flow', status: 'link', linkId: 'investment' },
+    { label: 'Dual tax filing roadmap', desc: 'US + Brazil tax obligations, no bilateral treaty', status: 'link', linkId: 'brazilian' },
+    { label: 'Client-facing checklist', desc: 'Printable timeline with deadlines and professional referrals', status: 'link', linkId: 'concierge', anchor: 'Client-Facing Checklist' },
+  ]},
+  { id: 'flow-invest', label: 'Investment Underwriting', complete: 100, type: 'strategic', gap: 'Missing PM guidance and ongoing tracking', steps: [
+    { label: 'Investor evaluating property', desc: 'Analyzing a specific property or market for investment', status: 'trigger' },
+    { label: 'Market cap rates', desc: 'Cap rates by Orlando submarket, 2-9% range', status: 'link', linkId: 'investment' },
+    { label: 'STR revenue data', desc: 'Nightly rates, occupancy, seasonality by area', status: 'link', linkId: 'investment' },
+    { label: 'STR zoning check', desc: 'County and municipal short-term rental regulations', status: 'link', linkId: 'laws' },
+    { label: 'Tax/insurance/CDD cost stack', desc: 'Full carrying cost breakdown for the property', status: 'link', linkId: 'taxes' },
+    { label: 'Case study comparables', desc: 'Similar investment scenarios with actual numbers', status: 'link', linkId: 'casestudies' },
+    { label: 'Pro forma analysis', desc: 'Cash flow, cash-on-cash, ROI projections', status: 'link', linkId: 'casestudies' },
+    { label: 'Risk assessment', desc: 'Hurricane, flood, sinkhole, insurance availability', status: 'link', linkId: 'risks' },
+    { label: 'Property management setup', desc: 'Self-manage vs full-service decision', status: 'link', linkId: 'investment', anchor: 'Property Management Decision Framework' },
+    { label: 'Revenue tracking framework', desc: 'Ongoing performance monitoring', status: 'link', linkId: 'templates', anchor: 'Revenue Tracking Template' },
+  ]},
+  { id: 'flow-transaction', label: 'Transaction Coordination', complete: 92, type: 'operational', gap: 'No deadline tracker or lender communication templates', steps: [
+    { label: 'Contract executed', desc: 'Offer accepted, clock starts ticking', status: 'trigger' },
+    { label: 'EMD deposited', desc: 'Verify earnest money receipt within 3 days', status: 'link', linkId: 'buying', anchor: 'Step 6: Make an Offer' },
+    { label: 'Schedule inspections', desc: 'General, wind mit, WDO, pool, sinkhole as needed', status: 'link', linkId: 'buying', anchor: 'Step 7: Inspection Period' },
+    { label: 'Inspection results', desc: 'Negotiate repairs/credits or cancel', status: 'link', linkId: 'buying', anchor: 'After Inspection' },
+    { label: 'Appraisal ordered', desc: 'Send comps to appraiser proactively', status: 'link', linkId: 'buying', anchor: 'Step 8: Appraisal' },
+    { label: 'Appraisal result', desc: 'If low: renegotiate, cover gap, or cancel', status: 'link', linkId: 'buying', anchor: 'If Appraisal Comes in Low' },
+    { label: 'Insurance bound', desc: 'Verify coverage meets lender requirements', status: 'link', linkId: 'buying', anchor: 'Step 9: Insurance' },
+    { label: 'Loan conditions', desc: 'Weekly lender follow-up until clear-to-close', status: 'link', linkId: 'templates', anchor: 'Lender Communication Templates' },
+    { label: 'Clear to close', desc: 'All conditions satisfied, schedule closing', status: 'link', linkId: 'buying', anchor: 'Step 10: Final Loan Approval' },
+    { label: 'Final walkthrough', desc: '24-48 hours before closing — verify condition', status: 'link', linkId: 'buying', anchor: 'Step 11: Closing' },
+    { label: 'Closing day', desc: 'Sign documents, transfer funds, get keys', status: 'link', linkId: 'buying', anchor: 'At the Closing Table' },
+    { label: 'Deadline tracker', desc: 'Calendar with auto-alerts for all milestones', status: 'tbd', tbd: 'Calendar template with standard day-count triggers from contract date — EMD day 3, inspection day 10-15, appraisal day 14-21' },
+  ]},
+  { id: 'flow-nurture', label: 'Post-Close & Nurture', complete: 78, type: 'relationship', gap: 'Needs automation and more live concierge coverage', steps: [
+    { label: 'Homestead exemption', desc: 'File before March 1 deadline for tax savings', status: 'link', linkId: 'buying', anchor: 'Step 12: Post-Closing' },
+    { label: 'Utility setup checklist', desc: 'OUC, Duke Energy, TOHO Water, address changes', status: 'link', linkId: 'concierge', anchor: 'Utility Setup Quickstart' },
+    { label: 'Vendor referral list', desc: 'AC, pest, pool, lawn service recommendations', status: 'link', linkId: 'nurture', anchor: 'Vendor Referral List' },
+    { label: '30-day check-in', desc: 'Call to see how they are settling in', status: 'link', linkId: 'nurture', anchor: '30-Day Check-In' },
+    { label: 'Review/referral request', desc: 'Ask for Google review and referrals at day 90', status: 'link', linkId: 'nurture', anchor: 'Review & Referral Request' },
+    { label: '6-month market update', desc: 'Neighborhood value update since purchase', status: 'tbd', tbd: 'Auto-generated update: your area appreciated X% since you bought, estimated current value is Y' },
+    { label: 'Annual anniversary', desc: 'Equity estimate and relationship touch', status: 'link', linkId: 'nurture', anchor: 'Annual Anniversary' },
+    { label: 'Life event monitoring', desc: 'Track signals for next transaction', status: 'tbd', tbd: 'CRM trigger rules: baby (need bigger house?), kids graduating (downsize?), job change (relocate?)' },
+    { label: 'Nurture calendar', desc: '12-month post-close communication schedule', status: 'link', linkId: 'nurture', anchor: 'Nurture Calendar' },
+  ]},
+  { id: 'flow-listing', label: 'Listing Management', complete: 78, type: 'operational', gap: 'No showing benchmarks, feedback templates, or price adjustment rules', steps: [
+    { label: 'Listing goes live', desc: 'Property listed on Stellar MLS', status: 'trigger' },
+    { label: 'MLS accuracy check', desc: 'Verify listing data, photos, compliance', status: 'link', linkId: 'agent' },
+    { label: 'Showing feedback collection', desc: 'Gather and categorize buyer agent feedback', status: 'link', linkId: 'templates', anchor: 'Showing Feedback Form' },
+    { label: 'Showing velocity check', desc: 'Are showings on pace for the price point?', status: 'link', linkId: 'pricing', anchor: 'Showing Velocity Benchmarks' },
+    { label: 'Stale risk assessment', desc: 'Flag when listing is at risk of going stale', status: 'link', linkId: 'pricing', anchor: 'Stale Risk Monitoring' },
+    { label: 'Price adjustment decision', desc: 'When to reduce, by how much', status: 'link', linkId: 'pricing', anchor: 'Price Adjustment Rules' },
+    { label: 'Competing inventory monitor', desc: 'Track new listings and price drops nearby', status: 'tbd', tbd: 'Alert criteria for Stellar MLS saved searches, how to interpret competing inventory moves' },
+    { label: 'Offer presentation', desc: 'Present and advise on offers received', status: 'link', linkId: 'laws' },
+    { label: 'Weekly seller report', desc: 'Showings, feedback, market position, action items', status: 'link', linkId: 'templates', anchor: 'Weekly Seller Report' },
+  ]},
+  { id: 'flow-sphere', label: 'Sphere & Referral', complete: 71, type: 'relationship', gap: 'Entirely TBD — no segmentation, scripts, or scoring', steps: [
+    { label: 'Database segmentation', desc: 'Categorize contacts by relationship and potential', status: 'link', linkId: 'sphere', anchor: 'Database Segmentation' },
+    { label: 'Monthly market update', desc: 'Market intelligence to full database', status: 'link', linkId: 'sphere', anchor: 'Monthly Market Update' },
+    { label: 'Quarterly personal touch', desc: 'Direct outreach to top 50 contacts', status: 'link', linkId: 'sphere', anchor: 'Quarterly Personal Touch' },
+    { label: 'Equity watch', desc: 'Flag past clients with significant appreciation', status: 'tbd', tbd: 'Methodology to estimate equity gain from purchase date, trigger threshold for outreach (e.g. >$80K equity)' },
+    { label: 'Life event triggers', desc: 'Predict next move based on buyer type and timeline', status: 'link', linkId: 'sphere', anchor: 'Life Event Triggers' },
+    { label: 'Referral ask system', desc: 'When and how to ask for referrals', status: 'link', linkId: 'sphere', anchor: 'Referral Ask System' },
+    { label: 'Monthly priority list', desc: 'AI-ranked "who to call this week" list', status: 'tbd', tbd: 'Scoring model: recency of last contact, equity position, life stage, referral likelihood, season' },
+  ]},
+];
+
+// ─── Build nav ───
+const navLinks = document.getElementById('nav-links');
+const collapsedGroups = JSON.parse(localStorage.getItem('navCollapsed') || '{}');
+
+// Version badge
+const versionBadge = document.createElement('div');
+versionBadge.style.cssText = 'padding:10px 16px 4px;font-size:11px;color:#555;letter-spacing:0.3px;';
+versionBadge.textContent = 'v4.1.0-9f558f8 \u00B7 Mar 25 2026';
+navLinks.appendChild(versionBadge);
+
+// Helper: build a collapsible nav section (collapsed by default unless user toggled)
+function buildNavSection(name, buildLinks) {
+  const isCollapsed = collapsedGroups.hasOwnProperty(name) ? collapsedGroups[name] : true;
+
+  const h2 = document.createElement('h2');
+  const chevron = document.createElement('span');
+  chevron.className = 'chevron' + (isCollapsed ? ' collapsed' : '');
+  chevron.textContent = '\u25BC';
+  h2.appendChild(chevron);
+  h2.appendChild(document.createTextNode(' ' + name));
+
+  const group = document.createElement('div');
+  group.className = 'nav-group' + (isCollapsed ? ' collapsed' : '');
+
+  h2.addEventListener('click', () => {
+    const nowCollapsed = group.classList.toggle('collapsed');
+    chevron.classList.toggle('collapsed', nowCollapsed);
+    collapsedGroups[name] = nowCollapsed;
+    localStorage.setItem('navCollapsed', JSON.stringify(collapsedGroups));
+  });
+
+  navLinks.appendChild(h2);
+  buildLinks(group);
+  navLinks.appendChild(group);
+  return { h2, group, chevron };
+}
+
+// KB sections
+sections.forEach(section => {
+  buildNavSection(section.name, group => {
+    section.ids.forEach(id => {
+      const f = fileMap[id];
+      if (!f) return;
+      const a = document.createElement('a');
+      a.href = '#' + f.id;
+      a.textContent = f.label;
+      a.dataset.id = f.id;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        loadFile(f.id);
+      });
+      group.appendChild(a);
+    });
+  });
+});
+
+// Flows section
+buildNavSection('Flows', group => {
+  const dashLink = document.createElement('a');
+  dashLink.href = '#flows';
+  dashLink.className = 'flow-link';
+  dashLink.innerHTML = '<span>Dashboard</span>';
+  dashLink.addEventListener('click', e => {
+    e.preventDefault();
+    renderFlowDashboard();
+  });
+  group.appendChild(dashLink);
+  flows.forEach(f => {
+    const a = document.createElement('a');
+    a.href = '#' + f.id;
+    a.className = 'flow-link';
+    a.dataset.id = f.id;
+    a.innerHTML = `<span>${f.label}</span><span class="pct">${f.complete}%</span>`;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      renderFlow(f.id);
+    });
+    group.appendChild(a);
+  });
+});
+
+// Templates section (Client Page lives here)
+buildNavSection('Templates', group => {
+  const clientLink = document.createElement('a');
+  clientLink.href = '#client-page';
+  clientLink.className = 'flow-link';
+  clientLink.dataset.id = 'client-page';
+  clientLink.innerHTML = '<span>Buyer Profile</span>';
+  clientLink.addEventListener('click', e => {
+    e.preventDefault();
+    renderClientPage();
+  });
+  group.appendChild(clientLink);
+});
+
+// Tools section
+buildNavSection('Tools', group => {
+  const swapLink = document.createElement('a');
+  swapLink.href = '#swap-calc';
+  swapLink.className = 'flow-link';
+  swapLink.dataset.id = 'swap-calc';
+  swapLink.innerHTML = '<span>\u{1F3E0} Home Swap Calc</span>';
+  swapLink.addEventListener('click', e => {
+    e.preventDefault();
+    renderSwapCalc();
+  });
+  group.appendChild(swapLink);
+});
+
+
+
+async function fetchFile(id) {
+  if (cache[id]) return cache[id];
+  const entry = files.find(f => f.id === id);
+  const res = await fetch(entry.file);
+  const text = await res.text();
+  cache[id] = text;
+  return text;
+}
+
+async function loadFile(id) {
+  currentFile = id;
+  const content = document.getElementById('content');
+  content.innerHTML = '<div class="loading">Loading...</div>';
+
+  // Update active nav and expand group if collapsed
+  document.querySelectorAll('nav a').forEach(a => {
+    const isActive = a.dataset.id === id;
+    a.classList.toggle('active', isActive);
+    if (isActive) {
+      const group = a.closest('.nav-group');
+      if (group && group.classList.contains('collapsed')) {
+        group.classList.remove('collapsed');
+        const chevron = group.previousElementSibling?.querySelector('.chevron');
+        if (chevron) chevron.classList.remove('collapsed');
+      }
+    }
+  });
+
+  const md = await fetchFile(id);
+  content.innerHTML = marked.parse(md);
+
+  // Make kb/ file references clickable
+  content.querySelectorAll('code').forEach(code => {
+    const text = code.textContent.trim();
+    const match = text.match(/^kb\/(.+\.md)$/);
+    if (!match) return;
+    const entry = files.find(f => f.file.endsWith('kb/' + match[1]));
+    if (!entry) return;
+    const link = document.createElement('a');
+    link.href = '#' + entry.id;
+    link.style.cssText = 'color:#6b8cae;cursor:pointer;text-decoration:none;';
+    link.textContent = text;
+    link.addEventListener('click', e => { e.preventDefault(); loadFile(entry.id); });
+    code.replaceWith(link);
+  });
+
+  window.scrollTo(0, 0);
+  document.querySelector('main').scrollTop = 0;
+
+  // Update hash
+  history.replaceState(null, '', '#' + id);
+
+}
+
+async function loadFileWithAnchor(id, anchorText) {
+  await loadFile(id);
+  if (anchorText) {
+    setTimeout(() => {
+      const headings = document.querySelectorAll('#content h1, #content h2, #content h3, #content h4');
+      for (const h of headings) {
+        if (h.textContent.includes(anchorText)) {
+          h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          h.style.background = '#1a1a2a';
+          h.style.borderRadius = '4px';
+          h.style.padding = '4px 8px';
+          setTimeout(() => { h.style.background = ''; h.style.padding = ''; }, 2000);
+          break;
+        }
+      }
+    }, 50);
+  }
+}
+
+function setActiveNav(id) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.id === id));
+}
+
+function renderFlow(flowId) {
+  const flow = flows.find(f => f.id === flowId);
+  if (!flow) return;
+  setActiveNav(flowId);
+  history.replaceState(null, '', '#' + flowId);
+  const content = document.getElementById('content');
+  const typeColors = { strategic: '#6b8cae', operational: '#6b9e5a', relationship: '#c45c5c' };
+  const color = typeColors[flow.type] || '#888';
+
+  let stepsHtml = flow.steps.map((s, i) => {
+    let refHtml = '';
+    if (s.status === 'link') {
+      const fileLabel = (files.find(f => f.id === s.linkId) || {}).label || s.linkId;
+      refHtml = `<a class="flow-step-ref" data-link-id="${s.linkId}" ${s.anchor ? `data-anchor="${s.anchor}"` : ''}>&rarr; ${fileLabel}</a>`;
+    }
+    let tbdHtml = '';
+    if (s.status === 'tbd' && s.tbd) {
+      tbdHtml = `<div class="flow-step-tbd"><strong>What to build:</strong> ${s.tbd}</div>`;
+    }
+    return `<div class="flow-step">
+      <div class="flow-step-rail">
+        <div class="flow-step-dot ${s.status}"></div>
+        ${i < flow.steps.length - 1 ? '<div class="flow-step-line"></div>' : ''}
+      </div>
+      <div class="flow-step-body">
+        <div class="flow-step-label">${s.label}</div>
+        <div class="flow-step-desc">${s.desc}</div>
+        ${refHtml}${tbdHtml}
+      </div>
+    </div>`;
+  }).join('');
+
+  const linked = flow.steps.filter(s => s.status === 'link').length;
+  const tbd = flow.steps.filter(s => s.status === 'tbd').length;
+  const trigger = flow.steps.filter(s => s.status === 'trigger').length;
+
+  content.innerHTML = `
+    <h1>${flow.label}</h1>
+    <div class="flow-meta">
+      <span class="flow-type ${flow.type}">${flow.type}</span>
+      <div class="flow-bar"><div class="flow-bar-fill" style="width:${flow.complete}%;background:${color}"></div></div>
+      <span class="flow-pct-label">${flow.complete}%</span>
+    </div>
+    <p style="color:#888;font-size:13px;margin-bottom:24px">${linked} steps linked to KB &middot; ${tbd} steps to build &middot; ${flow.steps.length} total</p>
+    <div class="flow-steps">${stepsHtml}</div>
+  `;
+  document.querySelector('main').scrollTop = 0;
+
+  // Wire up step links
+  content.querySelectorAll('.flow-step-ref').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const lid = a.dataset.linkId;
+      const anchor = a.dataset.anchor;
+      if (anchor) { loadFileWithAnchor(lid, anchor); }
+      else { loadFile(lid); }
+    });
+  });
+}
+
+function renderFlowDashboard() {
+  setActiveNav('');
+  history.replaceState(null, '', '#flows');
+  const content = document.getElementById('content');
+  const typeColors = { strategic: '#6b8cae', operational: '#6b9e5a', relationship: '#c45c5c' };
+
+  // Overall stats
+  const totalSteps = flows.reduce((sum, f) => sum + f.steps.length, 0);
+  const totalLinked = flows.reduce((sum, f) => sum + f.steps.filter(s => s.status === 'link').length, 0);
+  const totalTbd = flows.reduce((sum, f) => sum + f.steps.filter(s => s.status === 'tbd').length, 0);
+  const avgComplete = Math.round(flows.reduce((sum, f) => sum + f.complete, 0) / flows.length);
+
+  const cards = flows.map(f => {
+    const color = typeColors[f.type] || '#888';
+    const linked = f.steps.filter(s => s.status === 'link').length;
+    const tbd = f.steps.filter(s => s.status === 'tbd').length;
+    return `<div class="flow-dash-card" data-flow-id="${f.id}">
+      <div class="flow-dash-top">
+        <span class="flow-dash-label">${f.label}</span>
+        <span class="flow-type ${f.type}">${f.type}</span>
+      </div>
+      <div class="flow-dash-bar"><div class="flow-dash-bar-fill" style="width:${f.complete}%;background:${color}"></div></div>
+      <div class="flow-dash-stats">
+        <span>${f.complete}% complete</span>
+        <span>${linked} linked</span>
+        <span>${tbd} to build</span>
+        <span>${f.steps.length} steps</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Roadmap table
+  const rows = flows.map(f => {
+    const color = typeColors[f.type] || '#888';
+    return `<tr style="cursor:pointer" data-flow-id="${f.id}">
+      <td style="color:#e0e0e0;font-weight:600">${f.label}</td>
+      <td><span class="flow-type ${f.type}" style="font-size:10px;padding:2px 8px">${f.type}</span></td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="flex:1;height:4px;background:#222;border-radius:2px;overflow:hidden">
+            <div style="height:100%;width:${f.complete}%;background:${color};border-radius:2px"></div>
+          </div>
+          <span style="font-size:12px;color:#888;min-width:32px;text-align:right">${f.complete}%</span>
+        </div>
+      </td>
+      <td style="color:#c9a84c;font-size:12px">${f.gap}</td>
+    </tr>`;
+  }).join('');
+
+  content.innerHTML = `
+    <h1>AI-Augmented Flows</h1>
+    <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:24px">
+      10 workflows that transform the knowledge base into actionable intelligence.
+      Each flow shows what data feeds in, what AI produces, and what the agent does with the output.
+      Green steps link to existing KB sections. Gold steps show what needs to be built.
+    </p>
+
+    <div style="display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap">
+      <div style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:8px;padding:16px 20px;flex:1;min-width:120px">
+        <div style="font-size:24px;color:#fff;font-weight:700">${avgComplete}%</div>
+        <div style="font-size:11px;color:#555;margin-top:4px">AVG COMPLETE</div>
+      </div>
+      <div style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:8px;padding:16px 20px;flex:1;min-width:120px">
+        <div style="font-size:24px;color:#6b9e5a;font-weight:700">${totalLinked}</div>
+        <div style="font-size:11px;color:#555;margin-top:4px">STEPS LINKED</div>
+      </div>
+      <div style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:8px;padding:16px 20px;flex:1;min-width:120px">
+        <div style="font-size:24px;color:#c9a84c;font-weight:700">${totalTbd}</div>
+        <div style="font-size:11px;color:#555;margin-top:4px">STEPS TO BUILD</div>
+      </div>
+      <div style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:8px;padding:16px 20px;flex:1;min-width:120px">
+        <div style="font-size:24px;color:#6b8cae;font-weight:700">${totalSteps}</div>
+        <div style="font-size:11px;color:#555;margin-top:4px">TOTAL STEPS</div>
+      </div>
+    </div>
+
+    <h2 style="font-size:18px;color:#c9a84c;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">Roadmap</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:36px">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:10px 12px;background:#1a1a22;color:#6b8cae;font-weight:600;border:1px solid #2a2a2a;width:180px">Flow</th>
+          <th style="text-align:left;padding:10px 12px;background:#1a1a22;color:#6b8cae;font-weight:600;border:1px solid #2a2a2a;width:100px">Type</th>
+          <th style="text-align:left;padding:10px 12px;background:#1a1a22;color:#6b8cae;font-weight:600;border:1px solid #2a2a2a;width:160px">Progress</th>
+          <th style="text-align:left;padding:10px 12px;background:#1a1a22;color:#6b8cae;font-weight:600;border:1px solid #2a2a2a">Biggest Gap</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+
+    <h2 style="font-size:18px;color:#c9a84c;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">All Flows</h2>
+    ${cards}
+  `;
+  document.querySelector('main').scrollTop = 0;
+
+  content.querySelectorAll('.flow-dash-card, tr[data-flow-id]').forEach(el => {
+    el.addEventListener('click', () => renderFlow(el.dataset.flowId));
+  });
+}
+
+// ─── Client Profile System ───
+const CLIENT_STORE_KEY = 'clientProfiles';
+const ACTIVE_CLIENT_KEY = 'activeClientId';
+function getProfiles() { return JSON.parse(localStorage.getItem(CLIENT_STORE_KEY) || '{}'); }
+function saveProfiles(p) { localStorage.setItem(CLIENT_STORE_KEY, JSON.stringify(p)); }
+function getActiveId() { return localStorage.getItem(ACTIVE_CLIENT_KEY) || ''; }
+function setActiveClientId(id) { localStorage.setItem(ACTIVE_CLIENT_KEY, id); }
+function createProfile(name) {
+  const profiles = getProfiles();
+  const id = 'client-' + Date.now();
+  profiles[id] = { id, name: name || 'New Client', created: new Date().toISOString(), data: {} };
+  saveProfiles(profiles); setActiveClientId(id); return id;
+}
+function deleteProfile(id) {
+  const profiles = getProfiles(); delete profiles[id]; saveProfiles(profiles);
+  const remaining = Object.keys(profiles);
+  setActiveClientId(remaining.length ? remaining[0] : '');
+}
+function calcLeadScore(d) {
+  let s = 0;
+  s += ({ approved: 3, 'in-progress': 2, planning: 1 })[d.preApproval] || 0;
+  s += ({ 'under-60': 3, '2-4mo': 2, '4-6mo': 1 })[d.timeline] || 0;
+  s += ({ relocating: 3, 'lease-ending': 3, 'wants-to-buy': 2, exploring: 1 })[d.motivation] || 0;
+  s += ({ 'knows-exact': 3, 'general-range': 2, whatever: 1 })[d.budgetClarity] || 0;
+  s += ({ visited: 3, researching: 2, 'just-started': 1 })[d.marketKnowledge] || 0;
+  s += ({ 'not-working': 3, 'talked-few': 2, expired: 1 })[d.agentCommitment] || 0;
+  s += ({ hours: 3, day: 2, slow: 1 })[d.responsiveness] || 0;
+  return s;
+}
+function scoreCategory(score) {
+  if (score >= 18) return { label: 'Hot', cls: 'score-hot', cadence: 'Call within 1 hour. Schedule showing within 48 hours.' };
+  if (score >= 12) return { label: 'Warm', cls: 'score-warm', cadence: 'Call within 4 hours. Set up saved search. Follow up every 3 days.' };
+  if (score >= 7) return { label: 'Nurture', cls: 'score-nurture', cadence: 'Email/text within 24 hours. Monthly drip campaign.' };
+  return { label: 'Cold', cls: 'score-cold', cadence: 'Auto-responder + quarterly market update.' };
+}
+function calcTimeline(d) {
+  const bt = d.buyerType || '', pa = d.preApproval || '';
+  if (bt === 'first-time') return pa === 'approved' ? '45\u201375 days' : pa === 'in-progress' ? '60\u201390 days' : '90\u2013180 days';
+  if (bt === 'move-up') return d.homeToSell === 'sold' ? '45\u201360 days' : d.homeToSell === 'listed' ? '75\u2013120 days' : '120\u2013180 days';
+  if (bt === 'relocating') return '30\u201390 days';
+  if (bt === 'investor-cash') return '21\u201330 days';
+  if (bt === 'investor-financed') return '30\u201360 days';
+  if (bt === 'foreign') return pa === 'approved' ? '45\u201375 days' : '90\u2013180 days';
+  if (bt === 'retiree') return '30\u2013150 days';
+  return 'TBD \u2014 set buyer type';
+}
+function relevantFlows(d) {
+  const bt = d.buyerType || '', r = [{ id: 'flow-lead', label: 'Lead Qualification' }];
+  if (bt === 'foreign') r.push({ id: 'flow-foreign', label: 'Foreign Buyer' });
+  if (bt.startsWith('investor')) r.push({ id: 'flow-invest', label: 'Investment Underwriting' });
+  r.push({ id: 'flow-showing', label: 'Showing Prep' }, { id: 'flow-offer', label: 'Offer Strategy' }, { id: 'flow-transaction', label: 'Transaction Coordination' }, { id: 'flow-nurture', label: 'Post-Close & Nurture' });
+  return r;
+}
+const testProfiles = [
+  { name: 'Marcus & Tanya Williams', buyerType: 'relocating', from: 'Atlanta, GA', hhi: '$155K', budget: '$380K\u2013$420K', neighborhoods: 'Lake Nona, Horizon West', mustHaves: '4BR/2BA, good schools, pool/playground community', dealBreakers: 'HOA over $200/mo', financing: 'conventional', preApproval: 'approved', motivation: 'relocating', timeline: 'under-60', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Amazon logistics transfer. Wife is dental hygienist. 2 kids ages 5, 3. Want new construction.' },
+  { name: 'Rafael & Camila Oliveira', buyerType: 'first-time', from: 'S\u00e3o Paulo via Miami', hhi: '$130K', budget: '$320K\u2013$370K', neighborhoods: 'Kissimmee, Hunters Creek', mustHaves: '3BR/2BA, gated, home office', dealBreakers: 'Far from Brazilian community', financing: 'conventional', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'US citizens. IT PM (remote) + e-commerce. Portuguese-speaking agent preferred.' },
+  { name: 'Jennifer Kowalski', buyerType: 'first-time', from: 'Chicago, IL', hhi: '$105K', budget: '$220K\u2013$270K', neighborhoods: 'Downtown Orlando, Mills 50, Winter Park', mustHaves: '2BR/2BA, walkable, dog-friendly', dealBreakers: 'No outdoor space', financing: 'conventional', preApproval: 'planning', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'day', notes: 'Senior UX designer, fully remote. First-time buyer. Wants balcony or patio.' },
+  { name: 'David & Priya Chakrabarti', buyerType: 'relocating', from: 'Edison, NJ', hhi: '$195K', budget: '$450K\u2013$520K', neighborhoods: 'Windermere, Lake Nona', mustHaves: '5BR/3BA, top schools, study room', dealBreakers: 'Poor school ratings', financing: 'conventional', preApproval: 'approved', motivation: 'relocating', timeline: 'under-60', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Lockheed Martin transfer. $150K+ equity from NJ sale. 3 kids ages 11, 8, 5.' },
+  { name: 'Thiago Santos', buyerType: 'first-time', from: 'Belo Horizonte, Brazil', hhi: '$115K', budget: '$230K\u2013$280K', neighborhoods: 'I-4 Corridor', mustHaves: '2BR/2BA, modern, in-unit laundry', dealBreakers: 'Long commute to office', financing: 'conventional', preApproval: 'in-progress', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'just-started', agentCommitment: 'not-working', responsiveness: 'day', notes: 'Green card holder. Fintech developer, hybrid. Girlfriend joining from Brazil.' },
+  { name: 'Amanda & Derek Foster', buyerType: 'move-up', from: 'Columbus, OH', hhi: '$175K', budget: '$400K\u2013$475K', neighborhoods: 'Winter Garden, Ocoee', mustHaves: '4BR/3BA, pool, big garage', dealBreakers: 'Bad athletic programs', financing: 'conventional', preApproval: 'planning', motivation: 'relocating', timeline: '4-6mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'day', homeToSell: 'listed', notes: 'Sales director + football coach. 2 teen athletes. Summer move.' },
+  { name: 'Ana Beatriz Costa & Pedro Ferreira', buyerType: 'foreign', from: 'Campinas, Brazil', hhi: '$140K', budget: '$300K\u2013$360K', neighborhoods: 'Davenport, ChampionsGate', mustHaves: '3BR/2BA, new construction, gated', dealBreakers: 'Far from Brazilian groceries/churches', financing: 'foreign-national', preApproval: 'planning', motivation: 'relocating', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'just-started', agentCommitment: 'not-working', responsiveness: 'day', notes: 'L-1 visas. Limited US credit history. Planning family.' },
+  { name: 'Michael Torres', buyerType: 'first-time', from: 'San Juan, PR', hhi: '$120K', budget: '$200K\u2013$260K', neighborhoods: 'I-Drive, Sand Lake Road', mustHaves: '2BR/2BA, low maintenance, lock-and-leave', dealBreakers: 'High HOA', financing: 'cash', preApproval: 'approved', motivation: 'relocating', timeline: 'under-60', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Cash buyer up to $250K. Hotel operations director. Recently divorced.' },
+  { name: 'Sarah & Emily Richardson-Park', buyerType: 'relocating', from: 'Denver, CO', hhi: '$165K', budget: '$340K\u2013$400K', neighborhoods: 'Baldwin Park, Audubon Park, College Park', mustHaves: '3BR/2BA, yard, character home', dealBreakers: 'Cookie-cutter subdivisions', financing: 'conventional', preApproval: 'in-progress', motivation: 'relocating', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Nurse practitioner + freelance designer. 1 toddler, planning second.' },
+  { name: 'Carlos & Lucia Mendez', buyerType: 'relocating', from: 'Bogot\u00e1 via Houston', hhi: '$145K', budget: '$370K\u2013$430K', neighborhoods: 'Meadow Woods, Buenaventura Lakes', mustHaves: '4BR/2.5BA, large kitchen', dealBreakers: 'Far from commercial corridors', financing: 'conventional', preApproval: 'approved', motivation: 'relocating', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Restaurant owner opening 2nd location. Accountant wife transferring. 3 kids.' },
+  { name: 'Brittany Hayes', buyerType: 'first-time', from: 'Nashville, TN', hhi: '$108K', budget: '$230K\u2013$275K', neighborhoods: 'Near Orlando Health, AdventHealth', mustHaves: '2BR/2BA townhome, move-in ready', dealBreakers: 'Major projects needed', financing: 'fha', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Travel nurse going permanent. FHA pre-approved.' },
+  { name: 'Fernanda & Lucas Almeida', buyerType: 'move-up', from: 'Curitiba via Pompano Beach', hhi: '$180K', budget: '$420K\u2013$480K', neighborhoods: 'Kissimmee, Poinciana', mustHaves: '4BR/3BA, pool, home office', dealBreakers: 'Far from FL Turnpike', financing: 'conventional', preApproval: 'approved', motivation: 'relocating', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', homeToSell: 'not-listed', notes: 'US citizens. Cleaning company owner expanding to Orlando. 2 kids ages 15, 12.' },
+  { name: "James & Megan O'Brien", buyerType: 'relocating', from: 'Boston, MA', hhi: '$190K', budget: '$420K\u2013$500K', neighborhoods: 'Horizon West, Water Spring', mustHaves: '4BR/2.5BA, built 2018+, trails/parks', dealBreakers: 'Poor internet infrastructure', financing: 'conventional', preApproval: 'approved', motivation: 'relocating', timeline: 'under-60', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Cybersecurity analyst (remote) + PT. Selling Boston condo. 1 kid, expecting second.' },
+  { name: 'Tony Washington', buyerType: 'retiree', from: 'Detroit, MI', hhi: '$125K', budget: '$290K\u2013$340K', neighborhoods: 'Apopka, Clermont', mustHaves: '3BR/2BA single-story, large garage/workshop', dealBreakers: 'Two-story homes (knee issues)', financing: 'va', preApproval: 'planning', motivation: 'wants-to-buy', timeline: '4-6mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'day', notes: 'Retired police lieutenant. VA eligible. Woodworking hobby. Son in Tampa.' },
+  { name: 'Renata Vieira', buyerType: 'first-time', from: 'Rio de Janeiro, Brazil', hhi: '$100K', budget: '$180K\u2013$230K', neighborhoods: 'Downtown Orlando, Winter Park', mustHaves: '1-2BR condo, modern finishes', dealBreakers: 'Dated interiors', financing: 'fha', preApproval: 'planning', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'day', notes: 'Green card holder. Social media manager. Needs first-time buyer programs.' },
+  { name: 'Kevin & Lisa Nguyen', buyerType: 'relocating', from: 'San Jose, CA', hhi: '$200K', budget: '$450K\u2013$530K', neighborhoods: 'Lake Nona, Windermere', mustHaves: '4BR/3BA, modern open plan, top schools', dealBreakers: 'No Asian grocery access within 20min', financing: 'conventional', preApproval: 'approved', motivation: 'relocating', timeline: 'under-60', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'EA studio transfer. Significant Bay Area savings. Lisa re-entering workforce.' },
+  { name: 'Danielle Brooks', buyerType: 'first-time', from: 'Charlotte, NC', hhi: '$112K', budget: '$280K\u2013$330K', neighborhoods: 'Avalon Park, Waterford Lakes', mustHaves: '3BR/2BA, fenced yard, good elementary', dealBreakers: 'Pine Hills, unsafe areas', financing: 'fha', preApproval: 'approved', motivation: 'relocating', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Single mom. OCPS teacher + tutoring. 1 kid age 6.' },
+  { name: 'Gustavo & Mariana Ribeiro', buyerType: 'investor-cash', from: 'Goi\u00e2nia, Brazil', hhi: '$160K', budget: '$350K\u2013$410K', neighborhoods: 'Near UCF', mustHaves: '3BR/2BA, single-story, gated, STR-capable', dealBreakers: 'Far from UCF', financing: 'cash', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'day', notes: 'Semi-retired. Cash buyers. Daughter at UCF. Need homestead/STR guidance.' },
+  { name: 'Ryan & Jessica Palmer', buyerType: 'first-time', from: 'Philadelphia, PA', hhi: '$135K', budget: '$300K\u2013$360K', neighborhoods: 'Sanford, Oviedo, Winter Springs', mustHaves: '3BR/2BA, garage, grow-into home', dealBreakers: 'Move again in 3 years', financing: 'fha', preApproval: 'in-progress', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Electrician IBEW + RN. Planning kids next year.' },
+  { name: 'Patricia & Reggie Coleman', buyerType: 'retiree', from: 'Washington, DC', hhi: '$185K', budget: '$370K\u2013$430K', neighborhoods: 'Celebration, Reunion, Clermont', mustHaves: '3BR/2BA single-story, guest room, low maintenance', dealBreakers: 'Far from golf/pickleball', financing: 'conventional', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'visited', agentCommitment: 'not-working', responsiveness: 'hours', notes: 'Federal retirees. $200K+ equity from DC sale. Grandkids in Jax and Tampa.' },
+  { name: 'Ricardo Martins (NRA)', buyerType: 'foreign', from: 'S\u00e3o Paulo (NRA)', hhi: '$155K', budget: '$400K\u2013$500K', neighborhoods: 'Osceola STR zone', mustHaves: '4BR/3BA pool home, Airbnb year-round', dealBreakers: 'Non-STR zones', financing: 'cash', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'general-range', marketKnowledge: 'just-started', agentCommitment: 'not-working', responsiveness: 'day', notes: 'CRITICAL: No ITIN, never filed US tax return, unaware of FIRPTA/estate tax.' },
+  { name: 'Juliana & Marcos Pereira (NRA)', buyerType: 'foreign', from: 'Rio de Janeiro (NRA)', hhi: '$455K', budget: '$800K\u2013$1.2M', neighborhoods: 'Dr. Phillips, Windermere', mustHaves: 'Second home, family base, occasional rental', dealBreakers: 'Far from Restaurant Row', financing: 'cash', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'researching', agentCommitment: 'not-working', responsiveness: 'day', notes: 'CRITICAL: $296K estate tax exposure. Need irrevocable trust or life insurance.' },
+  { name: 'Bruno & Tatiane Silva (NRA)', buyerType: 'foreign', from: 'Florian\u00f3polis (NRA)', hhi: '$69K', budget: '$250K\u2013$320K', neighborhoods: 'Poinciana, Kissimmee', mustHaves: 'Investment property, USD income', dealBreakers: 'Negative cash flow', financing: 'cash', preApproval: 'planning', motivation: 'exploring', timeline: '4-6mo', budgetClarity: 'whatever', marketKnowledge: 'just-started', agentCommitment: 'talked-few', responsiveness: 'slow', notes: 'STRETCHED TOO THIN. E-2 visa misconception. ~R$100K short on full cost stack.' },
+  { name: 'Dona Helena Cardoso (NRA)', buyerType: 'foreign', from: 'Goi\u00e2nia (NRA)', hhi: '$44K', budget: '$350K\u2013$420K', neighborhoods: 'Kissimmee', mustHaves: '3BR/2BA near daughter, single-story', dealBreakers: 'Far from family in Kissimmee', financing: 'cash', preApproval: 'approved', motivation: 'wants-to-buy', timeline: '2-4mo', budgetClarity: 'knows-exact', marketKnowledge: 'just-started', agentCommitment: 'not-working', responsiveness: 'day', notes: 'Age 72. $140K estate tax exposure. B-2 visa, no homestead. Portuguese only.' },
+];
+
+function renderClientPage(profileId) {
+  const profiles = getProfiles();
+  const activeId = profileId || getActiveId();
+  const profile = profiles[activeId];
+  setActiveNav('client-page');
+  history.replaceState(null, '', '#client-page');
+  const content = document.getElementById('content');
+
+  function field(key, label, placeholder, linkId) {
+    const val = profile ? (profile.data[key] || '') : '';
+    const escaped = val.replace(/"/g, '&quot;');
+    const linkHtml = linkId ? `<a class="client-field-link" data-link-id="${linkId}">\u2192 ${(files.find(f => f.id === linkId) || {}).label}</a>` : '';
+    return `<div class="client-field"><span class="client-field-label">${label}</span><input type="text" data-key="${key}" value="${escaped}" placeholder="${placeholder}" ${!profile ? 'disabled' : ''} />${linkHtml}</div>`;
+  }
+  function sel(key, label, options, linkId) {
+    const val = profile ? (profile.data[key] || '') : '';
+    const linkHtml = linkId ? `<a class="client-field-link" data-link-id="${linkId}">\u2192 ${(files.find(f => f.id === linkId) || {}).label}</a>` : '';
+    const opts = options.map(o => `<option value="${o.value}" ${val === o.value ? 'selected' : ''}>${o.label}</option>`).join('');
+    return `<div class="client-field"><span class="client-field-label">${label}</span><select data-key="${key}" ${!profile ? 'disabled' : ''}><option value="">\u2014 select \u2014</option>${opts}</select>${linkHtml}</div>`;
+  }
+  function ta(key, label, placeholder) {
+    const val = profile ? (profile.data[key] || '') : '';
+    return `<div class="client-field"><span class="client-field-label">${label}</span><textarea data-key="${key}" placeholder="${placeholder}" ${!profile ? 'disabled' : ''}>${val.replace(/</g,'&lt;')}</textarea></div>`;
+  }
+
+  const profileKeys = Object.keys(profiles);
+  const profileOpts = profileKeys.map(k => `<option value="${k}" ${k === activeId ? 'selected' : ''}>${profiles[k].name}</option>`).join('');
+  const d = profile ? profile.data : {};
+  const score = calcLeadScore(d);
+  const cat = scoreCategory(score);
+  const timeline = calcTimeline(d);
+  const rFlows = profile ? relevantFlows(d) : [];
+
+  content.innerHTML = `
+    <h1>Buyer Profile</h1>
+    <div class="profile-bar">
+      <select id="profile-select"><option value="">\u2014 select client \u2014</option>${profileOpts}</select>
+      <button id="new-profile-btn" class="btn-green">+ New Client</button>
+      ${profile ? '<button id="delete-profile-btn" class="btn-danger">Delete</button>' : ''}
+      <div style="flex:1"></div>
+      <select id="load-test-btn" style="max-width:260px"><option value="">Load test profile...</option>${testProfiles.map((p, i) => `<option value="${i}">${p.name}</option>`).join('')}</select>
+    </div>
+
+    ${profile ? `
+    <div class="client-section" style="border-color:#333">
+      <h3 style="display:flex;justify-content:space-between;align-items:center">
+        Score & Routing
+        <span><span class="score-value">${score}</span><span style="color:#888;font-size:13px">/ 21</span></span>
+      </h3>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <span class="score-badge ${cat.cls}">${cat.label}</span>
+        <span style="font-size:13px;color:#888">${cat.cadence}</span>
+      </div>
+      <div style="font-size:13px;color:#888;margin-bottom:8px">
+        <strong style="color:#e0e0e0">Timeline:</strong> ${timeline}
+      </div>
+      <div style="font-size:13px;color:#888">
+        <strong style="color:#e0e0e0">Relevant flows:</strong>
+        <div class="flow-tags">
+          ${rFlows.map(f => {
+            const flow = flows.find(fl => fl.id === f.id);
+            const type = flow ? flow.type : 'strategic';
+            return `<a class="flow-tag flow-tag-${type}" data-flow-id="${f.id}">${f.label}</a>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+    ` : `<div class="client-section" style="text-align:center;padding:40px 20px">
+      <p style="color:#555;font-size:14px">Select a client or create a new one to get started.</p>
+    </div>`}
+
+    <div class="client-section">
+      <h3>Profile</h3>
+      ${field('name', 'Name', 'Full name(s)')}
+      ${field('contact', 'Contact', 'Phone, email')}
+      ${field('from', 'Relocating from', 'City, state or country')}
+      ${field('source', 'Lead source', 'Referral, website, open house...')}
+      ${sel('buyerType', 'Buyer type', [
+        { value: 'first-time', label: 'First-time buyer' },
+        { value: 'move-up', label: 'Move-up (owns current home)' },
+        { value: 'relocating', label: 'Relocating (employer-driven)' },
+        { value: 'investor-cash', label: 'Investor (cash)' },
+        { value: 'investor-financed', label: 'Investor (financed)' },
+        { value: 'foreign', label: 'Foreign buyer / NRA' },
+        { value: 'retiree', label: 'Retiree / downsizer' },
+      ])}
+      ${field('hhi', 'Household income', '$___K')}
+      ${field('kids', 'Kids / household', 'Ages, count')}
+    </div>
+
+    <div class="client-section">
+      <h3>Lead Scoring</h3>
+      ${sel('preApproval', 'Pre-approval', [
+        { value: 'approved', label: 'Pre-approved, letter in hand (+3)' },
+        { value: 'in-progress', label: 'Application started (+2)' },
+        { value: 'planning', label: 'Planning to apply (+1)' },
+        { value: 'none', label: 'No plans (+0)' },
+      ], 'financing')}
+      ${sel('timeline', 'Timeline', [
+        { value: 'under-60', label: 'Under 60 days (+3)' },
+        { value: '2-4mo', label: '2\u20134 months (+2)' },
+        { value: '4-6mo', label: '4\u20136 months (+1)' },
+        { value: '6plus', label: '6+ months or just looking (+0)' },
+      ])}
+      ${sel('motivation', 'Motivation', [
+        { value: 'relocating', label: 'Relocating / lease ending / life event (+3)' },
+        { value: 'lease-ending', label: 'Lease ending (+3)' },
+        { value: 'wants-to-buy', label: 'Wants to buy, flexible timing (+2)' },
+        { value: 'exploring', label: 'Casually exploring (+1)' },
+        { value: 'none', label: 'No clear reason (+0)' },
+      ])}
+      ${sel('budgetClarity', 'Budget clarity', [
+        { value: 'knows-exact', label: 'Knows payment + down payment (+3)' },
+        { value: 'general-range', label: 'General range (+2)' },
+        { value: 'whatever', label: '"Whatever we qualify for" (+1)' },
+        { value: 'no-idea', label: 'No idea (+0)' },
+      ])}
+      ${sel('marketKnowledge', 'Market knowledge', [
+        { value: 'visited', label: 'Knows areas, visited Orlando (+3)' },
+        { value: 'researching', label: 'Researching online 2+ months (+2)' },
+        { value: 'just-started', label: 'Just started looking (+1)' },
+        { value: 'none', label: 'No research (+0)' },
+      ])}
+      ${sel('agentCommitment', 'Agent commitment', [
+        { value: 'not-working', label: 'Not working with another agent (+3)' },
+        { value: 'talked-few', label: 'Talked to a few (+2)' },
+        { value: 'expired', label: 'Had agent, agreement expired (+1)' },
+        { value: 'under-contract', label: 'Under contract with another (+0)' },
+      ])}
+      ${sel('responsiveness', 'Responsiveness', [
+        { value: 'hours', label: 'Replies within hours (+3)' },
+        { value: 'day', label: 'Replies within a day (+2)' },
+        { value: 'slow', label: 'Slow responses (+1)' },
+        { value: 'ghosting', label: 'Ghosting (+0)' },
+      ])}
+      ${profile && d.buyerType === 'move-up' ? sel('homeToSell', 'Current home status', [
+        { value: 'sold', label: 'Already sold or under contract' },
+        { value: 'listed', label: 'Currently listed' },
+        { value: 'not-listed', label: 'Not yet listed' },
+      ]) : ''}
+    </div>
+
+    <div class="client-section">
+      <h3>Financial Snapshot</h3>
+      ${field('budget', 'Budget range', '$___K\u2013$___K')}
+      ${field('monthlyPayment', 'Monthly payment tolerance', '$___/mo', 'taxes')}
+      ${sel('financing', 'Financing type', [
+        { value: 'conventional', label: 'Conventional' },
+        { value: 'fha', label: 'FHA' },
+        { value: 'va', label: 'VA' },
+        { value: 'cash', label: 'Cash' },
+        { value: 'foreign-national', label: 'Foreign national loan' },
+        { value: 'dscr', label: 'DSCR (investor)' },
+      ], 'financing')}
+      ${field('downPayment', 'Down payment', 'Amount and source')}
+      ${field('lender', 'Lender', 'Name and contact')}
+      ${d.buyerType === 'foreign' ? field('currencyPlan', 'Currency transfer plan', 'Wise, bank wire, timeline', 'brazilian') : ''}
+    </div>
+
+    <div class="client-section">
+      <h3>Search Criteria</h3>
+      ${field('neighborhoods', 'Target neighborhoods', 'Areas of interest', 'neighborhoods')}
+      ${field('mustHaves', 'Must-haves', 'Beds, baths, pool, garage...')}
+      ${field('dealBreakers', 'Deal-breakers', 'Flood zone, HOA limit, school zone...', 'risks')}
+      ${field('commute', 'Commute requirements', 'Workplace, max drive time', 'infrastructure')}
+      ${sel('propertyType', 'Property type', [
+        { value: 'sfr', label: 'Single family' },
+        { value: 'townhome', label: 'Townhome' },
+        { value: 'condo', label: 'Condo' },
+        { value: 'new-construction', label: 'New construction' },
+      ])}
+    </div>
+
+    <div class="client-section">
+      <h3>Notes</h3>
+      ${ta('notes', 'Agent notes', 'Key observations, concerns, action items...')}
+    </div>
+  `;
+  document.querySelector('main').scrollTop = 0;
+
+  // Wire KB links
+  content.querySelectorAll('.client-field-link').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); loadFile(a.dataset.linkId); });
+  });
+  // Wire flow tags
+  content.querySelectorAll('.flow-tag').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); renderFlow(a.dataset.flowId); });
+  });
+  // Auto-save on input change
+  content.querySelectorAll('input, select, textarea').forEach(el => {
+    if (!el.dataset.key) return;
+    const ev = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(ev, () => {
+      if (!profile) return;
+      profile.data[el.dataset.key] = el.value;
+      if (el.dataset.key === 'name' && el.value.trim()) profile.name = el.value.trim();
+      const allProfiles = getProfiles();
+      allProfiles[activeId] = profile;
+      saveProfiles(allProfiles);
+      const scoringFields = ['preApproval','timeline','motivation','budgetClarity','marketKnowledge','agentCommitment','responsiveness','buyerType','homeToSell'];
+      if (scoringFields.includes(el.dataset.key)) renderClientPage(activeId);
+      updateClientNav();
+    });
+  });
+  // Profile switcher
+  const profileSelect = document.getElementById('profile-select');
+  if (profileSelect) profileSelect.addEventListener('change', () => {
+    if (profileSelect.value) { setActiveClientId(profileSelect.value); renderClientPage(profileSelect.value); }
+  });
+  // New profile
+  document.getElementById('new-profile-btn').addEventListener('click', () => {
+    const id = createProfile('New Client'); updateClientNav(); renderClientPage(id);
+  });
+  // Delete
+  const deleteBtn = document.getElementById('delete-profile-btn');
+  if (deleteBtn) deleteBtn.addEventListener('click', () => {
+    if (confirm('Delete this client profile?')) { deleteProfile(activeId); updateClientNav(); renderClientPage(); }
+  });
+  // Load test profile
+  const loadTestBtn = document.getElementById('load-test-btn');
+  if (loadTestBtn) loadTestBtn.addEventListener('change', () => {
+    const idx = parseInt(loadTestBtn.value);
+    if (isNaN(idx)) return;
+    const tp = testProfiles[idx];
+    const id = createProfile(tp.name);
+    const allProfiles = getProfiles();
+    const data = {};
+    for (const k of Object.keys(tp)) if (k !== 'name') data[k] = tp[k];
+    allProfiles[id].data = data;
+    saveProfiles(allProfiles);
+    updateClientNav();
+    renderClientPage(id);
+  });
+}
+
+// ─── Home Swap Calculator ───
+function calcMortgagePayment(principal, annualRate, years) {
+  const r = annualRate / 100 / 12;
+  const n = years * 12;
+  if (r === 0) return principal / n;
+  return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+}
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+function renderSwapCalc() {
+  setActiveNav('swap-calc');
+  history.replaceState(null, '', '#swap-calc');
+  const content = document.getElementById('content');
+
+  content.innerHTML = `
+    <h1>What If You Moved?</h1>
+    <p style="color:#888;font-size:14.5px;line-height:1.7;margin-bottom:8px">
+      Most homeowners already have the equity to make a move — they just don't realize it.
+      Enter your numbers and see what's possible.
+    </p>
+    <p style="color:#555;font-size:12px;margin-bottom:28px">Estimates only. Actual costs depend on lender, location, and market conditions.</p>
+
+    <div class="client-section">
+      <h3>Your Current Situation</h3>
+      <div class="calc-input-grid">
+        <div class="calc-input-group">
+          <label>Current Home Value</label>
+          <div class="calc-input-wrap">
+            <span class="calc-prefix">$</span>
+            <input type="text" id="calc-home-value" class="has-prefix" placeholder="400,000" inputmode="numeric" />
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>Mortgage Balance (what you owe)</label>
+          <div class="calc-input-wrap">
+            <span class="calc-prefix">$</span>
+            <input type="text" id="calc-balance" class="has-prefix" placeholder="250,000" inputmode="numeric" />
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>Current Monthly Payment</label>
+          <div class="calc-input-wrap">
+            <span class="calc-prefix">$</span>
+            <input type="text" id="calc-current-payment" class="has-prefix" placeholder="2,100" inputmode="numeric" />
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>When did you buy?</label>
+          <select id="calc-purchase-year">
+            <option value="">Select year...</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015 or earlier</option>
+          </select>
+          <div id="calc-rate-hint" class="calc-rate-hint"></div>
+        </div>
+        <div class="calc-input-group" style="grid-column: 1 / -1">
+          <label>New Home Target Price</label>
+          <div class="calc-input-wrap">
+            <span class="calc-prefix">$</span>
+            <input type="text" id="calc-target" class="has-prefix" placeholder="475,000" inputmode="numeric" />
+          </div>
+        </div>
+      </div>
+
+      <details class="calc-advanced">
+        <summary>Adjust assumptions</summary>
+        <div class="calc-advanced-grid">
+          <div class="calc-adv-group">
+            <label>Interest rate %</label>
+            <input type="text" id="calc-rate" value="6.75" />
+          </div>
+          <div class="calc-adv-group">
+            <label>Property tax rate %</label>
+            <input type="text" id="calc-tax-rate" value="0.93" />
+          </div>
+          <div class="calc-adv-group">
+            <label>Annual insurance $</label>
+            <input type="text" id="calc-insurance" value="2400" />
+          </div>
+          <div class="calc-adv-group">
+            <label>Selling costs %</label>
+            <input type="text" id="calc-sell-costs" value="7" />
+          </div>
+          <div class="calc-adv-group">
+            <label>Monthly HOA $</label>
+            <input type="text" id="calc-hoa" value="0" />
+          </div>
+          <div class="calc-adv-group">
+            <label>Loan term (years)</label>
+            <input type="text" id="calc-term" value="30" />
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div id="calc-results" class="calc-results">
+      <div class="client-section" style="border-color:#333">
+        <h3 style="color:#c9a84c">Your Equity</h3>
+        <div id="calc-equity-details"></div>
+      </div>
+
+      <div class="client-section" style="border-color:#333">
+        <h3 style="color:#6b8cae">New Home Financing</h3>
+        <div id="calc-financing-details"></div>
+      </div>
+
+      <div class="client-section" style="border-color:#6b9e5a">
+        <h3>The Bottom Line</h3>
+        <div id="calc-bottom-line"></div>
+        <div class="calc-buydown-row" style="margin-top:16px">
+          <label>
+            <input type="checkbox" id="calc-buydown-toggle" style="margin-right:6px" />
+            Use 1 point to buy down the rate (−0.25%)
+          </label>
+          <span id="calc-buydown-cost" style="font-size:12px;color:#555"></span>
+        </div>
+      </div>
+
+      <div class="client-section" style="border-color:#222">
+        <h3 style="color:#6b8cae">Programs & Next Steps</h3>
+        <div id="calc-programs"></div>
+      </div>
+    </div>
+  `;
+  document.querySelector('main').scrollTop = 0;
+
+  // Parse dollar input → number
+  function parseDollar(v) {
+    return parseFloat(v.replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  // Typical 30yr fixed rates by year (approximate annual averages)
+  const historicalRates = {
+    '2015': 3.85, '2016': 3.65, '2017': 3.99, '2018': 4.54, '2019': 3.94,
+    '2020': 3.11, '2021': 2.96, '2022': 5.34, '2023': 6.81, '2024': 6.72, '2025': 6.65,
+  };
+
+  function recalc() {
+    const homeValue = parseDollar(document.getElementById('calc-home-value').value);
+    const balance = parseDollar(document.getElementById('calc-balance').value);
+    const currentPayment = parseDollar(document.getElementById('calc-current-payment').value);
+    const target = parseDollar(document.getElementById('calc-target').value);
+    const purchaseYear = document.getElementById('calc-purchase-year').value;
+    const rate = parseFloat(document.getElementById('calc-rate').value) || 6.75;
+    const taxRate = parseFloat(document.getElementById('calc-tax-rate').value) || 0.93;
+    const insurance = parseDollar(document.getElementById('calc-insurance').value);
+    const sellCostsPct = parseFloat(document.getElementById('calc-sell-costs').value) || 7;
+    const hoa = parseDollar(document.getElementById('calc-hoa').value);
+    const term = parseInt(document.getElementById('calc-term').value) || 30;
+    const buydown = document.getElementById('calc-buydown-toggle').checked;
+
+    // Show rate hint based on purchase year
+    const rateHint = document.getElementById('calc-rate-hint');
+    const oldRate = historicalRates[purchaseYear];
+    if (purchaseYear && oldRate) {
+      const rateDiff = rate - oldRate;
+      if (oldRate < 5) {
+        rateHint.innerHTML = `You likely locked in around <strong>${oldRate}%</strong>. Today's rates are ~${rate}%, but your equity makes up for it.`;
+      } else {
+        rateHint.innerHTML = `Rates in ${purchaseYear} averaged <strong>${oldRate}%</strong> \u2014 similar to today. A move won't change your rate much.`;
+      }
+    } else {
+      rateHint.textContent = '';
+    }
+
+    const results = document.getElementById('calc-results');
+    if (!homeValue || !balance || !target) { results.classList.remove('visible'); return; }
+    results.classList.add('visible');
+
+    // Equity
+    const grossEquity = homeValue - balance;
+    const sellingCosts = homeValue * (sellCostsPct / 100);
+    const netEquity = grossEquity - sellingCosts;
+    const equityPct = (grossEquity / homeValue * 100);
+
+    // Years of equity built
+    const yearsOwned = purchaseYear ? (2026 - parseInt(purchaseYear)) : 0;
+
+    // Financing
+    const downPayment = Math.max(0, netEquity);
+    const dpPct = (downPayment / target * 100);
+    const effectiveRate = buydown ? Math.max(rate - 0.25, 0) : rate;
+    const loanAmount = target - downPayment;
+    const pointsCost = buydown ? (loanAmount * 0.01) : 0;
+    const pi = loanAmount > 0 ? calcMortgagePayment(loanAmount, effectiveRate, term) : 0;
+    const monthlyTax = target * (taxRate / 100) / 12;
+    const monthlyInsurance = insurance / 12;
+    const pmi = dpPct < 20 ? (loanAmount * 0.005 / 12) : 0;
+    const newPayment = pi + monthlyTax + monthlyInsurance + hoa + pmi;
+    const diff = newPayment - currentPayment;
+
+    // Equity section
+    document.getElementById('calc-equity-details').innerHTML = `
+      <div class="calc-hero">
+        <div class="calc-hero-card">
+          <div class="val" style="color:#c9a84c">${fmt(grossEquity)}</div>
+          <div class="lbl">Gross Equity</div>
+        </div>
+        <div class="calc-hero-card">
+          <div class="val" style="color:#888">${fmt(sellingCosts)}</div>
+          <div class="lbl">Selling Costs (${sellCostsPct}%)</div>
+        </div>
+        <div class="calc-hero-card">
+          <div class="val" style="color:${netEquity > 0 ? '#6b9e5a' : '#c45c5c'}">${fmt(netEquity)}</div>
+          <div class="lbl">Net Equity (Your Down Payment)</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#555;margin-bottom:4px">Equity vs Mortgage</div>
+      <div class="calc-equity-bar">
+        <div class="calc-equity-fill" style="width:${Math.min(equityPct, 100)}%;background:#c9a84c;border-radius:12px 0 0 12px"></div>
+        <div class="calc-equity-fill" style="width:${Math.min(100 - equityPct, 100)}%;background:#333;border-radius:0 12px 12px 0"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#888">
+        <span>Equity: ${equityPct.toFixed(0)}%</span>
+        <span>Owed: ${(100 - equityPct).toFixed(0)}%</span>
+      </div>
+      ${yearsOwned > 0 ? `<div style="margin-top:12px;font-size:13px;color:#6b9e5a;background:#0d1a0d;padding:10px 14px;border-radius:6px;border-left:3px solid #6b9e5a">
+        ${yearsOwned} year${yearsOwned > 1 ? 's' : ''} of ownership built <strong style="color:#fff">${fmt(grossEquity)}</strong> in equity${oldRate && oldRate < 5 ? `. You locked in at ~${oldRate}% \u2014 today's rates are higher, but your equity is your superpower.` : '.'}
+      </div>` : ''}
+    `;
+
+    // Financing section
+    document.getElementById('calc-financing-details').innerHTML = `
+      <div class="calc-line-item"><span class="k">New home price</span><span class="v">${fmt(target)}</span></div>
+      <div class="calc-line-item"><span class="k">Down payment from equity</span><span class="v green">${fmt(downPayment)} (${dpPct.toFixed(1)}%)</span></div>
+      <div class="calc-line-item"><span class="k">Loan amount</span><span class="v">${fmt(loanAmount)}</span></div>
+      <div class="calc-line-item"><span class="k">Interest rate</span><span class="v">${effectiveRate.toFixed(2)}%${buydown ? ' (bought down)' : ''}</span></div>
+      <div class="calc-line-item"><span class="k">Principal & interest</span><span class="v">${fmt(pi)}/mo</span></div>
+      <div class="calc-line-item"><span class="k">Property tax</span><span class="v">${fmt(monthlyTax)}/mo</span></div>
+      <div class="calc-line-item"><span class="k">Insurance</span><span class="v">${fmt(monthlyInsurance)}/mo</span></div>
+      ${hoa > 0 ? `<div class="calc-line-item"><span class="k">HOA</span><span class="v">${fmt(hoa)}/mo</span></div>` : ''}
+      ${pmi > 0 ? `<div class="calc-line-item"><span class="k">PMI (est.)</span><span class="v red">${fmt(pmi)}/mo</span></div>` : ''}
+      ${dpPct >= 20 ? `<div class="calc-line-item"><span class="k">PMI</span><span class="v green">Not required (${dpPct.toFixed(0)}% down)</span></div>` : ''}
+    `;
+
+    // Bottom line
+    const diffClass = Math.abs(diff) < 500 ? 'calc-diff-green' : diff < 1000 ? 'calc-diff-orange' : 'calc-diff-red';
+    const diffSign = diff >= 0 ? '+' : '';
+    document.getElementById('calc-bottom-line').innerHTML = `
+      <div class="calc-comparison">
+        <div class="calc-compare-box">
+          <div class="payment">${fmt(currentPayment)}</div>
+          <div class="label">Current Payment</div>
+        </div>
+        <div class="calc-arrow">\u2192</div>
+        <div class="calc-compare-box" style="border-color:${diff < 500 ? '#6b9e5a' : diff < 1000 ? '#c9a84c' : '#c45c5c'}">
+          <div class="payment">${fmt(newPayment)}</div>
+          <div class="label">New Estimated Payment</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:8px">
+        <span class="calc-diff-badge ${diffClass}">${diffSign}${fmt(diff)}/mo</span>
+        <span style="color:#888;font-size:14px">${diff < 500 ? 'Very manageable upgrade' : diff < 1000 ? 'Moderate increase' : 'Significant increase \u2014 consider a lower target or rate buydown'}</span>
+      </div>
+    `;
+
+    // Buydown cost label
+    document.getElementById('calc-buydown-cost').textContent = buydown
+      ? `(1 point = ${fmt(pointsCost)} at closing)`
+      : '';
+
+    // Programs section
+    const programs = [];
+    programs.push({
+      title: 'Bridge Loan / Buy-Before-You-Sell',
+      desc: 'Programs like Knock, HomeLight, or local lender bridge loans let you buy your new home before selling your current one. Your equity is used as collateral. Ask your lender about bridge-to-sale options.'
+    });
+    if (dpPct < 20) {
+      programs.push({
+        title: 'Down Payment Assistance',
+        desc: `Your net equity covers ${dpPct.toFixed(0)}% down. City of Orlando offers up to $45,000 in forgivable DPA (50% AMI required). Orange County offers up to $70,000 for very low income, $40,000 for low income.`
+      });
+    }
+    programs.push({
+      title: 'Rate Buydown with Points',
+      desc: `Each point costs ~1% of the loan (${fmt(loanAmount * 0.01)}) and typically reduces your rate by 0.25%. Toggle the checkbox above to see the impact. Some builders offer free buydowns on new construction.`
+    });
+    if (netEquity > 50000) {
+      programs.push({
+        title: 'Strong Equity Position',
+        desc: `With ${fmt(netEquity)} in net equity, you have significant negotiating power. You can use part for down payment and part to buy down your rate, covering closing costs, or keeping reserves.`
+      });
+    }
+
+    document.getElementById('calc-programs').innerHTML = programs.map(p =>
+      `<div class="calc-program-card"><h4>${p.title}</h4><p>${p.desc}</p></div>`
+    ).join('');
+  }
+
+  // Wire up inputs and selects
+  document.querySelectorAll('#content input').forEach(input => {
+    input.addEventListener('input', recalc);
+    input.addEventListener('change', recalc);
+  });
+  document.querySelectorAll('#content select').forEach(sel => {
+    sel.addEventListener('change', recalc);
+  });
+}
+
+// ─── Client nav in sidebar ───
+function updateClientNav() {
+  document.querySelectorAll('.client-nav-item, .client-nav-heading').forEach(el => el.remove());
+  const profiles = getProfiles();
+  const keys = Object.keys(profiles);
+  if (keys.length === 0) return;
+  const navLinks = document.getElementById('nav-links');
+  const heading = document.createElement('h2');
+  heading.textContent = 'Clients';
+  heading.className = 'client-nav-heading';
+  heading.style.cssText = 'font-size:11px;padding:16px 16px 6px;color:#555;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;';
+  heading.addEventListener('click', () => renderClientPage());
+  navLinks.appendChild(heading);
+  keys.forEach(k => {
+    const p = profiles[k];
+    const a = document.createElement('a');
+    a.href = '#client-page';
+    a.className = 'flow-link client-nav-item';
+    a.dataset.id = 'client-' + k;
+    a.innerHTML = `<span>${p.name}</span>`;
+    a.addEventListener('click', e => { e.preventDefault(); setActiveClientId(k); renderClientPage(k); });
+    navLinks.appendChild(a);
+  });
+}
+updateClientNav();
+
+// Search
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+let searchTimeout;
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(doSearch, 200);
+});
+
+async function doSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+  if (q.length < 2) {
+    searchResults.style.display = 'none';
+    document.getElementById('nav-links').style.display = '';
+    return;
+  }
+
+  // Ensure all files are cached
+  await Promise.all(files.map(f => fetchFile(f.id)));
+
+  const results = [];
+  for (const f of files) {
+    const text = cache[f.id];
+    const lines = text.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].toLowerCase().includes(q)) {
+        results.push({ file: f, line: lines[i].trim(), lineNum: i });
+        if (results.length > 30) break;
+      }
+    }
+    if (results.length > 30) break;
+  }
+
+  searchResults.innerHTML = '';
+  document.getElementById('nav-links').style.display = 'none';
+  searchResults.style.display = '';
+
+  if (results.length === 0) {
+    searchResults.innerHTML = '<div style="padding:8px 0;color:#555;font-size:12px">No results</div>';
+    return;
+  }
+
+  for (const r of results) {
+    const div = document.createElement('div');
+    div.className = 'search-result';
+    div.style.cursor = 'pointer';
+    const escaped = r.line.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const highlighted = escaped.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<mark>$1</mark>');
+    div.innerHTML = `<div class="file">${r.file.label}</div><div class="line">${highlighted.slice(0, 120)}</div>`;
+    div.addEventListener('click', () => {
+      loadFile(r.file.id);
+      searchInput.value = '';
+      searchResults.style.display = 'none';
+      document.getElementById('nav-links').style.display = '';
+    });
+    searchResults.appendChild(div);
+  }
+}
+
+// Handle hash on load
+const hash = location.hash.slice(1);
+if (hash === 'flows') {
+  renderFlowDashboard();
+} else if (hash === 'client-page') {
+  renderClientPage();
+} else if (hash === 'swap-calc') {
+  renderSwapCalc();
+} else if (hash && flows.find(f => f.id === hash)) {
+  renderFlow(hash);
+} else {
+  loadFile(hash && files.find(f => f.id === hash) ? hash : 'readme');
+}
+
+// ─── Config-driven UI ───
+const cfg = window.ORLANDO_CONFIG || {};
+document.getElementById('banner-client-name').textContent = cfg.clientName || cfg.agent?.name || 'Ana Thurman';
+
+// Logo: if config has a logoUrl, show the image; otherwise show text
+if (cfg.logoUrl) {
+  const logoImg = document.getElementById('nav-logo-img');
+  logoImg.src = cfg.logoUrl;
+  logoImg.alt = cfg.clientName || 'Logo';
+  logoImg.style.display = 'block';
+  document.getElementById('nav-logo-text').style.display = 'none';
+} else {
+  document.getElementById('nav-logo-text').textContent = cfg.agent?.name ? (cfg.agent.name + ' | Orlando') : 'Orlando RE';
+}
+
+// Sidebar re-expand toggle (for chat maximize)
+const navExpandToggle = document.createElement('div');
+navExpandToggle.className = 'nav-expand-toggle';
+navExpandToggle.innerHTML = '&#x25B6;';
+navExpandToggle.title = 'Show sidebar';
+navExpandToggle.addEventListener('click', () => {
+  document.querySelector('nav').classList.remove('collapsed-by-chat');
+  navExpandToggle.classList.remove('visible');
+});
+document.body.appendChild(navExpandToggle);
+
+document.addEventListener('chat-expanded', () => {
+  document.querySelector('nav').classList.add('collapsed-by-chat');
+  navExpandToggle.classList.add('visible');
+});
+document.addEventListener('chat-collapsed', () => {
+  document.querySelector('nav').classList.remove('collapsed-by-chat');
+  navExpandToggle.classList.remove('visible');
+});
+
+// ─── PostMessage Bridge (mception portal ↔ viewer) ───
+const ORLANDO_SAVED_KEY = 'orlando-saved-items';
+function getOSavedItems() { return JSON.parse(localStorage.getItem(ORLANDO_SAVED_KEY) || '[]'); }
+function addOSavedItem(item) {
+  const items = getOSavedItems();
+  const entry = { id: 'item-' + Date.now(), ...item, createdAt: new Date().toISOString() };
+  items.push(entry);
+  localStorage.setItem(ORLANDO_SAVED_KEY, JSON.stringify(items));
+  return entry;
+}
+
+window.addEventListener('message', function(event) {
+  if (event.data?.source !== 'mception-portal') return;
+  const { type, payload, requestId } = event.data;
+
+  if (type === 'navigate') {
+    if (payload.pageId && fileMap[payload.pageId]) {
+      if (payload.section) {
+        loadFileWithAnchor(payload.pageId, payload.section);
+      } else {
+        loadFile(payload.pageId);
+      }
+    }
+    respond({ status: 'ok', currentPage: currentFile });
+  }
+
+  if (type === 'save_item') {
+    const item = addOSavedItem({
+      title: payload.title || 'Untitled',
+      type: payload.itemType || 'note',
+      body: payload.content || '',
+      source: 'portal-chat',
+    });
+    respond({ status: 'ok', itemId: item.id });
+  }
+
+  if (type === 'get_state') {
+    respond({
+      currentPage: currentFile,
+      savedItems: getOSavedItems(),
+      availablePages: files.map(f => ({ id: f.id, label: f.label })),
+    });
+  }
+
+  function respond(data) {
+    if (!requestId) return;
+    parent.postMessage({
+      source: 'mception-viewer',
+      type: type === 'get_state' ? 'state_response' : 'action_response',
+      requestId,
+      payload: data,
+    }, '*');
+  }
+});
+
+// Tell portal we're ready
+parent.postMessage({ source: 'mception-viewer', type: 'ready', payload: { project: 'orlando' } }, '*');
+
+</script>
+<!-- <script src="chat.js"></script> hidden until further notice -->
+</div><!-- /app-shell -->
+</body>
+</html>

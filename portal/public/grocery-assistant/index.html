@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grocery Assistant</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; max-width: 700px; margin: 0 auto; }
+  h1 { font-size: 24px; margin-bottom: 4px; color: #004f9a; }
+  .subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+  .section { background: #fff; border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #004f9a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #ffc220; }
+  .item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+  .item:last-child { border-bottom: none; }
+  .check { width: 22px; height: 22px; border: 2px solid #ccc; border-radius: 6px; margin-right: 12px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .check.done { background: #004f9a; border-color: #004f9a; }
+  .check.done::after { content: '✓'; color: white; font-size: 14px; font-weight: bold; }
+  .item-text { flex: 1; font-size: 15px; color: #222; }
+  .item.done .item-text { text-decoration: line-through; color: #aaa; }
+  .qty { font-size: 13px; color: #666; background: #f0f0f0; padding: 2px 8px; border-radius: 4px; margin-left: 8px; white-space: nowrap; }
+  a.walmart-link { display: inline-flex; align-items: center; background: #004f9a; color: white; text-decoration: none; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; margin-left: 8px; white-space: nowrap; transition: background 0.2s; }
+  a.walmart-link:hover { background: #003d7a; }
+  .progress { text-align: center; padding: 12px; color: #666; font-size: 14px; }
+  .meal-plan { font-size: 13px; color: #555; line-height: 1.6; }
+  .meal-plan span { display: inline-block; background: #e8f0fe; padding: 2px 8px; border-radius: 4px; margin: 2px 4px 2px 0; }
+</style>
+</head>
+<body>
+
+<h1>🛒 Grocery Assistant</h1>
+<p class="subtitle">Week of April 9, 2026 — Smallwood family</p>
+<div class="progress" id="progress">0 of 26 items</div>
+
+<div class="section">
+  <div class="section-title">Meal Plan This Week</div>
+  <div class="meal-plan">
+    <span>Lasagna</span>
+    <span>Sweet Chili Chicken Crispy Rice Salad</span>
+    <span>Birria Tacos</span>
+    <span>Corn Dogs & Mac & Cheese</span>
+    <span>Rice-a-Roni w/ Chicken</span>
+    <span>Ramen Noodles</span>
+    <span>Hawaiian Haystacks</span>
+    <span>Cheese Ravioli w/ Sauce</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Meat & Protein</div>
+  <div class="item" data-i="1"><div class="check" onclick="toggle(this)"></div><span class="item-text">Ground chuck</span><span class="qty">1 lb</span><a class="walmart-link" href="https://www.walmart.com/search?q=ground+chuck+1+lb" target="_blank">Search →</a></div>
+  <div class="item" data-i="2"><div class="check" onclick="toggle(this)"></div><span class="item-text">Boneless skinless chicken breasts</span><span class="qty">family pack</span><a class="walmart-link" href="https://www.walmart.com/search?q=boneless+skinless+chicken+breast" target="_blank">Search →</a></div>
+  <div class="item" data-i="3"><div class="check" onclick="toggle(this)"></div><span class="item-text">Corn dogs</span><span class="qty">1 box</span><a class="walmart-link" href="https://www.walmart.com/search?q=corn+dogs" target="_blank">Search →</a></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Pasta & Grains</div>
+  <div class="item" data-i="4"><div class="check" onclick="toggle(this)"></div><span class="item-text">Lasagna noodles</span><span class="qty">1 box</span><a class="walmart-link" href="https://www.walmart.com/search?q=lasagna+noodles" target="_blank">Search →</a></div>
+  <div class="item" data-i="5"><div class="check" onclick="toggle(this)"></div><span class="item-text">Kraft Mac & Cheese</span><span class="qty">3-4 boxes</span><a class="walmart-link" href="https://www.walmart.com/search?q=kraft+mac+and+cheese" target="_blank">Search →</a></div>
+  <div class="item" data-i="6"><div class="check" onclick="toggle(this)"></div><span class="item-text">Chicken Rice-a-Roni</span><span class="qty">2 boxes</span><a class="walmart-link" href="https://www.walmart.com/search?q=chicken+rice+a+roni" target="_blank">Search →</a></div>
+  <div class="item" data-i="7"><div class="check" onclick="toggle(this)"></div><span class="item-text">Chow mein noodles</span><span class="qty">1 can</span><a class="walmart-link" href="https://www.walmart.com/search?q=chow+mein+noodles" target="_blank">Search →</a></div>
+  <div class="item" data-i="8"><div class="check" onclick="toggle(this)"></div><span class="item-text">Cheese ravioli</span><span class="qty">1 bag/box</span><a class="walmart-link" href="https://www.walmart.com/search?q=cheese+ravioli" target="_blank">Search →</a></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Sauces & Soups</div>
+  <div class="item" data-i="9"><div class="check" onclick="toggle(this)"></div><span class="item-text">Prego spaghetti sauce</span><span class="qty">3-4 jars</span><a class="walmart-link" href="https://www.walmart.com/search?q=prego+spaghetti+sauce" target="_blank">Search →</a></div>
+  <div class="item" data-i="10"><div class="check" onclick="toggle(this)"></div><span class="item-text">Alfredo sauce</span><span class="qty">1 jar</span><a class="walmart-link" href="https://www.walmart.com/search?q=alfredo+sauce+jar" target="_blank">Search →</a></div>
+  <div class="item" data-i="11"><div class="check" onclick="toggle(this)"></div><span class="item-text">Campbell's Cream of Chicken soup</span><span class="qty">2 cans</span><a class="walmart-link" href="https://www.walmart.com/search?q=campbells+cream+of+chicken+soup" target="_blank">Search →</a></div>
+  <div class="item" data-i="12"><div class="check" onclick="toggle(this)"></div><span class="item-text">Birria seasoning</span><span class="qty">1 pkg</span><a class="walmart-link" href="https://www.walmart.com/search?q=birria+seasoning" target="_blank">Search →</a></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Dairy</div>
+  <div class="item" data-i="13"><div class="check" onclick="toggle(this)"></div><span class="item-text">Cream cheese</span><span class="qty">8 oz</span><a class="walmart-link" href="https://www.walmart.com/search?q=cream+cheese+8+oz" target="_blank">Search →</a></div>
+  <div class="item" data-i="14"><div class="check" onclick="toggle(this)"></div><span class="item-text">Sour cream</span><span class="qty">8 oz</span><a class="walmart-link" href="https://www.walmart.com/search?q=sour+cream+8+oz" target="_blank">Search →</a></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Produce</div>
+  <div class="item" data-i="15"><div class="check" onclick="toggle(this)"></div><span class="item-text">Shredded lettuce</span><span class="qty">1 bag</span><a class="walmart-link" href="https://www.walmart.com/search?q=shredded+lettuce" target="_blank">Search →</a></div>
+  <div class="item" data-i="16"><div class="check" onclick="toggle(this)"></div><span class="item-text">Tomatoes</span><span class="qty">2-3</span><a class="walmart-link" href="https://www.walmart.com/search?q=tomatoes+fresh" target="_blank">Search →</a></div>
+  <div class="item" data-i="17"><div class="check" onclick="toggle(this)"></div><span class="item-text">Baby carrots</span><span class="qty">1 bag</span><a class="walmart-link" href="https://www.walmart.com/search?q=baby+carrots" target="_blank">Search →</a></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Frozen & Canned</div>
+  <div class="item" data-i="18"><div class="check" onclick="toggle(this)"></div><span class="item-text">Frozen vegetables</span><span class="qty">1 bag</span><a class="walmart-link" href="https://www.walmart.com/search?q=frozen+mixed+vegetables" target="_blank">Search →</a></div>
+  <div class="item" data-i="19"><div class="check" onclick="toggle(this)"></div><span class="item-text">Crushed pineapple</span><span class="qty">1 can</span><a class="walmart-link" href="https://www.walmart.com/search?q=crushed+pineapple+canned" target="_blank">Search →</a></div>
+  <div class="item" data-i="20"><div class="check" onclick="toggle(this)"></div><span class="item-text">Applesauce</span><span class="qty">2 jars</span><a class="walmart-link" href="https://www.walmart.com/search?q=applesauce+jar" target="_blank">Search →</a></div>
+  <div class="item" data-i="21"><div class="check" onclick="toggle(this)"></div><span class="item-text">Peaches</span><span class="qty">1 can</span><a class="walmart-link" href="https://www.walmart.com/search?q=canned+peaches" target="_blank">Search →</a></div>
+  <div class="item" data-i="22"><div class="check" onclick="toggle(this)"></div><span class="item-text">Cherry pie filling</span><span class="qty">2 cans</span><a class="walmart-link" href="https://www.walmart.com/search?q=cherry+pie+filling" target="_blank">Search →</a></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Baking & Dessert</div>
+  <div class="item" data-i="23"><div class="check" onclick="toggle(this)"></div><span class="item-text">Chocolate cake mix</span><span class="qty">1 box</span><a class="walmart-link" href="https://www.walmart.com/search?q=chocolate+cake+mix" target="_blank">Search →</a></div>
+  <div class="item" data-i="24"><div class="check" onclick="toggle(this)"></div><span class="item-text">Graham cracker crumbs</span><span class="qty">1 box</span><a class="walmart-link" href="https://www.walmart.com/search?q=graham+cracker+crumbs" target="_blank">Search →</a></div>
+  <div class="item" data-i="25"><div class="check" onclick="toggle(this)"></div><span class="item-text">Chocolate chips</span><span class="qty">1 pkg</span><a class="walmart-link" href="https://www.walmart.com/search?q=chocolate+chips" target="_blank">Search →</a></div>
+  <div class="item" data-i="26"><div class="check" onclick="toggle(this)"></div><span class="item-text">Peanut butter chips</span><span class="qty">1 pkg</span><a class="walmart-link" href="https://www.walmart.com/search?q=peanut+butter+chips" target="_blank">Search →</a></div>
+  <div class="item" data-i="27"><div class="check" onclick="toggle(this)"></div><span class="item-text">Sweetened condensed milk</span><span class="qty">1 can</span><a class="walmart-link" href="https://www.walmart.com/search?q=sweetened+condensed+milk" target="_blank">Search →</a></div>
+</div>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('done');
+  el.closest('.item').classList.toggle('done');
+  updateProgress();
+}
+function updateProgress() {
+  const total = document.querySelectorAll('.item').length;
+  const done = document.querySelectorAll('.item.done').length;
+  document.getElementById('progress').textContent = done + ' of ' + total + ' items';
+}
+</script>
+</body>
+</html>
