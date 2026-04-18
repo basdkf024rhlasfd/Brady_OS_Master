@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Japanese Format Innovation: Sushi &amp; Miso Soup | April 17, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --bg-card: #F5F5F3;
+  --bg-card-alt: #EDECEA;
+  --gold: #D4A843;
+  --gold-dim: #B8922E;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #1A1A1A;
+  --gray: #6B6E75;
+  --gray-light: #4A4D54;
+  --red: #B83A3A;
+  --red-dim: #C45C5C;
+}
+
+@page {
+  size: 11in 17in;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.document {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 52px 40px;
+}
+
+/* ── COVER PAGE ────────────────────────────────── */
+
+.cover-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  page-break-after: always;
+}
+
+.cover-page .run-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 6px 16px;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+
+.cover-page h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.cover-page .subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.cover-page .concept-count {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 8px;
+}
+
+.cover-page .date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+.cover-page .branding {
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cover-divider {
+  width: 120px;
+  height: 3px;
+  background: var(--gold);
+  margin: 24px 0 20px;
+}
+
+/* ── SECTION HEADERS ───────────────────────────── */
+
+.section-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  margin-top: 8px;
+}
+
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+}
+
+/* ── EXECUTIVE SUMMARY ─────────────────────────── */
+
+.exec-summary {
+  page-break-before: always;
+  page-break-inside: avoid;
+}
+
+.top5-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.top5-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-top: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.top5-rank {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 36px;
+}
+
+.top5-content h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.top5-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  margin-left: 8px;
+}
+
+.top5-content p {
+  font-size: 14px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.themes-section {
+  margin-bottom: 40px;
+}
+
+.themes-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.theme-list {
+  list-style: none;
+  padding: 0;
+}
+
+.theme-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: 14px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.theme-list li strong {
+  color: var(--white);
+}
+
+.market-context {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 40px;
+}
+
+.market-context h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.market-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.market-stat {
+  background: var(--bg-card-alt);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.market-stat .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.market-stat .value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.market-stat .detail {
+  font-size: 12px;
+  color: var(--gray-light);
+  margin-top: 2px;
+}
+
+/* ── EFFORT VS IMPACT GRID ─────────────────────── */
+
+.effort-impact-section {
+  page-break-before: always;
+  margin-bottom: 40px;
+}
+
+.effort-impact-grid {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grid-axis-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gray);
+  position: absolute;
+}
+
+.grid-axis-label.x-axis {
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.grid-axis-label.y-axis {
+  top: 50%;
+  left: 12px;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: left center;
+}
+
+.grid-area {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  right: 30px;
+  bottom: 40px;
+}
+
+.grid-line-h, .grid-line-v {
+  position: absolute;
+  background: rgba(0,0,0,0.04);
+}
+
+.grid-line-h {
+  width: 100%;
+  height: 1px;
+}
+
+.grid-line-v {
+  width: 1px;
+  height: 100%;
+}
+
+.grid-quadrant-label {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(0,0,0,0.12);
+}
+
+.grid-dot {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--bg);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  cursor: default;
+}
+
+.grid-dot:hover {
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.grid-dot.highlight {
+  background: var(--gold);
+  width: 32px;
+  height: 32px;
+  font-size: 10px;
+  box-shadow: 0 0 12px rgba(212,168,67,0.4);
+}
+
+.grid-dot.standard {
+  background: var(--blue);
+}
+
+/* ── PRODUCT PAGES ─────────────────────────────── */
+
+.product-page {
+  page-break-before: always;
+  page-break-inside: avoid;
+  padding-top: 24px;
+}
+
+.product-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.product-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+.product-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.product-method {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+.product-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--blue);
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+
+.product-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.product-body {
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.product-hero {
+  float: left;
+  width: 280px;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  margin-right: 28px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: var(--bg-card);
+}
+
+.product-body::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* Sub-section titles */
+.sub-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--white);
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.sub-title:first-of-type {
+  margin-top: 0;
+}
+
+.pitch-text {
+  font-size: 14px;
+  color: var(--gray-light);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+/* RTBs */
+.rtb-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.rtb-list li {
+  padding: 6px 0;
+  padding-left: 16px;
+  position: relative;
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.rtb-list li::before {
+  content: '•';
+  color: var(--gold);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+/* Research basis */
+.research-basis {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.research-basis strong {
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Competitive landscape */
+.competitive-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+
+.competitive-card .comp-item {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.competitive-card .comp-item:last-child {
+  border-bottom: none;
+}
+
+.competitive-card .comp-item strong {
+  color: var(--white);
+}
+
+.gap-callout {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(212,168,67,0.2);
+}
+
+/* Comparables table */
+.comparables-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 12px;
+}
+
+.comparables-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gray);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.comparables-table td {
+  padding: 8px 12px;
+  color: var(--gray-light);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.comparables-table td:first-child {
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* Retailer fit */
+.retailer-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+
+.retailer-list li {
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--gray-light);
+}
+
+.retailer-list li strong {
+  color: var(--white);
+}
+
+.retailer-list li em {
+  color: var(--gray);
+  font-style: normal;
+}
+
+/* Cost model */
+.cost-model {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 16px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.cost-model .cost-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  color: var(--gray-light);
+}
+
+.cost-model .cost-line:last-child {
+  border-bottom: none;
+}
+
+.cost-model .cost-line .cost-label {
+  color: var(--gray);
+}
+
+.cost-model .cost-line .cost-value {
+  color: var(--white);
+}
+
+.cost-model .cost-line .cost-source {
+  font-size: 10px;
+  color: var(--gray);
+  margin-left: 8px;
+}
+
+.cost-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 4px;
+  margin-top: 8px;
+  border-top: 2px solid var(--gold-dim);
+}
+
+.cost-total .cost-label {
+  color: var(--gold) !important;
+  font-weight: 500;
+}
+
+.cost-total .cost-value {
+  color: var(--gold) !important;
+  font-weight: 500;
+}
+
+.margin-badge {
+  display: inline-block;
+  background: rgba(212,168,67,0.15);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 8px;
+}
+
+.defensibility-note {
+  font-size: 10px;
+  color: var(--gray);
+  font-style: italic;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 6px;
+}
+
+/* Operational complexity */
+.complexity-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.complexity-badge.simple {
+  background: rgba(74,127,181,0.15);
+  color: var(--blue);
+}
+
+.complexity-badge.moderate {
+  background: rgba(212,168,67,0.15);
+  color: var(--gold);
+}
+
+.complexity-badge.complex {
+  background: rgba(196,92,92,0.15);
+  color: var(--red);
+}
+
+.complexity-text {
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+
+/* Effort/Impact mini badges on product pages */
+.effort-impact-badges {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.ei-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.ei-badge.effort {
+  background: rgba(74,127,181,0.15);
+  color: var(--blue);
+}
+
+.ei-badge.impact {
+  background: rgba(212,168,67,0.15);
+  color: var(--gold);
+}
+
+/* ── WHITEPAPER APPENDIX ───────────────────────── */
+
+.appendix {
+  page-break-before: always;
+}
+
+.appendix h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.appendix h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.appendix p, .appendix li {
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.7;
+}
+
+.appendix ul {
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+
+.appendix ul li {
+  margin-bottom: 6px;
+}
+
+.appendix-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 12px;
+}
+
+.appendix-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gray);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+  background: var(--bg-card);
+}
+
+.appendix-table td {
+  padding: 10px 14px;
+  color: var(--gray-light);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.appendix-table tr:hover td {
+  background: var(--bg-card);
+}
+
+.source-list {
+  list-style: none;
+  padding: 0;
+}
+
+.source-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--gray);
+}
+
+.source-list li a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.source-list li a:hover {
+  text-decoration: underline;
+}
+
+/* ── PRINT ─────────────────────────────────────── */
+
+@media print {
+  body {
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .document {
+    padding: 32px 40px;
+  }
+  .product-page {
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+  .cover-page {
+    page-break-after: always;
+  }
+  .exec-summary {
+    page-break-before: always;
+  }
+  .effort-impact-section {
+    page-break-before: always;
+  }
+  .appendix {
+    page-break-before: always;
+  }
+}
+</style>
+</head>
+<body>
+<div class="document">
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- COVER PAGE                                       -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="cover-page">
+  <div class="run-badge">Run 4</div>
+  <h1>Innovation<br>Workshop</h1>
+  <div class="cover-divider"></div>
+  <div class="subtitle">Japanese Format Innovation: Sushi &amp; Miso Soup</div>
+  <div class="concept-count">20 Research-Backed Product Concepts</div>
+  <div class="date">April 17, 2026</div>
+  <div class="branding">mception.ai</div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- EXECUTIVE SUMMARY                                -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="exec-summary">
+  <div class="section-header">Executive Summary</div>
+
+  <div class="top5-grid">
+    <div class="top5-card">
+      <div class="top5-rank">1</div>
+      <div class="top5-content">
+        <h3>Furikake Everything Shaker <span class="top5-score">4.45</span></h3>
+        <p>Six-blend furikake seasoning positioned as the Japanese Everything Bagel &mdash; shaker-format collection for the table next to salt and pepper.</p>
+      </div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-rank">2</div>
+      <div class="top5-content">
+        <h3>Miso Squeeze Tube <span class="top5-score">4.35</span></h3>
+        <p>Miso paste in aluminum squeeze tubes like Italian tomato paste &mdash; repositions miso from specialty ingredient to daily-reach condiment.</p>
+      </div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-rank">3</div>
+      <div class="top5-content">
+        <h3>Konbini Onigiri <span class="top5-score">4.35</span></h3>
+        <p>Grab-and-go rice triangles in dual-wrap nori-separating packaging &mdash; the most-consumed snack in Asia, zero CPG presence in the US.</p>
+      </div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-rank">4</div>
+      <div class="top5-content">
+        <h3>Sushi-Grade Pantry <span class="top5-score">4.15</span></h3>
+        <p>Restaurant-quality wasabi, nori, and ginger in a three-jar premium set &mdash; the gift that upgrades every home sushi night.</p>
+      </div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-rank">5</div>
+      <div class="top5-content">
+        <h3>Post-Workout Miso Recovery <span class="top5-score">4.15</span></h3>
+        <p>Electrolyte-boosted miso broth sachets for gym bags &mdash; warm, savory, whole-food alternative to synthetic recovery drinks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="themes-section">
+    <h2>Key Themes</h2>
+    <ul class="theme-list">
+      <li><strong>Format Deconstruction</strong> &mdash; Japanese restaurant components becoming standalone CPG. Furikake leaves the rice bowl, miso leaves the soup, ginger leaves the sushi plate. Each component has standalone value when properly packaged.</li>
+      <li><strong>Miso Beyond Soup</strong> &mdash; Functional beverages, compound ingredients, dessert applications. Miso is the most versatile fermented ingredient in the world, but US consumers only know it as soup. Seven of the twenty concepts reposition miso.</li>
+      <li><strong>Packaging as Innovation</strong> &mdash; Squeeze tubes, pods, pucks, sachets make traditional ingredients accessible. The product inside isn't new &mdash; the format is. This is the lowest-risk, fastest-to-market innovation pattern.</li>
+      <li><strong>Occasion Anchoring</strong> &mdash; Specific consumption moments drive purchase occasions. Post-workout, 3pm slump, Friday sushi night, morning ritual. Owning an occasion is more defensible than owning a shelf position.</li>
+      <li><strong>Premiumization</strong> &mdash; Japanese ingredients naturally command premium positioning. Real wasabi, aged miso, hand-pressed nori &mdash; the quality gap between authentic and commodity is dramatic and visible to consumers.</li>
+    </ul>
+  </div>
+
+  <div class="market-context">
+    <h3>Market Context</h3>
+    <div class="market-stats">
+      <div class="market-stat">
+        <div class="label">Instant Miso</div>
+        <div class="value">$1.42B &rarr; $2.76B</div>
+        <div class="detail">by 2033</div>
+      </div>
+      <div class="market-stat">
+        <div class="label">Sushi Market</div>
+        <div class="value">$6.82B &rarr; $13.54B</div>
+        <div class="detail">by 2035 (7.92% CAGR)</div>
+      </div>
+      <div class="market-stat">
+        <div class="label">Seaweed Snacks</div>
+        <div class="value">$2.43B &rarr; $4.66B</div>
+        <div class="detail">by 2030 (11.6% CAGR)</div>
+      </div>
+      <div class="market-stat">
+        <div class="label">Gut Health Launches</div>
+        <div class="value">+61% YoY</div>
+        <div class="detail">2024&ndash;2025 (FoodNavigator)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EFFORT vs IMPACT GRID -->
+  <div class="effort-impact-section">
+    <div class="section-header">Effort vs. Impact Grid</div>
+    <div class="effort-impact-grid">
+      <div class="grid-axis-label x-axis">Effort (Low &rarr; High)</div>
+      <div class="grid-axis-label y-axis">Impact (Low &rarr; High)</div>
+      <div class="grid-area">
+        <!-- Quadrant lines -->
+        <div class="grid-line-h" style="top:50%;"></div>
+        <div class="grid-line-v" style="left:50%;"></div>
+        <!-- Quadrant labels -->
+        <div class="grid-quadrant-label" style="top:8px; left:8px;">Quick Wins</div>
+        <div class="grid-quadrant-label" style="top:8px; right:8px;">Big Bets</div>
+        <div class="grid-quadrant-label" style="bottom:8px; left:8px;">Fill-Ins</div>
+        <div class="grid-quadrant-label" style="bottom:8px; right:8px;">Reconsider</div>
+
+        <!-- Dots: position = left:effort%, bottom:impact% (scaled to grid) -->
+        <!-- Effort 0-1 mapped to 0-100%, Impact 0-1 mapped to 0-100% -->
+        <!-- #1 Furikake: E0.2 I0.9 -->
+        <div class="grid-dot highlight" style="left:20%; bottom:90%;" title="1. Furikake Everything Shaker (4.45) — E:0.2, I:0.9">1</div>
+        <!-- #2 Miso Squeeze: E0.2 I0.85 -->
+        <div class="grid-dot highlight" style="left:20%; bottom:85%;" title="2. Miso Squeeze Tube (4.35) — E:0.2, I:0.85">2</div>
+        <!-- #3 Konbini Onigiri: E0.5 I0.9 -->
+        <div class="grid-dot highlight" style="left:50%; bottom:90%;" title="3. Konbini Onigiri (4.35) — E:0.5, I:0.9">3</div>
+        <!-- #4 Sushi-Grade Pantry: E0.3 I0.8 -->
+        <div class="grid-dot highlight" style="left:30%; bottom:80%;" title="4. Sushi-Grade Pantry (4.15) — E:0.3, I:0.8">4</div>
+        <!-- #5 Post-Workout Miso: E0.4 I0.8 -->
+        <div class="grid-dot highlight" style="left:40%; bottom:80%;" title="5. Post-Workout Miso Recovery (4.15) — E:0.4, I:0.8">5</div>
+        <!-- #6 Nori Crisps: E0.2 I0.85 -->
+        <div class="grid-dot standard" style="left:22%; bottom:87%;" title="6. Nori Crisps (4.05) — E:0.2, I:0.85">6</div>
+        <!-- #7 Dashi Pods: E0.3 I0.8 -->
+        <div class="grid-dot standard" style="left:30%; bottom:82%;" title="7. Dashi Pods (4.05) — E:0.3, I:0.8">7</div>
+        <!-- #8 3PM Miso Break: E0.25 I0.75 -->
+        <div class="grid-dot standard" style="left:25%; bottom:75%;" title="8. 3PM Miso Break (4.00) — E:0.25, I:0.75">8</div>
+        <!-- #9 Morning Miso: E0.2 I0.8 -->
+        <div class="grid-dot standard" style="left:18%; bottom:80%;" title="9. Morning Miso Sachets (3.95) — E:0.2, I:0.8">9</div>
+        <!-- #10 Miso Butterscotch: E0.15 I0.75 -->
+        <div class="grid-dot standard" style="left:15%; bottom:75%;" title="10. Miso Butterscotch Sauce (3.95) — E:0.15, I:0.75">10</div>
+        <!-- #11 Miso Wellness Shots: E0.35 I0.75 -->
+        <div class="grid-dot standard" style="left:35%; bottom:75%;" title="11. Miso Wellness Shots (3.95) — E:0.35, I:0.75">11</div>
+        <!-- #12 Combini Haul Box: E0.4 I0.7 -->
+        <div class="grid-dot standard" style="left:40%; bottom:70%;" title="12. Combini Haul Box (3.95) — E:0.4, I:0.7">12</div>
+        <!-- #13 Vintage Miso: E0.35 I0.7 -->
+        <div class="grid-dot standard" style="left:35%; bottom:70%;" title="13. Vintage Miso Collection (3.90) — E:0.35, I:0.7">13</div>
+        <!-- #14 Miso Bone Broth: E0.3 I0.75 -->
+        <div class="grid-dot standard" style="left:32%; bottom:75%;" title="14. Miso Bone Broth Sipping Cups (3.85) — E:0.3, I:0.75">14</div>
+        <!-- #15 Miso Paste Pucks: E0.2 I0.75 -->
+        <div class="grid-dot standard" style="left:20%; bottom:73%;" title="15. Miso Paste Pucks (3.85) — E:0.2, I:0.75">15</div>
+        <!-- #16 Dashi Bitters: E0.3 I0.65 -->
+        <div class="grid-dot standard" style="left:30%; bottom:65%;" title="16. Dashi Cocktail Bitters (3.80) — E:0.3, I:0.65">16</div>
+        <!-- #17 Gari Ginger: E0.15 I0.7 -->
+        <div class="grid-dot standard" style="left:15%; bottom:70%;" title="17. Gari Pickled Ginger Snacks (3.80) — E:0.15, I:0.7">17</div>
+        <!-- #18 Sushi Rice Sachets: E0.15 I0.75 -->
+        <div class="grid-dot standard" style="left:13%; bottom:75%;" title="18. Sushi Rice Seasoning Sachets (3.80) — E:0.15, I:0.75">18</div>
+        <!-- #19 Japanese Breakfast: E0.45 I0.7 -->
+        <div class="grid-dot standard" style="left:45%; bottom:70%;" title="19. Japanese Breakfast Box (3.80) — E:0.45, I:0.7">19</div>
+        <!-- #20 Friday Sushi Night: E0.5 I0.65 -->
+        <div class="grid-dot standard" style="left:50%; bottom:65%;" title="20. Friday Sushi Night (3.75) — E:0.5, I:0.65">20</div>
+      </div>
+    </div>
+    <div style="margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gray); display:flex; gap:20px;">
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);vertical-align:middle;margin-right:4px;"></span> Top 5</span>
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--blue);vertical-align:middle;margin-right:4px;"></span> Ideas 6&ndash;20</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 1: FURIKAKE EVERYTHING SHAKER            -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 01</span>
+    <span class="product-score">4.45</span>
+    <span class="product-method">Method: Cultural Trend Mining (#51)</span>
+    <span class="product-category">Global Snacks / Cultural Format Transfer</span>
+  </div>
+
+  <h2 class="product-title">Furikake Everything Shaker</h2>
+
+  <div class="product-body">
+    <img src="images-run4/01-furikake-everything-shaker-hero.png" alt="Furikake Everything Shaker" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Furikake has been Japan's universal seasoning for decades &mdash; a blend of nori, sesame, bonito flakes, and umami that goes on everything from rice to eggs to ramen. American consumers are discovering it the same way they discovered Everything Bagel seasoning: as a condiment that makes boring food taste incredible.</p>
+    <p class="pitch-text">The Furikake Everything Shaker packages six distinct blends in a shaker-format collection: Classic (nori, sesame, bonito), Wasabi Kick (wasabi peas, nori, chili), Salmon (wild salmon flakes, sesame, miso), Spicy Garlic (togarashi, garlic, nori), Truffle Umami (truffle salt, kombu, sesame), and Breakfast (egg, nori, furikake). Each 3oz shaker sits on the table next to salt and pepper.</p>
+    <p class="pitch-text">The positioning is simple: "The Japanese Everything Bagel seasoning." It rides the same wave that made Trader Joe's Everything But The Bagel seasoning a cultural phenomenon &mdash; except furikake has 50+ years of product-market fit in Japan and a flavor profile (umami + crunch + nori) that nothing else on the American spice rack delivers.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Seaweed snack market growing 11.6% CAGR, reaching $4.66B by 2030 &mdash; furikake rides the same consumer adoption curve (Grand View Research)</li>
+      <li>"Furikake on everything" emerging as social media trend &mdash; TikTok konbini haul videos routinely hit millions of views, exposing US consumers to the format</li>
+      <li>Artisan Specialty Foods already stocks Aji Nori Furikake at $3.69/unit wholesale (SKU WAS132) and Nori Goma Furikake (SKU 10606) &mdash; supply chain is validated</li>
+      <li>Everything Bagel seasoning proved the shaker-format condiment category at scale &mdash; Trader Joe's version became their #1 selling item; furikake is the natural next entry</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Cultural Trend Mining (#51) &mdash; mapped the "combini haul" TikTok trend to a CPG format. Japanese convenience store content going viral exposes US consumers to furikake as a daily-use seasoning rather than a specialty ingredient.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Nori Komi Furikake (JFC International)</strong> &mdash; $3.99/1.7oz at Asian grocery stores. Authentic but no lifestyle branding, buried in ethnic aisle. Single SKU, no variety.</div>
+    <div class="comp-item"><strong>Trader Joe's Furikake</strong> &mdash; $2.99, popular but single blend, no collection format. Positioned as a novelty item, not a pantry staple.</div>
+    <div class="comp-item"><strong>Everything But The Bagel (Trader Joe's)</strong> &mdash; $1.99/2.3oz. Category proof-of-concept. No umami, no nori, no Japanese flavor profile. Adjacent but not competitive.</div>
+    <div class="comp-item"><strong>Maldon Smoked Sea Salt</strong> &mdash; $7.99. Premium shaker seasoning that proved consumers pay for distinctive format + branding at the table.</div>
+    <div class="gap-callout">Gap: No one sells a curated multi-blend furikake collection in shaker format with modern lifestyle branding at mainstream premium retail.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Trader Joe's Nori Komi Furikake</td><td>Trader Joe's</td><td>$2.99</td><td>Single blend</td></tr>
+      <tr><td>JFC Aji Nori Furikake</td><td>Amazon</td><td>$6.50/3.5oz</td><td>Bulk, no lifestyle branding</td></tr>
+      <tr><td>Everything But The Bagel</td><td>Trader Joe's</td><td>$1.99</td><td>Adjacent category proof</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>premium seasoning buyer, already stocks Japanese ingredients, endcap potential</em></li>
+    <li><strong>2. Target</strong> &mdash; <em>premium-accessible price point, strong "discover" section</em></li>
+    <li><strong>3. Amazon DTC</strong> &mdash; <em>subscription-friendly, bundle-friendly, giftable</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Aji Nori Furikake base blend, 10.58oz</span><span class="cost-value">$3.69/unit <span class="cost-source">supplier-kb:artisan-specialty-foods:WAS132</span></span></div>
+    <div class="cost-line"><span class="cost-label">Premium packaging (6-shaker collection box)</span><span class="cost-value">$2.50/set <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Custom blend formulation (6 varieties)</span><span class="cost-value">$1.00/set <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$2.00/set <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$24.99/set ($4.17/shaker)</span></div>
+    <div class="margin-badge">Gross Margin: 63%</div>
+    <div class="defensibility-note">Defensibility: assumption &mdash; needs co-packer validation</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Standard dry-goods blending and packaging. No cold chain. No multi-temp. Shelf-stable. Co-pack widely available for dry seasoning blends. MOQ likely 5,000&ndash;10,000 units. Lead time: 6&ndash;8 weeks. Only complexity: sourcing authentic Japanese base ingredients at scale (vs. domestic substitutes).</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.2</span>
+    <span class="ei-badge impact">Impact: 0.9</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 2: MISO SQUEEZE TUBE                     -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 02</span>
+    <span class="product-score">4.35</span>
+    <span class="product-method">Method: Packaging Innovation (#58)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Miso Squeeze Tube</h2>
+
+  <div class="product-body">
+    <img src="images-run4/02-miso-squeeze-tube-hero.png" alt="Miso Squeeze Tube" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Most Americans who buy miso paste use it once, then watch the tub slowly oxidize in the back of the fridge until they throw it away. The problem isn't miso &mdash; it's the format. A 16oz plastic tub is designed for a Japanese household that uses miso daily. For an American who makes miso soup twice a month, it's a waste trap.</p>
+    <p class="pitch-text">The Miso Squeeze Tube solves this by putting white miso paste in a 5oz aluminum tube &mdash; the same format Italians use for tomato paste. No oxidation (sealed behind the squeeze), no spoon needed, no mess. It lives on the fridge door next to mustard and sriracha. One squeeze into hot water makes instant miso soup. Two squeezes into a marinade transforms chicken thighs. A dab on toast creates an umami bomb.</p>
+    <p class="pitch-text">The tube format repositions miso from "specialty ingredient I need a recipe for" to "condiment I reach for instinctively." That's the behavior change that unlocks a much larger market.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Namikura White Miso Paste available at $4.80/2.2lb wholesale (supplier-kb:artisan-specialty-foods:WMISO3) &mdash; COGS validated at scale</li>
+      <li>Gut health food launches jumped 61% between 2024&ndash;2025 (FoodNavigator) &mdash; miso's natural probiotic positioning rides this wave without needing a health claim</li>
+      <li>Squeeze tube format proven in premium condiments: Amore tomato paste ($4.99/2.8oz), Mutti tomato concentrate ($5.49/4.5oz) &mdash; consumers pay 3x per ounce for tube convenience</li>
+      <li>Italian tomato paste tubes converted a "sometimes ingredient" into a "daily reach" &mdash; identical behavior-change opportunity for miso</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Packaging Innovation (#58) &mdash; observed that tomato paste tubes transformed usage frequency. Applied the same format transfer to miso paste, which faces the identical "tub waste" problem.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Hikari Organic Miso Paste</strong> &mdash; $4.99/17.6oz tub at Whole Foods. Industry standard. Oxidizes after opening, requires spooning, lives in the back of the fridge.</div>
+    <div class="comp-item"><strong>Miso &amp; Easy (Marukome)</strong> &mdash; $3.49/liquid miso in a squeeze bottle. Closer but it's a diluted liquid, not paste. Different product entirely.</div>
+    <div class="comp-item"><strong>Amore Paste Tubes (tomato, garlic, etc.)</strong> &mdash; $4.99/2.8oz. Format proof-of-concept in the condiment category. Not miso.</div>
+    <div class="gap-callout">Gap: No one sells miso paste in a tube format in the US. Every existing miso product uses the tub or sachet format.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Hikari Organic White Miso</td><td>Whole Foods</td><td>$4.99/17.6oz</td></tr>
+      <tr><td>Miso &amp; Easy Squeeze</td><td>Amazon</td><td>$3.49/13.8oz</td></tr>
+      <tr><td>Amore Tomato Paste Tube</td><td>Target</td><td>$4.99/2.8oz</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>premium condiment aisle, miso buyer already exists, format innovation story</em></li>
+    <li><strong>2. Sprouts</strong> &mdash; <em>natural/organic positioning, health-conscious shopper</em></li>
+    <li><strong>3. DTC-subscription</strong> &mdash; <em>replenishment model, 2-tube/month cadence</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">White Miso Paste (Namikura), 2.2lb bulk</span><span class="cost-value">$4.80/2.2lb ($0.44/5oz fill) <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Aluminum squeeze tube + cap</span><span class="cost-value">$0.85/tube <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labeling + carton</span><span class="cost-value">$0.30/tube <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.50/tube <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$6.99/5oz tube</span></div>
+    <div class="margin-badge">Gross Margin: 70%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso cost; packaging assumption needs tube co-packer quote</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Shelf-stable miso paste in sealed aluminum tubes. No cold chain required (miso is naturally preserved via fermentation). Standard tube-fill co-packing available from condiment manufacturers. MOQ: 5,000&ndash;10,000 tubes. Lead time: 8&ndash;10 weeks for custom tube + label design. Only challenge: finding a tube co-packer experienced with thick paste (vs. liquid sauce).</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.2</span>
+    <span class="ei-badge impact">Impact: 0.85</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 3: KONBINI ONIGIRI                       -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 03</span>
+    <span class="product-score">4.35</span>
+    <span class="product-method">Method: Cultural Trend Mining (#51) / Analogous Inspiration (#15)</span>
+    <span class="product-category">Global Snacks / Cultural Format Transfer</span>
+  </div>
+
+  <h2 class="product-title">Konbini Onigiri</h2>
+
+  <div class="product-body">
+    <img src="images-run4/03-konbini-onigiri-hero.png" alt="Konbini Onigiri" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Onigiri &mdash; the Japanese rice triangle wrapped in nori &mdash; is the most-consumed grab-and-go food in Asia. Over 2.4 billion are sold annually through Japan's 58,000 convenience stores alone. The format is ingenious: a patented dual-wrap system separates the nori from the rice until you pull the tab, keeping the seaweed crispy and the rice moist.</p>
+    <p class="pitch-text">American consumers are discovering onigiri through "combini haul" TikTok videos that routinely hit millions of views. NPR reported in September 2025 that Japanese convenience store chains are entering the US market. But no CPG brand has brought the grab-and-go onigiri format to mainstream US grocery deli coolers.</p>
+    <p class="pitch-text">This is onigiri for the American deli case: three varieties (Spicy Tuna, Teriyaki Chicken, Umeboshi Plum), each in the signature triangular packaging with pull-tab nori wrapper. Positioned between the sandwich and the sushi section at $3.49 each &mdash; the same price as a protein bar but a complete meal.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>2.4 billion onigiri sold annually in Japan &mdash; the format has massive scale validation (JFC/7-Eleven Japan data)</li>
+      <li>NPR (Sept 2025): Japan's konbini convenience stores entering US market &mdash; consumer awareness is being built by the brands themselves</li>
+      <li>"Combini haul" TikTok videos regularly hit 1&ndash;5M views &mdash; organic demand building without paid marketing</li>
+      <li>Sushi market growing 7.92% CAGR to $13.54B by 2035 (Business Research Insights) &mdash; onigiri is the grab-and-go format within this category</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Cultural Trend Mining (#51) + Analogous Inspiration (#15) &mdash; the combini haul TikTok trend signals rising US demand, while the Japanese convenience store format provides a proven, scale-validated product architecture.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>7-Eleven (US) sushi section</strong> &mdash; $5.99&ndash;8.99 for basic sushi rolls. No onigiri format. Declining quality perception.</div>
+    <div class="comp-item"><strong>Spam Musubi (Hawaiian market)</strong> &mdash; $2.99&ndash;3.49. Regional proof that rice-based grab-and-go works in US convenience. Not Japanese positioning.</div>
+    <div class="comp-item"><strong>Onigiriz (NYC-based)</strong> &mdash; Fresh onigiri in select NYC locations. Artisan pricing ($4.50+), no CPG distribution.</div>
+    <div class="gap-callout">Gap: Zero CPG onigiri products in mainstream US grocery. The format doesn't exist outside Japanese specialty stores and a handful of urban restaurants.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>None at mainstream US grocery</td><td>&mdash;</td><td>Category-creation play</td></tr>
+      <tr><td>7-Eleven Japan Onigiri</td><td>Japan only</td><td>&yen;130&ndash;200 ($0.90&ndash;1.35)</td></tr>
+      <tr><td>Spam Musubi (various)</td><td>Hawaii/West Coast</td><td>$2.99&ndash;3.49</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>deli cooler innovation, already has sushi section, premium grab-and-go buyer</em></li>
+    <li><strong>2. Target</strong> &mdash; <em>grab-and-go refresh initiative, "discover" positioning</em></li>
+    <li><strong>3. B2B-foodservice</strong> &mdash; <em>airline meals, office catering, campus dining</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Sushi rice + seasoning, per onigiri</span><span class="cost-value">$0.25 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Protein filling (spicy tuna/teriyaki/umeboshi)</span><span class="cost-value">$0.40 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Nori dual-wrap packaging (patented format)</span><span class="cost-value">$0.15 <span class="cost-source">assumption &mdash; requires Japanese packaging supplier</span></span></div>
+    <div class="cost-line"><span class="cost-label">Outer packaging + labeling</span><span class="cost-value">$0.10 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack (manual assembly)</span><span class="cost-value">$0.35/onigiri <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$3.49/onigiri</span></div>
+    <div class="margin-badge">Gross Margin: 64%</div>
+    <div class="defensibility-note">Defensibility: all assumptions &mdash; needs Japanese packaging supplier + fresh-food co-packer</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge complex">Complex</span>
+  <p class="complexity-text">Fresh product with 5&ndash;7 day shelf life. Requires cold chain throughout. Manual or semi-automated assembly (rice shaping, filling, nori wrapping). Dual-wrap packaging technology may require licensing from Japanese packaging companies. Distribution limited to markets with existing fresh-food DSD networks. High initial capex for format development.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.5</span>
+    <span class="ei-badge impact">Impact: 0.9</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 4: SUSHI-GRADE PANTRY                    -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 04</span>
+    <span class="product-score">4.15</span>
+    <span class="product-method">Method: Premiumization (#56)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Sushi-Grade Pantry</h2>
+
+  <div class="product-body">
+    <img src="images-run4/04-sushi-grade-pantry-hero.png" alt="Sushi-Grade Pantry" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Every home sushi night starts with the same disappointment: the wasabi is fake (horseradish dyed green), the ginger tastes like vinegar, and the nori is stale. Restaurant sushi tastes better because the components are better &mdash; real hon-wasabi, hand-pressed nori, house-pickled ginger.</p>
+    <p class="pitch-text">The Sushi-Grade Pantry is a three-jar set that brings restaurant-quality components home: (1) Real hon-wasabi paste (not horseradish), (2) Hand-pressed nori sheets (thick, aromatic, properly toasted), and (3) House-style pickled ginger (delicate pink, fresh, less vinegar). Packaged in a washi-paper gift box with pairing cards explaining each component.</p>
+    <p class="pitch-text">Positioned at $39.99, it's the gift you bring to someone's sushi night &mdash; or the self-purchase that upgrades every Tuesday night chirashi bowl. The premium is justified because real wasabi alone sells for $10&ndash;15 per tube at specialty retailers.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Real wasabi (Wasabia japonica) retails for $10&ndash;15/tube at specialty stores &mdash; consumers already pay premium for authenticity</li>
+      <li>Artisan stocks Wasabi Powder at $9.21/2.2lb (SKU WASPOW2) and Pink Sushi Ginger at $20/11lb (SKU PGIN) &mdash; supply chain partially validated</li>
+      <li>Japanese ingredient adoption accelerating: furikake, ponzu, yuzu, togarashi all crossed into mainstream Whole Foods/TJ's in 2025&ndash;2026</li>
+      <li>Premium food gift market growing &mdash; the set format (flights, tastings, pantry collections) proven by olive oil sets, hot sauce collections, and cheese boards</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Premiumization (#56) &mdash; applied the premium upgrade pattern to the most common quality gap in home sushi: the condiment components.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>S&amp;B Wasabi Paste</strong> &mdash; $3.99/1.52oz at most grocery stores. Horseradish-based, not real wasabi. Category default.</div>
+    <div class="comp-item"><strong>Roland Sushi Ginger</strong> &mdash; $3.49/10oz jar. Bright pink, heavily vinegared, chemical taste. Functional but not premium.</div>
+    <div class="comp-item"><strong>Various nori brands (Annie Chun's, Gimme)</strong> &mdash; $3.99&ndash;5.99/pack. Adequate for home use but not "sushi-grade" thick nori.</div>
+    <div class="gap-callout">Gap: No one sells a curated, restaurant-quality sushi condiment set at premium retail. Each component exists individually but the gift-set curation is the innovation.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Real Wasabi Paste (Shizuoka brand)</td><td>Amazon</td><td>$12.99/1.5oz</td></tr>
+      <tr><td>Whole Foods house-brand Sushi Ginger</td><td>Whole Foods</td><td>$3.99/6oz</td></tr>
+      <tr><td>Various "sushi kits" (rice + nori + mat)</td><td>Amazon</td><td>$15&ndash;20 (tools, not premium ingredients)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>gift-set placement, premium ingredient buyer, sushi night occasion</em></li>
+    <li><strong>2. DTC-one-time</strong> &mdash; <em>gift purchase, discovery box, holiday season</em></li>
+    <li><strong>3. Amazon</strong> &mdash; <em>giftable, bundle-friendly, Prime delivery</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Real wasabi paste, 2oz tube</span><span class="cost-value">$4.50 <span class="cost-source">assumption &mdash; real wasabi sourcing TBD</span></span></div>
+    <div class="cost-line"><span class="cost-label">Pink Sushi Ginger, 6oz jar portion</span><span class="cost-value">$1.09 <span class="cost-source">supplier-kb:artisan-specialty-foods:PGIN ($20/11lb)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Premium nori sheets, 10-pack</span><span class="cost-value">$3.50 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Washi paper gift box + pairing cards</span><span class="cost-value">$3.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$2.00/set <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$39.99/set</span></div>
+    <div class="margin-badge">Gross Margin: 65%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for ginger; wasabi + nori + packaging assumptions need validation</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Shelf-stable set assembly. No cold chain needed (wasabi paste is shelf-stable, ginger is pickled, nori is dried). Gift box assembly is manual but low-complexity. Challenge: sourcing real wasabi at scale (most "wasabi" in the US is horseradish). May need Japanese import partnership for authentic hon-wasabi.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.3</span>
+    <span class="ei-badge impact">Impact: 0.8</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 5: POST-WORKOUT MISO RECOVERY            -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 05</span>
+    <span class="product-score">4.15</span>
+    <span class="product-method">Method: Occasion-Based Thinking (#59)</span>
+    <span class="product-category">Beverage (Functional / Premium)</span>
+  </div>
+
+  <h2 class="product-title">Post-Workout Miso Recovery</h2>
+
+  <div class="product-body">
+    <img src="images-run4/05-post-workout-miso-hero.png" alt="Post-Workout Miso Recovery" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">After a workout, most people reach for a cold protein shake. But the Japanese have known for centuries that warm miso broth is one of the most effective recovery drinks: naturally rich in electrolytes (sodium, potassium), amino acids from fermented soy, and probiotics for gut health. It's everything a recovery drink should be, wrapped in a format that's comforting instead of clinical.</p>
+    <p class="pitch-text">Post-Workout Miso Recovery packages this insight in gym-bag-friendly single-serve sachets. Each sachet contains concentrated miso paste with added electrolytes, collagen peptides, and ginger. Tear, pour into hot water, stir. Positioned in the functional beverage aisle next to protein shakes and LMNT electrolyte packets &mdash; but as the warm, savory, whole-food alternative.</p>
+    <p class="pitch-text">The positioning targets the growing segment of fitness-conscious consumers who are moving away from synthetic supplements toward whole-food recovery. Miso is the original functional food &mdash; it just needs modern packaging and occasion-based marketing.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Gut health category worth $14B, projected $32B by 2035 &mdash; miso's natural probiotic content positions it without needing an FDA health claim</li>
+      <li>Red Aka Miso Paste available at $4.80/2.2lb wholesale (supplier-kb:artisan-specialty-foods:RMISO3) &mdash; COGS validated</li>
+      <li>LMNT electrolyte packets sell for $1.50/packet at $45/30-pack &mdash; proves single-serve functional sachets command premium pricing</li>
+      <li>Functional beverage market growing faster than any food category in 2026 (BevSource) &mdash; warm functional beverages are an underserved format</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Occasion-Based Thinking (#59) &mdash; anchored to the post-workout moment, which has established purchase behavior (protein shakes, electrolyte packets) but no warm, savory, whole-food option.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>LMNT Electrolytes</strong> &mdash; $45/30-pack ($1.50/sachet). Powder-based, cold water, synthetic. Massive brand.</div>
+    <div class="comp-item"><strong>Kettle &amp; Fire Bone Broth</strong> &mdash; $6.99/16.9oz carton. Warm, savory, functional. But too large for gym bag, not single-serve.</div>
+    <div class="comp-item"><strong>Instant Miso Soup (Marukome)</strong> &mdash; $3.99/12-pack ($0.33/serving). Cheap but no functional positioning, no electrolyte boost, not gym-oriented.</div>
+    <div class="gap-callout">Gap: No warm, savory, single-serve functional recovery product exists in the gym bag / electrolyte space.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>LMNT Electrolyte Packets</td><td>Amazon</td><td>$45/30-pack</td></tr>
+      <tr><td>Kettle &amp; Fire Bone Broth Sipping Cups</td><td>Target</td><td>$4.99/cup</td></tr>
+      <tr><td>Marukome Instant Miso</td><td>Walmart</td><td>$3.99/12-pack</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Amazon DTC</strong> &mdash; <em>subscription model, gym-bag discovery, Prime delivery</em></li>
+    <li><strong>2. Whole Foods</strong> &mdash; <em>functional beverage aisle, health-conscious buyer</em></li>
+    <li><strong>3. GNC/Vitamin Shoppe</strong> &mdash; <em>supplement adjacency, workout occasion</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Red Aka Miso Paste concentrate, per sachet</span><span class="cost-value">$0.15 <span class="cost-source">supplier-kb:artisan-specialty-foods:RMISO3 ($4.80/2.2lb)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Collagen peptides, per sachet</span><span class="cost-value">$0.20 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Electrolyte blend (sodium, potassium, magnesium)</span><span class="cost-value">$0.08 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Single-serve sachet packaging</span><span class="cost-value">$0.12 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.10/sachet <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$1.99/sachet ($49.99/30-pack)</span></div>
+    <div class="margin-badge">Gross Margin: 67%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso; collagen + electrolyte + packaging assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Dry-goods blending and sachet filling. No cold chain. Shelf-stable. Needs formulation work to balance miso flavor with electrolyte mineral taste. Co-packing available from supplement/powder manufacturers. MOQ: 10,000&ndash;25,000 sachets. Lead time: 10&ndash;12 weeks. Challenge: achieving "tastes good" with added minerals &mdash; formulation R&amp;D is the key risk.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.4</span>
+    <span class="ei-badge impact">Impact: 0.8</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 6: NORI CRISPS                           -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 06</span>
+    <span class="product-score">4.05</span>
+    <span class="product-method">Method: Mashup (#24) / Packaging Innovation (#58)</span>
+    <span class="product-category">Global Snacks / Cultural Format Transfer</span>
+  </div>
+
+  <h2 class="product-title">Nori Crisps</h2>
+
+  <div class="product-body">
+    <img src="images-run4/06-nori-crisps-hero.png" alt="Nori Crisps" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Seaweed snacks have already proven American consumers will eat nori out of a bag. The problem is the current format: paper-thin sheets that shatter on contact, deliver minimal crunch satisfaction, and feel more like a health obligation than a snack.</p>
+    <p class="pitch-text">Nori Crisps fix this by layering nori with rice flour and sesame, then baking them into thick-cut chip-format crisps. Think of the texture difference between a rice cake and a thick tortilla chip &mdash; that's the upgrade. Four flavors: Sea Salt &amp; Sesame, Wasabi, Teriyaki, and Furikake. Positioned in the snack aisle between veggie chips and rice crackers at $4.99/3oz &mdash; not in the "Asian food" section.</p>
+    <p class="pitch-text">The seaweed snack market is growing at 11.6% CAGR and is projected to nearly double to $4.66B by 2030. North America is the fastest-growing region. Nori Crisps ride this wave with a format that solves the category's biggest limitation: unsatisfying texture.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Seaweed snack market $2.43B &rarr; $4.66B by 2030 at 11.6% CAGR &mdash; North America fastest-growing region (Grand View Research)</li>
+      <li>Texture innovation driving snack category: flaky (+50%), crispy (+49%), airy (+43%) YoY interest increases (Euromonitor)</li>
+      <li>Artisan stocks Nori Flakes at $72/case of 10x3.5oz (SKU NORIF) &mdash; raw material supply validated</li>
+      <li>gimMe and Annie Chun's proved seaweed snacks at scale, but thin-sheet format limits category expansion into mainstream snacking</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Mashup (#24) + Packaging Innovation (#58) &mdash; crossed nori with chip format and layered rice flour for thickness. Solving the "texture gap" that keeps seaweed snacks niche.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>gimMe Organic Seaweed Snacks</strong> &mdash; $3.49/0.7oz. Market leader. Thin sheets, fragile, premium but small portions.</div>
+    <div class="comp-item"><strong>Annie Chun's Seaweed Crisps</strong> &mdash; $3.29/1.27oz. Closer to chip format but still thin, limited flavors.</div>
+    <div class="comp-item"><strong>Trader Joe's Roasted Seaweed Snack</strong> &mdash; $1.49/0.4oz. Budget entry, bare-bones.</div>
+    <div class="comp-item"><strong>Ocean's Halo Seaweed Chips</strong> &mdash; $3.99/4oz. Best current comp, but corn-based not rice-based. Different texture profile.</div>
+    <div class="gap-callout">Gap: No rice flour-layered, thick-cut nori crisp exists. Current seaweed snacks are all thin-sheet format.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>gimMe Seaweed Snacks</td><td>Whole Foods</td><td>$3.49/0.7oz</td></tr>
+      <tr><td>Annie Chun's Seaweed Crisps</td><td>Target</td><td>$3.29/1.27oz</td></tr>
+      <tr><td>Ocean's Halo Seaweed Chips</td><td>Kroger</td><td>$3.99/4oz</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Target</strong> &mdash; <em>snack aisle placement, price-accessible, discovery buyer</em></li>
+    <li><strong>2. Walmart</strong> &mdash; <em>mass market snack distribution, impulse-buy pricing</em></li>
+    <li><strong>3. Costco</strong> &mdash; <em>multi-pack format, bulk snacking, proven seaweed buyer</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Nori flakes, per 3oz bag</span><span class="cost-value">$0.75 <span class="cost-source">supplier-kb:artisan-specialty-foods:NORIF ($72/case)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Rice flour + sesame + seasoning</span><span class="cost-value">$0.30 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Bag packaging + labeling</span><span class="cost-value">$0.20 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.40/bag <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$4.99/3oz bag</span></div>
+    <div class="margin-badge">Gross Margin: 67%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for nori; rice flour baking co-pack assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Baked snack production requires a co-packer with baking/frying capability. Standard shelf-stable snack packaging. No cold chain. MOQ: 10,000&ndash;50,000 bags depending on co-packer. Lead time: 8&ndash;12 weeks. Challenge: achieving consistent crisp texture with nori-rice flour layering &mdash; needs R&amp;D for bake time/temperature optimization.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.2</span>
+    <span class="ei-badge impact">Impact: 0.85</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 7: DASHI PODS                            -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 07</span>
+    <span class="product-score">4.05</span>
+    <span class="product-method">Method: Packaging Innovation (#58)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Dashi Pods</h2>
+
+  <div class="product-body">
+    <img src="images-run4/07-dashi-pods-hero.png" alt="Dashi Pods" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Dashi &mdash; the foundational broth of Japanese cooking &mdash; requires simmering kombu and bonito flakes for 30 minutes. Most Americans who want to cook Japanese food at home skip dashi entirely because it's too much work for a weeknight. Hondashi granules exist but taste metallic and one-dimensional.</p>
+    <p class="pitch-text">Dashi Pods apply the Keurig logic to Japanese cooking stock: single-serve liquid concentrate pods that dissolve in hot water in 30 seconds. Each pod contains real kombu extract, smoked katsuobushi concentrate, and a touch of mirin &mdash; delivering restaurant-quality dashi without the 30-minute simmer.</p>
+    <p class="pitch-text">Three varieties: Classic Kombu-Bonito, Shiitake Vegetarian, and Spicy Yuzu. Sold in a 12-pod box at $14.99 ($1.25/pod). One pod makes 2 cups of broth &mdash; the base for miso soup, ramen, udon, risotto, or any recipe that calls for stock. Positioned against Better Than Bouillon as the clean-label, Japanese alternative.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Hondashi Fish Soup Base available at $25.20/case of 12x2.2lb (SKU HONDA) &mdash; dashi ingredient supply validated through Artisan</li>
+      <li>Better Than Bouillon sells $300M+/year (Southeastern Grocers data) &mdash; proves concentrated cooking stock pods have mass market demand</li>
+      <li>Japanese food is the #2 fastest-growing cuisine in US restaurants &mdash; home cooking follows restaurant trends by 2&ndash;3 years</li>
+      <li>Single-serve pod format proven across categories: coffee (Keurig), broth (BOU), seasoning (True Lemon) &mdash; consumers pay for portioned convenience</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Packaging Innovation (#58) &mdash; applied the single-serve pod/concentrate format proven by Keurig, BOU Broth Cubes, and True Lemon to the dashi category, which is stuck in either "bulk powder" or "DIY simmer" formats.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Hondashi (Ajinomoto)</strong> &mdash; $8.99/5.28oz granules at Asian grocers. Industry standard. MSG-forward, one-dimensional flavor. Bulk format.</div>
+    <div class="comp-item"><strong>BOU Broth Cubes</strong> &mdash; $4.99/6 cubes. Clean-label broth cubes. Not Japanese. Good format reference.</div>
+    <div class="comp-item"><strong>Better Than Bouillon</strong> &mdash; $4.99/8oz. Paste format, spoon-and-stir. High sales but not single-serve.</div>
+    <div class="comp-item"><strong>Bonito Dashi Packs (various)</strong> &mdash; $6&ndash;8/10 sachets. Teabag-style dashi sachets. Closer but requires steeping (5&ndash;10 min).</div>
+    <div class="gap-callout">Gap: No liquid concentrate dashi pod exists. All current options are granules, paste, or teabag-steep format.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>BOU Broth Cubes</td><td>Target</td><td>$4.99/6 cubes</td></tr>
+      <tr><td>Hondashi Granules</td><td>Asian grocery</td><td>$8.99/5.28oz</td></tr>
+      <tr><td>Dashi Pack (Kayanoya)</td><td>Amazon</td><td>$12/10 sachets (steep format)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>clean-label cooking stock, Japanese ingredient section</em></li>
+    <li><strong>2. Amazon</strong> &mdash; <em>subscription-friendly, cooking enthusiast buyer</em></li>
+    <li><strong>3. Target</strong> &mdash; <em>meal-kit adjacency, weeknight cooking convenience</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Dashi concentrate (kombu + bonito extraction), per pod</span><span class="cost-value">$0.30 <span class="cost-source">assumption &mdash; needs extraction co-packer</span></span></div>
+    <div class="cost-line"><span class="cost-label">Pod packaging (heat-sealed liquid pod)</span><span class="cost-value">$0.15 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">12-pod box + insert</span><span class="cost-value">$0.80/box <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.15/pod <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$14.99/12-pod box ($1.25/pod)</span></div>
+    <div class="margin-badge">Gross Margin: 62%</div>
+    <div class="defensibility-note">Defensibility: all assumptions &mdash; dashi concentrate extraction is custom manufacturing</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Liquid concentrate production requires a co-packer capable of extraction (kombu + bonito &rarr; concentrated liquid) and heat-sealed pod filling. Shelf-stable via heat treatment. No cold chain once sealed. MOQ: 5,000&ndash;10,000 boxes. Lead time: 12&ndash;16 weeks (extraction R&amp;D + pod manufacturing). Challenge: achieving authentic dashi flavor in concentrate form without MSG or off-flavors.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.3</span>
+    <span class="ei-badge impact">Impact: 0.8</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 8: 3PM MISO BREAK                        -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 08</span>
+    <span class="product-score">4.00</span>
+    <span class="product-method">Method: Occasion-Based Thinking (#59)</span>
+    <span class="product-category">Beverage (Functional / Premium)</span>
+  </div>
+
+  <h2 class="product-title">3PM Miso Break</h2>
+
+  <div class="product-body">
+    <img src="images-run4/08-3pm-miso-break-hero.png" alt="3PM Miso Break" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">The 3pm slump is universal &mdash; and right now the only solutions are coffee (more caffeine), a snack bar (sugar crash), or willpower. In Japan, the answer is a cup of miso soup: warm, savory, 15 calories, gut-healthy, and deeply satisfying without any crash.</p>
+    <p class="pitch-text">3PM Miso Break is a desk-side miso cup designed for the afternoon ritual. The cup contains a single-serve miso paste packet, freeze-dried tofu cubes, and wakame. Add hot water from the office kettle, stir. 60 seconds from packet to warm comfort. Positioned as the Japanese alternative to afternoon tea &mdash; and marketed as an occasion, not just a product.</p>
+    <p class="pitch-text">The packaging features a modern ceramic-look cup (actually recyclable paper) with a built-in stirrer. Sold in 10-packs at $12.99 ($1.30/cup) for desk drawers and office pantries. The branding leans into the ritual: "Your 3PM Moment."</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>White Miso Paste at $4.80/2.2lb wholesale (supplier-kb:artisan-specialty-foods:WMISO3) &mdash; COGS validated</li>
+      <li>Wakame at $20.25/case of 8x16oz (supplier-kb:artisan-specialty-foods:WAKSW) &mdash; supply validated</li>
+      <li>Snacking accounts for 20% of global food/beverage sales; consumers snack at least once daily (Euromonitor 2026)</li>
+      <li>Instant soup market dominates the office/desk occasion &mdash; but "soup" connotes lunch, not afternoon. "Miso break" reframes the occasion</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Occasion-Based Thinking (#59) &mdash; anchored to the 3pm afternoon slump, a well-documented consumption occasion with few warm, savory, low-calorie options.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Marukome Instant Miso</strong> &mdash; $3.99/12-pack ($0.33/serving). Cheap but zero branding, no occasion positioning, basic flavor.</div>
+    <div class="comp-item"><strong>Cup-a-Soup (Lipton)</strong> &mdash; $3.49/4-pack ($0.87/cup). Office staple but dated brand, high sodium, not clean-label.</div>
+    <div class="comp-item"><strong>Numi Organic Broth Sippers</strong> &mdash; $5.99/5-pack ($1.20/cup). Closest concept but bone-broth based, not miso. Good format reference.</div>
+    <div class="gap-callout">Gap: No premium, occasion-branded instant miso positioned for the afternoon break exists.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Marukome Instant Miso</td><td>Walmart</td><td>$3.99/12-pack</td></tr>
+      <tr><td>Numi Broth Sippers</td><td>Whole Foods</td><td>$5.99/5-pack</td></tr>
+      <tr><td>Cup-a-Soup Instant</td><td>Target</td><td>$3.49/4-pack</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Amazon</strong> &mdash; <em>office pantry bulk purchase, subscription</em></li>
+    <li><strong>2. Whole Foods</strong> &mdash; <em>clean-label, wellness positioning</em></li>
+    <li><strong>3. Target</strong> &mdash; <em>pantry-stock format, accessible price</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">White miso paste, per cup</span><span class="cost-value">$0.10 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Freeze-dried tofu + wakame</span><span class="cost-value">$0.15 <span class="cost-source">supplier-kb:artisan-specialty-foods:WAKSW (partially)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Cup + lid + stirrer packaging</span><span class="cost-value">$0.25 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.10/cup <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$12.99/10-pack ($1.30/cup)</span></div>
+    <div class="margin-badge">Gross Margin: 54%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso + wakame; packaging + tofu assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Dry-goods assembly. Shelf-stable. No cold chain. Standard cup-soup co-packing infrastructure. MOQ: 5,000&ndash;10,000 boxes. Lead time: 6&ndash;8 weeks.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.25</span>
+    <span class="ei-badge impact">Impact: 0.75</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 9: MORNING MISO SACHETS                  -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 09</span>
+    <span class="product-score">3.95</span>
+    <span class="product-method">Method: JTBD (#4)</span>
+    <span class="product-category">Fermented Foods / Gut Health</span>
+  </div>
+
+  <h2 class="product-title">Morning Miso Sachets</h2>
+
+  <div class="product-body">
+    <img src="images-run4/09-morning-miso-sachets-hero.png" alt="Morning Miso Sachets" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Apple cider vinegar shots became a $1.5B category by promising gut health in an unpleasant format. Miso delivers the same benefits &mdash; probiotics, amino acids, B vitamins &mdash; in a format that actually tastes good. The Morning Miso Sachet is positioned as the Japanese gut-health ritual: tear a sachet, stir into hot water, drink. Daily use. 30-day supply.</p>
+    <p class="pitch-text">Each sachet contains concentrated white miso paste with live probiotics (shelf-stable strains) and marine collagen. No sugar, no vinegar burn, no choking it down. Just warm, savory, comforting umami that happens to be one of the most nutrient-dense fermented foods on earth.</p>
+    <p class="pitch-text">Sold in 30-sachet boxes at $29.99 ($1.00/day) &mdash; the same price as a premium probiotic supplement but delivered as food, not a pill.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Gut health launches jumped 61% YoY between 2024&ndash;2025 (FoodNavigator) &mdash; fastest-growing functional food claim</li>
+      <li>59% of consumers rate gut health as "highly important for overall well-being" (Innova Market Insights 2026)</li>
+      <li>Namikura White Miso at $4.80/2.2lb (supplier-kb:artisan-specialty-foods:WMISO3) &mdash; COGS validated</li>
+      <li>Probiotic supplement market $65B+ &mdash; miso sachets compete on the "food, not pills" trend</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> JTBD (#4) &mdash; identified the consumer job: "I want a daily gut-health ritual that doesn't taste terrible and isn't a pill."
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Bragg Apple Cider Vinegar Shots</strong> &mdash; $3.49/4-pack. Market leader in gut-health shots. Acidic, unpleasant taste that consumers tolerate.</div>
+    <div class="comp-item"><strong>Seed Probiotics</strong> &mdash; $49.99/month subscription. Premium probiotic capsules. Effective but pill format.</div>
+    <div class="comp-item"><strong>Tsubi Soup Instant Miso</strong> &mdash; $9.99/6-pack. Freeze-dried miso but not positioned as functional/daily ritual.</div>
+    <div class="gap-callout">Gap: No daily gut-health sachet positioned as a warm, food-based probiotic ritual. ACV shots own the "daily gut health" occasion but with a terrible format.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Bragg ACV Shots</td><td>Target</td><td>$3.49/4-pack</td></tr>
+      <tr><td>Tsubi Soup Instant Miso</td><td>Whole Foods</td><td>$9.99/6-pack</td></tr>
+      <tr><td>Seed Daily Synbiotic</td><td>DTC</td><td>$49.99/month</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. DTC-subscription</strong> &mdash; <em>30-day cadence, daily ritual = high retention</em></li>
+    <li><strong>2. Whole Foods</strong> &mdash; <em>functional food section, wellness buyer</em></li>
+    <li><strong>3. Amazon</strong> &mdash; <em>Subscribe &amp; Save, health-conscious buyer</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">White miso concentrate, per sachet</span><span class="cost-value">$0.08 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Shelf-stable probiotic culture</span><span class="cost-value">$0.12 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Marine collagen peptides</span><span class="cost-value">$0.10 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Sachet packaging</span><span class="cost-value">$0.08 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.08/sachet <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$29.99/30-pack ($1.00/sachet)</span></div>
+    <div class="margin-badge">Gross Margin: 54%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso; probiotic + collagen assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Dry powder/paste blending + sachet filling. Shelf-stable. No cold chain. Challenge: formulating shelf-stable probiotics that survive the drying/packaging process and remain viable. Requires probiotic ingredient supplier partnership. MOQ: 10,000&ndash;25,000 boxes. Lead time: 12&ndash;16 weeks.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.2</span>
+    <span class="ei-badge impact">Impact: 0.8</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 10: MISO BUTTERSCOTCH SAUCE              -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 10</span>
+    <span class="product-score">3.95</span>
+    <span class="product-method">Method: SCAMPER (#21)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Miso Butterscotch Sauce</h2>
+
+  <div class="product-body">
+    <img src="images-run4/10-miso-butterscotch-hero.png" alt="Miso Butterscotch Sauce" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">The sweet-savory trend has been building for a decade &mdash; salted caramel, miso caramel, brown butter cookies. But no one has bottled the most interesting version: miso butterscotch. White miso adds umami depth and a faint saltiness that transforms basic butterscotch from a one-note sweetness into a complex, almost addictive sauce.</p>
+    <p class="pitch-text">Miso Butterscotch Sauce is a jar of premium dessert condiment &mdash; pour it on ice cream, drizzle on pancakes, use it in baking, add it to cocktails. The recipe is simple: butter, brown sugar, cream, and white miso paste. The result is a golden sauce with visible miso specks that tastes like caramel's more sophisticated Japanese cousin.</p>
+    <p class="pitch-text">Positioned at $12.99/8oz jar in the premium condiment/ice cream topping aisle. The same shelf that holds salted caramel sauce, hot fudge, and Biscoff spread.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Miso caramel appeared on top restaurant menus in 2024&ndash;2025 &mdash; Momofuku, Eleven Madison Park, and dozens of pastry chefs use miso in desserts</li>
+      <li>White Miso at $4.80/2.2lb (supplier-kb:artisan-specialty-foods:WMISO3) &mdash; ingredient supply validated</li>
+      <li>Salted caramel sauce category at retail = $500M+ &mdash; miso butterscotch is the natural premiumization of this proven category</li>
+      <li>Sweet-savory trend confirmed by Half Baked Harvest (8M followers) featuring "miso brown butter caramel" in 2025 best-of list</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> SCAMPER (#21) &mdash; Reverse: applied miso (savory) to butterscotch (sweet), creating a flavor profile that exists in restaurants but has no CPG product.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Stonewall Kitchen Salted Caramel Sauce</strong> &mdash; $8.95/12.25oz. Market leader. No umami, no miso, straightforward sweet.</div>
+    <div class="comp-item"><strong>Bonne Maman Caramel</strong> &mdash; $6.99/13oz. French heritage, premium positioning but conventional flavor.</div>
+    <div class="comp-item"><strong>Local artisan miso caramels</strong> &mdash; $12&ndash;18/small batch. Exist at farmer's markets and specialty stores but no national CPG brand.</div>
+    <div class="gap-callout">Gap: No nationally distributed miso butterscotch or miso caramel sauce exists at retail.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Stonewall Kitchen Salted Caramel</td><td>Whole Foods</td><td>$8.95/12.25oz</td></tr>
+      <tr><td>Bonne Maman Caramel</td><td>Target</td><td>$6.99/13oz</td></tr>
+      <tr><td>Trader Joe's Cookie Butter</td><td>Trader Joe's</td><td>$3.99/14.1oz</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>premium condiment buyer, dessert/topping section, food trend-forward</em></li>
+    <li><strong>2. DTC-one-time</strong> &mdash; <em>gift purchase, viral food trend, Instagram-worthy</em></li>
+    <li><strong>3. Target</strong> &mdash; <em>premium dessert section, accessible price point</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">White miso paste, per 8oz jar</span><span class="cost-value">$0.30 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Butter, brown sugar, cream</span><span class="cost-value">$1.50 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Glass jar + lid + label</span><span class="cost-value">$0.80 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.60/jar <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$12.99/8oz jar</span></div>
+    <div class="margin-badge">Gross Margin: 75%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso; butter/sugar/packaging assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Standard cooked sauce production. Shelf-stable (high sugar content preserves). No cold chain. Glass jar filling co-packing widely available. MOQ: 3,000&ndash;5,000 jars. Lead time: 6&ndash;8 weeks. Extremely fast to prototype &mdash; this is a 4-ingredient recipe.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.15</span>
+    <span class="ei-badge impact">Impact: 0.75</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 11: MISO WELLNESS SHOTS                  -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 11</span>
+    <span class="product-score">3.95</span>
+    <span class="product-method">Method: Cultural Trend Mining (#51)</span>
+    <span class="product-category">Beverage (Functional / Premium)</span>
+  </div>
+
+  <h2 class="product-title">Miso Wellness Shots</h2>
+
+  <div class="product-body">
+    <img src="images-run4/11-miso-wellness-shots-hero.png" alt="Miso Wellness Shots" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Wellness shots are a $2B+ category dominated by ginger, turmeric, and apple cider vinegar. All cold. All acidic. All designed to be endured rather than enjoyed. Miso Wellness Shots take a different approach: warm, savory, umami-rich 2oz shots in the refrigerated functional beverage cooler.</p>
+    <p class="pitch-text">Four varieties: Golden Miso-Ginger (classic warming), Red Miso-Turmeric (anti-inflammatory), White Miso-Lemon (probiotic brightener), and Green Miso-Matcha (calm energy). Each 2oz shot delivers live probiotics, B vitamins, and amino acids from naturally fermented miso.</p>
+    <p class="pitch-text">Sold in 4-packs at $9.99 ($2.50/shot) &mdash; premium but aligned with existing wellness shot pricing (Pressed Juicery shots are $3.99 each).</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Wellness shot market $2B+ and growing 15%+ annually &mdash; category is proven but flavor innovation has stalled</li>
+      <li>"Miso-infused lattes" identified as "Category Crasher" trend &mdash; savory entering sweet/functional beverages (AIFI 2026 trends)</li>
+      <li>59% of consumers rate gut health as highly important (Innova 2026) &mdash; miso's natural fermentation gives it probiotic credibility</li>
+      <li>Japanese longevity/Blue Zone association &mdash; miso is the iconic food of Okinawan centenarian diets</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Cultural Trend Mining (#51) &mdash; identified "miso-infused lattes" as an emerging Category Crasher trend and extended the logic to the wellness shot format.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Pressed Juicery Wellness Shot</strong> &mdash; $3.99/2oz. Cold-pressed, fruit-based, acidic.</div>
+    <div class="comp-item"><strong>Bragg ACV Shot</strong> &mdash; $3.49/4-pack. Vinegar-based, harsh taste.</div>
+    <div class="comp-item"><strong>Vive Organic Wellness Shot</strong> &mdash; $3.99/2oz. Ginger-turmeric, standard cold shot.</div>
+    <div class="gap-callout">Gap: No warm, savory, miso-based wellness shot exists. The entire category is cold and acidic.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Pressed Juicery Wellness Shots</td><td>Whole Foods</td><td>$3.99/2oz</td></tr>
+      <tr><td>Vive Organic</td><td>Target</td><td>$3.99/2oz</td></tr>
+      <tr><td>Bragg ACV Shots</td><td>Target</td><td>$3.49/4-pack</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>refrigerated functional section, wellness buyer</em></li>
+    <li><strong>2. Sprouts</strong> &mdash; <em>natural/organic, health-forward customer base</em></li>
+    <li><strong>3. DTC-subscription</strong> &mdash; <em>daily ritual cadence, 12-pack monthly</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Miso paste concentrate, per 2oz shot</span><span class="cost-value">$0.15 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Functional ingredients (ginger/turmeric/matcha/lemon)</span><span class="cost-value">$0.20 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">2oz glass bottle + cap</span><span class="cost-value">$0.40 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.25/shot <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$9.99/4-pack ($2.50/shot)</span></div>
+    <div class="margin-badge">Gross Margin: 60%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso; functional ingredients + bottling assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Refrigerated product. Requires cold chain. Beverage co-packing for small-format bottles. HPP (high-pressure processing) likely needed for shelf life extension. MOQ: 5,000&ndash;10,000 bottles. Lead time: 12&ndash;16 weeks. Challenge: maintaining live probiotic cultures through production process.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.35</span>
+    <span class="ei-badge impact">Impact: 0.75</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 12: COMBINI HAUL BOX                     -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 12</span>
+    <span class="product-score">3.95</span>
+    <span class="product-method">Method: Cultural Trend Mining (#51)</span>
+    <span class="product-category">Global Snacks / Cultural Format Transfer</span>
+  </div>
+
+  <h2 class="product-title">Combini Haul Box</h2>
+
+  <div class="product-body">
+    <img src="images-run4/12-combini-haul-box-hero.png" alt="Combini Haul Box" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">"Combini haul" videos &mdash; where creators fill baskets at Japanese convenience stores with onigiri, miso cups, matcha treats, and snacks &mdash; routinely hit millions of views on TikTok. The Combini Haul Box packages this experience as a monthly subscription.</p>
+    <p class="pitch-text">Each box replicates a Japanese convenience store haul: curated selection of onigiri molds (first box), nori snacks, individual miso soup cups, matcha or yuzu treats, and one hero product per drop (rotating items like furikake, mochi, or Japanese curry). The unboxing is designed for social media &mdash; tissue paper, collectible cards, and a "menu" card explaining each item.</p>
+    <p class="pitch-text">Sold at $39.99/month. Positioned as the Japan-obsessed foodie subscription &mdash; Bokksu for the convenience store, not the candy aisle.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>"Combini haul" TikTok videos regularly hit 1&ndash;5M views &mdash; massive organic demand signal</li>
+      <li>Subscription box market $32.9B in 2025, growing 14.2% CAGR (Grand View Research)</li>
+      <li>Bokksu (Japanese snack subscription) valued at $100M+ &mdash; proves the Japanese food subscription model at scale</li>
+      <li>Japan inbound tourism hit 39M visitors in 2025 &mdash; millions of Americans have experienced konbini firsthand</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Cultural Trend Mining (#51) &mdash; the combini haul TikTok trend is the most direct signal of consumer demand for curated Japanese convenience store experiences at home.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Bokksu</strong> &mdash; $49.95/month. Japanese snack subscription. Established brand, candy/snack focused, not convenience store format.</div>
+    <div class="comp-item"><strong>Tokyo Treat</strong> &mdash; $37.50/month. Japanese candy and snacks. Fun but juvenile positioning.</div>
+    <div class="comp-item"><strong>Sakuraco</strong> &mdash; $37.50/month. Japanese artisan foods. Premium but traditional/seasonal, not konbini.</div>
+    <div class="gap-callout">Gap: No subscription replicates the konbini convenience store experience specifically &mdash; they all focus on candy, snacks, or artisan goods.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Bokksu</td><td>DTC</td><td>$49.95/month</td></tr>
+      <tr><td>Tokyo Treat</td><td>DTC</td><td>$37.50/month</td></tr>
+      <tr><td>Sakuraco</td><td>DTC</td><td>$37.50/month</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. DTC-subscription</strong> &mdash; <em>the entire business model is subscription</em></li>
+    <li><strong>2. Amazon</strong> &mdash; <em>seasonal gift boxes, Prime Day promotions</em></li>
+    <li><strong>3. Target</strong> &mdash; <em>limited-edition "discovery" box in seasonal section</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">8&ndash;10 curated Japanese items per box</span><span class="cost-value">$12.00 <span class="cost-source">assumption &mdash; Japanese import + domestic sourcing mix</span></span></div>
+    <div class="cost-line"><span class="cost-label">Custom box + tissue + cards</span><span class="cost-value">$3.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Shipping (domestic)</span><span class="cost-value">$5.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack (curation + assembly)</span><span class="cost-value">$2.00/box <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$39.99/month</span></div>
+    <div class="margin-badge">Gross Margin: 45%</div>
+    <div class="defensibility-note">Defensibility: all assumptions &mdash; subscription COGS depend heavily on sourcing relationships</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge complex">Complex</span>
+  <p class="complexity-text">Import logistics (Japanese items), curation (monthly content calendar), subscription fulfillment, inventory management across rotating SKUs. No cold chain (shelf-stable items only). Challenge: maintaining product variety and freshness monthly, managing Japanese import supply chains, and achieving sustainable unit economics at scale.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.4</span>
+    <span class="ei-badge impact">Impact: 0.7</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 13: VINTAGE MISO COLLECTION              -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 13</span>
+    <span class="product-score">3.90</span>
+    <span class="product-method">Method: Premiumization (#56)</span>
+    <span class="product-category">Fermented Foods / Gut Health</span>
+  </div>
+
+  <h2 class="product-title">Vintage Miso Collection</h2>
+
+  <div class="product-body">
+    <img src="images-run4/13-vintage-miso-collection-hero.png" alt="Vintage Miso Collection" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Wine has vintages. Cheese has aging. Balsamic vinegar has "years." But miso &mdash; which is aged for anywhere from 3 months to 3 years, developing dramatically different flavors at each stage &mdash; has no premium aging narrative in the US market. Every tub on the shelf just says "white" or "red" with no context.</p>
+    <p class="pitch-text">The Vintage Miso Collection changes this by curating three aged misos as a tasting flight: 6-Month Shiro (sweet, delicate, for dressings and desserts), 18-Month Aka (deep, complex, for soups and marinades), and 3-Year Hatcho (intense, chocolate-like, for glazes and finishing). Each comes in a ceramic crock with tasting notes and pairing cards &mdash; exactly like a wine or cheese tasting set.</p>
+    <p class="pitch-text">Positioned at $44.99 as a gift-forward product. The target buyer is the food-curious gift-giver shopping at Whole Foods in November.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Namikura Red Aka Miso (aged 6 months) at $4.80/2.2lb (supplier-kb:artisan-specialty-foods:RMISO3) &mdash; base ingredient validated</li>
+      <li>Premium food tasting sets proven: olive oil flights ($30&ndash;50), honey flights ($25&ndash;40), hot sauce collections ($20&ndash;35) all sell at Whole Foods</li>
+      <li>Fermented food market growing 8.5% CAGR driven by gut health awareness</li>
+      <li>Japanese miso producers (Marukome, Hikari, Namikura) make aged varieties &mdash; supply exists but no one curates them for the US gift market</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Premiumization (#56) &mdash; applied the wine/cheese aging narrative to miso, where the quality and flavor differences between aging stages are real and dramatic but invisible to US consumers.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Hikari Miso (various)</strong> &mdash; $4.99&ndash;7.99/tub at Whole Foods. Multiple varieties but sold individually, no tasting narrative.</div>
+    <div class="comp-item"><strong>South River Miso</strong> &mdash; $12.99/16oz. Artisan, unpasteurized, premium. Single variety per purchase.</div>
+    <div class="comp-item"><strong>Miso Tasty</strong> &mdash; $6.99/jar. UK-based, entering US. Single variety, cooking-focused.</div>
+    <div class="gap-callout">Gap: No curated miso tasting collection with aging narrative exists in the US market.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Brightland Olive Oil Set</td><td>DTC</td><td>$75/2-bottle set</td></tr>
+      <tr><td>Bee &amp; The Fox Honey Flight</td><td>Whole Foods</td><td>$34.99/3-jar set</td></tr>
+      <tr><td>Hikari Organic Miso</td><td>Whole Foods</td><td>$4.99&ndash;7.99/tub (individual)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>gift section, holiday season, food discovery buyer</em></li>
+    <li><strong>2. DTC-one-time</strong> &mdash; <em>gift purchase, food enthusiast</em></li>
+    <li><strong>3. Amazon</strong> &mdash; <em>giftable, Prime delivery, food gift category</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">6-month Shiro miso, 4oz</span><span class="cost-value">$0.87 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3 ($4.80/2.2lb)</span></span></div>
+    <div class="cost-line"><span class="cost-label">18-month Aka miso, 4oz</span><span class="cost-value">$0.87 <span class="cost-source">supplier-kb:artisan-specialty-foods:RMISO3 ($4.80/2.2lb)</span></span></div>
+    <div class="cost-line"><span class="cost-label">3-year Hatcho miso, 4oz</span><span class="cost-value">$2.00 <span class="cost-source">assumption &mdash; aged hatcho commands premium</span></span></div>
+    <div class="cost-line"><span class="cost-label">3 ceramic crocks + wooden lids</span><span class="cost-value">$5.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Gift box + tasting cards + insert</span><span class="cost-value">$3.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$2.00/set <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$44.99/set</span></div>
+    <div class="margin-badge">Gross Margin: 69%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for shiro + aka; hatcho + ceramic + gift packaging assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Shelf-stable set assembly. No cold chain. Challenge: sourcing authentic 3-year hatcho miso at scale (limited producers). Ceramic crock sourcing from Japanese or domestic pottery. Gift box assembly is manual but low-complexity. MOQ: 2,000&ndash;5,000 sets. Lead time: 12&ndash;16 weeks (sourcing + packaging design).</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.35</span>
+    <span class="ei-badge impact">Impact: 0.7</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 14: MISO BONE BROTH SIPPING CUPS         -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 14</span>
+    <span class="product-score">3.85</span>
+    <span class="product-method">Method: Mashup (#24)</span>
+    <span class="product-category">Beverage (Functional / Premium)</span>
+  </div>
+
+  <h2 class="product-title">Miso Bone Broth Sipping Cups</h2>
+
+  <div class="product-body">
+    <img src="images-run4/14-miso-bone-broth-hero.png" alt="Miso Bone Broth Sipping Cups" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Bone broth sipping cups (Kettle &amp; Fire, Bonafide) proved that warm, savory, functional sipping is a real purchase occasion. But bone broth alone is... bland. Miso Bone Broth Sipping Cups add the depth that's missing: grass-fed bone broth blended with aged red miso and fresh ginger, creating a drink that delivers collagen AND probiotics AND umami satisfaction.</p>
+    <p class="pitch-text">Three shelf-stable 8oz sipping cups: Red Miso-Ginger (warming classic), White Miso-Lemon (bright, clean), and Spicy Miso-Chili (bold, craveable). Sold in 6-packs at $24.99 ($4.17/cup) &mdash; positioned next to Kettle &amp; Fire in the soup/broth aisle.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Kettle &amp; Fire reached $100M+ revenue &mdash; proves sipping broth as a mainstream category</li>
+      <li>Red Miso at $4.80/2.2lb (supplier-kb:artisan-specialty-foods:RMISO3) &mdash; ingredient supply validated</li>
+      <li>Bone broth market $3.3B projected by 2028 &mdash; large addressable market with flavor innovation opportunity</li>
+      <li>Collagen + probiotic combination addresses two top functional food trends in one product</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Mashup (#24) &mdash; crossed bone broth (proven sipping format, collagen) with miso (proven umami flavor, probiotics) to create a differentiated product in an established category.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Kettle &amp; Fire Bone Broth</strong> &mdash; $6.99/16.9oz carton. Market leader but large format, no miso, no Japanese positioning.</div>
+    <div class="comp-item"><strong>Bonafide Provisions</strong> &mdash; $5.99/cup. Single-serve but plain bone broth, no umami, no miso.</div>
+    <div class="comp-item"><strong>Brodo</strong> &mdash; $12/16oz. Premium, NYC-born, multiple flavors but not miso-based.</div>
+    <div class="gap-callout">Gap: No miso-infused bone broth sipping cup exists. Miso adds the flavor dimension that plain bone broth lacks.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Kettle &amp; Fire Sipping Cups</td><td>Target</td><td>$4.99/cup</td></tr>
+      <tr><td>Bonafide Provisions</td><td>Whole Foods</td><td>$5.99/cup</td></tr>
+      <tr><td>Brodo</td><td>DTC</td><td>$12/16oz</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>soup/broth aisle, functional food buyer</em></li>
+    <li><strong>2. Target</strong> &mdash; <em>shelf-stable soup section, growing bone broth space</em></li>
+    <li><strong>3. Amazon</strong> &mdash; <em>bundle purchase, Subscribe &amp; Save</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Grass-fed bone broth base, per 8oz cup</span><span class="cost-value">$0.80 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Red miso paste concentrate</span><span class="cost-value">$0.12 <span class="cost-source">supplier-kb:artisan-specialty-foods:RMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Ginger/lemon/chili additions</span><span class="cost-value">$0.08 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Shelf-stable cup + peel-back lid</span><span class="cost-value">$0.35 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.30/cup <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$24.99/6-pack ($4.17/cup)</span></div>
+    <div class="margin-badge">Gross Margin: 60%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso; bone broth base + packaging assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Shelf-stable liquid product. Requires retort/aseptic packaging co-packer. No cold chain once packaged. Standard beverage co-packing. MOQ: 5,000&ndash;10,000 cups. Lead time: 10&ndash;14 weeks.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.3</span>
+    <span class="ei-badge impact">Impact: 0.75</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 15: MISO PASTE PUCKS                     -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 15</span>
+    <span class="product-score">3.85</span>
+    <span class="product-method">Method: Packaging Innovation (#58)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Miso Paste Pucks</h2>
+
+  <div class="product-body">
+    <img src="images-run4/15-miso-paste-pucks-hero.png" alt="Miso Paste Pucks" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Bouillon cubes solved the "stock is too much work" problem by portioning it into single-use blocks. Miso Paste Pucks do the same for miso: individually portioned frozen miso paste pucks in a silicone tray. Pop one out, drop it in a mug, add hot water, stir. No measuring, no tub drying out, no waste.</p>
+    <p class="pitch-text">Each puck contains exactly one serving of miso paste (15g) &mdash; pre-measured and ready to dissolve. Sold in 12-puck trays at $8.99 ($0.75/puck). Stored in the freezer. The format makes miso as easy to use as a bouillon cube while delivering real, unprocessed paste instead of dehydrated powder.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>White Miso at $4.80/2.2lb (supplier-kb:artisan-specialty-foods:WMISO3) &mdash; COGS validated</li>
+      <li>Better Than Bouillon ($300M+ revenue) proved portioned cooking stock has massive demand</li>
+      <li>Reddit behavioral signal: "one container of miso lasts forever" (r/budgetfood) &mdash; confirms the waste problem is real</li>
+      <li>Frozen format preserves live cultures (unlike dried/granulated alternatives) &mdash; functional benefit over Hondashi</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Packaging Innovation (#58) &mdash; applied the bouillon cube portioning logic to miso paste, solving the waste and convenience barriers.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Standard miso tubs (Hikari, Miso Master)</strong> &mdash; $4.99&ndash;7.99/16oz. Oxidize after opening, require measuring.</div>
+    <div class="comp-item"><strong>Hondashi granules</strong> &mdash; $8.99/5.28oz. Portionable but MSG-heavy, dehydrated, not real miso.</div>
+    <div class="comp-item"><strong>Better Than Bouillon</strong> &mdash; $4.99/8oz. Paste format, spoon-and-stir. Not miso. Good analog.</div>
+    <div class="gap-callout">Gap: No pre-portioned frozen miso format exists. Bridges the gap between bulk tubs and dehydrated powder.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>dorot Frozen Garlic Cubes</td><td>Trader Joe's</td><td>$2.99/20 cubes (format proof)</td></tr>
+      <tr><td>Better Than Bouillon</td><td>Target</td><td>$4.99/8oz</td></tr>
+      <tr><td>Hikari Miso Tub</td><td>Whole Foods</td><td>$4.99/17.6oz</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Trader Joe's</strong> &mdash; <em>frozen section innovation, format-forward buyer, dorot cubes precedent</em></li>
+    <li><strong>2. Whole Foods</strong> &mdash; <em>frozen Japanese section, clean-label</em></li>
+    <li><strong>3. Target</strong> &mdash; <em>frozen aisle, accessible price</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">White miso paste, per 12-puck tray</span><span class="cost-value">$0.39 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3 ($4.80/2.2lb)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Silicone tray + cardboard sleeve</span><span class="cost-value">$1.20 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.50/tray <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$8.99/12-puck tray ($0.75/puck)</span></div>
+    <div class="margin-badge">Gross Margin: 77%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso; tray + frozen co-pack assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Frozen product but extremely simple: fill silicone molds with miso paste, freeze, package. No cooking, no blending. Standard frozen food co-packing. Cold chain required for distribution. MOQ: 5,000&ndash;10,000 trays. Lead time: 6&ndash;8 weeks.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.2</span>
+    <span class="ei-badge impact">Impact: 0.75</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 16: DASHI COCKTAIL BITTERS               -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 16</span>
+    <span class="product-score">3.80</span>
+    <span class="product-method">Method: Mashup (#24)</span>
+    <span class="product-category">Beverage (Functional / Premium)</span>
+  </div>
+
+  <h2 class="product-title">Dashi Cocktail Bitters</h2>
+
+  <div class="product-body">
+    <img src="images-run4/16-dashi-cocktail-bitters-hero.png" alt="Dashi Cocktail Bitters" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Japanese bartending is having a global moment &mdash; the precision, the ice, the umami. Dashi Cocktail Bitters bring that flavor profile to the home bar: a dropper bottle of concentrated dashi, yuzu, and shiso that transforms any cocktail with three dashes of savory Japanese depth.</p>
+    <p class="pitch-text">The umami martini. The dashi Bloody Mary. The yuzu highball. These are real drinks being served at the world's best Japanese bars &mdash; but there's no retail product that lets a home bartender replicate them. Dashi Cocktail Bitters fill that gap in a 4oz apothecary-style bottle at $18.99.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Japanese whisky market growing 10%+ annually &mdash; Japanese cocktail culture is expanding globally</li>
+      <li>Angostura bitters sell $100M+/year &mdash; proves bitters as a retail category with premium pricing</li>
+      <li>Kombu dashi at $62.80/5lb (supplier-kb:artisan-specialty-foods:KOMBSW) &mdash; base ingredient available</li>
+      <li>Umami cocktails featured at world's top bars (Bar Benfiddich, Star Bar, etc.) &mdash; trend moving from bartender elite to enthusiast</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Mashup (#24) &mdash; crossed dashi (Japanese cooking base) with cocktail bitters (bar essential), creating a product at the intersection of two rising trends.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Angostura Aromatic Bitters</strong> &mdash; $9.99/4oz. Category default. No umami, not Japanese.</div>
+    <div class="comp-item"><strong>Fee Brothers Japanese Bitters</strong> &mdash; $10.99/4oz. "Japanese" in name only (cherry blossom + jasmine). No dashi.</div>
+    <div class="comp-item"><strong>Bittermens Xocolatl Mole Bitters</strong> &mdash; $12.99/5oz. Proves savory/umami bitters concept but not Japanese.</div>
+    <div class="gap-callout">Gap: No real dashi-based cocktail bitters exist. "Japanese bitters" products are floral, not umami.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Fee Brothers Japanese Bitters</td><td>Amazon</td><td>$10.99/4oz</td></tr>
+      <tr><td>Bittermens Xocolatl Mole</td><td>Total Wine</td><td>$12.99/5oz</td></tr>
+      <tr><td>The Japanese Bitters Co</td><td>Japan only</td><td>&yen;3,500 (~$24)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. DTC-one-time</strong> &mdash; <em>cocktail enthusiast, gift purchase, niche product</em></li>
+    <li><strong>2. Total Wine/BevMo</strong> &mdash; <em>specialty spirits/mixers section</em></li>
+    <li><strong>3. Amazon</strong> &mdash; <em>home bar accessories buyer</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Kombu dashi extract, per 4oz bottle</span><span class="cost-value">$1.50 <span class="cost-source">supplier-kb:artisan-specialty-foods:KOMBSW ($62.80/5lb)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Yuzu + shiso botanical infusion</span><span class="cost-value">$1.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">4oz glass bottle + dropper + label</span><span class="cost-value">$1.50 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.80/bottle <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$18.99/4oz bottle</span></div>
+    <div class="margin-badge">Gross Margin: 75%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for kombu; botanical extraction + bottling assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Botanical extraction + bottling. Shelf-stable (alcohol-based). Requires distillery or botanical extraction co-packer. MOQ: 2,000&ndash;5,000 bottles. Lead time: 12&ndash;16 weeks. May require TTB (Alcohol and Tobacco Tax and Trade Bureau) classification depending on alcohol content.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.3</span>
+    <span class="ei-badge impact">Impact: 0.65</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 17: GARI PICKLED GINGER SNACKS           -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 17</span>
+    <span class="product-score">3.80</span>
+    <span class="product-method">Method: SCAMPER (#21)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Gari Pickled Ginger Snacks</h2>
+
+  <div class="product-body">
+    <img src="images-run4/17-gari-pickled-ginger-hero.png" alt="Gari Pickled Ginger Snacks" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Pickled ginger is the most universally loved component of the sushi experience &mdash; the palate-cleanser everyone eats between pieces. But it only exists as a side dish. Nobody sells it as a standalone snack.</p>
+    <p class="pitch-text">Gari Pickled Ginger Snacks package thin-sliced pickled ginger in resealable snack pouches with three flavor variants: Classic Pink (traditional), Yuzu Citrus (bright, refreshing), and Chili Heat (spicy kick). Each 3oz pouch is positioned as a functional snack: probiotic, anti-inflammatory, low-calorie (10 calories/serving), and genuinely crave-worthy.</p>
+    <p class="pitch-text">At $5.99/3oz, they sit in the premium snack aisle next to dried fruit, olives, and seaweed snacks. The sushi-adjacent positioning gives them built-in familiarity &mdash; everyone already knows they like ginger from their last sushi dinner.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Pink Sushi Ginger at $20/11lb wholesale (supplier-kb:artisan-specialty-foods:PGIN) &mdash; extremely low COGS</li>
+      <li>Ginger products growing 8%+ annually driven by functional health positioning (anti-inflammatory, digestive)</li>
+      <li>Pickled/fermented snacks trending: kimchi chips, pickle chips, fermented vegetable snacks all launching 2025&ndash;2026</li>
+      <li>10 calories/serving makes this a genuine zero-guilt snack &mdash; rare in a market dominated by 150+ calorie options</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> SCAMPER (#21) &mdash; Adapt: took sushi ginger from "side dish" to "standalone snack," extending the product into a new usage occasion.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>The Ginger People Pickled Ginger</strong> &mdash; $4.99/6oz jar. Sold in condiment aisle, not snack aisle. Jar format, not snack pouch.</div>
+    <div class="comp-item"><strong>Gin Gins Ginger Candy</strong> &mdash; $4.99/3oz. Candy, not pickled ginger. Different product entirely.</div>
+    <div class="comp-item"><strong>gimMe Seaweed Snacks</strong> &mdash; $3.49/0.7oz. Sushi-adjacent snack that proved the category works.</div>
+    <div class="gap-callout">Gap: No snack-format pickled ginger exists. It's only sold as a condiment in jars or plastic clamshells.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>The Ginger People Pickled Ginger</td><td>Amazon</td><td>$4.99/6oz</td></tr>
+      <tr><td>gimMe Seaweed Snacks</td><td>Whole Foods</td><td>$3.49/0.7oz (format reference)</td></tr>
+      <tr><td>Trader Joe's Dried Baby Ginger</td><td>Trader Joe's</td><td>$2.99/3oz (dried, not pickled)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>premium snack section, sushi-adjacent, functional positioning</em></li>
+    <li><strong>2. Trader Joe's</strong> &mdash; <em>snack innovation, Japanese food affinity, impulse buy</em></li>
+    <li><strong>3. Target</strong> &mdash; <em>premium snack aisle, growing Asian food section</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Pink sushi ginger, per 3oz pouch</span><span class="cost-value">$0.34 <span class="cost-source">supplier-kb:artisan-specialty-foods:PGIN ($20/11lb = $0.11/oz)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Yuzu/chili flavoring additions</span><span class="cost-value">$0.10 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Resealable pouch + label</span><span class="cost-value">$0.25 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.15/pouch <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$5.99/3oz pouch</span></div>
+    <div class="margin-badge">Gross Margin: 86%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for ginger; flavoring + packaging assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Repackaging existing product into snack format. No cooking, no processing beyond slicing + flavoring. Shelf-stable (pickled). No cold chain. Extremely fast to prototype. MOQ: 5,000&ndash;10,000 pouches. Lead time: 4&ndash;6 weeks.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.15</span>
+    <span class="ei-badge impact">Impact: 0.7</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 18: SUSHI RICE SEASONING SACHETS         -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 18</span>
+    <span class="product-score">3.80</span>
+    <span class="product-method">Method: Packaging Innovation (#58)</span>
+    <span class="product-category">Premium Foodservice / CPG</span>
+  </div>
+
+  <h2 class="product-title">Sushi Rice Seasoning Sachets</h2>
+
+  <div class="product-body">
+    <img src="images-run4/18-sushi-rice-sachets-hero.png" alt="Sushi Rice Seasoning Sachets" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">The #1 reason people fail at home sushi is the rice. Not because rice is hard to cook, but because seasoning it &mdash; the precise ratio of rice vinegar, sugar, and salt &mdash; is finicky enough to deter beginners. Sushi Rice Seasoning Sachets eliminate the guesswork: tear, pour into 2 cups of cooked rice, fold. Done.</p>
+    <p class="pitch-text">Three variants: Classic (traditional vinegar-sugar-salt), Yuzu (citrus-bright, modern), and Shiso (herbal, premium). Sold in 10-sachet boxes at $7.99 ($0.80/sachet) in the Asian ingredients or rice aisle. Each sachet seasons exactly 2 cups of rice for 4 rolls or 2 bowls.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Marukan Rice Vinegar at $28/case of 12x12oz (supplier-kb:artisan-specialty-foods:2904) &mdash; base ingredient validated</li>
+      <li>"Deconstructed sushi" / sushi bowls growing as casual home format &mdash; the bowl is easier than rolling and sachet makes rice effortless</li>
+      <li>Reddit r/sushi: "easy at-home sushi bowl" is the default beginner format &mdash; sachets remove the last friction point</li>
+      <li>Sushi mat/kit combos sell 50,000+ units on Amazon &mdash; proves the "home sushi" occasion exists at scale</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Packaging Innovation (#58) &mdash; pre-measured the seasoning step that stops beginners from making sushi rice at home.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Tamanoi Sushinoko Sushi Rice Seasoning Powder</strong> &mdash; $4.99/5.3oz. Powder format, requires measuring. Japanese-language packaging.</div>
+    <div class="comp-item"><strong>Kikkoman Seasoned Rice Vinegar</strong> &mdash; $3.99/10oz. Liquid, requires measuring. Not sushi-specific.</div>
+    <div class="comp-item"><strong>Various sushi kits (rice + nori + mat)</strong> &mdash; $15&ndash;20. Include vinegar but not pre-measured sachets.</div>
+    <div class="gap-callout">Gap: No pre-measured, tear-and-pour sushi rice seasoning sachet exists at US retail.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Tamanoi Sushinoko</td><td>Amazon</td><td>$4.99/5.3oz</td></tr>
+      <tr><td>Kikkoman Seasoned Rice Vinegar</td><td>Target</td><td>$3.99/10oz</td></tr>
+      <tr><td>True Lemon packets</td><td>Target</td><td>$3.49/32-count (format reference)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Target</strong> &mdash; <em>Asian ingredients section, home cooking convenience</em></li>
+    <li><strong>2. Amazon</strong> &mdash; <em>sushi-at-home occasion, bundle with nori/mat</em></li>
+    <li><strong>3. Walmart</strong> &mdash; <em>rice aisle, mass market accessibility</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Rice vinegar concentrate, per sachet</span><span class="cost-value">$0.05 <span class="cost-source">supplier-kb:artisan-specialty-foods:2904 ($28/case)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Sugar + salt blend</span><span class="cost-value">$0.02 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Sachet packaging</span><span class="cost-value">$0.06 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">10-sachet box + insert</span><span class="cost-value">$0.50/box <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$0.05/sachet <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$7.99/10-pack ($0.80/sachet)</span></div>
+    <div class="margin-badge">Gross Margin: 77%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for rice vinegar; blending + sachet co-pack assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge simple">Simple</span>
+  <p class="complexity-text">Dry/liquid sachet filling. Shelf-stable. No cold chain. Standard sachet co-packing. Extremely simple product. MOQ: 10,000&ndash;25,000 boxes. Lead time: 4&ndash;6 weeks. Fastest-to-prototype product in the entire run.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.15</span>
+    <span class="ei-badge impact">Impact: 0.75</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 19: JAPANESE BREAKFAST BOX               -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 19</span>
+    <span class="product-score">3.80</span>
+    <span class="product-method">Method: Analogous Inspiration (#15)</span>
+    <span class="product-category">Global Snacks / Cultural Format Transfer</span>
+  </div>
+
+  <h2 class="product-title">Japanese Breakfast Box</h2>
+
+  <div class="product-body">
+    <img src="images-run4/19-japanese-breakfast-box-hero.png" alt="Japanese Breakfast Box" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">The traditional Japanese breakfast &mdash; miso soup, short-grain rice, tsukemono pickles, nori, and furikake &mdash; is one of the most nutritionally complete morning meals on earth. It's also the breakfast of the world's longest-lived population. But in the US, "breakfast" means eggs, toast, or cereal. Nobody sells a Japanese breakfast as a product.</p>
+    <p class="pitch-text">The Japanese Breakfast Box is a shelf-stable morning kit: single-serve miso paste packet, microwaveable rice pouch, tsukemono pickle sachet, nori sheets, and a furikake packet. 5 minutes from box to traditional Japanese breakfast. Sold in 5-day kits at $24.99 ($5.00/morning).</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>Japanese breakfast trending on food media &mdash; Bon App&eacute;tit, NYT Cooking, and food TikTok featuring "what Japanese people eat for breakfast"</li>
+      <li>Microwaveable rice pouches are a $500M+ US category (Minute Rice, Seeds of Change) &mdash; component is already mainstream</li>
+      <li>Miso + rice + pickles + nori are all shelf-stable &mdash; no cold chain needed for a kit format</li>
+      <li>Blue Zone / longevity diet association &mdash; Okinawan centenarian breakfast is essentially this kit</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Analogous Inspiration (#15) &mdash; transplanted the daily Japanese breakfast format (validated for 1,000+ years, practiced by 126M people) to the US as a packaged kit.
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>No direct competitor</strong> &mdash; this product category doesn't exist in US retail.</div>
+    <div class="comp-item"><strong>Minute Rice Cups</strong> &mdash; $2.49/2-pack. Component only, no Japanese positioning.</div>
+    <div class="comp-item"><strong>Marukome Instant Miso</strong> &mdash; $3.99/12-pack. Component only, not a complete breakfast kit.</div>
+    <div class="comp-item"><strong>Daily Harvest</strong> &mdash; $7.99+/cup. Frozen breakfast smoothies/bowls. Different format entirely.</div>
+    <div class="gap-callout">Gap: Zero Japanese breakfast kit products exist at US retail. Complete whitespace.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>No direct comparable at US retail</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>RXBar Breakfast Bars</td><td>Target</td><td>$9.99/5-pack ($2.00/morning, but bar not meal)</td></tr>
+      <tr><td>Daily Harvest Smoothies</td><td>DTC</td><td>$7.99/cup (frozen, different format)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Whole Foods</strong> &mdash; <em>international breakfast section, food discovery buyer, wellness positioning</em></li>
+    <li><strong>2. Amazon</strong> &mdash; <em>subscription-friendly, 5-day cadence</em></li>
+    <li><strong>3. DTC-subscription</strong> &mdash; <em>weekly morning ritual, high-retention product</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Miso paste sachet</span><span class="cost-value">$0.10 <span class="cost-source">supplier-kb:artisan-specialty-foods:WMISO3</span></span></div>
+    <div class="cost-line"><span class="cost-label">Microwaveable rice pouch</span><span class="cost-value">$0.60 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Tsukemono pickle sachet</span><span class="cost-value">$0.30 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Nori sheets (2)</span><span class="cost-value">$0.20 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Furikake sachet</span><span class="cost-value">$0.15 <span class="cost-source">supplier-kb:artisan-specialty-foods:WAS132 ($3.69/10.58oz)</span></span></div>
+    <div class="cost-line"><span class="cost-label">Kit box + 5-day outer packaging</span><span class="cost-value">$2.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$1.00/kit <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$24.99/5-day kit ($5.00/morning)</span></div>
+    <div class="margin-badge">Gross Margin: 54%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for miso + furikake; rice + pickle + packaging assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Multi-component kit assembly. All shelf-stable, no cold chain. Sourcing 5 different components from potentially different suppliers. Assembly is manual (kit packing). MOQ: 3,000&ndash;5,000 kits. Lead time: 10&ndash;14 weeks. Challenge: coordinating multiple component suppliers and achieving consistent kit quality.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.45</span>
+    <span class="ei-badge impact">Impact: 0.7</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- PRODUCT 20: FRIDAY SUSHI NIGHT                   -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="product-page">
+  <div class="product-meta-bar">
+    <span class="product-number">Idea 20</span>
+    <span class="product-score">3.75</span>
+    <span class="product-method">Method: Occasion-Based Thinking (#59)</span>
+    <span class="product-category">Global Snacks / Cultural Format Transfer</span>
+  </div>
+
+  <h2 class="product-title">Friday Sushi Night</h2>
+
+  <div class="product-body">
+    <img src="images-run4/20-friday-sushi-night-hero.png" alt="Friday Sushi Night" class="product-hero">
+
+    <div class="sub-title">The Pitch</div>
+    <p class="pitch-text">Pizza Night. Taco Tuesday. These are established home meal rituals with entire product ecosystems built around them. Sushi Night doesn't exist as a retail occasion &mdash; even though "sushi at home" is one of the most searched food experiences online.</p>
+    <p class="pitch-text">Friday Sushi Night is a complete date-night sushi experience box: sushi rice, nori sheets, rice seasoning sachet, pickled ginger, wasabi, soy sauce, a bamboo rolling mat, and a QR code linking to a 10-minute rolling tutorial. Positioned as an experience, not just a meal &mdash; "Your Friday Night, Rolled."</p>
+    <p class="pitch-text">Sold at $19.99/2-person kit. Protein sold separately (the box includes a shopping list for salmon, tuna, avocado, cucumber). This intentional omission keeps it shelf-stable and lets buyers customize.</p>
+
+    <div class="sub-title">RTBs</div>
+    <ul class="rtb-list">
+      <li>"Sushi at home" searches consistently high on Google Trends &mdash; demand exists but no branded product captures it</li>
+      <li>Reddit r/sushi + r/WhatShouldICook: deconstructed sushi is the default beginner format &mdash; accessible, fun, no expertise needed</li>
+      <li>Meal kit market $20B+ &mdash; but sushi kits don't exist from any major brand (HelloFresh, Blue Apron)</li>
+      <li>Sushi rice + nori + seasoning + condiments are all shelf-stable &mdash; no cold chain for the kit itself</li>
+    </ul>
+  </div>
+
+  <div class="research-basis">
+    <strong>Research Basis:</strong> Occasion-Based Thinking (#59) &mdash; anchored to the Friday night date-night/family-activity occasion. "Sushi Night" as a repeatable weekly ritual parallel to "Pizza Night" or "Taco Tuesday."
+  </div>
+
+  <div class="sub-title">Competitive Landscape</div>
+  <div class="competitive-card">
+    <div class="comp-item"><strong>Various Amazon sushi kits</strong> &mdash; $15&ndash;25. Include mat + rice paddle but NOT rice or seasoning. Tools, not food.</div>
+    <div class="comp-item"><strong>Global Grub Sushi Kit</strong> &mdash; $19.99 on Amazon. Closest competitor: includes rice, nori, vinegar, wasabi, ginger, chopsticks. But generic branding, no occasion positioning, no tutorial.</div>
+    <div class="comp-item"><strong>Blue Apron/HelloFresh</strong> &mdash; $9.99&ndash;12.99/serving. No sushi option. Fresh-model doesn't work for sushi.</div>
+    <div class="gap-callout">Gap: No branded, occasion-positioned sushi night kit exists with both ingredients AND tools + tutorial experience.</div>
+  </div>
+
+  <div class="sub-title">Closest Comparables</div>
+  <table class="comparables-table">
+    <thead><tr><th>Product</th><th>Retailer</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Global Grub Sushi Making Kit</td><td>Amazon</td><td>$19.99</td></tr>
+      <tr><td>Yamamotoyama Sushi Nori + kit combos</td><td>Amazon</td><td>$12&ndash;18</td></tr>
+      <tr><td>Taco Bell Home Taco Kit</td><td>Walmart</td><td>$4.99 (occasion-positioning precedent)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Retailer Fit</div>
+  <ul class="retailer-list">
+    <li><strong>1. Target</strong> &mdash; <em>"date night" endcap, experience-based cooking section</em></li>
+    <li><strong>2. Whole Foods</strong> &mdash; <em>specialty/international section, food experience buyer</em></li>
+    <li><strong>3. Amazon</strong> &mdash; <em>gift purchase, Prime delivery, sushi enthusiast buyer</em></li>
+  </ul>
+
+  <div class="sub-title">Cost Model</div>
+  <div class="cost-model">
+    <div class="cost-line"><span class="cost-label">Sushi rice (14oz)</span><span class="cost-value">$0.50 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Nori sheets (10)</span><span class="cost-value">$1.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Rice seasoning sachet</span><span class="cost-value">$0.15 <span class="cost-source">supplier-kb:artisan-specialty-foods:2904</span></span></div>
+    <div class="cost-line"><span class="cost-label">Pickled ginger sachet</span><span class="cost-value">$0.20 <span class="cost-source">supplier-kb:artisan-specialty-foods:PGIN</span></span></div>
+    <div class="cost-line"><span class="cost-label">Wasabi + soy sauce packets</span><span class="cost-value">$0.30 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Bamboo mat + chopsticks</span><span class="cost-value">$1.50 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Box + insert + QR tutorial card</span><span class="cost-value">$2.00 <span class="cost-source">assumption</span></span></div>
+    <div class="cost-line"><span class="cost-label">Labor / co-pack</span><span class="cost-value">$1.00/kit <span class="cost-source">assumption</span></span></div>
+    <div class="cost-total"><span class="cost-label">Target Retail</span><span class="cost-value">$19.99/2-person kit</span></div>
+    <div class="margin-badge">Gross Margin: 66%</div>
+    <div class="defensibility-note">Defensibility: supplier-kb for vinegar + ginger; rice + nori + tools assumptions</div>
+  </div>
+
+  <div class="sub-title">Operational Complexity</div>
+  <span class="complexity-badge moderate">Moderate</span>
+  <p class="complexity-text">Multi-component shelf-stable kit assembly. No cold chain. 7+ components from multiple suppliers. Bamboo mat sourcing (likely import). Manual assembly. MOQ: 3,000&ndash;5,000 kits. Lead time: 10&ndash;14 weeks. Challenge: keeping the box weight/size reasonable for shipping while including all components.</p>
+
+  <div class="effort-impact-badges">
+    <span class="ei-badge effort">Effort: 0.5</span>
+    <span class="ei-badge impact">Impact: 0.65</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WHITEPAPER APPENDIX                              -->
+<!-- ════════════════════════════════════════════════ -->
+
+<div class="appendix">
+  <div class="section-header">Whitepaper Appendix</div>
+  <h2>Methodology, Research &amp; Supply Chain</h2>
+
+  <h3>1. Methodology</h3>
+  <p>Run 4 deployed 8 methods from the full-stack-ideation toolkit, weighted by learning-log hit rates across 3 prior runs. Methods were selected for their proven ability to generate commercially viable, research-backed product concepts in the food/CPG category.</p>
+
+  <table class="appendix-table">
+    <thead>
+      <tr><th>Method</th><th>ID</th><th>Ideas Generated</th><th>Avg Score</th><th>Survival Rate</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cultural Trend Mining</td><td>#51</td><td>4</td><td>4.18</td><td>100%</td></tr>
+      <tr><td>Packaging Innovation</td><td>#58</td><td>5</td><td>3.97</td><td>100%</td></tr>
+      <tr><td>Occasion-Based Thinking</td><td>#59</td><td>3</td><td>3.97</td><td>100%</td></tr>
+      <tr><td>Mashup</td><td>#24</td><td>3</td><td>3.90</td><td>100%</td></tr>
+      <tr><td>Premiumization</td><td>#56</td><td>2</td><td>4.03</td><td>100%</td></tr>
+      <tr><td>SCAMPER</td><td>#21</td><td>2</td><td>3.88</td><td>100%</td></tr>
+      <tr><td>JTBD</td><td>#4</td><td>1</td><td>3.95</td><td>100%</td></tr>
+      <tr><td>Analogous Inspiration</td><td>#15</td><td>2</td><td>4.08</td><td>100%</td></tr>
+    </tbody>
+  </table>
+
+  <p>Cultural Trend Mining (#51) and Analogous Inspiration (#15) produced the highest-scoring ideas on average, driven by the strong "combini haul" TikTok signal and the deep well of validated Japanese food formats. Packaging Innovation (#58) generated the most ideas (5), reflecting the thesis that Japanese ingredients often need format innovation more than product innovation. Occasion-Based Thinking (#59) was deployed for the first time in Run 4 and produced strong results by anchoring products to specific consumption moments (post-workout, 3pm break, Friday night).</p>
+
+  <h3>2. Category Market Analysis</h3>
+
+  <table class="appendix-table">
+    <thead>
+      <tr><th>Category</th><th>Current Size</th><th>Projected Size</th><th>CAGR</th><th>Source</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Instant Miso Soup</td><td>$1.42B</td><td>$2.76B by 2033</td><td>8.7%</td><td>Market Research Future</td></tr>
+      <tr><td>Sushi Market (Global)</td><td>$6.82B</td><td>$13.54B by 2035</td><td>7.92%</td><td>Business Research Insights</td></tr>
+      <tr><td>Seaweed Snacks</td><td>$2.43B</td><td>$4.66B by 2030</td><td>11.6%</td><td>Grand View Research</td></tr>
+      <tr><td>Gut Health Food</td><td>$14B</td><td>$32B by 2035</td><td>8.5%</td><td>Innova Market Insights</td></tr>
+      <tr><td>Functional Beverages</td><td>$125B</td><td>$215B by 2030</td><td>9.5%</td><td>BevSource / Euromonitor</td></tr>
+      <tr><td>Subscription Boxes</td><td>$32.9B</td><td>$74B by 2030</td><td>14.2%</td><td>Grand View Research</td></tr>
+      <tr><td>Bone Broth</td><td>$2.1B</td><td>$3.3B by 2028</td><td>6.8%</td><td>Allied Market Research</td></tr>
+    </tbody>
+  </table>
+
+  <p>The Japanese food innovation opportunity sits at the intersection of several high-growth macro categories. Gut health (+61% YoY launches) provides the functional positioning. Seaweed snacks (11.6% CAGR) prove Asian ingredients are crossing mainstream. The sushi market (7.92% CAGR) validates consumer willingness to pay premium for Japanese food. Functional beverages remain the fastest-growing food category overall.</p>
+
+  <h3>3. Competitive Landscape Summary</h3>
+  <p>Across all 20 concepts, the competitive analysis reveals consistent gaps in the US market:</p>
+  <ul>
+    <li><strong>No miso paste in tube format</strong> &mdash; every miso product uses tubs or sachets despite proven tube-format success in tomato paste</li>
+    <li><strong>No CPG onigiri</strong> &mdash; 2.4 billion sold annually in Japan, zero presence in US grocery deli coolers</li>
+    <li><strong>No curated furikake collection</strong> &mdash; individual furikake SKUs exist but no lifestyle-branded multi-blend shaker set</li>
+    <li><strong>No liquid concentrate dashi pod</strong> &mdash; all dashi options are granules, paste, or teabag-steep format</li>
+    <li><strong>No warm/savory wellness shot</strong> &mdash; entire $2B+ wellness shot category is cold and acidic</li>
+    <li><strong>No miso-based functional beverage</strong> &mdash; despite miso being one of the most nutrient-dense fermented foods</li>
+    <li><strong>No Japanese breakfast kit</strong> &mdash; complete whitespace despite food media trend coverage</li>
+    <li><strong>No occasion-branded sushi night kit</strong> &mdash; "Pizza Night" and "Taco Tuesday" have product ecosystems; "Sushi Night" has nothing</li>
+  </ul>
+
+  <h3>4. Supply Chain</h3>
+  <p><strong>Anchor Supplier:</strong> Artisan Specialty Foods (Broadview, IL) provides validated wholesale pricing across 20+ Japanese ingredient SKUs. Key ingredients with confirmed pricing:</p>
+
+  <table class="appendix-table">
+    <thead>
+      <tr><th>Ingredient</th><th>SKU</th><th>Wholesale Price</th><th>Unit</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Namikura White Miso Paste</td><td>WMISO3</td><td>$4.80</td><td>2.2lb</td></tr>
+      <tr><td>Namikura Red Aka Miso Paste</td><td>RMISO3</td><td>$4.80</td><td>2.2lb</td></tr>
+      <tr><td>Pink Sushi Ginger</td><td>PGIN</td><td>$20.00</td><td>11lb</td></tr>
+      <tr><td>Hondashi Fish Soup Base</td><td>HONDA</td><td>$25.20</td><td>case of 12x2.2lb</td></tr>
+      <tr><td>Aji Nori Furikake</td><td>WAS132</td><td>$3.69</td><td>10.58oz unit</td></tr>
+      <tr><td>Wakame Seaweed</td><td>WAKSW</td><td>$20.25</td><td>case of 8x16oz</td></tr>
+      <tr><td>Kombu Dashi</td><td>KOMBSW</td><td>$62.80</td><td>5lb</td></tr>
+      <tr><td>Wasabi Powder</td><td>WASPOW2</td><td>$9.21</td><td>2.2lb</td></tr>
+      <tr><td>Marukan Rice Vinegar</td><td>2904</td><td>$28.00</td><td>case of 12x12oz</td></tr>
+      <tr><td>Mirin</td><td>&mdash;</td><td>$9.18</td><td>60oz</td></tr>
+      <tr><td>Nori Flakes</td><td>NORIF</td><td>$72.00</td><td>case of 10x3.5oz</td></tr>
+    </tbody>
+  </table>
+
+  <p>Artisan's catalog provides cost validation for 14 of 20 concepts. Remaining COGS assumptions (packaging, co-packing, specialty ingredients like collagen peptides and shelf-stable probiotics) require supplier outreach for validation. The highest-risk supply chain item is authentic hon-wasabi (Wasabia japonica), which has limited US cultivation and may require Japanese import partnership.</p>
+
+  <h3>5. Consumer Signals</h3>
+  <ul>
+    <li><strong>Reddit:</strong> r/budgetfood &mdash; "miso paste is the best budget hack" threads recur monthly; r/sushi &mdash; "easy at-home sushi bowl" is the default beginner recommendation; r/mealprep &mdash; miso-based meal prep gaining traction</li>
+    <li><strong>TikTok:</strong> "Combini haul" videos (1&ndash;5M views per post), "furikake on everything" trend, Japanese convenience store walkthroughs driving awareness of onigiri, matcha treats, and miso cups</li>
+    <li><strong>Google Trends:</strong> "sushi at home" sustained search interest; "furikake" search volume +340% over 5 years; "miso paste recipes" steady growth; "dashi" search volume emerging</li>
+    <li><strong>Food Media:</strong> Bon App&eacute;tit, NYT Cooking, and Serious Eats all published Japanese home cooking features in 2025&ndash;2026; "Japanese breakfast" content trending across platforms</li>
+    <li><strong>AIFI 2026:</strong> "Miso-infused lattes" identified as Category Crasher trend &mdash; savory ingredients entering sweet/functional beverage formats</li>
+  </ul>
+
+  <h3>6. Method Performance</h3>
+  <p>All 8 methods deployed in Run 4 achieved 100% survival rate (all 20 generated ideas scored above the 3.5 threshold for inclusion). This is the highest hit rate across all 4 runs, reflecting improved method selection based on learning-log analysis.</p>
+  <ul>
+    <li><strong>Cultural Trend Mining (#51)</strong> &mdash; 4 ideas, 100% survival. Strongest method for this category due to the rich "combini haul" TikTok signal and Japanese food culture content.</li>
+    <li><strong>Packaging Innovation (#58)</strong> &mdash; 5 ideas, 100% survival. Most prolific method. Japanese ingredients have strong product-market fit but poor packaging for US consumers.</li>
+    <li><strong>Occasion-Based Thinking (#59)</strong> &mdash; 3 ideas, 100% survival. First deployment. Strong results by anchoring to specific moments (post-workout, 3pm, Friday night).</li>
+    <li><strong>Mashup (#24)</strong> &mdash; 3 ideas, 100% survival. Effective at combining proven formats (nori + chip, bone broth + miso, dashi + bitters).</li>
+    <li><strong>Premiumization (#56)</strong> &mdash; 2 ideas, 100% survival. Japanese ingredients are naturally premium; this method makes the premium narrative explicit.</li>
+    <li><strong>SCAMPER (#21)</strong> &mdash; 2 ideas, 100% survival. Adapt and Reverse techniques worked well (ginger &rarr; snack, miso &rarr; dessert).</li>
+    <li><strong>JTBD (#4)</strong> &mdash; 1 idea, 100% survival. High-conviction single idea (Morning Miso as gut-health job).</li>
+    <li><strong>Analogous Inspiration (#15)</strong> &mdash; 2 ideas, 100% survival. Japanese formats (onigiri, breakfast) have deep validation that translates directly.</li>
+  </ul>
+
+  <h3>7. Sources</h3>
+  <ul class="source-list">
+    <li>Grand View Research &mdash; Seaweed Snacks Market Size Report, 2024&ndash;2030</li>
+    <li>Business Research Insights &mdash; Sushi Restaurants Market Report, 2025&ndash;2035</li>
+    <li>Market Research Future &mdash; Instant Miso Soup Market Analysis, 2024&ndash;2033</li>
+    <li>Innova Market Insights &mdash; Top 10 Food &amp; Beverage Trends 2026</li>
+    <li>FoodNavigator &mdash; "Gut health food launches jump 61%" (January 2026)</li>
+    <li>Euromonitor International &mdash; Snacking Trends &amp; Texture Innovation Report 2026</li>
+    <li>BevSource &mdash; Functional Beverage Market Overview 2026</li>
+    <li>NPR &mdash; "Japan's Convenience Stores Are Coming to America" (September 2025)</li>
+    <li>AIFI &mdash; Annual Food Innovation Trends Report 2026 ("Category Crashers" section)</li>
+    <li>Allied Market Research &mdash; Bone Broth Market Forecast 2023&ndash;2028</li>
+    <li>Grand View Research &mdash; Subscription Box Market Size Report, 2025&ndash;2030</li>
+    <li>Artisan Specialty Foods (Broadview, IL) &mdash; Wholesale catalog and SKU pricing (supplier-kb)</li>
+    <li>Reddit &mdash; r/budgetfood, r/sushi, r/mealprep, r/WhatShouldICook (behavioral signal mining)</li>
+    <li>TikTok &mdash; #combinihaul, #furikake, #japanesefood trend analysis</li>
+    <li>Google Trends &mdash; "sushi at home," "furikake," "miso paste recipes," "dashi" search volume data</li>
+    <li>Half Baked Harvest &mdash; 2025 Best-Of list (miso brown butter caramel feature)</li>
+    <li>Southeastern Grocers data &mdash; Better Than Bouillon revenue estimates</li>
+  </ul>
+</div>
+
+<!-- ── FOOTER ──────────────────────────────────── -->
+
+<div style="margin-top:80px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.06); text-align:center;">
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold-dim); letter-spacing:2px; text-transform:uppercase;">mception.ai &mdash; Innovation Workshop Run 4 &mdash; April 17, 2026</div>
+  <div style="font-family:'DM Sans',sans-serif; font-size:11px; color:var(--gray); margin-top:6px;">Confidential &mdash; For Internal Use Only</div>
+</div>
+
+</div><!-- /.document -->
+</body>
+</html>
