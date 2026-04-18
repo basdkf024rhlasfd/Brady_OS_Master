@@ -1,0 +1,46 @@
+enabled: true
+prompt: orlando.md
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "Ask me anything about Orlando real estate — neighborhoods, pricing, investment, buying process, and more."
+operatorMode: true
+configAware: true
+
+kb:
+  enabled: true
+  directory: public/orlando/kb
+  maxFiles: 4
+  routing: keyword
+  routes:
+    - keywords: [neighborhood, where to live, area, location, zip code, best place, family friendly, commute]
+      files: [02-neighborhoods.md]
+    - keywords: [cost, afford, tax, insurance, hoa, cdd, closing cost, how much, monthly, property tax]
+      files: [03-taxes-insurance-costs.md]
+    - keywords: [buy, buying, process, step, first time, offer, closing, inspection, appraisal]
+      files: [13-buying-process.md]
+    - keywords: [brazil, brazilian, foreign, international, firpta, itin, visa, immigrant]
+      files: [15-brazilian-buyer-guide.md]
+    - keywords: [invest, rental, cap rate, cash flow, str, airbnb, roi, pro forma]
+      files: [06-investment-rentals.md, 16-investment-case-studies.md]
+    - keywords: [brazilian business, brazilian restaurant, brazilian community, portuguese]
+      files: [17-brazilian-business-directory.md]
+    - keywords: [utility, onboard, concierge, settle, moving, relocat, first 90, healthcare, doctor]
+      files: [23-community-concierge.md]
+    - keywords: [school, district, education, kid, children]
+      files: [09-schools-quality-of-life.md]
+    - keywords: [hurricane, flood, sinkhole, risk, insurance crisis]
+      files: [10-risks-considerations.md]
+    - keywords: [finance, loan, fha, va, usda, down payment, mortgage, interest rate]
+      files: [11-financing-programs.md]
+    - keywords: [new construction, builder, new build, new home, 55+, retirement]
+      files: [05-new-construction.md]
+    - keywords: [luxury, million, high end, isleworth, golden oak, windermere]
+      files: [12-luxury-market.md]
+    - keywords: [market, trend, price, median, inventory, appreciation]
+      files: [01-market-overview.md]
+    - keywords: [agent, commission, mls, listing, transaction]
+      files: [14-agent-transaction-guide.md]
+    - keywords: [economy, job, employer, salary, cost of living, population]
+      files: [07-economy-demographics.md]
+    - keywords: [commute, sunrail, brightline, traffic, highway, i-4, turnpike]
+      files: [08-infrastructure-transportation.md]

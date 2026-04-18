@@ -1,0 +1,7 @@
+enabled: true
+prompt: mark-schmulen.md
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "How can I help with Contour strategy or AI agent planning today?"
+operatorMode: true
+configAware: false

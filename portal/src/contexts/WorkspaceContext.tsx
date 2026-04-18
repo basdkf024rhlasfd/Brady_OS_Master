@@ -9,19 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
-import { v4 as uuidv4 } from "uuid";
 import type { ProjectId } from "@/lib/access";
-
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
-
-interface ChatSession {
-  sessionId: string;
-  messages: Message[];
-  loading: boolean;
-}
 
 interface WorkspaceState {
   // Panel visibility
@@ -30,11 +18,9 @@ interface WorkspaceState {
   toggleChat: () => void;
   toggleConfig: () => void;
 
-  // Per-project chat
+  // Project context
   activeProject: ProjectId | null;
   chatScope: string;
-  activeChatSession: ChatSession;
-  sendMessage: (text: string) => Promise<void>;
 
   // Chat mode
   chatMode: "client" | "operator";
@@ -124,32 +110,9 @@ export function WorkspaceProvider({
     });
   }, []);
 
-  // Per-project chat sessions
-  const sessionsRef = useRef<Map<string, ChatSession>>(new Map());
-  const [, forceUpdate] = useState(0);
-
-  const getOrCreateSession = useCallback((scope: string): ChatSession => {
-    const existing = sessionsRef.current.get(scope);
-    if (existing) return existing;
-
-    const session: ChatSession = {
-      sessionId: uuidv4(),
-      messages: [
-        {
-          role: "assistant",
-          content: `Welcome! I'm your assistant for this project. How can I help you today?`,
-        },
-      ],
-      loading: false,
-    };
-    sessionsRef.current.set(scope, session);
-    return session;
-  }, []);
-
-  const activeChatSession = getOrCreateSession(chatScope);
-
   // Config state per project
   const configRef = useRef<Record<string, Record<string, unknown>>>({});
+  const [, forceUpdate] = useState(0);
 
   const configData = activeProject
     ? configRef.current[activeProject] ?? {}
@@ -167,58 +130,6 @@ export function WorkspaceProvider({
     [activeProject]
   );
 
-  // Send message to the global chat API
-  const sendMessage = useCallback(
-    async (text: string) => {
-      if (!text.trim()) return;
-
-      const session = getOrCreateSession(chatScope);
-      session.messages.push({ role: "user", content: text.trim() });
-      session.loading = true;
-      forceUpdate((n) => n + 1);
-
-      try {
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            sessionId: session.sessionId,
-            message: text.trim(),
-            projectContext: {
-              project: chatScope,
-              route: pathname,
-              configState: activeProject ? (configRef.current[activeProject] ?? {}) : {},
-              isAdmin,
-              mode: chatMode,
-            },
-          }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || `Server error (${response.status})`);
-        }
-
-        session.messages.push({
-          role: "assistant",
-          content: data.response,
-        });
-      } catch (error) {
-        const errMsg =
-          error instanceof Error ? error.message : String(error);
-        session.messages.push({
-          role: "assistant",
-          content: `Sorry, something went wrong: ${errMsg}`,
-        });
-      } finally {
-        session.loading = false;
-        forceUpdate((n) => n + 1);
-      }
-    },
-    [chatScope, activeProject, pathname, isAdmin, chatMode, getOrCreateSession]
-  );
-
   return (
     <WorkspaceContext.Provider
       value={{
@@ -228,8 +139,6 @@ export function WorkspaceProvider({
         toggleConfig,
         activeProject,
         chatScope,
-        activeChatSession,
-        sendMessage,
         chatMode,
         toggleChatMode,
         isAdmin,

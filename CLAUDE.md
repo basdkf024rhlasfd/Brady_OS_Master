@@ -39,6 +39,7 @@
 - **DiCaprio:** `0-agents/custom-built-agents/dicaprio-SKILL.md` — 20K-foot recon across all projects and workspaces. Template: `0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md`
 - **Project Creator:** `3-reference/skills/project-creator/SKILL.md` — Turn a conversation into an execution-ready project brief. Template: `3-reference/skills/project-creator/BRIEF-TEMPLATE.md`
 - **V0 to Portal:** `3-reference/skills/v0-to-portal/SKILL.md` — Deploy V0 apps into mception.ai portal via ProjectFrame
+- **Page Chatbot:** `3-reference/skills/page-chatbot/SKILL.md` — Enable AI chat on any mception.ai portal page. Config-only: YAML chat config + system prompt markdown. Supports KB injection, keyword routing, streaming via AI SDK v6. Templates in `templates/`.
 - **Client Project Cleanup:** `3-reference/skills/client-project-cleanup/SKILL.md` — Weekly audit of consulting project pages in Notion for SOP compliance, staleness, and privacy leaks
 - **Config Sync:** `3-reference/skills/config-sync/SKILL.md` — Detects drift between Conductor workspace and Claude Code CLI checkout. Compares skills, agents, CLAUDE.md files. Reports which side is newer, offers one-command sync.
 - **mception Design System:** `3-reference/skills/mception-design-system/SKILL.md` — Canonical design language for all visual docs, infographics, briefings. Dark-mode-first, CEO-scannable. Supersedes infographic-template.

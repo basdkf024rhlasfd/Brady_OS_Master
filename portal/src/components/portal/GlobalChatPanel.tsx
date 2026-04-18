@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { getProjectLabel } from "@/lib/project-registry";
 
@@ -9,39 +11,63 @@ export function GlobalChatPanel() {
     chatOpen,
     toggleChat,
     chatScope,
-    activeChatSession,
-    sendMessage,
     isAdmin,
     chatMode,
     toggleChatMode,
+    configData,
   } = useWorkspace();
 
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const messages = activeChatSession.messages;
-  const loading = activeChatSession.loading;
+  // Build project context sent with every request
+  const projectContext = useMemo(
+    () => ({
+      project: chatScope,
+      route: typeof window !== "undefined" ? window.location.pathname : "/",
+      configState: configData,
+      isAdmin,
+      mode: chatMode,
+    }),
+    [chatScope, configData, isAdmin, chatMode]
+  );
+
+  // AI SDK useChat — one instance per chatScope
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        body: () => ({ projectContext }),
+      }),
+    [projectContext]
+  );
+
+  const { messages, sendMessage, status } = useChat({
+    id: chatScope,
+    transport,
+  });
+
+  const isStreaming = status === "streaming" || status === "submitted";
 
   // Auto-scroll on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages.length, loading]);
+  }, [messages.length, isStreaming]);
 
-  // Auto-focus after loading completes
-  const prevLoading = useRef(false);
+  // Auto-focus after streaming completes
+  const prevStreaming = useRef(false);
   useEffect(() => {
-    if (prevLoading.current && !loading) {
+    if (prevStreaming.current && !isStreaming) {
       inputRef.current?.focus();
     }
-    prevLoading.current = loading;
-  }, [loading]);
+    prevStreaming.current = isStreaming;
+  }, [isStreaming]);
 
-  const handleSend = async () => {
-    if (!input.trim() || loading) return;
-    const text = input;
+  const handleSend = () => {
+    if (!input.trim() || isStreaming) return;
+    sendMessage({ text: input });
     setInput("");
-    await sendMessage(text);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -75,7 +101,11 @@ export function GlobalChatPanel() {
                   ? "bg-amber-100 text-amber-700"
                   : "bg-surface text-text-muted hover:bg-surface-active"
               }`}
-              title={chatMode === "operator" ? "Switch to Client mode" : "Switch to Operator mode"}
+              title={
+                chatMode === "operator"
+                  ? "Switch to Client mode"
+                  : "Switch to Operator mode"
+              }
             >
               {chatMode === "operator" ? "Operator" : "Client"}
             </button>
@@ -92,9 +122,18 @@ export function GlobalChatPanel() {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
-        {messages.map((msg, i) => (
+        {messages.length === 0 && !isStreaming && (
+          <div className="flex justify-start">
+            <div className="max-w-[85%] px-3 py-2 rounded-2xl text-xs bg-surface text-foreground rounded-bl-sm">
+              <p className="whitespace-pre-wrap">
+                Welcome! I&apos;m your assistant for this project. How can I help you today?
+              </p>
+            </div>
+          </div>
+        )}
+        {messages.map((msg) => (
           <div
-            key={i}
+            key={msg.id}
             className={`flex ${
               msg.role === "user" ? "justify-end" : "justify-start"
             }`}
@@ -106,11 +145,17 @@ export function GlobalChatPanel() {
                   : "bg-surface text-foreground rounded-bl-sm"
               }`}
             >
-              <p className="whitespace-pre-wrap">{msg.content}</p>
+              {msg.parts.map((part, i) =>
+                part.type === "text" ? (
+                  <p key={i} className="whitespace-pre-wrap">
+                    {part.text}
+                  </p>
+                ) : null
+              )}
             </div>
           </div>
         ))}
-        {loading && (
+        {isStreaming && messages[messages.length - 1]?.role !== "assistant" && (
           <div className="flex justify-start">
             <div className="bg-surface px-3 py-2 rounded-2xl rounded-bl-sm">
               <div className="flex space-x-1">
@@ -144,11 +189,11 @@ export function GlobalChatPanel() {
             onKeyDown={handleKeyDown}
             placeholder="Ask anything..."
             className="flex-1 px-3 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-accent-ring focus:border-transparent text-xs"
-            disabled={loading}
+            disabled={isStreaming}
           />
           <button
             onClick={handleSend}
-            disabled={loading || !input.trim()}
+            disabled={isStreaming || !input.trim()}
             className="px-3 py-2 bg-accent text-white rounded-full text-xs font-medium hover:bg-accent-hover disabled:bg-text-hint disabled:cursor-not-allowed transition-colors"
           >
             Send
