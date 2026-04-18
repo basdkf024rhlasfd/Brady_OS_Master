@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS Command Console v0.3 BETA</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Tailwind utility replacements — no CDN flicker */
+        .w-screen { width: 100vw; }
+        .h-screen { height: 100vh; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-1 { flex: 1 1 0%; }
+        .overflow-hidden { overflow: hidden; }
+        .overflow-y-auto { overflow-y: auto; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .relative { position: relative; }
+        .sticky { position: sticky; }
+        .top-0 { top: 0; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .gap-4 { gap: 1rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .ml-4 { margin-left: 1rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .w-48 { width: 12rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .font-bold { font-weight: 700; }
+        .cursor-pointer { cursor: pointer; }
+        .bg-transparent { background-color: transparent; }
+        .bg-gray-950 { background-color: #030712; }
+        .bg-gray-900 { background-color: #111827; }
+        .animate-pulse { animation: tw-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes tw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .inline-block { display: inline-block; }
+        * {
+            font-family: 'Fira Code', 'JetBrains Mono', monospace;
+        }
+
+        /* UPGRADE 7: SPACE BACKGROUND with nebula glow */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+        }
+
+        @keyframes nebula-glow {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        body {
+            background-color: #0a0a0f;
+            color: #00ff41;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Space starfield background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 10px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 130px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 20px 100px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 30px 60px, #fff, rgba(0,0,0,0));
+            background-size: 200px 200px;
+            background-attachment: fixed;
+            pointer-events: none;
+            z-index: -1;
+            animation: nebula-glow 8s ease-in-out infinite;
+        }
+
+        .terminal-green { color: #00ff41; }
+        .terminal-yellow { color: #ffff00; }
+        .terminal-red { color: #ff4444; }
+        .terminal-cyan { color: #00ffff; }
+        .terminal-dim { color: #888888; }
+
+        /* UPGRADE 6: Theme color variables */
+        .theme-matrix { --terminal-accent: #00ff41; }
+        .theme-amber { --terminal-accent: #ffaa00; }
+        .theme-phosphor { --terminal-accent: #00ccff; }
+        .theme-blood { --terminal-accent: #ff3333; }
+
+        .output-line {
+            line-height: 1.4;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        .command-input {
+            background-color: #0a0a0f;
+            border: none;
+            outline: none;
+            color: #00ff41;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            caret-color: #00ff41;
+        }
+
+        /* UPGRADE 4: Auto-suggestions autocomplete dropdown */
+        .suggestions-dropdown {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: rgba(10, 10, 15, 0.95);
+            border: 1px solid #333333;
+            border-bottom: none;
+            z-index: 1000;
+        }
+
+        .suggestion-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #222229;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.15s;
+        }
+
+        .suggestion-item:hover,
+        .suggestion-item.highlighted {
+            background-color: #1a1a22;
+            border-left: 3px solid #00ff41;
+            padding-left: 9px;
+        }
+
+        .suggestion-alias {
+            font-size: 10px;
+            color: #888888;
+            margin-left: 8px;
+        }
+
+        /* UPGRADE 1: Starred commands panel with gold accent */
+        .starred-item {
+            padding: 8px;
+            margin: 4px 0;
+            background-color: #1a1a1a;
+            border: 1px solid #444400;
+            border-left: 3px solid #ffaa00;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .starred-item:hover {
+            background-color: #222218;
+            border-color: #ffdd00;
+            box-shadow: 0 0 8px rgba(255, 170, 0, 0.3);
+        }
+
+        @keyframes gold-flash {
+            0% { background-color: #ffaa00; color: #0a0a0f; }
+            100% { background-color: #1a1a1a; color: #00ff41; }
+        }
+
+        .starred-flash {
+            animation: gold-flash 0.6s ease-out;
+        }
+
+        .star-button {
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .star-button:hover {
+            transform: scale(1.2);
+        }
+
+        /* UPGRADE 4: Batch commands visual separator */
+        .batch-separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333333, transparent);
+            margin: 4px 0;
+        }
+
+        .scrollbar-hide {
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .panel-border {
+            border: 1px solid #333333;
+        }
+
+        .recent-item {
+            padding: 8px;
+            margin: 4px 0;
+            background-color: #111118;
+            border: 1px solid #222229;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .recent-item:hover {
+            background-color: #1a1a22;
+            border-color: #00ff41;
+        }
+
+        .status-bar-item {
+            padding: 0 16px;
+            border-right: 1px solid #333333;
+        }
+
+        .status-bar-item:last-child {
+            border-right: none;
+        }
+
+        .queue-item {
+            padding: 8px;
+            margin: 4px 0;
+            background-color: #111118;
+            border-left: 2px solid #ffff00;
+            font-size: 12px;
+        }
+
+        .queue-item.processing {
+            border-left-color: #00ffff;
+            animation: pulse 1s infinite;
+        }
+
+        .queue-item.done {
+            border-left-color: #00ff41;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .spinner {
+            display: inline-block;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { content: '|'; }
+            25% { content: '/'; }
+            50% { content: '—'; }
+            75% { content: '\\'; }
+        }
+
+        .divider {
+            margin: 8px 0;
+            opacity: 0.6;
+        }
+
+        /* FEATURE 1: Execute Button Styles */
+        .execute-btn {
+            background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+            color: #0a0a0f;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: 'Fira Code', monospace;
+            border-radius: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .execute-btn:hover:not(:disabled) {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .execute-btn:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .execute-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .execute-progress {
+            font-size: 11px;
+            margin-top: 4px;
+            color: #00ff41;
+            min-height: 14px;
+        }
+
+        /* FEATURE 2: Nav Links */
+        .nav-link {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 11px;
+            padding: 0 8px;
+            border-right: 1px solid #333333;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #00ff41;
+        }
+
+        .nav-link:last-child {
+            border-right: none;
+        }
+
+        /* FEATURE 3: Export History Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00ff41;
+            color: #0a0a0f;
+            padding: 12px 16px;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 9999;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* FEATURE 4: Quick-Run Button for Starred Commands */
+        .quick-run-btn {
+            display: inline-block;
+            margin-left: 4px;
+            padding: 2px 6px;
+            background-color: #1a1a22;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            cursor: pointer;
+            font-size: 10px;
+            border-radius: 1px;
+            transition: all 0.2s;
+        }
+
+        .quick-run-btn:hover {
+            background-color: #00ff41;
+            color: #0a0a0f;
+            box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+        }
+
+        .quick-run-highlight {
+            animation: flashHighlight 0.5s ease-out;
+        }
+
+        @keyframes flashHighlight {
+            0% {
+                background-color: #00ff41;
+                color: #0a0a0f;
+            }
+            100% {
+                background-color: #111118;
+                color: #00ff41;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"><div style="color:#00ff41;font-family:monospace;padding:2rem;background:#0a0a0f;height:100vh">Loading Command Console...</div></div>
+
+    <script>
+        const { useState, useEffect, useRef } = React;
+
+        /* UPGRADE 6: Motivational quotes for MOTD */
+        const MOTD_QUOTES = [
+            'The only way to do great work is to love what you do.',
+            'Don\'t watch the clock; do what it does. Keep going.',
+            'The future belongs to those who believe in the beauty of their dreams.',
+            'Quality is not an act, it is a habit.',
+            'Everything you want is on the other side of fear.',
+            'It is during our darkest moments that we must focus to see the light.',
+            'Power is nothing without control.',
+            'The best time to plant a tree was 20 years ago. The second best time is now.',
+            'You miss 100% of the shots you don\'t take.',
+            'I am not afraid of storms, for I am learning how to sail my ship.'
+        ];
+
+        function CommandConsole() {
+            // State
+            const [outputLines, setOutputLines] = useState([]);
+            const [commandInput, setCommandInput] = useState('');
+            const [commandHistory, setCommandHistory] = useState([]);
+            const [historyIndex, setHistoryIndex] = useState(-1);
+            const [recentCommands, setRecentCommands] = useState([]);
+            const [executionQueue, setExecutionQueue] = useState([]);
+            const [jarvisScore, setJarvisScore] = useState(7.5);
+            const [isExecuting, setIsExecuting] = useState(false);
+            const [connectedSystems, setConnectedSystems] = useState(4);
+            const [lastExecTime, setLastExecTime] = useState('--');
+            const [executeProgress, setExecuteProgress] = useState('');
+            const [toast, setToast] = useState(null);
+            const [highlightedRecentId, setHighlightedRecentId] = useState(null);
+
+            /* UPGRADE 2: Command aliases */
+            const [aliases, setAliases] = useState({});
+
+            /* UPGRADE 4: Auto-suggestions */
+            const [suggestions, setSuggestions] = useState([]);
+            const [suggestionIndex, setSuggestionIndex] = useState(-1);
+
+            /* UPGRADE 1: Starred commands panel state */
+            const [starredExpanded, setStarredExpanded] = useState(true);
+
+            /* UPGRADE 5: Macros */
+            const [macros, setMacros] = useState({});
+
+            /* UPGRADE 6: Notes storage */
+            const [notes, setNotes] = useState([]);
+
+            /* UPGRADE 8: Clock */
+            const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+
+            /* UPGRADE 6: Theme */
+            const [theme, setTheme] = useState('matrix');
+
+            const outputEndRef = useRef(null);
+            const inputRef = useRef(null);
+            const suggestionsRef = useRef(null);
+
+            // UPGRADE 8: Clock timer
+            useEffect(() => {
+                const timer = setInterval(() => {
+                    setCurrentTime(new Date().toLocaleTimeString());
+                }, 1000);
+                return () => clearInterval(timer);
+            }, []);
+
+            // Initialize
+            useEffect(() => {
+                loadFromStorage();
+                addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
+                addOutput('╔══════════════════════════════════════════════════════╗', 'cyan');
+                addOutput('║  BS OPERATING SYSTEM — COMMAND CONSOLE v0.3 BETA    ║', 'cyan');
+                addOutput('║  Sycamore Lane Holdings, LLC                        ║', 'cyan');
+                addOutput('║                                                      ║', 'cyan');
+                addOutput('║  Type \'help\' for available commands                 ║', 'cyan');
+                addOutput('║  Type \'status\' for system overview                 ║', 'cyan');
+                addOutput('║  Type \'exec\' to process queued items               ║', 'cyan');
+                addOutput('╚══════════════════════════════════════════════════════╝', 'cyan');
+                addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
+                setTimeout(() => inputRef.current?.focus(), 100);
+            }, []);
+
+            // Auto-scroll output
+            useEffect(() => {
+                outputEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, [outputLines]);
+
+            // Persist to storage (debounced to prevent main thread jank)
+            const persistTimer = useRef(null);
+            useEffect(() => {
+                if (persistTimer.current) clearTimeout(persistTimer.current);
+                persistTimer.current = setTimeout(() => {
+                    try {
+                        const data = {
+                            outputLines: outputLines.slice(-100),
+                            commandHistory: commandHistory.slice(-100),
+                            recentCommands: recentCommands.slice(0, 50),
+                            executionQueue,
+                            jarvisScore,
+                            aliases,
+                            macros,
+                            notes: notes.slice(0, 50),
+                            theme
+                        };
+                        localStorage.setItem('bsConsoleState', JSON.stringify(data));
+                    } catch (e) {
+                        console.warn('Failed to persist console state:', e);
+                    }
+                }, 500);
+                return () => { if (persistTimer.current) clearTimeout(persistTimer.current); };
+            }, [outputLines, commandHistory, recentCommands, executionQueue, jarvisScore, aliases, macros, notes, theme]);
+
+            function loadFromStorage() {
+                try {
+                    const saved = localStorage.getItem('bsConsoleState');
+                    if (saved) {
+                        const data = JSON.parse(saved);
+                        // Cap output lines to last 100 to prevent localStorage bloat
+                        const lines = data.outputLines || [];
+                        setOutputLines(lines.slice(-100));
+                        setCommandHistory((data.commandHistory || []).slice(-100));
+                        setRecentCommands((data.recentCommands || []).slice(0, 50));
+                        setExecutionQueue(data.executionQueue || []);
+                        setJarvisScore(data.jarvisScore || 7.5);
+                        setAliases(data.aliases || {});
+                        setMacros(data.macros || {
+                            morning: ['scan email', 'scan calendar', 'scan projects', 'status', 'jarvis'],
+                            endofday: ['status', 'jarvis', 'export', 'queue']
+                        });
+                        setNotes((data.notes || []).slice(0, 50));
+                        setTheme(data.theme || 'matrix');
+                    }
+                } catch (e) {
+                    console.warn('Console state reset — corrupt localStorage:', e);
+                    localStorage.removeItem('bsConsoleState');
+                }
+            }
+
+            /* UPGRADE 2: Built-in alias definitions */
+            const BUILTIN_ALIASES = {
+                'u': 'update',
+                's': 'status',
+                'sc': 'scan',
+                'b': 'build',
+                'sp': 'spec',
+                'c': 'council',
+                'p': 'phil',
+                'q': 'queue',
+                'x': 'exec',
+                'j': 'jarvis',
+                'r': 'recents',
+                'h': 'help',
+                'cls': 'clear'
+            };
+
+            function resolveAlias(cmd) {
+                const combined = { ...BUILTIN_ALIASES, ...aliases };
+                return combined[cmd] || cmd;
+            }
+
+            function getTimestamp() {
+                const now = new Date();
+                return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+            }
+
+            // FEATURE 3: Export command history to clipboard as JSON
+            function exportHistory() {
+                const historyData = {
+                    exportedAt: new Date().toISOString(),
+                    totalCommands: commandHistory.length,
+                    starredCommands: recentCommands.filter(c => c.starred).length,
+                    commands: recentCommands.map(cmd => ({
+                        command: cmd.command,
+                        timestamp: cmd.timestamp,
+                        starred: cmd.starred
+                    }))
+                };
+                const jsonStr = JSON.stringify(historyData, null, 2);
+                navigator.clipboard.writeText(jsonStr).then(() => {
+                    setToast('✓ History copied to clipboard');
+                    setTimeout(() => setToast(null), 3000);
+                }).catch(err => {
+                    addOutput('ERROR: Could not copy to clipboard', 'red');
+                });
+            }
+
+            function addOutput(text, color = 'green', timestamp = true) {
+                const time = timestamp ? `[${getTimestamp()}] ` : '';
+                setOutputLines(prev => [...prev, { text, color, time: time ? getTimestamp() : null }]);
+            }
+
+            function queueItem(command, description) {
+                const id = `TASK-${Date.now()}`;
+                const item = {
+                    id,
+                    command,
+                    description,
+                    timestamp: getTimestamp(),
+                    status: 'queued'
+                };
+                setExecutionQueue(prev => [...prev, item]);
+                addOutput(`QUEUED: ${description}`, 'yellow');
+                return id;
+            }
+
+            /* UPGRADE 4: Generate suggestions based on input */
+            function generateSuggestions(input) {
+                if (!input.trim()) {
+                    setSuggestions([]);
+                    return;
+                }
+
+                const combined = { ...BUILTIN_ALIASES, ...aliases };
+                const allCommands = [
+                    'help', 'clear', 'update', 'status', 'scan', 'build', 'spec',
+                    'council', 'phil', 'jarvis', 'queue', 'exec', 'execute',
+                    'star', 'unstar', 'recents', 'export', 'alias', 'note', 'notes',
+                    'deploy', 'remind', 'history', 'workspace', 'theme', 'motd',
+                    'stars', 'macro', 'morning', 'endofday'
+                ];
+
+                const partial = input.toLowerCase();
+                const matches = new Set();
+
+                // Match commands
+                allCommands.forEach(cmd => {
+                    if (cmd.startsWith(partial)) {
+                        matches.add({ text: cmd, type: 'command', alias: null });
+                    }
+                });
+
+                // Match aliases
+                Object.entries(combined).forEach(([alias, cmd]) => {
+                    if (alias.startsWith(partial)) {
+                        matches.add({ text: alias, type: 'alias', alias: cmd });
+                    }
+                });
+
+                // Match recent commands
+                recentCommands.slice(0, 5).forEach(item => {
+                    if (item.command.toLowerCase().startsWith(partial)) {
+                        matches.add({ text: item.command, type: 'recent', alias: null });
+                    }
+                });
+
+                setSuggestions(Array.from(matches).slice(0, 5));
+                setSuggestionIndex(-1);
+            }
+
+            /* UPGRADE 3: Handle batch commands (semicolon separated) */
+            function executeBatchCommands(cmds) {
+                const commandList = cmds.split(';').map(c => c.trim()).filter(c => c);
+                if (commandList.length === 0) return;
+
+                let delayAccum = 0;
+                commandList.forEach((cmd, idx) => {
+                    setTimeout(() => {
+                        executeCommand(cmd);
+                        if (idx < commandList.length - 1) {
+                            addOutput('', 'green', false);
+                        }
+                    }, delayAccum);
+                    delayAccum += 300;
+                });
+            }
+
+            function executeCommand(cmd) {
+                const trimmedCmd = cmd.trim().toLowerCase();
+
+                if (!trimmedCmd) return;
+
+                // UPGRADE 3: Check for batch commands
+                if (trimmedCmd.includes(';')) {
+                    executeBatchCommands(cmd);
+                    return;
+                }
+
+                // Add to history
+                setCommandHistory(prev => [...prev, cmd]);
+                setHistoryIndex(-1);
+                setSuggestions([]);
+
+                // Add to recents
+                const recent = {
+                    id: `CMD-${Date.now()}`,
+                    command: cmd,
+                    timestamp: getTimestamp(),
+                    starred: false,
+                    frequency: 1
+                };
+                setRecentCommands(prev => {
+                    const existing = prev.find(r => r.command === cmd);
+                    if (existing) {
+                        return prev.map(r =>
+                            r.command === cmd ? { ...r, frequency: (r.frequency || 1) + 1, timestamp: getTimestamp() } : r
+                        ).slice(0, 50);
+                    }
+                    return [recent, ...prev].slice(0, 50);
+                });
+
+                // UPGRADE 2: Resolve aliases
+                const resolvedCmd = resolveAlias(trimmedCmd);
+
+                // Parse command
+                const parts = resolvedCmd.split(' ');
+                const action = parts[0];
+                const target = parts.slice(1).join(' ');
+
+                addOutput(`${cmd}`, 'green');
+
+                // Command handling
+                if (action === 'help') {
+                    addOutput('━━━━━ AVAILABLE COMMANDS ━━━━━', 'cyan', false);
+                    addOutput('SYSTEM:', 'yellow', false);
+                    addOutput('  update              — Trigger daily system update', 'green', false);
+                    addOutput('  status              — Show system status summary', 'green', false);
+                    addOutput('  jarvis              — Show current Jarvis score', 'green', false);
+                    addOutput('  workspace           — Show workspace context', 'green', false);
+                    addOutput('SCANNING:', 'yellow', false);
+                    addOutput('  scan [target]       — Scan email|calendar|projects|scorecard', 'green', false);
+                    addOutput('QUEUING:', 'yellow', false);
+                    addOutput('  build [thing]       — Queue a build task', 'green', false);
+                    addOutput('  spec [thing]        — Queue a spec task', 'green', false);
+                    addOutput('  council [thing]     — Queue for council review', 'green', false);
+                    addOutput('  phil [thing]        — Queue for Phil audit', 'green', false);
+                    addOutput('  deploy [app]        — Queue a deployment task', 'green', false);
+                    addOutput('  queue               — Show execution queue', 'green', false);
+                    addOutput('  exec / execute      — Process queued items', 'green', false);
+                    addOutput('MANAGEMENT:', 'yellow', false);
+                    addOutput('  star [id]           — Star a recent command', 'green', false);
+                    addOutput('  unstar [id]         — Unstar a command', 'green', false);
+                    addOutput('  stars               — Show only starred commands', 'green', false);
+                    addOutput('  recents             — Show recent commands', 'green', false);
+                    addOutput('  history [n]         — Show last N commands (default 20)', 'green', false);
+                    addOutput('  note [text]         — Quick capture a note', 'green', false);
+                    addOutput('  notes               — Show recent notes', 'green', false);
+                    addOutput('CUSTOMIZATION:', 'yellow', false);
+                    addOutput('  alias [shortcut] [cmd]  — Create custom alias', 'green', false);
+                    addOutput('  alias               — View all aliases', 'green', false);
+                    addOutput('  macro save [name]   — Save last commands as macro', 'green', false);
+                    addOutput('  macro run [name]    — Execute a saved macro', 'green', false);
+                    addOutput('  macro list          — Show all saved macros', 'green', false);
+                    addOutput('  macro delete [name] — Remove a macro', 'green', false);
+                    addOutput('  theme [name]        — Switch theme: matrix|amber|phosphor|blood', 'green', false);
+                    addOutput('UTILITIES:', 'yellow', false);
+                    addOutput('  remind [time] [text] — Set a reminder', 'green', false);
+                    addOutput('  motd                — Show message of the day', 'green', false);
+                    addOutput('  export              — Export command history to clipboard', 'green', false);
+                    addOutput('  clear / cls         — Clear terminal output', 'green', false);
+                    addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    addOutput('SHORTCUTS: Ctrl+Enter or Cmd+Enter to execute all queued items', 'cyan', false);
+                    addOutput('BATCH: Separate commands with ; to run in sequence (e.g. scan email; status)', 'cyan', false);
+                    addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                } else if (action === 'clear' || action === 'cls') {
+                    setOutputLines([]);
+                } else if (action === 'update') {
+                    queueItem('update', 'Full system update');
+                } else if (action === 'status') {
+                    addOutput('━━━━━ SYSTEM STATUS ━━━━━', 'cyan', false);
+                    addOutput(`Connected Systems: ${connectedSystems}`, 'green', false);
+                    addOutput(`Queue Depth: ${executionQueue.length}`, 'green', false);
+                    addOutput(`Jarvis Score: ${jarvisScore.toFixed(1)}`, 'green', false);
+                    addOutput(`Last Execution: ${lastExecTime}`, 'green', false);
+                    addOutput('Memory: OK', 'green', false);
+                    addOutput('Uptime: 47d 12h 33m', 'green', false);
+                    addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                } else if (action === 'scan') {
+                    if (!target) {
+                        addOutput('ERROR: Specify scan target (email|calendar|projects|scorecard)', 'red');
+                    } else if (target === 'email') {
+                        addOutput('Scanning email...', 'cyan');
+                        setTimeout(() => {
+                            addOutput('Found: 12 new emails, 3 flagged', 'green');
+                            addOutput('Scan complete', 'green');
+                        }, 500);
+                    } else if (target === 'calendar') {
+                        addOutput('Scanning calendar...', 'cyan');
+                        setTimeout(() => {
+                            addOutput('Found: 8 meetings today, 2 overdue', 'yellow');
+                            addOutput('Scan complete', 'green');
+                        }, 500);
+                    } else if (target === 'projects') {
+                        addOutput('Scanning projects...', 'cyan');
+                        setTimeout(() => {
+                            addOutput('Found: 5 active, 2 blocked, 1 at risk', 'yellow');
+                            addOutput('Scan complete', 'green');
+                        }, 500);
+                    } else if (target === 'scorecard') {
+                        addOutput('Scanning scorecard...', 'cyan');
+                        setTimeout(() => {
+                            addOutput('Portfolio: +2.3% week', 'green');
+                            addOutput('Goals: 7/12 on track', 'yellow');
+                            addOutput('Scan complete', 'green');
+                        }, 500);
+                    } else {
+                        addOutput(`ERROR: Unknown scan target '${target}'`, 'red');
+                    }
+                } else if (action === 'build') {
+                    if (!target) {
+                        addOutput('ERROR: Specify what to build', 'red');
+                    } else {
+                        queueItem(`build ${target}`, `Build: ${target}`);
+                    }
+                } else if (action === 'spec') {
+                    if (!target) {
+                        addOutput('ERROR: Specify what to spec', 'red');
+                    } else {
+                        queueItem(`spec ${target}`, `Spec: ${target}`);
+                    }
+                } else if (action === 'council') {
+                    if (!target) {
+                        addOutput('ERROR: Specify item for council review', 'red');
+                    } else {
+                        queueItem(`council ${target}`, `Council Review: ${target}`);
+                    }
+                } else if (action === 'phil') {
+                    if (!target) {
+                        addOutput('ERROR: Specify item for Phil audit', 'red');
+                    } else {
+                        queueItem(`phil ${target}`, `Phil Audit: ${target}`);
+                    }
+                } else if (action === 'jarvis') {
+                    addOutput(`Current Jarvis Score: ${jarvisScore.toFixed(1)}/10.0`, 'green');
+                } else if (action === 'queue') {
+                    if (executionQueue.length === 0) {
+                        addOutput('Queue is empty', 'green');
+                    } else {
+                        addOutput('━━━━━ EXECUTION QUEUE ━━━━━', 'cyan', false);
+                        executionQueue.forEach(item => {
+                            const statusColor = item.status === 'done' ? 'green' : item.status === 'processing' ? 'cyan' : 'yellow';
+                            addOutput(`[${item.status.toUpperCase()}] ${item.id} — ${item.description}`, statusColor, false);
+                        });
+                        addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    }
+                } else if (action === 'exec' || action === 'execute') {
+                    if (executionQueue.length === 0) {
+                        addOutput('Nothing to execute', 'yellow');
+                    } else {
+                        processQueue();
+                    }
+                /* UPGRADE 1: Star/Unstar commands */
+                } else if (action === 'star') {
+                    if (!target) {
+                        addOutput('ERROR: Specify command ID to star', 'red');
+                    } else {
+                        setRecentCommands(prev => {
+                            const updated = prev.map(item =>
+                                item.id === target ? { ...item, starred: true } : item
+                            ).sort((a, b) => b.starred - a.starred);
+                            setHighlightedRecentId(target);
+                            setTimeout(() => setHighlightedRecentId(null), 600);
+                            return updated;
+                        });
+                        addOutput('✓ Command starred (gold flash)', 'yellow');
+                    }
+                } else if (action === 'unstar') {
+                    if (!target) {
+                        addOutput('ERROR: Specify command ID to unstar', 'red');
+                    } else {
+                        setRecentCommands(prev =>
+                            prev.map(item =>
+                                item.id === target ? { ...item, starred: false } : item
+                            )
+                        );
+                        addOutput('✓ Command unstarred', 'yellow');
+                    }
+                /* UPGRADE 1: Show only starred commands */
+                } else if (action === 'stars') {
+                    const starredCmds = recentCommands.filter(c => c.starred);
+                    if (starredCmds.length === 0) {
+                        addOutput('No starred commands. Type \'star [id]\' to pin your favorites.', 'yellow');
+                    } else {
+                        addOutput('━━━━━ STARRED COMMANDS ━━━━━', 'yellow', false);
+                        starredCmds.forEach(item => {
+                            const freq = item.frequency ? ` (ran ${item.frequency}x)` : '';
+                            addOutput(`⭐ ${item.id}: ${item.command}${freq}`, 'yellow', false);
+                            addOutput(`   Last: ${item.timestamp}`, 'dim', false);
+                        });
+                        addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    }
+                } else if (action === 'recents') {
+                    if (recentCommands.length === 0) {
+                        addOutput('No recent commands', 'green');
+                    } else {
+                        addOutput('━━━━━ RECENT COMMANDS ━━━━━', 'cyan', false);
+                        recentCommands.slice(0, 10).forEach(item => {
+                            const star = item.starred ? '⭐' : '☆';
+                            addOutput(`${star} ${item.id}: ${item.command}`, 'green', false);
+                        });
+                        addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    }
+                /* UPGRADE 6: History command */
+                } else if (action === 'history') {
+                    const limit = target ? parseInt(target) : 20;
+                    if (commandHistory.length === 0) {
+                        addOutput('No command history', 'green');
+                    } else {
+                        addOutput(`━━━━━ LAST ${limit} COMMANDS ━━━━━`, 'cyan', false);
+                        commandHistory.slice(-limit).forEach((cmd, idx) => {
+                            addOutput(`${idx + 1}. ${cmd}`, 'green', false);
+                        });
+                        addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    }
+                /* UPGRADE 2: Alias management */
+                } else if (action === 'alias') {
+                    if (!target) {
+                        addOutput('━━━━━ ALIASES ━━━━━', 'cyan', false);
+                        const combined = { ...BUILTIN_ALIASES, ...aliases };
+                        Object.entries(combined).forEach(([alias, cmd]) => {
+                            const isBuiltin = BUILTIN_ALIASES[alias] ? ' (built-in)' : '';
+                            addOutput(`  ${alias.padEnd(6)} → ${cmd}${isBuiltin}`, 'green', false);
+                        });
+                        addOutput('━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    } else {
+                        const parts = target.split(' ');
+                        if (parts.length < 2) {
+                            addOutput('ERROR: Usage: alias [shortcut] [command]', 'red');
+                        } else {
+                            const shortcut = parts[0];
+                            const command = parts.slice(1).join(' ');
+                            setAliases(prev => ({ ...prev, [shortcut]: command }));
+                            addOutput(`✓ Created alias: ${shortcut} → ${command}`, 'yellow');
+                        }
+                    }
+                /* UPGRADE 6: Note command */
+                } else if (action === 'note') {
+                    if (!target) {
+                        addOutput('ERROR: Usage: note [text]', 'red');
+                    } else {
+                        const newNote = {
+                            id: `NOTE-${Date.now()}`,
+                            text: target,
+                            timestamp: getTimestamp()
+                        };
+                        setNotes(prev => [newNote, ...prev].slice(0, 50));
+                        addOutput(`✓ Note saved: "${target}"`, 'yellow');
+                    }
+                } else if (action === 'notes') {
+                    if (notes.length === 0) {
+                        addOutput('No notes', 'green');
+                    } else {
+                        addOutput('━━━━━ RECENT NOTES ━━━━━', 'cyan', false);
+                        notes.slice(0, 10).forEach(note => {
+                            addOutput(`[${note.timestamp}] ${note.text}`, 'yellow', false);
+                        });
+                        addOutput('━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                    }
+                /* UPGRADE 6: Deploy command */
+                } else if (action === 'deploy') {
+                    if (!target) {
+                        addOutput('ERROR: Specify app name to deploy', 'red');
+                    } else {
+                        queueItem(`deploy ${target}`, `Deploy: ${target}`);
+                    }
+                /* UPGRADE 6: Remind command */
+                } else if (action === 'remind') {
+                    if (!target) {
+                        addOutput('ERROR: Usage: remind [time] [text]', 'red');
+                    } else {
+                        const parts = target.split(' ');
+                        if (parts.length < 2) {
+                            addOutput('ERROR: Usage: remind [time] [text]', 'red');
+                        } else {
+                            const time = parts[0];
+                            const text = parts.slice(1).join(' ');
+                            addOutput(`✓ Reminder set for ${time}: ${text}`, 'yellow');
+                        }
+                    }
+                /* UPGRADE 6: Workspace command */
+                } else if (action === 'workspace') {
+                    addOutput('━━━━━ WORKSPACE ━━━━━', 'cyan', false);
+                    addOutput('Primary: Scorecard', 'green', false);
+                    addOutput('Secondary: Vendor Portal', 'green', false);
+                    addOutput('Tertiary: App Farm', 'green', false);
+                    addOutput('━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                /* UPGRADE 6: Theme command */
+                } else if (action === 'theme') {
+                    const validThemes = ['matrix', 'amber', 'phosphor', 'blood'];
+                    if (!target) {
+                        addOutput(`Current theme: ${theme}. Available: ${validThemes.join(', ')}`, 'yellow');
+                    } else if (!validThemes.includes(target)) {
+                        addOutput(`ERROR: Unknown theme. Valid: ${validThemes.join(', ')}`, 'red');
+                    } else {
+                        setTheme(target);
+                        addOutput(`✓ Theme changed to ${target}`, 'yellow');
+                    }
+                /* UPGRADE 6: MOTD command */
+                } else if (action === 'motd') {
+                    const quote = MOTD_QUOTES[Math.floor(Math.random() * MOTD_QUOTES.length)];
+                    addOutput('━━━━━ MESSAGE OF THE DAY ━━━━━', 'cyan', false);
+                    addOutput(`"${quote}"`, 'yellow', false);
+                    addOutput('━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan', false);
+                /* UPGRADE 5: Macro management */
+                } else if (action === 'macro') {
+                    if (!target) {
+                        addOutput('ERROR: Usage: macro save|run|list|delete [name]', 'red');
+                    } else {
+                        const parts = target.split(' ');
+                        const subcommand = parts[0];
+                        const macroName = parts.slice(1).join(' ');
+
+                        if (subcommand === 'save') {
+                            if (!macroName) {
+                                addOutput('ERROR: Specify macro name', 'red');
+                            } else {
+                                const lastN = commandHistory.slice(-5);
+                                setMacros(prev => ({ ...prev, [macroName]: lastN }));
+                                addOutput(`✓ Macro '${macroName}' saved (${lastN.length} commands)`, 'yellow');
+                            }
+                        } else if (subcommand === 'run') {
+                            if (!macroName) {
+                                addOutput('ERROR: Specify macro name', 'red');
+                            } else if (!macros[macroName]) {
+                                addOutput(`ERROR: Macro '${macroName}' not found`, 'red');
+                            } else {
+                                addOutput(`▶ Running macro: ${macroName}`, 'cyan');
+                                const cmds = macros[macroName];
+                                let delay = 0;
+                                cmds.forEach((c, idx) => {
+                                    setTimeout(() => executeCommand(c), delay);
+                                    delay += 300;
+                                });
+                            }
+                        } else if (subcommand === 'list') {
+                            if (Object.keys(macros).length === 0) {
+                                addOutput('No macros defined', 'green');
+                            } else {
+                                addOutput('━━━━━ MACROS ━━━━━', 'cyan', false);
+                                Object.entries(macros).forEach(([name, cmds]) => {
+                                    addOutput(`  ${name} (${cmds.length} commands)`, 'yellow', false);
+                                });
+                                addOutput('━━━━━━━━━━━━━━━', 'cyan', false);
+                            }
+                        } else if (subcommand === 'delete') {
+                            if (!macroName) {
+                                addOutput('ERROR: Specify macro name', 'red');
+                            } else if (!macros[macroName]) {
+                                addOutput(`ERROR: Macro '${macroName}' not found`, 'red');
+                            } else {
+                                setMacros(prev => {
+                                    const updated = { ...prev };
+                                    delete updated[macroName];
+                                    return updated;
+                                });
+                                addOutput(`✓ Macro '${macroName}' deleted`, 'yellow');
+                            }
+                        }
+                    }
+                } else if (action === 'export') {
+                    // FEATURE 3: Export command history
+                    exportHistory();
+                    addOutput('Exporting command history...', 'cyan');
+                } else {
+                    addOutput(`ERROR: Unknown command '${action}'. Type 'help' for available commands.`, 'red');
+                }
+
+                setCommandInput('');
+            }
+
+            function processQueue() {
+                if (executionQueue.length === 0) return;
+
+                setIsExecuting(true);
+                const totalItems = executionQueue.length;
+                addOutput('━━━━━ PROCESSING QUEUE ━━━━━', 'cyan');
+
+                let currentIndex = 0;
+                const processNext = () => {
+                    if (currentIndex >= executionQueue.length) {
+                        setIsExecuting(false);
+                        setExecuteProgress('');
+                        const now = new Date();
+                        const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                        setLastExecTime(timeStr);
+                        addOutput('✓ Queue processing complete', 'green');
+                        setExecutionQueue([]);
+                        setJarvisScore(prev => Math.min(10, prev + 0.3));
+                        // FEATURE 1: Visual completion feedback
+                        setTimeout(() => setExecuteProgress(''), 500);
+                        return;
+                    }
+
+                    const item = executionQueue[currentIndex];
+                    // FEATURE 1: Update progress display
+                    setExecuteProgress(`Processing ${currentIndex + 1}/${totalItems}... ${item.description.substring(0, 30)}`);
+
+                    setExecutionQueue(prev => {
+                        const updated = [...prev];
+                        updated[currentIndex] = { ...item, status: 'processing' };
+                        return updated;
+                    });
+
+                    addOutput(`Processing: ${item.description}`, 'cyan');
+
+                    setTimeout(() => {
+                        addOutput(`✓ ${item.description} complete`, 'green');
+                        setExecutionQueue(prev => {
+                            const updated = [...prev];
+                            updated[currentIndex] = { ...item, status: 'done' };
+                            return updated;
+                        });
+                        currentIndex++;
+                        processNext();
+                    }, 1200);
+                };
+
+                processNext();
+            }
+
+            function handleKeyDown(e) {
+                // UPGRADE 4: Arrow navigation for suggestions
+                if (suggestions.length > 0) {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        setSuggestionIndex(prev => Math.min(prev + 1, suggestions.length - 1));
+                        return;
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        setSuggestionIndex(prev => Math.max(prev - 1, -1));
+                        return;
+                    }
+                }
+
+                // FEATURE 1: Keyboard shortcut for Execute All (Ctrl+Enter or Cmd+Enter)
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    if (executionQueue.length > 0 && !isExecuting) {
+                        processQueue();
+                    } else if (executionQueue.length === 0) {
+                        setToast('Nothing to execute');
+                        setTimeout(() => setToast(null), 2000);
+                    }
+                    return;
+                }
+
+                if (e.key === 'Enter') {
+                    if (suggestions.length > 0 && suggestionIndex >= 0) {
+                        const selected = suggestions[suggestionIndex];
+                        setCommandInput(selected.text + ' ');
+                        setSuggestions([]);
+                        setSuggestionIndex(-1);
+                        return;
+                    }
+                    executeCommand(commandInput);
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    if (suggestions.length > 0) {
+                        const selected = suggestions[0];
+                        setCommandInput(selected.text + ' ');
+                        setSuggestions([]);
+                        setSuggestionIndex(-1);
+                    }
+                    return;
+                } else if (e.key === 'ArrowUp' && suggestions.length === 0) {
+                    e.preventDefault();
+                    if (historyIndex < commandHistory.length - 1) {
+                        const newIndex = historyIndex + 1;
+                        setHistoryIndex(newIndex);
+                        setCommandInput(commandHistory[commandHistory.length - 1 - newIndex]);
+                    }
+                } else if (e.key === 'ArrowDown' && suggestions.length === 0) {
+                    e.preventDefault();
+                    if (historyIndex > 0) {
+                        const newIndex = historyIndex - 1;
+                        setHistoryIndex(newIndex);
+                        setCommandInput(commandHistory[commandHistory.length - 1 - newIndex]);
+                    } else if (historyIndex === 0) {
+                        setHistoryIndex(-1);
+                        setCommandInput('');
+                    }
+                }
+            }
+
+            function handleCommandInputChange(value) {
+                setCommandInput(value);
+                generateSuggestions(value);
+            }
+
+            return (
+                <div className="w-screen h-screen flex flex-col bg-gray-950" style={{ backgroundColor: '#0a0a0f' }}>
+                    {/* UPGRADE 8: Header with Navigation Links, Execute Button, Clock, and Theme */}
+                    <div className="panel-border bg-gray-900 p-3 flex justify-between items-center" style={{ backgroundColor: '#0a0a0f', borderBottom: '1px solid #333333' }}>
+                        <div className="terminal-green text-sm">
+                            COMMAND CONSOLE v0.3 BETA | BS OPERATING SYSTEM
+                        </div>
+                        <div className="flex items-center gap-4">
+                            {/* UPGRADE 8: Clock display */}
+                            <div className="text-xs terminal-cyan">
+                                {currentTime}
+                            </div>
+                            {/* FEATURE 2: Navigation Links */}
+                            <div className="flex">
+                                <a href="file:///Users/bs/Documents/dashboards/portfolio-scorecard.html" className="nav-link">← Portfolio Scorecard</a>
+                                <a href="file:///Users/bs/Documents/dashboards/vendor-portal.html" className="nav-link">Vendor Portal</a>
+                            </div>
+                            {/* FEATURE 1: Execute Button */}
+                            <button
+                                onClick={() => {
+                                    if (executionQueue.length > 0) {
+                                        processQueue();
+                                    } else {
+                                        setToast('Nothing to execute');
+                                        setTimeout(() => setToast(null), 2000);
+                                    }
+                                }}
+                                disabled={isExecuting}
+                                className="execute-btn"
+                                title="Execute all queued commands (Ctrl+Enter or Cmd+Enter)"
+                            >
+                                ⚡ EXECUTE
+                            </button>
+                        </div>
+                    </div>
+                    {/* FEATURE 1: Execute Progress Display */}
+                    {executeProgress && (
+                        <div className="execute-progress" style={{ backgroundColor: '#0a0a0f', padding: '6px 12px', borderBottom: '1px solid #333333' }}>
+                            {executeProgress}
+                        </div>
+                    )}
+
+                    {/* Main Content */}
+                    <div className="flex-1 flex overflow-hidden">
+                        {/* Left: Execution Queue */}
+                        <div className="w-48 panel-border overflow-y-auto scrollbar-hide" style={{ backgroundColor: '#0a0a0f', borderRight: '1px solid #333333' }}>
+                            <div className="p-3 terminal-green font-bold text-xs sticky top-0" style={{ backgroundColor: '#0a0a0f', borderBottom: '1px solid #333333' }}>
+                                EXEC QUEUE
+                            </div>
+                            <div className="p-3">
+                                {executionQueue.length === 0 ? (
+                                    <div className="terminal-dim text-xs">— empty —</div>
+                                ) : (
+                                    executionQueue.map((item, idx) => (
+                                        <div key={item.id} className={`queue-item ${item.status}`}>
+                                            <div className="text-xs terminal-cyan">{item.id}</div>
+                                            <div className={`text-xs mt-1 ${item.status === 'done' ? 'terminal-green' : item.status === 'processing' ? 'terminal-cyan' : 'terminal-yellow'}`}>
+                                                {item.description}
+                                            </div>
+                                            <div className="terminal-dim text-xs mt-1">{item.timestamp}</div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Center: Terminal Output */}
+                        <div className="flex-1 flex flex-col" style={{ backgroundColor: '#0a0a0f' }}>
+                            {/* Output Panel */}
+                            <div className="flex-1 overflow-y-auto scrollbar-hide p-4 text-xs" style={{ backgroundColor: '#0a0a0f' }}>
+                                {outputLines.map((line, idx) => (
+                                    <div key={idx} className={`output-line terminal-${line.color}`}>
+                                        {line.time && <span className="terminal-dim">[{line.time}] </span>}
+                                        {line.text}
+                                    </div>
+                                ))}
+                                <div ref={outputEndRef} />
+                            </div>
+
+                            {/* Input Area with UPGRADE 4: Suggestions */}
+                            <div className="panel-border p-4 relative" style={{ backgroundColor: '#0a0a0f', borderTop: '1px solid #333333' }}>
+                                {/* UPGRADE 4: Suggestions dropdown */}
+                                {suggestions.length > 0 && (
+                                    <div className="suggestions-dropdown" ref={suggestionsRef}>
+                                        {suggestions.map((suggestion, idx) => (
+                                            <div
+                                                key={idx}
+                                                className={`suggestion-item ${idx === suggestionIndex ? 'highlighted' : ''}`}
+                                                onClick={() => {
+                                                    setCommandInput(suggestion.text + ' ');
+                                                    setSuggestions([]);
+                                                    setSuggestionIndex(-1);
+                                                }}
+                                            >
+                                                <span>{suggestion.text}</span>
+                                                {suggestion.alias && (
+                                                    <span className="suggestion-alias">({suggestion.alias})</span>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                <div className="flex items-center text-sm">
+                                    <span className="terminal-green mr-2">{'>'}</span>
+                                    <input
+                                        ref={inputRef}
+                                        type="text"
+                                        value={commandInput}
+                                        onChange={(e) => handleCommandInputChange(e.target.value)}
+                                        onKeyDown={handleKeyDown}
+                                        className="command-input flex-1 bg-transparent"
+                                        placeholder="Type command..."
+                                        style={{ outline: 'none' }}
+                                        autoComplete="off"
+                                    />
+                                    <span className="terminal-green ml-2 animate-pulse">▌</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* UPGRADE 1: Right: Split panel - STARRED (top) + RECENTS (bottom) */}
+                        <div className="w-48 panel-border flex flex-col" style={{ backgroundColor: '#0a0a0f', borderLeft: '1px solid #333333' }}>
+                            {/* UPGRADE 1: STARRED COMMANDS - Top Half */}
+                            <div className="flex-1 flex flex-col overflow-hidden">
+                                <div
+                                    className="p-3 font-bold text-xs sticky top-0 cursor-pointer"
+                                    onClick={() => setStarredExpanded(!starredExpanded)}
+                                    style={{
+                                        backgroundColor: '#0a0a0f',
+                                        borderBottom: '1px solid #333333',
+                                        color: '#ffaa00'
+                                    }}
+                                >
+                                    {starredExpanded ? '▼' : '▶'} ⭐ STARRED ({recentCommands.filter(c => c.starred).length})
+                                </div>
+                                {starredExpanded && (
+                                    <div className="flex-1 overflow-y-auto scrollbar-hide p-3">
+                                        {recentCommands.filter(c => c.starred).length === 0 ? (
+                                            <div className="terminal-dim text-xs">Type 'star [id]' to pin your favorites</div>
+                                        ) : (
+                                            recentCommands.filter(c => c.starred).map(item => (
+                                                <div
+                                                    key={item.id}
+                                                    className={`starred-item text-xs cursor-pointer ${highlightedRecentId === item.id ? 'starred-flash' : ''}`}
+                                                    onClick={() => {
+                                                        setCommandInput(item.command);
+                                                        setTimeout(() => inputRef.current?.focus(), 0);
+                                                    }}
+                                                    title={item.command}
+                                                >
+                                                    <div className="flex items-center justify-between mb-1">
+                                                        <span className="flex-1">
+                                                            <span className="star-button" onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setRecentCommands(prev =>
+                                                                    prev.map(r =>
+                                                                        r.id === item.id ? { ...r, starred: false } : r
+                                                                    )
+                                                                );
+                                                            }}>⭐</span>
+                                                            {' '}
+                                                            <span style={{ color: '#ffaa00' }}>{item.command}</span>
+                                                        </span>
+                                                        {/* UPGRADE 1: Quick-run button */}
+                                                        <button
+                                                            className="quick-run-btn"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                const newQueueItem = {
+                                                                    id: `TASK-${Date.now()}`,
+                                                                    command: item.command,
+                                                                    description: item.command.substring(0, 40),
+                                                                    timestamp: getTimestamp(),
+                                                                    status: 'queued'
+                                                                };
+                                                                setExecutionQueue(prev => [...prev, newQueueItem]);
+                                                                addOutput(`QUEUED: ${item.command}`, 'yellow');
+                                                                setHighlightedRecentId(item.id);
+                                                                setTimeout(() => setHighlightedRecentId(null), 600);
+                                                            }}
+                                                            title="Add to execution queue"
+                                                        >
+                                                            ▶
+                                                        </button>
+                                                    </div>
+                                                    {/* UPGRADE 1: Show frequency and last run */}
+                                                    <div className="terminal-dim text-xs ml-4">
+                                                        {item.frequency && <span>×{item.frequency} </span>}
+                                                        {item.timestamp}
+                                                    </div>
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Divider */}
+                            <div style={{ height: '1px', backgroundColor: '#333333' }}></div>
+
+                            {/* UPGRADE 1: RECENT COMMANDS - Bottom Half */}
+                            <div className="flex-1 flex flex-col overflow-hidden">
+                                <div className="p-3 terminal-green font-bold text-xs sticky top-0" style={{ backgroundColor: '#0a0a0f', borderBottom: '1px solid #333333' }}>
+                                    RECENTS
+                                </div>
+                                <div className="flex-1 overflow-y-auto scrollbar-hide p-3">
+                                    {recentCommands.filter(c => !c.starred).length === 0 ? (
+                                        <div className="terminal-dim text-xs">— none —</div>
+                                    ) : (
+                                        recentCommands.filter(c => !c.starred).slice(0, 15).map(item => (
+                                            <div
+                                                key={item.id}
+                                                className="recent-item text-xs cursor-pointer"
+                                                onClick={() => {
+                                                    setCommandInput(item.command);
+                                                    setTimeout(() => inputRef.current?.focus(), 0);
+                                                }}
+                                                title={item.command}
+                                            >
+                                                <div className="flex items-center justify-between">
+                                                    <span>
+                                                        <span
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setRecentCommands(prev =>
+                                                                    prev.map(r =>
+                                                                        r.id === item.id ? { ...r, starred: true } : r
+                                                                    ).sort((a, b) => b.starred - a.starred)
+                                                                );
+                                                                setHighlightedRecentId(item.id);
+                                                                setTimeout(() => setHighlightedRecentId(null), 600);
+                                                            }}
+                                                            className="star-button"
+                                                        >
+                                                            ☆
+                                                        </span>
+                                                        {' '}
+                                                        <span className="terminal-cyan">{item.command.substring(0, 15)}</span>
+                                                        {item.command.length > 15 ? '...' : ''}
+                                                    </span>
+                                                </div>
+                                                <div className="terminal-dim text-xs mt-1">{item.timestamp}</div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* UPGRADE 8: Status Bar with STARRED count and connection indicators */}
+                    <div className="panel-border flex items-center text-xs terminal-green" style={{ backgroundColor: '#0a0a0f', borderTop: '1px solid #333333', height: '32px' }}>
+                        {/* UPGRADE 8: System connection indicators */}
+                        <div className="status-bar-item">
+                            <span style={{ color: '#00ff41' }}>●</span> SYS: {connectedSystems}
+                        </div>
+                        {/* UPGRADE 1: Starred commands count */}
+                        <div className="status-bar-item">
+                            <span style={{ color: '#ffaa00' }}>⭐</span> STARRED: {recentCommands.filter(c => c.starred).length}
+                        </div>
+                        <div className="status-bar-item">QUEUE: {executionQueue.length}</div>
+                        <div className="status-bar-item">LAST EXEC: {lastExecTime}</div>
+                        <div className="status-bar-item">JARVIS: {jarvisScore.toFixed(1)}</div>
+                        <div className="status-bar-item flex-1">
+                            <span className="terminal-dim">{'█'.repeat(Math.floor(jarvisScore))}{'░'.repeat(10 - Math.floor(jarvisScore))}</span>
+                        </div>
+                    </div>
+
+                    {/* FEATURE 3: Toast Notification */}
+                    {toast && <div className="toast">{toast}</div>}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<CommandConsole />, document.getElementById('root'));
+    </script>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FEEDBACK CAPTURE WIDGET — Standard Equipment           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<!-- Floating trigger button -->
+<div id="fb-trigger" onclick="toggleFbConsole()">
+  <span id="fb-icon">📡</span>
+  <span id="fb-badge" style="display:none;">0</span>
+</div>
+
+<!-- Console panel -->
+<div id="fb-console-widget">
+  <div id="fb-header">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:18px;">📡</span>
+      <span style="font-weight:700; color:#fff; font-size:14px;">Feedback Capture</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span id="fb-queue-count" style="font-size:12px; color:#00ff41;">0 queued</span>
+      <button onclick="toggleFbConsole()" style="background:none; border:none; color:#666; cursor:pointer; font-size:18px; font-family:monospace;">&times;</button>
+    </div>
+  </div>
+
+  <!-- Tab bar -->
+  <div id="fb-tabs">
+    <button class="fb-tab active" data-tab="capture" onclick="switchFbTab('capture')">Capture</button>
+    <button class="fb-tab" data-tab="queue" onclick="switchFbTab('queue')">Queue <span id="fb-tab-badge"></span></button>
+    <button class="fb-tab" data-tab="export" onclick="switchFbTab('export')">Export</button>
+  </div>
+
+  <!-- CAPTURE TAB -->
+  <div id="tab-capture" class="fb-tab-content active">
+    <div id="fb-categories">
+      <button class="fb-cat active" data-cat="pulse" onclick="selectFbCat('pulse')">
+        <span class="cat-icon">⚡</span><span class="cat-label">Pulse Note</span>
+      </button>
+      <button class="fb-cat" data-cat="action" onclick="selectFbCat('action')">
+        <span class="cat-icon">🎯</span><span class="cat-label">Action Item</span>
+      </button>
+      <button class="fb-cat" data-cat="bug" onclick="selectFbCat('bug')">
+        <span class="cat-icon">🐛</span><span class="cat-label">Bug / Fix</span>
+      </button>
+      <button class="fb-cat" data-cat="data" onclick="selectFbCat('data')">
+        <span class="cat-icon">📊</span><span class="cat-label">Data Wrong</span>
+      </button>
+      <button class="fb-cat" data-cat="insight" onclick="selectFbCat('insight')">
+        <span class="cat-icon">💡</span><span class="cat-label">Insight</span>
+      </button>
+      <button class="fb-cat" data-cat="priority" onclick="selectFbCat('priority')">
+        <span class="cat-icon">🔺</span><span class="cat-label">Priority Shift</span>
+      </button>
+      <button class="fb-cat" data-cat="request" onclick="selectFbCat('request')">
+        <span class="cat-icon">🔧</span><span class="cat-label">Feature Ask</span>
+      </button>
+      <button class="fb-cat" data-cat="praise" onclick="selectFbCat('praise')">
+        <span class="cat-icon">🔥</span><span class="cat-label">What's Working</span>
+      </button>
+    </div>
+
+    <div id="fb-ws-row">
+      <span style="font-size:11px; color:#666; text-transform:uppercase; letter-spacing:0.5px;">Tag workstream:</span>
+      <div id="fb-ws-tags">
+        <button class="ws-tag" data-ws="broker" onclick="toggleFbWs(this)">Broker Co</button>
+        <button class="ws-tag" data-ws="farm" onclick="toggleFbWs(this)">App Farm</button>
+        <button class="ws-tag" data-ws="nemuro" onclick="toggleFbWs(this)">Nemuro</button>
+        <button class="ws-tag" data-ws="ivfh" onclick="toggleFbWs(this)">IVFH</button>
+        <button class="ws-tag" data-ws="consulting" onclick="toggleFbWs(this)">Consulting</button>
+        <button class="ws-tag" data-ws="family" onclick="toggleFbWs(this)">Family</button>
+        <button class="ws-tag" data-ws="global" onclick="toggleFbWs(this)">Global</button>
+      </div>
+    </div>
+
+    <textarea id="fb-input" placeholder="What's on your mind? Capture it, stack it, process later..." rows="3"></textarea>
+
+    <div id="fb-submit-row">
+      <div id="fb-urgency">
+        <button class="urg-btn active" data-urg="normal" onclick="setFbUrgency('normal')">Normal</button>
+        <button class="urg-btn" data-urg="hot" onclick="setFbUrgency('hot')">🔥 Hot</button>
+        <button class="urg-btn" data-urg="fyi" onclick="setFbUrgency('fyi')">FYI</button>
+      </div>
+      <button id="fb-submit" onclick="submitFbItem()">Stack It →</button>
+    </div>
+
+    <div id="fb-hint">Items persist between sessions (localStorage). Export → Claudine Prompt to flush queue to Notion.</div>
+  </div>
+
+  <!-- QUEUE TAB -->
+  <div id="tab-queue" class="fb-tab-content">
+    <div id="fb-queue-list"></div>
+    <div id="fb-queue-empty">
+      <span style="font-size:24px; display:block; margin-bottom:8px;">📭</span>
+      Queue is empty. Capture something from the Capture tab.
+    </div>
+  </div>
+
+  <!-- EXPORT TAB -->
+  <div id="tab-export" class="fb-tab-content">
+    <div id="fb-export-content">
+      <div class="fb-export-option" onclick="fbExportJSON()">
+        <span style="font-size:20px;">📋</span>
+        <div>
+          <div style="font-weight:600; color:#fff; font-size:13px;">Copy as JSON</div>
+          <div style="font-size:11px; color:#666;">Paste into Claudine for processing</div>
+        </div>
+      </div>
+      <div class="fb-export-option" onclick="fbExportMarkdown()">
+        <span style="font-size:20px;">📝</span>
+        <div>
+          <div style="font-weight:600; color:#fff; font-size:13px;">Copy as Markdown</div>
+          <div style="font-size:11px; color:#666;">Paste into Notion or chat</div>
+        </div>
+      </div>
+      <div class="fb-export-option" onclick="fbExportClaudine()">
+        <span style="font-size:20px;">🤖</span>
+        <div>
+          <div style="font-weight:600; color:#fff; font-size:13px;">Copy as Claudine Prompt</div>
+          <div style="font-size:11px; color:#666;">Pre-formatted instruction block for processing</div>
+        </div>
+      </div>
+      <div class="fb-export-option" onclick="fbClearQueue()">
+        <span style="font-size:20px;">🗑️</span>
+        <div>
+          <div style="font-weight:600; color:#ef4444; font-size:13px;">Clear Queue</div>
+          <div style="font-size:11px; color:#666;">Remove all queued items</div>
+        </div>
+      </div>
+    </div>
+    <div id="fb-export-status" style="display:none;"></div>
+  </div>
+</div>
+
+<style>
+  /* ═══ Feedback Widget Styles (Terminal Theme) ═══ */
+  #fb-trigger {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    width: 56px; height: 56px; border-radius: 12px;
+    background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 20px rgba(0,255,65,0.3);
+    transition: all 0.2s; user-select: none;
+  }
+  #fb-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,255,65,0.5); }
+  #fb-trigger.open { background: #0a3a0a; }
+  #fb-icon { font-size: 24px; }
+  #fb-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: #ef4444; color: #fff; font-size: 11px; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 5px;
+  }
+
+  #fb-console-widget {
+    position: fixed; bottom: 90px; right: 24px; z-index: 9998;
+    width: 420px; max-height: 70vh;
+    background: #0d0d14; border: 1.5px solid #1a3a1a;
+    border-radius: 12px; box-shadow: 0 12px 48px rgba(0,0,0,0.8);
+    display: none; flex-direction: column; overflow-x: hidden; overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+  }
+  #fb-console-widget.open { display: flex; }
+
+  #fb-console-widget #fb-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; border-bottom: 1px solid #1a3a1a;
+  }
+
+  #fb-console-widget #fb-tabs {
+    display: flex; border-bottom: 1px solid #1a3a1a;
+  }
+  #fb-console-widget .fb-tab {
+    flex: 1; padding: 10px; background: none; border: none;
+    color: #555; font-size: 11px; font-weight: 600; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom: 2px solid transparent; transition: all 0.2s;
+    font-family: 'Fira Code', monospace;
+  }
+  #fb-console-widget .fb-tab:hover { color: #888; }
+  #fb-console-widget .fb-tab.active { color: #00ff41; border-bottom-color: #00ff41; }
+  #fb-tab-badge {
+    background: #ef4444; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 1px 5px; border-radius: 8px; margin-left: 4px;
+  }
+
+  #fb-console-widget .fb-tab-content { display: none; padding: 14px; overflow-y: auto; max-height: 420px; }
+  #fb-console-widget .fb-tab-content.active { display: block; }
+
+  #fb-categories {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px;
+  }
+  #fb-console-widget .fb-cat {
+    background: #111118; border: 1.5px solid #222; border-radius: 6px;
+    padding: 8px 4px; cursor: pointer; transition: all 0.15s;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  #fb-console-widget .fb-cat:hover { border-color: #444; }
+  #fb-console-widget .fb-cat.active { border-color: #00ff41; background: rgba(0,255,65,0.05); }
+  .cat-icon { font-size: 16px; }
+  .cat-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; }
+  #fb-console-widget .fb-cat.active .cat-label { color: #00ff41; }
+
+  #fb-ws-row { margin-bottom: 10px; }
+  #fb-ws-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .ws-tag {
+    padding: 3px 10px; border-radius: 4px; border: 1px solid #333;
+    background: transparent; color: #666; font-size: 11px; cursor: pointer;
+    transition: all 0.15s; font-family: 'Fira Code', monospace;
+  }
+  .ws-tag:hover { border-color: #555; color: #aaa; }
+  .ws-tag.active { border-color: #00ff41; color: #00ff41; background: rgba(0,255,65,0.05); }
+
+  #fb-console-widget #fb-input {
+    width: 100%; background: #111118; border: 1.5px solid #222;
+    border-radius: 6px; padding: 10px 12px; color: #e4e4e7;
+    font-size: 12px; font-family: 'Fira Code', monospace; resize: none;
+    margin-bottom: 10px; outline: none; transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  #fb-console-widget #fb-input:focus { border-color: #00ff41; }
+  #fb-console-widget #fb-input::placeholder { color: #333; }
+
+  #fb-submit-row { display: flex; justify-content: space-between; align-items: center; }
+  #fb-urgency { display: flex; gap: 4px; }
+  .urg-btn {
+    padding: 4px 10px; border-radius: 4px; border: 1px solid #333;
+    background: transparent; color: #666; font-size: 11px; cursor: pointer;
+    transition: all 0.15s; font-family: 'Fira Code', monospace;
+  }
+  .urg-btn.active { border-color: #00ff41; color: #00ff41; background: rgba(0,255,65,0.05); }
+  .urg-btn[data-urg="hot"].active { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.08); }
+
+  #fb-submit {
+    padding: 8px 20px; border-radius: 4px; border: none;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #0a0a0f; font-size: 12px; font-weight: 700; cursor: pointer;
+    transition: all 0.2s; font-family: 'Fira Code', monospace;
+  }
+  #fb-submit:hover { box-shadow: 0 2px 12px rgba(0,255,65,0.3); }
+
+  #fb-hint { font-size: 10px; color: #333; margin-top: 10px; text-align: center; font-style: italic; }
+
+  #fb-console-widget .fb-queue-item {
+    background: #111118; border: 1px solid #222; border-radius: 6px;
+    padding: 12px; margin-bottom: 8px; position: relative;
+  }
+  .fb-queue-item .qi-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .fb-queue-item .qi-cat {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 3px; letter-spacing: 0.5px;
+  }
+  .qi-cat.pulse { background: rgba(250,204,21,0.15); color: #facc15; }
+  .qi-cat.action { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .qi-cat.bug { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .qi-cat.data { background: rgba(251,146,60,0.15); color: #fb923c; }
+  .qi-cat.insight { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .qi-cat.priority { background: rgba(168,85,247,0.15); color: #a78bfa; }
+  .qi-cat.request { background: rgba(56,189,248,0.15); color: #38bdf8; }
+  .qi-cat.praise { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .qi-cat.hot { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .fb-queue-item .qi-ws { font-size: 10px; color: #444; }
+  .fb-queue-item .qi-text { font-size: 12px; color: #ccc; line-height: 1.4; }
+  .fb-queue-item .qi-time { font-size: 10px; color: #333; margin-top: 6px; }
+  .fb-queue-item .qi-delete {
+    position: absolute; top: 8px; right: 8px;
+    background: none; border: none; color: #444; cursor: pointer;
+    font-size: 14px; padding: 2px 6px; border-radius: 4px; font-family: monospace;
+  }
+  .fb-queue-item .qi-delete:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+  #fb-queue-empty { text-align: center; color: #333; padding: 30px 0; font-size: 12px; }
+
+  .fb-export-option {
+    display: flex; align-items: center; gap: 12px;
+    background: #111118; border: 1px solid #222; border-radius: 6px;
+    padding: 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s;
+  }
+  .fb-export-option:hover { border-color: #444; background: #161620; }
+
+  #fb-export-status {
+    text-align: center; padding: 10px;
+    background: rgba(0,255,65,0.1); border-radius: 6px;
+    color: #00ff41; font-size: 11px; font-weight: 600; margin-top: 8px;
+  }
+</style>
+
+<script>
+  // ═══ Feedback Widget Logic (Command Console) ═══
+  const FB_API = 'http://localhost:3847/api/feedback';
+  const FB_STORAGE_KEY = 'scorecard_feedback_queue';
+  let fbQueue = [];
+  let fbCurrentCat = 'pulse';
+  let fbCurrentWs = [];
+  let fbCurrentUrg = 'normal';
+  let fbServerOnline = false;
+
+  async function loadFbQueue() {
+    try {
+      const res = await fetch(FB_API);
+      if (res.ok) {
+        fbQueue = await res.json();
+        fbServerOnline = true;
+        localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(fbQueue));
+        document.getElementById('fb-hint').innerHTML =
+          'Server connected — items save to Google Drive automatically.';
+      }
+    } catch {
+      fbQueue = JSON.parse(localStorage.getItem(FB_STORAGE_KEY) || '[]');
+      fbServerOnline = false;
+      document.getElementById('fb-hint').innerHTML =
+        'Offline mode (localStorage). Run <code style="color:#00ff41">node ~/Documents/dashboards/server.js</code> for file sync.';
+    }
+    updateFbBadge();
+  }
+
+  async function saveFbItem(item) {
+    localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(fbQueue));
+    if (fbServerOnline) {
+      try {
+        await fetch(FB_API, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(item) });
+      } catch { fbServerOnline = false; }
+    }
+  }
+
+  async function removeFbItem(id) {
+    localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(fbQueue));
+    if (fbServerOnline) {
+      try { await fetch(FB_API + '/' + id, { method: 'DELETE' }); } catch {}
+    }
+  }
+
+  async function clearFbServer() {
+    localStorage.removeItem(FB_STORAGE_KEY);
+    if (fbServerOnline) {
+      try { await fetch(FB_API, { method: 'DELETE' }); } catch {}
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadFbQueue);
+
+  function toggleFbConsole() {
+    const panel = document.getElementById('fb-console-widget');
+    const trigger = document.getElementById('fb-trigger');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    trigger.classList.toggle('open');
+    if (!isOpen) document.getElementById('fb-input').focus();
+  }
+
+  function switchFbTab(tab) {
+    document.querySelectorAll('#fb-console-widget .fb-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#fb-console-widget .fb-tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('#fb-console-widget .fb-tab[data-tab="' + tab + '"]').classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    if (tab === 'queue') renderFbQueue();
+  }
+
+  function selectFbCat(cat) {
+    fbCurrentCat = cat;
+    document.querySelectorAll('#fb-console-widget .fb-cat').forEach(c => c.classList.remove('active'));
+    document.querySelector('#fb-console-widget .fb-cat[data-cat="' + cat + '"]').classList.add('active');
+  }
+
+  function toggleFbWs(el) {
+    el.classList.toggle('active');
+    const ws = el.dataset.ws;
+    if (fbCurrentWs.includes(ws)) { fbCurrentWs = fbCurrentWs.filter(w => w !== ws); }
+    else { fbCurrentWs.push(ws); }
+  }
+
+  function setFbUrgency(urg) {
+    fbCurrentUrg = urg;
+    document.querySelectorAll('#fb-console-widget .urg-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('#fb-console-widget .urg-btn[data-urg="' + urg + '"]').classList.add('active');
+  }
+
+  function submitFbItem() {
+    const input = document.getElementById('fb-input');
+    const text = input.value.trim();
+    if (!text) { input.focus(); return; }
+
+    const item = {
+      id: Date.now(),
+      category: fbCurrentCat,
+      workstreams: [...fbCurrentWs],
+      urgency: fbCurrentUrg,
+      text: text,
+      timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }),
+      page: 'Command Console'
+    };
+    fbQueue.push(item);
+    saveFbItem(item);
+    updateFbBadge();
+
+    const btn = document.getElementById('fb-submit');
+    btn.textContent = '✓ Stacked!';
+    btn.style.background = '#16a34a';
+    setTimeout(() => { btn.textContent = 'Stack It →'; btn.style.background = ''; }, 1000);
+
+    input.value = '';
+    input.focus();
+  }
+
+  function updateFbBadge() {
+    const badge = document.getElementById('fb-badge');
+    const countEl = document.getElementById('fb-queue-count');
+    const tabBadge = document.getElementById('fb-tab-badge');
+    const count = fbQueue.length;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+    badge.textContent = count;
+    countEl.textContent = count + ' queued';
+    tabBadge.textContent = count > 0 ? count : '';
+  }
+
+  function renderFbQueue() {
+    const list = document.getElementById('fb-queue-list');
+    const empty = document.getElementById('fb-queue-empty');
+    if (fbQueue.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+
+    const catLabels = { pulse: 'Pulse', action: 'Action', bug: 'Bug', data: 'Data Fix', insight: 'Insight', priority: 'Priority', request: 'Feature', praise: 'Working' };
+    const catIcons = { pulse: '⚡', action: '🎯', bug: '🐛', data: '📊', insight: '💡', priority: '🔺', request: '🔧', praise: '🔥' };
+
+    list.innerHTML = fbQueue.slice().reverse().map(item =>
+      '<div class="fb-queue-item">' +
+        '<button class="qi-delete" onclick="deleteFbItem(' + item.id + ')">&times;</button>' +
+        '<div class="qi-header">' +
+          '<span class="qi-cat ' + item.category + '">' + catIcons[item.category] + ' ' + catLabels[item.category] + '</span>' +
+          (item.urgency === 'hot' ? '<span class="qi-cat hot">🔥 HOT</span>' : '') +
+          (item.workstreams.length ? '<span class="qi-ws">' + item.workstreams.join(', ') + '</span>' : '') +
+        '</div>' +
+        '<div class="qi-text">' + item.text + '</div>' +
+        '<div class="qi-time">' + item.timestamp + ' · ' + item.page + '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function deleteFbItem(id) {
+    const idx = fbQueue.findIndex(i => i.id === id);
+    if (idx > -1) { fbQueue.splice(idx, 1); removeFbItem(id); updateFbBadge(); renderFbQueue(); }
+  }
+
+  function showFbExportStatus(msg) {
+    const el = document.getElementById('fb-export-status');
+    el.textContent = msg; el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 2500);
+  }
+
+  function fbExportJSON() {
+    if (fbQueue.length === 0) { showFbExportStatus('Nothing to export'); return; }
+    const data = JSON.stringify({ source: 'Command Console', exported: new Date().toISOString(), items: fbQueue }, null, 2);
+    navigator.clipboard.writeText(data).then(() => showFbExportStatus('✓ JSON copied to clipboard'));
+  }
+
+  function fbExportMarkdown() {
+    if (fbQueue.length === 0) { showFbExportStatus('Nothing to export'); return; }
+    const catLabels = { pulse: 'Pulse Note', action: 'Action Item', bug: 'Bug Report', data: 'Data Correction', insight: 'Strategic Insight', priority: 'Priority Shift', request: 'Feature Request', praise: "What's Working" };
+    let md = '## Command Console Feedback Queue\n*Exported ' + new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }) + '*\n\n';
+    fbQueue.forEach(item => {
+      md += '### ' + (item.urgency === 'hot' ? '🔥 ' : '') + catLabels[item.category] + '\n';
+      if (item.workstreams.length) md += '**Workstream:** ' + item.workstreams.join(', ') + '\n';
+      md += item.text + '\n*' + item.timestamp + '*\n\n';
+    });
+    navigator.clipboard.writeText(md).then(() => showFbExportStatus('✓ Markdown copied to clipboard'));
+  }
+
+  function fbExportClaudine() {
+    if (fbQueue.length === 0) { showFbExportStatus('Nothing to export'); return; }
+    const catLabels = { pulse: 'Pulse Note', action: 'Action Item', bug: 'Bug Report', data: 'Data Correction', insight: 'Strategic Insight', priority: 'Priority Shift', request: 'Feature Request', praise: "What's Working" };
+    let prompt = 'Hey Claudine — here\'s my feedback queue from the Command Console. Process these into the Scorecard Feedback Queue DB (Notion data source: collection://7ea252b6-231e-4088-bb46-eb5c9b84ec93, under System Health Dashboard):\n\n';
+    fbQueue.forEach((item, i) => {
+      prompt += (i + 1) + '. [' + catLabels[item.category] + ']' + (item.urgency === 'hot' ? ' 🔥 HOT' : '');
+      if (item.workstreams.length) prompt += ' (' + item.workstreams.join(', ') + ')';
+      prompt += '\n   ' + item.text + '\n   Captured: ' + item.timestamp + '\n\n';
+    });
+    prompt += '---\nFor EACH item:\n1. Create a row in the Scorecard Feedback Queue DB with Category, Workstream, Urgency, Status=Pending\n2. Then ROUTE it: pulse notes → Streaming Notes, action items → Tasks DB, bugs → fix tickets, insights → Thread Log, data corrections → scorecard refresh, priority shifts → flag in Daily State, feature asks → product backlog\n3. Update Status to "Routed" and fill in "Routed To" field\n4. Give me a summary of what you did.\n';
+    navigator.clipboard.writeText(prompt).then(() => showFbExportStatus('✓ Claudine prompt copied to clipboard'));
+  }
+
+  function fbClearQueue() {
+    if (fbQueue.length === 0) return;
+    if (confirm('Clear all ' + fbQueue.length + ' queued items? This can\'t be undone.')) {
+      fbQueue.length = 0;
+      clearFbServer();
+      updateFbBadge();
+      renderFbQueue();
+      showFbExportStatus('Queue cleared');
+    }
+  }
+</script>
+
+</body>
+</html>

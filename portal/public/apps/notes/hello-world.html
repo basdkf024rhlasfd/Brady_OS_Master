@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brady's Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: white;
+            font-family: times, serif;
+            font-size: 12pt;
+            padding: 20px;
+            color: black;
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .activity-panel {
+            flex: 0 0 400px;
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24pt;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #00008b;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        textarea {
+            padding: 5px;
+            font-size: 12pt;
+            border: 1px solid black;
+            background: white;
+            color: black;
+            width: 100%;
+            height: 200px;
+            resize: vertical;
+            font-family: times, serif;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #outputLog {
+            padding: 10px;
+            font-size: 10pt;
+            border: 1px solid black;
+            background: #f5f5f5;
+            color: black;
+            font-family: courier, monospace;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            flex: 1;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        .status {
+            color: black;
+            font-size: 11pt;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .version-info {
+            color: #666;
+            font-size: 10pt;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            display: none;
+            width: 100%;
+            height: 4px;
+            background: #f0f0f0;
+            border: 1px solid black;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar.show {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #00008b;
+            width: 0%;
+            animation: progress-animation 2s infinite;
+        }
+
+        @keyframes progress-animation {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        .executing-indicator {
+            display: none;
+            color: #00008b;
+            font-size: 11pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .executing-indicator.show {
+            display: block;
+        }
+
+        a {
+            color: #00008b;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: purple;
+        }
+
+        .domain-info {
+            background: #fffacd;
+            border: 1px solid #ffd700;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 11pt;
+        }
+
+        .domain-info strong {
+            color: #8b4513;
+        }
+
+        .keyboard-hint {
+            color: #666;
+            font-size: 10pt;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .activity-header {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #00008b;
+            margin-bottom: 10px;
+        }
+
+        .history-toggle {
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .history-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 10pt;
+            color: #666;
+            user-select: none;
+        }
+
+        .history-toggle input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        #outputLog.show-all {
+            /* No max-height restriction when showing all */
+        }
+
+        #outputLog.pending-only .history-entry {
+            display: none;
+        }
+
+        #outputLog.pending-only .pending-entry,
+        #outputLog.pending-only .system-entry {
+            display: block;
+        }
+
+        .log-entry {
+            display: block;
+        }
+
+        .delay-option {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f0f8ff;
+            border: 1px solid #00008b;
+        }
+
+        .delay-option label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 10pt;
+            color: #00008b;
+            user-select: none;
+            font-weight: bold;
+        }
+
+        .delay-option input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .delay-option-custom {
+            margin-top: 10px;
+            padding-left: 24px;
+        }
+
+        .delay-option-custom input[type="number"] {
+            width: 70px;
+            padding: 4px;
+            font-size: 10pt;
+            border: 1px solid #00008b;
+            margin: 0 5px;
+        }
+
+        .delay-option-custom select {
+            padding: 4px;
+            font-size: 10pt;
+            border: 1px solid #00008b;
+            margin-left: 5px;
+        }
+
+        .delay-countdown {
+            display: none;
+            background: #ffffe0;
+            border: 1px solid #ffa500;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 11pt;
+            color: #8b4513;
+        }
+
+        .delay-countdown.show {
+            display: block;
+        }
+
+        .delay-countdown strong {
+            font-size: 14pt;
+            color: #ff4500;
+        }
+
+        .delay-actions {
+            margin-top: 8px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .delay-btn {
+            padding: 4px 12px;
+            font-size: 10pt;
+            border: 1px solid black;
+            background: white;
+            color: black;
+            cursor: pointer;
+            font-family: times, serif;
+        }
+
+        .delay-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .delay-btn.cancel {
+            background: #ffcccb;
+        }
+
+        .delay-btn.cancel:hover {
+            background: #ff9999;
+        }
+
+        .saved-commands {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f0fff0;
+            border: 1px solid #228b22;
+            position: relative;
+        }
+
+        .saved-commands-header {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #228b22;
+            margin-bottom: 10px;
+        }
+
+        .saved-command-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding: 5px;
+            background: white;
+            border: 1px solid #90ee90;
+            cursor: pointer;
+        }
+
+        .saved-command-item:hover {
+            background: #f5fff5;
+        }
+
+        .saved-command-item input[type="checkbox"] {
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .saved-command-text {
+            flex: 1;
+            font-size: 10pt;
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        .saved-command-delete {
+            color: #ff4500;
+            font-size: 10pt;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        .saved-command-delete:hover {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .run-selected-btn {
+            padding: 8px 16px;
+            font-size: 11pt;
+            border: 1px solid #228b22;
+            background: #90ee90;
+            color: black;
+            cursor: pointer;
+            font-family: times, serif;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .run-selected-btn:hover {
+            background: #7cfc00;
+        }
+
+        .run-selected-btn:disabled {
+            background: #d3d3d3;
+            border-color: #999;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .save-command-btn {
+            padding: 4px 12px;
+            font-size: 10pt;
+            border: 1px solid #228b22;
+            background: #90ee90;
+            color: black;
+            cursor: pointer;
+            font-family: times, serif;
+            margin-top: 5px;
+        }
+
+        .save-command-btn:hover {
+            background: #7cfc00;
+        }
+
+        .scheduled-tasks {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #fff0f5;
+            border: 1px solid #ff69b4;
+            position: relative;
+        }
+
+        .scheduled-tasks-header {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 10px;
+        }
+
+        .scheduled-task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: white;
+            border: 1px solid #ffb6c1;
+        }
+
+        .scheduled-task-info {
+            flex: 1;
+        }
+
+        .scheduled-task-time {
+            font-size: 10pt;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 4px;
+        }
+
+        .scheduled-task-text {
+            font-size: 9pt;
+            color: #666;
+            word-wrap: break-word;
+        }
+
+        .scheduled-task-delete {
+            color: #ff4500;
+            font-size: 12pt;
+            cursor: pointer;
+            padding: 0 5px;
+            font-weight: bold;
+        }
+
+        .scheduled-task-delete:hover {
+            color: #ff0000;
+        }
+
+        .flyout-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            font-size: 9pt;
+            border: 1px solid #666;
+            background: white;
+            color: #666;
+            cursor: pointer;
+            font-family: times, serif;
+            z-index: 10;
+        }
+
+        .flyout-btn:hover {
+            background: #f0f0f0;
+            color: black;
+            border-color: black;
+        }
+
+        .flyout-window {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            background: white;
+            border: 2px solid black;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .flyout-window.show {
+            display: block;
+        }
+
+        .flyout-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .flyout-overlay.show {
+            display: block;
+        }
+
+        .flyout-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid black;
+        }
+
+        .flyout-title {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #00008b;
+        }
+
+        .flyout-close {
+            padding: 6px 12px;
+            font-size: 11pt;
+            border: 1px solid black;
+            background: white;
+            color: black;
+            cursor: pointer;
+            font-family: times, serif;
+            font-weight: bold;
+        }
+
+        .flyout-close:hover {
+            background: #ffcccb;
+        }
+
+        .flyout-content {
+            height: calc(100% - 60px);
+            overflow: auto;
+        }
+
+        .flyout-textarea {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 12pt;
+            border: 1px solid black;
+            background: white;
+            color: black;
+            font-family: times, serif;
+            resize: none;
+        }
+
+        .flyout-log {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 10pt;
+            border: 1px solid black;
+            background: #f5f5f5;
+            color: black;
+            font-family: courier, monospace;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .flyout-list {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .birthday-message {
+            background: #ffebee;
+            border: 2px solid #ff1493;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .birthday-message .japanese {
+            font-size: 28pt;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 10px;
+        }
+
+        .birthday-message .romanji {
+            font-size: 14pt;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .birthday-message .translation {
+            font-size: 12pt;
+            color: #333;
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .activity-panel {
+                flex: 0 0 300px;
+                position: relative;
+                height: 300px;
+            }
+            
+            .main-content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head

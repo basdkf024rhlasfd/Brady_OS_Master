@@ -1,0 +1,74 @@
+/* ─── mception.ai — Viewer Dark Theme Template ─── */
+/* Copy this file to public/{project-id}/viewer/brand.css and customize. */
+/* All embedded project viewers use a dark theme; the portal shell is light. */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-primary:     #141414;
+  --bg-secondary:   #1c1c1c;
+  --bg-surface:     #242424;
+
+  /* Accent — customize these per project */
+  --accent-primary:   #c9a84c;
+  --accent-secondary: #6b8cae;
+
+  /* Text */
+  --text-primary:   #e8e8e8;
+  --text-secondary:  #888;
+  --text-muted:      #555;
+
+  /* Status */
+  --success: #6b9e5a;
+  --danger:  #c45c5c;
+  --warning: #c9a84c;
+
+  /* Borders */
+  --border:       #2a2a2a;
+  --border-light: #1e1e1e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+a { color: var(--accent-secondary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { color: var(--accent-primary); font-weight: 600; }
+
+code {
+  background: var(--bg-surface);
+  color: var(--success);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* ─── PostMessage Bridge ─── */
+/* Every viewer should listen for portal messages and send a ready signal: */
+/*
+  window.addEventListener("message", (event) => {
+    const { source, type, requestId, payload } = event.data;
+    if (source !== "mception-portal") return;
+    // Handle: "navigate", "save_item", "get_state"
+    window.parent.postMessage(
+      { source: "mception-viewer", type: "action_response", requestId, payload: {} },
+      "*"
+    );
+  });
+
+  // Signal ready when loaded
+  window.parent.postMessage(
+    { source: "mception-viewer", type: "ready", payload: {} },
+    "*"
+  );
+*/
