@@ -65,6 +65,12 @@ body::before { content:''; position:fixed; inset:0; background-image:linear-grad
 /* ─── DETAIL MODAL ─── */
 .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:100; overflow-y:auto; padding:40px; }
 .modal-overlay.open { display:flex; justify-content:center; align-items:flex-start; }
+.modal-nav { position:fixed; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; background:var(--bg-card); border:1px solid rgba(255,255,255,0.12); color:var(--white); font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:110; transition:background 0.15s, opacity 0.15s; opacity:0.7; }
+.modal-nav:hover { background:var(--gold); color:var(--bg); opacity:1; }
+.modal-nav.prev { left:12px; }
+.modal-nav.next { right:12px; }
+.modal-nav:disabled { opacity:0.2; cursor:default; pointer-events:none; }
+.modal-counter { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--gray); z-index:110; background:var(--bg-card); padding:6px 16px; border-radius:20px; border:1px solid rgba(255,255,255,0.06); }
 .modal { background:var(--bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; max-width:900px; width:100%; padding:40px; position:relative; }
 .modal-close { position:absolute; top:16px; right:20px; font-size:24px; color:var(--gray); cursor:pointer; background:none; border:none; }
 .modal-close:hover { color:var(--white); }
@@ -464,6 +470,9 @@ body.client-mode [data-view="grid"] { pointer-events:none; opacity:0.6; }
 
 <!-- DETAIL MODAL -->
 <div class="modal-overlay" id="modal-overlay">
+  <button class="modal-nav prev" id="modal-prev" onclick="navigateModal(-1)">&#8249;</button>
+  <button class="modal-nav next" id="modal-next" onclick="navigateModal(1)">&#8250;</button>
+  <div class="modal-counter" id="modal-counter"></div>
   <div class="modal" id="modal-content"></div>
 </div>
 
@@ -1767,11 +1776,55 @@ function bulkClear() {
   renderGrid(); renderKanban();
 }
 
+// ─── MODAL NAVIGATION ───
+let modalFilteredList = [];
+let modalCurrentIdx = -1;
+
+function updateModalNav() {
+  const prev = document.getElementById('modal-prev');
+  const next = document.getElementById('modal-next');
+  const counter = document.getElementById('modal-counter');
+  if (modalFilteredList.length <= 1) {
+    prev.style.display = 'none';
+    next.style.display = 'none';
+    counter.style.display = 'none';
+    return;
+  }
+  prev.style.display = '';
+  next.style.display = '';
+  counter.style.display = '';
+  prev.disabled = modalCurrentIdx <= 0;
+  next.disabled = modalCurrentIdx >= modalFilteredList.length - 1;
+  counter.textContent = `${modalCurrentIdx + 1} / ${modalFilteredList.length}`;
+}
+
+function navigateModal(dir) {
+  const newIdx = modalCurrentIdx + dir;
+  if (newIdx < 0 || newIdx >= modalFilteredList.length) return;
+  modalCurrentIdx = newIdx;
+  const id = modalFilteredList[modalCurrentIdx].id;
+  document.getElementById('modal-content').scrollTop = 0;
+  document.getElementById('modal-overlay').scrollTop = 0;
+  if (clientMode) openClientModal(id); else openModalContent(id);
+  updateModalNav();
+}
+
 // ─── MODAL ───
 function openModal(id) {
+  modalFilteredList = getFiltered();
+  modalCurrentIdx = modalFilteredList.findIndex(i => i.id === id);
+  if (modalCurrentIdx === -1) { modalFilteredList = IDEAS; modalCurrentIdx = IDEAS.findIndex(i => i.id === id); }
+  const idea = modalFilteredList[modalCurrentIdx];
+  if (!idea) return;
+  if (clientMode) { openClientModal(id); updateModalNav(); return; }
+  openModalContent(id);
+  document.getElementById('modal-overlay').classList.add('open');
+  updateModalNav();
+}
+
+function openModalContent(id) {
   const idea = IDEAS.find(i => i.id === id);
   if (!idea) return;
-  if (clientMode) { openClientModal(id); return; }
   const note = getUserNote(id);
   const clientNote = getClientNote(id);
   const uscore = getUserScore(id);
@@ -1983,9 +2036,15 @@ document.getElementById('modal-overlay').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
-  if (e.key === 'Enter' && document.getElementById('modal-overlay').classList.contains('open')) {
+  const isOpen = document.getElementById('modal-overlay').classList.contains('open');
+  if (isOpen) {
     const tag = document.activeElement?.tagName;
-    if (tag !== 'TEXTAREA' && tag !== 'INPUT' && tag !== 'SELECT') closeModal();
+    const inInput = tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'SELECT';
+    if (e.key === 'Enter' && !inInput) closeModal();
+    if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && !inInput) {
+      e.preventDefault();
+      navigateModal(e.key === 'ArrowLeft' ? -1 : 1);
+    }
   }
 });
 
