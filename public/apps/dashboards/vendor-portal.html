@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Intelligence Suite — BrokerCo</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0f1117; color: #e4e4e7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; min-height: 100vh; }
+
+  /* Layout */
+  .app-container { display: flex; height: 100vh; }
+  .sidebar { width: 240px; background: #16161e; border-right: 1px solid #2a2b35; display: flex; flex-direction: column; }
+  .sidebar-header { padding: 20px 16px; border-bottom: 1px solid #2a2b35; }
+  .sidebar-title { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .sidebar-nav { flex: 1; padding: 12px 8px; overflow-y: auto; }
+  .nav-item { padding: 12px 14px; margin-bottom: 4px; cursor: pointer; border-radius: 8px; font-size: 13px; color: #aaa; transition: all 0.2s; display: flex; align-items: center; gap: 10px; border: 1px solid transparent; }
+  .nav-item:hover { background: rgba(124,58,237,0.08); border-color: #333; }
+  .nav-item.active { background: rgba(124,58,237,0.15); border-color: #7c3aed; color: #a78bfa; font-weight: 600; }
+  .nav-icon { font-size: 16px; }
+
+  .main-content { flex: 1; display: flex; flex-direction: column; }
+  .header-bar { background: linear-gradient(135deg, #16161e 0%, #1a1b23 100%); border-bottom: 1.5px solid #2a2b35; padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; }
+  .header-bar h1 { font-size: 24px; font-weight: 700; color: #fff; }
+  .header-bar .version { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .content-area { flex: 1; overflow-y: auto; padding: 28px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #16161e; }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+  /* KPI Cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .kpi-card { background: #1a1b23; border: 1px solid #2a2b35; border-radius: 12px; padding: 16px; }
+  .kpi-card.high { border-color: #4ade80; background: rgba(74,222,128,0.05); }
+  .kpi-card.med { border-color: #facc15; background: rgba(250,204,21,0.05); }
+  .kpi-card.low { border-color: #ef4444; background: rgba(239,68,68,0.05); }
+  .kpi-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .kpi-value { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .kpi-value.green { color: #4ade80; }
+  .kpi-value.yellow { color: #facc15; }
+  .kpi-value.orange { color: #f97316; }
+  .kpi-value.red { color: #ef4444; }
+  .kpi-detail { font-size: 12px; color: #666; }
+
+  /* Section panels */
+  .section { background: #1a1b23; border: 1px solid #2a2b35; border-radius: 14px; padding: 20px; margin-bottom: 24px; }
+  .section h2 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-icon { font-size: 18px; }
+
+  /* FEATURE 1: Navigation Pills */
+  .header-nav { display: flex; gap: 8px; }
+  .nav-pill { padding: 6px 12px; border-radius: 6px; border: 1px solid #333; background: transparent; color: #888; font-size: 11px; text-decoration: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+  .nav-pill:hover { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+
+  /* FEATURE 3: Documents Section */
+  .doc-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 16px; }
+  .doc-item { background: #16161e; border: 1.5px solid #2a2b35; border-radius: 10px; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .doc-left { flex: 1; }
+  .doc-name { font-size: 13px; font-weight: 600; color: #fff; }
+  .doc-meta { font-size: 11px; color: #888; margin-top: 4px; }
+  .doc-status { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; }
+  .doc-status.uploaded { color: #4ade80; }
+  .doc-status.missing { color: #ef4444; }
+  .doc-status.expired { color: #f97316; }
+  .doc-action { padding: 6px 12px; border-radius: 6px; border: 1.5px solid #333; background: transparent; color: #888; font-size: 11px; cursor: pointer; transition: all 0.2s; }
+  .doc-action:hover { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+
+  .upload-zone { background: #16161e; border: 2px dashed #2a2b35; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 16px; transition: all 0.2s; cursor: pointer; }
+  .upload-zone:hover { border-color: #7c3aed; background: rgba(124,58,237,0.03); }
+  .upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .upload-text { font-size: 13px; color: #888; }
+  .upload-subtext { font-size: 11px; color: #666; margin-top: 4px; }
+
+  /* FEATURE 4: Communications Timeline */
+  .timeline { border-left: 2px solid #2a2b35; padding-left: 20px; margin-left: 10px; }
+  .timeline-entry { position: relative; padding: 12px 0; margin-bottom: 16px; }
+  .timeline-entry::before { content: ''; position: absolute; left: -27px; top: 16px; width: 12px; height: 12px; background: #7c3aed; border: 2px solid #16161e; border-radius: 50%; }
+  .timeline-entry.system::before { background: #a78bfa; }
+  .timeline-date { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600; }
+  .timeline-msg { font-size: 13px; color: #ccc; }
+  .timeline-author { font-size: 11px; color: #666; margin-top: 4px; }
+
+  .add-note-form { background: #16161e; border: 1px solid #2a2b35; border-radius: 10px; padding: 12px; margin-bottom: 16px; display: none; }
+  .add-note-form.active { display: block; }
+  .note-textarea { width: 100%; background: #1a1b23; border: 1.5px solid #2a2b35; border-radius: 8px; padding: 10px; color: #e4e4e7; font-size: 13px; font-family: inherit; resize: none; margin-bottom: 8px; outline: none; }
+  .note-textarea:focus { border-color: #7c3aed; }
+  .note-btns { display: flex; gap: 8px; }
+  .note-btn { padding: 6px 12px; border-radius: 6px; border: none; font-size: 12px; cursor: pointer; transition: all 0.2s; font-weight: 600; }
+  .note-btn.save { background: linear-gradient(135deg, #7c3aed, #5b21b6); color: #fff; }
+  .note-btn.cancel { background: transparent; border: 1.5px solid #333; color: #888; }
+  .note-btn.cancel:hover { border-color: #555; color: #aaa; }
+  .note-btn.save:hover { transform: scale(1.02); }
+  .note-btn.save:active { transform: scale(0.98); }
+
+  .toast { position: fixed; bottom: 24px; left: 24px; background: #16a34a; color: #fff; padding: 12px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; z-index: 10000; animation: slideIn 0.3s ease-out; }
+  @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+  /* Retailer cards */
+  .retailer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .retailer-card { background: #16161e; border: 1.5px solid #2a2b35; border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.2s; }
+  .retailer-card:hover { border-color: #7c3aed; background: rgba(124,58,237,0.05); }
+  .retailer-card.expanded { border-color: #7c3aed; background: rgba(124,58,237,0.08); }
+  .retailer-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .retailer-name { font-size: 14px; font-weight: 700; color: #fff; }
+  .retailer-score { font-size: 24px; font-weight: 700; padding: 4px 10px; border-radius: 8px; }
+  .retailer-score.green { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .retailer-score.yellow { background: rgba(250,204,21,0.15); color: #facc15; }
+  .retailer-score.orange { background: rgba(249,115,22,0.15); color: #f97316; }
+
+  .retailer-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+  .metric { font-size: 11px; }
+  .metric-label { color: #888; text-transform: uppercase; letter-spacing: 0.3px; }
+  .metric-value { font-size: 13px; font-weight: 600; color: #ccc; margin-top: 2px; }
+
+  .retailer-details { padding-top: 12px; border-top: 1px solid #2a2b35; margin-top: 12px; display: none; }
+  .retailer-card.expanded .retailer-details { display: block; }
+  .detail-section { margin-bottom: 12px; }
+  .detail-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .detail-content { font-size: 12px; color: #aaa; line-height: 1.5; }
+
+  /* Cost modeling */
+  .cost-inputs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+  .input-group { }
+  .input-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+  .input-field { width: 100%; background: #16161e; border: 1.5px solid #2a2b35; border-radius: 8px; padding: 10px 12px; color: #e4e4e7; font-size: 13px; outline: none; transition: border-color 0.2s; }
+  .input-field:focus { border-color: #7c3aed; }
+
+  .cost-breakdown { background: #16161e; border: 1px solid #2a2b35; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+  .breakdown-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; border-bottom: 1px solid #2a2b35; }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-label { color: #aaa; }
+  .breakdown-value { font-weight: 600; color: #fff; }
+
+  /* Compliance checklist */
+  .compliance-group { margin-bottom: 16px; }
+  .group-title { font-size: 12px; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .compliance-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; background: #16161e; border-radius: 8px; margin-bottom: 6px; }
+  .item-checkbox { width: 18px; height: 18px; border: 1.5px solid #333; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .item-checkbox.checked { background: #4ade80; border-color: #4ade80; color: #000; font-size: 11px; font-weight: 700; }
+  .item-content { flex: 1; }
+  .item-name { font-size: 12px; font-weight: 600; color: #ccc; }
+  .item-status { font-size: 10px; color: #888; margin-top: 2px; }
+  .item-status.complete { color: #4ade80; }
+  .item-status.progress { color: #facc15; }
+
+  /* Activity feed */
+  .activity-item { padding: 12px; border-left: 2px solid #333; margin-bottom: 10px; }
+  .activity-time { font-size: 10px; color: #666; }
+  .activity-text { font-size: 13px; color: #ccc; margin-top: 4px; line-height: 1.4; }
+
+  /* Positioning brief */
+  .brief-section { margin-bottom: 16px; }
+  .brief-label { font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .brief-content { font-size: 13px; color: #aaa; line-height: 1.6; }
+  .tier-badge { display: inline-block; padding: 4px 12px; border-radius: 6px; background: rgba(168,85,247,0.15); color: #a78bfa; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+
+  /* Filters and sorting */
+  .toolbar { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
+  .filter-btn { padding: 6px 14px; border-radius: 6px; border: 1.5px solid #333; background: transparent; color: #aaa; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover { border-color: #555; color: #fff; }
+  .filter-btn.active { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .retailer-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .cost-inputs { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .app-container { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #2a2b35; }
+    .sidebar-nav { display: flex; gap: 4px; padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  // ═══════════════════════════════════════════════════════
+  // VENDOR INTELLIGENCE SUITE — BrokerCo MVP v1.0
+  // ═══════════════════════════════════════════════════════
+
+  // Demo data — ChocolateCo (Dubai Chocolate Bar)
+  const demoData = {
+    vendor: {
+      name: 'ChocolateCo',
+      product: 'Dubai Chocolate Bar',
+      tier: 'Premium',
+      description: 'Premium single-origin Dubai chocolate bar with pistachio & caramel filling'
+    },
+    kpis: {
+      retailerFitScore: 82,
+      complianceScore: 71,
+      estimatedCOGS: 4.40,
+      pipelineStatus: 'Active Discovery'
+    },
+    retailers: [
+      { id: 1, name: 'Whole Foods', score: 92, category: 'Premium Natural', certification: 'Organic + Non-GMO', density: 'HIGH', entry: 'Regional Roll', requirements: 'Non-GMO Project Verified, Organic preferred, strong in premium natural brands, highly competitive specialty category. 6-month trial with volume minimums.' },
+      { id: 2, name: 'Sprouts Farmers Market', score: 88, category: 'Natural Focus', certification: 'Organic', density: 'MEDIUM', entry: 'Direct Relationship', requirements: 'Natural-focused, emerging brand programs, excellent for launch brands. Moderate competitive density. 3-month proof of concept.' },
+      { id: 3, name: 'Natural Grocers', score: 85, category: 'Specialty', certification: 'Organic Required', density: 'LOW', entry: 'Ideal First Account', requirements: 'Requires organic certification, smaller footprint but loyal customers. Excellent for launch. Direct to buyer relationship possible.' },
+      { id: 4, name: 'Kroger', score: 78, category: 'Mass Natural', certification: 'GFSI + EDI', density: 'HIGH', entry: 'Via Go Fresh Program', requirements: 'Go Fresh & Local program, high volume, requires EDI/GFSI certification. Strong local support model. 12-month commitment.' },
+      { id: 5, name: 'HEB', score: 75, category: 'Regional Premium', certification: 'Organic', density: 'MEDIUM', entry: 'Primo Picks', requirements: 'Primo Picks program, Texas-first strategy, strong local support. Prefers emerging brands with authentic stories. Volume requirements moderate.' },
+      { id: 6, name: 'Walmart', score: 68, category: 'Mass Market', certification: 'SQEP Compliance', density: 'VERY HIGH', entry: 'Open Call', requirements: 'Open Call program, OTIF 98%+ required, massive volume, SQEP compliance. Lowest margins. Not recommended as first account.' },
+      { id: 7, name: 'Target', score: 65, category: 'Trend Forward', certification: 'Design Focus', density: 'HIGH', entry: 'Accelerator Program', requirements: 'Accelerator program, trend-forward positioning, design & packaging critical. 9-month placement trial. Younger demographic focus.' },
+      { id: 8, name: 'Costco', score: 58, category: 'Club Channel', certification: 'Demo Events', density: 'MEDIUM', entry: 'Club Tier', requirements: 'Club channel, massive volume requirements, demo events mandatory, premium positioning supported. Highest per-unit volume. Complex approval.' }
+    ],
+    costModel: {
+      ingredients: 2.80,
+      packaging: 0.65,
+      coPackerFee: 0.45,
+      freight: 0.30,
+      overhead: 0.20
+    },
+    channelMargins: [
+      { channel: 'Natural/Specialty', retailMargin: 40, distroMargin: 20 },
+      { channel: 'Conventional', retailMargin: 35, distroMargin: 18 },
+      { channel: 'Mass Market', retailMargin: 30, distroMargin: 15 },
+      { channel: 'Club', retailMargin: 13, distroMargin: 0 }
+    ],
+    compliance: [
+      { id: 1, category: 'Food Safety', name: 'SQF Level 2 Certification', status: 'Not Started', dueDate: '2026-05-15', priority: 'High', note: 'Required for Walmart, Kroger' },
+      { id: 2, category: 'Food Safety', name: 'FSMA Preventive Controls', status: 'In Progress', dueDate: '2026-04-01', priority: 'High', note: 'Consultant engaged' },
+      { id: 3, category: 'Labeling', name: 'FDA Compliance Review', status: 'Complete', dueDate: '2026-02-14', priority: 'High', note: 'Label design approved' },
+      { id: 4, category: 'Labeling', name: 'Allergen Disclosure', status: 'Complete', dueDate: '2026-02-14', priority: 'High', note: 'Tree nuts, milk labeled' },
+      { id: 5, category: 'Certifications', name: 'Organic Certification', status: 'Complete', dueDate: '2026-01-30', priority: 'High', note: 'USDA certified, valid 3 years' },
+      { id: 6, category: 'Certifications', name: 'Non-GMO Project Verification', status: 'Complete', dueDate: '2026-02-28', priority: 'High', note: 'All ingredients verified' },
+      { id: 7, category: 'Certifications', name: 'Fair Trade Certification', status: 'Not Started', dueDate: '2026-06-30', priority: 'Medium', note: 'Optional - supports storytelling' },
+      { id: 8, category: 'Insurance', name: 'Product Liability Insurance', status: 'Complete', dueDate: '2026-12-31', priority: 'High', note: '2M per occurrence' },
+      { id: 9, category: 'Insurance', name: 'General Liability', status: 'Complete', dueDate: '2026-12-31', priority: 'High', note: '1M per occurrence' },
+      { id: 10, category: 'EDI/Technology', name: 'EDI Capability Setup', status: 'Not Started', dueDate: '2026-05-01', priority: 'Medium', note: 'Needed for Kroger, Walmart' },
+      { id: 11, category: 'EDI/Technology', name: 'Barcode Assignment (GS1)', status: 'Complete', dueDate: '2026-02-07', priority: 'High', note: 'UPC registered' }
+    ],
+    positioning: {
+      name: 'Dubai Chocolate Bar',
+      category: 'Premium Chocolate',
+      tier: 'Premium',
+      positionStatement: 'The only premium chocolate bar combining traditional Dubai flavors with international ingredients. Positioned as an elevated snack for conscious consumers seeking authentic, ethically-sourced indulgence.',
+      competitors: 'Lindt Excellence, Ghirardelli Squares, Toblerone',
+      differentiators: ['Non-GMO Project Verified', 'Organic ingredients', 'Unique flavor profile (pistachio + caramel)', 'Premium single-origin cacao', 'Sustainable sourcing story'],
+      buyerTalkingPoints: ['Premium positioning supports margin', 'Authentic Dubai heritage story', 'Appeals to premium/natural crossover customers', 'Strong Instagram/TikTok potential', 'Conscious consumerism trend alignment']
+    },
+    recentActivity: [
+      { time: 'Feb 6, 11:30am', text: 'Sprouts buyer confirmed call for Feb 20 — discussing natural focus + emerging brand fit' },
+      { time: 'Feb 5, 3:15pm', text: 'Compliance: Organic certification renewed. Valid through Feb 2029.' },
+      { time: 'Feb 4, 2:00pm', text: 'Cost model finalized: $4.40 COGS. 40% retail margin in natural channel = $7.33 SRP.' },
+      { time: 'Feb 3, 10:45am', text: 'Initial outreach sent to Natural Grocers, Whole Foods, Sprouts regional buyers' },
+      { time: 'Feb 1, 4:20pm', text: 'Product positioning brief V1.0 locked — ready for buyer conversations' }
+    ]
+  };
+
+  // ═══════════════════════════════════════════════════════
+  // MAIN APP COMPONENT
+  // ═══════════════════════════════════════════════════════
+
+  function VendorPortal() {
+    const [activeSection, setActiveSection] = React.useState('dashboard');
+    const [expandedRetailers, setExpandedRetailers] = React.useState(new Set());
+    const [costInputs, setCostInputs] = React.useState(demoData.costModel);
+    const [completedItems, setCompletedItems] = React.useState(new Set([1, 2, 3, 4, 5, 9, 11])); // Pre-filled as complete
+    const [retailerFilter, setRetailerFilter] = React.useState('all');
+    // FEATURE 4: Communications
+    const [communications, setCommunications] = React.useState([
+      { date: 'Feb 7', time: '2:00pm', message: 'Claudine processed 14 feedback items', author: 'System', type: 'system' },
+      { date: 'Feb 6', time: '10:30am', message: 'Retailer fit analysis completed for Whole Foods', author: 'System', type: 'system' },
+      { date: 'Feb 5', time: '3:15pm', message: 'Pricing review meeting scheduled with ChocolateCo', author: 'Brady', type: 'manual' },
+      { date: 'Feb 4', time: '2:00pm', message: 'Initial compliance checklist sent to vendor', author: 'System', type: 'system' },
+      { date: 'Feb 3', time: '10:45am', message: 'Vendor onboarding initiated — ChocolateCo (Dubai Chocolate Bar)', author: 'Brady', type: 'manual' }
+    ]);
+    const [showNoteForm, setShowNoteForm] = React.useState(false);
+    const [noteText, setNoteText] = React.useState('');
+
+    const toggleRetailer = (id) => {
+      const newExpanded = new Set(expandedRetailers);
+      if (newExpanded.has(id)) { newExpanded.delete(id); }
+      else { newExpanded.add(id); }
+      setExpandedRetailers(newExpanded);
+    };
+
+    const toggleCompliance = (id) => {
+      const newCompleted = new Set(completedItems);
+      if (newCompleted.has(id)) { newCompleted.delete(id); }
+      else { newCompleted.add(id); }
+      setCompletedItems(newCompleted);
+    };
+
+    const handleCostChange = (field, value) => {
+      setCostInputs({ ...costInputs, [field]: parseFloat(value) || 0 });
+    };
+
+    // FEATURE 1: Server feedback posting
+    const postFeedbackToServer = async (feedbackItem) => {
+      const body = {
+        id: feedbackItem.id,
+        category: feedbackItem.category,
+        text: feedbackItem.text,
+        tags: [feedbackItem.category, feedbackItem.urgency],
+        source: 'vendor-portal',
+        timestamp: new Date().toISOString()
+      };
+      try {
+        const response = await fetch('http://localhost:3847/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (response.ok) {
+          return { success: true, status: 'Sent to server' };
+        }
+      } catch (err) {
+        return { success: false, status: 'Saved locally (server offline)' };
+      }
+    };
+
+    // FEATURE 4: Add note to communications
+    const handleAddNote = () => {
+      if (!noteText.trim()) return;
+      const now = new Date();
+      const newEntry = {
+        date: `${now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,
+        time: now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+        message: noteText,
+        author: 'You',
+        type: 'manual'
+      };
+      setCommunications([newEntry, ...communications]);
+      setNoteText('');
+      setShowNoteForm(false);
+      // Save to localStorage
+      const saved = JSON.parse(localStorage.getItem('vendor_portal_notes') || '[]');
+      saved.push(newEntry);
+      localStorage.setItem('vendor_portal_notes', JSON.stringify(saved));
+      // Toast
+      showToast('Note added to communications');
+    };
+
+    const showToast = (msg) => {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.remove(); }, 2000);
+    };
+
+    // Calculate totals
+    const totalCOGS = Object.values(costInputs).reduce((a, b) => a + b, 0).toFixed(2);
+    const complianceScore = Math.round((completedItems.size / demoData.compliance.length) * 100);
+
+    // Filter retailers
+    const filteredRetailers = retailerFilter === 'all' ? demoData.retailers :
+                              retailerFilter === 'high' ? demoData.retailers.filter(r => r.score >= 80) :
+                              retailerFilter === 'medium' ? demoData.retailers.filter(r => r.score >= 70 && r.score < 80) :
+                              demoData.retailers.filter(r => r.score < 70);
+
+    // Sort retailers by score descending
+    const sortedRetailers = [...filteredRetailers].sort((a, b) => b.score - a.score);
+
+    return (
+      <div className="app-container">
+        {/* ═══ SIDEBAR ═══ */}
+        <div className="sidebar">
+          <div className="sidebar-header">
+            <div className="sidebar-title">VIS Portal</div>
+          </div>
+          <div className="sidebar-nav">
+            <div className={`nav-item ${activeSection === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveSection('dashboard')}>
+              <span className="nav-icon">📊</span> Dashboard
+            </div>
+            <div className={`nav-item ${activeSection === 'retailerFit' ? 'active' : ''}`} onClick={() => setActiveSection('retailerFit')}>
+              <span className="nav-icon">🎯</span> Retailer Fit
+            </div>
+            <div className={`nav-item ${activeSection === 'costModeling' ? 'active' : ''}`} onClick={() => setActiveSection('costModeling')}>
+              <span className="nav-icon">💰</span> Cost Modeling
+            </div>
+            <div className={`nav-item ${activeSection === 'compliance' ? 'active' : ''}`} onClick={() => setActiveSection('compliance')}>
+              <span className="nav-icon">✅</span> Compliance
+            </div>
+            <div className={`nav-item ${activeSection === 'positioning' ? 'active' : ''}`} onClick={() => setActiveSection('positioning')}>
+              <span className="nav-icon">📋</span> Positioning
+            </div>
+            <div className={`nav-item ${activeSection === 'documents' ? 'active' : ''}`} onClick={() => setActiveSection('documents')}>
+              <span className="nav-icon">📁</span> Documents
+            </div>
+            <div className={`nav-item ${activeSection === 'communications' ? 'active' : ''}`} onClick={() => setActiveSection('communications')}>
+              <span className="nav-icon">💬</span> Communications
+            </div>
+            <div className="nav-item" style={{opacity: 0.5}}>
+              <span className="nav-icon">⚙️</span> Settings
+            </div>
+          </div>
+        </div>
+
+        {/* ═══ MAIN CONTENT ═══ */}
+        <div className="main-content">
+          {/* Header */}
+          <div className="header-bar">
+            <div>
+              <h1>Vendor Intelligence Suite</h1>
+            </div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '20px'}}>
+              {/* FEATURE 2: Cross-Dashboard Navigation */}
+              <div className="header-nav">
+                <a href="file:///Users/bs/Documents/dashboards/portfolio-scorecard.html" className="nav-pill">🔗 Portfolio Scorecard</a>
+                <a href="file:///Users/bs/Documents/dashboards/command-console-beta.html" className="nav-pill">🔗 Command Console</a>
+              </div>
+              <div style={{textAlign: 'right'}}>
+                <div className="header-bar" style={{background: 'none', border: 'none', padding: 0}}>
+                  <div className="version">MVP v1.0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="content-area">
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* DASHBOARD SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'dashboard' && (
+              <>
+                {/* Welcome panel */}
+                <div className="section">
+                  <h2><span className="section-icon">👋</span> Welcome, {demoData.vendor.name}</h2>
+                  <div style={{fontSize: '13px', color: '#aaa', lineHeight: 1.6}}>
+                    You're building <strong>{demoData.vendor.product}</strong> — a premium chocolate bar positioned for natural & specialty retail.
+                    Your mission: secure 5-7 flagship accounts in natural/premium channels, then scale to conventional. Use the tools below to identify the best retailers, model unit economics, and stay compliant.
+                  </div>
+                </div>
+
+                {/* KPI Cards */}
+                <div className="kpi-grid">
+                  <div className="kpi-card high">
+                    <div className="kpi-label">Retailer Fit Score (Best)</div>
+                    <div className="kpi-value green">{Math.max(...demoData.retailers.map(r => r.score))}</div>
+                    <div className="kpi-detail">Whole Foods — Your #1 fit</div>
+                  </div>
+                  <div className="kpi-card">
+                    <div className="kpi-label">Compliance Score</div>
+                    <div className="kpi-value yellow">{complianceScore}%</div>
+                    <div className="kpi-detail">{completedItems.size}/{demoData.compliance.length} items complete</div>
+                  </div>
+                  <div className="kpi-card">
+                    <div className="kpi-label">Estimated COGS</div>
+                    <div className="kpi-value">${totalCOGS}</div>
+                    <div className="kpi-detail">${((parseFloat(totalCOGS) * 2.5).toFixed(2))} potential SRP (40% retail)</div>
+                  </div>
+                  <div className="kpi-card">
+                    <div className="kpi-label">Pipeline Status</div>
+                    <div className="kpi-value orange">{demoData.kpis.pipelineStatus}</div>
+                    <div className="kpi-detail">3 conversations active</div>
+                  </div>
+                </div>
+
+                {/* Recent Activity */}
+                <div className="section">
+                  <h2><span className="section-icon">📡</span> Recent Activity</h2>
+                  {demoData.recentActivity.map((item, i) => (
+                    <div key={i} className="activity-item">
+                      <div className="activity-time">{item.time}</div>
+                      <div className="activity-text">{item.text}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Quick Actions */}
+                <div className="section">
+                  <h2><span className="section-icon">⚡</span> Quick Actions</h2>
+                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px'}}>
+                    <button onClick={() => setActiveSection('retailerFit')}
+                      style={{padding: '12px', background: 'rgba(124,58,237,0.1)', border: '1.5px solid #7c3aed', borderRadius: '8px', color: '#a78bfa', fontSize: '12px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'}}>
+                      🎯 Find Your Retailers
+                    </button>
+                    <button onClick={() => setActiveSection('costModeling')}
+                      style={{padding: '12px', background: 'rgba(124,58,237,0.1)', border: '1.5px solid #7c3aed', borderRadius: '8px', color: '#a78bfa', fontSize: '12px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'}}>
+                      💰 Run Cost Model
+                    </button>
+                    <button onClick={() => setActiveSection('compliance')}
+                      style={{padding: '12px', background: 'rgba(124,58,237,0.1)', border: '1.5px solid #7c3aed', borderRadius: '8px', color: '#a78bfa', fontSize: '12px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'}}>
+                      ✅ Track Compliance
+                    </button>
+                    <button onClick={() => setActiveSection('positioning')}
+                      style={{padding: '12px', background: 'rgba(124,58,237,0.1)', border: '1.5px solid #7c3aed', borderRadius: '8px', color: '#a78bfa', fontSize: '12px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'}}>
+                      📋 View Positioning
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* RETAILER FIT SCORING SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'retailerFit' && (
+              <>
+                <div className="section">
+                  <h2><span className="section-icon">🎯</span> Retailer Fit Scoring — Your Path to Retail</h2>
+                  <div style={{fontSize: '13px', color: '#aaa', marginBottom: '16px'}}>
+                    Each retailer has different requirements, competitive density, and margin economics. We've scored them 1-100 based on your product profile (premium, organic, emerging brand).
+                    Green (80+): Excellent fit. Yellow (60-79): Good fit. Orange (&lt;60): Possible but challenging.
+                  </div>
+
+                  {/* Filters */}
+                  <div className="toolbar">
+                    <span style={{fontSize: '12px', color: '#888', textTransform: 'uppercase'}}>Filter:</span>
+                    <button className={`filter-btn ${retailerFilter === 'all' ? 'active' : ''}`} onClick={() => setRetailerFilter('all')}>All Retailers</button>
+                    <button className={`filter-btn ${retailerFilter === 'high' ? 'active' : ''}`} onClick={() => setRetailerFilter('high')}>80+ (Best Fit)</button>
+                    <button className={`filter-btn ${retailerFilter === 'medium' ? 'active' : ''}`} onClick={() => setRetailerFilter('medium')}>70-79 (Good)</button>
+                    <button className={`filter-btn ${retailerFilter === 'low' ? 'active' : ''}`} onClick={() => setRetailerFilter('low')}>Below 70</button>
+                  </div>
+                </div>
+
+                {/* Retailer Cards */}
+                <div className="retailer-grid">
+                  {sortedRetailers.map(retailer => (
+                    <div key={retailer.id}
+                      className={`retailer-card ${expandedRetailers.has(retailer.id) ? 'expanded' : ''}`}
+                      onClick={() => toggleRetailer(retailer.id)}>
+
+                      <div className="retailer-header">
+                        <div className="retailer-name">{retailer.name}</div>
+                        <div className={`retailer-score ${retailer.score >= 80 ? 'green' : retailer.score >= 70 ? 'yellow' : 'orange'}`}>
+                          {retailer.score}
+                        </div>
+                      </div>
+
+                      <div className="retailer-metrics">
+                        <div className="metric">
+                          <div className="metric-label">Category</div>
+                          <div className="metric-value">{retailer.category}</div>
+                        </div>
+                        <div className="metric">
+                          <div className="metric-label">Certification</div>
+                          <div className="metric-value">{retailer.certification}</div>
+                        </div>
+                        <div className="metric">
+                          <div className="metric-label">Competitive</div>
+                          <div className="metric-value">{retailer.density}</div>
+                        </div>
+                        <div className="metric">
+                          <div className="metric-label">Entry Point</div>
+                          <div className="metric-value">{retailer.entry}</div>
+                        </div>
+                      </div>
+
+                      <div className="retailer-details">
+                        <div className="detail-section">
+                          <div className="detail-label">Requirements & Notes</div>
+                          <div className="detail-content">{retailer.requirements}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="section" style={{marginTop: '24px', fontSize: '12px', color: '#888'}}>
+                  <strong>📌 Scoring Methodology:</strong> Fit scores based on (1) your product tier & certifications, (2) retailer buyer appetite for emerging brands, (3) category competitiveness, (4) compliance requirements, (5) margin economics.
+                  Natural Grocers & Sprouts are ideal launch accounts. Whole Foods validates premium positioning. Kroger/Walmart require GFSI + EDI but offer scale.
+                </div>
+              </>
+            )}
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* COST MODELING SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'costModeling' && (
+              <>
+                <div className="section">
+                  <h2><span className="section-icon">💰</span> Cost Modeling & Margin Analysis</h2>
+                  <div style={{fontSize: '13px', color: '#aaa', marginBottom: '16px'}}>
+                    Edit cost inputs below. The calculator shows your unit COGS, wholesale pricing, distributor margin, and retail shelf price across different channels.
+                    Your gross margin at retail SRP depends on the channel: Natural supports 40% retail + 20% distributor. Mass market compresses to 30% + 15%.
+                  </div>
+
+                  {/* Cost Input Grid */}
+                  <div className="cost-inputs">
+                    <div className="input-group">
+                      <div className="input-label">Ingredients ($/unit)</div>
+                      <input className="input-field" type="number" step="0.01" value={costInputs.ingredients}
+                        onChange={(e) => handleCostChange('ingredients', e.target.value)} />
+                    </div>
+                    <div className="input-group">
+                      <div className="input-label">Packaging ($/unit)</div>
+                      <input className="input-field" type="number" step="0.01" value={costInputs.packaging}
+                        onChange={(e) => handleCostChange('packaging', e.target.value)} />
+                    </div>
+                    <div className="input-group">
+                      <div className="input-label">Co-Packer Fee ($/unit)</div>
+                      <input className="input-field" type="number" step="0.01" value={costInputs.coPackerFee}
+                        onChange={(e) => handleCostChange('coPackerFee', e.target.value)} />
+                    </div>
+                    <div className="input-group">
+                      <div className="input-label">Freight ($/unit)</div>
+                      <input className="input-field" type="number" step="0.01" value={costInputs.freight}
+                        onChange={(e) => handleCostChange('freight', e.target.value)} />
+                    </div>
+                    <div className="input-group">
+                      <div className="input-label">Overhead ($/unit)</div>
+                      <input className="input-field" type="number" step="0.01" value={costInputs.overhead}
+                        onChange={(e) => handleCostChange('overhead', e.target.value)} />
+                    </div>
+                  </div>
+
+                  {/* COGS Breakdown */}
+                  <div style={{marginBottom: '24px'}}>
+                    <h3 style={{fontSize: '12px', fontWeight: 700, color: '#fff', marginBottom: '8px'}}>COGS Waterfall</h3>
+                    <div className="cost-breakdown">
+                      <div className="breakdown-row">
+                        <span className="breakdown-label">Ingredients</span>
+                        <span className="breakdown-value">${costInputs.ingredients.toFixed(2)}</span>
+                      </div>
+                      <div className="breakdown-row">
+                        <span className="breakdown-label">Packaging</span>
+                        <span className="breakdown-value">${costInputs.packaging.toFixed(2)}</span>
+                      </div>
+                      <div className="breakdown-row">
+                        <span className="breakdown-label">Co-Packer</span>
+                        <span className="breakdown-value">${costInputs.coPackerFee.toFixed(2)}</span>
+                      </div>
+                      <div className="breakdown-row">
+                        <span className="breakdown-label">Freight</span>
+                        <span className="breakdown-value">${costInputs.freight.toFixed(2)}</span>
+                      </div>
+                      <div className="breakdown-row">
+                        <span className="breakdown-label">Overhead Allocation</span>
+                        <span className="breakdown-value">${costInputs.overhead.toFixed(2)}</span>
+                      </div>
+                      <div className="breakdown-row" style={{borderTop: '1.5px solid #333', paddingTop: '8px', marginTop: '8px', fontWeight: 700}}>
+                        <span className="breakdown-label">Total COGS</span>
+                        <span className="breakdown-value" style={{color: '#4ade80'}}>${totalCOGS}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Channel Margin Analysis */}
+                  <h3 style={{fontSize: '12px', fontWeight: 700, color: '#fff', marginBottom: '12px', marginTop: '20px'}}>Channel Margin Analysis</h3>
+                  {demoData.channelMargins.map((channel, i) => {
+                    const cogs = parseFloat(totalCOGS);
+                    const wholeprice = cogs / (1 - channel.retailMargin / 100);
+                    const distroprice = wholeprice / (1 - channel.distroMargin / 100);
+                    const srp = Math.ceil(distroprice * 100) / 100; // Round up to nearest $0.01
+                    return (
+                      <div key={i} className="cost-breakdown" style={{marginBottom: '10px'}}>
+                        <div style={{fontSize: '12px', fontWeight: 700, color: '#a78bfa', marginBottom: '8px'}}>{channel.channel}</div>
+                        <div className="breakdown-row">
+                          <span className="breakdown-label">Your Cost (COGS)</span>
+                          <span className="breakdown-value">${cogs.toFixed(2)}</span>
+                        </div>
+                        <div className="breakdown-row">
+                          <span className="breakdown-label">Your Wholesale Price</span>
+                          <span className="breakdown-value">${wholeprice.toFixed(2)}</span>
+                        </div>
+                        <div className="breakdown-row">
+                          <span className="breakdown-label">Distributor Price ({channel.distroMargin}%)</span>
+                          <span className="breakdown-value">${distroprice.toFixed(2)}</span>
+                        </div>
+                        <div className="breakdown-row" style={{borderTop: '1px solid #333', paddingTop: '8px', fontWeight: 700}}>
+                          <span className="breakdown-label">Retail SRP ({channel.retailMargin}%)</span>
+                          <span className="breakdown-value" style={{color: '#facc15'}}>${srp.toFixed(2)}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  <div style={{marginTop: '16px', padding: '12px', background: 'rgba(74,222,128,0.08)', border: '1px solid #333', borderRadius: '8px', fontSize: '12px', color: '#aaa'}}>
+                    <strong style={{color: '#4ade80'}}>💡 Tip:</strong> Natural channel (40% retail + 20% distro) is best margin. Premium positioning supports $7-8 SRP. Walmart at 30% retail will require volume to be profitable.
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* COMPLIANCE SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'compliance' && (
+              <>
+                <div className="section">
+                  <h2><span className="section-icon">✅</span> Compliance Prep — Your Readiness Score</h2>
+                  <div style={{fontSize: '13px', color: '#aaa', marginBottom: '16px'}}>
+                    <strong>Overall Compliance: {complianceScore}% ({completedItems.size}/{demoData.compliance.length} items complete)</strong>
+                  </div>
+                  <div style={{width: '100%', height: '6px', background: '#2a2b35', borderRadius: '3px', overflow: 'hidden', marginBottom: '16px'}}>
+                    <div style={{height: '100%', background: complianceScore >= 80 ? '#4ade80' : complianceScore >= 60 ? '#facc15' : '#ef4444', width: `${complianceScore}%`, transition: 'width 0.3s'}}></div>
+                  </div>
+                  <div style={{fontSize: '12px', color: '#888'}}>
+                    Click items to toggle completion. Your compliance readiness determines which retailers you can access. Whole Foods & Sprouts require minimal (you're ready now).
+                    Kroger/Walmart need SQF L2 + EDI (both in progress).
+                  </div>
+                </div>
+
+                {/* Compliance by category */}
+                {['Food Safety', 'Labeling', 'Certifications', 'Insurance', 'EDI/Technology'].map(category => {
+                  const items = demoData.compliance.filter(c => c.category === category);
+                  return (
+                    <div key={category} className="section">
+                      <div className="group-title">{category}</div>
+                      {items.map(item => (
+                        <div key={item.id} className="compliance-item" onClick={() => toggleCompliance(item.id)}>
+                          <div className={`item-checkbox ${completedItems.has(item.id) ? 'checked' : ''}`}>
+                            {completedItems.has(item.id) ? '✓' : ''}
+                          </div>
+                          <div className="item-content">
+                            <div className="item-name">{item.name}</div>
+                            <div className="item-status" style={{color: item.status === 'Complete' ? '#4ade80' : item.status === 'In Progress' ? '#facc15' : '#888'}}>
+                              {item.status} · Due {new Date(item.dueDate).toLocaleDateString()} · {item.note}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+
+                <div className="section" style={{marginTop: '24px', fontSize: '12px', color: '#888'}}>
+                  <strong>🎯 Immediate Next Steps:</strong><br/>
+                  1. Complete SQF L2 certification (in progress — finish by May 15)<br/>
+                  2. Set up EDI capability for Kroger/Walmart (not started — May 1 deadline)<br/>
+                  3. Reach out to Sprouts/Natural Grocers NOW — you're compliant enough. Approval cycles are 6-8 weeks.
+                </div>
+              </>
+            )}
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* POSITIONING BRIEF SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'positioning' && (
+              <>
+                <div className="section">
+                  <h2><span className="section-icon">📋</span> Product Positioning Brief V1.0 — LOCKED</h2>
+                  <div style={{fontSize: '12px', color: '#888', marginBottom: '16px', fontStyle: 'italic'}}>
+                    This brief is locked (read-only). Created Feb 1, 2026. Use for all buyer conversations.
+                  </div>
+
+                  <div className="brief-section">
+                    <div className="brief-label">Product Name</div>
+                    <div className="brief-content">{demoData.positioning.name}</div>
+                  </div>
+
+                  <div className="brief-section">
+                    <div className="brief-label">Category & Positioning Tier</div>
+                    <div className="brief-content">
+                      {demoData.positioning.category} · <span className="tier-badge">{demoData.positioning.tier}</span>
+                    </div>
+                  </div>
+
+                  <div className="brief-section">
+                    <div className="brief-label">Positioning Statement (Buyer-Facing)</div>
+                    <div className="brief-content">
+                      "{demoData.positioning.positionStatement}"
+                    </div>
+                  </div>
+
+                  <div className="brief-section">
+                    <div className="brief-label">Competitive Landscape</div>
+                    <div className="brief-content">
+                      Direct competitors: {demoData.positioning.competitors}. You position as premium + authentic (not mass). Story > specs.
+                    </div>
+                  </div>
+
+                  <div className="brief-section">
+                    <div className="brief-label">Key Differentiators</div>
+                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px'}}>
+                      {demoData.positioning.differentiators.map((diff, i) => (
+                        <div key={i} style={{padding: '8px 12px', background: '#16161e', border: '1px solid #333', borderRadius: '6px', fontSize: '12px', color: '#ccc'}}>
+                          ✓ {diff}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="brief-section">
+                    <div className="brief-label">Buyer Talking Points (Why Stock You)</div>
+                    <ul style={{marginLeft: '16px', fontSize: '13px', color: '#aaa', lineHeight: 1.6}}>
+                      {demoData.positioning.buyerTalkingPoints.map((point, i) => (
+                        <li key={i} style={{marginBottom: '6px'}}>• {point}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div style={{marginTop: '20px', padding: '12px', background: 'rgba(168,85,247,0.08)', border: '1px solid #333', borderRadius: '8px', fontSize: '11px', color: '#888'}}>
+                    <strong style={{color: '#a78bfa'}}>📌 PRS Scoring Notes:</strong> Tier = Premium (retail margin supports 40%+ gross). Story = authentic Dubai origin + conscious sourcing narrative appeals to natural channel buyers. Distribution = focus natural + specialty first (proof of concept), then conventional. Price = $7-8 SRP in natural, $5-6 in mass.
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* FEATURE 3: DOCUMENTS SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'documents' && (
+              <>
+                <div className="section">
+                  <h2><span className="section-icon">📁</span> Document Management</h2>
+                  <div style={{fontSize: '13px', color: '#aaa', marginBottom: '16px'}}>
+                    Manage compliance documents required by retailers. Upload, track expiration dates, and monitor status across all channels.
+                  </div>
+
+                  {/* Drag-and-drop upload zone */}
+                  <div className="upload-zone" onClick={() => alert('Upload simulation: File selected. Success! Document uploaded.')}>
+                    <div className="upload-icon">📤</div>
+                    <div className="upload-text">Drag documents here or click to upload</div>
+                    <div className="upload-subtext">Supports PDF, images, certificates</div>
+                  </div>
+
+                  {/* Document list */}
+                  <div className="doc-grid">
+                    {[
+                      { name: 'Organic Certificate (USDA)', status: 'uploaded', expires: 'Dec 2026', meta: 'PDF • 2.4 MB' },
+                      { name: 'Non-GMO Project Verification', status: 'uploaded', expires: 'Mar 2027', meta: 'PDF • 1.8 MB' },
+                      { name: 'Product Liability Insurance ($2M)', status: 'uploaded', expires: 'Jun 2026', meta: 'PDF • 3.1 MB' },
+                      { name: 'SQF Level 2 Certificate', status: 'missing', expires: 'N/A', meta: 'Required by Walmart, Kroger' },
+                      { name: 'FDA Registration', status: 'uploaded', expires: 'No expiry', meta: 'PDF • 0.9 MB' },
+                      { name: 'Nutritional Panel (FDA compliant)', status: 'uploaded', expires: 'No expiry', meta: 'PDF • 1.2 MB' },
+                      { name: 'UPC/GTIN Assignment', status: 'uploaded', expires: 'No expiry', meta: 'PDF • 0.5 MB' },
+                      { name: 'EDI Capability Documentation', status: 'missing', expires: 'N/A', meta: 'Required by Kroger, Walmart' },
+                      { name: 'Broker Authorization Letter', status: 'missing', expires: 'N/A', meta: 'Required for direct sales' },
+                      { name: 'CO-MAN Agreement', status: 'uploaded', expires: 'No expiry', meta: 'PDF • 1.1 MB' }
+                    ].map((doc, i) => {
+                      const isExpiring = doc.expires !== 'No expiry' && doc.expires !== 'N/A' && new Date(doc.expires) < new Date(Date.now() + 90*24*60*60*1000);
+                      return (
+                        <div key={i} className="doc-item">
+                          <div className="doc-left">
+                            <div className="doc-name">{doc.name} {isExpiring && doc.status === 'uploaded' ? '⚠️' : ''}</div>
+                            <div className="doc-meta">{doc.meta} · Expires: {doc.expires}</div>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                            <div className={`doc-status ${doc.status}`}>
+                              {doc.status === 'uploaded' ? '✓ Uploaded' : '✗ Missing'}
+                            </div>
+                            <button className="doc-action" onClick={() => alert(`Upload dialog for: ${doc.name}`)}>
+                              {doc.status === 'uploaded' ? 'Replace' : 'Upload'}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div style={{marginTop: '16px', padding: '12px', background: 'rgba(250,204,21,0.08)', border: '1px solid #2a2b35', borderRadius: '8px', fontSize: '12px', color: '#aaa'}}>
+                    <strong style={{color: '#facc15'}}>⚠️ Expiration Alerts:</strong> 3 documents expiring within 90 days. Review SQF L2 and EDI documentation — required for Walmart/Kroger access.
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ════════════════════════════════════════════════════ */}
+            {/* FEATURE 4: COMMUNICATIONS SECTION */}
+            {/* ════════════════════════════════════════════════════ */}
+            {activeSection === 'communications' && (
+              <>
+                <div className="section">
+                  <h2><span className="section-icon">💬</span> Communications & Activity Log</h2>
+                  <div style={{fontSize: '13px', color: '#aaa', marginBottom: '16px'}}>
+                    Vendor-broker interaction history. Track all notes, decisions, and system events.
+                  </div>
+
+                  {/* Add note button */}
+                  <button onClick={() => setShowNoteForm(!showNoteForm)} style={{marginBottom: '16px', padding: '10px 16px', borderRadius: '8px', border: '1.5px solid #333', background: 'transparent', color: '#a78bfa', fontSize: '13px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'}}>
+                    + Add Note
+                  </button>
+
+                  {/* Add note form */}
+                  <div className={`add-note-form ${showNoteForm ? 'active' : ''}`}>
+                    <textarea className="note-textarea" placeholder="Add a note or update..." rows="3" value={noteText} onChange={(e) => setNoteText(e.target.value)}></textarea>
+                    <div className="note-btns">
+                      <button className="note-btn save" onClick={handleAddNote}>Save Note</button>
+                      <button className="note-btn cancel" onClick={() => { setShowNoteForm(false); setNoteText(''); }}>Cancel</button>
+                    </div>
+                  </div>
+
+                  {/* Timeline */}
+                  <div className="timeline">
+                    {communications.map((entry, i) => (
+                      <div key={i} className={`timeline-entry ${entry.type === 'system' ? 'system' : ''}`}>
+                        <div className="timeline-date">{entry.date} · {entry.time}</div>
+                        <div className="timeline-msg">{entry.message}</div>
+                        <div className="timeline-author">{entry.type === 'system' ? '🤖 ' : '👤 '}{entry.author}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render app
+  ReactDOM.render(<VendorPortal />, document.getElementById('root'));
+</script>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FEEDBACK CAPTURE WIDGET — Standard Equipment           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div id="fb-trigger" onclick="toggleFbConsole()">
+  <span id="fb-icon">📡</span>
+  <span id="fb-badge" style="display:none;">0</span>
+</div>
+
+<div id="fb-console-widget">
+  <div id="fb-header-widget">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:18px;">📡</span>
+      <span style="font-weight:700; color:#fff; font-size:14px;">Feedback Capture</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span id="fb-queue-count" style="font-size:12px; color:#a78bfa;">0 queued</span>
+      <button onclick="toggleFbConsole()" style="background:none; border:none; color:#666; cursor:pointer; font-size:18px;">&times;</button>
+    </div>
+  </div>
+
+  <div id="fb-tabs-widget">
+    <button class="fb-tab active" data-tab="capture" onclick="switchFbTab('capture')">Capture</button>
+    <button class="fb-tab" data-tab="queue" onclick="switchFbTab('queue')">Queue <span id="fb-tab-badge"></span></button>
+    <button class="fb-tab" data-tab="export" onclick="switchFbTab('export')">Export</button>
+  </div>
+
+  <div id="tab-capture" class="fb-tab-content active">
+    <div id="fb-categories">
+      <button class="fb-cat active" data-cat="pulse" onclick="selectFbCat('pulse')"><span class="cat-icon">⚡</span><span class="cat-label">Pulse Note</span></button>
+      <button class="fb-cat" data-cat="action" onclick="selectFbCat('action')"><span class="cat-icon">🎯</span><span class="cat-label">Action Item</span></button>
+      <button class="fb-cat" data-cat="bug" onclick="selectFbCat('bug')"><span class="cat-icon">🐛</span><span class="cat-label">Bug / Fix</span></button>
+      <button class="fb-cat" data-cat="data" onclick="selectFbCat('data')"><span class="cat-icon">📊</span><span class="cat-label">Data Wrong</span></button>
+      <button class="fb-cat" data-cat="insight" onclick="selectFbCat('insight')"><span class="cat-icon">💡</span><span class="cat-label">Insight</span></button>
+      <button class="fb-cat" data-cat="priority" onclick="selectFbCat('priority')"><span class="cat-icon">🔺</span><span class="cat-label">Priority Shift</span></button>
+      <button class="fb-cat" data-cat="request" onclick="selectFbCat('request')"><span class="cat-icon">🔧</span><span class="cat-label">Feature Ask</span></button>
+      <button class="fb-cat" data-cat="praise" onclick="selectFbCat('praise')"><span class="cat-icon">🔥</span><span class="cat-label">What's Working</span></button>
+    </div>
+
+    <div id="fb-ws-row">
+      <span style="font-size:11px; color:#666; text-transform:uppercase; letter-spacing:0.5px;">Tag workstream:</span>
+      <div id="fb-ws-tags">
+        <button class="ws-tag" data-ws="broker" onclick="toggleFbWs(this)">Broker Co</button>
+        <button class="ws-tag" data-ws="farm" onclick="toggleFbWs(this)">App Farm</button>
+        <button class="ws-tag" data-ws="nemuro" onclick="toggleFbWs(this)">Nemuro</button>
+        <button class="ws-tag" data-ws="ivfh" onclick="toggleFbWs(this)">IVFH</button>
+        <button class="ws-tag" data-ws="consulting" onclick="toggleFbWs(this)">Consulting</button>
+        <button class="ws-tag" data-ws="family" onclick="toggleFbWs(this)">Family</button>
+        <button class="ws-tag" data-ws="global" onclick="toggleFbWs(this)">Global</button>
+      </div>
+    </div>
+
+    <textarea id="fb-input" placeholder="What's on your mind? Capture it, stack it, process later..." rows="3"></textarea>
+
+    <div id="fb-submit-row">
+      <div id="fb-urgency">
+        <button class="urg-btn active" data-urg="normal" onclick="setFbUrgency('normal')">Normal</button>
+        <button class="urg-btn" data-urg="hot" onclick="setFbUrgency('hot')">🔥 Hot</button>
+        <button class="urg-btn" data-urg="fyi" onclick="setFbUrgency('fyi')">FYI</button>
+      </div>
+      <button id="fb-submit" onclick="submitFbItem()">Stack It →</button>
+    </div>
+
+    <div id="fb-hint">Items persist between sessions (localStorage). Export → Claudine Prompt to flush queue to Notion.</div>
+  </div>
+
+  <div id="tab-queue" class="fb-tab-content">
+    <div id="fb-queue-list"></div>
+    <div id="fb-queue-empty"><span style="font-size:24px; display:block; margin-bottom:8px;">📭</span>Queue is empty. Capture something from the Capture tab.</div>
+  </div>
+
+  <div id="tab-export" class="fb-tab-content">
+    <div id="fb-export-content">
+      <div class="fb-export-option" onclick="fbExportJSON()"><span style="font-size:20px;">📋</span><div><div style="font-weight:600; color:#fff; font-size:13px;">Copy as JSON</div><div style="font-size:11px; color:#666;">Paste into Claudine for processing</div></div></div>
+      <div class="fb-export-option" onclick="fbExportMarkdown()"><span style="font-size:20px;">📝</span><div><div style="font-weight:600; color:#fff; font-size:13px;">Copy as Markdown</div><div style="font-size:11px; color:#666;">Paste into Notion or chat</div></div></div>
+      <div class="fb-export-option" onclick="fbExportClaudine()"><span style="font-size:20px;">🤖</span><div><div style="font-weight:600; color:#fff; font-size:13px;">Copy as Claudine Prompt</div><div style="font-size:11px; color:#666;">Pre-formatted instruction block</div></div></div>
+      <div class="fb-export-option" onclick="fbClearQueue()"><span style="font-size:20px;">🗑️</span><div><div style="font-weight:600; color:#ef4444; font-size:13px;">Clear Queue</div><div style="font-size:11px; color:#666;">Remove all queued items</div></div></div>
+    </div>
+    <div id="fb-export-status" style="display:none;"></div>
+  </div>
+</div>
+
+<style>
+  #fb-trigger { position: fixed; bottom: 24px; right: 24px; z-index: 9999; width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(124,58,237,0.4); transition: all 0.2s; user-select: none; }
+  #fb-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(124,58,237,0.5); }
+  #fb-trigger.open { border-radius: 12px; background: #3b0764; }
+  #fb-icon { font-size: 24px; }
+  #fb-badge { position: absolute; top: -4px; right: -4px; background: #ef4444; color: #fff; font-size: 11px; font-weight: 700; min-width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 0 5px; }
+
+  #fb-console-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9998; width: 420px; max-height: 70vh; background: #16161e; border: 1.5px solid #2a2b35; border-radius: 16px; box-shadow: 0 12px 48px rgba(0,0,0,0.6); display: none; flex-direction: column; overflow-x: hidden; overflow-y: auto; }
+  #fb-console-widget.open { display: flex; }
+
+  #fb-header-widget { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid #2a2b35; }
+
+  #fb-tabs-widget { display: flex; border-bottom: 1px solid #2a2b35; }
+  .fb-tab { flex: 1; padding: 10px; background: none; border: none; color: #666; font-size: 12px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .fb-tab:hover { color: #aaa; }
+  .fb-tab.active { color: #a78bfa; border-bottom-color: #7c3aed; }
+  #fb-tab-badge { background: #ef4444; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 8px; margin-left: 4px; }
+
+  .fb-tab-content { display: none; padding: 14px; overflow-y: auto; max-height: 420px; }
+  .fb-tab-content.active { display: block; }
+
+  #fb-categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
+  .fb-cat { background: #1a1b23; border: 1.5px solid #2a2b35; border-radius: 8px; padding: 8px 4px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .fb-cat:hover { border-color: #444; }
+  .fb-cat.active { border-color: #7c3aed; background: rgba(124,58,237,0.1); }
+  .cat-icon { font-size: 16px; }
+  .cat-label { font-size: 9px; color: #888; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; }
+  .fb-cat.active .cat-label { color: #a78bfa; }
+
+  #fb-ws-row { margin-bottom: 10px; }
+  #fb-ws-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .ws-tag { padding: 3px 10px; border-radius: 12px; border: 1px solid #333; background: transparent; color: #777; font-size: 11px; cursor: pointer; transition: all 0.15s; }
+  .ws-tag:hover { border-color: #555; color: #aaa; }
+  .ws-tag.active { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+
+  #fb-input { width: 100%; background: #1a1b23; border: 1.5px solid #2a2b35; border-radius: 10px; padding: 10px 12px; color: #e4e4e7; font-size: 13px; font-family: inherit; resize: none; margin-bottom: 10px; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+  #fb-input:focus { border-color: #7c3aed; }
+  #fb-input::placeholder { color: #444; }
+
+  #fb-submit-row { display: flex; justify-content: space-between; align-items: center; }
+  #fb-urgency { display: flex; gap: 4px; }
+  .urg-btn { padding: 4px 10px; border-radius: 6px; border: 1px solid #333; background: transparent; color: #777; font-size: 11px; cursor: pointer; transition: all 0.15s; }
+  .urg-btn.active { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+  .urg-btn[data-urg="hot"].active { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.08); }
+
+  #fb-submit { padding: 8px 20px; border-radius: 8px; border: none; background: linear-gradient(135deg, #7c3aed, #5b21b6); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  #fb-submit:hover { transform: scale(1.03); box-shadow: 0 2px 12px rgba(124,58,237,0.3); }
+
+  #fb-hint { font-size: 11px; color: #444; margin-top: 10px; text-align: center; font-style: italic; }
+
+  .fb-queue-item { background: #1a1b23; border: 1px solid #2a2b35; border-radius: 10px; padding: 12px; margin-bottom: 8px; position: relative; }
+  .fb-queue-item .qi-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .fb-queue-item .qi-cat { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+  .qi-cat.pulse { background: rgba(250,204,21,0.15); color: #facc15; }
+  .qi-cat.action { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .qi-cat.bug { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .qi-cat.data { background: rgba(251,146,60,0.15); color: #fb923c; }
+  .qi-cat.insight { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .qi-cat.priority { background: rgba(168,85,247,0.15); color: #a78bfa; }
+  .qi-cat.request { background: rgba(56,189,248,0.15); color: #38bdf8; }
+  .qi-cat.praise { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .qi-cat.hot { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .fb-queue-item .qi-ws { font-size: 10px; color: #555; }
+  .fb-queue-item .qi-text { font-size: 13px; color: #ccc; line-height: 1.4; }
+  .fb-queue-item .qi-time { font-size: 10px; color: #444; margin-top: 6px; }
+  .fb-queue-item .qi-delete { position: absolute; top: 8px; right: 8px; background: none; border: none; color: #444; cursor: pointer; font-size: 14px; padding: 2px 6px; border-radius: 4px; }
+  .fb-queue-item .qi-delete:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+  #fb-queue-empty { text-align: center; color: #444; padding: 30px 0; font-size: 13px; }
+
+  .fb-export-option { display: flex; align-items: center; gap: 12px; background: #1a1b23; border: 1px solid #2a2b35; border-radius: 10px; padding: 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+  .fb-export-option:hover { border-color: #444; background: #1e1f28; }
+
+  #fb-export-status { text-align: center; padding: 10px; background: rgba(74,222,128,0.1); border-radius: 8px; color: #4ade80; font-size: 12px; font-weight: 600; margin-top: 8px; }
+</style>
+
+<script>
+  const FB_API = 'http://localhost:3847/api/feedback';
+  const FB_STORAGE_KEY = 'scorecard_feedback_queue';
+  let fbQueue = [];
+  let fbCurrentCat = 'pulse';
+  let fbCurrentWs = [];
+  let fbCurrentUrg = 'normal';
+  let fbServerOnline = false;
+
+  async function loadFbQueue() {
+    try { const res = await fetch(FB_API); if (res.ok) { fbQueue = await res.json(); fbServerOnline = true; localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(fbQueue)); document.getElementById('fb-hint').innerHTML = 'Server connected — items save to Google Drive automatically.'; } } catch { fbQueue = JSON.parse(localStorage.getItem(FB_STORAGE_KEY) || '[]'); fbServerOnline = false; }
+    updateFbBadge();
+  }
+  async function saveFbItem(item) { localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(fbQueue)); if (fbServerOnline) { try { await fetch(FB_API, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(item) }); } catch { fbServerOnline = false; } } }
+  async function removeFbItem(id) { localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(fbQueue)); if (fbServerOnline) { try { await fetch(FB_API + '/' + id, { method: 'DELETE' }); } catch {} } }
+  async function clearFbServer() { localStorage.removeItem(FB_STORAGE_KEY); if (fbServerOnline) { try { await fetch(FB_API, { method: 'DELETE' }); } catch {} } }
+
+  document.addEventListener('DOMContentLoaded', loadFbQueue);
+
+  function toggleFbConsole() { const p = document.getElementById('fb-console-widget'); const t = document.getElementById('fb-trigger'); p.classList.toggle('open'); t.classList.toggle('open'); if (p.classList.contains('open')) document.getElementById('fb-input').focus(); }
+  function switchFbTab(tab) { document.querySelectorAll('#fb-console-widget .fb-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('#fb-console-widget .fb-tab-content').forEach(c => c.classList.remove('active')); document.querySelector('#fb-console-widget .fb-tab[data-tab="' + tab + '"]').classList.add('active'); document.getElementById('tab-' + tab).classList.add('active'); if (tab === 'queue') renderFbQueue(); }
+  function selectFbCat(cat) { fbCurrentCat = cat; document.querySelectorAll('#fb-console-widget .fb-cat').forEach(c => c.classList.remove('active')); document.querySelector('#fb-console-widget .fb-cat[data-cat="' + cat + '"]').classList.add('active'); }
+  function toggleFbWs(el) { el.classList.toggle('active'); const ws = el.dataset.ws; if (fbCurrentWs.includes(ws)) fbCurrentWs = fbCurrentWs.filter(w => w !== ws); else fbCurrentWs.push(ws); }
+  function setFbUrgency(urg) { fbCurrentUrg = urg; document.querySelectorAll('#fb-console-widget .urg-btn').forEach(b => b.classList.remove('active')); document.querySelector('#fb-console-widget .urg-btn[data-urg="' + urg + '"]').classList.add('active'); }
+
+  function submitFbItem() {
+    const input = document.getElementById('fb-input');
+    const text = input.value.trim();
+    if (!text) { input.focus(); return; }
+    const item = { id: Date.now(), category: fbCurrentCat, workstreams: [...fbCurrentWs], urgency: fbCurrentUrg, text: text, timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }), page: 'Vendor Portal' };
+    fbQueue.push(item);
+    saveFbItem(item);
+    updateFbBadge();
+    const btn = document.getElementById('fb-submit');
+    btn.textContent = '✓ Stacked!'; btn.style.background = '#16a34a';
+    setTimeout(() => { btn.textContent = 'Stack It →'; btn.style.background = ''; }, 1000);
+    input.value = ''; input.focus();
+  }
+
+  function updateFbBadge() { const badge = document.getElementById('fb-badge'); const countEl = document.getElementById('fb-queue-count'); const tabBadge = document.getElementById('fb-tab-badge'); const count = fbQueue.length; badge.style.display = count > 0 ? 'flex' : 'none'; badge.textContent = count; countEl.textContent = count + ' queued'; tabBadge.textContent = count > 0 ? count : ''; }
+
+  function renderFbQueue() {
+    const list = document.getElementById('fb-queue-list'); const empty = document.getElementById('fb-queue-empty');
+    if (fbQueue.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+    const catLabels = { pulse: 'Pulse', action: 'Action', bug: 'Bug', data: 'Data Fix', insight: 'Insight', priority: 'Priority', request: 'Feature', praise: 'Working' };
+    const catIcons = { pulse: '⚡', action: '🎯', bug: '🐛', data: '📊', insight: '💡', priority: '🔺', request: '🔧', praise: '🔥' };
+    list.innerHTML = fbQueue.slice().reverse().map(item => '<div class="fb-queue-item"><button class="qi-delete" onclick="deleteFbItem(' + item.id + ')">&times;</button><div class="qi-header"><span class="qi-cat ' + item.category + '">' + catIcons[item.category] + ' ' + catLabels[item.category] + '</span>' + (item.urgency === 'hot' ? '<span class="qi-cat hot">🔥 HOT</span>' : '') + (item.workstreams.length ? '<span class="qi-ws">' + item.workstreams.join(', ') + '</span>' : '') + '</div><div class="qi-text">' + item.text + '</div><div class="qi-time">' + item.timestamp + ' · ' + item.page + '</div></div>').join('');
+  }
+  function deleteFbItem(id) { const idx = fbQueue.findIndex(i => i.id === id); if (idx > -1) { fbQueue.splice(idx, 1); removeFbItem(id); updateFbBadge(); renderFbQueue(); } }
+  function showFbExportStatus(msg) { const el = document.getElementById('fb-export-status'); el.textContent = msg; el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 2500); }
+  function fbExportJSON() { if (fbQueue.length === 0) { showFbExportStatus('Nothing to export'); return; } navigator.clipboard.writeText(JSON.stringify({ source: 'Vendor Portal', exported: new Date().toISOString(), items: fbQueue }, null, 2)).then(() => showFbExportStatus('✓ JSON copied')); }
+  function fbExportMarkdown() { if (fbQueue.length === 0) { showFbExportStatus('Nothing to export'); return; } const cl = { pulse: 'Pulse Note', action: 'Action Item', bug: 'Bug Report', data: 'Data Correction', insight: 'Strategic Insight', priority: 'Priority Shift', request: 'Feature Request', praise: "What's Working" }; let md = '## Vendor Portal Feedback Queue\n'; fbQueue.forEach(item => { md += '### ' + (item.urgency === 'hot' ? '🔥 ' : '') + cl[item.category] + '\n' + item.text + '\n\n'; }); navigator.clipboard.writeText(md).then(() => showFbExportStatus('✓ Markdown copied')); }
+  function fbExportClaudine() { if (fbQueue.length === 0) { showFbExportStatus('Nothing to export'); return; } const cl = { pulse: 'Pulse Note', action: 'Action Item', bug: 'Bug Report', data: 'Data Correction', insight: 'Strategic Insight', priority: 'Priority Shift', request: 'Feature Request', praise: "What's Working" }; let p = 'Hey Claudine — here\'s my feedback queue from the Vendor Portal. Process these into the Scorecard Feedback Queue DB (Notion data source: collection://7ea252b6-231e-4088-bb46-eb5c9b84ec93):\n\n'; fbQueue.forEach((item, i) => { p += (i+1) + '. [' + cl[item.category] + ']' + (item.urgency === 'hot' ? ' 🔥 HOT' : '') + '\n   ' + item.text + '\n   Captured: ' + item.timestamp + '\n\n'; }); p += '---\nFor EACH item:\n1. Create a row in the Scorecard Feedback Queue DB\n2. Route it\n3. Update Status to Routed\n4. Give me a summary.\n'; navigator.clipboard.writeText(p).then(() => showFbExportStatus('✓ Claudine prompt copied')); }
+  function fbClearQueue() { if (fbQueue.length === 0) return; if (confirm('Clear all ' + fbQueue.length + ' items?')) { fbQueue.length = 0; clearFbServer(); updateFbBadge(); renderFbQueue(); showFbExportStatus('Queue cleared'); } }
+</script>
+
+</body>
+</html>
