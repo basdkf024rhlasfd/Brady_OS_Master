@@ -1,63 +1,70 @@
-# Adding a New Project Viewer
+# Adding a New Project
 
-The portal shell is light-themed. All embedded project viewers use a dark theme.
+## Quick version (3 steps)
 
-## 1. Copy the dark theme template
+1. Add entry to `src/config/projects.yml`
+2. Create page file at `src/app/(portal)/<slug>/page.tsx`
+3. Set `MCEPTION_<SLUG>_EMAILS` env var in Vercel (project "munich")
 
-```bash
-mkdir -p public/{project-id}/viewer
-cp public/templates/viewer-brand.css public/{project-id}/viewer/brand.css
+Or use the slash command: `/portal-publish`
+
+## Details
+
+### 1. Add to projects.yml
+
+Add an entry to `src/config/projects.yml`. This single file drives the sidebar, access control, magic links, and project registry.
+
+```yaml
+- slug: acme
+  label: "Acme Corp"
+  short: "A"              # unique 1-char sidebar key
+  href: "/acme"
+  approved: 2026-04-18
+  type: iframe-external    # iframe-local | iframe-external | native
+  magic_link: false
+  frame:
+    baseUrl: "https://acme-viewer.vercel.app"
+    path: "/"
 ```
 
-Customize `--accent-primary` and `--accent-secondary` in `brand.css` to match your project's brand. Keep all other tokens consistent across viewers.
+Types:
+- `iframe-local` — static HTML in `public/<slug>/viewer/`
+- `iframe-external` — hosted on a separate Vercel/GitHub Pages URL
+- `native` — full Next.js pages built directly in this repo
 
-## 2. Create the viewer HTML
+### 2. Create the page file
 
-Create `public/{project-id}/viewer/index.html` referencing your `brand.css`:
-
-```html
-<link rel="stylesheet" href="brand.css" />
-```
-
-See `public/orlando/viewer/index.html` for a full example.
-
-## 3. Register the project
-
-1. Add the project ID to `ALL_PROJECTS` in `src/lib/access.ts`
-2. Add the email env var to `PROJECT_EMAIL_ENV` in the same file
-3. Add a label in `src/lib/project-registry.ts`
-4. Set `MCEPTION_{PROJECT_ID}_EMAILS` in `.env.local`
-
-## 4. Create the portal page
-
-Create `src/app/(portal)/{project-id}/page.tsx`:
+For iframe projects, create `src/app/(portal)/<slug>/page.tsx`:
 
 ```tsx
 import { requireProjectAccess } from "@/lib/portal-access";
 import { ProjectFrame } from "@/components/portal/ProjectFrame";
 
 export default async function Page() {
-  await requireProjectAccess("{project-id}");
-  return <ProjectFrame baseUrl="" path="/{project-id}/viewer/index.html" title="Project Name" />;
+  await requireProjectAccess("<slug>");
+  return <ProjectFrame baseUrl="<baseUrl>" path="<path>" title="<label>" />;
 }
 ```
 
-## 5. PostMessage bridge (optional)
+For native projects, build your components under `src/app/(portal)/<slug>/`.
 
-If your viewer needs to communicate with the portal, implement the message protocol:
-
-```js
-// Listen for portal actions
-window.addEventListener("message", (event) => {
-  if (event.data?.source !== "mception-portal") return;
-  const { type, requestId, payload } = event.data;
-  // Handle: "navigate", "save_item", "get_state"
-  window.parent.postMessage(
-    { source: "mception-viewer", type: "action_response", requestId, payload: {} },
-    "*"
-  );
-});
-
-// Signal ready
-window.parent.postMessage({ source: "mception-viewer", type: "ready", payload: {} }, "*");
+For iframe-local projects, also create:
+```bash
+mkdir -p public/<slug>/viewer
+cp public/templates/viewer-brand.css public/<slug>/viewer/brand.css
 ```
+
+### 3. Set the env var
+
+In Vercel (project "munich"), add:
+```
+MCEPTION_ACME_EMAILS=client@acme.com
+```
+
+Or use `/portal-access give client@acme.com access to acme`.
+
+## Other operations
+
+- **Reorder menu:** `/portal-menu` — sidebar renders in YAML order
+- **Manage access:** `/portal-access`
+- **Magic links:** `/portal-magic-link` — set `magic_link: true` in YAML first

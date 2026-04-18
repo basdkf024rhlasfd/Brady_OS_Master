@@ -1,43 +1,20 @@
 import { notFound } from "next/navigation";
 import { verifyMagicLink } from "@/lib/magic-link";
 import { ProjectFrame } from "@/components/portal/ProjectFrame";
-import type { ProjectId } from "@/lib/access";
+import { getMagicLinkProjects } from "@/config/load-projects";
 
-const PROJECT_CONTENT: Partial<Record<
-  ProjectId,
-  { baseUrl: string; path: string; title: string }
->> = {
-  "mark-schmulen": {
-    baseUrl: "https://basdkf024rhlasfd.github.io/mark-schmulen-ai-os",
-    path: "/viewer/",
-    title: "Mark Schmulen AI OS",
-  },
-  stihl: {
-    baseUrl: process.env.NEXT_PUBLIC_STIHL_APP_URL ?? "http://localhost:4100",
-    path: "/",
-    title: "STIHL USA",
-  },
-  orlando: {
-    baseUrl: "",
-    path: "/orlando/viewer/index.html",
-    title: "Orlando Real Estate Knowledge Base",
-  },
-  moving: {
-    baseUrl: "",
-    path: "/apps/moving-calculator/index.html",
-    title: "Moving Calculator",
-  },
-  pauletteai: {
-    baseUrl: "",
-    path: "/pauletteai/shared/index.html",
-    title: "DAHS",
-  },
-  kroger: {
-    baseUrl: "",
-    path: "/kroger/viewer/index.html",
-    title: "Kroger Management Operating System",
-  },
-};
+const projectMap = new Map(
+  getMagicLinkProjects().map((p) => {
+    const frame = p.share_frame ?? p.frame!;
+    let baseUrl = frame.baseUrl;
+    // Resolve env var references like ${NEXT_PUBLIC_STIHL_APP_URL}
+    const envMatch = baseUrl.match(/^\$\{(.+)\}$/);
+    if (envMatch) {
+      baseUrl = process.env[envMatch[1]] ?? "http://localhost:4100";
+    }
+    return [p.slug, { baseUrl, path: frame.path, title: p.label }];
+  })
+);
 
 export default async function SharedProjectPage({
   params,
@@ -53,7 +30,7 @@ export default async function SharedProjectPage({
     notFound();
   }
 
-  const content = PROJECT_CONTENT[payload.project];
+  const content = projectMap.get(payload.project);
   if (!content) notFound();
 
   return (

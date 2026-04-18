@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "setup": "ln -sf \"$CONDUCTOR_ROOT_PATH/.env.local\" .env.local && npm install --prefer-offline",
-    "run": "npm run dev -- --port $CONDUCTOR_PORT",
-    "archive": ""
-  }
-}

@@ -5,6 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ProjectId } from "@/lib/access";
+import type { ProjectNav } from "./AppShell";
 
 const miscResources = [
   { href: "/notes/quick", label: "Quick Notes", short: "N" },
@@ -27,7 +28,7 @@ const bottomLinks = [
   { href: "/about", label: "About", short: "?" },
 ];
 
-export function Sidebar({ isAdmin, projects }: { isAdmin: boolean; projects: ProjectId[] }) {
+export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolean; projects: ProjectId[]; projectConfigs: ProjectNav[] }) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(() => {
     if (typeof window === "undefined") {
@@ -139,100 +140,16 @@ export function Sidebar({ isAdmin, projects }: { isAdmin: boolean; projects: Pro
 
           {openGroups.projects && !collapsed && (
             <div className="ml-1 space-y-0.5">
-              {projects.includes("stihl") &&
-                navLink({
-                  href: "/stihl",
-                  label: "STIHL USA",
-                  short: "S",
-                  matches: ["/stihl"],
-                })}
-              {projects.includes("moving") &&
-                navLink({
-                  href: "/calculators/moving",
-                  label: "Moving Calculator",
-                  short: "M",
-                  matches: ["/calculators/moving"],
-                })}
-              {projects.includes("orlando") &&
-                navLink({
-                  href: "/orlando",
-                  label: "Orlando RE KB",
-                  short: "R",
-                })}
-              {projects.includes("mark-schmulen") &&
-                navLink({
-                  href: "/mark-schmulen",
-                  label: "Mark Schmulen",
-                  short: "K",
-                })}
-              {projects.includes("pauletteai") &&
-                navLink({
-                  href: "/pauletteai",
-                  label: "PauletteAI",
-                  short: "P",
-                })}
-              {projects.includes("gary") &&
-                navLink({
-                  href: "/gary",
-                  label: "Gary / IVFH",
-                  short: "H",
-                })}
-              {projects.includes("baden-bagley") &&
-                navLink({
-                  href: "/baden-bagley",
-                  label: "Baden Bagley",
-                  short: "B",
-                })}
-              {projects.includes("content-engine") &&
-                navLink({
-                  href: "/content-engine",
-                  label: "Content Engine",
-                  short: "E",
-                })}
-              {projects.includes("incubator") &&
-                navLink({
-                  href: "/incubator",
-                  label: "Project Incubator",
-                  short: "I",
-                })}
-              {projects.includes("innovation-lab") &&
-                navLink({
-                  href: "/innovation-lab",
-                  label: "Innovation Lab",
-                  short: "L",
-                })}
-              {projects.includes("ops-lab") &&
-                navLink({
-                  href: "/ops-lab",
-                  label: "Ops Lab",
-                  short: "O",
-                })}
-              {projects.includes("panda") &&
-                navLink({
-                  href: "/panda",
-                  label: "Panda",
-                  short: "P",
-                })}
-              {projects.includes("grocery-assistant") &&
-                navLink({
-                  href: "/grocery-assistant",
-                  label: "Grocery Assistant",
-                  short: "G",
-                })}
-              {projects.includes("school-hub") &&
-                navLink({
-                  href: "/school-hub",
-                  label: "School Hub",
-                  short: "H",
-                  matches: ["/school-hub"],
-                })}
-              {projects.includes("financial-assistant") &&
-                navLink({
-                  href: "/financial-assistant",
-                  label: "Financial Cockpit",
-                  short: "$",
-                  matches: ["/financial-assistant"],
-                })}
+              {projectConfigs
+                .filter((p) => projects.includes(p.slug))
+                .map((p) =>
+                  navLink({
+                    href: p.href,
+                    label: p.label,
+                    short: p.short,
+                    matches: [p.href],
+                  })
+                )}
             </div>
           )}
         </div>

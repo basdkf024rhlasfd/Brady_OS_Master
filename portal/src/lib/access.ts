@@ -1,8 +1,11 @@
+import { loadProjects, getEnvVarName } from "@/config/load-projects";
+
 const DEFAULT_PLATFORM_OWNER_EMAIL = "brady.smallwood@gmail.com";
 const DEFAULT_RESERVED_TEST_EMAIL = "bradysmallz@gmail.com";
 
-const ALL_PROJECTS = ["stihl", "orlando", "moving", "mark-schmulen", "pauletteai", "gary", "baden-bagley", "content-engine", "incubator", "kroger", "innovation-lab", "ops-lab", "panda", "grocery-assistant", "school-hub", "financial-assistant"] as const;
-export type ProjectId = (typeof ALL_PROJECTS)[number];
+const projectConfigs = loadProjects();
+const ALL_PROJECTS = projectConfigs.map((p) => p.slug);
+export type ProjectId = string;
 
 interface UserLike {
   publicMetadata?: Record<string, unknown>;
@@ -45,30 +48,11 @@ export function getAdminEmails(): string[] {
   );
 }
 
-/** Map of project → env var containing CSV of allowed emails */
-const PROJECT_EMAIL_ENV: Record<ProjectId, string> = {
-  stihl: "MCEPTION_STIHL_EMAILS",
-  orlando: "MCEPTION_ORLANDO_EMAILS",
-  moving: "MCEPTION_MOVING_EMAILS",
-  "mark-schmulen": "MCEPTION_MARK_SCHMULEN_EMAILS",
-  pauletteai: "MCEPTION_PAULETTEAI_EMAILS",
-  gary: "MCEPTION_GARY_EMAILS",
-  "baden-bagley": "MCEPTION_BADEN_BAGLEY_EMAILS",
-  "content-engine": "MCEPTION_CONTENT_ENGINE_EMAILS",
-  incubator: "MCEPTION_INCUBATOR_EMAILS",
-  kroger: "MCEPTION_KROGER_EMAILS",
-  "innovation-lab": "MCEPTION_INNOVATION_LAB_EMAILS",
-  "ops-lab": "MCEPTION_OPS_LAB_EMAILS",
-  panda: "MCEPTION_PANDA_EMAILS",
-  "grocery-assistant": "MCEPTION_GROCERY_ASSISTANT_EMAILS",
-  "school-hub": "MCEPTION_SCHOOL_HUB_EMAILS",
-  "financial-assistant": "MCEPTION_FINANCIAL_ASSISTANT_EMAILS",
-};
 
 function resolveProjects(
   emailAddresses: string[],
   isAdmin: boolean
-): ProjectId[] {
+): string[] {
   if (isAdmin) return [...ALL_PROJECTS];
 
   const allProjectsEmails = readCsvEnv("MCEPTION_ALL_PROJECTS_EMAILS");
@@ -76,11 +60,11 @@ function resolveProjects(
     return [...ALL_PROJECTS];
   }
 
-  const projects: ProjectId[] = [];
-  for (const project of ALL_PROJECTS) {
-    const allowed = readCsvEnv(PROJECT_EMAIL_ENV[project]);
+  const projects: string[] = [];
+  for (const slug of ALL_PROJECTS) {
+    const allowed = readCsvEnv(getEnvVarName(slug));
     if (emailAddresses.some((email) => allowed.includes(email))) {
-      projects.push(project);
+      projects.push(slug);
     }
   }
   return projects;

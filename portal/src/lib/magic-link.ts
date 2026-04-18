@@ -1,14 +1,8 @@
 import { SignJWT, jwtVerify, type JWTPayload } from "jose";
+import { getMagicLinkProjects } from "@/config/load-projects";
 import type { ProjectId } from "./access";
 
-const ALL_PROJECTS: readonly string[] = [
-  "stihl",
-  "orlando",
-  "moving",
-  "mark-schmulen",
-  "pauletteai",
-  "kroger",
-];
+const validSlugs = getMagicLinkProjects().map((p) => p.slug);
 
 export interface MagicLinkPayload extends JWTPayload {
   project: ProjectId;
@@ -27,7 +21,7 @@ export async function createMagicLink(opts: {
   expiresInDays?: number;
 }): Promise<string> {
   const { project, recipient, expiresInDays = 7 } = opts;
-  if (!ALL_PROJECTS.includes(project)) {
+  if (!validSlugs.includes(project)) {
     throw new Error(`Invalid project: ${project}`);
   }
 
@@ -42,7 +36,7 @@ export async function verifyMagicLink(
   token: string
 ): Promise<MagicLinkPayload> {
   const { payload } = await jwtVerify(token, getSecret());
-  if (!payload.project || !ALL_PROJECTS.includes(payload.project as string)) {
+  if (!payload.project || !validSlugs.includes(payload.project as string)) {
     throw new Error("Invalid token: missing or invalid project");
   }
   return payload as MagicLinkPayload;

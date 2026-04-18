@@ -12,8 +12,14 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 import { SignJWT } from "jose";
 import { parseArgs } from "util";
+import { parse } from "yaml";
 
-const VALID_PROJECTS = ["stihl", "orlando", "moving", "mark-schmulen", "kroger"];
+// Load valid projects from config
+const configPath = resolve(process.cwd(), "src/config/projects.yml");
+const configRaw = readFileSync(configPath, "utf-8");
+const VALID_PROJECTS = (parse(configRaw).projects as Array<{ slug: string; magic_link: boolean }>)
+  .filter((p) => p.magic_link)
+  .map((p) => p.slug);
 
 // Load .env.local
 function loadEnv() {
