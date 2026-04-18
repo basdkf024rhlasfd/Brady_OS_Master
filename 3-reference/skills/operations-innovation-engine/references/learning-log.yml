@@ -1,0 +1,186 @@
+# Operations Innovation Engine — Recursive Learning Log
+#
+# This file grows with every run. The learning engine reads it to inform
+# method + operator wisdom card selection, problem framing, and tier calibration.
+#
+# Run 0 seeded from the Panda Restaurant Group QSR ops workshop — the inaugural
+# pre-formalization run. Source artifact:
+# 1-execution/areas/work-and-business/programs/Consulting/Project - Panda/innovation-workshop-qsr-ops.md
+
+runs:
+  - run_id: "panda-2026-04-15"
+    date: "2026-04-15"
+    client: "Panda Restaurant Group"
+    industry: "QSR (Asian)"
+    scope: "CDO-relevant store development + operations innovation concepts"
+    input_source: "Consulting engagement — James Ku (CDO) target, pre-formalization run"
+    problems_identified: 10
+    problem_statements:
+      P1: "The box was designed for dine-in but the money moved off-premise (42% digital)"
+      P2: "Kitchen labor is the binding constraint on growth (wages up 30% in 3 years)"
+      P3: "Construction is too slow and expensive for the growth target (123 stores/year)"
+      P4: "Customer value perception is eroding (2.1-star reviews, shrinkflation backlash)"
+      P5: "Site selection at scale is still mostly manual"
+      P6: "Format innovation is incremental, not bold"
+      P7: "The delivery channel is under-optimized for the box"
+      P8: "Energy and maintenance costs scale linearly with locations"
+      P9: "No format exists between full Panda Express and food court kiosk"
+      P10: "International expansion lacks a scalable format"
+    methods_used: [4, 5, 6, 7, 8, 9, 15, 24, 32, 42, 45, 46, 51, 79]
+    frameworks_used:
+      - "toc-five-focusing-steps"        # bottleneck reasoning on P2 (kitchen labor)
+      - "chipotle-throughput-model"       # Digital Lane Splitter (#2) reference arch
+      - "cfa-drive-thru-model"            # Format innovation references (#16 vertical, #8 menu)
+      - "toyota-way-pillars"              # Kitchen Flow Optimizer (#3) manufacturing line balancing
+      - "foran-radical-simplification"    # SKU / format simplification framing
+      - "sam-walton-retail-doctrine"      # Walmart outparcel program (#22), auto-replenishment (#13)
+      - "in-n-out-menu-restriction"       # Menu simplification framing
+      - "jobs-to-be-done-ops"             # Driver staging (#24), crew scheduling (#10)
+    ideas_generated: ~40   # Raw pool; 32 made it to the document
+    ideas_documented: 32
+    ideas_surviving: 32     # Before formalized scoring floor — all 32 were tiered
+    tier_distribution:
+      tier_1: 8   # Score 4.0+
+      tier_2: 12  # Score 3.5-3.9
+      tier_3: 12  # Score 3.0-3.4
+      cut: 0      # No quality-floor cuts in Run 0 (rubric applied retrospectively)
+    top_picks:
+      - name: "Predictive Build Sequencer"
+        tier: 1
+        method: 45
+        frameworks: [toc-five-focusing-steps]
+        score: 4.5
+        problem_refs: [P3]
+        tags: [construction, AI, scale]
+      - name: "Digital Lane Splitter"
+        tier: 1
+        method: 9
+        frameworks: [chipotle-throughput-model]
+        score: 4.4
+        problem_refs: [P1, P7]
+        tags: [drive-thru, digital, throughput]
+      - name: "Kitchen Flow Optimizer"
+        tier: 1
+        method: 15
+        frameworks: [toyota-way-pillars, value-stream-mapping]
+        score: 4.3
+        problem_refs: [P2]
+        tags: [labor, IoT, line-balancing]
+      - name: "AI Site Selection Engine"
+        tier: 1
+        method: 32
+        frameworks: [sam-walton-retail-doctrine]
+        score: 4.3
+        problem_refs: [P5]
+        tags: [real-estate, AI, DoorDash-angle]
+      - name: "Modular Restaurant Kit"
+        tier: 1
+        method: 6
+        frameworks: [toyota-way-pillars]
+        score: 4.2
+        problem_refs: [P3]
+        tags: [construction, prefab, scale]
+    method_performance:
+      4:  { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "JTBD strong for ops — internal stakeholder jobs (driver, crew) produce actionable ideas" }
+      5:  { ideas_raw: 1, survivors: 1, hit_rate: 1.00, notes: "Value Chain Expansion (commissary model) — one use, worked" }
+      6:  { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "Zero-Based Design produced bold format ideas (modular kit, vertical)" }
+      7:  { ideas_raw: 1, survivors: 1, hit_rate: 1.00, notes: "Opposite Thinking — portion transparency — only one use but on-target" }
+      8:  { ideas_raw: 1, survivors: 1, hit_rate: 1.00, notes: "Constraint-Based (intl micro-format) — produced scalable ideas" }
+      9:  { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "Blue Ocean strong for channel decisions (Digital Lane, Creatine for Anti)" }
+      15: { ideas_raw: 5, survivors: 5, hit_rate: 1.00, notes: "Analogous Inspiration dominant for ops — Japanese counter service, Subway-in-Walmart, manufacturing line balancing all produced top ideas" }
+      24: { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "Mashup produced partnership ideas (DoorDash virtual brand, DashMart K-a-a-S)" }
+      32: { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "Platform Thinking reliable for data/tech ideas (site selection, construction tracker, recipe intelligence)" }
+      42: { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "Game Theory — format scorecard, cannibalization model — strategic lens for competitive ops" }
+      45: { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "Bottleneck Analysis anchored construction sequencer + predictive maintenance" }
+      46: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Unbundling/Rebundling — ghost kitchen, tea bar, experience scoring — format-creation method" }
+      51: { ideas_raw: 3, survivors: 3, hit_rate: 1.00, notes: "Cultural Trend Mining — dynamic menu, voice AI, net-zero — timeliness signal" }
+      79: { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "Copy and Improve — wok automation, inventory replenishment, predictive maintenance, lockers — workhorse method for ops" }
+    framework_performance:
+      toc-five-focusing-steps:       { ideas_anchored: 3, survivors: 3, hit_rate: 1.00, notes: "Anchored construction + predictive maintenance + labor bottleneck ideas" }
+      chipotle-throughput-model:     { ideas_anchored: 2, survivors: 2, hit_rate: 1.00, notes: "Digital lane + ghost kitchen — direct throughput transfer" }
+      cfa-drive-thru-model:          { ideas_anchored: 2, survivors: 2, hit_rate: 1.00, notes: "Vertical kitchen + dynamic menu boards" }
+      toyota-way-pillars:            { ideas_anchored: 3, survivors: 3, hit_rate: 1.00, notes: "Kitchen flow + modular + recipe intelligence" }
+      foran-radical-simplification:  { ideas_anchored: 2, survivors: 2, hit_rate: 1.00, notes: "Menu simplification + sign/complexity reduction" }
+      sam-walton-retail-doctrine:    { ideas_anchored: 2, survivors: 2, hit_rate: 1.00, notes: "Auto-replenishment + Walmart outparcel partnership" }
+      in-n-out-menu-restriction:     { ideas_anchored: 1, survivors: 1, hit_rate: 1.00, notes: "International micro-format menu discipline" }
+      jobs-to-be-done-ops:           { ideas_anchored: 2, survivors: 2, hit_rate: 1.00, notes: "Driver staging + crew scheduling — internal stakeholder JTBD" }
+    problem_coverage:
+      P1: 3     # Digital Lane, Voice AI, Order-Ahead Lockers
+      P2: 6     # Kitchen Flow, Wok Auto, Crew Sched, Auto-Inventory, Voice AI, Commissary, Recipe Intel
+      P3: 5     # Predictive Build, Modular Kit, Cost Tracker, Walmart Outparcel, Commissary
+      P4: 7     # Dynamic Menu, Auto-Inventory, Exp Scoring, Virtual Kitchen, Portion Transparency, Visible Kitchen, Recipe Intel
+      P5: 3     # AI Site Selection, Cannibalization Model, Walmart Outparcel
+      P6: 7     # Smart Energy, Panda Counter, Format Scorecard, Vertical Kitchen, Net-Zero, Visible Kitchen
+      P7: 7     # Digital Lane, Ghost Kitchen, Voice AI, Virtual Kitchen, Driver Staging, Lockers, K-a-a-S
+      P8: 3     # Smart Energy, Predictive Maintenance, Net-Zero
+      P9: 6     # Ghost Kitchen, Panda Counter, Vertical Kitchen, Tea Bar, Walmart Kiosk, K-a-a-S
+      P10: 2    # Walmart Kiosk, Intl Micro-Format
+    client_coverage:
+      "Panda Restaurant Group": 1
+    industry_coverage:
+      "QSR (Asian)": 1
+      "QSR (general)": 0
+      "Retail": 0
+      "Fast Casual": 0
+      "Grocery": 0
+      "Foodservice": 0
+    industry_gaps_identified:
+      - "General QSR untouched — natural next extension"
+      - "Retail/grocery ops untouched — high margin, high complexity, strong Brady network (Walmart, Kroger)"
+      - "Fast casual untouched — throughput + hospitality hybrid (Chipotle, Sweetgreen, CAVA)"
+      - "Foodservice/contract dining untouched (Aramark, Sodexo, Compass) — B2B margin structure"
+    learnings:
+      - "Problem-first framing (P1-P10) is load-bearing. Without it, ideas drift to tech wish-lists. The Panda run worked because P1-P10 were defined before idea generation began."
+      - "Analogous Inspiration (#15) is the most productive method for ops — 5 ideas, all survived. Cross-industry transfer (Japanese counter service, manufacturing line balancing, Amazon lockers, Subway-in-Walmart) dominates ops innovation."
+      - "Platform Thinking (#32) and Copy and Improve (#79) are both 100% hit-rate workhorses for ops — they produce high-feasibility, precedented ideas."
+      - "Tier 1 (≥4.0) at 8/32 = 25% is within target band (target 20-30%). Good calibration."
+      - "All methods hit 100% in Run 0 — retrospective scoring may have been lenient. Future runs with strict quality-floor (any 1 on Feasibility or Labor = auto-cut) will show real method differentiation."
+      - "Operator wisdom cards anchored heavily: Toyota + Chipotle + CFA provided the throughput/labor reference architectures; Walton + Foran provided retail doctrine for site/format decisions; JTBD provided the internal stakeholder lens."
+      - "Precedent-heavy RTBs (specific companies, specific numbers) dramatically more credible than trend claims."
+      - "Partnership-angle ideas (DoorDash via Fuad Hannon, Walmart via James Ku's RE relationships) hit high-feasibility — warm introductions are a real asset for ops innovation."
+      - "Format innovation (Panda Counter, Vertical Kitchen, Modular Kit) is the most bold category and also the most capital-intensive. Pair with lighter-weight tech ideas (scorecard, dynamic menu, voice AI) to balance the portfolio."
+      - "The absence of Canva/Midjourney images was not felt — ops ideas work as text. Future runs formalize no-visuals default."
+    calibration_signals:
+      tier_1_count: 8             # Within target (6-10)
+      tier_1_ratio: 0.25           # Healthy
+      total_surviving_ratio: 0.80  # 32 of ~40 raw = higher than future runs will see after strict floor
+      flag: "All methods hit 100% — retrospective scoring was lenient; apply stricter quality floor on Run 1+"
+
+# Cumulative idea library — prevents duplicates across runs
+# Each entry: name, tier, client, method, frameworks, run_id
+idea_library:
+  # Run 0 — Panda (Tier 1)
+  - { name: "Predictive Build Sequencer", tier: 1, client: "Panda", method: 45, frameworks: [toc-five-focusing-steps], run_id: "panda-2026-04-15" }
+  - { name: "Digital Lane Splitter", tier: 1, client: "Panda", method: 9, frameworks: [chipotle-throughput-model], run_id: "panda-2026-04-15" }
+  - { name: "Kitchen Flow Optimizer", tier: 1, client: "Panda", method: 15, frameworks: [toyota-way-pillars, value-stream-mapping], run_id: "panda-2026-04-15" }
+  - { name: "AI Site Selection Engine", tier: 1, client: "Panda", method: 32, frameworks: [sam-walton-retail-doctrine], run_id: "panda-2026-04-15" }
+  - { name: "Modular Restaurant Kit", tier: 1, client: "Panda", method: 6, frameworks: [toyota-way-pillars], run_id: "panda-2026-04-15" }
+  - { name: "Smart Energy Command Center", tier: 1, client: "Panda", method: 79, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Wok Automation 2.0 (Botinkit)", tier: 1, client: "Panda", method: 15, frameworks: [toyota-way-pillars], run_id: "panda-2026-04-15" }
+  - { name: "Dynamic Menu Board Optimizer", tier: 1, client: "Panda", method: 51, frameworks: [cfa-drive-thru-model], run_id: "panda-2026-04-15" }
+  # Run 0 — Panda (Tier 2)
+  - { name: "Ghost Kitchen Insertion", tier: 2, client: "Panda", method: 46, frameworks: [chipotle-throughput-model], run_id: "panda-2026-04-15" }
+  - { name: "Crew Scheduling AI", tier: 2, client: "Panda", method: 4, frameworks: [jobs-to-be-done-ops], run_id: "panda-2026-04-15" }
+  - { name: "Panda Counter (Japanese-inspired)", tier: 2, client: "Panda", method: 15, frameworks: [in-n-out-menu-restriction], run_id: "panda-2026-04-15" }
+  - { name: "Construction Cost Tracker", tier: 2, client: "Panda", method: 32, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Automated Inventory Replenishment", tier: 2, client: "Panda", method: 79, frameworks: [sam-walton-retail-doctrine], run_id: "panda-2026-04-15" }
+  - { name: "Drive-Thru Voice AI", tier: 2, client: "Panda", method: 51, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Format Performance Scorecard", tier: 2, client: "Panda", method: 42, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Vertical Kitchen Concept", tier: 2, client: "Panda", method: 6, frameworks: [cfa-drive-thru-model], run_id: "panda-2026-04-15" }
+  - { name: "Predictive Equipment Maintenance", tier: 2, client: "Panda", method: 45, frameworks: [toc-five-focusing-steps], run_id: "panda-2026-04-15" }
+  - { name: "Trade Area Cannibalization Model", tier: 2, client: "Panda", method: 42, frameworks: [sam-walton-retail-doctrine], run_id: "panda-2026-04-15" }
+  - { name: "Sustainable Build Standard / Net-Zero Panda", tier: 2, client: "Panda", method: 51, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Experience Scoring System", tier: 2, client: "Panda", method: 46, frameworks: [sqdcp-boards], run_id: "panda-2026-04-15" }
+  # Run 0 — Panda (Tier 3)
+  - { name: "DoorDash Co-Branded Virtual Kitchen", tier: 3, client: "Panda", method: 24, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Walmart Outparcel Development Program", tier: 3, client: "Panda", method: 32, frameworks: [sam-walton-retail-doctrine], run_id: "panda-2026-04-15" }
+  - { name: "Portion Transparency Redesign", tier: 3, client: "Panda", method: 7, frameworks: [danny-meyer-hospitality], run_id: "panda-2026-04-15" }
+  - { name: "Delivery Driver Staging Area", tier: 3, client: "Panda", method: 4, frameworks: [jobs-to-be-done-ops], run_id: "panda-2026-04-15" }
+  - { name: "Tea Bar as Profit Center Spin", tier: 3, client: "Panda", method: 46, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Walmart In-Store Kiosk Format", tier: 3, client: "Panda", method: 15, frameworks: [sam-walton-retail-doctrine], run_id: "panda-2026-04-15" }
+  - { name: "Central Kitchen / Commissary Model", tier: 3, client: "Panda", method: 5, frameworks: [toyota-way-pillars], run_id: "panda-2026-04-15" }
+  - { name: "Visible Kitchen Theater", tier: 3, client: "Panda", method: 15, frameworks: [danny-meyer-hospitality], run_id: "panda-2026-04-15" }
+  - { name: "Recipe Intelligence Platform", tier: 3, client: "Panda", method: 32, frameworks: [toyota-way-pillars], run_id: "panda-2026-04-15" }
+  - { name: "International Micro-Format (Export Kit)", tier: 3, client: "Panda", method: 8, frameworks: [in-n-out-menu-restriction], run_id: "panda-2026-04-15" }
+  - { name: "Order-Ahead Locker Wall", tier: 3, client: "Panda", method: 79, frameworks: [], run_id: "panda-2026-04-15" }
+  - { name: "Panda Express + DoorDash Kitchen-as-a-Service", tier: 3, client: "Panda", method: 24, frameworks: [], run_id: "panda-2026-04-15" }

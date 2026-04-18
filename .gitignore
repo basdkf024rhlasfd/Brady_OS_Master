@@ -3,3 +3,6 @@
 3-reference/skills/*/references/family-data.md
 3-reference/skills/*/references/school-calendar.md
 3-reference/skills/financial-assistant/data/*.csv
+
+# Live cockpit data (contains PII, financials, family schedules)
+os-cockpit/data.js

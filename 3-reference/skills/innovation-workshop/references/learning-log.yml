@@ -195,6 +195,75 @@ runs:
       - "Dropping Category Design (#55) and Downmarket Disruption (#57) from the method set eliminated low-hit-rate ideas entirely"
       - "One hero image per product (vs 4 in Runs 1-2) is sufficient for the ideation document — save multi-image for production-ready concepts"
 
+  - date: "2026-04-17"
+    category: "Japanese Format Innovation — Sushi & Miso Soup"
+    input_seeds:
+      - "Sushi and miso soup areas"
+    input_source: "Brady (2 converging categories, quick run)"
+    stage_0_readiness_level: 2
+    cluster_id_used: null  # Category Intel DB not yet created
+    cluster_name: "Japanese Format Deconstruction"
+    sharpness_gate_passes: 1
+    sharpness_gate_override: false  # Brady chose full auto, but gate passed first
+    methods_used: [4, 15, 21, 24, 51, 56, 58, 59]
+    ideas_generated: 37
+    ideas_surviving: 20
+    top_picks:
+      - name: "Furikake Everything Shaker"
+        method: 51
+        score: 4.45
+        tags: [cultural-trend, seasoning, mainstream-crossover, high-impact]
+      - name: "Miso Squeeze Tube"
+        method: 58
+        score: 4.35
+        tags: [packaging-innovation, format-transfer, low-effort, high-impact]
+      - name: "Konbini Onigiri"
+        method: 51
+        score: 4.35
+        tags: [cultural-transfer, grab-and-go, category-creation, complex]
+      - name: "Sushi-Grade Pantry"
+        method: 56
+        score: 4.15
+        tags: [premiumization, gift-set, quality-upgrade]
+      - name: "Post-Workout Miso Recovery"
+        method: 59
+        score: 4.15
+        tags: [occasion-based, functional, first-beverage-lane, white-space]
+    method_performance:
+      4:  { ideas_raw: 5, survivors: 3, hit_rate: 0.60, notes: "JTBD strong for occasion-anchored ideas (morning, lunchbox) but 2 cut for overlap with existing library" }
+      15: { ideas_raw: 5, survivors: 2, hit_rate: 0.40, notes: "Analogous Inspiration from konbini/bento formats — Konbini Onigiri was co-credited; Japanese Breakfast Box survived; others merged or cut" }
+      21: { ideas_raw: 5, survivors: 3, hit_rate: 0.60, notes: "SCAMPER Reverse (miso → dessert) and Adapt (ginger → snack) both strong; Substitute (sweet potato rice) cut for low research backing" }
+      24: { ideas_raw: 4, survivors: 3, hit_rate: 0.75, notes: "Mashup highest hit rate this run — miso×bone broth, nori×chip, dashi×cocktail all survived" }
+      51: { ideas_raw: 5, survivors: 4, hit_rate: 0.80, notes: "Cultural Trend Mining dominated top scores — furikake (4.45), onigiri (4.35), wellness shots, combini box all survived" }
+      56: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Premiumization strong on gift-forward products (Sushi-Grade Pantry, Vintage Miso Collection); Single-Origin Dashi merged into Dashi Pods" }
+      58: { ideas_raw: 5, survivors: 5, hit_rate: 1.00, notes: "Packaging Innovation maintains 100% across all 4 runs — squeeze tube, pods, pucks, sachets, sachets all survived" }
+      59: { ideas_raw: 4, survivors: 3, hit_rate: 0.75, notes: "Occasion-Based Thinking used for first time — 3PM Miso Break, Post-Workout Recovery, Friday Sushi Night all survived; Nightcap Dashi cut for low market size" }
+    category_coverage:
+      "Premium Foodservice / CPG": 2
+      "Construction / Industrial Consumables": 0
+      "AI-Powered Physical Products": 0
+      "Dad / Family Consumer Products": 0
+      "Beverage (Functional / Premium)": 1  # First touch!
+      "Professional / B2B Tools": 0
+      "Functional Indulgence — Performance Bakery & Snacks": 1
+      "Global Snacks / Cultural Format Transfer": 1  # First touch!
+      "Fermented Foods / Gut Health": 1  # First touch!
+    category_gaps_identified:
+      - "Construction/Industrial lane still untouched across 4 runs — low personal connection for Brady"
+      - "AI-Powered Physical Products untouched — could combine with food tech"
+      - "Dad/Family lane untouched — leverages Brady's daily experience with 5 kids"
+    learnings:
+      - "Packaging Innovation (#58) maintains 100% hit rate across ALL 4 runs — it is the single most reliable product innovation method"
+      - "Cultural Trend Mining (#51) produced the two highest-scored ideas (4.45, 4.35) — TikTok/social signals are the best ideation fuel for cultural format transfer"
+      - "Occasion-Based Thinking (#59) performed well on first use (75% hit rate) — adding it to the permanent method set"
+      - "Analogous Inspiration (#15) had lowest hit rate (40%) when applied to food — format transfers from Japanese retail need more specificity to survive scoring"
+      - "Mashup (#24) improved to 75% hit rate (up from 67%) — maximum-contrast mashups (miso×bone broth, dashi×cocktail) produce the strongest concepts"
+      - "Readiness Level 2 (trend convergence) produced focused, high-quality ideas — 54% survival rate (20/37) is comparable to Level 3 runs"
+      - "Full auto mode worked cleanly — all gates would have passed, no wasted pauses"
+      - "First run to touch Beverage, Global Snacks, and Fermented Foods lanes simultaneously — Japanese food is a natural multi-lane category"
+      - "Supplier-KB grounding (Artisan Specialty Foods) made cost models significantly more credible than assumption-only runs"
+      - "One hero image per product confirmed as sufficient for quick runs — matches Run 3 learning"
+
 # Cumulative idea library — prevents duplicates across runs
 idea_library:
   - { name: "Chef's Mise en Place Kits", category: "CPG", method: 4, date: "2026-04-15" }
@@ -259,3 +328,24 @@ idea_library:
   - { name: "Southern Pantry", category: "Southern Cuisine / CPG", method: 51, date: "2026-04-15-run3" }
   - { name: "Craft Pimento Cheese", category: "Southern Cuisine / CPG", method: 4, date: "2026-04-15-run3" }
   - { name: "The Hot Honey Brand", category: "Southern Cuisine / CPG", method: 51, date: "2026-04-15-run3" }
+  # Run 4 — Japanese Format Innovation: Sushi & Miso Soup
+  - { name: "Furikake Everything Shaker", category: "Japanese / Seasoning", method: 51, date: "2026-04-17" }
+  - { name: "Miso Squeeze Tube", category: "Japanese / Condiment", method: 58, date: "2026-04-17" }
+  - { name: "Konbini Onigiri", category: "Japanese / Grab-and-Go", method: 51, date: "2026-04-17" }
+  - { name: "Sushi-Grade Pantry", category: "Japanese / Gift Set", method: 56, date: "2026-04-17" }
+  - { name: "Post-Workout Miso Recovery", category: "Japanese / Functional Beverage", method: 59, date: "2026-04-17" }
+  - { name: "Nori Crisps", category: "Japanese / Snack", method: 24, date: "2026-04-17" }
+  - { name: "Dashi Pods", category: "Japanese / Cooking Stock", method: 58, date: "2026-04-17" }
+  - { name: "3PM Miso Break", category: "Japanese / Functional Beverage", method: 59, date: "2026-04-17" }
+  - { name: "Morning Miso Sachets", category: "Japanese / Gut Health", method: 4, date: "2026-04-17" }
+  - { name: "Miso Butterscotch Sauce", category: "Japanese / Dessert Condiment", method: 21, date: "2026-04-17" }
+  - { name: "Miso Wellness Shots", category: "Japanese / Functional Beverage", method: 51, date: "2026-04-17" }
+  - { name: "Combini Haul Box", category: "Japanese / Subscription", method: 51, date: "2026-04-17" }
+  - { name: "Vintage Miso Collection", category: "Japanese / Gift Set", method: 56, date: "2026-04-17" }
+  - { name: "Miso Bone Broth Sipping Cups", category: "Japanese / Functional Beverage", method: 24, date: "2026-04-17" }
+  - { name: "Miso Paste Pucks", category: "Japanese / Cooking Staple", method: 58, date: "2026-04-17" }
+  - { name: "Dashi Cocktail Bitters", category: "Japanese / Bar/Cocktail", method: 24, date: "2026-04-17" }
+  - { name: "Gari Pickled Ginger Snacks", category: "Japanese / Snack", method: 21, date: "2026-04-17" }
+  - { name: "Sushi Rice Seasoning Sachets", category: "Japanese / Cooking Aid", method: 58, date: "2026-04-17" }
+  - { name: "Japanese Breakfast Box", category: "Japanese / Meal Kit", method: 15, date: "2026-04-17" }
+  - { name: "Friday Sushi Night", category: "Japanese / Experience Kit", method: 59, date: "2026-04-17" }

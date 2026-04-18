@@ -1,0 +1,109 @@
+# Brady OS — Infrastructure Registry
+# Canonical source for all external service IDs, secrets, and cross-repo dependencies.
+# Referenced by TRANSPARENCY.md and CLAUDE.md.
+# Last updated: 2026-04-16
+
+# ─── Notion Databases ───
+notion:
+  streaming_notes_db:
+    id: "2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83"
+    purpose: Telly captures, sweep notes, pipeline intake
+    used_by:
+      - 3-reference/scripts/telly-archive.mjs
+      - skills/morning-sweep
+      - skills/evening-sweep
+      - skills/pipeline-dashboard
+
+  email_hub_db:
+    id: "9b63f611b5744195b18e9f122579d4e2"
+    purpose: Email classification results from GAS email-classifier
+    used_by:
+      - 3-reference/scripts/gas/scripts/email-classifier/notion-sync.js
+
+  client_projects_db:
+    id: "c8a6b2d70d9343839a16c950c95a6066"
+    purpose: Shareable client project pages (workspace root)
+    used_by:
+      - skills/client-project-cleanup
+      - CLAUDE.md (agent reference)
+
+  internal_projects_db:
+    id: "2c2ed43b-89c5-80af-ac9b-ededd48b98e7"
+    purpose: Private internal project tracking (OS > Execution)
+    used_by:
+      - skills/project-creator
+      - CLAUDE.md (agent reference)
+
+  consulting_practice_wiki:
+    url: "https://www.notion.so/333ed43b89c58123b019d1d108c53c11"
+    purpose: Consulting methodology, templates, SOPs
+    used_by:
+      - CLAUDE.md (agent reference)
+
+# ─── Google Drive ───
+google_drive:
+  os_recaps_folder:
+    name: "OS-Recaps"
+    purpose: Weekly OS recap HTML + PDF storage
+    used_by:
+      - 3-reference/scripts/gas/scripts/os-recap-mailer/main.js
+
+  pauletteai_sections:
+    purpose: PauletteAI client document folders
+    used_by:
+      - 1-execution/.../Project - PauletteAI/viewer/sync-drive.mjs
+    folders:
+      services_plan: "1Dd1MIKGa1B8tMHIzHM7y_1r5-jbBjepR"
+      cleaning: "1mztP0dfr-DvtPXHxMBH-KkQjhzSXzaL0"
+      wall_cards: "1B7_Aa6bw60irNQ0sSe9X9NBmtZs2zKS9"
+      employee_manual: "1cIFtEBhrqdjkerzo-5fA1hdkdZzl302p"
+      talking_points: "1JeI_ve7AkLASoIWLUkVHRcViJ1w2CIaN"
+      fundraising: "1jF2Ec6U9a6vBRuFTKnfxigHm2qem9Ieq"
+      transfer_partners: "1PWbSkXBfKJkg1Kd437WQo1gwjS3_8QwG"
+      strategic_plan: "1kayBwYYdhlDoCkHpXbFrHZTwbb_ohqJl"
+      pauletteai: "1kQRu_t0eCsmIoSKITrm-OOCoIM8SbL7q"
+      social_media: "1jJKa-oWluCA6W9V4JN-mjbClJvLeJBDN"
+      grants: "1ZNMepjLjhM1pSrUeRufo-xlZ3k8DeLjZ"
+
+# ─── Secrets Inventory ───
+secrets:
+  telly_archive:
+    - name: NOTION_API_KEY
+      source: ~/telly-bot/.env.production.local
+      provisioning: "cd ~/telly-bot && npx vercel env pull .env.production.local --environment production"
+    - name: BLOB_READ_WRITE_TOKEN
+      source: ~/telly-bot/.env.production.local
+      provisioning: "cd ~/telly-bot && npx vercel env pull .env.production.local --environment production"
+
+  email_classifier_gas:
+    - name: ANTHROPIC_API_KEY
+      source: PropertiesService (GAS editor)
+      provisioning: "Run in GAS console: PropertiesService.getScriptProperties().setProperty('ANTHROPIC_API_KEY', '...')"
+    - name: NOTION_API_KEY
+      source: PropertiesService (GAS editor)
+      provisioning: "Run in GAS console: PropertiesService.getScriptProperties().setProperty('NOTION_API_KEY', '...')"
+    - name: NOTION_SYNC_ENABLED
+      source: PropertiesService (GAS editor)
+      provisioning: "Run in GAS console: PropertiesService.getScriptProperties().setProperty('NOTION_SYNC_ENABLED', 'true')"
+
+  pauletteai_sync_drive:
+    - name: GOOGLE_API_KEY
+      source: 1-execution/.../Project - PauletteAI/viewer/.env (local, gitignored)
+      provisioning: "Create .env file with GOOGLE_API_KEY=..."
+
+# ─── Cross-Repo Dependencies ───
+cross_repo_dependencies:
+  telly_archive:
+    depends_on: ~/telly-bot/.env.production.local
+    repo: telly-bot (Vercel project, separate GitHub repo)
+    note: Must exist before running telly-archive.mjs. Pull with vercel env pull.
+
+  os_recap_mailer:
+    depends_on: Google Drive "OS-Recaps" folder
+    repo: N/A (Google Drive)
+    note: Weekly recap must be uploaded to this folder before Friday 7:15 AM CT.
+
+  email_classifier:
+    depends_on: GAS project with clasp link
+    repo: N/A (Google Apps Script)
+    note: Deploy changes via "cd 3-reference/scripts/gas && ./build.sh && clasp push"

@@ -65,6 +65,12 @@ body::before { content:''; position:fixed; inset:0; background-image:linear-grad
 /* ─── DETAIL MODAL ─── */
 .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:100; overflow-y:auto; padding:40px; }
 .modal-overlay.open { display:flex; justify-content:center; align-items:flex-start; }
+.modal-nav { position:fixed; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; background:var(--bg-card); border:1px solid rgba(255,255,255,0.12); color:var(--white); font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:110; transition:background 0.15s, opacity 0.15s; opacity:0.7; }
+.modal-nav:hover { background:var(--gold); color:var(--bg); opacity:1; }
+.modal-nav.prev { left:12px; }
+.modal-nav.next { right:12px; }
+.modal-nav:disabled { opacity:0.2; cursor:default; pointer-events:none; }
+.modal-counter { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--gray); z-index:110; background:var(--bg-card); padding:6px 16px; border-radius:20px; border:1px solid rgba(255,255,255,0.06); }
 .modal { background:var(--bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; max-width:900px; width:100%; padding:40px; position:relative; }
 .modal-close { position:absolute; top:16px; right:20px; font-size:24px; color:var(--gray); cursor:pointer; background:none; border:none; }
 .modal-close:hover { color:var(--white); }
@@ -464,6 +470,9 @@ body.client-mode [data-view="grid"] { pointer-events:none; opacity:0.6; }
 
 <!-- DETAIL MODAL -->
 <div class="modal-overlay" id="modal-overlay">
+  <button class="modal-nav prev" id="modal-prev" onclick="navigateModal(-1)">&#8249;</button>
+  <button class="modal-nav next" id="modal-next" onclick="navigateModal(1)">&#8250;</button>
+  <div class="modal-counter" id="modal-counter"></div>
   <div class="modal" id="modal-content"></div>
 </div>
 
@@ -1321,6 +1330,154 @@ const IDEAS = [
    competitive:"Mike's Hot Honey: Category creator. Brooklyn origin. Widely available at $8-10. The benchmark. Bees Knees Spicy Honey: Smaller competitor. Similar positioning. Store brands: Walmart, Trader Joe's have introduced private-label hot honey at $5-6. Gap: No hot honey brand leads with Southern provenance and authenticity as the differentiator.",
    ops:"Simple",opsDetail:"Hot honey is honey + chili peppers + vinegar. Simple cold-blend or infusion process. Can source from Southern apiaries and co-pack locally. Shelf-stable for 12+ months. Extremely simple supply chain.",
    research:"Run 3 — Stream of consciousness ideation. Method: Unknown."},
+
+  // ─── RUN 4: Japanese Format Innovation — Sushi & Miso Soup (April 17, 2026) ───
+  {id:"r4-01",name:"Furikake Everything Shaker",category:"Global Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Cultural Trend Mining (#51)",score:4.45,stage:2,effort:0.2,impact:0.9,novelty:0.7,premium:0.8,
+   image:"images-run4/01-furikake-everything-shaker-hero.png",
+   pitch:"Six-blend furikake seasoning collection positioned as the Japanese Everything Bagel — rice, eggs, avocado toast, popcorn, ramen, anything. Classic, Wasabi Kick, Salmon, Spicy Garlic, Truffle Umami, and Breakfast blends in shaker jars. The positioning is simple: furikake has 50+ years of product-market fit in Japan and a flavor profile (umami + crunch + nori) that nothing else on the American spice rack delivers.",
+   rtbs:["Seaweed snack market growing 11.6% CAGR to $4.66B by 2030 — furikake rides the same adoption curve","Combini haul TikTok videos routinely hit millions of views exposing US consumers to furikake","Artisan stocks Aji Nori Furikake at $3.69/unit (SKU WAS132) — supply chain validated","Everything Bagel seasoning proved shaker-format condiment category at scale — Trader Joe's #1 selling item"],
+   competitive:"Nori Komi Furikake (JFC): $3.99/1.7oz, authentic but no lifestyle branding, buried in ethnic aisle. Trader Joe's Furikake: $2.99, single blend, no collection. Everything But The Bagel: $1.99, category proof but no umami/nori. Gap: No curated multi-blend furikake collection in shaker format with modern branding.",
+   ops:"Simple",opsDetail:"Standard dry-goods blending and packaging. No cold chain. Shelf-stable. Co-pack widely available. MOQ 5-10K units.",
+   research:"Cultural Trend Mining (#51) — mapped combini haul TikTok trend to CPG format. Japanese convenience store content going viral exposes US consumers to furikake as daily-use seasoning.",
+   retailerFit:[{channel:"Whole Foods",why:"Premium seasoning buyer, endcap potential"},{channel:"Target",why:"Discover section, accessible price"},{channel:"Amazon",why:"Subscription-friendly, giftable"}],
+   cost:{cogs:[{input:"Furikake base blend",wholesale:"$3.69/unit",source:"supplier-kb:artisan-specialty-foods:WAS132"},{input:"Premium packaging (6-shaker set)",wholesale:"$2.50/set",source:"assumption"}],labor_or_copack:{amount:"$2.00/set",source:"assumption"},target_retail:"$24.99/set",gross_margin_assumption:"63%",defensibility:"assumption"}},
+
+  {id:"r4-02",name:"Miso Squeeze Tube",category:"Premium CPG",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Packaging Innovation (#58)",score:4.35,stage:2,effort:0.2,impact:0.85,novelty:0.7,premium:0.75,
+   image:"images-run4/02-miso-squeeze-tube-hero.png",
+   pitch:"Miso paste in a 5oz aluminum squeeze tube — the same format Italians use for tomato paste. No oxidation, no spoon, no mess. Lives on the fridge door next to mustard. One squeeze into hot water makes miso soup. Two squeezes into a marinade transforms chicken. Repositions miso from 'specialty ingredient' to 'condiment I reach for instinctively.'",
+   rtbs:["Namikura White Miso at $4.80/2.2lb (supplier-kb validated) — extremely low COGS","Gut health launches jumped 61% YoY — miso's natural probiotic positioning rides this wave","Squeeze tube format proven by Amore tomato paste ($4.99/2.8oz) — consumers pay 3x for tube convenience","Italian tomato paste tubes converted a 'sometimes ingredient' to 'daily reach' — identical opportunity for miso"],
+   competitive:"Hikari Organic Miso: $4.99/17.6oz tub, oxidizes after opening. Miso & Easy (Marukome): $3.49 squeeze bottle but diluted liquid, not paste. Amore Paste Tubes: $4.99/2.8oz, format proof but not miso. Gap: No miso paste in tube format exists in the US.",
+   ops:"Simple",opsDetail:"Shelf-stable miso in sealed aluminum tubes. No cold chain. Standard tube-fill co-packing. MOQ 5-10K tubes.",
+   research:"Packaging Innovation (#58) — tomato paste tubes transformed usage frequency. Same format transfer applied to miso paste.",
+   retailerFit:[{channel:"Whole Foods",why:"Premium condiment aisle, miso buyer exists"},{channel:"Sprouts",why:"Natural/organic positioning"},{channel:"DTC-subscription",why:"Replenishment model"}],
+   cost:{cogs:[{input:"White Miso Paste (Namikura)",wholesale:"$0.44/tube fill",source:"supplier-kb:artisan-specialty-foods:WMISO3"},{input:"Aluminum tube + cap",wholesale:"$0.85",source:"assumption"}],labor_or_copack:{amount:"$0.50/tube",source:"assumption"},target_retail:"$6.99/5oz",gross_margin_assumption:"70%",defensibility:"supplier-kb for miso"}},
+
+  {id:"r4-03",name:"Konbini Onigiri",category:"Global Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Cultural Trend Mining (#51)",score:4.35,stage:2,effort:0.5,impact:0.9,novelty:0.8,premium:0.6,
+   image:"images-run4/03-konbini-onigiri-hero.png",
+   pitch:"Grab-and-go rice triangles in patented dual-wrap packaging that keeps nori crisp until you pull the tab. The 7-Eleven Japan format brought to US deli coolers. Three varieties: Spicy Tuna, Teriyaki Chicken, Umeboshi Plum. $3.49 each — same price as a protein bar but a complete meal. 2.4 billion sold annually in Japan.",
+   rtbs:["2.4B onigiri sold annually in Japan — massive scale validation","NPR (Sept 2025): Japanese konbini stores entering US market","Combini haul TikToks regularly hit 1-5M views — organic demand building","Sushi market growing 7.92% CAGR to $13.54B by 2035"],
+   competitive:"7-Eleven US sushi: $5.99-8.99, no onigiri format. Spam Musubi (Hawaii): $2.99-3.49, regional proof. Onigiriz (NYC): Artisan $4.50+, no CPG. Gap: Zero CPG onigiri at mainstream US grocery.",
+   ops:"Complex",opsDetail:"Fresh product, 5-7 day shelf life. Cold chain required. Manual assembly. Dual-wrap packaging may need Japanese licensing.",
+   research:"Cultural Trend Mining (#51) + Analogous Inspiration (#15) — combini haul TikTok trend + Japanese convenience store format provides proven product architecture."},
+
+  {id:"r4-04",name:"Sushi-Grade Pantry",category:"Premium CPG",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Premiumization (#56)",score:4.15,stage:2,effort:0.3,impact:0.8,novelty:0.6,premium:0.9,
+   image:"images-run4/04-sushi-grade-pantry-hero.png",
+   pitch:"Three-jar premium set: real hon-wasabi (not horseradish), hand-pressed nori sheets, house-pickled ginger. Packaged in a washi-paper gift box with pairing cards. $39.99. The gift you bring to sushi night — or the self-purchase that upgrades every Tuesday chirashi bowl.",
+   rtbs:["Real wasabi retails $10-15/tube at specialty stores — consumers pay premium for authenticity","Pink Sushi Ginger at $20/11lb wholesale (supplier-kb validated)","Premium food tasting sets proven at Whole Foods — olive oil flights, honey flights, hot sauce collections","Japanese ingredient adoption accelerating: furikake, ponzu, yuzu all crossed mainstream in 2025-2026"],
+   competitive:"S&B Wasabi Paste: $3.99/1.52oz, horseradish-based, not real. Roland Sushi Ginger: $3.49/10oz, heavily vinegared. Various nori brands: adequate but not 'sushi-grade.' Gap: No curated restaurant-quality sushi condiment set at premium retail.",
+   ops:"Moderate",opsDetail:"Shelf-stable set assembly. Challenge: sourcing real wasabi at scale. May need Japanese import partnership."},
+
+  {id:"r4-05",name:"Post-Workout Miso Recovery",category:"Functional Beverage",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Occasion-Based Thinking (#59)",score:4.15,stage:2,effort:0.4,impact:0.8,novelty:0.85,premium:0.7,
+   image:"images-run4/05-post-workout-miso-hero.png",
+   pitch:"Electrolyte-boosted miso broth sachets with sodium, potassium, collagen. Gym-bag format positioned next to LMNT as the warm, savory, whole-food recovery option. $1.99/sachet ($49.99/30-pack). Miso delivers electrolytes, amino acids, and probiotics — everything a recovery drink should be, in a comforting format.",
+   rtbs:["Gut health category $14B → $32B by 2035","Red Aka Miso at $4.80/2.2lb (supplier-kb validated)","LMNT proves $1.50/sachet functional pricing at scale","No warm/savory option exists in the recovery/electrolyte space"],
+   competitive:"LMNT: $45/30-pack, powder, cold, synthetic. Kettle & Fire: $6.99/16.9oz, too large for gym bag. Marukome Instant Miso: $3.99/12-pack, no functional positioning. Gap: No warm, savory, single-serve recovery product.",
+   ops:"Moderate",opsDetail:"Dry blending + sachet filling. Challenge: formulating taste balance with added minerals."},
+
+  {id:"r4-06",name:"Nori Crisps",category:"Global Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Mashup (#24)",score:4.05,stage:2,effort:0.2,impact:0.85,novelty:0.5,premium:0.65,
+   image:"images-run4/06-nori-crisps-hero.png",
+   pitch:"Thick-cut nori layered with rice flour and sesame, baked into chip-format crisps. Sea Salt, Wasabi, Teriyaki, Furikake. Solves the texture problem that limits seaweed snacks: paper-thin sheets that shatter on contact. $4.99/3oz in the snack aisle, not the Asian section.",
+   rtbs:["Seaweed snack market $2.43B → $4.66B by 2030 at 11.6% CAGR, North America fastest-growing","Texture innovation driving snack category: crispy (+49%), flaky (+50%) interest increases YoY","Nori Flakes at $72/case (supplier-kb validated)","gimMe/Annie Chun's proved seaweed at scale but thin-sheet format limits expansion"],
+   competitive:"gimMe: $3.49/0.7oz, thin sheets, fragile. Annie Chun's Crisps: $3.29/1.27oz, closer but still thin. Ocean's Halo Chips: $3.99/4oz, corn-based not rice-based. Gap: No rice flour-layered thick-cut nori crisp exists.",
+   ops:"Moderate",opsDetail:"Baked snack co-packing. Shelf-stable. R&D needed for nori-rice flour bake optimization."},
+
+  {id:"r4-07",name:"Dashi Pods",category:"Premium CPG",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Packaging Innovation (#58)",score:4.05,stage:2,effort:0.3,impact:0.8,novelty:0.75,premium:0.8,
+   image:"images-run4/07-dashi-pods-hero.png",
+   pitch:"Single-serve dashi concentrate pods — drop in hot water for restaurant-quality broth in 30 seconds. Real kombu + katsuobushi + mirin. Three varieties: Classic, Shiitake Vegetarian, Spicy Yuzu. $14.99/12-pod box. Keurig logic applied to Japanese cooking stock.",
+   rtbs:["Hondashi at $25.20/case (supplier-kb validated) — dashi ingredient supply chain exists","Better Than Bouillon $300M+/year proves concentrated cooking stock demand","Japanese food #2 fastest-growing cuisine in US restaurants","No liquid concentrate dashi pod exists — all current options are granules or teabag-steep"],
+   competitive:"Hondashi: $8.99/5.28oz granules, MSG-forward. BOU Broth Cubes: $4.99/6, clean-label but not Japanese. Better Than Bouillon: $4.99/8oz paste. Gap: No liquid concentrate dashi pod.",
+   ops:"Moderate",opsDetail:"Liquid extraction + heat-sealed pod filling. 12-16 week lead time. R&D for authentic flavor in concentrate."},
+
+  {id:"r4-08",name:"3PM Miso Break",category:"Functional Beverage",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Occasion-Based Thinking (#59)",score:4.0,stage:2,effort:0.25,impact:0.75,novelty:0.65,premium:0.6,
+   image:"images-run4/08-3pm-miso-break-hero.png",
+   pitch:"Desk-side miso cup for the afternoon slump — warm, savory, 15 calories, replaces the snack run. Single-serve miso paste + freeze-dried tofu + wakame. 60 seconds from packet to comfort. 10-packs at $12.99 for desk drawers. 'Your 3PM Moment.'",
+   rtbs:["White Miso at $4.80/2.2lb + Wakame at $20.25/case (supplier-kb validated)","Snacking = 20% of global food sales, consumers snack at least once daily","No premium occasion-branded instant miso exists at retail","Numi Broth Sippers ($5.99/5-pack) prove desk-side warm beverage format"],
+   competitive:"Marukome Instant Miso: $3.99/12-pack, zero branding. Cup-a-Soup: $3.49/4-pack, dated. Numi Broth Sippers: $5.99/5-pack, bone-broth not miso. Gap: No premium occasion-positioned miso for afternoon break.",
+   ops:"Simple",opsDetail:"Dry-goods assembly. Shelf-stable. Standard cup-soup co-packing. 6-8 week lead time."},
+
+  {id:"r4-09",name:"Morning Miso Sachets",category:"Fermented Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"JTBD (#4)",score:3.95,stage:2,effort:0.2,impact:0.8,novelty:0.7,premium:0.7,
+   image:"images-run4/09-morning-miso-sachets-hero.png",
+   pitch:"Daily gut-health miso sachets with live probiotics and marine collagen. The Japanese ACV shot — but it tastes good. 30-sachet boxes at $29.99 ($1.00/day). No sugar, no vinegar burn. Warm, savory, comforting umami that happens to be one of the most nutrient-dense fermented foods on earth.",
+   rtbs:["Gut health launches +61% YoY — fastest-growing functional food claim","59% of consumers rate gut health as highly important (Innova 2026)","White Miso at $4.80/2.2lb (supplier-kb validated)","Probiotic supplement market $65B+ — 'food not pills' trend accelerating"],
+   competitive:"Bragg ACV Shots: $3.49/4-pack, acidic, unpleasant. Seed Probiotics: $49.99/month, pill format. Tsubi Soup Instant Miso: $9.99/6-pack, not functional/daily positioning. Gap: No daily gut-health sachet as warm food-based probiotic ritual.",
+   ops:"Moderate",opsDetail:"Dry powder blending + sachet filling. Challenge: shelf-stable probiotic formulation. 12-16 week lead."},
+
+  {id:"r4-10",name:"Miso Butterscotch Sauce",category:"Premium CPG",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"SCAMPER (#21)",score:3.95,stage:2,effort:0.15,impact:0.75,novelty:0.7,premium:0.8,
+   image:"images-run4/10-miso-butterscotch-hero.png",
+   pitch:"White miso butterscotch in a jar — pour on ice cream, drizzle on pancakes, use in baking. Butter, brown sugar, cream, and miso paste. Golden sauce with visible miso specks. $12.99/8oz. Miso caramel exists on top restaurant menus (Momofuku, Eleven Madison Park) but nobody has bottled it.",
+   rtbs:["Miso caramel on top restaurant menus 2024-2025 — chef-validated flavor combination","White Miso at $4.80/2.2lb (supplier-kb validated) — extremely low ingredient cost","Salted caramel sauce category $500M+ — miso butterscotch is the natural premiumization","Half Baked Harvest (8M followers) featured 'miso brown butter caramel' in 2025 best-of"],
+   competitive:"Stonewall Kitchen Salted Caramel: $8.95/12.25oz, no umami. Bonne Maman Caramel: $6.99/13oz, conventional. Local artisan miso caramels: farmer's markets only. Gap: No nationally distributed miso butterscotch sauce.",
+   ops:"Simple",opsDetail:"Standard cooked sauce. Shelf-stable (high sugar). Glass jar co-packing. 4-ingredient recipe. Fastest to prototype."},
+
+  {id:"r4-11",name:"Miso Wellness Shots",category:"Functional Beverage",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Cultural Trend Mining (#51)",score:3.95,stage:2,effort:0.35,impact:0.75,novelty:0.75,premium:0.7,
+   image:"images-run4/11-miso-wellness-shots-hero.png",
+   pitch:"2oz refrigerated miso-ginger-turmeric shots in the functional beverage cooler. Four varieties: Golden Miso-Ginger, Red Miso-Turmeric, White Miso-Lemon, Green Miso-Matcha. Each delivers live probiotics, B vitamins, amino acids. $9.99/4-pack. The opposite of every cold, acidic wellness shot on the shelf.",
+   rtbs:["Wellness shot market $2B+ growing 15%+ annually — flavor innovation has stalled","Miso-infused lattes flagged as 'Category Crasher' trend (AIFI 2026)","59% of consumers rate gut health highly important — miso's fermentation = probiotic credibility","Japanese longevity/Blue Zone association with Okinawan centenarian diets"],
+   competitive:"Pressed Juicery: $3.99/2oz, cold-pressed, acidic. Bragg ACV Shot: $3.49/4-pack, harsh taste. Vive Organic: $3.99/2oz, standard ginger-turmeric. Gap: No warm, savory, miso-based wellness shot.",
+   ops:"Moderate",opsDetail:"Refrigerated. HPP likely needed. Beverage co-packing for small bottles. 12-16 week lead."},
+
+  {id:"r4-12",name:"Combini Haul Box",category:"Global Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Cultural Trend Mining (#51)",score:3.95,stage:2,effort:0.4,impact:0.7,novelty:0.65,premium:0.7,
+   image:"images-run4/12-combini-haul-box-hero.png",
+   pitch:"Monthly subscription replicating the Japanese convenience store haul — onigiri molds, nori snacks, miso cups, matcha treats, and one hero product per drop. $39.99/month. Designed for social media unboxing: tissue paper, collectible cards, menu card. Bokksu for the convenience store, not the candy aisle.",
+   rtbs:["Combini haul TikToks hit 1-5M views — massive organic demand signal","Subscription box market $32.9B growing 14.2% CAGR","Bokksu valued $100M+ — proves Japanese food subscription model","Japan inbound tourism hit 39M in 2025 — millions experienced konbini firsthand"],
+   competitive:"Bokksu: $49.95/month, candy/snack focused. Tokyo Treat: $37.50/month, juvenile positioning. Sakuraco: $37.50/month, artisan/seasonal. Gap: No konbini-specific subscription exists.",
+   ops:"Complex",opsDetail:"Import logistics, monthly curation, subscription fulfillment, rotating SKU inventory management."},
+
+  {id:"r4-13",name:"Vintage Miso Collection",category:"Fermented Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Premiumization (#56)",score:3.9,stage:2,effort:0.35,impact:0.7,novelty:0.8,premium:0.9,
+   image:"images-run4/13-vintage-miso-collection-hero.png",
+   pitch:"Three aged misos as a tasting flight: 6-month Shiro (sweet, delicate), 18-month Aka (deep, complex), 3-year Hatcho (intense, chocolate-like). Ceramic crocks with tasting notes and pairing cards. $44.99. Wine has vintages. Cheese has aging. Miso should too.",
+   rtbs:["Namikura Miso at $4.80/2.2lb (supplier-kb validated) — base ingredient available","Premium food tasting sets proven: olive oil flights ($30-50), honey flights ($25-40) at Whole Foods","Fermented food market growing 8.5% CAGR","No curated miso tasting collection with aging narrative exists in US"],
+   competitive:"Hikari Miso: $4.99-7.99/tub, individual, no tasting narrative. South River Miso: $12.99/16oz, artisan but single variety. Gap: No curated miso tasting collection exists.",
+   ops:"Moderate",opsDetail:"Shelf-stable set assembly. Challenge: sourcing authentic 3-year hatcho miso. Ceramic crock sourcing."},
+
+  {id:"r4-14",name:"Miso Bone Broth Sipping Cups",category:"Functional Beverage",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Mashup (#24)",score:3.85,stage:2,effort:0.3,impact:0.75,novelty:0.55,premium:0.7,
+   image:"images-run4/14-miso-bone-broth-hero.png",
+   pitch:"Grass-fed bone broth + aged red miso + ginger in shelf-stable 8oz sipping cups. Collagen AND probiotics AND umami. Three flavors: Red Miso-Ginger, White Miso-Lemon, Spicy Miso-Chili. $24.99/6-pack. Adds the depth that plain bone broth lacks.",
+   rtbs:["Kettle & Fire reached $100M+ revenue — proves sipping broth category","Red Miso at $4.80/2.2lb (supplier-kb validated)","Bone broth market $3.3B projected by 2028","Collagen + probiotic combination addresses two top functional trends in one product"],
+   competitive:"Kettle & Fire: $6.99/16.9oz, no miso. Bonafide: $5.99/cup, plain bone broth. Brodo: $12/16oz, premium, not miso. Gap: No miso-infused bone broth sipping cup exists.",
+   ops:"Moderate",opsDetail:"Shelf-stable liquid. Retort/aseptic packaging co-packer required. 10-14 week lead."},
+
+  {id:"r4-15",name:"Miso Paste Pucks",category:"Premium CPG",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Packaging Innovation (#58)",score:3.85,stage:2,effort:0.2,impact:0.75,novelty:0.7,premium:0.6,
+   image:"images-run4/15-miso-paste-pucks-hero.png",
+   pitch:"Individually portioned frozen miso paste pucks in a silicone tray. Pop one out, drop in a mug, add hot water. No measuring, no tub drying out, no waste. 12-puck trays at $8.99. Bouillon cube logic applied to miso — but it's real paste, not dehydrated powder.",
+   rtbs:["White Miso at $4.80/2.2lb (supplier-kb validated) — extremely low COGS","Better Than Bouillon $300M+ proves portioned cooking stock demand","Reddit: 'one container of miso lasts forever' confirms the waste problem","dorot frozen garlic cubes at Trader Joe's prove the frozen-portion format"],
+   competitive:"Standard miso tubs: $4.99-7.99/16oz, oxidize, require measuring. Hondashi: $8.99, MSG-heavy granules. Better Than Bouillon: $4.99/8oz paste, not miso. Gap: No pre-portioned frozen miso format exists.",
+   ops:"Simple",opsDetail:"Fill silicone molds, freeze, package. Frozen co-packing. Cold chain distribution."},
+
+  {id:"r4-16",name:"Dashi Cocktail Bitters",category:"Functional Beverage",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Mashup (#24)",score:3.8,stage:2,effort:0.3,impact:0.65,novelty:0.9,premium:0.85,
+   image:"images-run4/16-dashi-cocktail-bitters-hero.png",
+   pitch:"Concentrated dashi, yuzu, and shiso bitters in a 4oz apothecary dropper bottle. Three dashes turn a martini, highball, or Bloody Mary into an umami cocktail. $18.99. Japanese bartending is having a global moment — this brings it to the home bar.",
+   rtbs:["Japanese whisky market growing 10%+ annually — cocktail culture expanding","Angostura bitters sell $100M+/year — proves bitters as retail category","Kombu at $62.80/5lb (supplier-kb validated)","Umami cocktails at world's best bars — trend moving from elite to enthusiast"],
+   competitive:"Angostura: $9.99/4oz, no umami. Fee Brothers Japanese Bitters: $10.99, floral not umami. Bittermens Xocolatl: $12.99, proves savory bitters. Gap: No real dashi-based cocktail bitters exist.",
+   ops:"Moderate",opsDetail:"Botanical extraction + bottling. May require TTB classification. 12-16 week lead."},
+
+  {id:"r4-17",name:"Gari Pickled Ginger Snacks",category:"Fermented Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"SCAMPER (#21)",score:3.8,stage:2,effort:0.15,impact:0.7,novelty:0.65,premium:0.65,
+   image:"images-run4/17-gari-pickled-ginger-hero.png",
+   pitch:"Thin-sliced pickled ginger in resealable snack pouches: Classic Pink, Yuzu Citrus, Chili Heat. 10 calories/serving. The sushi palate-cleanser becomes a standalone functional snack. $5.99/3oz. 86% gross margin potential — ginger costs $0.11/oz wholesale.",
+   rtbs:["Pink Sushi Ginger at $20/11lb ($0.11/oz) — extremely low COGS (supplier-kb validated)","Ginger products growing 8%+ annually on functional health positioning","Pickled/fermented snacks trending across the category","10 cal/serving = genuine zero-guilt snack — rare in a 150+ calorie market"],
+   competitive:"The Ginger People: $4.99/6oz jar, condiment aisle not snack. Gin Gins: $4.99/3oz candy, not pickled. gimMe Seaweed: $3.49/0.7oz, proves sushi-adjacent snacking. Gap: No snack-format pickled ginger exists.",
+   ops:"Simple",opsDetail:"Repackaging existing product. No cooking. Shelf-stable. 4-6 week lead. Fastest to prototype."},
+
+  {id:"r4-18",name:"Sushi Rice Seasoning Sachets",category:"Premium CPG",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Packaging Innovation (#58)",score:3.8,stage:2,effort:0.15,impact:0.75,novelty:0.55,premium:0.55,
+   image:"images-run4/18-sushi-rice-sachets-hero.png",
+   pitch:"Pre-measured vinegar-sugar-salt sachets — tear, pour into 2 cups of cooked rice, fold. Classic, Yuzu, Shiso variants. $7.99/10-pack. Eliminates the guesswork that stops beginners from making sushi rice at home. True Lemon logic applied to sushi.",
+   rtbs:["Rice Vinegar at $28/case (supplier-kb validated)","Sushi bowls growing as casual home format — sachets remove the last friction point","Reddit r/sushi: 'easy at-home sushi bowl' is default beginner format","Sushi mat/kit combos sell 50K+ units on Amazon — proves the occasion exists"],
+   competitive:"Tamanoi Sushinoko: $4.99/5.3oz powder, requires measuring, Japanese packaging. Kikkoman Seasoned Rice Vinegar: $3.99/10oz liquid, not sushi-specific. Gap: No pre-measured tear-and-pour sushi rice sachet at US retail.",
+   ops:"Simple",opsDetail:"Dry/liquid sachet filling. Shelf-stable. 4-6 week lead. Simplest product in the run."},
+
+  {id:"r4-19",name:"Japanese Breakfast Box",category:"Global Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Analogous Inspiration (#15)",score:3.8,stage:2,effort:0.45,impact:0.7,novelty:0.75,premium:0.7,
+   image:"images-run4/19-japanese-breakfast-box-hero.png",
+   pitch:"Shelf-stable 5-day morning kit: miso paste, microwaveable rice, tsukemono pickles, nori, furikake. Traditional Japanese breakfast in 5 minutes. $24.99/5-day kit. The breakfast of the world's longest-lived population — now a product.",
+   rtbs:["Japanese breakfast trending on food media — Bon Appétit, NYT Cooking, food TikTok","Microwaveable rice pouches $500M+ US category — component already mainstream","Blue Zone/longevity diet association with Okinawan centenarian breakfast","Zero Japanese breakfast kit products exist at US retail — complete whitespace"],
+   competitive:"No direct competitor — category doesn't exist. Minute Rice Cups: $2.49, component only. Marukome Instant Miso: $3.99, component only. Daily Harvest: $7.99+/cup, different format. Gap: Zero Japanese breakfast kits at US retail.",
+   ops:"Moderate",opsDetail:"Multi-component kit assembly. All shelf-stable, no cold chain. 5 different component suppliers. 10-14 week lead."},
+
+  {id:"r4-20",name:"Friday Sushi Night",category:"Global Snacks",run:"Run 4 — Sushi & Miso",date:"2026-04-17",method:"Occasion-Based Thinking (#59)",score:3.75,stage:2,effort:0.5,impact:0.65,novelty:0.6,premium:0.65,
+   image:"images-run4/20-friday-sushi-night-hero.png",
+   pitch:"Complete date-night sushi experience box — rice, nori, seasoning sachet, ginger, wasabi, soy, bamboo mat, QR tutorial. $19.99/2-person kit. Protein sold separately (shelf-stable kit). 'Your Friday Night, Rolled.' Pizza Night and Taco Tuesday have product ecosystems. Sushi Night doesn't — until now.",
+   rtbs:["'Sushi at home' consistently high search volume on Google Trends","Reddit r/sushi + r/WhatShouldICook: deconstructed sushi is default beginner format","Meal kit market $20B+ but no sushi option from any major brand","All components shelf-stable — no cold chain for the kit itself"],
+   competitive:"Various Amazon sushi kits: $15-25, tools not food. Global Grub Sushi Kit: $19.99, closest but generic branding. No HelloFresh/Blue Apron sushi option. Gap: No branded occasion-positioned sushi night kit with ingredients + tools + tutorial.",
+   ops:"Moderate",opsDetail:"Multi-component shelf-stable kit. 7+ components, bamboo mat import. Manual assembly. 10-14 week lead."},
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -1619,11 +1776,55 @@ function bulkClear() {
   renderGrid(); renderKanban();
 }
 
+// ─── MODAL NAVIGATION ───
+let modalFilteredList = [];
+let modalCurrentIdx = -1;
+
+function updateModalNav() {
+  const prev = document.getElementById('modal-prev');
+  const next = document.getElementById('modal-next');
+  const counter = document.getElementById('modal-counter');
+  if (modalFilteredList.length <= 1) {
+    prev.style.display = 'none';
+    next.style.display = 'none';
+    counter.style.display = 'none';
+    return;
+  }
+  prev.style.display = '';
+  next.style.display = '';
+  counter.style.display = '';
+  prev.disabled = modalCurrentIdx <= 0;
+  next.disabled = modalCurrentIdx >= modalFilteredList.length - 1;
+  counter.textContent = `${modalCurrentIdx + 1} / ${modalFilteredList.length}`;
+}
+
+function navigateModal(dir) {
+  const newIdx = modalCurrentIdx + dir;
+  if (newIdx < 0 || newIdx >= modalFilteredList.length) return;
+  modalCurrentIdx = newIdx;
+  const id = modalFilteredList[modalCurrentIdx].id;
+  document.getElementById('modal-content').scrollTop = 0;
+  document.getElementById('modal-overlay').scrollTop = 0;
+  if (clientMode) openClientModal(id); else openModalContent(id);
+  updateModalNav();
+}
+
 // ─── MODAL ───
 function openModal(id) {
+  modalFilteredList = getFiltered();
+  modalCurrentIdx = modalFilteredList.findIndex(i => i.id === id);
+  if (modalCurrentIdx === -1) { modalFilteredList = IDEAS; modalCurrentIdx = IDEAS.findIndex(i => i.id === id); }
+  const idea = modalFilteredList[modalCurrentIdx];
+  if (!idea) return;
+  if (clientMode) { openClientModal(id); updateModalNav(); return; }
+  openModalContent(id);
+  document.getElementById('modal-overlay').classList.add('open');
+  updateModalNav();
+}
+
+function openModalContent(id) {
   const idea = IDEAS.find(i => i.id === id);
   if (!idea) return;
-  if (clientMode) { openClientModal(id); return; }
   const note = getUserNote(id);
   const clientNote = getClientNote(id);
   const uscore = getUserScore(id);
@@ -1835,9 +2036,15 @@ document.getElementById('modal-overlay').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
-  if (e.key === 'Enter' && document.getElementById('modal-overlay').classList.contains('open')) {
+  const isOpen = document.getElementById('modal-overlay').classList.contains('open');
+  if (isOpen) {
     const tag = document.activeElement?.tagName;
-    if (tag !== 'TEXTAREA' && tag !== 'INPUT' && tag !== 'SELECT') closeModal();
+    const inInput = tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'SELECT';
+    if (e.key === 'Enter' && !inInput) closeModal();
+    if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && !inInput) {
+      e.preventDefault();
+      navigateModal(e.key === 'ArrowLeft' ? -1 : 1);
+    }
   }
 });
 
