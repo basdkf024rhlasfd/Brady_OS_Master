@@ -14,13 +14,13 @@
  *   BLOB_READ_WRITE_TOKEN — Vercel Blob token (for deletion)
  */
 
-import { execSync } from "child_process";
-import { writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 import { homedir } from "os";
 
 const ARCHIVE_DIR = join(homedir(), "telly-archive");
-const STREAMING_NOTES_DB = "2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83";
+// Canonical source: 3-reference/infrastructure-registry.yml
+const STREAMING_NOTES_DB_FALLBACK = "2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83";
 const NOTION_VERSION = "2022-06-28";
 
 // Load env from telly-bot
@@ -30,7 +30,7 @@ function loadEnv() {
     console.log("No .env.production.local found. Run: cd ~/telly-bot && npx vercel env pull .env.production.local --environment production");
     process.exit(1);
   }
-  const lines = execSync(`cat "${envPath}"`).toString().split("\n");
+  const lines = readFileSync(envPath, 'utf-8').split("\n");
   for (const line of lines) {
     const match = line.match(/^([A-Z_]+)="?([^"]*)"?$/);
     if (match) process.env[match[1]] = match[2];
@@ -52,7 +52,8 @@ async function notionFetch(path, options = {}) {
 
 async function findPendingArchivePages() {
   // Query recent Streaming Notes and look for pages with PENDING ARCHIVE blocks
-  const result = await notionFetch(`/databases/${STREAMING_NOTES_DB}/query`, {
+  const dbId = process.env.STREAMING_NOTES_DB_ID || STREAMING_NOTES_DB_FALLBACK;
+  const result = await notionFetch(`/databases/${dbId}/query`, {
     method: "POST",
     body: JSON.stringify({
       page_size: 50,

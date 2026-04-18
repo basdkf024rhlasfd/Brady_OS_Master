@@ -106,6 +106,11 @@ Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - Identify threads that can be bulk-archived
 - Draft replies for the top 3 most overdue items
 
+### 2.7 Transparency Audit
+- Check `TRANSPARENCY.md` against current repo state
+- Look for: new scripts with external reach not yet documented, sensitive data in tracked files, hardcoded IDs not in `infrastructure-registry.yml`, new autonomous behaviors without audit trails
+- If drift found, flag it in the Phase 4 report
+
 ## Phase 3: SET PRIORITIES
 
 ### 3.1 Weekly TOP 5

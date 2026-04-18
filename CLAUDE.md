@@ -12,6 +12,8 @@
 - `3-reference/project-kickoff.md` — Project initialization workflow
 - `3-reference/governance/` — Agent enforcement rules, contracts, council charter, information flow standards. Index: `governance-index.md`
 - `REBUILD-BRADY-OS.md` — Comprehensive rebuild guide (client-facing)
+- `TRANSPARENCY.md` — System map: external services, autonomous behaviors, secrets, sensitive data policy
+- `3-reference/infrastructure-registry.yml` — Canonical source for Notion DB IDs, Google Drive folder IDs, secrets inventory
 
 ## mception.ai Publishing
 
@@ -76,6 +78,7 @@ External frameworks and skill packs stored as standalone packages in `3-referenc
 - **GAS Toolkit:** `3-reference/scripts/gas/CLAUDE.md` — Google Apps Script automations (email-classifier, os-recap-mailer). Build/deploy: `3-reference/scripts/gas/build.sh`
 
 ## Notion Architecture
+<!-- Canonical source for all IDs: 3-reference/infrastructure-registry.yml -->
 - **Client Projects DB** (workspace root, shareable): ID `c8a6b2d70d9343839a16c950c95a6066`
 - **Internal Projects DB** (OS > Execution, private): ID `2c2ed43b-89c5-80af-ac9b-ededd48b98e7`
 - **Consulting Practice wiki**: https://www.notion.so/333ed43b89c58123b019d1d108c53c11

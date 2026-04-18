@@ -159,6 +159,8 @@ function applyLabels(thread, classification) {
   if (classification.priority === 'Low' &&
       classification.person_or_bot === 'Bot' &&
       classification.action_type === 'Archive') {
+    // Audit trail: log every auto-archive to a dedicated sheet tab for review
+    logAutoArchive_(thread, classification);
     thread.moveToArchive();
   }
 }
@@ -172,6 +174,40 @@ function getOrCreateLabel(name) {
     label = GmailApp.createLabel(name);
   }
   return label;
+}
+
+/**
+ * Log an auto-archived email to a dedicated "auto-archive-audit" sheet tab.
+ * Makes the invisible archive action reviewable.
+ * @private
+ */
+function logAutoArchive_(thread, classification) {
+  try {
+    const msg = thread.getMessages().pop();
+    const sheetId = PropertiesService.getScriptProperties().getProperty('LOG_SHEET_ID');
+    if (!sheetId) return;
+
+    const ss = SpreadsheetApp.openById(sheetId);
+    let sheet = ss.getSheetByName('auto-archive-audit');
+    if (!sheet) {
+      sheet = ss.insertSheet('auto-archive-audit');
+      sheet.appendRow(['Timestamp', 'From', 'Subject', 'Category', 'Priority', 'Person/Bot', 'Action']);
+      sheet.setFrozenRows(1);
+    }
+
+    sheet.appendRow([
+      new Date().toISOString(),
+      msg.getFrom(),
+      msg.getSubject().substring(0, 120),
+      classification.category || '',
+      classification.priority || '',
+      classification.person_or_bot || '',
+      classification.action_type || ''
+    ]);
+  } catch (e) {
+    // Don't block archiving if audit logging fails
+    Logger.log('Auto-archive audit log failed: ' + e.message);
+  }
 }
 
 // ============================================================
