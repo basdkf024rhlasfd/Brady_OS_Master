@@ -1,52 +1,46 @@
-import { NextRequest, NextResponse } from "next/server";
+import { streamText, convertToModelMessages, type UIMessage } from "ai";
+import { anthropic } from "@ai-sdk/anthropic";
 import {
-  processGlobalChat,
+  buildSystemPrompt,
+  getChatConfig,
   type ProjectContext,
 } from "@/lib/chat/global-chat-engine";
 
-export async function POST(request: NextRequest) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json(
-      { error: "ANTHROPIC_API_KEY is not configured" },
-      { status: 500 }
-    );
+export const maxDuration = 60;
+
+export async function POST(req: Request) {
+  const { messages, projectContext } = (await req.json()) as {
+    messages: UIMessage[];
+    projectContext?: ProjectContext;
+  };
+
+  if (!projectContext?.project) {
+    return new Response(JSON.stringify({ error: "projectContext.project required" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
-  try {
-    const { sessionId, message, projectContext } = (await request.json()) as {
-      sessionId?: string;
-      message?: string;
-      projectContext?: ProjectContext;
-    };
+  const config = getChatConfig(projectContext.project);
 
-    if (!sessionId) {
-      return NextResponse.json(
-        { error: "sessionId required" },
-        { status: 400 }
-      );
-    }
-    if (!message) {
-      return NextResponse.json(
-        { error: "message required" },
-        { status: 400 }
-      );
-    }
-    if (!projectContext?.project) {
-      return NextResponse.json(
-        { error: "projectContext.project required" },
-        { status: 400 }
-      );
-    }
+  // Extract last user message text for KB routing
+  const lastUserMessage = [...messages]
+    .reverse()
+    .find((m) => m.role === "user");
+  const queryText =
+    lastUserMessage?.parts
+      ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
+      .map((p) => p.text)
+      .join(" ") ?? "";
 
-    const result = await processGlobalChat(sessionId, message, projectContext);
+  const systemPrompt = buildSystemPrompt(config, projectContext, queryText);
 
-    return NextResponse.json({ response: result.response });
-  } catch (error) {
-    const msg = error instanceof Error ? error.message : String(error);
-    console.error("Global chat API error:", msg);
-    return NextResponse.json(
-      { error: msg || "Failed to process message" },
-      { status: 500 }
-    );
-  }
+  const result = streamText({
+    model: anthropic(config.model),
+    system: systemPrompt,
+    messages: await convertToModelMessages(messages),
+    maxOutputTokens: config.maxOutputTokens,
+  });
+
+  return result.toUIMessageStreamResponse();
 }

@@ -1,0 +1,47 @@
+# Chat config for {{slug}}
+# Save as: portal/src/config/chat-configs/{{slug}}.yml
+
+# Required — set to true to enable chat on this project
+enabled: true
+
+# System prompt filename (in portal/src/lib/chat/project-prompts/)
+prompt: "{{slug}}.md"
+
+# Model — use Anthropic model IDs
+# Options: claude-sonnet-4-5, claude-haiku-4-5, claude-opus-4-5
+model: claude-sonnet-4-5
+
+# Max tokens in the model's response
+maxOutputTokens: 1024
+
+# Message shown when chat panel opens with no history
+welcomeMessage: "Ask me anything about {{topic}}."
+
+# Allow admin users to toggle Operator mode (loads cross-project context)
+operatorMode: true
+
+# Inject user's current config panel state into the system prompt
+configAware: false
+
+# Knowledge Base (optional) — inject project-specific markdown content
+# kb:
+#   enabled: true
+#   directory: public/{{slug}}/kb     # path relative to portal root
+#   maxFiles: 4                        # max files injected per message
+#   routing: keyword                   # "keyword" or "all"
+#   routes:
+#     - keywords: [term1, term2, multi word phrase]
+#       files: [01-section.md, 02-section.md]
+#     - keywords: [other, terms]
+#       files: [03-other-section.md]
+
+# Tools (future — not yet wired in current implementation)
+# tools:
+#   - name: search_docs
+#     description: Search project documentation
+#     handler: search-docs   # module in portal/src/lib/chat/tools/
+#     inputSchema:
+#       type: object
+#       properties:
+#         query:
+#           type: string

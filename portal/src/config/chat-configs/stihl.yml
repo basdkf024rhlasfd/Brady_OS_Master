@@ -1,0 +1,7 @@
+enabled: true
+prompt: stihl.md
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "Ask me about STIHL outdoor power equipment — products, maintenance, dealer support, and more."
+operatorMode: true
+configAware: false

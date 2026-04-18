@@ -1,0 +1,7 @@
+enabled: true
+prompt: portal.md
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "Welcome to mception.ai. How can I help?"
+operatorMode: false
+configAware: false
