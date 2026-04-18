@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virginia Alliance for Animal Shelters | VAAS</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-light: #2a3d63;
+    --gold: #c4973b;
+    --gold-light: #e8c87a;
+    --cream: #faf8f4;
+    --warm-white: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #5a5a5a;
+    --border: #e2ddd5;
+    --accent-green: #3a7d5c;
+    --accent-red: #b44a3e;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TOP ALERT BAR ── */
+  .alert-bar {
+    background: var(--accent-green);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    position: relative;
+    z-index: 1001;
+  }
+  .alert-bar a { color: var(--gold-light); text-decoration: underline; font-weight: 600; }
+  .alert-bar .pulse-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: pulse 2s infinite;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+  }
+  .nav-logo {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .nav-title {
+    color: white;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .nav-title span {
+    display: block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 22px 18px;
+    display: block;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+  .nav-links .cta-btn {
+    background: var(--gold);
+    color: var(--navy) !important;
+    font-weight: 700;
+    margin: 12px 0 12px 10px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .nav-links .cta-btn:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #3a5a8a 100%);
+    color: white;
+    padding: 100px 40px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(196,151,59,0.2);
+    border: 1px solid rgba(196,151,59,0.4);
+    color: var(--gold-light);
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero p {
+    font-size: 20px;
+    color: rgba(255,255,255,0.8);
+    max-width: 620px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
+  .btn-primary { background: var(--gold); color: var(--navy); }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .stat-source {
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  /* ── SECTION SCAFFOLDING ── */
+  section { padding: 80px 40px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .section-subtitle {
+    font-size: 17px;
+    color: var(--text-light);
+    max-width: 650px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ── PILLARS (What We Do) ── */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .pillar {
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 36px 28px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .pillar:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--gold); }
+  .pillar-icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .pillar-icon.advocacy { background: #eef3ff; }
+  .pillar-icon.training { background: #f0f7f1; }
+  .pillar-icon.legislation { background: #fef6e8; }
+  .pillar h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .pillar p { color: var(--text-light); font-size: 15px; line-height: 1.65; }
+
+  /* ── NEWS FEED ── */
+  .news-section { background: var(--warm-white); }
+  .news-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+  .news-main {}
+  .news-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .news-item:first-child { padding-top: 0; }
+  .news-meta {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .news-tag {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .news-tag.legislative { background: #fef6e8; color: #8a6d2b; }
+  .news-tag.training { background: #eef3ff; color: #3a5a8a; }
+  .news-tag.member { background: #f0f7f1; color: #2d6b42; }
+  .news-tag.alert { background: #fde8e6; color: #943a32; }
+  .news-date { font-size: 13px; color: #999; }
+  .news-item h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+  .news-item h3 a { color: inherit; text-decoration: none; }
+  .news-item h3 a:hover { color: var(--gold); }
+  .news-item p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+  /* News sidebar */
+  .news-sidebar {}
+  .sidebar-card {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+  }
+  .sidebar-card h4 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .sidebar-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 12px; }
+  .sidebar-card .highlight-name {
+    font-weight: 700; color: var(--navy);
+  }
+  .email-form {
+    display: flex; gap: 8px; margin-top: 12px;
+  }
+  .email-form input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+  }
+  .email-form button {
+    padding: 10px 18px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* ── MEMBER SPOTLIGHT ── */
+  .spotlight-section { background: var(--navy); color: white; }
+  .spotlight-section .section-label { color: var(--gold-light); }
+  .spotlight-section .section-title { color: white; }
+  .spotlight-section .section-subtitle { color: rgba(255,255,255,0.65); }
+  .spotlight-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .spotlight-text {}
+  .spotlight-text .org-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+  .spotlight-text .org-location {
+    color: var(--gold-light);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .spotlight-text .org-desc {
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .spotlight-stats {
+    display: flex; gap: 28px;
+  }
+  .spotlight-stat-item {}
+  .spotlight-stat-item .val {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    color: var(--gold-light);
+  }
+  .spotlight-stat-item .lbl {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .spotlight-photo {
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    opacity: 0.7;
+  }
+  .spotlight-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .spotlight-dots .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+  }
+  .spotlight-dots .dot.active { background: var(--gold); }
+
+  /* ── LEADERSHIP ── */
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .leader-card {
+    text-align: center;
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 32px 20px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .leader-card:hover { box-shadow: var(--shadow-md); }
+  .leader-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--navy);
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    color: var(--gold-light);
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+  }
+  .leader-card h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .leader-card .role {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .leader-card p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.55;
+  }
+
+  /* ── MEMBERSHIP ── */
+  .membership-section { background: var(--cream); }
+  .membership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .membership-tiers {}
+  .tier {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+  .tier:hover { border-color: var(--gold); }
+  .tier h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .tier .price {
+    font-size: 14px;
+    color: var(--accent-green);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .tier p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+  .membership-form-area {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+  }
+  .membership-form-area h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .membership-form-area > p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+  .form-row { margin-bottom: 16px; }
+  .form-row label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--navy);
+    outline: none;
+  }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--navy-light); }
+
+  /* ── VA DATA ── */
+  .data-section { background: var(--warm-white); }
+  .data-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px;
+  }
+  .data-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .data-header h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    color: var(--navy);
+  }
+  .data-header .source {
+    font-size: 12px;
+    color: #999;
+    font-style: italic;
+  }
+  .data-bars { display: flex; flex-direction: column; gap: 18px; }
+  .data-bar-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 60px;
+    align-items: center;
+    gap: 16px;
+  }
+  .data-bar-label { font-size: 14px; font-weight: 500; color: var(--text); }
+  .data-bar-track {
+    height: 28px;
+    background: rgba(26,39,68,0.06);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .data-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+  .data-bar-fill.green { background: linear-gradient(90deg, #3a7d5c, #4fa872); }
+  .data-bar-fill.gold { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .data-bar-fill.navy { background: linear-gradient(90deg, var(--navy), var(--navy-light)); }
+  .data-bar-value { font-size: 16px; font-weight: 700; color: var(--navy); text-align: right; }
+  .data-note {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: rgba(196,151,59,0.08);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--navy); color: white; }
+  .contact-section .section-label { color: var(--gold-light); }
+  .contact-section .section-title { color: white; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 28px;
+  }
+  .contact-card h4 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--gold-light);
+  }
+  .contact-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+  .contact-card a { color: var(--gold-light); text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111b2e;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 40px;
+    font-size: 13px;
+  }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+  /* ── AUTO-UPDATE BADGES ── */
+  .auto-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-green);
+    background: rgba(58,125,92,0.08);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .auto-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .pillars { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .spotlight-card { grid-template-columns: 1fr; }
+    .leadership-grid { grid-template-columns: repeat(2, 1fr); }
+    .membership-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .data-bar-row { grid-template-columns: 140px 1fr 50px; }
+    .hero h1 { font-size: 32px; }
+    .stats-bar { gap: 30px; }
+    nav { flex-direction: column; padding: 10px 20px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LEGISLATIVE ALERT BAR -->
+<div class="alert-bar">
+  <span class="pulse-dot"></span>
+  <strong>LEGISLATIVE ALERT:</strong> Veterinary Access Bill awaiting Governor Spanberger's signature — would connect vets with shelters statewide.
+  <a href="#">Read more →</a>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">VA</div>
+    <div class="nav-title">
+      Virginia Alliance<br>for Animal Shelters
+      <span>Est. by shelter professionals</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#spotlight">Members</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#data">VA Data</a></li>
+    <li><a href="#membership">Join</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#membership" class="cta-btn">Become a Member</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Virginia's Open-Intake Shelter Alliance</div>
+    <h1>The reasonable, compassionate voice <em>Virginia's shelters</em> deserve</h1>
+    <p>We are animal welfare professionals who believe that every animal deserves care — and every shelter that opens its doors to all deserves support.</p>
+    <div class="hero-buttons">
+      <a href="#membership" class="btn btn-primary">Join VAAS — It's Free</a>
+      <a href="#about" class="btn btn-outline">Learn Our Mission</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">300+</div>
+    <div class="stat-label">Members Statewide</div>
+    <div class="stat-source">Shelter staff & ACOs</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">40+</div>
+    <div class="stat-label">Years Combined Leadership</div>
+    <div class="stat-source">Executive Committee</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">5.8M</div>
+    <div class="stat-label">Animals Entering US Shelters</div>
+    <div class="stat-source">Shelter Animals Count, 2025</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">Free</div>
+    <div class="stat-label">Membership — Always</div>
+    <div class="stat-source">"You've already paid."</div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <div class="section-title">Built by shelter people, for shelter people</div>
+    <div class="section-subtitle">
+      There are very few people in the world who completely understand what it's like to work at an open-access shelter or as an animal control officer. The only ones who really can are your fellow workers in this field.
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon advocacy">⚖️</div>
+        <h3>Advocacy & Legislation</h3>
+        <p>We are active participants in the Comprehensive Animal Laws work group and advocate for legislation that protects animals and supports the organizations that serve them. During session, we send time-sensitive legislative alerts so members can act fast.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon training">📋</div>
+        <h3>Training & Best Practices</h3>
+        <p>Regional workshops, shared protocols, and peer-to-peer knowledge transfer. We make high-quality training accessible to shelters that can't afford national conferences — because the animals in rural Virginia deserve the same standard of care.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon legislation">🤝</div>
+        <h3>Collaboration & Support</h3>
+        <p>Collaborative programming among members — spay/neuter campaigns, adoption events, transfer partnerships. When one shelter is overwhelmed, others step up. We share resources so no shelter fights alone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS FEED -->
+<section class="news-section" id="news">
+  <div class="container">
+    <div class="section-label">Latest Updates <span class="auto-badge">Auto-Updated</span></div>
+    <div class="section-title">News & Legislative Alerts</div>
+    <div class="section-subtitle">Member updates, Virginia legislation, training opportunities, and the issues affecting shelters across the Commonwealth.</div>
+
+    <div class="news-grid">
+      <div class="news-main">
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-tag legislative">Legislative</span>
+            <span class="news-date">March 31, 2026</span>
+          </div>
+          <h3><a href="#">Veterinary Access Bill Passes GA — Awaiting Governor's Signature</a></h3>
+          <p>A new bill would create a pathway to connect veterinarians with animal shelters in need of support by allowing vets applying for licensure in Virginia to indicate interest in serving shelters. If signed, it takes effect July 2026.</p>
+        </div>
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-tag alert">Alert</span>
+            <span class="news-date">February 12, 2026</span>
+          </div>
+          <h3><a href="#">Two Animal Welfare Bills Moving Through Committee — Contact Your Representatives</a></h3>
+          <p>Key animal welfare bills advancing in the 2026 Virginia General Assembly session need support from shelter professionals and advocates. VAAS urges members to contact committee members.</p>
+        </div>
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-tag training">Training</span>
+            <span class="news-date">January 15, 2026</span>
+          </div>
+          <h3><a href="#">Spring Regional Workshop Dates Announced — Registration Open</a></h3>
+          <p>April workshops coming to three regions across Virginia. Topics include updated VDACS compliance requirements, cleaning protocol best practices, and managing community relations during high-intake seasons.</p>
+        </div>
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-tag member">Member News</span>
+            <span class="news-date">January 8, 2026</span>
+          </div>
+          <h3><a href="#">Danville Area Humane Society Launches "No Birth, No Stray, No Neglect" Initiative</a></h3>
+          <p>DAHS, a VAAS founding member, announced a 2026 campaign addressing root causes of animal overpopulation through expanded spay/neuter grants, microchip clinics, and community education.</p>
+        </div>
+      </div>
+
+      <div class="news-sidebar">
+        <div class="sidebar-card">
+          <h4>📬 Stay Connected</h4>
+          <p>Get legislative alerts and member updates directly in your inbox. We only send what matters — typically 1-2 times per week.</p>
+          <div class="email-form">
+            <input type="email" placeholder="Your email">
+            <button>Subscribe</button>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>🏛️ 2026 Session Recap</h4>
+          <p>The Virginia General Assembly session ran January 14 – March 14. VAAS tracked 12 bills affecting animal welfare. Full session recap coming soon.</p>
+          <p style="margin:0"><a href="#" style="color:var(--gold);font-weight:600;text-decoration:none;">View tracked bills →</a></p>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>📞 Need Help Now?</h4>
+          <p>Operational question? Legal concern? Facing a crisis? Reach out to any board member — we promise to reach back.</p>
+          <p style="margin:0"><a href="#contact" style="color:var(--gold);font-weight:600;text-decoration:none;">Contact VAAS →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBER SPOTLIGHT -->
+<section class="spotlight-section" id="spotlight">
+  <div class="container">
+    <div class="section-label">Member Spotlight <span class="auto-badge" style="color:var(--gold-light);background:rgba(232,200,122,0.12);">Rotates Weekly</span></div>
+    <div class="section-title">Meet Our Members</div>
+    <div class="section-subtitle">Every week, we highlight a VAAS member organization — the shelters, officers, and professionals doing this work every day across Virginia.</div>
+
+    <div class="spotlight-card">
+      <div class="spotlight-text">
+        <div class="org-name">Rockingham-Harrisonburg SPCA</div>
+        <div class="org-location">📍 Harrisonburg, Virginia</div>
+        <div class="org-desc">
+          Led by Executive Director Anne Y. Anderson for over 16 years, the Rockingham-Harrisonburg SPCA serves the Shenandoah Valley as an open-access shelter committed to caring for every animal that comes through its doors. A founding VAAS member and consistent advocate for collaborative shelter programming.
+        </div>
+        <div class="spotlight-stats">
+          <div class="spotlight-stat-item">
+            <div class="val">16+</div>
+            <div class="lbl">Years Led</div>
+          </div>
+          <div class="spotlight-stat-item">
+            <div class="val">Open</div>
+            <div class="lbl">Intake Policy</div>
+          </div>
+          <div class="spotlight-stat-item">
+            <div class="val">VAAS</div>
+            <div class="lbl">Founding Member</div>
+          </div>
+        </div>
+      </div>
+      <div class="spotlight-photo">🐾</div>
+    </div>
+    <div class="spotlight-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <div class="section-label">Executive Committee</div>
+    <div class="section-title">Led by the people doing the work</div>
+    <div class="section-subtitle">Every member of our executive committee comes from the shelter floor. No ivory towers — just decades of hands-on experience protecting Virginia's animals.</div>
+
+    <div class="leadership-grid">
+      <div class="leader-card">
+        <div class="leader-avatar">SA</div>
+        <h3>Sharon Q. Adams, MPA</h3>
+        <div class="role">Chair</div>
+        <p>Virginia Beach. Leads VAAS's strategic direction and legislative coordination across the Commonwealth.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">PD</div>
+        <h3>Paulette Dean</h3>
+        <div class="role">Secretary</div>
+        <p>Executive Director, Danville Area Humane Society. 40+ years in animal welfare. Court-appointed humane investigator. VAAS co-founder.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">AA</div>
+        <h3>Anne Y. Anderson</h3>
+        <div class="role">Committee Member</div>
+        <p>Executive Director, Rockingham-Harrisonburg SPCA. 16+ years leading Shenandoah Valley's open-access shelter operations.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">TD</div>
+        <h3>Teresa Dockery</h3>
+        <div class="role">Committee Member</div>
+        <p>20 years in Virginia animal welfare legislation. Founded Spay Virginia. Opened 3 high-volume spay/neuter clinics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRGINIA DATA -->
+<section class="data-section" id="data">
+  <div class="container">
+    <div class="section-label">Virginia Shelter Data <span class="auto-badge">Updated Annually</span></div>
+    <div class="section-title">The numbers Virginia needs to see</div>
+    <div class="section-subtitle">
+      VAAS believes in transparency. These figures are drawn from VDACS annual reports and national data sources — not advocacy marketing.
+    </div>
+
+    <div class="data-card">
+      <div class="data-header">
+        <h3>2025 National & Virginia Context</h3>
+        <span class="source">Sources: VDACS, Shelter Animals Count (SAC/ASPCA)</span>
+      </div>
+      <div class="data-bars">
+        <div class="data-bar-row">
+          <div class="data-bar-label">National Euthanasia Rate</div>
+          <div class="data-bar-track"><div class="data-bar-fill green" style="width:10%"></div></div>
+          <div class="data-bar-value">~10%</div>
+        </div>
+        <div class="data-bar-row">
+          <div class="data-bar-label">VA Statewide Average</div>
+          <div class="data-bar-track"><div class="data-bar-fill gold" style="width:9.5%"></div></div>
+          <div class="data-bar-value">9.5%</div>
+        </div>
+        <div class="data-bar-row">
+          <div class="data-bar-label">VA Open-Intake Average</div>
+          <div class="data-bar-track"><div class="data-bar-fill navy" style="width:14%"></div></div>
+          <div class="data-bar-value">~14%</div>
+        </div>
+        <div class="data-bar-row">
+          <div class="data-bar-label">US Animals Entering Shelters</div>
+          <div class="data-bar-track"><div class="data-bar-fill green" style="width:72%"></div></div>
+          <div class="data-bar-value">5.8M</div>
+        </div>
+        <div class="data-bar-row">
+          <div class="data-bar-label">US Animals Euthanized</div>
+          <div class="data-bar-track"><div class="data-bar-fill gold" style="width:8%"></div></div>
+          <div class="data-bar-value">597K</div>
+        </div>
+      </div>
+      <div class="data-note">
+        <strong>Why context matters:</strong> Statewide averages include managed-intake shelters that control which animals they accept. Open-intake shelters — the ones VAAS represents — take every animal regardless of space, resources, or condition. Comparing them without that context is like comparing an emergency room to a walk-in clinic.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership-section" id="membership">
+  <div class="container">
+    <div class="section-label">Membership</div>
+    <div class="section-title">There are no membership dues</div>
+    <div class="section-subtitle">
+      You have already paid for the cost of membership through your dedication to serving the animals in Virginia.
+    </div>
+
+    <div class="membership-grid">
+      <div class="membership-tiers">
+        <div class="tier">
+          <h3>Full Member</h3>
+          <div class="price">FREE — Open-access & municipal shelters in Virginia</div>
+          <p>Full voting privileges, committee participation, legislative alerts, regional workshop access, and peer support network. Open to any open-access or municipal animal shelter operating in the Commonwealth.</p>
+        </div>
+        <div class="tier">
+          <h3>Associate Member</h3>
+          <div class="price">FREE — By invitation & committee vote</div>
+          <p>For organizations, agencies, or individuals who have demonstrated support of and worked with open-access shelters. Voting privileges and committee eligibility. Requires sponsorship by a member in good standing.</p>
+        </div>
+        <div class="tier">
+          <h3>Affiliate Member</h3>
+          <div class="price">FREE — Contiguous state shelters</div>
+          <p>For shelters in neighboring states seeking training, communication, and resource-sharing. No voting or legislative involvement — focused on cross-border collaboration and professional development.</p>
+        </div>
+      </div>
+
+      <div class="membership-form-area">
+        <h3>Apply to Join</h3>
+        <p>Fill out the form below and our Executive Committee will review your application.</p>
+        <div class="form-row">
+          <label>Organization Name</label>
+          <input type="text" placeholder="e.g., Rockbridge County Animal Shelter">
+        </div>
+        <div class="form-row">
+          <label>Contact Person</label>
+          <input type="text" placeholder="Full name">
+        </div>
+        <div class="form-row">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@shelter.org">
+        </div>
+        <div class="form-row">
+          <label>Membership Type</label>
+          <select>
+            <option>Full Member — Open-access/municipal shelter in VA</option>
+            <option>Associate Member — Supporter/partner organization</option>
+            <option>Affiliate Member — Contiguous state shelter</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Tell Us About Your Organization</label>
+          <textarea placeholder="Brief description of your shelter, intake policy, and why you'd like to join VAAS..."></textarea>
+        </div>
+        <button class="form-submit">Submit Application</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <div class="section-title">We promise to reach back</div>
+    <div class="contact-grid" style="margin-top:40px;">
+      <div class="contact-card">
+        <h4>Email</h4>
+        <p><a href="mailto:vaas@vaashelters.com">vaas@vaashelters.com</a></p>
+        <p style="margin-top:12px;">For general inquiries, membership questions, or workshop information.</p>
+      </div>
+      <div class="contact-card">
+        <h4>Chair — Sharon Q. Adams</h4>
+        <p>For legislative coordination, media inquiries, or board-level questions.</p>
+        <p style="margin-top:8px;"><a href="tel:7574092267">(757) 409-2267</a></p>
+      </div>
+      <div class="contact-card">
+        <h4>Workshop Topics & Ideas</h4>
+        <p>Have a topic you want covered? An operational concern you'd like addressed? We're always looking for new leaders — step up and reach out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Virginia Alliance for Animal Shelters (VAAS). All rights reserved.</p>
+  <p style="margin-top:6px;">Enhancing animal welfare in the Commonwealth through collective knowledge, experience, and shared resources.</p>
+</footer>
+
+</body>
+</html>

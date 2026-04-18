@@ -7,9 +7,9 @@ It should surface only consulting projects that are explicitly approved for publ
 ## Rule
 
 - Default state for every new project or slug is `private`.
-- The enforcement source of truth for new publication eligibility is [`mception-ai-projects.yml`](mception-ai-projects.yml).
+- The enforcement source of truth for new publication eligibility is [`portal/src/config/projects.yml`](../../portal/src/config/projects.yml).
 - "Publish to `mception.ai`" means both policy approval and inclusion in that allowlist.
-- A project may be newly published on `mception.ai` only if it is a consulting project, its project file has a completed `Publishing` section, and it is listed in [`mception-ai-projects.yml`](mception-ai-projects.yml).
+- A project may be newly published on `mception.ai` only if it is a consulting project, its project file has a completed `Publishing` section, and it is listed in [`portal/src/config/projects.yml`](../../portal/src/config/projects.yml).
 - Existing public slugs may be maintained without being treated as new publication requests only when the same slug is already live in production and the work does not broaden visibility beyond what is already public.
 - If a project is not listed in the allowlist, it is private for any new publication or visibility expansion.
 - If an already-live public slug is missing from the allowlist, treat that as documentation drift to reconcile rather than a reason to block maintenance of that same live slug.

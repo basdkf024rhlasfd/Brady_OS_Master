@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Scorecard — Brady Smallwood</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ════════════════════════════════════════════════════════ */
+  /* FEATURE 1: SPACE BACKGROUND WITH ANIMATED STARFIELD */
+  /* ════════════════════════════════════════════════════════ */
+  body {
+    background: #0a0a12;
+    color: #e4e4e7;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(2px 2px at 20px 30px, #eee, rgba(255,255,255,0)),
+                radial-gradient(2px 2px at 60px 70px, #fff, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 50px 50px, #fff, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 130px 80px, #fff, rgba(255,255,255,0)),
+                radial-gradient(2px 2px at 90px 10px, #fff, rgba(255,255,255,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    background-position: 0 0;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse 800px 400px at 20% 50%, rgba(139, 92, 246, 0.15), transparent),
+                radial-gradient(ellipse 600px 300px at 80% 80%, rgba(96, 165, 250, 0.1), transparent),
+                radial-gradient(ellipse 700px 350px at 40% 20%, rgba(168, 85, 247, 0.08), transparent);
+    pointer-events: none;
+    z-index: 0;
+    animation: nebulaPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes nebulaPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Top filter bar */
+  .filter-bar { display: flex; gap: 8px; margin-bottom: 24px; align-items: center; justify-content: flex-end; }
+  .filter-btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #333; background: transparent; color: #aaa; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover { border-color: #555; color: #fff; }
+  .filter-btn.active { border-color: #4ade80; color: #4ade80; background: rgba(74,222,128,0.08); }
+  /* FEATURE: Filter functionality */
+  .content-item { display: block; }
+  .content-item.hidden { display: none; }
+  .content-item[data-category="revenue"] { }
+  .content-item[data-category="product"] { }
+  .content-item[data-category="feedback"] { }
+  .filter-btn.jarvis { border-color: #4ade80; color: #4ade80; font-weight: 700; font-size: 14px; }
+  .filter-btn.jarvis .score { font-size: 18px; margin-right: 4px; }
+
+  /* ════════════════════════════════════════════════════════ */
+  /* FEATURE 5: SCREENSHOT CAPTURE BUTTON */
+  /* ════════════════════════════════════════════════════════ */
+  #screenshot-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    color: #666;
+    transition: all 0.2s;
+  }
+
+  #screenshot-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+  }
+
+  .capture-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #16a34a;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 3000;
+    animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+    pointer-events: none;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(400px); opacity: 0; }
+  }
+
+  /* ════════════════════════════════════════════════════════ */
+  /* FEATURE 6: WORKSTREAM DETAIL FLYOUT */
+  /* ════════════════════════════════════════════════════════ */
+  .workstream-flyout-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 2000;
+  }
+
+  .workstream-flyout-backdrop.visible {
+    display: block;
+  }
+
+  .workstream-flyout {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: #1a1b23;
+    border-left: 1.5px solid #2a2b35;
+    overflow-y: auto;
+    z-index: 2001;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workstream-flyout.visible {
+    right: 0;
+  }
+
+  .workstream-flyout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border-bottom: 1px solid #2a2b35;
+  }
+
+  .workstream-flyout-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .workstream-status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .workstream-flyout-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .workstream-flyout-close:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+  }
+
+  .workstream-flyout-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .ws-metric {
+    background: #2a2b35;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ws-metric-label {
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  .ws-metric-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* Header */
+  .header { margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .header h1 { font-size: 32px; font-weight: 700; color: #fff; }
+  .header .sub { color: #888; font-size: 14px; margin-top: 4px; }
+  .header-controls { display: flex; align-items: center; gap: 12px; }
+  /* FIX: Cross-Dashboard Navigation */
+  .header-nav { display: flex; gap: 16px; align-items: center; }
+  .nav-link { font-size: 12px; color: #888; text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; border: 1px solid transparent; }
+  .nav-link:hover { color: #ccc; background: rgba(255,255,255,0.05); }
+  .nav-link.active { color: #fff; background: rgba(59,130,246,0.15); border-color: #3b82f6; }
+
+  /* Summary cards row */
+  .summary-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+  .summary-card { background: #1a1b23; border-radius: 12px; padding: 16px; border: 1px solid #2a2b35; }
+  .summary-card .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .summary-card .value { font-size: 28px; font-weight: 700; color: #fff; }
+  .summary-card .value.red { color: #ef4444; }
+  .summary-card .value.green { color: #4ade80; }
+  .summary-card .value.yellow { color: #facc15; }
+  .summary-card .value.orange { color: #f97316; }
+  .summary-card .detail { font-size: 12px; color: #666; margin-top: 4px; }
+  .summary-card.alert { border-color: #ef4444; }
+  .summary-card.warn { border-color: #f97316; }
+  /* FEATURE: Harvey balls for completion stages */
+  .harvey-ball { font-size: 16px; letter-spacing: 2px; color: #4ade80; cursor: pointer; }
+  .harvey-ball:hover { opacity: 0.7; }
+
+  <!-- FEATURE: Bill Pay Radar Styles -->
+  #bill-pay-radar { background: #1a1b23; border-radius: 14px; padding: 20px; border: 1px solid #2a2b35; margin-bottom: 24px; }
+  .bpr-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; cursor: pointer; user-select: none; }
+  .bpr-title { font-size: 18px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .bpr-toggle { font-size: 14px; color: #888; transition: all 0.2s; }
+  .bpr-toggle.collapsed { transform: rotate(-90deg); }
+  .bpr-summary { display: flex; gap: 24px; margin-bottom: 16px; font-size: 13px; }
+  .bpr-summary-item { display: flex; align-items: center; gap: 6px; }
+  .bpr-summary-item .badge { padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+  .bpr-summary-item .badge.red { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .bpr-summary-item .badge.yellow { background: rgba(251,191,36,0.15); color: #facc15; }
+  .bpr-summary-item .badge.green { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .bpr-list { display: none; }
+  .bpr-list.visible { display: block; }
+  .bill-item { display: grid; grid-template-columns: 2fr 1.2fr 1.2fr 1fr; gap: 12px; align-items: center; padding: 12px; background: #0f1117; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #2a2b35; }
+  .bill-item.overdue { border-left-color: #ef4444; }
+  .bill-item.due-soon { border-left-color: #facc15; }
+  .bill-item.autopay { border-left-color: #60a5fa; }
+  .bill-item.paid { border-left-color: #4ade80; }
+  .bill-name { font-size: 13px; color: #e4e4e7; font-weight: 500; }
+  .bill-amount { font-size: 13px; color: #ccc; text-align: right; }
+  .bill-due { font-size: 12px; color: #888; text-align: center; }
+  .bill-status { font-size: 11px; font-weight: 700; text-transform: uppercase; text-align: right; padding: 4px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+  .bill-status.overdue { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .bill-status.due-soon { background: rgba(251,191,36,0.15); color: #facc15; }
+  .bill-status.default { background: rgba(148,163,184,0.15); color: #cbd5e1; }
+  .bill-status.autopay { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .bill-status.paid { background: rgba(74,222,128,0.15); color: #4ade80; }
+
+  <!-- FEATURE: Claudine Chat Interface Styles -->
+  #claudine-chat-trigger { position: fixed; bottom: 90px; left: 24px; z-index: 9999; width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(59,130,246,0.4); transition: all 0.2s; user-select: none; }
+  #claudine-chat-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(59,130,246,0.5); }
+  #claudine-chat-trigger.open { border-radius: 12px; background: #0f3460; }
+  #claudine-chat-trigger span { font-size: 24px; }
+
+  #claudine-chat-panel { position: fixed; bottom: 90px; left: 24px; z-index: 9998; width: 380px; max-height: 500px; background: #16161e; border: 1.5px solid #2a2b35; border-radius: 16px; box-shadow: 0 12px 48px rgba(0,0,0,0.6); display: none; flex-direction: column; overflow: hidden; }
+  #claudine-chat-panel.open { display: flex; }
+  #claudine-chat-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid #2a2b35; background: rgba(59,130,246,0.05); }
+  #claudine-chat-header-title { font-weight: 700; color: #60a5fa; font-size: 13px; }
+  #claudine-chat-header-close { background: none; border: none; color: #666; cursor: pointer; font-size: 18px; }
+  #claudine-chat-messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .chat-message { display: flex; gap: 8px; margin-bottom: 4px; }
+  .chat-message.user { justify-content: flex-end; }
+  .chat-message.system { justify-content: flex-start; }
+  .chat-bubble { max-width: 75%; padding: 10px 12px; border-radius: 10px; font-size: 12px; line-height: 1.4; word-wrap: break-word; }
+  .chat-bubble.user { background: #3b82f6; color: #fff; border-radius: 10px 2px 10px 10px; }
+  .chat-bubble.system { background: #1a1b23; color: #aaa; border: 1px solid #2a2b35; border-radius: 2px 10px 10px 10px; }
+  #claudine-chat-input-area { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid #2a2b35; background: #0f1117; }
+  #claudine-chat-input { flex: 1; background: #1a1b23; border: 1.5px solid #2a2b35; border-radius: 8px; padding: 8px 10px; color: #e4e4e7; font-size: 12px; font-family: inherit; outline: none; resize: none; max-height: 60px; }
+  #claudine-chat-input:focus { border-color: #3b82f6; }
+  #claudine-chat-input::placeholder { color: #444; }
+  #claudine-chat-send { background: #3b82f6; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
+  #claudine-chat-send:hover { background: #2563eb; transform: scale(1.05); }
+
+  <!-- FEATURE: Workstream Note Box Styles -->
+  .ws-note-box { display: none; background: rgba(255,255,255,0.02); border: 1px solid #2a2b35; border-radius: 8px; padding: 10px; margin-top: 12px; margin-bottom: 12px; }
+  .ws-note-box.visible { display: block; }
+  .ws-note-textarea { width: 100%; background: #0f1117; border: 1.5px solid #2a2b35; border-radius: 6px; padding: 8px 10px; color: #e4e4e7; font-size: 12px; font-family: inherit; resize: none; outline: none; height: 70px; margin-bottom: 6px; transition: border-color 0.2s; }
+  .ws-note-textarea:focus { border-color: #a78bfa; }
+  .ws-note-textarea::placeholder { color: #444; }
+  .ws-note-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
+  .ws-note-counter { color: #666; }
+  .ws-note-counter.warning { color: #facc15; }
+  .ws-note-counter.danger { color: #ef4444; }
+  .ws-note-icon { cursor: pointer; margin-left: 8px; transition: all 0.2s; opacity: 0.6; }
+  .ws-note-icon:hover { opacity: 1; }
+
+  <!-- FEATURE: SECTION CHAT INTERFACE STYLES -->
+  .ws-chat-icon { cursor: pointer; margin-left: 4px; transition: all 0.2s; opacity: 0.6; font-size: 16px; position: relative; }
+  .ws-chat-icon:hover { opacity: 1; }
+  .ws-chat-icon.unread::after { content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; }
+
+  .ws-chat-panel { display: none; background: #16161e; border-top: 2px solid #2a2b35; border-radius: 0 0 8px 8px; padding: 12px; margin-top: 12px; margin-bottom: 12px; max-height: 220px; overflow-y: auto; animation: slideDown 0.25s ease-out; }
+  .ws-chat-panel.visible { display: flex; flex-direction: column; }
+
+  @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 220px; } }
+
+  .ws-chat-messages { flex: 1; overflow-y: auto; padding: 8px 0; display: flex; flex-direction: column; gap: 6px; max-height: 140px; min-height: 40px; }
+  .ws-chat-msg { display: flex; font-size: 11px; line-height: 1.3; gap: 4px; }
+  .ws-chat-msg.user { justify-content: flex-end; }
+  .ws-chat-msg.system { justify-content: flex-start; }
+  .ws-chat-bubble { max-width: 85%; padding: 6px 10px; border-radius: 6px; word-wrap: break-word; }
+  .ws-chat-bubble.user { background: #3b82f6; color: #fff; border-radius: 6px 2px 6px 6px; }
+  .ws-chat-bubble.system { background: #2a2b35; color: #aaa; border: 0.5px solid #3a3b45; border-radius: 2px 6px 6px 6px; }
+  .ws-chat-time { font-size: 9px; color: #555; margin-top: 2px; }
+
+  .ws-chat-input-area { display: flex; gap: 6px; margin-top: 8px; border-top: 1px solid #2a2b35; padding-top: 8px; }
+  .ws-chat-input { flex: 1; background: #0f1117; border: 1px solid #2a2b35; border-radius: 4px; padding: 6px 8px; color: #e4e4e7; font-size: 11px; font-family: inherit; outline: none; resize: none; max-height: 40px; transition: border-color 0.2s; }
+  .ws-chat-input:focus { border-color: #3b82f6; }
+  .ws-chat-input::placeholder { color: #444; }
+  .ws-chat-send { background: #3b82f6; border: none; color: #fff; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600; transition: all 0.15s; white-space: nowrap; }
+  .ws-chat-send:hover { background: #2563eb; transform: scale(1.05); }
+
+  .ws-chat-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .ws-chat-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .ws-chat-clear { background: none; border: none; color: #555; cursor: pointer; font-size: 11px; padding: 2px 6px; border-radius: 3px; transition: all 0.15s; }
+  .ws-chat-clear:hover { background: rgba(255,0,0,0.1); color: #ef4444; }
+
+  .bpr-chat-icon { cursor: pointer; margin-left: 8px; opacity: 0.6; transition: all 0.2s; font-size: 14px; position: relative; }
+  .bpr-chat-icon:hover { opacity: 1; }
+  .bpr-chat-icon.unread::after { content: ''; position: absolute; top: -2px; right: -2px; width: 5px; height: 5px; background: #ef4444; border-radius: 50%; }
+
+  .dashboard-chat-icon { cursor: pointer; opacity: 0.6; transition: all 0.2s; font-size: 16px; position: relative; }
+  .dashboard-chat-icon:hover { opacity: 1; }
+  .dashboard-chat-icon.unread::after { content: ''; position: absolute; top: 0; right: -4px; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; }
+
+  /* Feedback banner */
+  .feedback-banner { background: linear-gradient(135deg, #1a1b23 0%, #1e1a2e 100%); border: 1.5px solid #7c3aed; border-radius: 14px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+  .feedback-banner .icon { font-size: 32px; }
+  .feedback-banner .content { flex: 1; }
+  .feedback-banner h3 { font-size: 16px; font-weight: 700; color: #a78bfa; margin-bottom: 4px; }
+  .feedback-banner p { font-size: 13px; color: #888; }
+  .feedback-banner .stats { display: flex; gap: 24px; }
+  .feedback-stat { text-align: center; }
+  .feedback-stat .num { font-size: 24px; font-weight: 700; }
+  .feedback-stat .num.red { color: #ef4444; }
+  .feedback-stat .num.green { color: #4ade80; }
+  .feedback-stat .num.yellow { color: #facc15; }
+  .feedback-stat .lbl { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  /* Feedback detail grid */
+  .feedback-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .fb-app {
+    background: #1a1b23;
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid #2a2b35;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .fb-app.clickable-product {
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .fb-app.clickable-product:hover {
+    background: #212230;
+    border-color: #3a3b45;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .fb-app .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .fb-app .dot.has { background: #4ade80; }
+  .fb-app .dot.missing { background: #ef4444; }
+  .fb-app .name { font-size: 13px; color: #ccc; flex: 1; }
+  .fb-app .status { font-size: 11px; font-weight: 600; }
+  .fb-app .status.live { color: #4ade80; }
+  .fb-app .status.none { color: #ef4444; }
+
+  /* Workstream cards */
+  .workstreams { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .ws-card { background: #1a1b23; border-radius: 14px; padding: 20px; border: 1px solid #2a2b35; }
+  .ws-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .ws-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .ws-icon.broker { background: rgba(59,130,246,0.15); }
+  .ws-icon.farm { background: rgba(74,222,128,0.15); }
+  .ws-icon.nemuro { background: rgba(168,85,247,0.15); }
+  .ws-icon.ivfh { background: rgba(251,191,36,0.15); }
+  .ws-icon.consulting { background: rgba(236,72,153,0.15); }
+  .ws-icon.family { background: rgba(244,114,182,0.15); }
+  .ws-name { font-weight: 700; font-size: 16px; color: #fff; }
+  .ws-sub { font-size: 12px; color: #666; }
+  .ws-badge { margin-left: auto; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ws-badge.building { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .ws-badge.bleeding { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .ws-badge.running { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .ws-badge.maintaining { background: rgba(250,204,21,0.15); color: #facc15; }
+  .ws-badge.active { background: rgba(168,85,247,0.15); color: #a78bfa; }
+
+  .ws-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; text-align: center; }
+  .kpi { position: relative; }
+  .kpi .val { font-size: 22px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .kpi .val:hover { opacity: 0.7; transform: scale(1.05); }
+  .kpi .val.blue { color: #60a5fa; }
+  .kpi .val.green { color: #4ade80; }
+  .kpi .val.red { color: #ef4444; }
+  .kpi .val.yellow { color: #facc15; }
+  .kpi .val.purple { color: #a78bfa; }
+  .kpi .val.orange { color: #f97316; }
+  .kpi .lbl { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; }
+
+  .ws-section-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; margin-top: 14px; }
+  .ws-list { list-style: none; }
+  .ws-list li { font-size: 13px; color: #aaa; padding: 3px 0; display: flex; align-items: flex-start; gap: 6px; }
+  .ws-list li::before { content: "•"; color: #555; flex-shrink: 0; }
+
+  .stuck-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 6px; }
+  .stuck-tag.blocker { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .stuck-tag.stuck { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .stuck-tag.waiting { background: rgba(251,191,36,0.2); color: #facc15; }
+  .stuck-tag.pattern { background: rgba(251,191,36,0.2); color: #facc15; }
+  .stuck-tag.loop-gap { background: rgba(168,85,247,0.2); color: #a78bfa; }
+  .stuck-tag.debt { background: rgba(251,191,36,0.2); color: #facc15; }
+  .stuck-tag.time-sink { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .stuck-tag.feedback { background: rgba(124,58,237,0.2); color: #a78bfa; }
+
+  .next-move { background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: 10px; padding: 14px; margin-top: 14px; }
+  .next-move .label { font-size: 11px; color: #4ade80; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .next-move .text { font-size: 13px; color: #ccc; line-height: 1.5; }
+
+  /* FEATURE: Interactive checkboxes with strikethrough */
+  .ws-list li { cursor: pointer; transition: all 0.2s; }
+  .ws-list li.completed { text-decoration: line-through; opacity: 0.5; color: #555; }
+  .ws-list li:hover { opacity: 0.8; }
+
+  /* FEATURE: Deep links styling */
+  .linkable { cursor: pointer; transition: all 0.2s; }
+  .linkable:hover { opacity: 0.7; text-decoration: underline; text-decoration-color: #4ade80; text-underline-offset: 2px; }
+
+  /* ════════════════════════════════════════════════════════ */
+  /* FEATURE 3: INBOX CONFIDENCE BREAKDOWN */
+  /* ════════════════════════════════════════════════════════ */
+  .confidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(250,204,21,0.1);
+    color: #facc15;
+    cursor: pointer;
+    position: relative;
+  }
+  .confidence-badge.green { background: rgba(74,222,128,0.1); color: #4ade80; }
+  .confidence-badge.gray { background: rgba(100,100,100,0.1); color: #777; }
+  .confidence-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .confidence-dot.active { background: currentColor; }
+  .confidence-dot.inactive { background: currentColor; opacity: 0.3; }
+
+  .confidence-breakdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background: #1a1b23;
+    border: 1.5px solid #2a2b35;
+    border-radius: 10px;
+    padding: 12px;
+    min-width: 200px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .confidence-breakdown.visible {
+    display: flex;
+  }
+
+  .breakdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #ccc;
+  }
+
+  .breakdown-dots {
+    display: flex;
+    gap: 2px;
+  }
+
+  .breakdown-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .breakdown-status.green { background: rgba(74,222,128,0.2); color: #4ade80; }
+  .breakdown-status.yellow { background: rgba(250,204,21,0.2); color: #facc15; }
+  .breakdown-status.gray { background: rgba(100,100,100,0.2); color: #888; }
+
+  .breakdown-score {
+    font-size: 11px;
+    color: #666;
+    text-align: right;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #2a2b35;
+  }
+
+  /* ════════════════════════════════════════════════════════ */
+  /* FEATURE 4: PRODUCT CARD DETAIL FLYOUT */
+  /* ════════════════════════════════════════════════════════ */
+  .product-flyout-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 2000;
+  }
+
+  .product-flyout-backdrop.visible {
+    display: block;
+  }
+
+  .product-flyout {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: #1a1b23;
+    border-left: 1.5px solid #2a2b35;
+    overflow-y: auto;
+    z-index: 2001;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-flyout.visible {
+    right: 0;
+  }
+
+  .product-flyout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border-bottom: 1px solid #2a2b35;
+  }
+
+  .product-flyout-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .product-flyout-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .product-flyout-close:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+  }
+
+  .product-flyout-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .flyout-section {
+    margin-bottom: 24px;
+  }
+
+  .flyout-section-label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .phase-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .phase-dots {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #4ade80;
+  }
+
+  .phase-label {
+    font-size: 13px;
+    color: #ccc;
+    font-weight: 600;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #2a2b35;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-percent {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .item-list {
+    list-style: none;
+  }
+
+  .item-list li {
+    font-size: 13px;
+    color: #aaa;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42, 43, 53, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .item-list li:last-child {
+    border-bottom: none;
+  }
+
+  .item-text {
+    flex: 1;
+  }
+
+  .item-date {
+    font-size: 10px;
+    color: #555;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  .quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .quick-link {
+    padding: 8px 12px;
+    background: #2a2b35;
+    border-radius: 6px;
+    color: #60a5fa;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    border: 1px solid #3a3b45;
+  }
+
+  .quick-link:hover {
+    background: #3a3b45;
+    color: #a0d5ff;
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) { .workstreams { grid-template-columns: repeat(2, 1fr); } .summary-row { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 768px) { .workstreams { grid-template-columns: 1fr; } .summary-row { grid-template-columns: repeat(2, 1fr); } .feedback-banner { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+<!-- Filter bar -->
+<div class="filter-bar">
+  <button class="filter-btn jarvis"><span class="score">3.5</span> JARVIS</button>
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Revenue</button>
+  <button class="filter-btn">Product</button>
+  <button class="filter-btn">Feedback</button>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div>
+    <h1>Portfolio Scorecard</h1>
+    <div class="sub">Brady Smallwood · Sycamore Lane Holdings, LLC · Generated Feb 7, 2026</div>
+  </div>
+  <!-- FIX: Cross-Dashboard Navigation Links -->
+  <div class="header-nav">
+    <a href="portfolio-scorecard.html" class="nav-link active" title="Portfolio Scorecard">Scorecard</a>
+    <a href="command-console-beta.html" class="nav-link" title="Command Console">Console</a>
+    <a href="vendor-portal.html" class="nav-link" title="Vendor Portal">Portal</a>
+  </div>
+  <!-- FEATURE 5: Screenshot Capture Button -->
+  <div class="header-controls">
+    <button id="screenshot-btn" title="Capture screenshot" onclick="captureScreenshot()">📸</button>
+  </div>
+</div>
+
+<!-- Summary row with Dashboard Chat -->
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+  <div style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Dashboard KPIs</div>
+  <span class="dashboard-chat-icon" onclick="toggleSectionChat(event, 'Dashboard')" title="Chat about Dashboard KPIs">💬</span>
+</div>
+<div class="summary-row">
+  <div class="summary-card">
+    <div class="label">Active Workstreams</div>
+    <div class="value">6</div>
+    <div class="detail">3 revenue-generating</div>
+  </div>
+  <div class="summary-card linkable">
+    <div class="label">Revenue (Trailing)</div>
+    <div class="value red">$0</div>
+    <div class="detail">Target: $200K+ by Q4 2026</div>
+  </div>
+  <div class="summary-card linkable">
+    <div class="label">Prototypes Built</div>
+    <div class="value">18</div>
+    <div class="detail">0 deployed with payments</div>
+  </div>
+  <!-- FEATURE 3: Inbox confidence indicator with breakdown -->
+  <div class="summary-card">
+    <div class="label">Inbox Confidence</div>
+    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px; position: relative;">
+      <div class="confidence-badge" onclick="toggleConfidenceBreakdown(event)">
+        <span class="confidence-dot active"></span>
+        <span class="confidence-dot inactive"></span>
+        <span class="confidence-dot inactive"></span>
+      </div>
+      <span style="font-size: 12px; color: #888;">Partial</span>
+      <!-- Breakdown popup -->
+      <div class="confidence-breakdown" id="confidence-breakdown">
+        <div class="breakdown-item">
+          <div class="breakdown-dots">
+            <span class="confidence-dot active"></span>
+            <span class="confidence-dot active"></span>
+          </div>
+          <span>Email Hub</span>
+          <span class="breakdown-status yellow">Partial</span>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-dots">
+            <span class="confidence-dot active"></span>
+            <span class="confidence-dot active"></span>
+            <span class="confidence-dot active"></span>
+          </div>
+          <span>Gmail</span>
+          <span class="breakdown-status green">Processed</span>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-dots">
+            <span class="confidence-dot inactive"></span>
+            <span class="confidence-dot inactive"></span>
+            <span class="confidence-dot inactive"></span>
+          </div>
+          <span>Voice Notes</span>
+          <span class="breakdown-status gray">Unprocessed</span>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-dots">
+            <span class="confidence-dot active"></span>
+            <span class="confidence-dot active"></span>
+            <span class="confidence-dot active"></span>
+          </div>
+          <span>Calendar</span>
+          <span class="breakdown-status green">Synced</span>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-dots">
+            <span class="confidence-dot active"></span>
+            <span class="confidence-dot active"></span>
+          </div>
+          <span>Pulse Notes</span>
+          <span class="breakdown-status yellow">Partial</span>
+        </div>
+        <div class="breakdown-score">Overall Score: 2.2/3.0 (73%)</div>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card alert">
+    <div class="label">WIP Overload</div>
+    <div class="value red">HIGH</div>
+    <div class="detail">3 build workstreams active</div>
+  </div>
+  <!-- FEATURE: Learnings Score metric -->
+  <div class="summary-card">
+    <div class="label">Learnings Score</div>
+    <div class="value green">6.5/10</div>
+    <div class="detail" style="color: #4ade80;">↑ Trending up</div>
+  </div>
+</div>
+
+<!-- FEATURE: Dashboard Chat Panel -->
+<div class="ws-chat-panel" data-section="Dashboard" style="margin-bottom: 24px; margin-top: -8px;">
+  <div class="ws-chat-header-row">
+    <span class="ws-chat-label">Dashboard Chat</span>
+    <button class="ws-chat-clear" onclick="clearSectionChat(event, 'Dashboard')">Clear</button>
+  </div>
+  <div class="ws-chat-messages"></div>
+  <div class="ws-chat-input-area">
+    <input type="text" class="ws-chat-input" placeholder="Quick note about Dashboard KPIs..." />
+    <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'Dashboard')">→</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FEATURE: Bill Pay Radar (with context-aware chat) -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="bill-pay-radar">
+  <div class="bpr-header" onclick="toggleBillPayRadar()">
+    <div class="bpr-title">
+      <span>💰</span>
+      <span>Bill Pay Radar</span>
+      <!-- FEATURE: Bill Pay Chat Icon -->
+      <span class="bpr-chat-icon" onclick="toggleSectionChat(event, 'Bill Pay')" title="Quick note about Bill Pay">💬</span>
+    </div>
+    <div class="bpr-toggle" id="bpr-toggle">▼</div>
+  </div>
+  <div class="bpr-summary" id="bpr-summary">
+    <!-- Populated by JavaScript -->
+  </div>
+  <div class="bpr-list" id="bpr-list">
+    <!-- Populated by JavaScript -->
+  </div>
+  <!-- FEATURE: Bill Pay Chat Panel -->
+  <div class="ws-chat-panel" data-section="Bill Pay">
+    <div class="ws-chat-header-row">
+      <span class="ws-chat-label">Bill Pay Chat</span>
+      <button class="ws-chat-clear" onclick="clearSectionChat(event, 'Bill Pay')">Clear</button>
+    </div>
+    <div class="ws-chat-messages"></div>
+    <div class="ws-chat-input-area">
+      <input type="text" class="ws-chat-input" placeholder="Quick note about Bill Pay..." />
+      <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'Bill Pay')">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FEATURE: Claudine Chat Interface (Bottom-Left) -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="claudine-chat-trigger" onclick="toggleClaudineChat()">
+  <span>🤖</span>
+</div>
+
+<div id="claudine-chat-panel">
+  <div id="claudine-chat-header">
+    <span id="claudine-chat-header-title">Claudine Quick Note</span>
+    <button id="claudine-chat-header-close" onclick="toggleClaudineChat()">×</button>
+  </div>
+  <div id="claudine-chat-messages"></div>
+  <div id="claudine-chat-input-area">
+    <textarea id="claudine-chat-input" placeholder="Jot a quick note..." rows="1"></textarea>
+    <button id="claudine-chat-send" onclick="sendClaudineMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FEATURE 4: Feedback per-app grid with Harvey balls for completion stages -->
+<div class="feedback-grid" data-category="feedback">
+  <!-- ●●●● = live, ●●●○ = beta, ●●○○ = prototype, ●○○○ = concept, ●●●●✦ = optimizing -->
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Moving Cost Calculator')" title="Live - fully deployed"><div class="dot has"></div><div class="name">Moving Cost Calculator</div><div class="harvey-ball">●●●●</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Small Claims Calculator')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Small Claims Calculator</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Marriage Black Box')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Marriage Black Box</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Scam Email Analyzer')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Scam Email Analyzer</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Wedding Seating Chart')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Wedding Seating Chart</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('House Cleaner Budget')" title="Concept - early stage"><div class="dot missing"></div><div class="name">House Cleaner Budget</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Vet Bill Negotiator')" title="Prototype - working version"><div class="dot missing"></div><div class="name">Vet Bill Negotiator</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Trade Floor Calc')" title="Prototype - working version"><div class="dot missing"></div><div class="name">Trade Floor Calc</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Garage Sale Pricer')" title="Prototype - working version"><div class="dot missing"></div><div class="name">Garage Sale Pricer</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Fence Bid Checker')" title="Prototype - working version"><div class="dot missing"></div><div class="name">Fence Bid Checker</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Aquarium Builder')" title="Beta - limited release"><div class="dot missing"></div><div class="name">Aquarium Builder</div><div class="harvey-ball">●●●○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Subscription Audit')" title="Beta - limited release"><div class="dot missing"></div><div class="name">Subscription Audit</div><div class="harvey-ball">●●●○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Freelancer Rate Calc')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Freelancer Rate Calc</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('HOA Fine Risk')" title="Concept - early stage"><div class="dot missing"></div><div class="name">HOA Fine Risk</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Appliance Repair/Replace')" title="Prototype - working version"><div class="dot missing"></div><div class="name">Appliance Repair/Replace</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Plant Parent Cost')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Plant Parent Cost</div><div class="harvey-ball">●○○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Side Hustle Calculator')" title="Prototype - working version"><div class="dot missing"></div><div class="name">Side Hustle Calculator</div><div class="harvey-ball">●●○○</div></div>
+  <div class="fb-app clickable-product" onclick="openProductFlyout('Home Warranty Value')" title="Concept - early stage"><div class="dot missing"></div><div class="name">Home Warranty Value</div><div class="harvey-ball">●○○○</div></div>
+</div>
+
+<!-- FEATURE 4: Product Card Detail Flyout -->
+<div class="product-flyout-backdrop" id="product-flyout-backdrop" onclick="closeProductFlyout()"></div>
+<div class="product-flyout" id="product-flyout">
+  <div class="product-flyout-header">
+    <div class="product-flyout-title" id="product-title">Product Name</div>
+    <button class="product-flyout-close" onclick="closeProductFlyout()">×</button>
+  </div>
+  <div class="product-flyout-content">
+    <div class="flyout-section">
+      <div class="flyout-section-label">Current Phase</div>
+      <div class="phase-display">
+        <div class="phase-dots" id="product-phase-dots">●●●●</div>
+        <div class="phase-label" id="product-phase-label">LIVE</div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="product-progress" style="width: 90%;"></div>
+      </div>
+      <div class="progress-percent" id="product-progress-text">90% complete</div>
+    </div>
+
+    <div class="flyout-section">
+      <div class="flyout-section-label">Recent Upgrades</div>
+      <ul class="item-list" id="product-recent">
+        <li><div class="item-text">Feature 1</div><div class="item-date">Feb 4</div></li>
+      </ul>
+    </div>
+
+    <div class="flyout-section">
+      <div class="flyout-section-label">Backlog: Next Priorities</div>
+      <ul class="item-list" id="product-backlog">
+        <li><div class="item-text">Priority 1</div></li>
+      </ul>
+    </div>
+
+    <div class="flyout-section">
+      <div class="flyout-section-label">Quick Links</div>
+      <div class="quick-links">
+        <a class="quick-link" href="#" target="_blank">View on Notion</a>
+        <a class="quick-link" href="#" target="_blank">GitHub Repo</a>
+        <a class="quick-link" href="#" target="_blank">Live Demo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Workstream cards -->
+<div class="workstreams">
+
+  <!-- Broker Co -->
+  <div class="ws-card">
+    <div class="ws-header" onclick="openWorkstreamFlyout('Broker Co')" style="cursor: pointer;">
+      <div class="ws-icon broker">🏢</div>
+      <div>
+        <div class="ws-name">Broker Co</div>
+        <div class="ws-sub">Sycamore Lane Holdings · Main Bet</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px; align-items: center;">
+        <div class="ws-badge building">Building</div>
+        <!-- FEATURE: Workstream Chat Icon -->
+        <span class="ws-chat-icon" onclick="toggleSectionChat(event, 'Broker Co')" title="Chat about Broker Co">💬</span>
+        <!-- FEATURE 3: Workstream Note Icon -->
+        <span class="ws-note-icon" onclick="toggleWsNote(this, 'Broker Co')" title="Quick notes">📝</span>
+      </div>
+    </div>
+    <!-- FEATURE: Workstream Chat Panel -->
+    <div class="ws-chat-panel" data-section="Broker Co">
+      <div class="ws-chat-header-row">
+        <span class="ws-chat-label">Broker Co Chat</span>
+        <button class="ws-chat-clear" onclick="clearSectionChat(event, 'Broker Co')">Clear</button>
+      </div>
+      <div class="ws-chat-messages"></div>
+      <div class="ws-chat-input-area">
+        <input type="text" class="ws-chat-input" placeholder="Quick note about Broker Co..." />
+        <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'Broker Co')">→</button>
+      </div>
+    </div>
+    <!-- FEATURE 3: Workstream Note Box -->
+    <div class="ws-note-box" data-ws="Broker Co">
+      <textarea class="ws-note-textarea" placeholder="Quick note for Broker Co..." maxlength="500"></textarea>
+      <div class="ws-note-footer">
+        <span class="ws-note-counter"><span class="char-count">0</span>/500</span>
+      </div>
+    </div>
+    <div class="ws-kpis">
+      <div class="kpi"><div class="val blue">7</div><div class="lbl">Status Score</div></div>
+      <div class="kpi"><div class="val">1/12</div><div class="lbl">Modules Done</div></div>
+      <div class="kpi"><div class="val green">$200K</div><div class="lbl">ARR Target</div></div>
+    </div>
+    <div class="ws-section-label">What Moved</div>
+    <ul class="ws-list">
+      <li>Product Positioning Brief V1.0 — LOCKED</li>
+      <li>All 12 VIS modules spec'd to Musashi quality</li>
+      <li>Pricing Deep Dive v0.3 in progress</li>
+      <li>MaddieMerchant domain expert deployed</li>
+    </ul>
+    <div class="ws-section-label">What's Stuck</div>
+    <ul class="ws-list">
+      <li><span class="stuck-tag stuck">STUCK</span>Pricing module blocked on data infrastructure</li>
+      <li><span class="stuck-tag waiting">WAITING</span>No pilot clients yet — need to ship before recruiting</li>
+    </ul>
+    <div class="next-move">
+      <div class="label">Next Move</div>
+      <div class="text">Build P1 modules: Cost Modeling → Retailer Fit Scoring → Compliance Prep. Ship "Pricing Lite" with ranges only.</div>
+    </div>
+  </div>
+
+  <!-- App Farm -->
+  <div class="ws-card">
+    <div class="ws-header" onclick="openWorkstreamFlyout('App Farm')" style="cursor: pointer;">
+      <div class="ws-icon farm">🌱</div>
+      <div>
+        <div class="ws-name">App Farm</div>
+        <div class="ws-sub">Sycamore Lane Holdings · Rich Dad Model</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px; align-items: center;">
+        <div class="ws-badge bleeding">Bleeding</div>
+        <!-- FEATURE: Workstream Chat Icon -->
+        <span class="ws-chat-icon" onclick="toggleSectionChat(event, 'App Farm')" title="Chat about App Farm">💬</span>
+        <!-- FEATURE 3: Workstream Note Icon -->
+        <span class="ws-note-icon" onclick="toggleWsNote(this, 'App Farm')" title="Quick notes">📝</span>
+      </div>
+    </div>
+    <!-- FEATURE: Workstream Chat Panel -->
+    <div class="ws-chat-panel" data-section="App Farm">
+      <div class="ws-chat-header-row">
+        <span class="ws-chat-label">App Farm Chat</span>
+        <button class="ws-chat-clear" onclick="clearSectionChat(event, 'App Farm')">Clear</button>
+      </div>
+      <div class="ws-chat-messages"></div>
+      <div class="ws-chat-input-area">
+        <input type="text" class="ws-chat-input" placeholder="Quick note about App Farm..." />
+        <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'App Farm')">→</button>
+      </div>
+    </div>
+    <!-- FEATURE 3: Workstream Note Box -->
+    <div class="ws-note-box" data-ws="App Farm">
+      <textarea class="ws-note-textarea" placeholder="Quick note for App Farm..." maxlength="500"></textarea>
+      <div class="ws-note-footer">
+        <span class="ws-note-counter"><span class="char-count">0</span>/500</span>
+      </div>
+    </div>
+    <div class="ws-kpis">
+      <div class="kpi"><div class="val yellow">18</div><div class="lbl">Prototypes</div></div>
+      <div class="kpi"><div class="val red">0</div><div class="lbl">Deployed</div></div>
+      <div class="kpi"><div class="val red">$0</div><div class="lbl">Revenue</div></div>
+    </div>
+    <div class="ws-section-label">What Moved</div>
+    <ul class="ws-list">
+      <li>19 app specs documented with build guides</li>
+      <li>Foundation-01 sprint complete (18 prototypes)</li>
+      <li>Launch cohort selected: Small Claims, Marriage Black Box, Scam Analyzer</li>
+      <li>Deploy specs written for all 3</li>
+    </ul>
+    <div class="ws-section-label">What's Stuck</div>
+    <ul class="ws-list">
+      <li><span class="stuck-tag blocker">BLOCKER</span>No Stripe account connected</li>
+      <li><span class="stuck-tag blocker">BLOCKER</span>No domains registered</li>
+      <li><span class="stuck-tag blocker">BLOCKER</span>Entity formation incomplete (Sycamore Lane Holdings)</li>
+      <li><span class="stuck-tag pattern">PATTERN</span>18 prototypes, $0 revenue = avoidance</li>
+    </ul>
+    <div class="next-move">
+      <div class="label">Next Move</div>
+      <div class="text">STOP BUILDING. Deploy cohort 1 with Stripe. Register 3 domains. No new prototypes until revenue data from first cohort. Add feedback widget to ALL deployed apps.</div>
+    </div>
+  </div>
+
+  <!-- Nemuro / OS 2.0 -->
+  <div class="ws-card">
+    <div class="ws-header">
+      <div class="ws-icon nemuro">⚙️</div>
+      <div>
+        <div class="ws-name">Nemuro (OS 2.0)</div>
+        <div class="ws-sub">Infrastructure · Meta-System</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px; align-items: center;">
+        <div class="ws-badge active">Active</div>
+        <!-- FEATURE: Workstream Chat Icon -->
+        <span class="ws-chat-icon" onclick="toggleSectionChat(event, 'Nemuro (OS 2.0)')" title="Chat about Nemuro">💬</span>
+        <!-- FEATURE 3: Workstream Note Icon -->
+        <span class="ws-note-icon" onclick="toggleWsNote(this, 'Nemuro (OS 2.0)')" title="Quick notes">📝</span>
+      </div>
+    </div>
+    <!-- FEATURE: Workstream Chat Panel -->
+    <div class="ws-chat-panel" data-section="Nemuro (OS 2.0)">
+      <div class="ws-chat-header-row">
+        <span class="ws-chat-label">Nemuro Chat</span>
+        <button class="ws-chat-clear" onclick="clearSectionChat(event, 'Nemuro (OS 2.0)')">Clear</button>
+      </div>
+      <div class="ws-chat-messages"></div>
+      <div class="ws-chat-input-area">
+        <input type="text" class="ws-chat-input" placeholder="Quick note about Nemuro..." />
+        <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'Nemuro (OS 2.0)')">→</button>
+      </div>
+    </div>
+    <!-- FEATURE 3: Workstream Note Box -->
+    <div class="ws-note-box" data-ws="Nemuro (OS 2.0)">
+      <textarea class="ws-note-textarea" placeholder="Quick note for Nemuro (OS 2.0)..." maxlength="500"></textarea>
+      <div class="ws-note-footer">
+        <span class="ws-note-counter"><span class="char-count">0</span>/500</span>
+      </div>
+    </div>
+    <div class="ws-kpis">
+      <div class="kpi"><div class="val purple">3.5</div><div class="lbl">Jarvis Score</div></div>
+      <div class="kpi"><div class="val">5</div><div class="lbl">Agents Built</div></div>
+      <div class="kpi"><div class="val green">✓</div><div class="lbl">Recursive Loop</div></div>
+    </div>
+    <div class="ws-section-label">What Moved</div>
+    <ul class="ws-list">
+      <li>Agent architecture complete (Claudine + MaddieMerchant)</li>
+      <li>Governance contracts defined with full scoring</li>
+      <li>AMY/PAM absorbed into Claudine — single interface</li>
+      <li>Onboarding Brief + recursive learning active</li>
+      <li>Feedback Tool Standard locked in Musashi San SOP</li>
+    </ul>
+    <div class="ws-section-label">What's Stuck</div>
+    <ul class="ws-list">
+      <li><span class="stuck-tag loop-gap">LOOP GAP</span>Daily state loop not automated — manual invocation</li>
+      <li><span class="stuck-tag debt">DEBT</span>Daily State page gaps, Pulse Notes stale</li>
+      <li><span class="stuck-tag time-sink">TIME SINK</span>Redesigning system instead of shipping products</li>
+    </ul>
+    <div class="next-move">
+      <div class="label">Next Move</div>
+      <div class="text">FREEZE architecture changes. Run the loop for 2 weeks. Only fix things that break. Redirect energy to Broker Co & App Farm deployment.</div>
+    </div>
+  </div>
+
+  <!-- IVFH Board -->
+  <div class="ws-card">
+    <div class="ws-header">
+      <div class="ws-icon ivfh">🏛️</div>
+      <div>
+        <div class="ws-name">IVFH Board</div>
+        <div class="ws-sub">Board Member · Advisory</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px; align-items: center;">
+        <div class="ws-badge maintaining">Maintaining</div>
+        <!-- FEATURE: Workstream Chat Icon -->
+        <span class="ws-chat-icon" onclick="toggleSectionChat(event, 'IVFH Board')" title="Chat about IVFH">💬</span>
+        <!-- FEATURE 3: Workstream Note Icon -->
+        <span class="ws-note-icon" onclick="toggleWsNote(this, 'IVFH Board')" title="Quick notes">📝</span>
+      </div>
+    </div>
+    <!-- FEATURE: Workstream Chat Panel -->
+    <div class="ws-chat-panel" data-section="IVFH Board">
+      <div class="ws-chat-header-row">
+        <span class="ws-chat-label">IVFH Chat</span>
+        <button class="ws-chat-clear" onclick="clearSectionChat(event, 'IVFH Board')">Clear</button>
+      </div>
+      <div class="ws-chat-messages"></div>
+      <div class="ws-chat-input-area">
+        <input type="text" class="ws-chat-input" placeholder="Quick note about IVFH..." />
+        <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'IVFH Board')">→</button>
+      </div>
+    </div>
+    <!-- FEATURE 3: Workstream Note Box -->
+    <div class="ws-note-box" data-ws="IVFH Board">
+      <textarea class="ws-note-textarea" placeholder="Quick note for IVFH Board..." maxlength="500"></textarea>
+      <div class="ws-note-footer">
+        <span class="ws-note-counter"><span class="char-count">0</span>/500</span>
+      </div>
+    </div>
+    <div class="ws-kpis">
+      <div class="kpi"><div class="val green">Active</div><div class="lbl">Status</div></div>
+      <div class="kpi"><div class="val">Feb 19</div><div class="lbl">Next Meeting</div></div>
+      <div class="kpi"><div class="val">Denver</div><div class="lbl">Location</div></div>
+    </div>
+    <div class="ws-section-label">What Moved</div>
+    <ul class="ws-list">
+      <li>Board meeting + dinner scheduled Feb 19</li>
+      <li>Enterprise Strategy Whitepaper delivered</li>
+    </ul>
+    <div class="ws-section-label">What's Stuck</div>
+    <ul class="ws-list">
+      <li><span class="stuck-tag waiting">PREP</span>Board prep materials not started</li>
+    </ul>
+    <div class="next-move">
+      <div class="label">Next Move</div>
+      <div class="text">Prep board materials by Feb 17. Review strategy doc. Low energy — maintain, don't expand.</div>
+    </div>
+  </div>
+
+  <!-- Consulting & Network -->
+  <div class="ws-card">
+    <div class="ws-header">
+      <div class="ws-icon consulting">🤝</div>
+      <div>
+        <div class="ws-name">Consulting & Network</div>
+        <div class="ws-sub">Revenue Stream · Relationships</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px; align-items: center;">
+        <div class="ws-badge building">Building</div>
+        <!-- FEATURE: Workstream Chat Icon -->
+        <span class="ws-chat-icon" onclick="toggleSectionChat(event, 'Consulting & Network')" title="Chat about Consulting">💬</span>
+        <!-- FEATURE 3: Workstream Note Icon -->
+        <span class="ws-note-icon" onclick="toggleWsNote(this, 'Consulting & Network')" title="Quick notes">📝</span>
+      </div>
+    </div>
+    <!-- FEATURE: Workstream Chat Panel -->
+    <div class="ws-chat-panel" data-section="Consulting & Network">
+      <div class="ws-chat-header-row">
+        <span class="ws-chat-label">Consulting Chat</span>
+        <button class="ws-chat-clear" onclick="clearSectionChat(event, 'Consulting & Network')">Clear</button>
+      </div>
+      <div class="ws-chat-messages"></div>
+      <div class="ws-chat-input-area">
+        <input type="text" class="ws-chat-input" placeholder="Quick note about Consulting..." />
+        <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'Consulting & Network')">→</button>
+      </div>
+    </div>
+    <!-- FEATURE 3: Workstream Note Box -->
+    <div class="ws-note-box" data-ws="Consulting & Network">
+      <textarea class="ws-note-textarea" placeholder="Quick note for Consulting & Network..." maxlength="500"></textarea>
+      <div class="ws-note-footer">
+        <span class="ws-note-counter"><span class="char-count">0</span>/500</span>
+      </div>
+    </div>
+    <div class="ws-kpis">
+      <div class="kpi"><div class="val green">3</div><div class="lbl">Active Leads</div></div>
+      <div class="kpi"><div class="val">5+</div><div class="lbl">Network Calls/Wk</div></div>
+      <div class="kpi"><div class="val yellow">$0</div><div class="lbl">Revenue YTD</div></div>
+    </div>
+    <div class="ws-section-label">What Moved</div>
+    <ul class="ws-list">
+      <li>Arbolus consulting opportunity (food vendor selection)</li>
+      <li>Dialectica AI/agentic AI consulting request</li>
+      <li>Ben Hyatt call — potential brand collab</li>
+      <li>Jess Peet, Skye Kim, Jay Scherger — active conversations</li>
+    </ul>
+    <div class="next-move">
+      <div class="label">Next Move</div>
+      <div class="text">Close Arbolus engagement. Follow up Dialectica. Convert network calls into pipeline.</div>
+    </div>
+  </div>
+
+  <!-- Family & Home -->
+  <div class="ws-card">
+    <div class="ws-header">
+      <div class="ws-icon family">🏠</div>
+      <div>
+        <div class="ws-name">Family & Home</div>
+        <div class="ws-sub">Protected · Non-Negotiable</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px; align-items: center;">
+        <div class="ws-badge running">Running</div>
+        <!-- FEATURE: Workstream Chat Icon -->
+        <span class="ws-chat-icon" onclick="toggleSectionChat(event, 'Family & Home')" title="Chat about Family">💬</span>
+        <!-- FEATURE 3: Workstream Note Icon -->
+        <span class="ws-note-icon" onclick="toggleWsNote(this, 'Family & Home')" title="Quick notes">📝</span>
+      </div>
+    </div>
+    <!-- FEATURE: Workstream Chat Panel -->
+    <div class="ws-chat-panel" data-section="Family & Home">
+      <div class="ws-chat-header-row">
+        <span class="ws-chat-label">Family Chat</span>
+        <button class="ws-chat-clear" onclick="clearSectionChat(event, 'Family & Home')">Clear</button>
+      </div>
+      <div class="ws-chat-messages"></div>
+      <div class="ws-chat-input-area">
+        <input type="text" class="ws-chat-input" placeholder="Quick note about Family..." />
+        <button class="ws-chat-send" onclick="sendSectionChatMessage(event, 'Family & Home')">→</button>
+      </div>
+    </div>
+    <!-- FEATURE 3: Workstream Note Box -->
+    <div class="ws-note-box" data-ws="Family & Home">
+      <textarea class="ws-note-textarea" placeholder="Quick note for Family & Home..." maxlength="500"></textarea>
+      <div class="ws-note-footer">
+        <span class="ws-note-counter"><span class="char-count">0</span>/500</span>
+      </div>
+    </div>
+    <div class="ws-kpis">
+      <div class="kpi"><div class="val green">5</div><div class="lbl">Kids</div></div>
+      <div class="kpi"><div class="val">Sun 5p</div><div class="lbl">Family Dinner</div></div>
+      <div class="kpi"><div class="val green">✓</div><div class="lbl">Cal Protected</div></div>
+    </div>
+    <div class="ws-section-label">What Moved</div>
+    <ul class="ws-list">
+      <li>Faith All-State auditions — logistics handled</li>
+      <li>Luke BJJ + basketball schedule locked</li>
+      <li>Family meeting cadence holding (Sundays)</li>
+    </ul>
+    <div class="next-move">
+      <div class="label">Next Move</div>
+      <div class="text">Spring picture day 2/18. Faith All-State performance coming up. Keep the 5-7pm dinner block sacred.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FEATURE 6: Workstream Detail Flyout -->
+<div class="workstream-flyout-backdrop" id="workstream-flyout-backdrop" onclick="closeWorkstreamFlyout()"></div>
+<div class="workstream-flyout" id="workstream-flyout">
+  <div class="workstream-flyout-header">
+    <div>
+      <div class="workstream-flyout-title" id="workstream-title">Workstream Name</div>
+      <div class="workstream-status-badge" id="workstream-status">Active Development</div>
+    </div>
+    <button class="workstream-flyout-close" onclick="closeWorkstreamFlyout()">×</button>
+  </div>
+  <div class="workstream-flyout-content">
+    <div class="flyout-section">
+      <div class="flyout-section-label">Key Metrics</div>
+      <div id="workstream-metrics">
+        <div class="ws-metric">
+          <span class="ws-metric-label">Status</span>
+          <span class="ws-metric-value" id="ws-metric-1">Active</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flyout-section">
+      <div class="flyout-section-label">Recent Activity</div>
+      <ul class="item-list" id="workstream-recent">
+        <li><div class="item-text">Recent action item</div><div class="item-date">Today</div></li>
+      </ul>
+    </div>
+
+    <div class="flyout-section">
+      <div class="flyout-section-label">Active Threads</div>
+      <ul class="item-list" id="workstream-threads">
+        <li><div class="item-text">Thread topic</div></li>
+      </ul>
+    </div>
+
+    <div class="flyout-section">
+      <div class="flyout-section-label">Quick Links</div>
+      <div class="quick-links">
+        <a class="quick-link" href="#" target="_blank">Notion Hub</a>
+        <a class="quick-link" href="#" target="_blank">Project Board</a>
+        <a class="quick-link" href="#" target="_blank">Sync Notes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align: center; color: #444; font-size: 12px; padding: 20px 0; border-top: 1px solid #1a1b23;">
+  Generated by Claudine · Feb 7, 2026 · Data from Brady's OS 2.0 (Notion)
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FEEDBACK COMMAND CONSOLE — Bottom Right Corner Widget  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<!-- Floating trigger button -->
+<div id="fb-trigger" onclick="toggleConsole()">
+  <span id="fb-icon">📡</span>
+  <span id="fb-badge" style="display:none;">0</span>
+</div>
+
+<!-- Console panel -->
+<div id="fb-console">
+  <!-- Console header -->
+  <div id="fb-header">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:18px;">📡</span>
+      <span style="font-weight:700; color:#fff; font-size:14px;">Command Console</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span id="fb-queue-count" style="font-size:12px; color:#a78bfa;">0 queued</span>
+      <button onclick="toggleConsole()" style="background:none; border:none; color:#666; cursor:pointer; font-size:18px;">&times;</button>
+    </div>
+  </div>
+
+  <!-- Tab bar -->
+  <div id="fb-tabs">
+    <button class="fb-tab active" data-tab="capture" onclick="switchTab('capture')">Capture</button>
+    <button class="fb-tab" data-tab="queue" onclick="switchTab('queue')">Queue <span id="fb-tab-badge"></span></button>
+    <button class="fb-tab" data-tab="export" onclick="switchTab('export')">Export</button>
+  </div>
+
+  <!-- CAPTURE TAB -->
+  <div id="tab-capture" class="fb-tab-content active">
+    <!-- Category buttons -->
+    <div id="fb-categories">
+      <button class="fb-cat active" data-cat="pulse" onclick="selectCat('pulse')">
+        <span class="cat-icon">⚡</span><span class="cat-label">Pulse Note</span>
+      </button>
+      <button class="fb-cat" data-cat="action" onclick="selectCat('action')">
+        <span class="cat-icon">🎯</span><span class="cat-label">Action Item</span>
+      </button>
+      <button class="fb-cat" data-cat="bug" onclick="selectCat('bug')">
+        <span class="cat-icon">🐛</span><span class="cat-label">Bug / Fix</span>
+      </button>
+      <button class="fb-cat" data-cat="data" onclick="selectCat('data')">
+        <span class="cat-icon">📊</span><span class="cat-label">Data Wrong</span>
+      </button>
+      <button class="fb-cat" data-cat="insight" onclick="selectCat('insight')">
+        <span class="cat-icon">💡</span><span class="cat-label">Insight</span>
+      </button>
+      <button class="fb-cat" data-cat="priority" onclick="selectCat('priority')">
+        <span class="cat-icon">🔺</span><span class="cat-label">Priority Shift</span>
+      </button>
+      <button class="fb-cat" data-cat="request" onclick="selectCat('request')">
+        <span class="cat-icon">🔧</span><span class="cat-label">Feature Ask</span>
+      </button>
+      <button class="fb-cat" data-cat="praise" onclick="selectCat('praise')">
+        <span class="cat-icon">🔥</span><span class="cat-label">What's Working</span>
+      </button>
+    </div>
+
+    <!-- Workstream tagger -->
+    <div id="fb-ws-row">
+      <span style="font-size:11px; color:#666; text-transform:uppercase; letter-spacing:0.5px;">Tag workstream:</span>
+      <div id="fb-ws-tags">
+        <button class="ws-tag" data-ws="broker" onclick="toggleWs(this)">Broker Co</button>
+        <button class="ws-tag" data-ws="farm" onclick="toggleWs(this)">App Farm</button>
+        <button class="ws-tag" data-ws="nemuro" onclick="toggleWs(this)">Nemuro</button>
+        <button class="ws-tag" data-ws="ivfh" onclick="toggleWs(this)">IVFH</button>
+        <button class="ws-tag" data-ws="consulting" onclick="toggleWs(this)">Consulting</button>
+        <button class="ws-tag" data-ws="family" onclick="toggleWs(this)">Family</button>
+        <button class="ws-tag" data-ws="global" onclick="toggleWs(this)">Global</button>
+      </div>
+    </div>
+
+    <!-- Text input -->
+    <textarea id="fb-input" placeholder="What's on your mind? Capture it, stack it, process later..." rows="3"></textarea>
+
+    <!-- Urgency + submit row -->
+    <div id="fb-submit-row">
+      <div id="fb-urgency">
+        <button class="urg-btn active" data-urg="normal" onclick="setUrgency('normal')">Normal</button>
+        <button class="urg-btn" data-urg="hot" onclick="setUrgency('hot')">🔥 Hot</button>
+        <button class="urg-btn" data-urg="fyi" onclick="setUrgency('fyi')">FYI</button>
+      </div>
+      <button id="fb-submit" onclick="submitItem()">Stack It →</button>
+    </div>
+
+    <!-- Quick capture hint -->
+    <div id="fb-hint">Items persist between sessions (localStorage). Export → Claudine Prompt to flush queue to Notion.</div>
+  </div>
+
+  <!-- QUEUE TAB -->
+  <div id="tab-queue" class="fb-tab-content">
+    <div id="fb-queue-list"></div>
+    <div id="fb-queue-empty">
+      <span style="font-size:24px; display:block; margin-bottom:8px;">📭</span>
+      Queue is empty. Capture something from the Capture tab.
+    </div>
+  </div>
+
+  <!-- EXPORT TAB -->
+  <div id="tab-export" class="fb-tab-content">
+    <div id="fb-export-content">
+      <div class="export-option" onclick="exportJSON()">
+        <span style="font-size:20px;">📋</span>
+        <div>
+          <div style="font-weight:600; color:#fff; font-size:13px;">Copy as JSON</div>
+          <div style="font-size:11px; color:#666;">Paste into Claudine for processing</div>
+        </div>
+      </div>
+      <div class="export-option" onclick="exportMarkdown()">
+        <span style="font-size:20px;">📝</span>
+        <div>
+          <div style="font-weight:600; color:#fff; font-size:13px;">Copy as Markdown</div>
+          <div style="font-size:11px; color:#666;">Paste into Notion or chat</div>
+        </div>
+      </div>
+      <div class="export-option" onclick="exportForClaudine()">
+        <span style="font-size:20px;">🤖</span>
+        <div>
+          <div style="font-weight:600; color:#fff; font-size:13px;">Copy as Claudine Prompt</div>
+          <div style="font-size:11px; color:#666;">Pre-formatted instruction block for processing</div>
+        </div>
+      </div>
+      <div class="export-option" onclick="clearQueue()">
+        <span style="font-size:20px;">🗑️</span>
+        <div>
+          <div style="font-weight:600; color:#ef4444; font-size:13px;">Clear Queue</div>
+          <div style="font-size:11px; color:#666;">Remove all queued items</div>
+        </div>
+      </div>
+    </div>
+    <div id="fb-export-status" style="display:none;"></div>
+  </div>
+</div>
+
+<style>
+  /* ═══ Feedback Console Styles ═══ */
+  #fb-trigger {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+    transition: all 0.2s; user-select: none;
+  }
+  #fb-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(124,58,237,0.5); }
+  #fb-trigger.open { border-radius: 12px; background: #3b0764; }
+  #fb-icon { font-size: 24px; }
+  #fb-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: #ef4444; color: #fff; font-size: 11px; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 5px;
+  }
+
+  #fb-console {
+    position: fixed; bottom: 90px; right: 24px; z-index: 9998;
+    width: 420px; max-height: 70vh;
+    background: #16161e; border: 1.5px solid #2a2b35;
+    border-radius: 16px; box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+    display: none; flex-direction: column; overflow-x: hidden; overflow-y: auto;
+  }
+  #fb-console.open { display: flex; }
+
+  #fb-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; border-bottom: 1px solid #2a2b35;
+  }
+
+  #fb-tabs {
+    display: flex; border-bottom: 1px solid #2a2b35;
+  }
+  .fb-tab {
+    flex: 1; padding: 10px; background: none; border: none;
+    color: #666; font-size: 12px; font-weight: 600; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom: 2px solid transparent; transition: all 0.2s;
+  }
+  .fb-tab:hover { color: #aaa; }
+  .fb-tab.active { color: #a78bfa; border-bottom-color: #7c3aed; }
+  #fb-tab-badge {
+    background: #ef4444; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 1px 5px; border-radius: 8px; margin-left: 4px;
+  }
+
+  .fb-tab-content { display: none; padding: 14px; overflow-y: auto; max-height: 420px; }
+  .fb-tab-content.active { display: block; }
+
+  #fb-categories {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px;
+  }
+  .fb-cat {
+    background: #1a1b23; border: 1.5px solid #2a2b35; border-radius: 8px;
+    padding: 8px 4px; cursor: pointer; transition: all 0.15s;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .fb-cat:hover { border-color: #444; }
+  .fb-cat.active { border-color: #7c3aed; background: rgba(124,58,237,0.1); }
+  .cat-icon { font-size: 16px; }
+  .cat-label { font-size: 9px; color: #888; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; }
+  .fb-cat.active .cat-label { color: #a78bfa; }
+
+  #fb-ws-row { margin-bottom: 10px; }
+  #fb-ws-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .ws-tag {
+    padding: 3px 10px; border-radius: 12px; border: 1px solid #333;
+    background: transparent; color: #777; font-size: 11px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ws-tag:hover { border-color: #555; color: #aaa; }
+  .ws-tag.active { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+
+  #fb-input {
+    width: 100%; background: #1a1b23; border: 1.5px solid #2a2b35;
+    border-radius: 10px; padding: 10px 12px; color: #e4e4e7;
+    font-size: 13px; font-family: inherit; resize: none;
+    margin-bottom: 10px; outline: none; transition: border-color 0.2s;
+  }
+  #fb-input:focus { border-color: #7c3aed; }
+  #fb-input::placeholder { color: #444; }
+
+  #fb-submit-row { display: flex; justify-content: space-between; align-items: center; }
+  #fb-urgency { display: flex; gap: 4px; }
+  .urg-btn {
+    padding: 4px 10px; border-radius: 6px; border: 1px solid #333;
+    background: transparent; color: #777; font-size: 11px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .urg-btn.active { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,0.08); }
+  .urg-btn[data-urg="hot"].active { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.08); }
+
+  #fb-submit {
+    padding: 8px 20px; border-radius: 8px; border: none;
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+    color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  #fb-submit:hover { transform: scale(1.03); box-shadow: 0 2px 12px rgba(124,58,237,0.3); }
+
+  #fb-hint { font-size: 11px; color: #444; margin-top: 10px; text-align: center; font-style: italic; }
+
+  /* Queue items */
+  .queue-item {
+    background: #1a1b23; border: 1px solid #2a2b35; border-radius: 10px;
+    padding: 12px; margin-bottom: 8px; position: relative;
+  }
+  .queue-item .qi-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .queue-item .qi-cat {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px;
+  }
+  .qi-cat.pulse { background: rgba(250,204,21,0.15); color: #facc15; }
+  .qi-cat.action { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .qi-cat.bug { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .qi-cat.data { background: rgba(251,146,60,0.15); color: #fb923c; }
+  .qi-cat.insight { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .qi-cat.priority { background: rgba(168,85,247,0.15); color: #a78bfa; }
+  .qi-cat.request { background: rgba(56,189,248,0.15); color: #38bdf8; }
+  .qi-cat.praise { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .qi-cat.hot { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .queue-item .qi-ws { font-size: 10px; color: #555; }
+  .queue-item .qi-text { font-size: 13px; color: #ccc; line-height: 1.4; }
+  .queue-item .qi-time { font-size: 10px; color: #444; margin-top: 6px; }
+  .queue-item .qi-delete {
+    position: absolute; top: 8px; right: 8px;
+    background: none; border: none; color: #444; cursor: pointer;
+    font-size: 14px; padding: 2px 6px; border-radius: 4px;
+  }
+  .queue-item .qi-delete:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+  #fb-queue-empty { text-align: center; color: #444; padding: 30px 0; font-size: 13px; }
+
+  .export-option {
+    display: flex; align-items: center; gap: 12px;
+    background: #1a1b23; border: 1px solid #2a2b35; border-radius: 10px;
+    padding: 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s;
+  }
+  .export-option:hover { border-color: #444; background: #1e1f28; }
+
+  #fb-export-status {
+    text-align: center; padding: 10px;
+    background: rgba(74,222,128,0.1); border-radius: 8px;
+    color: #4ade80; font-size: 12px; font-weight: 600; margin-top: 8px;
+  }
+</style>
+
+<script>
+  // ═══ Feedback Command Console Logic ═══
+  // Dual persistence: local API → Google Drive JSON file + localStorage fallback
+  const API = 'http://localhost:3847/api/feedback';
+  const STORAGE_KEY = 'scorecard_feedback_queue';
+  let queue = [];
+  let currentCat = 'pulse';
+  let currentWs = [];
+  let currentUrg = 'normal';
+  let serverOnline = false;
+
+  // Load queue: try server first, fall back to localStorage
+  async function loadQueue() {
+    try {
+      const res = await fetch(API);
+      if (res.ok) {
+        queue = await res.json();
+        serverOnline = true;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
+        document.getElementById('fb-hint').innerHTML =
+          'Server connected — items save to Google Drive automatically.';
+      }
+    } catch {
+      queue = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      serverOnline = false;
+      document.getElementById('fb-hint').innerHTML =
+        'Offline mode (localStorage). Run <code>node ~/Documents/dashboards/server.js</code> for file sync.';
+    }
+    updateBadge();
+  }
+
+  async function saveItem(item) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
+    if (serverOnline) {
+      try {
+        await fetch(API, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(item) });
+      } catch { serverOnline = false; }
+    }
+  }
+
+  async function removeItem(id) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
+    if (serverOnline) {
+      try { await fetch(`${API}/${id}`, { method: 'DELETE' }); } catch {}
+    }
+  }
+
+  async function clearServer() {
+    localStorage.removeItem(STORAGE_KEY);
+    if (serverOnline) {
+      try { await fetch(API, { method: 'DELETE' }); } catch {}
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadQueue);
+
+  function toggleConsole() {
+    const panel = document.getElementById('fb-console');
+    const trigger = document.getElementById('fb-trigger');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    trigger.classList.toggle('open');
+    if (!isOpen) document.getElementById('fb-input').focus();
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.fb-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.fb-tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector(`.fb-tab[data-tab="${tab}"]`).classList.add('active');
+    document.getElementById(`tab-${tab}`).classList.add('active');
+    if (tab === 'queue') renderQueue();
+  }
+
+  function selectCat(cat) {
+    currentCat = cat;
+    document.querySelectorAll('.fb-cat').forEach(c => c.classList.remove('active'));
+    document.querySelector(`.fb-cat[data-cat="${cat}"]`).classList.add('active');
+  }
+
+  function toggleWs(el) {
+    el.classList.toggle('active');
+    const ws = el.dataset.ws;
+    if (currentWs.includes(ws)) { currentWs = currentWs.filter(w => w !== ws); }
+    else { currentWs.push(ws); }
+  }
+
+  function setUrgency(urg) {
+    currentUrg = urg;
+    document.querySelectorAll('.urg-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.urg-btn[data-urg="${urg}"]`).classList.add('active');
+  }
+
+  function submitItem() {
+    const input = document.getElementById('fb-input');
+    const text = input.value.trim();
+    if (!text) { input.focus(); return; }
+
+    const item = {
+      id: Date.now(),
+      category: currentCat,
+      workstreams: [...currentWs],
+      urgency: currentUrg,
+      text: text,
+      timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }),
+      page: 'Portfolio Scorecard'
+    };
+    queue.push(item);
+    saveItem(item);
+    updateBadge();
+
+    // Flash confirmation
+    const btn = document.getElementById('fb-submit');
+    btn.textContent = '✓ Stacked!';
+    btn.style.background = '#16a34a';
+    setTimeout(() => { btn.textContent = 'Stack It →'; btn.style.background = ''; }, 1000);
+
+    // Reset
+    input.value = '';
+    input.focus();
+  }
+
+  function updateBadge() {
+    const badge = document.getElementById('fb-badge');
+    const countEl = document.getElementById('fb-queue-count');
+    const tabBadge = document.getElementById('fb-tab-badge');
+    const count = queue.length;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+    badge.textContent = count;
+    countEl.textContent = `${count} queued`;
+    tabBadge.textContent = count > 0 ? count : '';
+  }
+
+  function renderQueue() {
+    const list = document.getElementById('fb-queue-list');
+    const empty = document.getElementById('fb-queue-empty');
+    if (queue.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+
+    const catLabels = { pulse: 'Pulse', action: 'Action', bug: 'Bug', data: 'Data Fix', insight: 'Insight', priority: 'Priority', request: 'Feature', praise: 'Working' };
+    const catIcons = { pulse: '⚡', action: '🎯', bug: '🐛', data: '📊', insight: '💡', priority: '🔺', request: '🔧', praise: '🔥' };
+
+    list.innerHTML = queue.slice().reverse().map(item => `
+      <div class="queue-item">
+        <button class="qi-delete" onclick="deleteItem(${item.id})">&times;</button>
+        <div class="qi-header">
+          <span class="qi-cat ${item.category}">${catIcons[item.category]} ${catLabels[item.category]}</span>
+          ${item.urgency === 'hot' ? '<span class="qi-cat hot">🔥 HOT</span>' : ''}
+          ${item.workstreams.length ? '<span class="qi-ws">' + item.workstreams.join(', ') + '</span>' : ''}
+        </div>
+        <div class="qi-text">${item.text}</div>
+        <div class="qi-time">${item.timestamp} · ${item.page}</div>
+      </div>
+    `).join('');
+  }
+
+  function deleteItem(id) {
+    const idx = queue.findIndex(i => i.id === id);
+    if (idx > -1) { queue.splice(idx, 1); removeItem(id); updateBadge(); renderQueue(); }
+  }
+
+  function showExportStatus(msg) {
+    const el = document.getElementById('fb-export-status');
+    el.textContent = msg; el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 2500);
+  }
+
+  function exportJSON() {
+    if (queue.length === 0) { showExportStatus('Nothing to export'); return; }
+    const data = JSON.stringify({ source: 'Portfolio Scorecard', exported: new Date().toISOString(), items: queue }, null, 2);
+    navigator.clipboard.writeText(data).then(() => showExportStatus('✓ JSON copied to clipboard'));
+  }
+
+  function exportMarkdown() {
+    if (queue.length === 0) { showExportStatus('Nothing to export'); return; }
+    const catLabels = { pulse: 'Pulse Note', action: 'Action Item', bug: 'Bug Report', data: 'Data Correction', insight: 'Strategic Insight', priority: 'Priority Shift', request: 'Feature Request', praise: "What's Working" };
+    let md = `## Scorecard Feedback Queue\n*Exported ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })}*\n\n`;
+    queue.forEach(item => {
+      md += `### ${item.urgency === 'hot' ? '🔥 ' : ''}${catLabels[item.category]}\n`;
+      if (item.workstreams.length) md += `**Workstream:** ${item.workstreams.join(', ')}\n`;
+      md += `${item.text}\n*${item.timestamp}*\n\n`;
+    });
+    navigator.clipboard.writeText(md).then(() => showExportStatus('✓ Markdown copied to clipboard'));
+  }
+
+  function exportForClaudine() {
+    if (queue.length === 0) { showExportStatus('Nothing to export'); return; }
+    const catLabels = { pulse: 'Pulse Note', action: 'Action Item', bug: 'Bug Report', data: 'Data Correction', insight: 'Strategic Insight', priority: 'Priority Shift', request: 'Feature Request', praise: "What's Working" };
+    let prompt = `Hey Claudine — here's my feedback queue from the Portfolio Scorecard. Process these into the Scorecard Feedback Queue DB (Notion data source: collection://7ea252b6-231e-4088-bb46-eb5c9b84ec93, under System Health Dashboard):\n\n`;
+    queue.forEach((item, i) => {
+      prompt += `${i + 1}. [${catLabels[item.category]}]${item.urgency === 'hot' ? ' 🔥 HOT' : ''}`;
+      if (item.workstreams.length) prompt += ` (${item.workstreams.join(', ')})`;
+      prompt += `\n   ${item.text}\n   Captured: ${item.timestamp}\n\n`;
+    });
+    prompt += `---\nFor EACH item:\n1. Create a row in the Scorecard Feedback Queue DB with Category, Workstream, Urgency, Status=Pending\n2. Then ROUTE it: pulse notes → Streaming Notes, action items → Tasks DB, bugs → fix tickets, insights → Thread Log, data corrections → scorecard refresh, priority shifts → flag in Daily State, feature asks → product backlog\n3. Update Status to "Routed" and fill in "Routed To" field\n4. Give me a summary of what you did.\n`;
+    navigator.clipboard.writeText(prompt).then(() => showExportStatus('✓ Claudine prompt copied to clipboard'));
+  }
+
+  function clearQueue() {
+    if (queue.length === 0) return;
+    if (confirm(`Clear all ${queue.length} queued items? This can't be undone.`)) {
+      queue.length = 0;
+      clearServer();
+      updateBadge();
+      renderQueue();
+      showExportStatus('Queue cleared');
+    }
+  }
+
+  // Keyboard shortcut: press 'f' when not in input to open console
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'f' || e.key === 'F') { toggleConsole(); e.preventDefault(); }
+  });
+  // Enter to submit when in the textarea
+  document.getElementById('fb-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { submitItem(); e.preventDefault(); }
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // FEATURE 1: BILL PAY RADAR
+  // ═══════════════════════════════════════════════════════
+  const BILLS_STORAGE_KEY = 'scorecard_bills';
+  const BILL_PAY_EXPANDED_KEY = 'scorecard_billpay_expanded';
+
+  const defaultBills = [
+    { id: 1, name: 'Mortgage', amount: 2850, dueDate: '2026-02-15', status: 'autopay' },
+    { id: 2, name: 'Car Insurance', amount: 189, dueDate: '2026-02-10', status: 'due-soon' },
+    { id: 3, name: 'Electricity', amount: 145, dueDate: '2026-02-12', status: 'default' },
+    { id: 4, name: 'Internet', amount: 79, dueDate: '2026-02-08', status: 'overdue' },
+    { id: 5, name: 'Phone', amount: 165, dueDate: '2026-02-15', status: 'autopay' },
+    { id: 6, name: 'Daycare/Activities', amount: 450, dueDate: '2026-02-10', status: 'due-soon' },
+    { id: 7, name: 'Subscriptions Bundle', amount: 89, dueDate: '2026-02-01', status: 'paid' }
+  ];
+
+  function loadBills() {
+    const saved = localStorage.getItem(BILLS_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : defaultBills;
+  }
+
+  function saveBills(bills) {
+    localStorage.setItem(BILLS_STORAGE_KEY, JSON.stringify(bills));
+  }
+
+  function getBillStatus(dueDate, status) {
+    if (status === 'paid') return 'paid';
+    if (status === 'autopay') return 'autopay';
+    if (status === 'overdue') return 'overdue';
+
+    const today = new Date('2026-02-07');
+    const due = new Date(dueDate);
+    const daysUntilDue = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
+
+    if (daysUntilDue < 0) return 'overdue';
+    if (daysUntilDue <= 3) return 'due-soon';
+    return 'default';
+  }
+
+  function renderBillPayRadar() {
+    const bills = loadBills();
+    const bprSummary = document.getElementById('bpr-summary');
+    const bprList = document.getElementById('bpr-list');
+
+    // Calculate summary stats
+    const today = new Date('2026-02-07');
+    const thisWeekEnd = new Date('2026-02-14');
+    const overdue = bills.filter(b => {
+      const due = new Date(b.dueDate);
+      return due < today && b.status !== 'paid' && b.status !== 'autopay';
+    }).length;
+
+    const dueThisWeek = bills.filter(b => {
+      const due = new Date(b.dueDate);
+      return due >= today && due <= thisWeekEnd && b.status !== 'paid' && b.status !== 'autopay';
+    }).length;
+
+    const totalPending = bills.filter(b => b.status !== 'paid' && b.status !== 'autopay')
+      .reduce((sum, b) => sum + b.amount, 0);
+
+    // Render summary
+    bprSummary.innerHTML = `
+      <div class="bpr-summary-item">
+        <span>${dueThisWeek}</span> due this week
+      </div>
+      <div class="bpr-summary-item">
+        <span class="badge red">${overdue}</span> overdue
+      </div>
+      <div class="bpr-summary-item">
+        <span>$${totalPending.toLocaleString()}</span> total pending
+      </div>
+    `;
+
+    // Render bill list
+    bprList.innerHTML = bills.map(bill => {
+      const finalStatus = getBillStatus(bill.dueDate, bill.status);
+      const due = new Date(bill.dueDate);
+      const dateStr = due.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+      const statusLabels = {
+        'paid': 'Paid',
+        'autopay': 'Auto-pay',
+        'overdue': 'OVERDUE',
+        'due-soon': 'DUE SOON',
+        'default': 'Due'
+      };
+
+      return `
+        <div class="bill-item ${finalStatus}">
+          <div class="bill-name">${bill.name}</div>
+          <div class="bill-amount">$${bill.amount.toLocaleString()}</div>
+          <div class="bill-due">${dateStr}</div>
+          <div class="bill-status ${finalStatus}">${statusLabels[finalStatus]}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function toggleBillPayRadar() {
+    const list = document.getElementById('bpr-list');
+    const toggle = document.getElementById('bpr-toggle');
+    const isExpanded = list.classList.contains('visible');
+
+    list.classList.toggle('visible');
+    toggle.classList.toggle('collapsed');
+
+    localStorage.setItem(BILL_PAY_EXPANDED_KEY, JSON.stringify(!isExpanded));
+  }
+
+  // Initialize Bill Pay Radar
+  document.addEventListener('DOMContentLoaded', function() {
+    renderBillPayRadar();
+    const expanded = JSON.parse(localStorage.getItem(BILL_PAY_EXPANDED_KEY) || 'true');
+    if (expanded) {
+      document.getElementById('bpr-list').classList.add('visible');
+      document.getElementById('bpr-toggle').classList.remove('collapsed');
+    } else {
+      document.getElementById('bpr-list').classList.remove('visible');
+      document.getElementById('bpr-toggle').classList.add('collapsed');
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // FEATURE 2: CLAUDINE CHAT INTERFACE
+  // ═══════════════════════════════════════════════════════
+  const CLAUDINE_STORAGE_KEY = 'scorecard_claudine_chat';
+  const FEEDBACK_QUEUE_KEY = 'scorecard_feedback_queue';
+
+  function loadClaudineChat() {
+    const saved = localStorage.getItem(CLAUDINE_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  }
+
+  function saveClaudineChat(messages) {
+    const recent = messages.slice(-10);
+    localStorage.setItem(CLAUDINE_STORAGE_KEY, JSON.stringify(recent));
+  }
+
+  function toggleClaudineChat() {
+    const panel = document.getElementById('claudine-chat-panel');
+    const trigger = document.getElementById('claudine-chat-trigger');
+    const isOpen = panel.classList.contains('open');
+
+    panel.classList.toggle('open');
+    trigger.classList.toggle('open');
+
+    if (!isOpen) {
+      document.getElementById('claudine-chat-input').focus();
+    }
+  }
+
+  function sendClaudineMessage() {
+    const input = document.getElementById('claudine-chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    const messages = loadClaudineChat();
+
+    // Add user message
+    messages.push({
+      type: 'user',
+      text: text,
+      timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    });
+
+    // Add to feedback queue with Category="Pulse Note"
+    const fbQueue = JSON.parse(localStorage.getItem(FEEDBACK_QUEUE_KEY) || '[]');
+    fbQueue.push({
+      id: Date.now(),
+      category: 'pulse',
+      workstreams: [],
+      urgency: 'normal',
+      text: text,
+      timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }),
+      page: 'Claudine Chat',
+      source: 'claudine-chat'
+    });
+    localStorage.setItem(FEEDBACK_QUEUE_KEY, JSON.stringify(fbQueue));
+
+    // Add system response
+    const queueLength = fbQueue.length;
+    messages.push({
+      type: 'system',
+      text: `Captured. Will process on next refresh. Queue: ${queueLength} items`,
+      timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    });
+
+    saveClaudineChat(messages);
+    renderClaudineMessages(messages);
+
+    input.value = '';
+    input.focus();
+
+    // Auto-scroll to bottom
+    setTimeout(() => {
+      const messagesDiv = document.getElementById('claudine-chat-messages');
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }, 50);
+  }
+
+  function renderClaudineMessages(messages) {
+    const container = document.getElementById('claudine-chat-messages');
+    container.innerHTML = messages.map(msg => `
+      <div class="chat-message ${msg.type}">
+        <div class="chat-bubble ${msg.type}">${msg.text}</div>
+      </div>
+    `).join('');
+  }
+
+  // Initialize Claudine Chat
+  document.addEventListener('DOMContentLoaded', function() {
+    const messages = loadClaudineChat();
+    if (messages.length > 0) {
+      renderClaudineMessages(messages);
+    }
+
+    // Keyboard shortcuts
+    document.getElementById('claudine-chat-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        sendClaudineMessage();
+        e.preventDefault();
+      }
+      if (e.key === 'Escape') {
+        toggleClaudineChat();
+      }
+    });
+  });
+
+  // Close Claudine chat on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const panel = document.getElementById('claudine-chat-panel');
+      if (panel.classList.contains('open')) {
+        toggleClaudineChat();
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // FEATURE 3: WORKSTREAM NOTE BOXES
+  // ═══════════════════════════════════════════════════════
+  const WS_NOTES_STORAGE_KEY = 'scorecard_ws_notes';
+
+  function loadWsNotes() {
+    const saved = localStorage.getItem(WS_NOTES_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {};
+  }
+
+  function saveWsNotes(notes) {
+    localStorage.setItem(WS_NOTES_STORAGE_KEY, JSON.stringify(notes));
+  }
+
+  function toggleWsNote(iconEl, wsName) {
+    const card = iconEl.closest('.ws-card');
+    const noteBox = card.querySelector('.ws-note-box');
+    const isVisible = noteBox.classList.contains('visible');
+
+    noteBox.classList.toggle('visible');
+    iconEl.style.opacity = isVisible ? '0.6' : '1';
+
+    if (!isVisible) {
+      const textarea = noteBox.querySelector('.ws-note-textarea');
+      textarea.focus();
+    }
+  }
+
+  // Initialize workstream notes
+  document.addEventListener('DOMContentLoaded', function() {
+    const notes = loadWsNotes();
+
+    document.querySelectorAll('.ws-note-box').forEach(noteBox => {
+      const wsName = noteBox.dataset.ws;
+      const textarea = noteBox.querySelector('.ws-note-textarea');
+
+      // Load saved note
+      if (notes[wsName]) {
+        textarea.value = notes[wsName];
+        updateCharCounter(textarea);
+      }
+
+      // Save on input
+      textarea.addEventListener('input', function() {
+        updateCharCounter(this);
+        notes[wsName] = this.value;
+        saveWsNotes(notes);
+      });
+    });
+  });
+
+  function updateCharCounter(textarea) {
+    const counter = textarea.closest('.ws-note-box').querySelector('.char-count');
+    const length = textarea.value.length;
+    counter.textContent = length;
+
+    const counterEl = textarea.closest('.ws-note-box').querySelector('.ws-note-counter');
+    counterEl.classList.remove('warning', 'danger');
+    if (length > 400) counterEl.classList.add('danger');
+    else if (length > 350) counterEl.classList.add('warning');
+  }
+
+  // ═══ FEATURE: Filter button functionality ═══
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('jarvis')) return; // Skip JARVIS button
+
+      const filterType = this.textContent.trim().toLowerCase();
+      const allBtn = document.querySelector('.filter-btn:not(.jarvis)');
+
+      // Update active state
+      document.querySelectorAll('.filter-btn:not(.jarvis)').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      // Filter content
+      const feedbackGrid = document.querySelector('.feedback-grid');
+      const workstreams = document.querySelector('.workstreams');
+
+      if (filterType === 'all') {
+        feedbackGrid.style.display = 'grid';
+        workstreams.style.display = 'grid';
+      } else if (filterType === 'feedback') {
+        feedbackGrid.style.display = 'grid';
+        workstreams.style.display = 'none';
+      } else if (filterType === 'revenue' || filterType === 'product') {
+        feedbackGrid.style.display = 'none';
+        workstreams.style.display = 'grid';
+      }
+    });
+  });
+
+  // ═══ FEATURE: Interactive checkboxes with strikethrough ═══
+  const CHECKBOX_STORAGE = 'scorecard_checklist_state';
+
+  function loadCheckboxState() {
+    const state = JSON.parse(localStorage.getItem(CHECKBOX_STORAGE) || '{}');
+    document.querySelectorAll('.ws-list li').forEach((li, idx) => {
+      const key = li.textContent.substring(0, 30);
+      if (state[key]) {
+        li.classList.add('completed');
+      }
+    });
+  }
+
+  function saveCheckboxState() {
+    const state = {};
+    document.querySelectorAll('.ws-list li.completed').forEach(li => {
+      const key = li.textContent.substring(0, 30);
+      state[key] = true;
+    });
+    localStorage.setItem(CHECKBOX_STORAGE, JSON.stringify(state));
+  }
+
+  document.querySelectorAll('.ws-list li').forEach(li => {
+    li.addEventListener('click', function(e) {
+      e.stopPropagation();
+      this.classList.toggle('completed');
+      saveCheckboxState();
+    });
+  });
+
+  loadCheckboxState();
+
+  // FIX: Contextual shift-click feedback - FULLY IMPLEMENTED
+  document.addEventListener('click', function(e) {
+    if (!e.shiftKey) return;
+
+    // Find the nearest clickable section/card
+    const target = e.target.closest('[class*="card"], [class*="section"], .ws-card, .summary-card, .fb-app, .bill-item');
+    if (!target) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    let sectionName = 'Unknown Section';
+    let wsTag = null;
+    let category = 'pulse'; // Default category
+
+    // Extract section name and determine category
+    if (target.classList.contains('ws-card')) {
+      sectionName = target.querySelector('.ws-name')?.textContent || 'Workstream';
+      const wsNameLower = sectionName.toLowerCase();
+      // Map workstream names to feedback tags
+      if (wsNameLower.includes('broker')) { wsTag = 'broker'; }
+      else if (wsNameLower.includes('farm')) { wsTag = 'farm'; }
+      else if (wsNameLower.includes('nemuro')) { wsTag = 'nemuro'; }
+      else if (wsNameLower.includes('ivfh')) { wsTag = 'ivfh'; }
+      else if (wsNameLower.includes('consulting')) { wsTag = 'consulting'; }
+      else if (wsNameLower.includes('family')) { wsTag = 'family'; }
+      category = 'pulse';
+    } else if (target.classList.contains('summary-card')) {
+      sectionName = target.querySelector('.label')?.textContent || 'Summary';
+      wsTag = 'global';
+      category = 'data'; // Summary cards are data-related
+    } else if (target.classList.contains('fb-app')) {
+      sectionName = target.querySelector('.name')?.textContent || 'Product';
+      wsTag = 'global';
+      category = 'request'; // Product cards = feature requests
+    } else if (target.classList.contains('bill-item')) {
+      sectionName = target.querySelector('.bill-name')?.textContent || 'Bill';
+      wsTag = 'global';
+      category = 'action'; // Bills = action items
+    } else {
+      sectionName = target.textContent?.substring(0, 40) || 'Section';
+    }
+
+    // Open feedback console
+    const console = document.getElementById('fb-console');
+    const input = document.getElementById('fb-input');
+    const trigger = document.getElementById('fb-trigger');
+
+    console.classList.add('open');
+    trigger.classList.add('open');
+
+    // Pre-fill with section context
+    input.value = `[${sectionName}]: `;
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length); // Position cursor at end
+
+    // Pre-select category
+    currentCat = category;
+    document.querySelectorAll('.fb-cat').forEach(cat => cat.classList.remove('active'));
+    document.querySelector(`.fb-cat[data-cat="${category}"]`)?.classList.add('active');
+
+    // Pre-select workstream tag if applicable
+    if (wsTag) {
+      document.querySelectorAll('.ws-tag').forEach(tag => tag.classList.remove('active'));
+      const wsTagEl = document.querySelector(`.ws-tag[data-ws="${wsTag}"]`);
+      if (wsTagEl) {
+        wsTagEl.classList.add('active');
+        currentWs = [wsTag];
+      }
+    }
+  });
+
+  // ════════════════════════════════════════════════════════
+  // FEATURE 3: INBOX CONFIDENCE BREAKDOWN
+  // ════════════════════════════════════════════════════════
+  function toggleConfidenceBreakdown(event) {
+    event.stopPropagation();
+    const breakdown = document.getElementById('confidence-breakdown');
+    breakdown.classList.toggle('visible');
+  }
+
+  document.addEventListener('click', function(e) {
+    const breakdown = document.getElementById('confidence-breakdown');
+    if (!e.target.closest('.confidence-badge') && breakdown.classList.contains('visible')) {
+      breakdown.classList.remove('visible');
+    }
+  });
+
+  // ════════════════════════════════════════════════════════
+  // FEATURE 4: PRODUCT CARD DETAIL FLYOUT
+  // ════════════════════════════════════════════════════════
+  const productData = {
+    'Moving Cost Calculator': {
+      phase: '●●●●',
+      phaseLabel: 'LIVE',
+      progress: 90,
+      recent: [
+        { text: 'V3 conversational UI', date: 'Feb 4' },
+        { text: 'PostHog analytics', date: 'Feb 4' },
+        { text: 'Deploy package built', date: 'Feb 4' }
+      ],
+      backlog: [
+        { text: 'Vercel deployment' },
+        { text: 'A/B test landing page' },
+        { text: 'Add referral tracking' }
+      ]
+    },
+    'Wedding Seating Chart': {
+      phase: '●●○○',
+      phaseLabel: 'PROTOTYPE',
+      progress: 60,
+      recent: [
+        { text: 'Drama awareness feature', date: 'Feb 4' },
+        { text: 'Seating algorithm', date: 'Feb 3' },
+        { text: 'Basic UI', date: 'Feb 2' }
+      ],
+      backlog: [
+        { text: 'Guest import CSV' },
+        { text: 'Table shape options' },
+        { text: 'Print layout' }
+      ]
+    },
+    'Fence Bid Checker': {
+      phase: '●●○○',
+      phaseLabel: 'PROTOTYPE',
+      progress: 45,
+      recent: [
+        { text: 'Material pricing engine', date: 'Feb 3' },
+        { text: 'Contractor matching', date: 'Feb 2' }
+      ],
+      backlog: [
+        { text: 'Photo upload for estimates' },
+        { text: 'Local contractor DB' },
+        { text: 'PDF export' }
+      ]
+    },
+    'Garage Sale Pricer': {
+      phase: '●●○○',
+      phaseLabel: 'PROTOTYPE',
+      progress: 50,
+      recent: [
+        { text: 'Category recognition', date: 'Feb 3' },
+        { text: 'Price database', date: 'Feb 2' }
+      ],
+      backlog: [
+        { text: 'Camera scan feature' },
+        { text: 'eBay price comparison' },
+        { text: 'Batch pricing' }
+      ]
+    }
+  };
+
+  function openProductFlyout(productName) {
+    const backdrop = document.getElementById('product-flyout-backdrop');
+    const flyout = document.getElementById('product-flyout');
+    const data = productData[productName] || {
+      phase: '●○○○',
+      phaseLabel: 'CONCEPT',
+      progress: 25,
+      recent: [{ text: 'Initial concept', date: 'Feb 1' }],
+      backlog: [{ text: 'Define requirements' }, { text: 'Create wireframes' }]
+    };
+
+    document.getElementById('product-title').textContent = productName;
+    document.getElementById('product-phase-dots').textContent = data.phase;
+    document.getElementById('product-phase-label').textContent = data.phaseLabel;
+    document.getElementById('product-progress').style.width = data.progress + '%';
+    document.getElementById('product-progress-text').textContent = data.progress + '% complete';
+
+    document.getElementById('product-recent').innerHTML = data.recent.map(item =>
+      `<li><div class="item-text">${item.text}</div><div class="item-date">${item.date}</div></li>`
+    ).join('');
+
+    document.getElementById('product-backlog').innerHTML = data.backlog.map(item =>
+      `<li><div class="item-text">${item.text}</div></li>`
+    ).join('');
+
+    backdrop.classList.add('visible');
+    flyout.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProductFlyout() {
+    const backdrop = document.getElementById('product-flyout-backdrop');
+    const flyout = document.getElementById('product-flyout');
+    backdrop.classList.remove('visible');
+    flyout.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeProductFlyout();
+      closeWorkstreamFlyout();
+    }
+  });
+
+  // ════════════════════════════════════════════════════════
+  // FEATURE 5: SCREENSHOT CAPTURE BUTTON
+  // ════════════════════════════════════════════════════════
+  async function captureScreenshot() {
+    try {
+      // Load html2canvas from CDN
+      if (!window.html2canvas) {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        script.onload = () => performScreenshot();
+        document.head.appendChild(script);
+      } else {
+        performScreenshot();
+      }
+    } catch (error) {
+      console.error('Screenshot error:', error);
+    }
+  }
+
+  function performScreenshot() {
+    const scorecard = document.body;
+
+    html2canvas(scorecard, {
+      backgroundColor: '#0a0a12',
+      scale: 2,
+      logging: false,
+      allowTaint: true,
+      useCORS: true
+    }).then(canvas => {
+      // Add watermark
+      const ctx = canvas.getContext('2d');
+      const timestamp = new Date().toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      ctx.font = '12px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.3)';
+      ctx.textAlign = 'right';
+      ctx.fillText(`Captured ${timestamp}`, canvas.width - 20, canvas.height - 20);
+
+      // Download
+      const link = document.createElement('a');
+      const now = new Date();
+      const filename = `portfolio-scorecard-${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}-${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.download = filename;
+      link.click();
+
+      // Show notification
+      const notification = document.createElement('div');
+      notification.className = 'capture-notification';
+      notification.textContent = '✓ Captured!';
+      document.body.appendChild(notification);
+
+      setTimeout(() => notification.remove(), 3000);
+    });
+  }
+
+  // ════════════════════════════════════════════════════════
+  // FEATURE 6: WORKSTREAM DETAIL FLYOUT
+  // ════════════════════════════════════════════════════════
+  const workstreamData = {
+    'Broker Co': {
+      status: 'Active Development',
+      statusColor: 'rgba(59,130,246,0.15)',
+      metrics: [
+        { label: 'Modules Spec\'d', value: '12' },
+        { label: 'Status', value: 'LOCKED (1)' },
+        { label: 'Prototypes', value: '3' }
+      ],
+      recent: [
+        { text: 'Vendor Portal MVP built', date: 'Today' },
+        { text: 'Module Map v2', date: 'Feb 5' },
+        { text: 'Pricing Deep Dive v0.3', date: 'Feb 4' }
+      ],
+      threads: [
+        { text: 'Partnership Structure' },
+        { text: 'BrokerCo/Vendor Portal Recap' },
+        { text: 'Deep Planning Session' }
+      ]
+    },
+    'App Farm': {
+      status: 'Sprint Active',
+      statusColor: 'rgba(74,222,128,0.15)',
+      metrics: [
+        { label: 'Prototypes Built', value: '7' },
+        { label: 'Spec\'d', value: '16' },
+        { label: 'Council Reviewed', value: '3' }
+      ],
+      recent: [
+        { text: 'Moving Cost Calculator V3', date: 'Feb 4' },
+        { text: 'Wedding Seating Drama', date: 'Feb 4' },
+        { text: 'Foundation Sprint', date: 'Feb 4' }
+      ],
+      threads: [
+        { text: 'Musashi San Product Sprint' },
+        { text: 'Moving Cost Calculator V3 Build' },
+        { text: 'Deployment Planning' }
+      ]
+    },
+    'IVFH Board': {
+      status: 'Board Meeting Feb 19',
+      statusColor: 'rgba(251,191,36,0.15)',
+      metrics: [
+        { label: 'Board Seat', value: 'Active' },
+        { label: 'Next Meeting', value: 'Feb 19' },
+        { label: 'Days Away', value: '12' }
+      ],
+      recent: [
+        { text: 'Board dinner scheduled', date: 'Feb 19' },
+        { text: 'Denver planning call', date: 'Feb 6' },
+        { text: 'Strategy doc delivered', date: 'Feb 5' }
+      ],
+      threads: [
+        { text: 'IVFH vendor outreach' },
+        { text: 'Board prep materials' },
+        { text: 'Denver meeting logistics' }
+      ]
+    }
+  };
+
+  function openWorkstreamFlyout(workstreamName) {
+    const backdrop = document.getElementById('workstream-flyout-backdrop');
+    const flyout = document.getElementById('workstream-flyout');
+    const data = workstreamData[workstreamName] || {
+      status: 'Active',
+      metrics: [{ label: 'Status', value: 'Active' }],
+      recent: [{ text: 'Recent activity', date: 'Feb 1' }],
+      threads: [{ text: 'Active thread' }]
+    };
+
+    document.getElementById('workstream-title').textContent = workstreamName;
+    document.getElementById('workstream-status').textContent = data.status;
+
+    const metricsHtml = data.metrics.map(m =>
+      `<div class="ws-metric"><span class="ws-metric-label">${m.label}</span><span class="ws-metric-value">${m.value}</span></div>`
+    ).join('');
+    document.getElementById('workstream-metrics').innerHTML = metricsHtml;
+
+    document.getElementById('workstream-recent').innerHTML = data.recent.map(item =>
+      `<li><div class="item-text">${item.text}</div><div class="item-date">${item.date}</div></li>`
+    ).join('');
+
+    document.getElementById('workstream-threads').innerHTML = data.threads.map(item =>
+      `<li><div class="item-text">${item.text}</div></li>`
+    ).join('');
+
+    backdrop.classList.add('visible');
+    flyout.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWorkstreamFlyout() {
+    const backdrop = document.getElementById('workstream-flyout-backdrop');
+    const flyout = document.getElementById('workstream-flyout');
+    backdrop.classList.remove('visible');
+    flyout.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  // ════════════════════════════════════════════════════════
+  // FEATURE: SECTION-AWARE EMBEDDED CHAT INTERFACES
+  // ════════════════════════════════════════════════════════
+  const SECTION_CHAT_STORAGE_PREFIX = 'scorecard_chat_';
+  const FEEDBACK_QUEUE_KEY = 'scorecard_feedback_queue';
+
+  function getSectionChatKey(sectionName) {
+    return SECTION_CHAT_STORAGE_PREFIX + sectionName.replace(/\s+/g, '_').toLowerCase();
+  }
+
+  function loadSectionChat(sectionName) {
+    const key = getSectionChatKey(sectionName);
+    const saved = localStorage.getItem(key);
+    return saved ? JSON.parse(saved) : [];
+  }
+
+  function saveSectionChat(sectionName, messages) {
+    const key = getSectionChatKey(sectionName);
+    const recent = messages.slice(-8);
+    localStorage.setItem(key, JSON.stringify(recent));
+  }
+
+  function toggleSectionChat(event, sectionName) {
+    event.stopPropagation();
+    const panel = document.querySelector(`.ws-chat-panel[data-section="${sectionName}"]`);
+    if (!panel) return;
+
+    const isVisible = panel.classList.contains('visible');
+    panel.classList.toggle('visible');
+
+    if (!isVisible) {
+      const input = panel.querySelector('.ws-chat-input');
+      input.focus();
+      renderSectionChat(sectionName);
+    }
+  }
+
+  function sendSectionChatMessage(event, sectionName) {
+    event.stopPropagation();
+    const panel = document.querySelector(`.ws-chat-panel[data-section="${sectionName}"]`);
+    const input = panel.querySelector('.ws-chat-input');
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    const messages = loadSectionChat(sectionName);
+
+    // Add user message
+    messages.push({
+      type: 'user',
+      text: text,
+      timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    });
+
+    // Add to feedback queue with section context
+    const fbQueue = JSON.parse(localStorage.getItem(FEEDBACK_QUEUE_KEY) || '[]');
+    fbQueue.push({
+      id: Date.now(),
+      category: 'pulse',
+      workstreams: getSectionWorkstreamTag(sectionName),
+      urgency: 'normal',
+      text: text,
+      timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }),
+      page: 'Section Chat: ' + sectionName,
+      source: 'section-chat',
+      section: sectionName
+    });
+    localStorage.setItem(FEEDBACK_QUEUE_KEY, JSON.stringify(fbQueue));
+
+    // Add system response
+    const queueCount = fbQueue.length;
+    messages.push({
+      type: 'system',
+      text: `Captured for ${sectionName}. Queue: ${queueCount} items`,
+      timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    });
+
+    saveSectionChat(sectionName, messages);
+    renderSectionChat(sectionName);
+
+    input.value = '';
+    input.focus();
+
+    setTimeout(() => {
+      const messagesDiv = panel.querySelector('.ws-chat-messages');
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }, 50);
+
+    updateFeedbackBadge();
+  }
+
+  function renderSectionChat(sectionName) {
+    const panel = document.querySelector(`.ws-chat-panel[data-section="${sectionName}"]`);
+    const messagesDiv = panel.querySelector('.ws-chat-messages');
+    const messages = loadSectionChat(sectionName);
+
+    messagesDiv.innerHTML = messages.map(msg => `
+      <div class="ws-chat-msg ${msg.type}">
+        <div>
+          <div class="ws-chat-bubble ${msg.type}">${msg.text}</div>
+          <div class="ws-chat-time">${msg.timestamp}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function clearSectionChat(event, sectionName) {
+    event.stopPropagation();
+    const key = getSectionChatKey(sectionName);
+    localStorage.removeItem(key);
+    const panel = document.querySelector(`.ws-chat-panel[data-section="${sectionName}"]`);
+    const messagesDiv = panel.querySelector('.ws-chat-messages');
+    messagesDiv.innerHTML = '';
+  }
+
+  function getSectionWorkstreamTag(sectionName) {
+    const tagMap = {
+      'Broker Co': 'broker',
+      'App Farm': 'farm',
+      'Nemuro (OS 2.0)': 'nemuro',
+      'IVFH Board': 'ivfh',
+      'Consulting & Network': 'consulting',
+      'Family & Home': 'family',
+      'Bill Pay': 'global',
+      'Dashboard': 'global'
+    };
+    const tag = tagMap[sectionName];
+    return tag ? [tag] : [];
+  }
+
+  function updateFeedbackBadge() {
+    const fbQueue = JSON.parse(localStorage.getItem(FEEDBACK_QUEUE_KEY) || '[]');
+    document.getElementById('fb-badge').style.display = fbQueue.length > 0 ? 'flex' : 'none';
+    document.getElementById('fb-badge').textContent = fbQueue.length;
+    document.getElementById('fb-queue-count').textContent = `${fbQueue.length} queued`;
+  }
+
+  // Initialize section chat on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.ws-chat-panel').forEach(panel => {
+      const section = panel.dataset.section;
+      renderSectionChat(section);
+    });
+
+    // Keyboard shortcuts for section chat inputs
+    document.querySelectorAll('.ws-chat-input').forEach(input => {
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          const section = input.closest('.ws-chat-panel').dataset.section;
+          sendSectionChatMessage(e, section);
+          e.preventDefault();
+        }
+        if (e.key === 'Escape') {
+          const panel = input.closest('.ws-chat-panel');
+          panel.classList.remove('visible');
+        }
+      });
+    });
+  });
+
+  // Close section chats on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.ws-chat-panel.visible').forEach(panel => {
+        panel.classList.remove('visible');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

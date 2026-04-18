@@ -1,0 +1,178 @@
+# mception.ai Project Registry
+# Single source of truth for all project metadata.
+# Sidebar renders in this order. All access control, nav, and magic link
+# systems read from this file.
+
+projects:
+  # --- Client projects ---
+  - slug: stihl
+    label: "STIHL USA"
+    short: "S"
+    href: "/stihl"
+    approved: 2026-03-27
+    type: native
+    magic_link: true
+    frame:
+      baseUrl: "${NEXT_PUBLIC_STIHL_APP_URL}"
+      path: "/"
+
+  - slug: mark-schmulen
+    label: "Mark Schmulen"
+    short: "K"
+    href: "/mark-schmulen"
+    approved: 2026-03-25
+    type: iframe-external
+    magic_link: true
+    frame:
+      baseUrl: "https://basdkf024rhlasfd.github.io/mark-schmulen-ai-os"
+      path: "/viewer/"
+
+  - slug: pauletteai
+    label: "PauletteAI"
+    short: "P"
+    href: "/pauletteai"
+    approved: 2026-03-27
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: "/pauletteai/viewer"
+      path: "/index.html"
+    share_frame:
+      baseUrl: ""
+      path: "/pauletteai/shared/index.html"
+
+  - slug: gary
+    label: "Gary / IVFH"
+    short: "H"
+    href: "/gary"
+    approved: 2026-03-30
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://basdkf024rhlasfd.github.io/ivfh"
+      path: "/"
+
+  - slug: baden-bagley
+    label: "Baden Bagley"
+    short: "B"
+    href: "/baden-bagley"
+    approved: 2026-03-29
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://basdkf024rhlasfd.github.io/baden-bagley"
+      path: "/"
+
+  - slug: kroger
+    label: "Kroger"
+    short: "K"
+    href: "/kroger"
+    approved: 2026-04-12
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/kroger/viewer/index.html"
+
+  - slug: panda
+    label: "Panda"
+    short: "A"
+    href: "/panda"
+    approved: 2026-04-15
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: "/panda/viewer"
+      path: "/index.html"
+
+  - slug: orlando
+    label: "Orlando RE KB"
+    short: "R"
+    href: "/orlando"
+    approved: 2026-03-27
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/orlando/viewer/index.html"
+
+  # --- Internal tools ---
+  - slug: content-engine
+    label: "Content Engine"
+    short: "E"
+    href: "/content-engine"
+    approved: 2026-03-30
+    type: native
+    magic_link: false
+
+  - slug: innovation-lab
+    label: "Innovation Lab"
+    short: "L"
+    href: "/innovation-lab"
+    approved: 2026-04-15
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://innovation-lab-silk.vercel.app"
+      path: "/"
+
+  - slug: ops-lab
+    label: "Ops Lab"
+    short: "O"
+    href: "/ops-lab"
+    approved: 2026-04-15
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://ops-lab-tau.vercel.app"
+      path: "/"
+
+  - slug: incubator
+    label: "Project Incubator"
+    short: "I"
+    href: "/incubator"
+    approved: 2026-04-15
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://basdkf024rhlasfd.github.io/incubator"
+      path: "/"
+
+  # --- Family / personal ---
+  - slug: grocery-assistant
+    label: "Grocery Assistant"
+    short: "G"
+    href: "/grocery-assistant"
+    approved: 2026-04-16
+    type: native
+    magic_link: false
+
+  - slug: school-hub
+    label: "School Hub"
+    short: "H"
+    href: "/school-hub"
+    approved: 2026-04-16
+    type: native
+    magic_link: false
+
+  - slug: financial-assistant
+    label: "Financial Cockpit"
+    short: "$"
+    href: "/financial-assistant"
+    approved: 2026-04-16
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: "/financial-assistant"
+      path: "/index.html"
+
+  - slug: moving
+    label: "Moving Calculator"
+    short: "M"
+    href: "/calculators/moving"
+    approved: 2026-03-27
+    type: native
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/apps/moving-calculator/index.html"
