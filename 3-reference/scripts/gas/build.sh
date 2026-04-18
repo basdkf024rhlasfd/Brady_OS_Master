@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 #
-# build.sh — Copy shared utilities into a script directory and push via clasp.
+# build.sh — Stage a script with shared utilities and push via clasp.
 #
 # Usage: ./build.sh <script-name>
 # Example: ./build.sh email-classifier
 #
 # This script:
-#   1. Copies shared/*.js into scripts/<script-name>/
-#   2. Runs `clasp push` from that directory
-#   3. Cleans up the copied shared files (leaving script-specific files intact)
+#   1. Copies scripts/<script-name>/ into a temporary staging directory
+#   2. Overlays shared/*.js into that staging directory
+#   3. Runs `clasp push` from the staging directory
+#   4. Removes the staging directory on exit
 
 set -euo pipefail
 
@@ -39,39 +40,38 @@ if [ ! -f "$TARGET_DIR/.clasp.json" ]; then
   exit 1
 fi
 
-# Track which files we copy so we only clean up those
-COPIED_FILES=()
+STAGING_DIR="$(mktemp -d "${TMPDIR:-/tmp}/gas-build.XXXXXX")"
 
-echo "Copying shared utilities into $SCRIPT_NAME..."
+cleanup() {
+  rm -rf "$STAGING_DIR"
+}
+
+trap cleanup EXIT
+
+echo "Preparing staging directory for $SCRIPT_NAME..."
+cp -R "$TARGET_DIR"/. "$STAGING_DIR"/
+
+echo "Overlaying shared utilities..."
 for f in "$SHARED_DIR"/*.js; do
   if [ -f "$f" ]; then
     filename="$(basename "$f")"
-    cp "$f" "$TARGET_DIR/$filename"
-    COPIED_FILES+=("$filename")
+    cp "$f" "$STAGING_DIR/$filename"
     echo "  + $filename"
   fi
 done
 
 echo ""
 echo "Pushing to Google Apps Script..."
-cd "$TARGET_DIR"
+cd "$STAGING_DIR"
 
 push_failed=0
 clasp push || push_failed=1
 
 cd "$REPO_ROOT"
 
-# Clean up copied shared files regardless of push success
-echo ""
-echo "Cleaning up shared files..."
-for filename in "${COPIED_FILES[@]}"; do
-  rm -f "$TARGET_DIR/$filename"
-  echo "  - $filename"
-done
-
 if [ "$push_failed" -ne 0 ]; then
   echo ""
-  echo "Error: clasp push failed. Files have been cleaned up."
+  echo "Error: clasp push failed. Staging files have been cleaned up."
   exit 1
 fi
 

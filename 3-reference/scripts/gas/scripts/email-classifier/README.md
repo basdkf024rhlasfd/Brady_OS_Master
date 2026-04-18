@@ -1,36 +1,52 @@
-# Email Classifier (v0.1)
+# Email Classifier (v0.3)
 
-Classifies incoming Gmail using Claude API based on Brady's canonical Email Classification Prompt Spec. Applies Gmail labels, logs results to Google Sheets, and optionally syncs classifications to Notion Email Hub.
+Classifies incoming Gmail using a two-tier system: known senders are pre-classified instantly in pure JS (zero tokens), everything else goes to Claude. Applies Gmail labels, manages read state, logs to Sheets, and optionally syncs to Notion.
 
 ## How It Works
 
 1. **Trigger** fires every 15 minutes
-2. Fetches up to 10 unread, unclassified emails (`newer_than:2d`)
-3. Sends each email to Claude with Brady's classification prompt
-4. Applies Gmail labels: `AI/Classified`, `AI/High Priority`, `AI/{Category}`
-5. Auto-archives low-priority bot emails marked for archiving
-6. Optionally syncs classification to Notion Email Hub
-7. Logs everything to Google Sheets
+2. Fetches up to 10 unread threads (`newer_than:2d`), selects the latest unread message in each
+3. **Pre-classifier** checks the sender against `KNOWN_SENDERS` (static) and `learned-rules` Sheet tab (auto-generated)
+4. If no pre-classifier match → sends to **Claude** with the classification prompt (assembled from `rules.js`)
+5. Applies Gmail labels: `AI/Classified`, `AI/High Priority`, `AI/{Category}`
+6. **High priority** → stays unread. **Low priority** → marked read.
+7. Auto-archives low-priority bot emails marked for archiving
+8. Optionally syncs classification to Notion Email Hub
+9. Logs everything to Google Sheets (including whether pre-classified or AI-classified)
+
+## Learning Engine
+
+The **learner** runs weekly (Mondays). It:
+1. Reads the classification log
+2. Groups results by sender domain
+3. Promotes senders classified the same way 5+ times with 90%+ consistency to the `learned-rules` Sheet tab
+4. Next trigger run, those senders are pre-classified — no more Claude calls
+
+Brady can review, edit, or delete learned rules directly in the Sheet. Run `previewLearning()` in the GAS editor to preview what would be promoted.
 
 ## Safety Rails
 
-- **High priority emails are NEVER auto-archived** — the archive guard requires all three: `Low` priority + `Bot` + `Archive` action
-- Expert network emails (GLG, Dialectica, etc.) are always High priority per the prompt spec
-- Checkpoint system resumes from where it left off if a run is interrupted
+- **High priority emails stay UNREAD** — they remain in Gmail's "Unread" section until Brady handles them
+- **Low priority emails are marked read** — they drop to "Everything else"
+- **High priority emails are NEVER auto-archived** — requires all three: `Low` priority + `Bot` + `Archive` action
+- Expert network emails are always High priority per the rules
+- Personal email domains (gmail.com, yahoo.com, etc.) are never auto-learned
+- A bounded processed-message cache prevents reclassification
 
 ## Files
 
 | File | Purpose |
 |------|---------|
 | `main.js` | Entry point, trigger handler, Gmail label ops |
-| `classifier.js` | Classification prompt + Claude API call |
+| `rules.js` | **Classification rules + known senders** — edit this to change behavior |
+| `pre-classifier.js` | Checks known senders + learned rules before Claude |
+| `learner.js` | Analyzes logs, auto-promotes consistent senders to learned rules |
+| `classifier.js` | Prompt assembly + Claude API call |
 | `notion-sync.js` | Push results to Notion Email Hub |
-| `claude-api.js` | Claude API wrapper (copied from shared/) |
-| `config.js` | PropertiesService helpers, checkpoints (copied from shared/) |
-| `logger.js` | Structured logging to Google Sheets (copied from shared/) |
-| `error-handler.js` | Error wrapping + email alerts (copied from shared/) |
 | `appsscript.json` | GAS manifest with OAuth scopes |
-| `.clasp.json` | clasp project config (needs real script ID) |
+| `.clasp.json` | clasp project config |
+
+Shared utilities (`claude-api.js`, `config.js`, `logger.js`, `error-handler.js`) are copied in by `build.sh` at deploy time from `shared/`.
 
 ## Setup
 
@@ -41,8 +57,6 @@ cd scripts/email-classifier
 clasp create --type standalone --title "Email Classifier"
 ```
 
-This generates a `.clasp.json` with the script ID.
-
 ### 2. Set Script Properties
 
 In the GAS web editor (Project Settings > Script Properties):
@@ -51,96 +65,43 @@ In the GAS web editor (Project Settings > Script Properties):
 |----------|-------|----------|
 | `ANTHROPIC_API_KEY` | `sk-ant-api03-...` | Yes |
 | `LOG_SHEET_ID` | Google Sheet ID for logs | Yes |
+| `ALERT_EMAIL` | Email for critical failure alerts | Recommended |
+| `OWNER_EMAIL_ALIASES` | Brady's email addresses (comma-separated) | Recommended |
 | `NOTION_API_KEY` | `ntn_...` | For Notion sync |
 | `NOTION_SYNC_ENABLED` | `true` | For Notion sync (default: `false`) |
 
 ### 3. Build and Push
 
 ```bash
-# From repo root
+./check.sh
 ./build.sh email-classifier
 ```
-
-This copies shared utilities into the script directory, runs `clasp push`, and cleans up.
 
 ### 4. Test
 
-In the GAS editor, run these functions:
+In the GAS editor:
 
 1. `testClaudeConnection()` — Verify API key works
-2. `testClassification()` — Classify 3 recent unread emails (dry run, no labels applied)
-3. `testNotionSync()` — Test Notion integration with a mock classification
-4. `testClassificationWithNotion()` — Full pipeline test (classify + sync)
+2. `testClassification()` — Classify 3 recent unread emails (dry run)
+3. `previewLearning()` — See what the learner would promote
+4. `testNotionSync()` — Test Notion integration with mock data
 
 ### 5. Install Trigger
 
-Run `installTrigger()` from the GAS editor. This sets up a 15-minute time-driven trigger.
+Run `installTrigger()` from the GAS editor.
 
-## Notion Sync
+## Changing Rules
 
-The Notion sync pushes classification results to the Email Hub database. It's **disabled by default**.
+Edit `rules.js`. See `CHEATSHEET.md` for common edits (add VIP, add known sender, change category, add override).
 
-### Notion Database Fields
+## Household Assistant Integration
 
-| Notion Property | Source | Type |
-|----------------|--------|------|
-| Name | Email subject | Title |
-| Sender | Email from address | Rich text |
-| Date | Email date | Date |
-| Mailbox Action | `mailbox_action` | Select |
-| Action Type | `action_type` | Select |
-| Sub Action Type | `sub_action_type` | Select |
-| Category | `category` | Select |
-| Person or Bot | `person_or_bot` | Select |
-| Priority | `priority` | Select |
-| AI Summary | `ai_summary` | Rich text |
-| AI Suggested Reply | `ai_suggested_reply` | Rich text |
-| AI Next Step | `ai_next_step` | Rich text |
-| Tags | `tags` | Multi-select |
-
-### Enabling Notion Sync
-
-1. Create a Notion integration at https://www.notion.so/my-integrations
-2. Share the Email Hub database with the integration
-3. Set the properties in GAS:
-   ```
-   NOTION_API_KEY = ntn_...
-   NOTION_SYNC_ENABLED = true
-   ```
-
-### Database ID
-
-The Email Hub database ID is `9b63f611b5744195b18e9f122579d4e2`. This is hardcoded in `notion-sync.js`.
-
-## build.sh Usage
-
-From the repo root:
-
-```bash
-# Push email-classifier to GAS
-./build.sh email-classifier
-
-# Works for any script in scripts/
-./build.sh <script-name>
-```
-
-The build script:
-1. Copies `shared/*.js` into the target script directory
-2. Runs `clasp push`
-3. Cleans up the copied files (script-specific files are untouched)
-
-## Configuration
-
-| Constant | Value | Location |
-|----------|-------|----------|
-| `BATCH_SIZE` | 10 | main.js |
-| `SEARCH_QUERY` | Unread, unclassified, not spam/trash, last 2 days | main.js |
-| `PROCESSED_LABEL` | `AI/Classified` | main.js |
-| `PRIORITY_HIGH_LABEL` | `AI/High Priority` | main.js |
+Emails tagged `household` (grocery, dining, food delivery) feed the Household Assistant project's budget tracking. Known household senders (Walmart, DoorDash, Sam's Club, etc.) are pre-classified in `KNOWN_SENDERS` — they never hit Claude.
 
 ## Known Limitations
 
 - GAS 6-minute execution limit constrains batch size
 - Claude API rate limits require 1.5s pause between calls
 - No retry on Notion API failures (single attempt per email)
-- Classification prompt is hardcoded — update `classifier.js` to change rules
+- If multiple unread messages pile up in one thread between runs, only the latest is classified
+- Learning engine never auto-learns personal email domains (gmail.com, etc.)

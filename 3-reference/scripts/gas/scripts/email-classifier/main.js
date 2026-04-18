@@ -5,7 +5,7 @@
  * Email Classification Prompt Spec.
  *
  * Trigger: Time-driven, every 15 minutes
- * Flow: Fetch unread → Classify via Claude → Apply labels → Log → Optional Notion sync
+ * Flow: Fetch unread → Pre-classify (known senders) or Claude → Apply labels → Log → Optional Notion sync
  */
 
 // ============================================================
@@ -17,7 +17,10 @@ const BATCH_SIZE = 10; // Max emails per run (stay under 6-min GAS limit)
 const PROCESSED_LABEL = 'AI/Classified';
 const PRIORITY_HIGH_LABEL = 'AI/High Priority';
 const CATEGORY_LABEL_PREFIX = 'AI/'; // e.g., "AI/Consulting Inquiry"
-const SEARCH_QUERY = 'is:unread -label:AI/Classified -in:spam -in:trash newer_than:2d';
+const SEARCH_QUERY = 'is:unread -in:spam -in:trash newer_than:2d';
+const PROCESSED_HISTORY_KEY = `${SCRIPT_NAME}_processed_history`;
+const PROCESSED_HISTORY_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const MAX_PROCESSED_HISTORY = 200;
 
 // ============================================================
 // TRIGGER HANDLER
@@ -30,37 +33,50 @@ function onTimeTrigger() {
   withErrorHandling(SCRIPT_NAME, () => {
     logInfo(SCRIPT_NAME, 'Starting classification run');
 
-    // Resume from checkpoint if previous run was interrupted
-    const checkpoint = getCheckpoint(SCRIPT_NAME);
-    const processedIds = checkpoint ? new Set(checkpoint.processedIds) : new Set();
+    const history = loadProcessedHistory_();
+    const processedIds = new Set(history.map(entry => entry[0]));
 
-    // Fetch unread, unclassified emails
+    // Fetch unread threads and classify the latest unread message in each one.
     const threads = GmailApp.search(SEARCH_QUERY, 0, BATCH_SIZE);
     logInfo(SCRIPT_NAME, `Found ${threads.length} threads to process`);
 
     if (threads.length === 0) {
       logInfo(SCRIPT_NAME, 'No new emails to classify');
-      clearCheckpoint(SCRIPT_NAME);
       return;
     }
 
     let processed = 0;
+    let preClassified = 0;
+    let aiClassified = 0;
     let errors = 0;
 
     for (const thread of threads) {
-      const messages = thread.getMessages();
-      const latestMessage = messages[messages.length - 1];
+      const latestMessage = getLatestUnreadMessage_(thread);
+
+      if (!latestMessage) {
+        continue;
+      }
+
       const messageId = latestMessage.getId();
 
-      // Skip if already processed in a previous partial run
-      if (processedIds.has(messageId)) continue;
+      // Skip if this unread message was already processed on a previous run.
+      if (processedIds.has(messageId)) {
+        continue;
+      }
 
       try {
-        // Build raw email text for classification
-        const rawEmail = buildRawEmail(latestMessage);
+        // Try pre-classifier first (known senders + learned rules — no API call)
+        let classification = preClassify(latestMessage);
+        let source = 'pre-classified';
 
-        // Classify via Claude
-        const classification = classifyEmail(rawEmail);
+        // Fall back to Claude if no pre-classifier match
+        if (!classification) {
+          const rawEmail = buildRawEmail(latestMessage);
+          classification = classifyEmail(rawEmail);
+          source = 'ai';
+          // Only pause for rate limiting on Claude calls
+          Utilities.sleep(1500);
+        }
 
         if (classification) {
           // Apply Gmail labels
@@ -69,25 +85,26 @@ function onTimeTrigger() {
           // Sync to Notion if enabled
           syncToNotion(latestMessage, classification);
 
-          // Log result
+          // Log result (include source so we can track pre-classifier hit rate)
           logInfo(SCRIPT_NAME, `Classified: ${classification.category} | ${classification.priority}`, {
             subject: latestMessage.getSubject().substring(0, 80),
             from: latestMessage.getFrom(),
-            action: classification.action_type
+            action: classification.action_type,
+            source: source
           });
 
+          // Only cache successfully processed messages
+          history.push([messageId, Date.now()]);
+          processedIds.add(messageId);
+          persistProcessedHistory_(history);
+
           processed++;
+          if (source === 'pre-classified') preClassified++;
+          else aiClassified++;
         } else {
           logWarn(SCRIPT_NAME, `Classification failed for message ${messageId}`);
           errors++;
         }
-
-        // Save checkpoint after each email
-        processedIds.add(messageId);
-        saveCheckpoint(SCRIPT_NAME, { processedIds: Array.from(processedIds) });
-
-        // Rate limit pause
-        Utilities.sleep(1500);
 
       } catch (e) {
         logError(SCRIPT_NAME, `Error processing message ${messageId}: ${e.message}`);
@@ -96,15 +113,13 @@ function onTimeTrigger() {
       }
     }
 
-    // Clear checkpoint on successful complete run
-    clearCheckpoint(SCRIPT_NAME);
-
-    // Purge old logs weekly (check if it's Monday)
+    // Weekly maintenance (Monday): purge old logs, run learner
     if (new Date().getDay() === 1) {
       purgeLogs(SCRIPT_NAME);
+      learnFromHistory();
     }
 
-    logInfo(SCRIPT_NAME, `Run complete: ${processed} classified, ${errors} errors`);
+    logInfo(SCRIPT_NAME, `Run complete: ${processed} classified (${preClassified} pre-classified, ${aiClassified} AI), ${errors} errors`);
   });
 }
 
@@ -128,8 +143,8 @@ function buildRawEmail(message) {
   // Check if Brady has already replied in this thread
   const thread = message.getThread();
   const messages = thread.getMessages();
-  const bradyReplied = messages.some(m => m.getFrom().includes('brady'));
-  if (bradyReplied) {
+  const ownerReplied = messages.some(m => senderMatchesOwner_(m.getFrom()));
+  if (ownerReplied) {
     parts.unshift('[NOTE: Brady has already replied in this thread]');
   }
 
@@ -137,7 +152,12 @@ function buildRawEmail(message) {
 }
 
 /**
- * Apply Gmail labels based on classification result.
+ * Apply Gmail labels and manage read state based on classification result.
+ *
+ * Read-state rules:
+ *   - High priority → stays UNREAD (visible in Gmail's "Unread" section until Brady handles it)
+ *   - Low priority  → marked as READ (drops to "Everything else" so it doesn't clutter the top)
+ *
  * Safety rail: NEVER auto-archive High priority emails.
  */
 function applyLabels(thread, classification) {
@@ -155,11 +175,17 @@ function applyLabels(thread, classification) {
     getOrCreateLabel(categoryLabel).addToThread(thread);
   }
 
+  // Read-state management: Low priority gets marked read, High stays unread
+  if (classification.priority === 'Low') {
+    thread.markRead();
+  }
+  // High priority: explicitly keep unread so it stays in Brady's face
+  // (no action needed — it's already unread)
+
   // Auto-archive low-priority bot emails — NEVER archive High priority
   if (classification.priority === 'Low' &&
       classification.person_or_bot === 'Bot' &&
       classification.action_type === 'Archive') {
-    // Audit trail: log every auto-archive to a dedicated sheet tab for review
     logAutoArchive_(thread, classification);
     thread.moveToArchive();
   }
@@ -174,6 +200,99 @@ function getOrCreateLabel(name) {
     label = GmailApp.createLabel(name);
   }
   return label;
+}
+
+/**
+ * Return the latest unread message in a thread, or null if there isn't one.
+ */
+function getLatestUnreadMessage_(thread) {
+  const unread = thread.getMessages().filter(m => m.isUnread());
+  return unread.length > 0 ? unread[unread.length - 1] : null;
+}
+
+/**
+ * Determine whether a sender header belongs to the inbox owner.
+ * Prefers exact email matches from OWNER_EMAIL_ALIASES; falls back to
+ * the historical display-name substring check for backwards compatibility.
+ */
+function senderMatchesOwner_(senderHeader) {
+  const aliases = getCsvProperty('OWNER_EMAIL_ALIASES', [])
+    .map(a => normalizeEmailAddress_(a));
+  const normalized = normalizeEmailAddress_(senderHeader);
+
+  if (aliases.length > 0) {
+    return aliases.includes(normalized);
+  }
+
+  // Fallback: legacy substring match
+  return String(senderHeader).toLowerCase().includes('brady');
+}
+
+/**
+ * Extract and normalize the email address from a From header.
+ */
+function normalizeEmailAddress_(value) {
+  const raw = String(value || '').trim().toLowerCase();
+  const match = raw.match(/<([^>]+)>/);
+  return match ? match[1].trim() : raw;
+}
+
+// ============================================================
+// PROCESSED MESSAGE CACHE
+// ============================================================
+
+/**
+ * Load recently processed message IDs from Script Properties.
+ */
+function loadProcessedHistory_() {
+  const raw = PropertiesService.getScriptProperties().getProperty(PROCESSED_HISTORY_KEY);
+  if (!raw) return [];
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return pruneHistory_(parsed);
+  } catch (e) {
+    logWarn(SCRIPT_NAME, 'Could not parse processed message history; resetting cache');
+    return [];
+  }
+}
+
+/**
+ * Persist a compact, bounded history of processed message IDs.
+ */
+function persistProcessedHistory_(history) {
+  const pruned = pruneHistory_(history);
+  PropertiesService.getScriptProperties().setProperty(
+    PROCESSED_HISTORY_KEY,
+    JSON.stringify(pruned)
+  );
+}
+
+/**
+ * Keep only recent entries and cap the cache size.
+ */
+function pruneHistory_(history) {
+  const cutoff = Date.now() - PROCESSED_HISTORY_TTL_MS;
+  const deduped = [];
+  const seen = new Set();
+
+  for (let i = history.length - 1; i >= 0; i--) {
+    const entry = history[i];
+    if (!Array.isArray(entry) || entry.length !== 2) continue;
+
+    const id = String(entry[0] || '').trim();
+    const ts = Number(entry[1]);
+
+    if (!id || !Number.isFinite(ts) || ts < cutoff || seen.has(id)) continue;
+
+    seen.add(id);
+    deduped.push([id, ts]);
+
+    if (deduped.length >= MAX_PROCESSED_HISTORY) break;
+  }
+
+  return deduped.reverse();
 }
 
 /**
