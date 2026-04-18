@@ -98,10 +98,15 @@ Flag:
 - Check GitHub repos for recent commits/PRs (if accessible via web fetch)
 - If these aren't reachable from CoWork, note it in the output and skip
 
-### 1.7 Monarch Capital Scan
-- Use web fetch to check `https://app.monarchmoney.com` (if accessible with auth)
-- If not accessible (likely — requires login), flag in output: "⚠️ Check Monarch manually — no API access"
-- Future: revisit when Monarch releases an API or MCP
+### 1.7 Financial Assistant (Morning Summary)
+- Run the `financial-assistant` skill in `morning-summary` mode
+- Reads Monarch CSV exports from `3-reference/skills/financial-assistant/data/`
+- Applies category mappings and budget targets from `references/` files
+- Scans Gmail for invoices/receipts/payments (last 7 days)
+- Scans Calendar for bills due this week
+- Queries Notion consulting pipeline for revenue status
+- Produces the compact `💰 FINANCES` block (see Phase 2 output below)
+- If no CSV data exists, falls back to Gmail/Calendar/Notion only with degraded output
 
 ### 1.8 Family Brief Data
 - Read `references/family-data.md` for school calendars, chore assignments, activities, logistics
@@ -185,11 +190,15 @@ Phil Flags: [any open flags with proposed fixes]
 Pending Instructions: [any system instructions not yet executed]
 
 ───────────────────────────────────────────────────
-💰 FINANCES
+💰 FINANCES (data through [YYYY-MM-DD])
 ───────────────────────────────────────────────────
-[Monarch data if accessible, otherwise:]
-⚠️ Check Monarch manually — no automated access yet.
-[Any financial emails or calendar items surfaced from other scans]
+Cash Flow MTD: +$X,XXX (income $XX,XXX / spend $XX,XXX)
+Consulting Revenue: $XX,XXX of $XX,XXX target (XX%)
+⚠️ Over budget: [category] at XXX% ($XXX over)
+📬 Outstanding invoices: [client] $X,XXX (sent [date])
+📅 Due this week: [bill] $XXX ([day])
+[If CSV stale: ⚠️ Monarch data is XX days old — drop a fresh export]
+[If no CSV: ⚠️ No Monarch data — Gmail/Calendar/Notion only]
 ───────────────────────────────────────────────────
 🔨 PROJECTS
 ───────────────────────────────────────────────────

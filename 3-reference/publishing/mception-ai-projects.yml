@@ -44,3 +44,11 @@ published_projects:
     project: "Project - Grocery Assistant"
     approved: 2026-04-16
     notes: "Personal family grocery list module — Smallwood weekly Walmart run with meal plan and categorized items"
+  - slug: school-hub
+    project: "School Hub"
+    approved: 2026-04-16
+    notes: "Family school logistics dashboard — personal use, 5 kids across BHS and Apple Glen Elementary"
+  - slug: financial-assistant
+    project: "Project - Financial Assistant"
+    approved: 2026-04-16
+    notes: "Personal unified financial cockpit — Monarch CSV + Gmail + Calendar + Notion consulting pipeline"
