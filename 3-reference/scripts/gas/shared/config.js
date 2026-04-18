@@ -70,3 +70,16 @@ function clearCheckpoint(scriptName) {
   const key = `CHECKPOINT_${scriptName}`;
   PropertiesService.getScriptProperties().deleteProperty(key);
 }
+
+/**
+ * Get a comma-separated script property as a trimmed array.
+ *
+ * @param {string} key - Property name
+ * @param {string[]} defaultValue - Fallback array
+ * @returns {string[]} Parsed values
+ */
+function getCsvProperty(key, defaultValue) {
+  const raw = PropertiesService.getScriptProperties().getProperty(key);
+  if (!raw) return defaultValue || [];
+  return raw.split(',').map(s => s.trim()).filter(Boolean);
+}

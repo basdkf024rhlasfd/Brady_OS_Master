@@ -44,7 +44,7 @@ function sendErrorAlert_(scriptName, error) {
       return; // Still in cooldown
     }
 
-    const email = Session.getActiveUser().getEmail();
+    const email = getOptionalProperty('ALERT_EMAIL', '');
     if (!email) return;
 
     MailApp.sendEmail({
