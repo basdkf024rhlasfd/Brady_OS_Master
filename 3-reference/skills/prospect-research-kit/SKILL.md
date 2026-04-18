@@ -14,6 +14,7 @@ description: |
   client-engagement-kit instead — that's the full pipeline with deliverables.
 
   This skill ORCHESTRATES research workflows. It does not duplicate sub-skill instructions.
+trust_tier: T0
 ---
 
 # Prospect Research Kit

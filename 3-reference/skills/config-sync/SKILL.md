@@ -10,6 +10,7 @@ description: >
   "check for drift", or any variation requesting a check on whether Claude Code
   CLI has current OS files. Also trigger when Brady switches between Conductor
   and Claude Code CLI and wants to verify consistency.
+trust_tier: T0
 ---
 
 # Config Sync

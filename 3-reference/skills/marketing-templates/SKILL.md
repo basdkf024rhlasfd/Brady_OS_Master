@@ -13,6 +13,7 @@ description: |
   This skill owns template-driven marketing documents. It does NOT own slide decks
   (use deck-generator), daily intelligence briefs (use exec-intel-brief), or free-form
   infographics (use mception-design-system directly).
+trust_tier: T0
 ---
 
 # Marketing Templates

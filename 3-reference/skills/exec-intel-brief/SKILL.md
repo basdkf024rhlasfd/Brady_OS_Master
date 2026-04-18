@@ -17,6 +17,7 @@ description: |
   own family briefs (family-daily-brief skill), email summaries (email-summary skill),
   or news digests for Brady himself (daily-news-digest skill). This is for paying or
   prospective consulting clients specifically.
+trust_tier: T2
 ---
 
 # Executive Intelligence Brief

@@ -72,6 +72,26 @@
 - **Cascading Accountability:** `3-reference/skills/cascading-accountability/SKILL.md` — AI-native management system for CEO daily briefings. Surfaces performance signals, risk flags, and pre-drafted communications. Templates + OKR tracker + whitepaper.
 - **Weekly OS Recap:** `3-reference/skills/weekly-os-recap/SKILL.md` — Weekly visual changelog of Brady OS. Scans 7-day git history, classifies into plain-language categories, renders mception-styled HTML + PDF. Auto-delivered Friday 7 AM CT via email + text. GAS mailer: `3-reference/scripts/gas/scripts/os-recap-mailer/`
 
+## Feedback Capture (Rules & Preferences)
+
+Brady may give behavioral feedback mid-conversation using any of these triggers:
+- **rule: [x]** — hard constraint. Write immediately to Streaming Notes as Type="System Instruction", no confirmation.
+- **never: [x]** — prohibition. Same as rule.
+- **always: [x]** — permanent default. Same as rule.
+- **remember: [x]** — softer preference. Write to Streaming Notes as Type="System Instruction" with a note that it's a preference not a rule.
+- **log: [x]** — catch-all. Ask Brady: "Rule or note?" then write accordingly.
+- No prefix but sounds like a behavioral correction — ask: "Want me to log that as a rule or just for this session?"
+
+When writing a System Instruction to Streaming Notes, set:
+- Type = "System Instruction"
+- Status = "Not Started"
+- Priority = "Must"
+- Source = (whatever platform: "Cowork", "Chat", "Code")
+- Name = the rule text
+- Content body = full context of why Brady said it, what conversation it came from
+
+Morning sweep picks up unprocessed System Instructions, appends them to the Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`) in Reference Layer, and propagates to all surfaces.
+
 ## Imported Skills & Systems
 External frameworks and skill packs stored as standalone packages in `3-reference/imported-skills-and-systems/`. These are NOT core OS skills — they can be summoned as-is or selectively promoted. See `3-reference/imported-skills-and-systems/README.md` for governance.
 

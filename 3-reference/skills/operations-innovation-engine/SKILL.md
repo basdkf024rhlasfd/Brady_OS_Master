@@ -22,6 +22,7 @@ description: |
   DISAMBIGUATION: For *product* innovation (CPG, consumer goods, physical products with
   buyer-ready visuals), use `innovation-workshop` instead. If Brady says just "innovation
   workshop" without "ops" or "product," ask which engine.
+trust_tier: T0
 ---
 
 # Operations Innovation Engine

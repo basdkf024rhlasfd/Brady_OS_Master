@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # OS Context Pack — Skill Definition
 
 **Trigger:** Brady says "brady os context"

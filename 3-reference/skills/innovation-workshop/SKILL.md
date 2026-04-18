@@ -20,6 +20,7 @@ description: |
   (process, tech, format, labor — concept-heavy, no Canva visuals, problem-first P1-PN
   framing), use `operations-innovation-engine` instead. If Brady says just "innovation
   workshop" without "product" or "ops," ask which engine.
+trust_tier: T0
 ---
 
 # Innovation Workshop

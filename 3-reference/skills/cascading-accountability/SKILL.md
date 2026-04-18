@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # Cascading Accountability System
 
 ## What This Is

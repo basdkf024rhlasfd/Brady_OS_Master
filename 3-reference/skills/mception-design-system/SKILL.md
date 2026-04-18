@@ -9,6 +9,7 @@ description: |
   or any reference to the AI Value Inversion visual style. This skill applies to ALL design docs
   by default — Brady does not need to ask for it. If you're making something visual for Brady and
   haven't read this, stop and read it now. Always output BOTH .html and .pdf versions.
+trust_tier: T0
 ---
 
 # mception Design System

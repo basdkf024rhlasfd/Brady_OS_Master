@@ -12,6 +12,7 @@ description: |
   This skill owns backward-looking OS change summaries. It does NOT own forward-looking
   planning (use weekly-sweep), daily briefings (use morning-sweep), or project-specific
   status (use project-standup-kit).
+trust_tier: T0
 ---
 
 # Weekly OS Recap

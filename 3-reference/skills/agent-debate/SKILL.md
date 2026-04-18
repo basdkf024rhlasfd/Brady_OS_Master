@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # Agent Debate — Skill
 
 **Trigger:** "stage a debate", "agent debate", "war room"

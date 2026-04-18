@@ -11,6 +11,7 @@ description: |
   something about," "ghost write," or any variation requesting publishable content.
 
   This skill ORCHESTRATES sub-skills and agents. It does not duplicate their instructions.
+trust_tier: T2
 ---
 
 # Content Publishing Kit

@@ -1,3 +1,7 @@
+---
+trust_tier: T2
+---
+
 # Project Creator
 
 Turn a conversation into an execution-ready project brief.

@@ -10,6 +10,7 @@ description: >
   "news PDF", "today's paper", or any variation requesting a daily synthesized news document.
   Also trigger if Brady says "whitepaper" in a news/briefing context. This skill owns all
   daily news-to-PDF workflows.
+trust_tier: T0
 ---
 
 # Daily Whitepaper

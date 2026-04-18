@@ -8,6 +8,7 @@ description: >
   Trigger this skill whenever Brady says "midjourney prompt", "product image", "visualize this
   product", "MJ prompt", "render this product", "product shot", "imagine this", "generate a
   product image", or any variation requesting a Midjourney prompt for a product concept.
+trust_tier: T0
 ---
 
 # Midjourney Prompt

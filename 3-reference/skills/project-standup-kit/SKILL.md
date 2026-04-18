@@ -11,6 +11,7 @@ description: |
   active work.
 
   This skill ORCHESTRATES sub-skills and agents. It does not duplicate their instructions.
+trust_tier: T0
 ---
 
 # Project Standup Kit

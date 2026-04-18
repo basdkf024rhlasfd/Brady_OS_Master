@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # DiCaprio — Inception-Level Recon
 
 20K-foot reconnaissance across all active projects and workspaces. Scan, flag, report to Claudine.
