@@ -13,6 +13,7 @@ description: >
 
   This skill replaces and consolidates: morning mode (AMY), family-daily-brief, email-summary,
   and news-digest into one sequential execution. It is the canonical morning skill.
+trust_tier: T1
 ---
 
 # Morning Sweep

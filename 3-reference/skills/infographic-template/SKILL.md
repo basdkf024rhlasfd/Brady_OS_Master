@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # Infographic Template — DEPRECATED
 
 > **This skill has been superseded by `3-reference/skills/mception-design-system/SKILL.md`.**

@@ -16,6 +16,7 @@ description: |
 
   This skill owns ALL structured ideation and brainstorming workflows. It does NOT own
   daily intelligence briefs (exec-intel-brief skill) or news digests (daily-whitepaper).
+trust_tier: T0
 ---
 
 # Full-Stack Ideation System — Human + AI Collaboration

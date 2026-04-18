@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # Air Traffic Control
 
 Route work across Brady OS repos, generate handoff prompts, and coordinate cross-repo changes.

@@ -16,6 +16,7 @@ description: |
 
   This skill ORCHESTRATES sub-skills. It does not duplicate their instructions.
   Each sub-skill remains authoritative for its own domain.
+trust_tier: T2
 ---
 
 # Client Engagement Kit

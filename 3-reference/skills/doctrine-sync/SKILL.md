@@ -10,6 +10,7 @@ description: >
   "are agents up to date", "agent drift", "sync agents", "update agents with doctrine",
   or any variation requesting a check on whether agents know the current OS philosophy.
   Also runs as an optional step in the weekly sweep.
+trust_tier: T0
 ---
 
 # Doctrine Sync

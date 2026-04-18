@@ -1,3 +1,7 @@
+---
+trust_tier: T0
+---
+
 # Pipeline Dashboard
 
 **Purpose**: Query the Streaming Notes DB and regenerate a live SVG snapshot showing what's sitting at each pipeline stage (In / Processing / Out).

@@ -9,6 +9,7 @@ description: |
   rhythm today," "operating rhythm," or when setting up automated daily workflows.
 
   This skill ORCHESTRATES sub-skills. It does not duplicate their instructions.
+trust_tier: T1
 ---
 
 # Daily Operating Rhythm

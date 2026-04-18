@@ -14,6 +14,7 @@ description: >
 
   This skill complements the daily morning-sweep. Morning sweep = tactical (today). Weekly sweep =
   strategic (the whole week + trajectory check).
+trust_tier: T1
 ---
 
 # Weekly Sweep

@@ -1,6 +1,7 @@
 ---
 name: recursive-learning
 description: Captures and logs working style feedback to Brady's Onboarding Brief AND the Streaming Notes pipeline for persistent learning across sessions. Use this skill when Brady gives feedback on HOW Claudine works (not WHAT to do), when calibrating behavior/tone/approach, at session end to check for unlogged learnings, or when Brady says things like "remember this" or "learn from this" about working style.
+trust_tier: T1
 ---
 
 # Recursive Learning
@@ -77,6 +78,16 @@ Brief confirmation: "Logged. Future sessions will know."
 - **Working Style Learnings table** is the legacy summary view Brady references when reading the Onboarding Brief. Keeping it in sync gives Brady a single readable history.
 
 If you only had to pick one, pick Streaming Notes — it feeds the table downstream via the morning sweep. The double-write here is a transitional pattern; eventually the morning sweep will fully maintain the table from the pipeline.
+
+### Pipeline Integration
+In addition to writing to the Onboarding Brief, ALSO create a Streaming Notes entry with:
+- Type = "System Instruction"
+- Status = "Not Started"
+- Priority = "Must"
+- Name = the feedback/learning text
+- Content = full context
+
+This ensures the learning enters the canonical processing pipeline: Streaming Notes → morning sweep → Rules & Preferences page → CLAUDE.md/Onboarding propagation. The Onboarding Brief becomes a downstream consumer of Rules & Preferences, not a separate store.
 
 ## Learnings Format
 

@@ -12,6 +12,7 @@ description: >
   "save today", "wind down", or any variation requesting the end-of-day capture. Also trigger
   on "update" or "orchestrate" after 8 PM CT (PAM mode). This skill owns all end-of-day
   archival, journaling, and state-capture workflows.
+trust_tier: T1
 ---
 
 # Evening Sweep

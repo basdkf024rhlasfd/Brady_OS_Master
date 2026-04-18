@@ -11,6 +11,7 @@ description: |
   This skill owns ALL slide deck and presentation generation workflows. It does NOT own
   single-page documents (use mception-design-system directly), one-pagers/sell sheets
   (use marketing-templates), or daily intelligence briefs (use exec-intel-brief).
+trust_tier: T0
 ---
 
 # Deck Generator

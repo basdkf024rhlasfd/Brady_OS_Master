@@ -1,3 +1,8 @@
+---
+name: telly
+trust_tier: T1
+---
+
 # Telly — Telegram-to-Notion Dispatch
 
 Capture messages, photos, and files from Telegram and route them to Notion Streaming Notes.

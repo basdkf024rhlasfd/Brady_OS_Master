@@ -32,12 +32,12 @@ Last audited: 2026-04-16
 
 These systems take action without per-action human approval:
 
-| System | Trigger | What It Does | Guard Conditions | Audit Trail | How to Stop |
-|--------|---------|--------------|------------------|-------------|-------------|
-| **Email Classifier** | Every 15 min (GAS timer) | Classifies emails via Claude, applies Gmail labels, auto-archives Low+Bot+Archive emails | Three-condition guard: `priority=Low AND person_or_bot=Bot AND action_type=Archive`. High priority NEVER archived. Expert network emails ALWAYS High. | Google Sheets: `email-classifier` tab (general log) + `auto-archive-audit` tab (every archived email) | Delete trigger in GAS editor |
-| **Telly Bot** | On Telegram message (webhook) | Routes message to Notion Streaming Notes based on prefix (`task:`, `pulse:`, `bug:`, `idea:`, `log:`) | `TELEGRAM_CHAT_ID` env var gates who can send; files require button tap for public/private choice | Telegram reply confirms each capture; Notion page created | Remove Vercel deployment |
-| **OS Recap Mailer** | Friday 7:15 AM CT (GAS timer) | Finds latest recap in Google Drive, emails HTML + PDF to Brady | Requires prior Conductor run to generate recap; sends notice if no recap exists | Email in inbox | Delete trigger in GAS editor |
-| **Telly Archive** | Manual (called from sweeps) | Downloads pending-archive files from Vercel Blob to local disk, deletes public blob, updates Notion | Only processes blocks marked "PENDING ARCHIVE" | Console output during run | Don't invoke it |
+| System | Trigger | What It Does | Guard Conditions | Audit Trail | How to Stop | Trust Tier |
+|--------|---------|--------------|------------------|-------------|-------------|------------|
+| **Email Classifier** | Every 15 min (GAS timer) | Classifies emails via Claude, applies Gmail labels, auto-archives Low+Bot+Archive emails | Three-condition guard: `priority=Low AND person_or_bot=Bot AND action_type=Archive`. High priority NEVER archived. Expert network emails ALWAYS High. | Google Sheets: `email-classifier` tab (general log) + `auto-archive-audit` tab (every archived email) | Delete trigger in GAS editor | T1 |
+| **Telly Bot** | On Telegram message (webhook) | Routes message to Notion Streaming Notes based on prefix (`task:`, `pulse:`, `bug:`, `idea:`, `log:`) | `TELEGRAM_CHAT_ID` env var gates who can send; files require button tap for public/private choice | Telegram reply confirms each capture; Notion page created | Remove Vercel deployment | T1 |
+| **OS Recap Mailer** | Friday 7:15 AM CT (GAS timer) | Finds latest recap in Google Drive, emails HTML + PDF to Brady | Requires prior Conductor run to generate recap; sends notice if no recap exists | Email in inbox | Delete trigger in GAS editor | T1 |
+| **Telly Archive** | Manual (called from sweeps) | Downloads pending-archive files from Vercel Blob to local disk, deletes public blob, updates Notion | Only processes blocks marked "PENDING ARCHIVE" | Console output during run | Don't invoke it | T1 |
 
 ### Skills That Are NOT Autonomous
 
@@ -49,6 +49,17 @@ These require Brady to trigger them and review output before anything goes exter
 - **Content Publishing Kit** — "Nothing ships without Brady's sign-off"
 - **Innovation Workshop** — stage gates require Brady approval before expensive steps
 - **DiCaprio** — read-only recon, advisory output only
+
+### Trust Tier Registry
+
+Every skill carries a `trust_tier` field in its YAML frontmatter. Tiers define what a skill can do without Brady present. See Amendment 5 in `3-reference/governance/amendments-2026-01.md` for full definitions.
+
+| Tier | Name | Authority | Skills |
+|------|------|-----------|--------|
+| **T0** | Observation | Read + report. No writes beyond Streaming Notes/Routing Log. Can run unattended. | daily-whitepaper, pipeline-dashboard, deep-research, doctrine-sync, config-sync, project-standup-kit, air-traffic-control, os-context-pack, agent-debate, prospect-research-kit, deck-generator, mception-design-system, infographic-template, midjourney-prompt, full-stack-ideation, marketing-templates, cascading-accountability, weekly-os-recap, innovation-workshop, operations-innovation-engine, dicaprio |
+| **T1** | Internal Modification | T0 + update Notion properties, create Tasks, route items. Log every modification. | morning-sweep, evening-sweep, weekly-sweep, client-project-cleanup, daily-operating-rhythm, recursive-learning, claudine-onboarding, telly, email-classifier, os-recap-mailer |
+| **T2** | Drafting with Review | T1 + draft emails/messages/calendar events. Nothing sends without Brady review. | exec-intel-brief, content-publishing-kit, client-engagement-kit, v0-to-portal, project-creator |
+| **T3** | Outbound with Approval | Sends to external humans/systems. Requires per-instance Brady approval via Agent Question. Never cron-scheduled. | (none assigned yet — all outbound actions require T3 gate) |
 
 ---
 
@@ -108,6 +119,7 @@ These amendments constrain what agents and automations can do:
 - **Amendment 2:** Cornelius (Notion AI agent) is a role + SOP executor only, not autonomous.
 - **Amendment 3:** Any action affecting system state must reference a named SOP. No SOP = no execution.
 - **Amendment 4:** No canonical SOP for voice-to-task yet. Advisory/paste-ready only until one exists.
+- **Amendment 5:** Trust Tiers govern autonomous execution. T0-T2 can run unattended; T3 (outbound to humans) requires per-instance approval. Permanent T3 gates: email send, calendar invites with attendees, social posting, client resource access, financial transactions.
 - **Publication Allowlist:** `3-reference/publishing/mception-ai-projects.yml` is fail-closed. Missing from allowlist = private.
 
 ---

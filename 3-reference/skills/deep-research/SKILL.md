@@ -18,6 +18,7 @@ description: |
   This skill owns ALL autonomous research workflows. It does NOT own daily intelligence briefs
   (exec-intel-brief), daily news synthesis (daily-whitepaper), or morning scanning (morning-sweep).
   Those skills may CALL this skill for deeper investigation of specific topics.
+trust_tier: T0
 ---
 
 # Deep Research

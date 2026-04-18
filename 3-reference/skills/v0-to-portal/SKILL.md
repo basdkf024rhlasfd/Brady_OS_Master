@@ -1,3 +1,7 @@
+---
+trust_tier: T2
+---
+
 # V0 to Portal Deploy
 
 End-to-end checklist for deploying a V0-generated (or Stitch-generated) app into the mception.ai portal.
