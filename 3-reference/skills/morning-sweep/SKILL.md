@@ -391,7 +391,22 @@ family chatbot for context-aware responses throughout the day.
 Also write any family-related open loops or carry-forward items to:
 `brady-os-master/rabat/portal/public/family/kb/12-open-loops.md`
 
-### 3.11 Close
+### 3.11 mception Action Scan
+Run the `mception-action-scanner` skill in compact mode. Read all YAML files in
+`portal/src/config/chat-configs/`, extract `dataSources` where status != "ready".
+
+Include the compact one-line summary in the sweep output:
+```
+MCEPTION: [N] items across [M] pages ([X] not-started, [Y] partial, [Z] recommended)
+  Your turn: [brady items]
+  Agent queue: [count] per actor
+```
+
+If any items have `nextStepActor="brady"`, include them as TOP 3 candidates if nothing
+more urgent exists. If any have `nextStepActor="claude-desktop"`, surface them as
+candidates for the current session.
+
+### 3.12 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)

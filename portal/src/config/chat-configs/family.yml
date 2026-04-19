@@ -167,6 +167,17 @@ dataSources:
     nextStep: "Link consulting revenue data to Financial Cockpit family budget view"
     nextStepActor: "conductor"
 
+tools:
+  - name: queryCalendar
+    description: "Query the Smallwood family Google Calendar for events"
+    params:
+      calendarId: "family13834007621771747799@group.calendar.google.com"
+  - name: queryNotion
+    description: "Query family-related Notion databases and pages"
+    params:
+      databaseId: "2e9ed43b-89c5-80f4-8c21-000b4cfe812e"
+      pageId: "344ed43b-89c5-813d-bded-f1d5689510e2"
+
 kb:
   enabled: true
   directory: public/family/kb

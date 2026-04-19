@@ -19,9 +19,24 @@ export interface KBConfig {
 
 export interface ToolConfig {
   name: string;
+  description?: string;
+  params?: Record<string, string>;
+}
+
+export interface ShortcutConfig {
+  label: string;
+  command: string;
+}
+
+export interface DataSourceConfig {
+  label: string;
+  type: "notion-db" | "notion-page" | "notion-wiki" | "google-calendar" | "kb-directory" | "skill" | "external";
+  status: "ready" | "partial" | "not-started" | "recommended";
+  id?: string;
+  url?: string;
   description: string;
-  handler: string; // module path relative to portal/src/lib/chat/tools/
-  inputSchema: Record<string, unknown>;
+  nextStep?: string;
+  nextStepActor?: "brady" | "chrome-agent" | "claude-desktop" | "conductor";
 }
 
 export interface ShortcutConfig {
