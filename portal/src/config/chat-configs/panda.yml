@@ -1,0 +1,48 @@
+enabled: true
+prompt: panda.md
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "Ask me about Panda's ops innovation research — benchmarks, problem statements, KPIs, kitchen automation, and more."
+operatorMode: true
+configAware: false
+
+kb:
+  enabled: true
+  directory: public/panda/kb
+  maxFiles: 4
+  routing: keyword
+  routes:
+    - keywords: [walmart, starbucks, mcdonald, big three, venture lab, dismantl]
+      files: [DR-01-ops-innovation-big-three.md]
+    - keywords: [chick-fil-a, cfa, chipotle, taco bell, sweetgreen, domino, peer, competitor, benchmark]
+      files: [DR-02-ops-innovation-qsr-peers.md]
+    - keywords: [panda innovation, footprint, ownership, governance gap, mandate, james ku, CDO]
+      files: [DR-03-panda-innovation-footprint.md]
+    - keywords: [order accuracy, digital order, KDS, kitchen display, fulfillment, remediation]
+      files: [DR-04-digital-order-accuracy.md]
+    - keywords: [labor, turnover, wage, staffing, productivity, retention, workforce]
+      files: [DR-05-labor-productivity.md]
+    - keywords: [kitchen automation, wok, robotics, fry station, makeline, robot]
+      files: [DR-06-kitchen-automation.md]
+    - keywords: [financials, AUV, margin, SGA, unit economics, revenue, profitability, KPI]
+      files: [DR-07-panda-financials-kpi.md, kpi-benchmark-table.md]
+    - keywords: [format, prototype, north platte, panda home, modular, store design]
+      files: [DR-08-format-innovation.md]
+    - keywords: [drive-thru, drive thru, voice AI, throughput, lane, speed of service]
+      files: [DR-09-drive-thru.md]
+    - keywords: [smart building, energy, gridpoint, facilities, sustainability, demand response]
+      files: [DR-10-smart-building.md]
+    - keywords: [site selection, real estate, location, cannibalization, forecasting]
+      files: [DR-11-site-selection-ai.md]
+    - keywords: [construction, permitting, modular build, time-to-open, capex, TTO]
+      files: [DR-12-construction-pipeline.md]
+    - keywords: [governance, cherng, family, andrew, peggy, CEO, ownership, board]
+      files: [DR-13-panda-governance.md]
+    - keywords: [hiring, leadership, fractional, VP, organizational design, role, recruit]
+      files: [DR-14-ops-innovation-hiring.md]
+    - keywords: [synthesis, cross-thread, consolidated, gaps, decentralization]
+      files: [cross-thread-synthesis.md]
+    - keywords: [problem statement, priority, value sizing, addressable, phase 2]
+      files: [problem-statements.md]
+    - keywords: [knowledge gap, validation, data gap, unknown, phase 2B]
+      files: [knowledge-gaps.md]
