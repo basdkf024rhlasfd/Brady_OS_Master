@@ -22,7 +22,7 @@ function readLayout(): NavLayout | null {
 }
 
 function writeLayout(layout: NavLayout) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ starred: [], ...layout }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...layout, starred: layout.starred ?? [] }));
 }
 
 export function useSidebarLayout(
