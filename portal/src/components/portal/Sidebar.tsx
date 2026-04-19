@@ -5,7 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ProjectId } from "@/lib/access";
-import type { ProjectNav } from "./AppShell";
+import type { ProjectNav } from "@/lib/nav-types";
 
 const miscResources = [
   { href: "/notes/quick", label: "Quick Notes", short: "N" },

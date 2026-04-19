@@ -10,6 +10,7 @@ import {
 } from "react";
 import { usePathname } from "next/navigation";
 import type { ProjectId } from "@/lib/access";
+import type { ProjectNav } from "@/lib/nav-types";
 
 interface WorkspaceState {
   // Panel visibility
@@ -29,6 +30,7 @@ interface WorkspaceState {
   // Config
   isAdmin: boolean;
   projects: ProjectId[];
+  projectConfigs: ProjectNav[];
   configData: Record<string, unknown>;
   updateConfig: (key: string, value: unknown) => void;
 }
@@ -64,10 +66,12 @@ export function WorkspaceProvider({
   children,
   isAdmin,
   projects,
+  projectConfigs,
 }: {
   children: ReactNode;
   isAdmin: boolean;
   projects: ProjectId[];
+  projectConfigs: ProjectNav[];
 }) {
   const pathname = usePathname();
   const activeProject = deriveProject(pathname);
@@ -143,6 +147,7 @@ export function WorkspaceProvider({
         toggleChatMode,
         isAdmin,
         projects,
+        projectConfigs,
         configData,
         updateConfig,
       }}
