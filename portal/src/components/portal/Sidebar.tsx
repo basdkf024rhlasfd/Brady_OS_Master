@@ -77,6 +77,51 @@ function AccessTooltip({ entries, label }: { entries: AccessEntry[]; label: stri
   );
 }
 
+function ShareCount({ entries, label }: { entries: AccessEntry[]; label: string }) {
+  const [hovered, setHovered] = useState(false);
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const ref = useCallback(
+    (node: HTMLSpanElement | null) => {
+      if (node && hovered) {
+        const rect = node.getBoundingClientRect();
+        setPos({ top: rect.top, left: rect.right + 8 });
+      }
+    },
+    [hovered]
+  );
+
+  return (
+    <span
+      ref={ref}
+      className="flex items-center justify-center w-5 h-7 shrink-0 text-[10px] text-text-hint cursor-default"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {entries.length}
+      {hovered && (
+        <div
+          className="fixed z-50 w-64 rounded-lg border border-border bg-background shadow-lg p-3 pointer-events-none"
+          style={{ top: pos.top, left: pos.left }}
+        >
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted mb-2">
+            {label}
+          </p>
+          <div className="space-y-1.5">
+            {entries.map((e) => (
+              <div key={e.email} className="flex items-center justify-between gap-2">
+                <span className="text-xs text-foreground truncate">{e.email}</span>
+                <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded-full font-medium ${roleColors[e.role]}`}>
+                  {e.role}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </span>
+  );
+}
+
 function SortableNavItem({
   p,
   isAdmin,
@@ -93,11 +138,13 @@ function SortableNavItem({
   onToggleStar?: (slug: string) => void;
 }) {
   const pathname = usePathname();
-  const [hovered, setHovered] = useState(false);
 
   const isActive =
     pathname === p.href || pathname.startsWith(`${p.href}/`);
   const entries = accessMap?.[p.slug] ?? null;
+  const sharedEntries = entries?.filter(
+    (e) => e.email !== "brady.smallwood@gmail.com" && e.email !== "bradysmallz@gmail.com"
+  ) ?? [];
 
   const {
     attributes,
@@ -121,8 +168,6 @@ function SortableNavItem({
       ref={setNodeRef}
       style={style}
       className="relative group flex items-center"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {/* Drag handle — admin + expanded only */}
       {isAdmin && !collapsed && (
@@ -145,18 +190,13 @@ function SortableNavItem({
             : "text-text-secondary hover:bg-surface hover:text-foreground"
         }`}
       >
-        <span className="mr-2 w-4 text-center text-[10px] text-text-hint shrink-0">
-          {p.short}
-        </span>
-        {!collapsed && (
-          <>
-            <span className="truncate">{p.label}</span>
-            {isAdmin && entries && entries.length > 0 && (
-              <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-            )}
-          </>
-        )}
+        {!collapsed && <span className="truncate">{p.label}</span>}
       </Link>
+
+      {/* Share count + tooltip */}
+      {isAdmin && !collapsed && sharedEntries.length > 0 && (
+        <ShareCount entries={sharedEntries} label={p.label} />
+      )}
 
       {/* Star toggle — admin + expanded + hovered */}
       {isAdmin && !collapsed && onToggleStar && (
@@ -172,10 +212,6 @@ function SortableNavItem({
         </button>
       )}
 
-      {/* Access tooltip */}
-      {isAdmin && !collapsed && hovered && entries !== null && (
-        <AccessTooltip entries={entries} label={p.label} />
-      )}
     </div>
   );
 }
@@ -254,9 +290,6 @@ export function Sidebar({
             : "text-text-secondary hover:bg-surface hover:text-foreground"
         }`}
       >
-        <span className="mr-2 w-4 text-center text-[10px] text-text-hint">
-          {link.short}
-        </span>
         {collapsed ? "" : link.label}
       </Link>
     );
@@ -340,7 +373,6 @@ export function Sidebar({
                             : "text-text-secondary hover:bg-surface hover:text-foreground"
                         }`}
                       >
-                        <span className="mr-2 w-4 text-center text-[10px] text-text-hint shrink-0">{p.short}</span>
                         <span className="truncate">{p.label}</span>
                       </Link>
                     ))}
@@ -475,7 +507,6 @@ export function Sidebar({
                         rel="noopener noreferrer"
                         className="flex h-7 items-center rounded-md px-2 text-xs text-text-secondary transition hover:bg-surface hover:text-foreground"
                       >
-                        <span className="mr-2 w-4 text-center text-[10px] text-text-hint">{link.short}</span>
                         {link.label}
                         <span className="ml-auto text-[10px] text-text-hint">&nearr;</span>
                       </a>
@@ -515,9 +546,6 @@ export function Sidebar({
                     : "text-text-secondary hover:bg-surface hover:text-foreground"
                 }`}
               >
-                <span className="mr-2 w-4 text-center text-[10px] text-text-hint">
-                  {link.short}
-                </span>
                 {collapsed ? "" : link.label}
               </Link>
             );

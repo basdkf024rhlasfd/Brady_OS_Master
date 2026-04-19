@@ -3,6 +3,7 @@ import path from "path";
 import { notFound } from "next/navigation";
 import { loadProjects, type ProjectConfig } from "@/config/load-projects";
 import { SIDEBAR_GROUPS } from "@/lib/sidebar-groups";
+import { getChatConfig } from "@/lib/chat/chat-config";
 import { GroupPageClient, type GroupProject } from "./GroupPageClient";
 
 function getSubPages(slug: string): { label: string; href: string }[] {
@@ -39,11 +40,21 @@ export default async function GroupPage({ params }: { params: Promise<{ id: stri
       subPages: p.type === "native" ? getSubPages(p.slug) : [],
     }));
 
+  const chatConfig = getChatConfig(id);
+  const shortcuts = chatConfig.shortcuts ?? [];
+  const welcomeMessage = chatConfig.enabled ? chatConfig.welcomeMessage : "";
+  const dataSources = chatConfig.dataSources ?? [];
+  const agentInstructions = chatConfig.agentInstructions ?? "";
+
   return (
     <GroupPageClient
       id={id}
       groupLabel={group.label}
       projects={groupProjects}
+      shortcuts={shortcuts}
+      welcomeMessage={welcomeMessage}
+      dataSources={dataSources}
+      agentInstructions={agentInstructions}
     />
   );
 }
