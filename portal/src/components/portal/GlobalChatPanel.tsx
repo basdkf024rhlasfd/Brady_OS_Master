@@ -11,10 +11,12 @@ export function GlobalChatPanel() {
     chatOpen,
     toggleChat,
     chatScope,
+    activeProject,
     isAdmin,
     chatMode,
     toggleChatMode,
     configData,
+    projects,
   } = useWorkspace();
 
   const [input, setInput] = useState("");
@@ -24,13 +26,14 @@ export function GlobalChatPanel() {
   // Build project context sent with every request
   const projectContext = useMemo(
     () => ({
-      project: chatScope,
+      project: activeProject ?? "portal",
+      authorizedProjects: projects,
       route: typeof window !== "undefined" ? window.location.pathname : "/",
       configState: configData,
       isAdmin,
       mode: chatMode,
     }),
-    [chatScope, configData, isAdmin, chatMode]
+    [activeProject, projects, configData, isAdmin, chatMode]
   );
 
   // AI SDK useChat — one instance per chatScope
@@ -91,7 +94,7 @@ export function GlobalChatPanel() {
           </span>
           <span className="text-xs text-text-hint">|</span>
           <span className="text-xs text-text-secondary truncate">
-            {getProjectLabel(chatScope)}
+            {activeProject ? getProjectLabel(activeProject) : "mception"}
           </span>
           {isAdmin && (
             <button

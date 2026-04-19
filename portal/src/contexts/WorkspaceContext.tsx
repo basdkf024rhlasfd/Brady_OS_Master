@@ -72,7 +72,7 @@ export function WorkspaceProvider({
 }) {
   const pathname = usePathname();
   const activeProject = deriveProject(pathname);
-  const chatScope = activeProject ?? "portal";
+  const chatScope = "unified";
 
   // Panel visibility — persisted to localStorage
   const [chatOpen, setChatOpen] = useState(() =>
