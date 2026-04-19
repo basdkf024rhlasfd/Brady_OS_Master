@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+.sidebar-dark {
+  --background:     #111827;
+  --surface:        #1f2937;
+  --surface-active: #374151;
+  --foreground:     #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted:     #9ca3af;
+  --text-hint:      #6b7280;
+  --border:         #374151;
+  --border-light:   #1f2937;
+  --accent-brand:   #93c5fd;
+}
+
 :root {
   /* Surfaces */
   --background:       #ffffff;

@@ -7,6 +7,7 @@ export interface ProjectConfig {
   label: string;
   short: string;
   href: string;
+  description?: string;
   approved: string;
   type: "iframe-local" | "iframe-external" | "native";
   magic_link: boolean;

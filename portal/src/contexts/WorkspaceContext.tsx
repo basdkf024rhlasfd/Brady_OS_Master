@@ -5,11 +5,13 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   useRef,
   type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
 import type { ProjectId } from "@/lib/access";
+import type { ProjectNav, AccessMap } from "@/lib/nav-types";
 
 interface WorkspaceState {
   // Panel visibility
@@ -29,6 +31,8 @@ interface WorkspaceState {
   // Config
   isAdmin: boolean;
   projects: ProjectId[];
+  projectConfigs: ProjectNav[];
+  accessMap: AccessMap | null;
   configData: Record<string, unknown>;
   updateConfig: (key: string, value: unknown) => void;
 }
@@ -65,22 +69,24 @@ export function WorkspaceProvider({
   children,
   isAdmin,
   projects,
+  projectConfigs,
 }: {
   children: ReactNode;
   isAdmin: boolean;
   projects: ProjectId[];
+  projectConfigs: ProjectNav[];
 }) {
   const pathname = usePathname();
   const activeProject = deriveProject(pathname);
   const chatScope = "unified";
 
-  // Panel visibility — persisted to localStorage
-  const [chatOpen, setChatOpen] = useState(() =>
-    readLocalStorage("workspace-chat-open", true)
-  );
-  const [configOpen, setConfigOpen] = useState(() =>
-    readLocalStorage("workspace-config-open", true)
-  );
+  // Panel visibility — start false (matches SSR), sync from localStorage after mount
+  const [chatOpen, setChatOpen] = useState(false);
+  const [configOpen, setConfigOpen] = useState(false);
+  useEffect(() => {
+    setChatOpen(readLocalStorage("workspace-chat-open", true));
+    setConfigOpen(readLocalStorage("workspace-config-open", false));
+  }, []);
 
   const toggleChat = useCallback(() => {
     setChatOpen((prev) => {
@@ -99,9 +105,10 @@ export function WorkspaceProvider({
   }, []);
 
   // Chat mode — client vs operator
-  const [chatMode, setChatMode] = useState<"client" | "operator">(() =>
-    readLocalStorage("workspace-chat-mode", "client")
-  );
+  const [chatMode, setChatMode] = useState<"client" | "operator">("client");
+  useEffect(() => {
+    setChatMode(readLocalStorage("workspace-chat-mode", "client"));
+  }, []);
 
   const toggleChatMode = useCallback(() => {
     setChatMode((prev) => {
@@ -110,6 +117,16 @@ export function WorkspaceProvider({
       return next;
     });
   }, []);
+
+  // Access map — fetched once for admins
+  const [accessMap, setAccessMap] = useState<AccessMap | null>(null);
+  useEffect(() => {
+    if (!isAdmin) return;
+    fetch("/api/admin/access-map")
+      .then((r) => r.json())
+      .then((data) => setAccessMap(data.projects ?? null))
+      .catch(() => {});
+  }, [isAdmin]);
 
   // Config state per project
   const configRef = useRef<Record<string, Record<string, unknown>>>({});
@@ -144,6 +161,8 @@ export function WorkspaceProvider({
         toggleChatMode,
         isAdmin,
         projects,
+        projectConfigs,
+        accessMap,
         configData,
         updateConfig,
       }}

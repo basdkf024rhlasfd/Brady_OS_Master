@@ -1,17 +1,12 @@
 "use client";
 
 import { Sidebar } from "./Sidebar";
-// import { GlobalChatPanel } from "./GlobalChatPanel";  // hidden until further notice
-// import { ConfigPanel } from "./ConfigPanel";           // hidden until further notice
+import { GlobalChatPanel } from "./GlobalChatPanel";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import type { ProjectId } from "@/lib/access";
+import type { ProjectNav } from "@/lib/nav-types";
 
-export interface ProjectNav {
-  slug: string;
-  label: string;
-  short: string;
-  href: string;
-}
+export type { ProjectNav };
 
 export function AppShell({
   children,
@@ -25,10 +20,11 @@ export function AppShell({
   projectConfigs: ProjectNav[];
 }) {
   return (
-    <WorkspaceProvider isAdmin={isAdmin} projects={projects}>
+    <WorkspaceProvider isAdmin={isAdmin} projects={projects} projectConfigs={projectConfigs}>
       <div className="flex h-screen bg-background">
         <Sidebar isAdmin={isAdmin} projects={projects} projectConfigs={projectConfigs} />
         <main className="flex-1 overflow-hidden">{children}</main>
+        <GlobalChatPanel />
       </div>
     </WorkspaceProvider>
   );
