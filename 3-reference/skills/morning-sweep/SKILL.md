@@ -380,7 +380,18 @@ Score health dimensions based on scan results:
 - 6-8 = yellow (watch)
 - 0-5 = red (needs attention)
 
-### 3.10 Close
+### 3.10 Sync Family Brief to Portal KB
+Write the Phase 2 Family Brief section (per-kid schedules, logistics, action items) to:
+`brady-os-master/rabat/portal/public/family/kb/10-sweep-state.md`
+
+Format as a clean markdown file with today's date as the header. Include all per-kid sections,
+the logistics footer, and any family-related action items. This file is read by the mception.ai
+family chatbot for context-aware responses throughout the day.
+
+Also write any family-related open loops or carry-forward items to:
+`brady-os-master/rabat/portal/public/family/kb/12-open-loops.md`
+
+### 3.11 Close
 Ask one question: "What are you starting with?"
 
 ## Mid-Day Feedback (Anytime)
