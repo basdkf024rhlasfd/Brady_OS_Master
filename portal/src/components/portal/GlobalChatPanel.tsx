@@ -50,13 +50,13 @@ export function GlobalChatPanel() {
   const projectContext = useMemo(
     () => ({
       project: activeProject ?? "portal",
-      authorizedProjects: projects,
+      authorizedProjects: projectConfigs.map((p) => p.slug),
       route: typeof window !== "undefined" ? window.location.pathname : "/",
       configState: configData,
       isAdmin,
       mode: chatMode,
     }),
-    [activeProject, projects, configData, isAdmin, chatMode]
+    [activeProject, projectConfigs, configData, isAdmin, chatMode]
   );
 
   const transport = useMemo(
