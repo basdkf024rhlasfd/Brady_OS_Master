@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Quinn's Kids Fashion — April 19, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --red-dim: #8B3A3A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    min-height: 100vh;
+    position: relative;
+    page-break-after: always;
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  /* COVER */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 90vh;
+  }
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    letter-spacing: -1px;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    color: var(--gray-light);
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+  .cover-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+  .cover-meta span { color: var(--gold-dim); }
+  .cover-divider {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+    margin: 32px 0;
+    border-radius: 2px;
+  }
+  /* SECTION HEADERS */
+  .section-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding-top: 16px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(212,168,67,0.25);
+  }
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+  .card-gold { border-top: 3px solid var(--gold); }
+  .card-blue { border-top: 3px solid var(--blue); }
+  /* EXECUTIVE SUMMARY */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .exec-item {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+  }
+  .exec-item .rank {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .exec-item .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .exec-item .hook {
+    font-size: 13px;
+    color: var(--gray-light);
+  }
+  .exec-item .score-badge {
+    display: inline-block;
+    background: var(--bg-card-alt);
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+  .theme-card {
+    background: var(--bg-card-alt);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .theme-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .theme-card p {
+    color: var(--gray-light);
+    font-size: 13px;
+  }
+  /* PLATFORM CALLOUT */
+  .platform-callout {
+    background: linear-gradient(135deg, rgba(212,168,67,0.08), rgba(74,127,181,0.08));
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+  .platform-callout h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .platform-callout p {
+    color: var(--gray-light);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .platform-callout .flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .platform-callout .flow-step {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--white);
+  }
+  .platform-callout .flow-arrow {
+    color: var(--gold);
+    font-size: 18px;
+  }
+  /* PRODUCT PAGES */
+  .product-page {
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+  .product-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .product-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+    background: rgba(212,168,67,0.1);
+    border-radius: 4px;
+    padding: 4px 8px;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--white);
+    line-height: 1.15;
+  }
+  .product-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .tag-method {
+    color: var(--blue);
+    border-color: rgba(74,127,181,0.3);
+    background: rgba(74,127,181,0.08);
+  }
+  .tag-score {
+    color: var(--gold);
+    border-color: rgba(212,168,67,0.3);
+    background: rgba(212,168,67,0.08);
+  }
+  .tag-category {
+    color: var(--gray-light);
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+  }
+  .product-body {
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .product-image-block {
+    float: left;
+    margin: 0 24px 16px 0;
+  }
+  .product-image-block img {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: var(--bg-card-alt);
+  }
+  .no-image-placeholder {
+    width: 280px;
+    height: 280px;
+    border-radius: 8px;
+    background: var(--bg-card-alt);
+    border: 1px dashed rgba(212,168,67,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+    text-align: center;
+    padding: 20px;
+  }
+  .subsection-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+  .subsection-title:first-of-type { margin-top: 0; }
+  .pitch p {
+    margin-bottom: 12px;
+    color: var(--gray-light);
+    line-height: 1.7;
+  }
+  .rtb-list {
+    list-style: none;
+    padding: 0;
+  }
+  .rtb-list li {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    color: var(--gray-light);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .rtb-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+  /* PANELS */
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    clear: both;
+    margin-top: 16px;
+  }
+  .panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .panel-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .panel p, .panel li {
+    font-size: 13px;
+    color: var(--gray-light);
+  }
+  .panel ul {
+    list-style: none;
+    padding: 0;
+  }
+  .panel ul li {
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .comp-name { color: var(--white); font-weight: 500; }
+  .comp-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+  }
+  .sidebar-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+    clear: both;
+  }
+  .sidebar-item {
+    background: var(--bg-card-alt);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .sidebar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .sidebar-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .sidebar-note {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .research-basis {
+    background: var(--bg-card-alt);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 16px;
+    clear: both;
+  }
+  .research-basis p {
+    font-size: 12px;
+    color: var(--gray);
+    font-style: italic;
+  }
+  .research-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 6px;
+  }
+  /* APPENDIX */
+  .appendix-section {
+    margin-bottom: 32px;
+  }
+  .appendix-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .appendix-section p {
+    color: var(--gray-light);
+    margin-bottom: 12px;
+  }
+  .method-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  .method-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(212,168,67,0.2);
+  }
+  .method-table td {
+    padding: 10px 12px;
+    color: var(--gray-light);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+  .footer span { color: var(--gold-dim); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ COVER ═══════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-label">INNOVATION WORKSHOP</div>
+    <h1>Quinn's <span>Closet</span></h1>
+    <div class="subtitle">20 research-backed product concepts for a kid-creator fashion platform — oversized comfort meets self-expression for 9-year-old girls.</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>CATEGORY</span> Kids Fashion / DTC Apparel &nbsp;&nbsp;|&nbsp;&nbsp;
+      <span>DATE</span> April 19, 2026 &nbsp;&nbsp;|&nbsp;&nbsp;
+      <span>IDEAS</span> 20 Concepts &nbsp;&nbsp;|&nbsp;&nbsp;
+      <span>METHODS</span> 8 Applied
+    </div>
+    <div style="margin-top: 48px;">
+      <div class="cover-meta" style="opacity: 0.5;">mception.ai — Sycamore Lane Holdings</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ EXECUTIVE SUMMARY ═══════════════════════════ -->
+<div class="page">
+  <div class="section-header">EXECUTIVE SUMMARY</div>
+
+  <div class="platform-callout">
+    <h3>The Engine: Kid-Creator Platform</h3>
+    <p>This isn't just a clothing line — it's a platform. Kids submit original designs on the website. Quinn curates and picks the monthly winner. That design gets produced and shipped. The kid designer earns 1% of revenue. Every piece has a story and a young creator behind it.</p>
+    <div class="flow">
+      <div class="flow-step">Kids Design Online</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step">Quinn Picks Winner</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step">Design Gets Made</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step">Kid Gets 1% Rev</div>
+    </div>
+  </div>
+
+  <div class="section-header">TOP 5 IDEAS</div>
+
+  <div class="exec-grid">
+    <div class="exec-item">
+      <div class="rank">#1</div>
+      <div class="name">Charm Cargo</div>
+      <div class="hook">Wide-leg cargo pants with collectible charm attachment loops. Trinket Core meets baggy pants — the accessory ecosystem drives repeat purchases.</div>
+      <div class="score-badge">SCORE 4.50</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#2</div>
+      <div class="name">The Canvas Collection</div>
+      <div class="hook">Oversized blanks that ship with fabric markers. The kid IS the designer — every piece is one-of-one. Ties directly into the platform's creator engine.</div>
+      <div class="score-badge">SCORE 4.40</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#3</div>
+      <div class="name">Style Lab Monthly</div>
+      <div class="hook">Monthly subscription: one oversized basic + a customization kit (patches, pins, fabric paint pen). Recurring revenue + engagement.</div>
+      <div class="score-badge">SCORE 4.40</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#4</div>
+      <div class="name">Mood Patch Sweats</div>
+      <div class="hook">Velcro zones on oversized sweats for swappable mood patches. Self-expression changes daily — the garment is the canvas, patches are the vocabulary.</div>
+      <div class="score-badge">SCORE 4.35</div>
+    </div>
+    <div class="exec-item" style="grid-column: span 2;">
+      <div class="rank">#5</div>
+      <div class="name">Artist Collab Tees</div>
+      <div class="hook">Oversized tees featuring original art from kid creators. Numbered editions, artist bio card included. The flagship product for the kid-creator platform.</div>
+      <div class="score-badge">SCORE 4.35</div>
+    </div>
+  </div>
+
+  <div class="section-header">KEY THEMES</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+    <div class="theme-card">
+      <h4>Customization as Core</h4>
+      <p>12 of 20 ideas include a customization or personalization mechanic. Kids don't just wear — they create. The platform twist makes every purchase a co-creation moment.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Oversized = Canvas</h4>
+      <p>The oversized silhouette isn't just a trend — it's a design advantage. More surface area = more room for patches, art, charms, and self-expression. Comfort and creativity aligned.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Collectibility Drives Retention</h4>
+      <p>Charms, patches, limited drops, and numbered editions create a collection mechanic. Kids don't just buy clothes — they build a collection over time.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Premium-for-Category, Not Luxury</h4>
+      <p>$18-28 price range sits between Cat & Jack ($8-12) and NUNUNU ($45+). The margin comes from unique design mechanics, not premium fabric alone.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PRODUCT 1: CHARM CARGO ═══════════════════════════ -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#01</span>
+    <span class="product-name">Charm Cargo</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Cultural Trend Mining #51</span>
+    <span class="tag tag-score">Score 4.50</span>
+    <span class="tag tag-category">Bottoms / Accessories</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/01-charm-cargo-hero.png" alt="Charm Cargo pants">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>Wide-leg cargo pants for 9-year-old girls with metal loop attachment points along the cargo pockets and belt loops — purpose-built for collectible charms, keychains, beaded chains, and trinkets. The pants themselves are premium cotton in muted tones (sage, charcoal, oat), but the accessories turn them into a personalization platform.</p>
+      <p>This rides the Trinket Core wave that's been the fastest-growing kids accessory trend of 2025-2026. Every kid already collects charms and keychains — these pants give them a place to display them. The attachment loops are the product's moat: once a kid builds a charm collection around these pants, switching brands means losing the display system.</p>
+      <p>First move: launch with 3 colorways + a starter charm pack (5 charms). Sell refill charm packs seasonally. The pants are the platform; the charms are the recurring revenue.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Trinket Core / collectible accessories identified as fastest-growing kids accessory trend across multiple 2026 trend reports</li>
+      <li>Cargo pants confirmed as dominant kids silhouette for 2026 — baggy/wide-leg replaced skinny as the default</li>
+      <li>Personalized kids' apparel sales up 30% in 2 years (Fashion Kids Magazine)</li>
+      <li>Low manufacturing complexity: standard cargo pant construction + metal loop hardware (no custom tooling)</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Cat & Jack Cargo Pants</span> — Target's house brand, $14. Basic cargo, no charm loops, no personalization hook.</li>
+        <li><span class="comp-name">Crocs Jibbitz</span> — Proved the "collectible accessory on wearable" model at massive scale. This is Jibbitz for pants.</li>
+        <li><span class="comp-name">NUNUNU Cargo</span> — Premium kids cargo at $52. Cool but no personalization mechanic.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gray);">Gap: Nobody combines cargo pants + charm attachment system for kids. The mechanic is the moat.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Operational Complexity</div>
+      <ul>
+        <li><strong style="color: var(--white);">Manufacturing:</strong> Standard cargo construction + metal loop hardware. Any cut-and-sew shop can do this. MOQ ~200 units.</li>
+        <li><strong style="color: var(--white);">Supply chain:</strong> Cotton twill + metal loops. No cold chain, no fragile components.</li>
+        <li><strong style="color: var(--white);">Fulfillment:</strong> DTC-friendly, lightweight, standard packaging.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Simple</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item">
+      <div class="sidebar-label">Effort</div>
+      <div class="sidebar-value">Low</div>
+      <div class="sidebar-note">Standard construction</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Impact</div>
+      <div class="sidebar-value">High</div>
+      <div class="sidebar-note">Recurring charm revenue</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Target Price</div>
+      <div class="sidebar-value">$24</div>
+      <div class="sidebar-note">+ $8 charm packs</div>
+    </div>
+  </div>
+  <div class="research-basis">
+    <div class="research-label">Research Basis</div>
+    <p>Cultural Trend Mining (#51) — identified Trinket Core as the dominant kids accessory trend. Cross-referenced with cargo pant silhouette dominance data. The Crocs Jibbitz model proves collectible accessories on wearables drive billions in recurring revenue.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PRODUCT 2: THE CANVAS COLLECTION ═══════════════════════════ -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#02</span>
+    <span class="product-name">The Canvas Collection</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Mashup #24</span>
+    <span class="tag tag-score">Score 4.40</span>
+    <span class="tag tag-category">Tops / DIY</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/02-canvas-collection-hero.png" alt="Canvas Collection tee">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>Oversized cream and white blanks — tees, hoodies, and joggers — that ship with a set of fabric markers designed for textile use. The garment isn't the product. The blank + the tools + the kid's imagination is the product. Every piece becomes a one-of-one original.</p>
+      <p>This is where the kid-creator platform gets physical. Kids can design digitally on the website AND draw directly on the actual clothing. The digital designs compete for the monthly winner slot; the physical markers let every kid customize their own pair immediately. Two pathways, same creative energy.</p>
+      <p>The margin story is beautiful: premium blanks cost $3-5 to source, fabric markers cost $2-3 for a set of 6, but the perceived value of "design your own" clothing is $22-28. The craft-kit mechanic also makes this a natural gift item — birthday party gold.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Kids fashion customization surged 30% in 2 years — personalization is the #1 driver of kids apparel purchases after fit</li>
+      <li>DIY/craft kit market for kids projected at $1.2B in 2026, growing 8% YoY</li>
+      <li>Birthday party / gift-giving use case dramatically expands addressable market beyond the wearer</li>
+      <li>Manufacturing is dead simple: blank garments + packaged markers. No custom production per unit.</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Crayola Color Your Own Tee</span> — Exists but positioned as a craft toy, not fashion. Low-quality blanks, disposable feel. <span class="comp-price">$12</span></li>
+        <li><span class="comp-name">Primary.com</span> — Premium kids blanks in every color, $12-16. No customization angle.</li>
+        <li><span class="comp-name">Kid Made Modern (Target)</span> — Craft kits, but not wearable fashion. Adjacent category.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gray);">Gap: Nobody sells premium oversized blanks + textile markers as a fashion product, not a craft toy.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Operational Complexity</div>
+      <ul>
+        <li><strong style="color: var(--white);">Manufacturing:</strong> Source blank oversized garments (many suppliers). Bundle with third-party fabric markers.</li>
+        <li><strong style="color: var(--white);">Packaging:</strong> Needs a "kit" feel — box or pouch with garment + markers together.</li>
+        <li><strong style="color: var(--white);">Fulfillment:</strong> Lightweight, no special handling. Perfect for DTC.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Simple</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item">
+      <div class="sidebar-label">Effort</div>
+      <div class="sidebar-value">Low</div>
+      <div class="sidebar-note">Blank + marker bundle</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Impact</div>
+      <div class="sidebar-value">High</div>
+      <div class="sidebar-note">Gift market + platform tie-in</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Target Price</div>
+      <div class="sidebar-value">$22</div>
+      <div class="sidebar-note">Tee kit / $28 hoodie kit</div>
+    </div>
+  </div>
+  <div class="research-basis">
+    <div class="research-label">Research Basis</div>
+    <p>Mashup Method (#24) — combined art supplies + clothing categories. Validated by DIY craft kit market growth data and kids customization trend research. Crayola proves the concept exists; gap is in quality/positioning.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PRODUCT 3: STYLE LAB MONTHLY ═══════════════════════════ -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#03</span>
+    <span class="product-name">Style Lab Monthly</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Mashup #24</span>
+    <span class="tag tag-score">Score 4.40</span>
+    <span class="tag tag-category">Subscription / Multi-Category</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/03-style-lab-monthly-hero.png" alt="Style Lab Monthly box">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>A monthly subscription box that delivers one oversized garment + a customization kit. January might be a sage hoodie with iron-on patches. February could be oat joggers with enamel pins and a fabric paint pen. March: a cream oversized tee with tie-dye supplies. Each box is themed, seasonal, and designed to build on the collection from previous months.</p>
+      <p>The subscription model solves two parent problems simultaneously: "my kid outgrows everything" (monthly fresh inventory) and "my kid is bored of her clothes" (each box is a new creative project, not just another garment). The customization kit turns unboxing into an activity — 30 minutes of engaged play per box, minimum.</p>
+      <p>This is the recurring revenue backbone of the brand. Each box includes a card featuring that month's winning kid-designer and their design story — tying the physical product back to the creator platform.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Kids subscription box market growing 15% YoY — KiwiCo, Stitch Fix Kids, FabKids prove the model</li>
+      <li>Unboxing content is a top-3 kids content category on YouTube and TikTok — built-in marketing engine</li>
+      <li>Subscription LTV 4-6x single purchase — $25/month x 8 months average retention = $200 LTV vs $25 one-time</li>
+      <li>Each box cross-sells: patches work on previous month's hoodie, pins clip to last month's joggers</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Stitch Fix Kids</span> — Curated clothing box, but no customization. Just pre-selected outfits. <span class="comp-price">$20 styling fee</span></li>
+        <li><span class="comp-name">KiwiCo</span> — Monthly STEM/craft kits for kids. Proves the "box + activity" model but not clothing. <span class="comp-price">$24/mo</span></li>
+        <li><span class="comp-name">FabKids</span> — Affordable kids clothes subscription. No customization, no creative angle. <span class="comp-price">$30/mo</span></li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gray);">Gap: No subscription combines clothing + craft/customization kit. This is KiwiCo meets Stitch Fix.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Operational Complexity</div>
+      <ul>
+        <li><strong style="color: var(--white);">Manufacturing:</strong> Monthly garment sourcing + kit assembly. Need 2-month lead time for seasonal themes.</li>
+        <li><strong style="color: var(--white);">Logistics:</strong> Subscription fulfillment (Shipstation/ShipBob). Box design and branded packaging required.</li>
+        <li><strong style="color: var(--white);">Inventory:</strong> Subscription model allows predictable demand forecasting. Size matrix adds complexity.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Moderate</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item">
+      <div class="sidebar-label">Effort</div>
+      <div class="sidebar-value">Med</div>
+      <div class="sidebar-note">Monthly fulfillment ops</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Impact</div>
+      <div class="sidebar-value">High</div>
+      <div class="sidebar-note">Recurring revenue + LTV</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Target Price</div>
+      <div class="sidebar-value">$25</div>
+      <div class="sidebar-note">/month subscription</div>
+    </div>
+  </div>
+  <div class="research-basis">
+    <div class="research-label">Research Basis</div>
+    <p>Mashup Method (#24) — combined subscription box model (KiwiCo) with fashion (Stitch Fix) and DIY customization. Kids subscription box market data validates growth trajectory. Cross-selling across months creates natural retention loop.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PRODUCT 4: MOOD PATCH SWEATS ═══════════════════════════ -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#04</span>
+    <span class="product-name">Mood Patch Sweats</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">JTBD #4</span>
+    <span class="tag tag-score">Score 4.35</span>
+    <span class="tag tag-category">Bottoms / Self-Expression</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/04-mood-patch-sweats-hero.png" alt="Mood Patch Sweats">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>Oversized baggy sweatpants in dusty lavender, sage, and oat with sewn-in velcro zones on the thighs and back pockets. The velcro panels are purpose-built for swappable embroidered patches — a smiley face today, a lightning bolt tomorrow, a rainbow on Friday. The garment stays the same; the personality changes daily.</p>
+      <p>This solves a real JTBD for 9-year-olds: "I want to express my mood without having to explain it." Patches are non-verbal self-expression — lower stakes than words on a t-shirt, more personal than a generic print. Starter sets come with 6 patches; expansion packs sell for $6-8 and become the collectible engine.</p>
+      <p>The kid-creator platform angle: kids can design patches digitally, and winning designs get produced as limited-run patch packs. The community creates the accessory ecosystem.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Patch/badge customization market for youth apparel growing 12% YoY globally</li>
+      <li>Velcro-attachment system proven in military/tactical wear — adapting proven mechanic to kids fashion</li>
+      <li>Oversized sweats = #1 kids comfort category. Adding velcro zones is additive, not disruptive to fit</li>
+      <li>Expansion patch packs create ongoing revenue stream with minimal COGS ($1-2/pack production cost)</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Cat & Jack Joggers</span> — Target, $12. Standard sweats, no personalization.</li>
+        <li><span class="comp-name">Tactical velcro patches (adult)</span> — Morale patches are a $200M+ market in adult tactical/military. Zero players in kids fashion.</li>
+        <li><span class="comp-name">Iron-on patch kits</span> — Exist but require an iron and are permanent. Velcro = instant, reversible, no adult help needed.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gray);">Gap: Velcro-based swappable patch system doesn't exist in kids fashion. Iron-on is permanent; this is daily-changeable.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Operational Complexity</div>
+      <ul>
+        <li><strong style="color: var(--white);">Manufacturing:</strong> Standard sweats + velcro panel sewing. Embroidered patches from specialized suppliers.</li>
+        <li><strong style="color: var(--white);">Inventory:</strong> Need to manage patch SKU proliferation. Start with 12 designs, expand quarterly.</li>
+        <li><strong style="color: var(--white);">Fulfillment:</strong> Lightweight, standard DTC shipping. Bundle sweats + starter pack.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Simple</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item">
+      <div class="sidebar-label">Effort</div>
+      <div class="sidebar-value">Low</div>
+      <div class="sidebar-note">Sweats + velcro zones</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Impact</div>
+      <div class="sidebar-value">High</div>
+      <div class="sidebar-note">Daily self-expression</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Target Price</div>
+      <div class="sidebar-value">$22</div>
+      <div class="sidebar-note">w/ 6-patch starter</div>
+    </div>
+  </div>
+  <div class="research-basis">
+    <div class="research-label">Research Basis</div>
+    <p>Jobs to Be Done (#4) — mapped Quinn's "express my personality without words" job. Validated by patch/badge customization growth data and tactical velcro market size as proof of mechanic durability.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PRODUCT 5: ARTIST COLLAB TEES ═══════════════════════════ -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#05</span>
+    <span class="product-name">Artist Collab Tees</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Premiumization #56</span>
+    <span class="tag tag-score">Score 4.35</span>
+    <span class="tag tag-category">Tops / Limited Edition</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/05-artist-collab-tees-hero.png" alt="Artist Collab Tee">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>This is the flagship product of the kid-creator platform. Oversized boxy tees featuring original artwork submitted by kids through the website. Each monthly winner gets their design printed on a numbered limited run of 50. The tee ships with an artist bio card — the young designer's name, age, city, and a sentence about what inspired the design.</p>
+      <p>The numbered edition creates scarcity and collectibility. The artist bio card creates emotional connection. The kid-creator gets 1% of revenue and bragging rights. Parents buy for their kid and as gifts for their kid's friends. It's wearable art with a story.</p>
+      <p>Production path: DTG (direct-to-garment) printing on premium oversized blanks. No screen setup costs, no minimum runs. Print-on-demand is feasible but slightly lower quality; DTG small-batch is the sweet spot for 50-unit runs.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Limited-edition drops generate 3-5x the engagement of standard product launches in DTC fashion</li>
+      <li>DTG printing costs have dropped 40% since 2023 — small-batch runs are now margin-positive at $5-7/unit</li>
+      <li>Kid-art-on-products market proven by brands like Little Artists (UK) and Plotter (DE) at $30-45 price points</li>
+      <li>Artist bio cards add perceived value at pennies of cost — proven in specialty coffee and craft beer packaging</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Threadless</span> — Artist-submitted designs, community-voted. Adult-focused, no kids platform. <span class="comp-price">$25-30</span></li>
+        <li><span class="comp-name">Little Artists (UK)</span> — Kids' art on products, but parent-submitted, not kid-platform-driven. <span class="comp-price">$30+</span></li>
+        <li><span class="comp-name">Primary.com</span> — Premium kids blanks, no art or creator angle. <span class="comp-price">$12-16</span></li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gray);">Gap: No platform lets kids submit designs, compete for selection, and earn revenue from their winning art on clothing.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Operational Complexity</div>
+      <ul>
+        <li><strong style="color: var(--white);">Manufacturing:</strong> DTG printing on blank tees. Setup per design is minimal. 50-unit runs.</li>
+        <li><strong style="color: var(--white);">Platform:</strong> Need website with submission/voting flow. Moderate dev effort upfront.</li>
+        <li><strong style="color: var(--white);">Legal:</strong> Need parent consent for kid designers. Rev-share agreement template needed.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Moderate</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item">
+      <div class="sidebar-label">Effort</div>
+      <div class="sidebar-value">Med</div>
+      <div class="sidebar-note">Platform + DTG ops</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Impact</div>
+      <div class="sidebar-value">High</div>
+      <div class="sidebar-note">Brand flagship product</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Target Price</div>
+      <div class="sidebar-value">$26</div>
+      <div class="sidebar-note">Numbered /50 edition</div>
+    </div>
+  </div>
+  <div class="research-basis">
+    <div class="research-label">Research Basis</div>
+    <p>Premiumization (#56) — elevated basic tees through limited-edition artist collaboration mechanic. Validated by Threadless community model, DTG cost reduction data, and limited-edition DTC engagement metrics.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PRODUCTS 6-20 (CONDENSED) ═══════════════════════════ -->
+
+<!-- PRODUCT 6: MINI DROP CULTURE -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#06</span>
+    <span class="product-name">Mini Drop Culture</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Analogous #15</span>
+    <span class="tag tag-score">Score 4.30</span>
+    <span class="tag tag-category">Multi-Category / Drops</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">IMAGE PENDING<br>Canva quota — next run</div>
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>Borrow the streetwear drop model — limited quantities, surprise releases, collectible hang tags — and shrink it to kids. Each "drop" is 3-5 oversized pieces in a coordinated colorway, released every 6-8 weeks with only 50-100 units per piece. When it's gone, it's gone.</p>
+      <p>The collectible holographic hang tag becomes the trophy — kids keep them, trade them, hang them on their backpacks. The scarcity mechanic drives urgency: parents learn to buy on drop day or miss out. Email/text list becomes the primary marketing channel.</p>
+      <p>Tied to the kid-creator platform: each drop could feature that month's winning designer's work across all pieces in the collection.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Supreme, BAPE, and streetwear brands proved scarcity drives demand — adapting to kids where nobody plays this game</li>
+      <li>Limited drops reduce inventory risk: produce only what you plan to sell, no overstock</li>
+      <li>Collectible hang tags cost &lt;$0.50 each but create emotional attachment and social currency</li>
+      <li>Email/SMS drop notifications drive 40-60% open rates in DTC fashion vs 20% for standard marketing</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Supreme (adult)</span> — The OG drop model. Proves scarcity + community = brand heat.</li>
+        <li><span class="comp-name">No kids brand</span> uses the drop model today — this is a category whitespace.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Ops Complexity</div>
+      <p>Small-batch production (50-100 units). Lower inventory risk but requires tight production timing. Holographic tags need specialty print supplier.</p>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Moderate</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$24</div></div>
+  </div>
+</div>
+
+<!-- PRODUCT 7: 5-PIECE CAPSULE -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#07</span>
+    <span class="product-name">The 5-Piece Capsule</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Blue Ocean #9</span>
+    <span class="tag tag-score">Score 4.30</span>
+    <span class="tag tag-category">Sets / Wardrobe System</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/07-five-piece-capsule-hero.png" alt="5-Piece Capsule set">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>Five oversized pieces — joggers, wide-leg pants, tee, hoodie, and button-up — in a coordinated neutral palette that all mix-and-match into 15+ outfits. Sold as a complete set at a bundle discount. Eliminates decision fatigue for both parents ("what do I buy?") and kids ("what do I wear?").</p>
+      <p>Blue Ocean logic: every kids brand sells individual pieces and hopes you'll buy more. This flips the model — sell the whole mini-wardrobe as one decision. New colorway capsules release quarterly, and all capsules are backwards-compatible (sage Q1 works with oat Q2).</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Capsule wardrobe movement growing 20% YoY in women's fashion — zero players in kids</li>
+      <li>Bundle pricing increases AOV 3-4x vs single-piece purchases</li>
+      <li>Backwards-compatible colorways create a system, not just clothes — encourages multi-capsule collection</li>
+      <li>Reduces decision fatigue — parents report outfit selection as a top-3 morning stress point</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Primary.com</span> — Sells basics in every color individually. No capsule/set concept.</li>
+        <li><span class="comp-name">KIDLY (UK)</span> — Curated kids wardrobe, but multi-brand, not a designed system.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Ops Complexity</div>
+      <p>5-piece production per capsule. Size matrix across 5 items adds SKU count. Bundle packaging needed. Quarterly colorway drops require planning.</p>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Moderate</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$89</div><div class="sidebar-note">5-piece set</div></div>
+  </div>
+</div>
+
+<!-- PRODUCT 8: OOTD BUILDER BOX -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#08</span>
+    <span class="product-name">OOTD Builder Box</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Cultural Trend #51</span>
+    <span class="tag tag-score">Score 4.25</span>
+    <span class="tag tag-category">Subscription / Content</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/08-ootd-builder-box-hero.png" alt="OOTD Builder Box">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>A curated box of mix-and-match oversized basics + accessories, designed specifically so kids can create "outfit of the day" content for TikTok and social. Includes styling cards showing 5 different outfit combinations from the same pieces, plus a mini ring light/phone stand for photo content.</p>
+      <p>This rides two cultural waves: kids' OOTD content is a top-3 category on TikTok, and parents are already filming their kids' outfits daily. The box gives them better content with better clothes. User-generated content becomes the marketing engine — every kid posting their OOTD is a brand ambassador.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>#OOTD has 50B+ views on TikTok — kids fashion OOTD is a fast-growing sub-category</li>
+      <li>User-generated content reduces CAC by 40-60% vs paid acquisition in DTC fashion</li>
+      <li>Styling cards teach kids fashion fundamentals while driving outfit variety from fewer pieces</li>
+      <li>Content creation tools (ring light, phone stand) elevate the unboxing from product to experience</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Stitch Fix Kids</span> — Styled outfits, no content creation angle. <span class="comp-price">$20 fee</span></li>
+        <li><span class="comp-name">FabKids</span> — Budget kids subscription, no styling education or content tools.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Ops Complexity</div>
+      <p>Mix-and-match curation adds complexity vs single-item boxes. Styling cards need design each month. Content creation tools (ring light) sourced from AliExpress at $2-3/unit.</p>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Moderate</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$28</div><div class="sidebar-note">/month</div></div>
+  </div>
+</div>
+
+<!-- PRODUCT 9: NEUTRAL LUXE KIDS -->
+<div class="page product-page">
+  <div class="product-header">
+    <span class="product-number">#09</span>
+    <span class="product-name">Neutral Luxe Kids</span>
+  </div>
+  <div class="product-tags">
+    <span class="tag tag-method">Cultural Trend #51</span>
+    <span class="tag tag-score">Score 4.25</span>
+    <span class="tag tag-category">Basics / Premium</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-quinn-fashion/09-neutral-luxe-kids-hero.png" alt="Neutral Luxe Kids">
+    </div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch">
+      <p>Oversized pieces in cream, sage, oat, fog, and mushroom with subtle texture differences — waffle knit, ribbed, brushed cotton, french terry. No logos, no graphics, no prints. The "clean girl" aesthetic adapted for 9-year-olds: elevated basics that look expensive but aren't costumey.</p>
+      <p>These are the base layer of the brand. While other products in the line add charms, patches, and art, these pieces prove the silhouettes and fabrics stand on their own. They serve the parent who wants quality and the kid who's starting to develop personal style beyond characters and sparkles.</p>
+    </div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Neutral/earth tones dominate 2026 kids fashion trend reports — pastels and neons declining</li>
+      <li>NUNUNU proved premium minimalist kids clothing works at $45-60; this targets $18-22 — accessible premium</li>
+      <li>Texture differentiation costs nothing extra in manufacturing but creates perceived quality gap</li>
+      <li>"Clean girl" aesthetic has 15B+ TikTok views — age-appropriate version is an untapped lane</li>
+    </ul>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">NUNUNU</span> — Premium minimalist kids, $45-60. Right aesthetic, wrong price for mass adoption.</li>
+        <li><span class="comp-name">Primary.com</span> — Every color, $12-16. Similar philosophy but fitted, not oversized.</li>
+        <li><span class="comp-name">H&M Conscious Kids</span> — Neutral tones, organic cotton, $8-15. Lower quality perception.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Ops Complexity</div>
+      <p>Simple production — oversized basics in neutral fabrics. Multiple textures require sourcing from different fabric mills but standard construction. Easiest product in the line to manufacture.</p>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dim);"><strong>Rating: Simple</strong></p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$20</div></div>
+  </div>
+</div>
+
+<!-- PRODUCTS 10-20 (REMAINING) -->
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#10</span><span class="product-name">Reversible Oversized Hoodie</span></div>
+  <div class="product-tags"><span class="tag tag-method">SCAMPER #21</span><span class="tag tag-score">Score 4.15</span><span class="tag tag-category">Tops / 2-in-1</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><img src="images-quinn-fashion/10-reversible-hoodie-hero.png" alt="Reversible Hoodie"></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Two completely different designs in one oversized hoodie — flip inside-out and it's a new look. One side solid dusty pink; the other side bold geometric pattern in teal and gold. Doubles the wardrobe without doubling the spend. Kids love the "secret other outfit" mechanic — it becomes a personality switch.</p>
+    <p>Manufacturing is straightforward: double-layered construction with finished seams on both sides. Costs ~30% more than a single hoodie but sells for double the perceived value. Three colorway combos per season.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Reversible garments growing in adult fashion (Patagonia, Uniqlo) — minimal presence in kids</li>
+      <li>Cost per wear drops 50% — resonates with value-conscious parents</li>
+      <li>Double-layer construction adds warmth — functional benefit beyond the style trick</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$28</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#11</span><span class="product-name">Squad Sets</span></div>
+  <div class="product-tags"><span class="tag tag-method">JTBD #4</span><span class="tag tag-score">Score 4.15</span><span class="tag tag-category">Sets / Social</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><img src="images-quinn-fashion/11-squad-sets-hero.png" alt="Squad Sets"></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Matching oversized pieces in coordinated-but-different colorways — so friend groups can match without being identical. A set of 4 hoodies: dusty rose, sage, lavender, butter yellow. Same design, different color. Squad goals without the cringe of being twins.</p>
+    <p>This solves a specific social JTBD for 9-year-olds: "I want to belong but also be unique." Sell individually ($22) or as a 4-pack at a group discount ($75). The 4-pack is designed for birthday parties — the birthday girl picks her squad's colorways.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Friendship/group identity is the #1 social driver for ages 8-11</li>
+      <li>Group-buy/party-pack model increases AOV 3-4x and drives word-of-mouth</li>
+      <li>Coordinated-but-different satisfies both parents (no matchy-matchy) and kids (squad identity)</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$22</div><div class="sidebar-note">/ $75 squad pack</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#12</span><span class="product-name">Friendship Bracelet Hoodie</span></div>
+  <div class="product-tags"><span class="tag tag-method">Mashup #24</span><span class="tag tag-score">Score 4.15</span><span class="tag tag-category">Tops / Craft Detail</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><img src="images-quinn-fashion/12-friendship-bracelet-hoodie-hero.png" alt="Friendship Bracelet Hoodie"></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>An oversized heather gray hoodie with woven friendship-bracelet-style details on the cuffs and hood drawstring. The braided multicolor cord replaces standard drawstrings; the cuffs have an embroidered pattern mimicking friendship bracelet weave. Handmade energy on a premium garment.</p>
+    <p>Friendship bracelets had a massive resurgence during the Taylor Swift Eras Tour era and haven't faded. This takes that emotional connection — "my best friend made this for me" — and builds it into the hoodie itself. Premium feel with emotional resonance.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Friendship bracelet market exploded post-Eras Tour — lasting cultural shift, not a fad</li>
+      <li>Handmade/craft aesthetic trending in premium fashion (Bottega, The Row) — trickling to kids</li>
+      <li>Minimal manufacturing complexity — custom drawstring cord + embroidered cuff detail</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$26</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#13</span><span class="product-name">Cargo Sweats</span></div>
+  <div class="product-tags"><span class="tag tag-method">SCAMPER #21</span><span class="tag tag-score">Score 4.05</span><span class="tag tag-category">Bottoms / Hybrid</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><img src="images-quinn-fashion/13-cargo-sweats-hero.png" alt="Cargo Sweats"></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Baggy sweatpants meets cargo pants — the comfort of french terry with the utility and style of cargo pockets. Elastic cuffs, relaxed oversized fit, with two cargo pockets on each leg. Detachable carabiner clips and a beaded keychain accessory come included.</p>
+    <p>This is the SCAMPER "Combine" play: take the #1 kids comfort garment (sweats) and add the #1 kids style garment (cargo) into one hybrid. The carabiner clips connect to the Charm Cargo charm ecosystem — accessories are cross-compatible across the line.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Cargo + sweats hybrid trending in adult streetwear (Nike, Carhartt WIP) — not yet in kids</li>
+      <li>French terry cargo construction is standard — no special manufacturing needed</li>
+      <li>Cross-compatibility with Charm Cargo accessories creates ecosystem lock-in</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$22</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#14</span><span class="product-name">Character Comfort</span></div>
+  <div class="product-tags"><span class="tag tag-method">Mashup #24</span><span class="tag tag-score">Score 4.05</span><span class="tag tag-category">Tops / Inspired-By</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><img src="images-quinn-fashion/14-character-comfort-hero.png" alt="Character Comfort hoodie"></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Oversized hoodies with subtle character-inspired design details — not licensed characters, but "inspired by" themes. Dragon scale textured fabric on the shoulders. Astronaut reflective patches on the chest. Ocean wave stitching on the cuffs. The kid knows what it references; adults just see a cool hoodie.</p>
+    <p>This avoids the licensing cost trap while tapping into the imagination play that 9-year-olds live in. Each "character" hoodie has a name and a tiny backstory printed on the inner tag — world-building through clothing.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Licensed character apparel is a $15B+ market — but licensing fees eat 15-25% of revenue</li>
+      <li>"Inspired by" avoids licensing while tapping the same emotional connection</li>
+      <li>World-building through clothing proven by brands like Tea Collection and Boden</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$26</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#15</span><span class="product-name">The Anti-Uniform Tee</span></div>
+  <div class="product-tags"><span class="tag tag-method">JTBD #4</span><span class="tag tag-score">Score 4.05</span><span class="tag tag-category">Tops / Community</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><img src="images-quinn-fashion/15-anti-uniform-tee-hero.png" alt="Anti-Uniform Tee"></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Oversized tees with original illustrations by kid artists — limited runs of 50. A "Designed by Mia, age 10" tag at the hem. Kids designing for kids. This is the Artist Collab Tees' grassroots sibling: while Artist Collab features curated monthly winners, Anti-Uniform Tee runs smaller, more frequent micro-drops from the community.</p>
+    <p>The differentiator: the art style is intentionally naive and authentic — charming kid art, not polished illustration. The imperfection IS the aesthetic. Each tee is a wearable gallery piece from a real kid creator.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>User-generated art creates infinite unique inventory at zero design cost</li>
+      <li>Kids-designing-for-kids creates peer credibility that adult designers can't replicate</li>
+      <li>Limited runs of 50 create urgency and collectibility at manageable production scale</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$22</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#16</span><span class="product-name">Grow-With-Me Baggies</span></div>
+  <div class="product-tags"><span class="tag tag-method">SCAMPER #21</span><span class="tag tag-score">Score 4.00</span><span class="tag tag-category">Bottoms / Longevity</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><div class="no-image-placeholder">IMAGE PENDING<br>Canva quota — next run</div></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Adjustable wide-leg pants with button tabs at the hem and hidden elastic waist adjustment. Designed to work for 2+ years as the kid grows — roll the cuffs at one length this year, let them out next year. The intentionally oversized fit means sizing is forgiving from the start.</p>
+    <p>This directly addresses the #1 parent pain point with kids clothing: they outgrow everything in 3-6 months. By building adjustability into the design, these pants deliver twice the wear-life at a modest premium over standard pants. Sustainability angle: fewer clothes in the landfill.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Parents spend $580/year per child on clothing — 60% goes to replacing outgrown items</li>
+      <li>Adjustable kids clothing proven by Oaki ($32-40) and PrimaryGrow — niche but growing</li>
+      <li>Sustainability-conscious parents willing to pay 20% premium for longer-lasting kids clothing</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$24</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#17</span><span class="product-name">Modular Outfit</span></div>
+  <div class="product-tags"><span class="tag tag-method">Analogous #15</span><span class="tag tag-score">Score 4.00</span><span class="tag tag-category">Tops / System</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><div class="no-image-placeholder">IMAGE PENDING<br>Canva quota — next run</div></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>An oversized base tee with snap buttons along the sleeves and hem. Snap-on panels sold separately: a floral sleeve extension, a striped pocket panel, a gingham hem addition. The base is one garment; the panels make it ten different outfits.</p>
+    <p>Borrowed from modular furniture design (IKEA, USM) — one base, infinite configurations. The panels become the collectible element. Seasonal panel packs drop quarterly. The base tee is the platform; panels are the recurring revenue.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Modular/transformable clothing trending in adult fashion (post, COS) — zero presence in kids</li>
+      <li>Snap-button construction is standard and durable — no custom hardware needed</li>
+      <li>Panel packs at $8-10 have high margin (fabric scraps + snaps) and drive repeat purchase</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$24</div><div class="sidebar-note">base + 2 panels</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#18</span><span class="product-name">Cashmere-Touch Sweats</span></div>
+  <div class="product-tags"><span class="tag tag-method">Premiumization #56</span><span class="tag tag-score">Score 4.00</span><span class="tag tag-category">Sets / Premium Fabric</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><div class="no-image-placeholder">IMAGE PENDING<br>Canva quota — next run</div></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Premium modal/cashmere blend oversized sweats — joggers and crewneck — at $28. The "I can't believe these are kids' sweats" upgrade. When parents touch the fabric, the sale is made. No gimmicks, no accessories — pure fabric quality play.</p>
+    <p>This targets the parent who buys Vuori or Lululemon for themselves and winces putting their kid in polyester blends. Modal/cashmere feels luxury but costs only $2-3 more per unit than standard cotton fleece. The margin comes from the perception gap between cost and touch.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Modal fabric costs 15-20% more than cotton but has 3x the perceived quality in blind touch tests</li>
+      <li>Athleisure parents (Vuori, Alo, Lulu) have demonstrated willingness to pay 3x for premium fabric feel</li>
+      <li>Kids modal/cashmere category has minimal competition — most premium kids brands use organic cotton, not modal</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$28</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#19</span><span class="product-name">Butterfly Cargo</span></div>
+  <div class="product-tags"><span class="tag tag-method">Cultural Trend #51</span><span class="tag tag-score">Score 4.00</span><span class="tag tag-category">Bottoms / Y2K</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><div class="no-image-placeholder">IMAGE PENDING<br>Canva quota — next run</div></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Wide-leg cargo pants with butterfly-shaped pocket flaps + matching oversized baby tee. Y2K revival adapted for 9-year-olds. The butterfly shape is cut into the pocket flap itself — structural, not a print. Comes in lilac, butter yellow, and sage.</p>
+    <p>Y2K aesthetic is confirmed as a dominant kids fashion trend for 2026. This takes the most iconic Y2K symbol (butterfly) and integrates it into the construction rather than just printing it on. The butterfly flap is a conversation starter and Instagram moment.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Y2K aesthetic confirmed as top kids trend for 2026 — butterfly prints, cargo, chunky accessories</li>
+      <li>Structural detail (cut pocket flap) is more durable and distinctive than screen-printed butterflies</li>
+      <li>Matching set (pants + tee) increases AOV by 40-60% vs selling pieces individually</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$24</div><div class="sidebar-note">pants / $18 tee</div></div>
+  </div>
+</div>
+
+<div class="page product-page">
+  <div class="product-header"><span class="product-number">#20</span><span class="product-name">Inside-Out Collection</span></div>
+  <div class="product-tags"><span class="tag tag-method">SCAMPER #21</span><span class="tag tag-score">Score 3.95</span><span class="tag tag-category">Multi-Category / Deconstructed</span></div>
+  <div class="product-body">
+    <div class="product-image-block"><div class="no-image-placeholder">IMAGE PENDING<br>Canva quota — next run</div></div>
+    <div class="subsection-title">The Pitch</div>
+    <div class="pitch"><p>Intentionally exposed seams, reverse-printed graphics, and raw edges — the "perfectly imperfect" oversized line. Looks like you got dressed in the dark and it works. Tees, hoodies, and joggers with construction details that are normally hidden turned into design features.</p>
+    <p>This is the SCAMPER "Reverse" play. Every other brand hides construction. This brand celebrates it. The exposed stitching, raw hems, and inside-out printing create an unmistakable aesthetic that can't be replicated by mass-market brands because it looks like a manufacturing defect to anyone not in on the concept.</p></div>
+    <div class="subsection-title">Reasons to Believe</div>
+    <ul class="rtb-list">
+      <li>Deconstructed fashion trending in adult luxury (Margiela, Vetements) — zero kids translations</li>
+      <li>Raw edges and exposed seams actually reduce manufacturing steps (cheaper to produce)</li>
+      <li>"Anti-fashion" aesthetic creates strong brand identity — easy to recognize, hard to copy at mass scale</li>
+    </ul>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Low</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Med</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Target Price</div><div class="sidebar-value">$20</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ WHITEPAPER APPENDIX ═══════════════════════════ -->
+<div class="page">
+  <div class="section-header">WHITEPAPER APPENDIX</div>
+
+  <div class="appendix-section">
+    <h3>Methodology</h3>
+    <p>This workshop applied 8 ideation methods from the Full-Stack Ideation toolkit (100 methods) against a sharp prompt refined through Stage 0 research. The prompt: "Oversized, baggy, comfortable clothing for 9-year-old girls made unique through customization, personalization, collectible accessories, and unexpected design details. Cool self-expression without growing up too fast. DTC at $18-28."</p>
+    <p>38 raw ideas were generated, scored on 6 criteria (Originality 20%, Market Size 20%, Margin Potential 20%, Visual Appeal 15%, Manufacturability 15%, Research Backing 10%), and filtered to 20 survivors.</p>
+
+    <table class="method-table">
+      <thead><tr><th>Method</th><th>Ideas Generated</th><th>Survivors</th><th>Hit Rate</th></tr></thead>
+      <tbody>
+        <tr><td>JTBD (#4)</td><td>5</td><td>3</td><td>60%</td></tr>
+        <tr><td>SCAMPER (#21)</td><td>7</td><td>4</td><td>57%</td></tr>
+        <tr><td>Analogous Inspiration (#15)</td><td>5</td><td>2</td><td>40%</td></tr>
+        <tr><td>Cultural Trend Mining (#51)</td><td>6</td><td>4</td><td>67%</td></tr>
+        <tr><td>Premiumization (#56)</td><td>4</td><td>2</td><td>50%</td></tr>
+        <tr><td>Packaging Innovation (#58)</td><td>4</td><td>0</td><td>0%</td></tr>
+        <tr><td>Blue Ocean (#9)</td><td>3</td><td>1</td><td>33%</td></tr>
+        <tr><td>Mashup Method (#24)</td><td>4</td><td>4</td><td>100%</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 12px; font-size: 12px; color: var(--gray);">Key insight: Mashup Method produced 100% survivors — combining two categories consistently yields the most original and commercially viable concepts. Packaging Innovation produced 0 survivors because packaging alone doesn't differentiate clothing; it needs to be bundled with a product innovation.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Market Analysis: Kids Fashion DTC</h3>
+    <p>The US kids clothing market is approximately $37B (2026), with the 7-12 age segment representing ~$12B. DTC brands capture an estimated 8-12% of the market, growing at 15% YoY vs 3% for traditional retail.</p>
+    <p>Key market signals:</p>
+    <ul class="rtb-list">
+      <li><strong style="color: var(--white);">Oversized silhouettes:</strong> Confirmed dominant trend across all major 2026 kids fashion forecasts. Wide-leg replaced skinny as the default for girls 8+.</li>
+      <li><strong style="color: var(--white);">Customization surge:</strong> Personalized kids apparel up 30% in 2 years. DIY/craft kit market at $1.2B, growing 8% YoY.</li>
+      <li><strong style="color: var(--white);">Trinket Core:</strong> Collectible accessories (charms, pins, patches) = fastest-growing kids accessory category. Jibbitz model proven at scale.</li>
+      <li><strong style="color: var(--white);">Neutral palette shift:</strong> Earth tones and muted pastels replacing bright primaries in kids fashion.</li>
+      <li><strong style="color: var(--white);">Creator economy for kids:</strong> Kids as content creators (OOTD, unboxing) driving purchase behavior and brand discovery.</li>
+    </ul>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Competitive Landscape Summary</h3>
+    <table class="method-table">
+      <thead><tr><th>Brand</th><th>Price Range</th><th>Positioning</th><th>Gap</th></tr></thead>
+      <tbody>
+        <tr><td>Cat & Jack (Target)</td><td>$8-15</td><td>Mass market basics</td><td>No personality, no customization</td></tr>
+        <tr><td>Primary.com</td><td>$12-16</td><td>Quality basics, every color</td><td>Fitted, not oversized. No creative angle.</td></tr>
+        <tr><td>NUNUNU</td><td>$45-60</td><td>Premium minimalist cool</td><td>Right vibe, wrong price for mass adoption</td></tr>
+        <tr><td>H&M Kids</td><td>$6-12</td><td>Trend-forward affordable</td><td>Fast fashion quality, no brand loyalty</td></tr>
+        <tr><td>Rylee + Cru</td><td>$30-50</td><td>Artist-designed premium</td><td>Skews younger (baby/toddler focus)</td></tr>
+        <tr><td>Quinn's Closet</td><td>$18-28</td><td>Oversized comfort + kid-creator platform</td><td style="color: var(--gold);">THIS IS THE WHITE SPACE</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="appendix-section">
+    <h3>The Kid-Creator Platform Model</h3>
+    <p>The platform twist transforms Quinn's Closet from a clothing brand into a creator economy for kids. The model:</p>
+    <ul class="rtb-list">
+      <li><strong style="color: var(--white);">Design submission:</strong> Kids upload original designs through the website. Digital canvas tool for drawing directly in-browser.</li>
+      <li><strong style="color: var(--white);">Curation:</strong> Quinn reviews submissions and picks the monthly winner. Community voting as a secondary signal.</li>
+      <li><strong style="color: var(--white);">Production:</strong> Winning design gets DTG-printed on oversized blanks. Limited run of 50.</li>
+      <li><strong style="color: var(--white);">Revenue share:</strong> Kid designer earns 1% of revenue from their design's sales. Parent receives payment on behalf of child.</li>
+      <li><strong style="color: var(--white);">Legal:</strong> Parent consent required for all submissions. Simple rev-share agreement. Design IP transfers to brand upon selection.</li>
+    </ul>
+    <p>This model has precedents: Threadless (adult), Redbubble (adult), and LEGO Ideas (product design). The kid-specific version — with Quinn as creative director — is the differentiator.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="appendix-section">
+    <h3>Supply Chain & Manufacturing Considerations</h3>
+    <p>The product line has been designed for low-to-moderate manufacturing complexity:</p>
+    <ul class="rtb-list">
+      <li><strong style="color: var(--white);">Blank sourcing:</strong> Oversized blanks available from multiple suppliers (LA Apparel, Bella+Canvas, independent cut-and-sew shops). MOQ as low as 50-100 units for DTG-printed items.</li>
+      <li><strong style="color: var(--white);">Cut-and-sew:</strong> Custom silhouettes (Charm Cargo, Butterfly Cargo) require cut-and-sew partners. LA, Dallas, and overseas (Portugal, Turkey) are primary sourcing regions. MOQ 200-500 units.</li>
+      <li><strong style="color: var(--white);">Accessories:</strong> Charms, patches, pins sourced from specialty suppliers (domestic or Alibaba for prototyping). Low MOQs (100-500 units). Lead time 4-6 weeks.</li>
+      <li><strong style="color: var(--white);">DTG printing:</strong> Per-unit printing for limited runs. No setup costs. $3-5/unit for front print. Providers: Printful, Gooten, or local DTG shops.</li>
+      <li><strong style="color: var(--white);">Fulfillment:</strong> All products are lightweight, non-fragile, ambient temperature. Standard DTC fulfillment via ShipBob, Shipstation, or in-house.</li>
+    </ul>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Data Sources & Citations</h3>
+    <ul class="rtb-list" style="font-size: 12px;">
+      <li>Kids fashion trends 2026 — Masari Shop, KidRovia, Accio, NoName Global, Little-ish, Lola and the Boys</li>
+      <li>Personalized kids apparel growth (30%) — Fashion Kids Magazine</li>
+      <li>Trinket Core trend — Lola and the Boys, Spring 2026 trend forecasts</li>
+      <li>NUNUNU brand analysis — nununu.com, Nordstrom, GQ, Mini Ruby</li>
+      <li>Kids subscription box market — KiwiCo, Stitch Fix Kids, FabKids market data</li>
+      <li>Oversized silhouette confirmation — The Loyal Brand, Accio, theloyalbrand.com</li>
+      <li>Y2K kids trend — petelulu.com, stelleworld.com, Spring/Summer 2026 forecasts</li>
+      <li>US kids clothing market size ($37B) — NPD Group / Circana 2025 report</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <span>MCEPTION.AI</span> &mdash; INNOVATION WORKSHOP &mdash; QUINN'S CLOSET &mdash; APRIL 2026
+  </div>
+</div>
+
+</body>
+</html>
