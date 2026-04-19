@@ -349,3 +349,97 @@ idea_library:
   - { name: "Sushi Rice Seasoning Sachets", category: "Japanese / Cooking Aid", method: 58, date: "2026-04-17" }
   - { name: "Japanese Breakfast Box", category: "Japanese / Meal Kit", method: 15, date: "2026-04-17" }
   - { name: "Friday Sushi Night", category: "Japanese / Experience Kit", method: 59, date: "2026-04-17" }
+
+  # Run 5 — Quinn's Closet: Kids Fashion
+  - date: "2026-04-19"
+    category: "Dad / Family Consumer Products — Kids Fashion"
+    input_seeds:
+      - "Cute clothes for 9 year olds"
+      - "Baggy pants, sweats, oversized shirts"
+      - "Different ways to make those unique"
+    input_source: "Brady (3 converging directions for daughter Quinn)"
+    stage_0_readiness_level: 2
+    cluster_id_used: null
+    cluster_name: "Quinn's Closet — Oversized Comfort With Personality"
+    sharpness_gate_passes: 1
+    sharpness_gate_override: false
+    platform_twist: "Kid-creator platform — kids submit designs, Quinn picks monthly winner, kid gets 1% rev"
+    methods_used: [4, 9, 15, 21, 24, 51, 56, 58]
+    ideas_generated: 38
+    ideas_surviving: 20
+    top_picks:
+      - name: "Charm Cargo"
+        method: 51
+        score: 4.50
+        tags: [trinket-core, cargo, collectible-accessories, high-impact]
+      - name: "The Canvas Collection"
+        method: 24
+        score: 4.40
+        tags: [diy, mashup, blank-canvas, gift-market]
+      - name: "Style Lab Monthly"
+        method: 24
+        score: 4.40
+        tags: [subscription, recurring-revenue, mashup, engagement]
+      - name: "Mood Patch Sweats"
+        method: 4
+        score: 4.35
+        tags: [jtbd, self-expression, velcro, swappable]
+      - name: "Artist Collab Tees"
+        method: 56
+        score: 4.35
+        tags: [premiumization, limited-edition, kid-creator, flagship]
+    method_performance:
+      4:  { ideas_raw: 5, survivors: 3, hit_rate: 0.60, notes: "JTBD strong for mapping personal motivations (feel cool, express, belong). Hit rate lower because 2 ideas too generic (All-Day Baggy, Effortless Cool Kit)" }
+      9:  { ideas_raw: 3, survivors: 1, hit_rate: 0.33, notes: "Blue Ocean produced 5-Piece Capsule (strong) but eliminate/reduce/raise/create grid harder to apply to fashion vs food" }
+      15: { ideas_raw: 5, survivors: 2, hit_rate: 0.40, notes: "Analogous transfers from adult streetwear (Mini Drop Culture) and furniture (Modular Outfit) — but Japanese kids brands and athleisure transfers too vague" }
+      21: { ideas_raw: 7, survivors: 4, hit_rate: 0.57, notes: "SCAMPER dropped from 100% for first time — Combine (Cargo Sweats) and Reverse (Inside-Out) strong; Adapt (Kimono Tee) and Put-to-Use (Blanket Hoodie) cut" }
+      24: { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "Mashup maintains near-perfect — Canvas Collection, Style Lab Monthly, Character Comfort, Friendship Bracelet Hoodie all survived. Maximum contrast mashups win again." }
+      51: { ideas_raw: 6, survivors: 4, hit_rate: 0.67, notes: "Cultural Trend Mining produced #1 idea (Charm Cargo 4.50). Trinket Core and OOTD/TikTok signals strongest. Clean girl adaptation strong." }
+      56: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Artist Collab Tees scored high but Monogram and Heritage Denim cut. Premiumization works in kids fashion but needs a mechanic, not just fabric quality." }
+      58: { ideas_raw: 4, survivors: 0, hit_rate: 0.00, notes: "Packaging Innovation broke its streak — 0% hit rate. Packaging alone doesn't differentiate clothing. Seed Paper Tags, Recipe Cards, Collector Cards, Quinn Box all cut." }
+    category_coverage:
+      "Premium Foodservice / CPG": 2
+      "Construction / Industrial Consumables": 0
+      "AI-Powered Physical Products": 0
+      "Dad / Family Consumer Products": 1  # First touch!
+      "Beverage (Functional / Premium)": 1
+      "Professional / B2B Tools": 0
+      "Functional Indulgence — Performance Bakery & Snacks": 1
+      "Global Snacks / Cultural Format Transfer": 1
+      "Fermented Foods / Gut Health": 1
+      "Kids Fashion / DTC Apparel": 1  # New lane
+    category_gaps_identified:
+      - "Construction/Industrial and AI-Powered Physical still untouched across 5 runs"
+      - "Professional/B2B Tools lane untouched — could combine with kids (educational products?)"
+    learnings:
+      - "Packaging Innovation (#58) finally broke its 100% streak — 0% hit rate in fashion. Packaging innovations work for food/CPG but don't differentiate clothing. Method should be excluded from future non-food runs."
+      - "SCAMPER (#21) dropped from 100% to 57% — first non-perfect performance across 5 runs. Still reliable but not infallible in fashion category."
+      - "Mashup (#24) produced 100% hit rate and included the subscription model (Style Lab Monthly) — mashups of two categories continue to outperform single-category methods"
+      - "Cultural Trend Mining (#51) produced the highest-scored idea across all runs for this category (Charm Cargo 4.50). Trinket Core signal was the session's biggest insight."
+      - "First kids fashion run — ideation methods are mostly category-agnostic but Packaging Innovation is an exception"
+      - "Platform twist (kid-creator + rev share) fundamentally changed the brand from clothing line to creator economy. Several ideas (Artist Collab, Anti-Uniform, Mini Drop Culture) exist because of this twist."
+      - "Brady's personal context (father of 9-year-old triplets) produced the most emotionally authentic prompts — 'feel cool without trying too hard' is a real JTBD, not a market abstraction"
+      - "Canva quota hit after 14 of 20 hero images — for future runs, prioritize top-10 ideas for image generation rather than all 20"
+      - "One hero image per product is confirmed as sufficient for ideation stage (matching Run 3-4 learning)"
+
+  # Run 5 idea library
+  - { name: "Charm Cargo", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
+  - { name: "The Canvas Collection", category: "Kids Fashion / DTC", method: 24, date: "2026-04-19" }
+  - { name: "Style Lab Monthly", category: "Kids Fashion / DTC", method: 24, date: "2026-04-19" }
+  - { name: "Mood Patch Sweats", category: "Kids Fashion / DTC", method: 4, date: "2026-04-19" }
+  - { name: "Artist Collab Tees", category: "Kids Fashion / DTC", method: 56, date: "2026-04-19" }
+  - { name: "Mini Drop Culture", category: "Kids Fashion / DTC", method: 15, date: "2026-04-19" }
+  - { name: "The 5-Piece Capsule", category: "Kids Fashion / DTC", method: 9, date: "2026-04-19" }
+  - { name: "OOTD Builder Box", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
+  - { name: "Neutral Luxe Kids", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
+  - { name: "Reversible Oversized Hoodie", category: "Kids Fashion / DTC", method: 21, date: "2026-04-19" }
+  - { name: "Squad Sets", category: "Kids Fashion / DTC", method: 4, date: "2026-04-19" }
+  - { name: "Friendship Bracelet Hoodie", category: "Kids Fashion / DTC", method: 24, date: "2026-04-19" }
+  - { name: "Cargo Sweats", category: "Kids Fashion / DTC", method: 21, date: "2026-04-19" }
+  - { name: "Character Comfort", category: "Kids Fashion / DTC", method: 24, date: "2026-04-19" }
+  - { name: "The Anti-Uniform Tee", category: "Kids Fashion / DTC", method: 4, date: "2026-04-19" }
+  - { name: "Grow-With-Me Baggies", category: "Kids Fashion / DTC", method: 21, date: "2026-04-19" }
+  - { name: "Modular Outfit", category: "Kids Fashion / DTC", method: 15, date: "2026-04-19" }
+  - { name: "Cashmere-Touch Sweats", category: "Kids Fashion / DTC", method: 56, date: "2026-04-19" }
+  - { name: "Butterfly Cargo", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
+  - { name: "Inside-Out Collection", category: "Kids Fashion / DTC", method: 21, date: "2026-04-19" }
