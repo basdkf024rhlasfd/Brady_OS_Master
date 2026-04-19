@@ -16,9 +16,13 @@ import { getChatConfig } from "./chat-config";
 
 function routeByKeywords(
   query: string,
-  kbConfig: KBConfig
+  kbConfig: KBConfig,
+  conversationContext?: string
 ): string[] {
-  const lower = query.toLowerCase();
+  const combinedQuery = conversationContext
+    ? `${query} ${conversationContext}`
+    : query;
+  const lower = combinedQuery.toLowerCase();
   const matched = new Set<string>();
 
   for (const route of kbConfig.routes ?? []) {
@@ -56,14 +60,14 @@ function routeAll(kbConfig: KBConfig): string[] {
 
 // ─── Public API ───
 
-export function loadKBFiles(query: string, kbConfig: KBConfig): string {
+export function loadKBFiles(query: string, kbConfig: KBConfig, conversationContext?: string): string {
   if (!kbConfig.enabled || !kbConfig.directory) return "";
 
   const kbDir = join(process.cwd(), kbConfig.directory);
   const files =
     kbConfig.routing === "all"
       ? routeAll(kbConfig)
-      : routeByKeywords(query, kbConfig);
+      : routeByKeywords(query, kbConfig, conversationContext);
 
   const sections: string[] = [];
 
@@ -87,7 +91,8 @@ export function loadUnifiedKB(
   query: string,
   authorizedProjects: string[],
   activeProject: string | null,
-  maxTotalFiles: number = 6
+  maxTotalFiles: number = 6,
+  conversationContext?: string
 ): string {
   // Process active project first so its matches get priority
   const ordered = activeProject
@@ -104,7 +109,7 @@ export function loadUnifiedKB(
     if (!config.kb?.enabled || !config.kb.directory) continue;
 
     const kbDir = join(process.cwd(), config.kb.directory);
-    const files = routeByKeywords(query, config.kb);
+    const files = routeByKeywords(query, config.kb, conversationContext);
     const remaining = maxTotalFiles - allSections.length;
     const capped = files.slice(0, remaining);
 

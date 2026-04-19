@@ -40,7 +40,24 @@ export async function POST(req: Request) {
       .map((p) => p.text)
       .join(" ") ?? "";
 
-  const systemPrompt = buildUnifiedSystemPrompt(projectContext, queryText);
+  // Gather recent prior user messages for conversation-aware KB routing
+  const recentUserMessages = messages
+    .filter((m: UIMessage) => m.role === "user")
+    .slice(-5)
+    .slice(0, -1)
+    .map((m: UIMessage) =>
+      m.parts
+        ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
+        .map((p) => p.text)
+        .join(" ") ?? ""
+    )
+    .filter(Boolean);
+
+  const conversationContext = recentUserMessages.length > 0
+    ? recentUserMessages.join(" ")
+    : undefined;
+
+  const systemPrompt = buildUnifiedSystemPrompt(projectContext, queryText, conversationContext);
 
   const result = streamText({
     model: anthropic(model),
