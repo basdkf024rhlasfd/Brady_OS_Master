@@ -13,6 +13,7 @@ export function GlobalChatPanel() {
     chatOpen,
     toggleChat,
     chatScope,
+    activeProject,
     isAdmin,
     chatMode,
     toggleChatMode,
@@ -48,13 +49,14 @@ export function GlobalChatPanel() {
 
   const projectContext = useMemo(
     () => ({
-      project: chatScope,
+      project: activeProject ?? "portal",
+      authorizedProjects: projects,
       route: typeof window !== "undefined" ? window.location.pathname : "/",
       configState: configData,
       isAdmin,
       mode: chatMode,
     }),
-    [chatScope, configData, isAdmin, chatMode]
+    [activeProject, projects, configData, isAdmin, chatMode]
   );
 
   const transport = useMemo(

@@ -51,6 +51,7 @@ function deriveProject(pathname: string): ProjectId | null {
   if (pathname.startsWith("/stihl")) return "stihl";
   if (pathname.startsWith("/orlando")) return "orlando";
   if (pathname.startsWith("/mark-schmulen")) return "mark-schmulen";
+  if (pathname.startsWith("/panda")) return "panda";
   return null;
 }
 
@@ -77,7 +78,7 @@ export function WorkspaceProvider({
 }) {
   const pathname = usePathname();
   const activeProject = deriveProject(pathname);
-  const chatScope = activeProject ?? "portal";
+  const chatScope = "unified";
 
   // Panel visibility — start false (matches SSR), sync from localStorage after mount
   const [chatOpen, setChatOpen] = useState(false);

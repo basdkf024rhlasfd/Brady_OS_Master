@@ -1,10 +1,11 @@
 import { streamText, convertToModelMessages, type UIMessage } from "ai";
 import { anthropic } from "@ai-sdk/anthropic";
 import {
-  buildSystemPrompt,
+  buildUnifiedSystemPrompt,
   getChatConfig,
   type ProjectContext,
 } from "@/lib/chat/global-chat-engine";
+import { getPortalAccess } from "@/lib/portal-access";
 
 export const maxDuration = 60;
 
@@ -21,7 +22,13 @@ export async function POST(req: Request) {
     });
   }
 
-  const config = getChatConfig(projectContext.project);
+  // Server-side auth — don't trust client-sent project list
+  const access = await getPortalAccess();
+  projectContext.authorizedProjects = access.projects;
+
+  // Use active project's model config, fallback to portal
+  const activeConfig = getChatConfig(projectContext.project);
+  const model = activeConfig.enabled ? activeConfig.model : getChatConfig("portal").model;
 
   // Extract last user message text for KB routing
   const lastUserMessage = [...messages]
@@ -33,13 +40,13 @@ export async function POST(req: Request) {
       .map((p) => p.text)
       .join(" ") ?? "";
 
-  const systemPrompt = buildSystemPrompt(config, projectContext, queryText);
+  const systemPrompt = buildUnifiedSystemPrompt(projectContext, queryText);
 
   const result = streamText({
-    model: anthropic(config.model),
+    model: anthropic(model),
     system: systemPrompt,
     messages: await convertToModelMessages(messages),
-    maxOutputTokens: config.maxOutputTokens,
+    maxOutputTokens: activeConfig.maxOutputTokens,
   });
 
   return result.toUIMessageStreamResponse();
