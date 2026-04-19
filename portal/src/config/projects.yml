@@ -1,25 +1,62 @@
 # mception.ai Project Registry
 # Single source of truth for all project metadata.
-# Sidebar renders in this order. All access control, nav, and magic link
-# systems read from this file.
+# Sidebar nav groups are defined in Sidebar.tsx — this file drives access control,
+# magic links, and iframe config. Order here reflects the sidebar grouping structure.
 
 projects:
-  # --- Client projects ---
-  - slug: stihl
-    label: "STIHL USA"
-    short: "S"
-    href: "/stihl"
-    approved: 2026-03-27
-    type: native
+
+  # --- Top level (ungrouped) ---
+  - slug: kroger
+    label: "Kroger"
+    short: "K"
+    href: "/kroger"
+    description: "AI-powered retail intelligence for Kroger. Competitive positioning, SCR command center model, and strategic recommendations."
+    approved: 2026-04-12
+    type: iframe-local
     magic_link: true
     frame:
-      baseUrl: "${NEXT_PUBLIC_STIHL_APP_URL}"
+      baseUrl: ""
+      path: "/kroger/viewer/index.html"
+
+  - slug: content-engine
+    label: "Content Engine"
+    short: "E"
+    href: "/content-engine"
+    description: "AI content drafting and publishing pipeline. Write, queue, and publish LinkedIn posts, whitepapers, and Substack essays."
+    approved: 2026-03-30
+    type: native
+    magic_link: false
+
+  - slug: innovation-lab
+    label: "Innovation Lab"
+    short: "L"
+    href: "/innovation-lab"
+    description: "Innovation workshop engine. Generate, score, and pitch product ideas with AI-backed research and Canva visuals."
+    approved: 2026-04-15
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://innovation-lab-silk.vercel.app"
+      path: "/"
+
+  # --- VC / Startup group ---
+  - slug: baden-bagley
+    label: "Baden Bagley"
+    short: "B"
+    href: "/baden-bagley"
+    description: "VC portfolio intelligence hub for Baden Bagley. Startup tracking, deal pipeline, and investment thesis management."
+    approved: 2026-03-29
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://basdkf024rhlasfd.github.io/baden-bagley"
       path: "/"
 
   - slug: mark-schmulen
     label: "Mark Schmulen"
     short: "K"
     href: "/mark-schmulen"
+    description: "AI operating system for Mark Schmulen at Contour. CMO agent scoped to PropMatic — content, competitive intel, and GTM strategy."
     approved: 2026-03-25
     type: iframe-external
     magic_link: true
@@ -27,10 +64,92 @@ projects:
       baseUrl: "https://basdkf024rhlasfd.github.io/mark-schmulen-ai-os"
       path: "/viewer/"
 
+  # --- Panda Engagement group ---
+  - slug: panda
+    label: "Panda"
+    short: "A"
+    href: "/panda"
+    description: "Strategic intelligence platform for Panda Restaurant Group. AI-driven ops analysis, market positioning, and innovation pipeline for James Ku."
+    approved: 2026-04-15
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: "/panda/viewer"
+      path: "/index.html"
+
+  - slug: ops-lab
+    label: "Ops Lab"
+    short: "O"
+    href: "/ops-lab"
+    description: "Operations innovation lab. Tests AI-native management workflows, operator wisdom loops, and problem-first innovation frameworks."
+    approved: 2026-04-15
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://ops-lab-tau.vercel.app"
+      path: "/"
+
+  # --- Family group ---
+  - slug: grocery-assistant
+    label: "Grocery Assistant"
+    short: "G"
+    href: "/grocery-assistant"
+    description: "Family food OS for 6 people. Meal planning, shopping list generation, pantry tracking, and Walmart+ delivery optimization."
+    approved: 2026-04-16
+    type: native
+    magic_link: false
+
+  - slug: school-hub
+    label: "School Hub"
+    short: "H"
+    href: "/school-hub"
+    description: "School command center for five kids. Today's schedule, calendar, action items, per-kid tracking, and school directory."
+    approved: 2026-04-16
+    type: native
+    magic_link: false
+
+  - slug: financial-assistant
+    label: "Financial Cockpit"
+    short: "$"
+    href: "/financial-assistant"
+    description: "Personal and business financial cockpit. Parses Monarch CSV exports, tracks consulting pipeline, and surfaces cash flow signals."
+    approved: 2026-04-16
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: "/financial-assistant"
+      path: "/index.html"
+
+  # --- Incubator group (parked / not front-and-center) ---
+  - slug: gary
+    label: "Gary / IVFH"
+    short: "H"
+    href: "/gary"
+    description: "IVFH platform for Gary's fertility clinic network. Patient journey mapping, clinic operations, and referral pipeline."
+    approved: 2026-03-30
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://basdkf024rhlasfd.github.io/ivfh"
+      path: "/"
+
+  - slug: stihl
+    label: "STIHL USA"
+    short: "S"
+    href: "/stihl"
+    description: "STIHL USA competitive intelligence and digital strategy. Daily briefings, competitor tracking, artifact library, and digital roadmap."
+    approved: 2026-03-27
+    type: native
+    magic_link: true
+    frame:
+      baseUrl: "${NEXT_PUBLIC_STIHL_APP_URL}"
+      path: "/"
+
   - slug: pauletteai
     label: "PauletteAI"
     short: "P"
     href: "/pauletteai"
+    description: "AI-powered customer service and product advisor for Paulette's beauty brand. Magic-link shareable with clients."
     approved: 2026-03-27
     type: iframe-local
     magic_link: true
@@ -41,54 +160,11 @@ projects:
       baseUrl: ""
       path: "/pauletteai/shared/index.html"
 
-  - slug: gary
-    label: "Gary / IVFH"
-    short: "H"
-    href: "/gary"
-    approved: 2026-03-30
-    type: iframe-external
-    magic_link: false
-    frame:
-      baseUrl: "https://basdkf024rhlasfd.github.io/ivfh"
-      path: "/"
-
-  - slug: baden-bagley
-    label: "Baden Bagley"
-    short: "B"
-    href: "/baden-bagley"
-    approved: 2026-03-29
-    type: iframe-external
-    magic_link: false
-    frame:
-      baseUrl: "https://basdkf024rhlasfd.github.io/baden-bagley"
-      path: "/"
-
-  - slug: kroger
-    label: "Kroger"
-    short: "K"
-    href: "/kroger"
-    approved: 2026-04-12
-    type: iframe-local
-    magic_link: true
-    frame:
-      baseUrl: ""
-      path: "/kroger/viewer/index.html"
-
-  - slug: panda
-    label: "Panda"
-    short: "A"
-    href: "/panda"
-    approved: 2026-04-15
-    type: iframe-local
-    magic_link: false
-    frame:
-      baseUrl: "/panda/viewer"
-      path: "/index.html"
-
   - slug: orlando
     label: "Orlando RE KB"
     short: "R"
     href: "/orlando"
+    description: "Orlando real estate knowledge base. Market intelligence, neighborhood profiles, and buyer/seller guidance for the central FL market."
     approved: 2026-03-27
     type: iframe-local
     magic_link: true
@@ -96,80 +172,11 @@ projects:
       baseUrl: ""
       path: "/orlando/viewer/index.html"
 
-  # --- Internal tools ---
-  - slug: content-engine
-    label: "Content Engine"
-    short: "E"
-    href: "/content-engine"
-    approved: 2026-03-30
-    type: native
-    magic_link: false
-
-  - slug: innovation-lab
-    label: "Innovation Lab"
-    short: "L"
-    href: "/innovation-lab"
-    approved: 2026-04-15
-    type: iframe-external
-    magic_link: false
-    frame:
-      baseUrl: "https://innovation-lab-silk.vercel.app"
-      path: "/"
-
-  - slug: ops-lab
-    label: "Ops Lab"
-    short: "O"
-    href: "/ops-lab"
-    approved: 2026-04-15
-    type: iframe-external
-    magic_link: false
-    frame:
-      baseUrl: "https://ops-lab-tau.vercel.app"
-      path: "/"
-
-  - slug: incubator
-    label: "Project Incubator"
-    short: "I"
-    href: "/incubator"
-    approved: 2026-04-15
-    type: iframe-external
-    magic_link: false
-    frame:
-      baseUrl: "https://basdkf024rhlasfd.github.io/incubator"
-      path: "/"
-
-  # --- Family / personal ---
-  - slug: grocery-assistant
-    label: "Grocery Assistant"
-    short: "G"
-    href: "/grocery-assistant"
-    approved: 2026-04-16
-    type: native
-    magic_link: false
-
-  - slug: school-hub
-    label: "School Hub"
-    short: "H"
-    href: "/school-hub"
-    approved: 2026-04-16
-    type: native
-    magic_link: false
-
-  - slug: financial-assistant
-    label: "Financial Cockpit"
-    short: "$"
-    href: "/financial-assistant"
-    approved: 2026-04-16
-    type: iframe-local
-    magic_link: false
-    frame:
-      baseUrl: "/financial-assistant"
-      path: "/index.html"
-
   - slug: moving
     label: "Moving Calculator"
     short: "M"
     href: "/calculators/moving"
+    description: "Moving cost estimator and logistics planner. Room-by-room inventory, mover quotes, and timeline checklist."
     approved: 2026-03-27
     type: native
     magic_link: true

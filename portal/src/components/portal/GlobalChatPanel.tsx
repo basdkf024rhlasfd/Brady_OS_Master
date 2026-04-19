@@ -6,7 +6,6 @@ import { DefaultChatTransport } from "ai";
 import { useRouter } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { getProjectLabel } from "@/lib/project-registry";
 import type { ProjectNav } from "@/lib/nav-types";
 
 export function GlobalChatPanel() {
@@ -172,7 +171,7 @@ export function GlobalChatPanel() {
             </span>
             <span className="text-xs text-text-hint">|</span>
             <span className="text-xs text-text-secondary truncate">
-              {getProjectLabel(chatScope)}
+              {projectConfigs.find((p) => p.slug === chatScope)?.label ?? chatScope}
             </span>
             {isAdmin && (
               <button

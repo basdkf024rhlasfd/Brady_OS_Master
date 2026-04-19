@@ -1,11 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { GripVertical, Star } from "lucide-react";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import type { ProjectId } from "@/lib/access";
-import type { ProjectNav } from "@/lib/nav-types";
+import type { ProjectNav, AccessEntry } from "@/lib/nav-types";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
+import { useSidebarLayout } from "@/hooks/useSidebarLayout";
+import { SIDEBAR_GROUPS } from "@/lib/sidebar-groups";
 
 const miscResources = [
   { href: "/notes/quick", label: "Quick Notes", short: "N" },
@@ -28,20 +46,178 @@ const bottomLinks = [
   { href: "/about", label: "About", short: "?" },
 ];
 
-export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolean; projects: ProjectId[]; projectConfigs: ProjectNav[] }) {
-  const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
+const roleColors: Record<AccessEntry["role"], string> = {
+  owner: "bg-purple-100 text-purple-700",
+  admin: "bg-amber-100 text-amber-700",
+  "all-projects": "bg-blue-100 text-blue-700",
+  viewer: "bg-surface-active text-text-secondary",
+};
 
+function AccessTooltip({ entries, label }: { entries: AccessEntry[]; label: string }) {
+  return (
+    <div className="absolute left-full top-0 ml-2 z-50 w-64 rounded-lg border border-border bg-background shadow-lg p-3 pointer-events-none">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted mb-2">
+        {label}
+      </p>
+      {entries.length === 0 ? (
+        <p className="text-xs text-text-hint italic">Only you</p>
+      ) : (
+        <div className="space-y-1.5">
+          {entries.map((e) => (
+            <div key={e.email} className="flex items-center justify-between gap-2">
+              <span className="text-xs text-foreground truncate">{e.email}</span>
+              <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded-full font-medium ${roleColors[e.role]}`}>
+                {e.role}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SortableNavItem({
+  p,
+  isAdmin,
+  collapsed,
+  accessMap,
+  isStarred,
+  onToggleStar,
+}: {
+  p: ProjectNav;
+  isAdmin: boolean;
+  collapsed: boolean;
+  accessMap: ReturnType<typeof useWorkspace>["accessMap"];
+  isStarred?: boolean;
+  onToggleStar?: (slug: string) => void;
+}) {
+  const pathname = usePathname();
+  const [hovered, setHovered] = useState(false);
+
+  const isActive =
+    pathname === p.href || pathname.startsWith(`${p.href}/`);
+  const entries = accessMap?.[p.slug] ?? null;
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: p.slug, disabled: collapsed || !isAdmin });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+    position: "relative" as const,
+    zIndex: isDragging ? 10 : undefined,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="relative group flex items-center"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Drag handle — admin + expanded only */}
+      {isAdmin && !collapsed && (
+        <button
+          {...attributes}
+          {...listeners}
+          tabIndex={-1}
+          className="opacity-0 group-hover:opacity-100 flex items-center justify-center w-3 h-7 text-text-hint cursor-grab active:cursor-grabbing shrink-0 mr-0.5 transition-opacity"
+          aria-label="Drag to reorder"
+        >
+          <GripVertical className="h-3 w-3" />
+        </button>
+      )}
+
+      <Link
+        href={p.href}
+        className={`flex flex-1 h-7 items-center rounded-md px-2 text-xs transition min-w-0 ${
+          isActive
+            ? "bg-surface-active text-foreground"
+            : "text-text-secondary hover:bg-surface hover:text-foreground"
+        }`}
+      >
+        <span className="mr-2 w-4 text-center text-[10px] text-text-hint shrink-0">
+          {p.short}
+        </span>
+        {!collapsed && (
+          <>
+            <span className="truncate">{p.label}</span>
+            {isAdmin && entries && entries.length > 0 && (
+              <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+            )}
+          </>
+        )}
+      </Link>
+
+      {/* Star toggle — admin + expanded + hovered */}
+      {isAdmin && !collapsed && onToggleStar && (
+        <button
+          tabIndex={-1}
+          onClick={(e) => { e.preventDefault(); onToggleStar(p.slug); }}
+          className={`opacity-0 group-hover:opacity-100 flex items-center justify-center w-5 h-7 shrink-0 transition-opacity ${
+            isStarred ? "!opacity-100 text-amber-400" : "text-text-hint hover:text-amber-400"
+          }`}
+          aria-label={isStarred ? "Unstar" : "Star"}
+        >
+          <Star className="h-3 w-3" fill={isStarred ? "currentColor" : "none"} />
+        </button>
+      )}
+
+      {/* Access tooltip */}
+      {isAdmin && !collapsed && hovered && entries !== null && (
+        <AccessTooltip entries={entries} label={p.label} />
+      )}
+    </div>
+  );
+}
+
+export function Sidebar({
+  isAdmin,
+  projects,
+  projectConfigs,
+}: {
+  isAdmin: boolean;
+  projects: ProjectId[];
+  projectConfigs: ProjectNav[];
+}) {
+  const pathname = usePathname();
+  const { accessMap } = useWorkspace();
+
+  const [collapsed, setCollapsed] = useState(false);
+  useEffect(() => {
     const saved = localStorage.getItem("sidebar-collapsed");
-    return saved ? JSON.parse(saved) : false;
-  });
+    if (saved) setCollapsed(JSON.parse(saved));
+  }, []);
+
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     projects: true,
     misc: false,
+    "dev-tools": false,
+    "unfinished-work": true,
+    family: true,
+    "vc-startup": true,
+    "panda-engagement": true,
+    incubator: false,
   });
+
+  const { allSlugs, starredItems, starred, toggleStar, getUngroupedItems, getGroupItems, move, resetLayout } = useSidebarLayout(
+    projectConfigs,
+    projects,
+    SIDEBAR_GROUPS
+  );
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+  );
 
   function toggleCollapse() {
     const next = !collapsed;
@@ -53,17 +229,21 @@ export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolea
     setOpenGroups((prev) => ({ ...prev, [key]: !prev[key] }));
   }
 
-  function navLink(link: {
-    href: string;
-    label: string;
-    short: string;
-    matches?: string[];
-  }) {
-    const matches = link.matches ?? [link.href];
-    const isActive = matches.some((match) =>
-      pathname === match || pathname.startsWith(`${match}/`)
-    );
+  const handleDragEnd = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+      if (over && active.id !== over.id) {
+        move(String(active.id), String(over.id));
+      }
+    },
+    [move]
+  );
 
+  function navLink(link: { href: string; label: string; short: string; matches?: string[] }) {
+    const matches = link.matches ?? [link.href];
+    const isActive = matches.some(
+      (m) => pathname === m || pathname.startsWith(`${m}/`)
+    );
     return (
       <Link
         key={link.href}
@@ -84,7 +264,7 @@ export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolea
 
   return (
     <aside
-      className={`flex h-screen flex-col border-r border-border bg-background transition-all ${
+      className={`sidebar-dark flex h-screen flex-col border-r border-border bg-background transition-all ${
         collapsed ? "w-14" : "w-56"
       }`}
     >
@@ -122,39 +302,141 @@ export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolea
       <nav className="flex-1 overflow-y-auto px-2 py-1">
         {/* My Projects */}
         <div className="mb-1">
-          <button
-            onClick={() => toggleGroup("projects")}
-            className="flex h-7 w-full items-center rounded-md px-2 text-[11px] font-semibold uppercase tracking-wider text-text-muted transition hover:text-text-secondary"
-          >
-            {collapsed ? (
-              "P"
-            ) : (
-              <>
-                <span className="flex-1 text-left">My Projects</span>
-                <span className="text-[10px]">
-                  {openGroups.projects ? "\u25BE" : "\u25B8"}
-                </span>
-              </>
-            )}
-          </button>
+          <div className="flex items-center">
+            <button
+              onClick={() => toggleGroup("projects")}
+              className="flex h-7 flex-1 items-center rounded-md px-2 text-[11px] font-semibold uppercase tracking-wider text-text-muted transition hover:text-text-secondary"
+            >
+              {collapsed ? (
+                "P"
+              ) : (
+                <>
+                  <span className="flex-1 text-left">My Projects</span>
+                  <span className="text-[10px]">
+                    {openGroups.projects ? "\u25BE" : "\u25B8"}
+                  </span>
+                </>
+              )}
+            </button>
+          </div>
 
-          {openGroups.projects && !collapsed && (
+          {openGroups.projects && (
             <div className="ml-1 space-y-0.5">
-              {projectConfigs
-                .filter((p) => projects.includes(p.slug))
-                .map((p) =>
-                  navLink({
-                    href: p.href,
-                    label: p.label,
-                    short: p.short,
-                    matches: [p.href],
-                  })
-                )}
+              {/* Starred section — shown above DnD list */}
+              {!collapsed && starredItems.length > 0 && (
+                <div className="mb-1">
+                  <div className="flex h-6 items-center px-2">
+                    <Star className="h-2.5 w-2.5 text-amber-400 mr-1.5" fill="currentColor" />
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-text-hint">Starred</span>
+                  </div>
+                  <div className="space-y-0.5">
+                    {starredItems.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={p.href}
+                        className={`flex h-7 items-center rounded-md px-2 text-xs transition min-w-0 ${
+                          pathname === p.href || pathname.startsWith(`${p.href}/`)
+                            ? "bg-surface-active text-foreground"
+                            : "text-text-secondary hover:bg-surface hover:text-foreground"
+                        }`}
+                      >
+                        <span className="mr-2 w-4 text-center text-[10px] text-text-hint shrink-0">{p.short}</span>
+                        <span className="truncate">{p.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mx-1 mt-1 border-t border-border-light" />
+                </div>
+              )}
+
+              {/* One DndContext covers all projects — enables cross-group dragging */}
+              <DndContext
+                id="sidebar-projects"
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext items={allSlugs} strategy={verticalListSortingStrategy}>
+                  {/* Ungrouped items */}
+                  {getUngroupedItems().map((p) => (
+                    <SortableNavItem
+                      key={p.slug}
+                      p={p}
+                      isAdmin={isAdmin}
+                      collapsed={collapsed}
+                      accessMap={accessMap}
+                      isStarred={starred.includes(p.slug)}
+                      onToggleStar={toggleStar}
+                    />
+                  ))}
+
+                  {/* Groups */}
+                  {SIDEBAR_GROUPS.map((group) => {
+                    const groupItems = getGroupItems(group.id);
+                    if (groupItems.length === 0) return null;
+                    const isOpen = openGroups[group.id] ?? true;
+                    return (
+                      <div key={group.id} className="mt-1">
+                        <div className="flex h-6 w-full items-center rounded-md text-[10px] font-semibold uppercase tracking-wider text-text-hint">
+                          {collapsed ? (
+                            <button
+                              onClick={() => toggleGroup(group.id)}
+                              className="flex h-6 w-full items-center justify-center rounded-md transition hover:text-text-secondary"
+                            >
+                              {group.label[0]}
+                            </button>
+                          ) : (
+                            <>
+                              <Link
+                                href={`/group/${group.id}`}
+                                className="flex-1 px-2 truncate transition hover:text-text-secondary leading-6"
+                              >
+                                {group.label}
+                              </Link>
+                              <button
+                                onClick={() => toggleGroup(group.id)}
+                                className="flex h-6 w-6 items-center justify-center rounded-md transition hover:text-text-secondary shrink-0"
+                              >
+                                <span className="text-[9px]">{isOpen ? "\u25BE" : "\u25B8"}</span>
+                              </button>
+                            </>
+                          )}
+                        </div>
+                        {isOpen && (
+                          <div className="ml-2 space-y-0.5 border-l border-border-light pl-1">
+                            {groupItems.map((p) => (
+                              <SortableNavItem
+                                key={p.slug}
+                                p={p}
+                                isAdmin={isAdmin}
+                                collapsed={collapsed}
+                                accessMap={accessMap}
+                                isStarred={starred.includes(p.slug)}
+                                onToggleStar={toggleStar}
+                              />
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </SortableContext>
+              </DndContext>
+
+              {/* Reset layout — admin only, expanded only */}
+              {isAdmin && !collapsed && (
+                <button
+                  onClick={resetLayout}
+                  className="mt-1 flex h-6 w-full items-center rounded-md px-2 text-[10px] text-text-hint hover:text-text-secondary transition"
+                >
+                  Reset order
+                </button>
+              )}
             </div>
           )}
         </div>
 
-        {/* Miscellaneous Resources — admin only */}
+        {/* Developers — admin only */}
         {isAdmin && (
           <div className="mb-1">
             <button
@@ -165,9 +447,7 @@ export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolea
                 "R"
               ) : (
                 <>
-                  <span className="flex-1 text-left">
-                    Miscellaneous Resources
-                  </span>
+                  <span className="flex-1 text-left">Developers</span>
                   <span className="text-[10px]">
                     {openGroups.misc ? "\u25BE" : "\u25B8"}
                   </span>
@@ -177,24 +457,45 @@ export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolea
 
             {openGroups.misc && !collapsed && (
               <div className="ml-1 space-y-0.5">
-                {miscResources.map((link) => navLink(link))}
-                {externalLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-7 items-center rounded-md px-2 text-xs text-text-secondary transition hover:bg-surface hover:text-foreground"
-                  >
-                    <span className="mr-2 w-4 text-center text-[10px] text-text-hint">
-                      {link.short}
-                    </span>
-                    {link.label}
-                    <span className="ml-auto text-[10px] text-text-hint">
-                      &nearr;
-                    </span>
-                  </a>
-                ))}
+                {/* Dev Tools sub-group */}
+                <button
+                  onClick={() => toggleGroup("dev-tools")}
+                  className="flex h-6 w-full items-center rounded-md px-2 text-[10px] font-semibold uppercase tracking-wider text-text-hint transition hover:text-text-secondary"
+                >
+                  <span className="flex-1 text-left">Dev Tools</span>
+                  <span className="text-[9px]">{openGroups["dev-tools"] ? "\u25BE" : "\u25B8"}</span>
+                </button>
+                {openGroups["dev-tools"] && (
+                  <div className="ml-2 space-y-0.5 border-l border-border-light pl-1">
+                    {externalLinks.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-7 items-center rounded-md px-2 text-xs text-text-secondary transition hover:bg-surface hover:text-foreground"
+                      >
+                        <span className="mr-2 w-4 text-center text-[10px] text-text-hint">{link.short}</span>
+                        {link.label}
+                        <span className="ml-auto text-[10px] text-text-hint">&nearr;</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+
+                {/* Unfinished Work sub-group */}
+                <button
+                  onClick={() => toggleGroup("unfinished-work")}
+                  className="flex h-6 w-full items-center rounded-md px-2 text-[10px] font-semibold uppercase tracking-wider text-text-hint transition hover:text-text-secondary"
+                >
+                  <span className="flex-1 text-left">Unfinished Work</span>
+                  <span className="text-[9px]">{openGroups["unfinished-work"] ? "\u25BE" : "\u25B8"}</span>
+                </button>
+                {openGroups["unfinished-work"] && (
+                  <div className="ml-2 space-y-0.5 border-l border-border-light pl-1">
+                    {miscResources.map((link) => navLink(link))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -242,8 +543,7 @@ export function Sidebar({ isAdmin, projects, projectConfigs }: { isAdmin: boolea
             userProfileUrl="/user-profile"
             appearance={{
               elements: {
-                userButtonAvatarBox:
-                  "h-9 w-9 ring-1 ring-border",
+                userButtonAvatarBox: "h-9 w-9 ring-1 ring-border",
                 userButtonBox: collapsed
                   ? "justify-center"
                   : "w-full flex-row-reverse justify-between gap-3 text-foreground",
