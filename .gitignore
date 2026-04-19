@@ -11,3 +11,5 @@ os-cockpit/data.js
 portal/node_modules/
 portal/.next/
 portal/.env.local
+.vercel
+.env*.local

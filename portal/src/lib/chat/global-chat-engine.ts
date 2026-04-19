@@ -36,13 +36,14 @@ export interface ProjectContext {
 export function buildSystemPrompt(
   config: ChatConfig,
   projectContext: ProjectContext,
-  userMessage?: string
+  userMessage?: string,
+  conversationContext?: string
 ): string {
   let systemPrompt = loadProjectPrompt(config.prompt);
 
   // KB injection — config-driven, works for any project
   if (config.kb?.enabled && userMessage) {
-    const kbContent = loadKBFiles(userMessage, config.kb);
+    const kbContent = loadKBFiles(userMessage, config.kb, conversationContext);
     if (kbContent) {
       systemPrompt += "\n\n" + kbContent;
     }
@@ -84,7 +85,8 @@ export function buildSystemPrompt(
 
 export function buildUnifiedSystemPrompt(
   projectContext: ProjectContext,
-  userMessage?: string
+  userMessage?: string,
+  conversationContext?: string
 ): string {
   const authorizedProjects = projectContext.authorizedProjects ?? [];
   const activeProject = projectContext.project !== "portal" ? projectContext.project : null;
@@ -110,7 +112,7 @@ export function buildUnifiedSystemPrompt(
 
   // Unified KB injection
   if (userMessage && authorizedProjects.length > 0) {
-    const kbContent = loadUnifiedKB(userMessage, authorizedProjects, activeProject);
+    const kbContent = loadUnifiedKB(userMessage, authorizedProjects, activeProject, 6, conversationContext);
     if (kbContent) {
       systemPrompt += "\n\n" + kbContent;
     }
