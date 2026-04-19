@@ -1,7 +1,199 @@
 enabled: true
 prompt: family.md
 model: claude-sonnet-4-5
-maxOutputTokens: 1024
-welcomeMessage: "Ask me about family logistics — meals, school, schedules, finances, and more."
+maxOutputTokens: 2048
+welcomeMessage: "Family command center ready. Try /today, /meals, /week, /school, or just ask."
 operatorMode: true
 configAware: false
+
+shortcuts:
+  - label: "Today's rundown"
+    command: "/today"
+  - label: "Meal plan"
+    command: "/meals"
+  - label: "This week"
+    command: "/week"
+  - label: "School check"
+    command: "/school"
+  - label: "Open loops"
+    command: "/loops"
+
+agentInstructions: |
+  YOU ARE ON: Family command center — mception.ai/group/family
+  OWNER: Brady Smallwood (single dad, 5 kids, Bentonville AR)
+
+  ## Page Structure
+  - **Chat bar** at top: inline chatbot with shortcut commands (/today, /meals, /week, /school, /loops)
+  - **Project cards** below: Grocery Assistant, School Hub, Financial Cockpit — click card title to open
+  - **Connected Data** at bottom: Notion DBs, calendars, and KB files that power this page
+
+  ## How to Use the Chat
+  1. Click the input field or a shortcut chip (e.g., "Today's rundown")
+  2. Type a question or shortcut command and press Enter
+  3. The chatbot knows all 5 kids by name, their schools, activities, and schedules
+  4. Use `remember: [preference]` to teach it something permanent
+  5. Use `rule: [rule]` to set a hard household constraint
+
+  ## Navigation
+  - Click any project card title (e.g., "Grocery Assistant") to open that project
+  - Sub-page badges on cards link to specific pages within each project
+  - Use `/` in the chat input to search and navigate to any project in the portal
+  - Sidebar on the left shows all groups and projects
+
+  ## Connected Data Sources (below the cards)
+  Each data source shows its type (Notion DB, Calendar, KB, Skill) and a description.
+  Notion links open in Notion. KB directories contain markdown files the chatbot reads.
+  Skills are Brady OS automations that write data into this page's knowledge base.
+
+  ## Key Context
+  - Family roster: Brady + Lily Kay (17), Faith Riley (14), Isla Kate (9), Luke Brady (9), Quinn Elaine (9)
+  - Schools: BHS (teens), Apple Glen Elementary (triplets)
+  - Morning/evening/weekly sweeps write daily data to the KB files powering the chat
+  - The chatbot asks Brady one learning question per response to improve over time
+  - Preferences confirmed with `remember:` persist across sessions via Streaming Notes pipeline
+
+dataSources:
+  # --- Ready (green) ---
+  - label: "Family KB Files"
+    type: "kb-directory"
+    status: "ready"
+    id: "portal/public/family/kb"
+    description: "13 markdown files powering the chatbot — roster, schedules, meals, rules, sweep state"
+
+  # --- Partial (yellow) ---
+  - label: "Family Calendar"
+    type: "google-calendar"
+    status: "partial"
+    id: "family13834007621771747799@group.calendar.google.com"
+    description: "Shared family calendar — sweeps read it, chatbot can't query directly yet"
+    nextStep: "Wire Google Calendar API as a chat tool so the chatbot can query events directly"
+    nextStepActor: "conductor"
+  - label: "Streaming Notes DB"
+    type: "notion-db"
+    status: "partial"
+    id: "2e9ed43b-89c5-80f4-8c21-000b4cfe812e"
+    description: "Pipeline intake — sweeps write to it, chatbot reads indirectly via KB files"
+    nextStep: "Add Notion API tool to chat so chatbot can query System Instructions and family-tagged notes directly"
+    nextStepActor: "conductor"
+  - label: "Rules & Preferences"
+    type: "notion-page"
+    status: "partial"
+    id: "344ed43b-89c5-813d-bded-f1d5689510e2"
+    description: "Household rules and learned preferences — morning sweep reads, chatbot references via KB"
+    nextStep: "Export current rules to 08-family-rules.md KB file so chatbot has them without API"
+    nextStepActor: "claude-desktop"
+  - label: "Morning Sweep"
+    type: "skill"
+    status: "partial"
+    id: "3-reference/skills/morning-sweep/SKILL.md"
+    description: "Step 3.10 added to write family brief to KB — needs first run to populate"
+    nextStep: "Run morning sweep to populate 10-sweep-state.md with today's family brief"
+    nextStepActor: "claude-desktop"
+  - label: "Weekly Sweep"
+    type: "skill"
+    status: "partial"
+    id: "3-reference/skills/weekly-sweep/SKILL.md"
+    description: "Step 2.2b added to write week-ahead to KB — needs first run to populate"
+    nextStep: "Run weekly sweep (Sunday) to populate 11-week-ahead.md with this week's plan"
+    nextStepActor: "claude-desktop"
+  - label: "Evening Sweep"
+    type: "skill"
+    status: "partial"
+    id: "3-reference/skills/evening-sweep/SKILL.md"
+    description: "Step 3.7 added to write open loops to KB — needs first run to populate"
+    nextStep: "Run evening sweep to populate 12-open-loops.md with carry-forward items"
+    nextStepActor: "claude-desktop"
+  - label: "Grocery Assistant"
+    type: "external"
+    status: "partial"
+    url: "/grocery-assistant"
+    description: "Static shopping list deployed — smart meal planning (Phase 2+) not started"
+    nextStep: "Build Phase 2: smart list generation with pantry vision + nutrition guardrails"
+    nextStepActor: "conductor"
+  - label: "Financial Cockpit"
+    type: "external"
+    status: "partial"
+    url: "/financial-assistant"
+    description: "Monarch CSV parsing live — family budget breakdown not yet integrated"
+    nextStep: "Add family budget categories view — split household spend from business spend"
+    nextStepActor: "conductor"
+
+  # --- Not Started (red) ---
+  - label: "School Hub"
+    type: "external"
+    status: "not-started"
+    url: "/school-hub"
+    description: "Page exists but no data — needs BHS/Apple Glen calendar feeds, per-kid tracking"
+    nextStep: "Scrape BHS and Apple Glen school calendars, build per-kid schedule tracker"
+    nextStepActor: "chrome-agent"
+  - label: "Internal Projects DB"
+    type: "notion-db"
+    status: "not-started"
+    id: "2c2ed43b-89c5-80af-ac9b-ededd48b98e7"
+    description: "Project tracking DB exists — no chatbot integration or family-specific views"
+    nextStep: "Add family-tagged project filter view in Notion, wire to chatbot KB"
+    nextStepActor: "claude-desktop"
+
+  # --- Recommended (grey) ---
+  - label: "Pantry Inventory DB"
+    type: "notion-db"
+    status: "recommended"
+    description: "Track what's in the fridge/pantry — enables smart grocery list generation"
+    nextStep: "Create Notion DB with columns: item, quantity, expiry, location. Seed from last Walmart order"
+    nextStepActor: "claude-desktop"
+  - label: "Meal History DB"
+    type: "notion-db"
+    status: "recommended"
+    description: "Log what the family ate — enables rotation tracking and preference learning"
+    nextStep: "Create Notion DB with columns: date, meal, recipe, rating, kids_liked. Start logging"
+    nextStepActor: "brady"
+  - label: "Family Taste Profile DB"
+    type: "notion-db"
+    status: "recommended"
+    description: "Per-kid food preferences, allergies, ratings — structured version of KB file"
+    nextStep: "Ask Brady 10 questions about each kid's food preferences via chatbot, build profile"
+    nextStepActor: "chrome-agent"
+  - label: "Chore Tracker DB"
+    type: "notion-db"
+    status: "recommended"
+    description: "Track chore completion, rotation history, accountability — replaces static KB"
+    nextStep: "Create Notion DB with columns: kid, chore, frequency, last_done, streak"
+    nextStepActor: "claude-desktop"
+  - label: "Consulting Practice Wiki"
+    type: "notion-wiki"
+    status: "recommended"
+    url: "https://www.notion.so/333ed43b89c58123b019d1d108c53c11"
+    description: "Not family-specific — but cross-referenced for financial cockpit consulting revenue"
+    nextStep: "Link consulting revenue data to Financial Cockpit family budget view"
+    nextStepActor: "conductor"
+
+kb:
+  enabled: true
+  directory: public/family/kb
+  maxFiles: 5
+  routing: keyword
+  routes:
+    - keywords: [kid, kids, lily, faith, isla, quinn, luke, child, children, triplet, roster, family]
+      files: [01-family-roster.md, 03-weekly-schedule.md]
+    - keywords: [school, homework, test, grade, teacher, apple glen, bhs, bentonville high, class]
+      files: [02-school-calendar.md, 01-family-roster.md]
+    - keywords: [meal, dinner, lunch, breakfast, food, eat, recipe, cook, picky, snack, menu]
+      files: [04-meal-preferences.md]
+    - keywords: [chore, clean, responsibility, allowance, room, laundry, dishes]
+      files: [05-chore-assignments.md]
+    - keywords: [schedule, calendar, week, today, tomorrow, pickup, dropoff, ride, logistics, morning, afternoon]
+      files: [03-weekly-schedule.md, 10-sweep-state.md]
+    - keywords: [budget, money, spend, cost, grocery, walmart, price, expensive]
+      files: [07-budget-targets.md]
+    - keywords: [activity, choir, martial art, piano, practice, triathlon, church, switch, genesis, warriors]
+      files: [09-activity-details.md]
+    - keywords: [sitter, serena, jill, mamo, contact, phone, emergency, doctor, pediatrician]
+      files: [06-logistics-contacts.md]
+    - keywords: [rule, bedtime, screen, routine, policy, expectation, wake, morning routine]
+      files: [08-family-rules.md]
+    - keywords: [brief, sweep, morning, update, status, open loop, unresolved]
+      files: [10-sweep-state.md, 12-open-loops.md]
+    - keywords: [week ahead, plan, next week, sunday, weekly, upcoming]
+      files: [11-week-ahead.md]
+    - keywords: [preference, remember, always, never, like, hate, prefer, rule]
+      files: [13-family-preferences.md, 04-meal-preferences.md]

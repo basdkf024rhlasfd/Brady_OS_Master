@@ -83,6 +83,14 @@ For each kid and Karissa:
 - Pickup/dropoff logistics — who drives what, when
 - Sitter windows needed vs. available
 - Birthdays, deadlines, or special events (check calendar)
+### 2.2b Sync Family Week Ahead to Portal KB
+Write the Family Week Ahead section (step 2.2 output) to:
+`brady-os-master/rabat/portal/public/family/kb/11-week-ahead.md`
+
+Format as clean markdown with the week's date range as the header. Include per-kid activities,
+school events, logistics, sitter windows, and any special events. This file is read by the
+mception.ai family chatbot to answer questions about the upcoming week.
+
 ### 2.3 Project Status Review
 Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - List all active projects with current status

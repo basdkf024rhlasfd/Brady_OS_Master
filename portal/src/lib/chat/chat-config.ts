@@ -24,6 +24,22 @@ export interface ToolConfig {
   inputSchema: Record<string, unknown>;
 }
 
+export interface ShortcutConfig {
+  label: string;
+  command: string;
+}
+
+export interface DataSourceConfig {
+  label: string;
+  type: "notion-db" | "notion-page" | "notion-wiki" | "google-calendar" | "kb-directory" | "skill" | "external";
+  status: "ready" | "partial" | "not-started" | "recommended";
+  id?: string;
+  url?: string;
+  description: string;
+  nextStep?: string;
+  nextStepActor?: "brady" | "chrome-agent" | "claude-desktop" | "conductor";
+}
+
 export interface ChatConfig {
   enabled: boolean;
   prompt: string; // filename in project-prompts/ (e.g. "orlando.md")
@@ -35,6 +51,9 @@ export interface ChatConfig {
   configAware: boolean;
   kb?: KBConfig;
   tools?: ToolConfig[];
+  shortcuts?: ShortcutConfig[];
+  dataSources?: DataSourceConfig[];
+  agentInstructions?: string;
 }
 
 // ─── Defaults ───
@@ -80,6 +99,18 @@ function mergeWithDefaults(raw: Record<string, unknown>): ChatConfig {
 
   if (Array.isArray(raw.tools)) {
     config.tools = raw.tools as ToolConfig[];
+  }
+
+  if (Array.isArray(raw.shortcuts)) {
+    config.shortcuts = raw.shortcuts as ShortcutConfig[];
+  }
+
+  if (Array.isArray(raw.dataSources)) {
+    config.dataSources = raw.dataSources as DataSourceConfig[];
+  }
+
+  if (typeof raw.agentInstructions === "string") {
+    config.agentInstructions = raw.agentInstructions;
   }
 
   return config;
