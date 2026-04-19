@@ -47,6 +47,7 @@ function deriveProject(pathname: string): ProjectId | null {
   if (pathname.startsWith("/stihl")) return "stihl";
   if (pathname.startsWith("/orlando")) return "orlando";
   if (pathname.startsWith("/mark-schmulen")) return "mark-schmulen";
+  if (pathname.startsWith("/panda")) return "panda";
   return null;
 }
 
