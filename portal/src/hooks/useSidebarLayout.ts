@@ -105,7 +105,7 @@ export function useSidebarLayout(
               ? { ...prevAssign, [activeSlug]: targetGroup }
               : prevAssign;
 
-          writeLayout({ version: 1, order: newOrder, assignments: nextAssign });
+          writeLayout({ version: 1, order: newOrder, assignments: nextAssign, starred });
           return nextAssign;
         });
 
