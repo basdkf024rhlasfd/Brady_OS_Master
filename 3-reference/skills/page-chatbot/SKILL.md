@@ -113,6 +113,31 @@ If the chatbot needs to reference project-specific content:
 - Each route can point to multiple files
 - If nothing matches, the first 3 routes' files are used as fallback
 
+### Sweep-emitted context files (family area)
+
+The morning and evening sweeps automatically emit context files to `portal/public/family/kb/`. When present, include these in KB routing for richer "why" answers:
+
+| File | Content | Emitted by |
+|------|---------|------------|
+| `10-sweep-state.md` | Today's family brief (schedule, action items) | Morning sweep |
+| `12-open-loops.md` | Carry-forward unresolved items | Morning + Evening sweep |
+| `20-routines.md` | Recurring patterns, family rhythms | Morning sweep |
+| `21-decisions-log.md` | Recent decisions with rationale (last 30 days) | Evening sweep (append) + Morning sweep (rebuild) |
+| `22-rejected.md` | Things tried that didn't work + why | Morning sweep |
+
+**Graceful degradation:** if any of the 20/21/22 files don't exist yet, the KB loader skips them silently — no error. This makes them safe to add to any config before the first sweep run.
+
+**Suggested routing additions for family chatbot:**
+
+```yaml
+- keywords: [routine, schedule, typical, usually, normally, every week, weekly]
+  files: [20-routines.md, 03-weekly-schedule.md]
+- keywords: [decided, decision, why, reason, changed, switched, chose]
+  files: [21-decisions-log.md]
+- keywords: [tried, didn't work, stopped, rejected, abandoned, failed, not working]
+  files: [22-rejected.md]
+```
+
 ---
 
 ## Step 4: Wire Project Routing

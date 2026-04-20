@@ -414,6 +414,45 @@ This file is read by the mception.ai family chatbot — if it's stale, the chatb
 Also write any family-related open loops or carry-forward items to:
 `portal/public/family/kb/12-open-loops.md`
 
+#### Context Layer (20 / 21 / 22) ⚡ MANDATORY
+
+In addition to the state files above, emit or refresh the following context files. These give the family chatbot texture — WHY things are the way they are, not just WHAT is happening.
+
+**`portal/public/family/kb/20-routines.md`** — Recurring patterns and family rhythms.
+- Source: Notion Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`) + calendar recurring events observed in Phase 1.4
+- Include: school dropoff times, weekly activity schedule, grocery/meal rhythms, Brady's daily cadence, weekend defaults
+- Format: `## [Category]\n- [pattern]`
+- Overwrite fully each run (this is a snapshot, not a log)
+
+**`portal/public/family/kb/21-decisions-log.md`** — Recent decisions with rationale.
+- Source: last 30 days of `~/Documents/Daily-Journal/YYYY/MM/YYYY-MM-DD/decisions.md` files
+- Pull all family-related decisions (kids, logistics, meals, household)
+- Each entry format:
+  ```
+  ## YYYY-MM-DD
+  **Decision:** [summary]
+  **Why:** [rationale]
+  **Alternatives considered:** [if any, else omit]
+  ```
+- Newest entries at top. Trim entries older than 30 days.
+- Create the file if it doesn't exist.
+
+**`portal/public/family/kb/22-rejected.md`** — Things tried that didn't work.
+- Source: Streaming Notes DB, items where body contains "tried/failed", "didn't work", "stopped working", or are tagged as such
+- Filter to family-relevant items only
+- Each entry format:
+  ```
+  ## [Item or Approach]
+  **Why rejected:** [reason]
+  **Date noted:** [YYYY-MM-DD]
+  ```
+- Append new entries, preserve existing ones (do not overwrite — this is a growing archive)
+
+**Graceful skip rules:**
+- If `portal/public/baden-bagley/kb/` exists and has files beyond `.gitkeep`, apply the same routines/decisions/rejected pattern there
+- If `portal/public/innovation-lab/kb/` exists and has files beyond `.gitkeep`, apply the same pattern there
+- If source data is unavailable for any file, write the stub with a note: `_No data available — will populate on next sweep run with data._`
+
 ### 3.11 mception Action Scan
 Run the `mception-action-scanner` skill in compact mode. Read all YAML files in
 `portal/src/config/chat-configs/`, extract `dataSources` where status != "ready".

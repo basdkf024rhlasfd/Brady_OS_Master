@@ -242,6 +242,27 @@ Last updated: [timestamp]
 
 This file is read by the mception.ai family chatbot to surface unresolved items via `/loops`.
 
+#### 3.7b Append to Decisions Log ⚡ MANDATORY
+
+After writing `decisions.md` to the journal archive (Phase 3.5), also prepend a structured entry to:
+`portal/public/family/kb/21-decisions-log.md` (relative to repo root)
+
+Filter to family-relevant decisions only (kids, logistics, meals, household — skip purely work/consulting decisions).
+
+Entry format (prepend to top of file — newest entries first):
+```markdown
+## YYYY-MM-DD
+**Decision:** [1-sentence summary]
+**Why:** [rationale from journal]
+**Alternatives considered:** [if any were captured — omit line if none]
+```
+
+Rules:
+- Create the file if it doesn't exist (use the standard header from the seed file)
+- If there are no family-relevant decisions today, skip this step silently — do not write an empty entry
+- Do not rewrite the whole file — prepend only today's entries above the existing content
+- Trim entries older than 30 days on each write (keep the file focused)
+
 #### 3.8 Update index.md
 Append today's entry to `~/Documents/Daily-Journal/index.md`:
 ```markdown
