@@ -71,8 +71,9 @@ export default function GroceryDashboard() {
   const [adhocItems, setAdhocItems] = useState<AdhocItem[]>([]);
   const [newItemName, setNewItemName] = useState("");
   const [collapsedGroups, setCollapsedGroups] = useState<Set<Cadence>>(
-    new Set()
+    () => new Set<Cadence>(["biweekly", "3-week", "4-week", "6-week"])
   );
+  const [suggestionsCollapsed, setSuggestionsCollapsed] = useState(true);
   const [loaded, setLoaded] = useState(false);
 
   // Refresh countdown every 60s
@@ -149,7 +150,7 @@ export default function GroceryDashboard() {
   if (!loaded) return null;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-10">
       {/* Header */}
       <div>
         <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground mb-1">
@@ -223,133 +224,42 @@ export default function GroceryDashboard() {
       </div>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Subscriptions */}
+      {/* Summary Card */}
       {/* ----------------------------------------------------------------- */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
-            <Repeat className="h-4 w-4 text-primary" />
-            Subscriptions
-          </h2>
-          <span className="text-xs text-muted-foreground">
-            {SUBSCRIPTION_ITEMS.length} items &middot; ~${totalWeeklyCost.toFixed(0)}/week
-          </span>
+      <div className="grid grid-cols-3 gap-3">
+        <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+          <p className="text-2xl font-semibold text-foreground">
+            ~${totalWeeklyCost.toFixed(0)}
+          </p>
+          <p className="text-[11px] text-muted-foreground mt-1">Est. weekly spend</p>
         </div>
-
-        <div className="space-y-3">
-          {CADENCE_ORDER.map((cadence) => {
-            const items = grouped.get(cadence)!;
-            if (items.length === 0) return null;
-            const collapsed = collapsedGroups.has(cadence);
-            const groupWeekly = weeklyEquivalent(items);
-
-            return (
-              <div
-                key={cadence}
-                className="rounded-lg border border-white/[0.08] bg-white/[0.01]"
-              >
-                <button
-                  onClick={() => toggleGroup(cadence)}
-                  className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-white/[0.02] transition-colors"
-                >
-                  <span className="text-sm font-medium text-foreground">
-                    {CADENCE_LABELS[cadence]}{" "}
-                    <span className="text-muted-foreground font-normal">
-                      ({items.length})
-                    </span>
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground">
-                      ~${groupWeekly.toFixed(0)}/wk
-                    </span>
-                    {collapsed ? (
-                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                    )}
-                  </span>
-                </button>
-
-                {!collapsed && (
-                  <div className="border-t border-white/[0.06] divide-y divide-white/[0.04]">
-                    {items.map((item) => (
-                      <div
-                        key={item.name}
-                        className="flex items-center justify-between px-4 py-2.5"
-                      >
-                        <span className="text-sm text-foreground truncate mr-3">
-                          {item.name}
-                        </span>
-                        <span className="flex items-center gap-3 flex-shrink-0">
-                          <span className="text-xs text-muted-foreground">
-                            ${item.price.toFixed(2)}
-                          </span>
-                          <a
-                            href={walmartSearchUrl(item.name)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 bg-primary/10 px-2 py-1 rounded transition-colors"
-                          >
-                            Walmart
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+        <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+          <p className="text-2xl font-semibold text-foreground">
+            {SUBSCRIPTION_ITEMS.length}
+          </p>
+          <p className="text-[11px] text-muted-foreground mt-1">Subscription items</p>
         </div>
-      </section>
-
-      {/* ----------------------------------------------------------------- */}
-      {/* Consider Subscribing */}
-      {/* ----------------------------------------------------------------- */}
-      {suggestions.length > 0 && (
-        <section>
-          <h2 className="text-base font-semibold text-foreground flex items-center gap-2 mb-4">
-            <Lightbulb className="h-4 w-4 text-yellow-400" />
-            Consider Subscribing
-          </h2>
-          <div className="rounded-lg border border-white/[0.08] bg-white/[0.01] divide-y divide-white/[0.04]">
-            {suggestions.map((item) => (
-              <div
-                key={item.name}
-                className="flex items-center justify-between px-4 py-2.5"
-              >
-                <div className="min-w-0 mr-3">
-                  <span className="text-sm text-foreground truncate block">
-                    {item.name}
-                  </span>
-                  <span className="text-[11px] text-muted-foreground">
-                    {item.purchases} purchases &middot; ${item.totalSpend.toFixed(0)} total
-                  </span>
-                </div>
-                <a
-                  href={walmartSearchUrl(item.name)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 bg-primary/10 px-2 py-1 rounded transition-colors flex-shrink-0"
-                >
-                  Walmart
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+        <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+          <p className="text-2xl font-semibold text-foreground">
+            {adhocItems.filter((i) => !i.checked).length}
+          </p>
+          <p className="text-[11px] text-muted-foreground mt-1">Ad hoc items</p>
+        </div>
+      </div>
 
       {/* ----------------------------------------------------------------- */}
       {/* Ad Hoc Buy List */}
       {/* ----------------------------------------------------------------- */}
-      <section>
+      <section className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-5">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
             <ShoppingCart className="h-4 w-4 text-primary" />
             Ad Hoc Buy List
+            {adhocItems.length > 0 && (
+              <span className="text-xs font-normal text-muted-foreground">
+                ({adhocItems.filter((i) => !i.checked).length} remaining)
+              </span>
+            )}
           </h2>
           {checkedAdhoc > 0 && (
             <button
@@ -384,19 +294,18 @@ export default function GroceryDashboard() {
 
         {/* Item list */}
         {adhocItems.length === 0 ? (
-          <div className="text-center py-8 rounded-lg border border-dashed border-white/[0.12]">
+          <div className="text-center py-6 rounded-lg border border-dashed border-white/[0.12]">
             <p className="text-sm text-muted-foreground">
-              No ad hoc items. Add items you need to pick up outside your
-              subscriptions.
+              No ad hoc items. Add items you need outside your subscriptions.
             </p>
           </div>
         ) : (
-          <div className="rounded-lg border border-white/[0.08] bg-white/[0.01] divide-y divide-white/[0.04]">
+          <div className="rounded-lg border border-white/[0.06] divide-y divide-white/[0.04]">
             {adhocItems.map((item) => (
               <div
                 key={item.id}
                 className={cn(
-                  "flex items-center gap-3 px-4 py-2.5 transition-colors",
+                  "flex items-center gap-3 px-4 py-2 transition-colors",
                   item.checked && "opacity-50"
                 )}
               >
@@ -444,6 +353,143 @@ export default function GroceryDashboard() {
           </div>
         )}
       </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Subscriptions */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-5">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
+            <Repeat className="h-4 w-4 text-primary" />
+            Subscriptions
+          </h2>
+          <span className="text-xs text-muted-foreground">
+            {SUBSCRIPTION_ITEMS.length} items &middot; ~${totalWeeklyCost.toFixed(0)}/week
+          </span>
+        </div>
+
+        <div className="space-y-2">
+          {CADENCE_ORDER.map((cadence) => {
+            const items = grouped.get(cadence)!;
+            if (items.length === 0) return null;
+            const collapsed = collapsedGroups.has(cadence);
+            const groupWeekly = weeklyEquivalent(items);
+
+            return (
+              <div
+                key={cadence}
+                className="rounded-lg border border-white/[0.06]"
+              >
+                <button
+                  onClick={() => toggleGroup(cadence)}
+                  className="w-full flex items-center justify-between px-4 py-2.5 text-left hover:bg-white/[0.02] transition-colors"
+                >
+                  <span className="text-sm font-medium text-foreground flex items-center gap-2">
+                    {CADENCE_LABELS[cadence]}
+                    <span className="text-[11px] font-normal text-muted-foreground bg-white/[0.06] px-1.5 py-0.5 rounded">
+                      {items.length}
+                    </span>
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground">
+                      ~${groupWeekly.toFixed(0)}/wk
+                    </span>
+                    {collapsed ? (
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </span>
+                </button>
+
+                {!collapsed && (
+                  <div className="border-t border-white/[0.06] divide-y divide-white/[0.04]">
+                    {items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex items-center justify-between px-4 py-2"
+                      >
+                        <span className="text-sm text-foreground truncate mr-3">
+                          {item.name}
+                        </span>
+                        <span className="flex items-center gap-3 flex-shrink-0">
+                          <span className="text-xs tabular-nums text-muted-foreground w-12 text-right">
+                            ${item.price.toFixed(2)}
+                          </span>
+                          <a
+                            href={walmartSearchUrl(item.name)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 bg-primary/10 px-2 py-1 rounded transition-colors"
+                          >
+                            Walmart
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Consider Subscribing */}
+      {/* ----------------------------------------------------------------- */}
+      {suggestions.length > 0 && (
+        <section className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-5">
+          <button
+            onClick={() => setSuggestionsCollapsed(!suggestionsCollapsed)}
+            className="w-full flex items-center justify-between text-left"
+          >
+            <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
+              <Lightbulb className="h-4 w-4 text-yellow-400" />
+              Consider Subscribing
+              <span className="text-[11px] font-normal text-muted-foreground bg-white/[0.06] px-1.5 py-0.5 rounded">
+                {suggestions.length}
+              </span>
+            </h2>
+            {suggestionsCollapsed ? (
+              <ChevronRight className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            )}
+          </button>
+
+          {!suggestionsCollapsed && (
+            <div className="rounded-lg border border-white/[0.06] divide-y divide-white/[0.04] mt-4">
+              {suggestions.map((item) => (
+                <div
+                  key={item.name}
+                  className="flex items-center justify-between px-4 py-2"
+                >
+                  <div className="min-w-0 mr-3">
+                    <span className="text-sm text-foreground truncate block">
+                      {item.name}
+                    </span>
+                    <span className="text-[11px] text-muted-foreground">
+                      {item.purchases} purchases &middot; ${item.totalSpend.toFixed(0)} total
+                    </span>
+                  </div>
+                  <a
+                    href={walmartSearchUrl(item.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 bg-primary/10 px-2 py-1 rounded transition-colors flex-shrink-0"
+                  >
+                    Walmart
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
     </div>
   );
 }
