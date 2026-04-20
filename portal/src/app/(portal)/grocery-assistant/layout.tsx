@@ -1,4 +1,5 @@
 import { requireProjectAccess } from "@/lib/portal-access";
+import { GroceryShell } from "@/components/grocery/AppShell";
 
 export default async function GroceryAssistantLayout({
   children,
@@ -7,5 +8,5 @@ export default async function GroceryAssistantLayout({
 }) {
   await requireProjectAccess("grocery-assistant");
 
-  return <>{children}</>;
+  return <GroceryShell>{children}</GroceryShell>;
 }

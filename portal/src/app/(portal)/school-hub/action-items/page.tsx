@@ -288,9 +288,15 @@ export default function ActionItemsPage() {
       {items.length === 0 && (
         <div className="text-center py-16">
           <p className="text-muted-foreground text-sm">No action items yet</p>
-          <p className="text-muted-foreground/60 text-xs mt-1">
-            Click &quot;Add&quot; to create permission slips, supply lists, fees, and more
+          <p className="text-muted-foreground/60 text-xs mt-1 mb-4">
+            Permission slips, supply lists, fees, and more
           </p>
+          <button
+            onClick={() => setShowAdd(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium hover:bg-indigo-400 transition-colors mx-auto"
+          >
+            <Plus className="h-4 w-4" /> Add Item
+          </button>
         </div>
       )}
     </div>
