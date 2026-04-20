@@ -7,7 +7,7 @@ Per-kid extracurricular activities with schedules, locations, and logistics.
 - **Chamber Choir / Overtones** (BHS)
   - Director: Terry Hicks
   - Rehearsals: check BHS choir calendar
-  - Next concert: April 20, 2026 — Arend Arts Center, 7:00 PM
+  - Next concert: April 20, 2026 — Arend Arts Center (BHS campus, 1801 SE J St), 7:00 PM
 - **Genesis Gymnastics** (work, not activity)
   - Shifts: Monday and Thursday afternoons (4:00 PM)
   - Check Lily's work schedule for exact hours
@@ -19,7 +19,7 @@ Per-kid extracurricular activities with schedules, locations, and logistics.
   - Rehearsals: check BHS choir calendar
 - **Switch Youth Group** (Life Church Rogers)
   - When: Wednesday evenings, 6:00-9:00 PM
-  - Location: Life.Church Rogers, Rogers, AR
+  - Location: Life.Church Rogers, 5350 S 28th St, Rogers, AR 72758
   - Pickup: 8:50 PM
 - **Voice Lessons**
   - When: Thursday 5:30-6:00 PM
@@ -38,8 +38,8 @@ Per-kid extracurricular activities with schedules, locations, and logistics.
   - When: Monday & Thursday
   - Drive: 3:55 PM, class 4:15-5:00 PM, home ~5:20 PM
   - Belt: Green/orange belt
-  - Location: TBD (confirm with Brady)
-  - Cost: TBD/month
+  - Location: TBD — likely candidates in Bentonville: Eternal Warrior BJJ, Overcome Jiu Jitsu, T.O.S.S. Academy, Inferno Martial Arts. Brady: confirm with `remember: Luke's BJJ is at [studio name]`
+  - Cost: ~$100-150/month typical for kids BJJ in NW Arkansas (confirm with Brady)
 
 ## Quinn Elaine (9)
 
