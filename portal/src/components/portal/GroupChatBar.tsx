@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo, useCallback } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useRouter } from "next/navigation";
@@ -30,17 +30,21 @@ function saveCustomShortcuts(groupId: string, items: Shortcut[]) {
   localStorage.setItem(STORAGE_KEY_PREFIX + groupId, JSON.stringify(items));
 }
 
-export function GroupChatBar({
-  groupId,
-  groupLabel,
-  shortcuts: configShortcuts = [],
-  welcomeMessage = "",
-}: {
+export interface GroupChatBarHandle {
+  sendMessage: (text: string) => void;
+}
+
+export const GroupChatBar = forwardRef<GroupChatBarHandle, {
   groupId: string;
   groupLabel: string;
   shortcuts?: { label: string; command: string }[];
   welcomeMessage?: string;
-}) {
+}>(function GroupChatBar({
+  groupId,
+  groupLabel,
+  shortcuts: configShortcuts = [],
+  welcomeMessage = "",
+}, ref) {
   const { isAdmin, chatMode, toggleChatMode, configData, projectConfigs } = useWorkspace();
   const router = useRouter();
   const [input, setInput] = useState("");
@@ -190,13 +194,13 @@ export function GroupChatBar({
     }
   };
 
-  const navigateTo = (project: ProjectNav) => {
+  const navigateTo = useCallback((project: ProjectNav) => {
     router.push(project.href);
     setInput("");
     setSuggestions([]);
-  };
+  }, [router]);
 
-  const handleSend = (text?: string) => {
+  const handleSend = useCallback((text?: string) => {
     const msg = text ?? input;
     if (!msg.trim() || isStreaming) return;
     if (msg.startsWith("/")) {
@@ -209,7 +213,7 @@ export function GroupChatBar({
     sendMessage({ text: msg });
     setInput("");
     setSuggestions([]);
-  };
+  }, [input, isStreaming, shortcutCommands, projectConfigs, navigateTo, sendMessage]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") { setSuggestions([]); return; }
@@ -219,6 +223,8 @@ export function GroupChatBar({
       else handleSend();
     }
   };
+
+  useImperativeHandle(ref, () => ({ sendMessage: (text: string) => handleSend(text) }), [handleSend]);
 
   const isEmpty = messages.length === 0 && !isStreaming;
 
@@ -479,4 +485,4 @@ export function GroupChatBar({
       </div>
     </div>
   );
-}
+});

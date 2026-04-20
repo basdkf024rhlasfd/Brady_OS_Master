@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { GroupChatBar } from "@/components/portal/GroupChatBar";
+import type { GroupChatBarHandle } from "@/components/portal/GroupChatBar";
 import type { ProjectConfig } from "@/config/load-projects";
 
 export interface GroupProject {
@@ -132,11 +133,15 @@ export function GroupPageClient({
   const [mounted, setMounted] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
 
+  // Chat bar ref for programmatic messaging
+  const chatBarRef = useRef<GroupChatBarHandle>(null);
+
   // Ops panel state
   const [uatResults, setUatResults] = useState<{ name: string; status: "pass" | "fail" | "warn"; detail: string }[]>([]);
   const [uatRunning, setUatRunning] = useState(false);
   const [copiedActor, setCopiedActor] = useState<string | null>(null);
   const [agentExpanded, setAgentExpanded] = useState(false);
+  const [actionStates, setActionStates] = useState<Record<string, "idle" | "sent" | "copied">>({});
 
   useEffect(() => {
     const savedLayout = localStorage.getItem(LAYOUT_KEY);
@@ -265,6 +270,28 @@ export function GroupPageClient({
     });
   }
 
+  function executeAction(item: { action: string; source: string; status: DataSource["status"] }, actor: NonNullable<DataSource["nextStepActor"]>) {
+    const key = `${actor}-${item.source}`;
+    if (actor === "conductor") {
+      // Send as a chat message for the chatbot to orchestrate
+      chatBarRef.current?.sendMessage(item.action);
+      setActionStates((prev) => ({ ...prev, [key]: "sent" }));
+      setTimeout(() => setActionStates((prev) => ({ ...prev, [key]: "idle" })), 3000);
+    } else if (actor === "brady") {
+      // Open the related data source URL if available
+      const ds = dataSources.find((d) => d.label === item.source);
+      const href = ds ? getDataSourceUrl(ds) : null;
+      if (href) window.open(href, "_blank");
+    } else {
+      // chrome-agent / claude-desktop — copy the single-item handoff
+      const prompt = `${actorLabels[actor]} task:\n\n${item.action}\nSource: ${item.source}`;
+      navigator.clipboard.writeText(prompt).then(() => {
+        setActionStates((prev) => ({ ...prev, [key]: "copied" }));
+        setTimeout(() => setActionStates((prev) => ({ ...prev, [key]: "idle" })), 2000);
+      });
+    }
+  }
+
   const accent = groupAccents[id] ?? { banner: "from-slate-500/10 border-slate-200", badge: "bg-slate-50 text-slate-600 border-slate-200" };
 
   // ─── Render ───
@@ -329,7 +356,7 @@ export function GroupPageClient({
 
       {/* ── Chat bar ── */}
       {layout === "bar" && (
-        <GroupChatBar groupId={id} groupLabel={groupLabel} shortcuts={shortcuts} welcomeMessage={welcomeMessage} />
+        <GroupChatBar ref={chatBarRef} groupId={id} groupLabel={groupLabel} shortcuts={shortcuts} welcomeMessage={welcomeMessage} />
       )}
 
       {/* ── Tab content ── */}
@@ -510,15 +537,35 @@ export function GroupPageClient({
                           )}
                         </div>
                         <ul className="space-y-2">
-                          {items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[11px]">
-                              <span className={`shrink-0 mt-1 h-1.5 w-1.5 rounded-full ${statusDots[item.status]}`} />
-                              <span className="text-text-secondary">
-                                {item.action}
-                                <span className="ml-1.5 text-text-hint">— {item.source}</span>
-                              </span>
-                            </li>
-                          ))}
+                          {items.map((item, i) => {
+                            const key = `${actor}-${item.source}`;
+                            const state = actionStates[key] ?? "idle";
+                            const isConductor = actor === "conductor";
+                            const isBrady = actor === "brady";
+                            const btnLabel = state === "sent" ? "Sent!" : state === "copied" ? "Copied!" : isConductor ? "Execute" : isBrady ? "Open" : "Handoff";
+                            const btnColor = state !== "idle"
+                              ? "bg-emerald-100 text-emerald-700"
+                              : isConductor
+                                ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+                                : isBrady
+                                  ? "bg-sky-100 text-sky-700 hover:bg-sky-200"
+                                  : "bg-purple-100 text-purple-700 hover:bg-purple-200";
+                            return (
+                              <li key={i} className="flex items-start gap-2 text-[11px]">
+                                <span className={`shrink-0 mt-1.5 h-1.5 w-1.5 rounded-full ${statusDots[item.status]}`} />
+                                <span className="flex-1 text-text-secondary">
+                                  {item.action}
+                                  <span className="ml-1.5 text-text-hint">— {item.source}</span>
+                                </span>
+                                <button
+                                  onClick={() => executeAction(item, actor)}
+                                  className={`shrink-0 rounded-full px-2.5 py-0.5 text-[9px] font-semibold transition-colors ${btnColor}`}
+                                >
+                                  {btnLabel}
+                                </button>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     );

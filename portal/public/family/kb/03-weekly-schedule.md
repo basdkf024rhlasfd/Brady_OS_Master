@@ -1,58 +1,59 @@
 # Weekly Schedule
 
-Canonical recurring weekly schedule for the Smallwood household. Update as activities change.
+Canonical recurring weekly schedule for the Smallwood household. Last updated: April 19, 2026.
 
 ## Monday
 
 - **Morning**: School dropoff — triplets to Apple Glen, teens to BHS
-- **After school**: TBD activities
-- **Evening**: TBD
+- **2:30 PM**: Lily & Faith home
+- **3:00 PM**: Triplets home — snack, homework, chores
+- **3:55 PM**: Drive Luke to BJJ (class 4:15-5:00, home ~5:20)
+- **4:00 PM**: Lily work shift (Genesis Gymnastics)
 
 ## Tuesday
 
 - **Morning**: School dropoff
-- **After school**: TBD activities
-- **Evening**: TBD
+- **2:30 PM**: Lily & Faith home
+- **3:00 PM**: Triplets home — snack, homework, chores
+- **Evening**: No recurring activities
 
 ## Wednesday
 
 - **Morning**: School dropoff
-- **After school**: TBD activities
-- **Evening**: Life Church / Switch for Faith (confirm schedule)
+- **2:30 PM**: Lily & Faith home
+- **3:00 PM**: Triplets home — snack, homework, chores
+- **6:00 PM**: Faith — Switch youth group at Life Church Rogers (pickup at 8:50 PM)
 
 ## Thursday
 
 - **Morning**: School dropoff
-- **After school**: TBD activities
-- **Evening**: TBD
+- **2:30 PM**: Lily & Faith home
+- **3:00 PM**: Triplets home — snack, homework, chores
+- **3:55 PM**: Drive Luke to BJJ (class 4:15-5:00, home ~5:20)
+- **4:00 PM**: Lily work shift
+- **5:30 PM**: Faith voice lessons (until 6:00 PM)
 
 ## Friday
 
 - **Morning**: School dropoff
-- **After school**: TBD activities
+- **2:30 PM**: Lily & Faith home
+- **3:00 PM**: Triplets home — snack, homework, chores
 - **Evening**: Family time / flexible
 
 ## Saturday
 
 - **Morning**: Flexible
-- **Activities**: TBD recurring weekend activities
+- **Afternoon**: Flexible — check calendar for birthday parties, events
 - **Evening**: Flexible
 
 ## Sunday
 
-- **Morning**: Church (confirm schedule)
-- **Afternoon**: Weekly planning time
-- **Evening**: Prep for the week
-
-## Recurring Activities (fill in days/times)
-
-- **Lily Kay**: Genesis Gymnastics work shifts (check work schedule), choir rehearsals
-- **Faith Riley**: Choir rehearsals, Switch youth group (Life Church)
-- **Isla Kate**: Piano practice (10 min daily)
-- **Luke Brady**: Martial arts / Warriors class (day/time TBD)
-- **Quinn Elaine**: Piano practice (self-taught, YouTube), triathlon training with Harper
+- **11:10 AM**: Leave for Life Church Rogers (11:30 AM service) — bring Faith home after
+- **3:00 PM**: Brady weekly prep
+- **5:00 PM**: Family meeting & dinner (all kids)
 
 ## Notes
 
-- If schedule data is sparse, ask Brady: "What are the recurring weekly activities for each kid? I'll build the full schedule."
-- Sitter coverage: check Serena's availability windows on the calendar
+- Sitter coverage: check Serena Doles' availability on the calendar
+- Walmart+ delivery: Tuesdays 10am-12pm (auto-ship items)
+- School pickup times shift slightly by season — confirm with district
