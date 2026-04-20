@@ -6,6 +6,7 @@ import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { GroupChatBar } from "@/components/portal/GroupChatBar";
 import type { GroupChatBarHandle } from "@/components/portal/GroupChatBar";
 import type { ProjectConfig } from "@/config/load-projects";
+import { nextDeliveryDate, cutoffTime, formatCountdown } from "@/lib/subscription-data";
 
 export interface GroupProject {
   slug: string;
@@ -109,6 +110,22 @@ type Tab = "overview" | "data" | "ops";
 const LAYOUT_KEY = "group-chat-layout";
 const TAB_KEY = "group-tab";
 
+// ─── Grocery badge hook ───
+
+function useGroceryBadge(): { label: string; tone: "warn" | "urgent" } | null {
+  const [badge, setBadge] = useState<{ label: string; tone: "warn" | "urgent" } | null>(null);
+  useEffect(() => {
+    const now = new Date();
+    const delivery = nextDeliveryDate(now);
+    const cutoff = cutoffTime(delivery);
+    const ms = cutoff.getTime() - now.getTime();
+    if (ms <= 0) return;
+    if (ms < 3 * 3600 * 1000) setBadge({ label: `Order closes in ${formatCountdown(ms)}`, tone: "urgent" });
+    else if (ms < 24 * 3600 * 1000) setBadge({ label: `Order closes in ${formatCountdown(ms)}`, tone: "warn" });
+  }, []);
+  return badge;
+}
+
 // ─── Component ───
 
 export function GroupPageClient({
@@ -132,6 +149,7 @@ export function GroupPageClient({
   const [layout, setLayout] = useState<"bar" | "panel">("bar");
   const [mounted, setMounted] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
+  const groceryBadge = useGroceryBadge();
 
   // Chat bar ref for programmatic messaging
   const chatBarRef = useRef<GroupChatBarHandle>(null);
@@ -309,7 +327,7 @@ export function GroupPageClient({
               {dataSources.length > 0 && (
                 <span className="ml-2 text-text-hint">
                   · {readyCount}/{dataSources.length} sources ready
-                  {actionCount > 0 && <span className="text-amber-600"> · {actionCount} need action</span>}
+                  {actionCount > 0 && <button onClick={() => setTab("ops")} className="text-amber-600 hover:underline cursor-pointer"> · {actionCount} need action</button>}
                 </span>
               )}
             </p>
@@ -378,10 +396,16 @@ export function GroupPageClient({
                       </h2>
                       <p className="text-[11px] text-text-hint">/{p.slug}</p>
                     </div>
-                    <div className="flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 shrink-0">
-                      <span className={`h-1.5 w-1.5 rounded-full ${typeDots[p.type]}`} />
-                      <span className="text-[10px] text-text-muted">{typeLabels[p.type]}</span>
-                    </div>
+                    {p.slug === "grocery-assistant" && groceryBadge ? (
+                      <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold ${groceryBadge.tone === "urgent" ? "bg-red-50 text-red-700" : "bg-amber-50 text-amber-700"}`}>
+                        {groceryBadge.label}
+                      </span>
+                    ) : (
+                      <div className="flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 shrink-0">
+                        <span className={`h-1.5 w-1.5 rounded-full ${typeDots[p.type]}`} />
+                        <span className="text-[10px] text-text-muted">{typeLabels[p.type]}</span>
+                      </div>
+                    )}
                   </div>
                   {p.description && (
                     <div className="px-5 pt-4 pb-1">
@@ -417,19 +441,38 @@ export function GroupPageClient({
               <p className="text-sm text-text-muted">No data sources configured for this group.</p>
             ) : (
               <>
-                {/* Status legend */}
-                <div className="flex items-center gap-4 mb-6 text-[10px] text-text-muted">
-                  {(["ready", "partial", "not-started", "recommended"] as const).map((s) => {
-                    const count = dataSources.filter((d) => d.status === s).length;
-                    if (count === 0) return null;
-                    return (
-                      <span key={s} className="flex items-center gap-1.5">
-                        <span className={`h-2 w-2 rounded-full ${statusDots[s]}`} />
-                        {statusLabels[s]} ({count})
-                      </span>
-                    );
-                  })}
-                </div>
+                {/* Status summary bar */}
+                {(() => {
+                  const total = dataSources.length;
+                  const counts = {
+                    ready: dataSources.filter((d) => d.status === "ready").length,
+                    partial: dataSources.filter((d) => d.status === "partial").length,
+                    "not-started": dataSources.filter((d) => d.status === "not-started").length,
+                    recommended: dataSources.filter((d) => d.status === "recommended").length,
+                  };
+                  return (
+                    <div className="mb-6">
+                      <div className="flex h-1.5 rounded-full overflow-hidden mb-3 gap-px">
+                        {counts.ready > 0 && <span className="bg-emerald-400 rounded-l-full" style={{ width: `${(counts.ready / total) * 100}%` }} />}
+                        {counts.partial > 0 && <span className="bg-amber-400" style={{ width: `${(counts.partial / total) * 100}%` }} />}
+                        {counts["not-started"] > 0 && <span className="bg-red-400" style={{ width: `${(counts["not-started"] / total) * 100}%` }} />}
+                        {counts.recommended > 0 && <span className="bg-slate-300 rounded-r-full" style={{ width: `${(counts.recommended / total) * 100}%` }} />}
+                      </div>
+                      <div className="flex items-center gap-4 text-[10px] text-text-muted">
+                        {(["ready", "partial", "not-started", "recommended"] as const).map((s) => {
+                          const count = counts[s];
+                          if (count === 0) return null;
+                          return (
+                            <span key={s} className="flex items-center gap-1.5">
+                              <span className={`h-2 w-2 rounded-full ${statusDots[s]}`} />
+                              {statusLabels[s]} ({count})
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })()}
                 <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
                   {dataSources.map((ds) => {
                     const href = getDataSourceUrl(ds);
@@ -528,10 +571,10 @@ export function GroupPageClient({
                     if (items.length === 0) return null;
                     return (
                       <div key={actor} className="rounded-lg border border-border bg-surface p-4">
-                        <div className="flex items-center justify-between mb-3">
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
                           <h3 className={`text-[11px] font-semibold uppercase tracking-wider ${actorColors[actor]}`}>{actorLabels[actor]}</h3>
                           {actor !== "brady" && (
-                            <button onClick={() => copyHandoff(actor)} className={`rounded-full px-2.5 py-0.5 text-[9px] font-semibold transition-colors ${copiedActor === actor ? "bg-emerald-100 text-emerald-700" : "bg-orange-100 text-orange-700 hover:bg-orange-200"}`}>
+                            <button onClick={() => copyHandoff(actor)} className={`shrink-0 rounded-full px-2.5 py-0.5 text-[9px] font-semibold transition-colors ${copiedActor === actor ? "bg-emerald-100 text-emerald-700" : "bg-orange-100 text-orange-700 hover:bg-orange-200"}`}>
                               {copiedActor === actor ? "Copied!" : "Copy handoff prompt"}
                             </button>
                           )}
