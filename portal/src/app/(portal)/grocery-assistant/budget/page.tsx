@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import type { WeeklyBudget, SpendEntry, BudgetSummary } from "@/lib/grocery-types";
 import { SPEND_CATEGORIES, STORES } from "@/lib/grocery-types";
+import orderSummary from "@/data/grocery/order-summary.json";
 
 const STORAGE_KEY = "groceryAssistant_budget";
 const DEFAULT_WEEKLY_TARGET = 250;
@@ -83,9 +84,28 @@ export default function BudgetPage() {
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    const parsed = saved ? JSON.parse(saved) : emptyBudget();
-    setBudget(parsed);
-    setTargetInput(String(parsed.target));
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setBudget(parsed);
+      setTargetInput(String(parsed.target));
+    } else {
+      // Seed from Walmart order history on first load
+      const seeded = emptyBudget();
+      seeded.entries = orderSummary
+        .filter((o) => o.date)
+        .map((o) => ({
+          id: crypto.randomUUID(),
+          date: o.date!,
+          amount: o.total,
+          category: "groceries" as const,
+          store: "Walmart",
+          description: o.details || `Walmart ${o.type}`,
+          items: o.itemCount,
+        }));
+      setBudget(seeded);
+      setTargetInput(String(seeded.target));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+    }
   }, []);
 
   function saveBudget(updated: WeeklyBudget) {

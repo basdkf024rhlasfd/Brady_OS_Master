@@ -1,0 +1,1127 @@
+[
+  {
+    "name": "Monster Energy 5-pack",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 35.0,
+    "totalSpend": 35.0,
+    "lastPurchase": "2026-04-03"
+  },
+  {
+    "name": "Chicken (various)",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 3,
+    "averageUnitRetail": 11.33,
+    "totalSpend": 34.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Ground beef",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 2,
+    "averageUnitRetail": 17.0,
+    "totalSpend": 34.0,
+    "lastPurchase": "2026-04-09"
+  },
+  {
+    "name": "Turkey breast",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 15.0,
+    "totalSpend": 30.0,
+    "lastPurchase": "2026-04-03"
+  },
+  {
+    "name": "Tyson Crispy Chicken Strips 25oz",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 3,
+    "averageUnitRetail": 8.72,
+    "totalSpend": 26.16,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "LEGO Harry Potter set",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 25.0,
+    "totalSpend": 25.0,
+    "lastPurchase": "2026-04-03"
+  },
+  {
+    "name": "JOLLY CHEF Plastic Cups w/ Lids 100ct",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 23.99,
+    "totalSpend": 23.99,
+    "lastPurchase": "2026-04-12"
+  },
+  {
+    "name": "GV Smashed Burgers 2lb",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 11.97,
+    "totalSpend": 23.94,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Plastic Wrap 400sqft 3-pack",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 19.92,
+    "totalSpend": 19.92,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Tyson Boneless Skinless Chicken Breasts",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 2,
+    "averageUnitRetail": 9.74,
+    "totalSpend": 19.48,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "GV Clear Spoons 48ct 6-pack",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 19.33,
+    "totalSpend": 19.33,
+    "lastPurchase": "2026-04-12"
+  },
+  {
+    "name": "GV Clear Assorted Cutlery 192ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 9.58,
+    "totalSpend": 19.16,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Larabars",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 19.0,
+    "totalSpend": 19.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Pillsbury Bacon Toaster Scrambles 8ct",
+    "category": "Grocery",
+    "purchases": 3,
+    "totalUnits": 3,
+    "averageUnitRetail": 5.72,
+    "totalSpend": 17.16,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Chuck roast",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 17.0,
+    "totalSpend": 17.0,
+    "lastPurchase": "2026-04-09"
+  },
+  {
+    "name": "Eggs",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 4,
+    "averageUnitRetail": 4.0,
+    "totalSpend": 16.0,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Fiber supplement",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 16.0,
+    "totalSpend": 16.0,
+    "lastPurchase": "2026-04-01"
+  },
+  {
+    "name": "GV Salted Butter 16oz",
+    "category": "Grocery",
+    "purchases": 3,
+    "totalUnits": 5,
+    "averageUnitRetail": 3.06,
+    "totalSpend": 15.3,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Thomas' Sourdough English Muffins 12oz",
+    "category": "Grocery",
+    "purchases": 3,
+    "totalUnits": 4,
+    "averageUnitRetail": 3.77,
+    "totalSpend": 15.08,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "GV Paper Napkins 400ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 3,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 15.0,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Canned goods (various)",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 5,
+    "averageUnitRetail": 3.0,
+    "totalSpend": 15.0,
+    "lastPurchase": "2026-04-09"
+  },
+  {
+    "name": "Paper goods (various)",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 3,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 15.0,
+    "lastPurchase": "2026-04-03"
+  },
+  {
+    "name": "Cheesecake",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 15.0,
+    "totalSpend": 15.0,
+    "lastPurchase": "2026-04-01"
+  },
+  {
+    "name": "Scott Paper Towels",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 15.0,
+    "totalSpend": 15.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Onn Earphones",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 15.0,
+    "totalSpend": 15.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "GV Colby & Monterey Jack Cheese 32oz",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 2,
+    "averageUnitRetail": 6.92,
+    "totalSpend": 13.84,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Delimex Chicken & Cheese Taquitos 16ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 6.12,
+    "totalSpend": 12.24,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Baking supplies (various)",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 3,
+    "averageUnitRetail": 4.0,
+    "totalSpend": 12.0,
+    "lastPurchase": "2026-04-09"
+  },
+  {
+    "name": "GV Aluminum Foil 225sqft",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 11.97,
+    "totalSpend": 11.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Chicken Breast Patties 23.8oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 5.74,
+    "totalSpend": 11.48,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Pasta (various)",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 3,
+    "averageUnitRetail": 3.67,
+    "totalSpend": 11.0,
+    "lastPurchase": "2026-04-09"
+  },
+  {
+    "name": "Easter dye kits",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 10.0,
+    "lastPurchase": "2026-04-03"
+  },
+  {
+    "name": "Metamucil",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 10.0,
+    "totalSpend": 10.0,
+    "lastPurchase": "2026-04-01"
+  },
+  {
+    "name": "Cheese (various)",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 10.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Bob Evans Mac & Cheese 28oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 4.98,
+    "totalSpend": 9.96,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Hanes Boys Boxer Briefs 5-pack",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 9.57,
+    "totalSpend": 9.57,
+    "lastPurchase": "2026-04-06"
+  },
+  {
+    "name": "Band-Aid Flexible Bandages 100ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 8.97,
+    "totalSpend": 8.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Certain Dri Antiperspirant 1.2oz",
+    "category": "Personal",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 8.79,
+    "totalSpend": 8.79,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Veetee Sticky Rice 10.6oz",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 3,
+    "averageUnitRetail": 2.72,
+    "totalSpend": 8.16,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Kids melatonin",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 8.0,
+    "totalSpend": 8.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Nature's Own White Bread 22oz",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 2,
+    "averageUnitRetail": 3.86,
+    "totalSpend": 7.72,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Suave Kids 3-in-1 Watermelon Wonder",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 7.63,
+    "totalSpend": 7.63,
+    "lastPurchase": "2026-03-22"
+  },
+  {
+    "name": "GV Trash Bags 13gal",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 7.44,
+    "totalSpend": 7.44,
+    "lastPurchase": "2026-03-22"
+  },
+  {
+    "name": "Loaded Mashed Potato",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 7.06,
+    "totalSpend": 7.06,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Pop-Tarts Ice Cream Sandwiches 4pk",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 6.87,
+    "totalSpend": 6.87,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Drumstick Sundae Cones 8ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 6.74,
+    "totalSpend": 6.74,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Smithfield Ham Lunch Meat 16oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 6.48,
+    "totalSpend": 6.48,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Dot's Homestyle Pretzels 16oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 6.17,
+    "totalSpend": 6.17,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Socks (kids)",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 6.0,
+    "totalSpend": 6.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Ramen",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 3.0,
+    "totalSpend": 6.0,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Yogurt (various)",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 3.0,
+    "totalSpend": 6.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Don Lee Farms Chicken Birria Tacos 6ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.97,
+    "totalSpend": 5.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "FG Rotisserie Chicken Salad 4ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.97,
+    "totalSpend": 5.97,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "GV Extra Virgin Olive Oil 17oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.97,
+    "totalSpend": 5.97,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Marketside Tomato Bisque 16oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 2.97,
+    "totalSpend": 5.94,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Tostitos Cantina Tortilla Chips 11oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 2.97,
+    "totalSpend": 5.94,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Panera Mac & Cheese 16oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.94,
+    "totalSpend": 5.94,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "FG Chicken Sandwich 5.25oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 2.94,
+    "totalSpend": 5.88,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "S&B Golden Curry Mild Mix 3.2oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 2.92,
+    "totalSpend": 5.84,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV 2% Milk 64oz",
+    "category": "Grocery",
+    "purchases": 3,
+    "totalUnits": 3,
+    "averageUnitRetail": 1.94,
+    "totalSpend": 5.82,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Pillsbury Bacon & Sausage Toaster Scrambles",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.72,
+    "totalSpend": 5.72,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Sea Salt Pita Chips 18oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.47,
+    "totalSpend": 5.47,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Oscar Mayer Beef Franks 8ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.47,
+    "totalSpend": 5.47,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Paper Plates 10in 50ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.16,
+    "totalSpend": 5.16,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Ravioli (frozen)",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 5.0,
+    "lastPurchase": "2026-04-03"
+  },
+  {
+    "name": "Granola bars",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 5.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Can opener",
+    "category": "Household",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 5.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Cheesecake Factory Bread",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 5.0,
+    "totalSpend": 5.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "GV Paper Bowls 20oz 50ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.97,
+    "totalSpend": 4.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Aluminum Foil 75sqft",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.72,
+    "totalSpend": 4.72,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Snickers PB Ice Cream Bars 6pk",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.67,
+    "totalSpend": 4.67,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Chick-Fil-A Avocado Lime Ranch 12oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.58,
+    "totalSpend": 4.58,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Bimbollos Hamburger Buns 15oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 2.24,
+    "totalSpend": 4.48,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Ore-Ida Hash Browns 30oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.47,
+    "totalSpend": 4.47,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Aussie Kids Conditioner",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.38,
+    "totalSpend": 4.38,
+    "lastPurchase": "2026-03-22"
+  },
+  {
+    "name": "Aussie Kids Detangler Spray",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.38,
+    "totalSpend": 4.38,
+    "lastPurchase": "2026-03-22"
+  },
+  {
+    "name": "Aussie Kids Shampoo",
+    "category": "Kids",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.37,
+    "totalSpend": 4.37,
+    "lastPurchase": "2026-03-22"
+  },
+  {
+    "name": "Handi-Foil 8in Square Pan 3ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.24,
+    "totalSpend": 4.24,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Handi-Foil Blue Pans 13x9 2pk",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.24,
+    "totalSpend": 4.24,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Handi-Foil Giant Pan w/ Lid",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.24,
+    "totalSpend": 4.24,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Red Seedless Grapes",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.21,
+    "totalSpend": 4.21,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Plain Bagels 20oz",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 2,
+    "averageUnitRetail": 2.08,
+    "totalSpend": 4.16,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Crackers",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.0,
+    "totalSpend": 4.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Sugar",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 4.0,
+    "totalSpend": 4.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Ore-Ida Steak Fries 28oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.97,
+    "totalSpend": 3.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Gardetto's Garlic Rye Chips 14oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.96,
+    "totalSpend": 3.96,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Minute Jasmine Rice Cups 2ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 1.96,
+    "totalSpend": 3.92,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Velveeta Slices 24ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.88,
+    "totalSpend": 3.88,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Ice Bag",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 1.88,
+    "totalSpend": 3.76,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Tabasco Green Pepper Sauce 5oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.56,
+    "totalSpend": 3.56,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Brownie mix",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.5,
+    "totalSpend": 3.5,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Pictsweet Air Fryer Potato Bites 14oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.48,
+    "totalSpend": 3.48,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Honey Nut Cheerios 10.8oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.47,
+    "totalSpend": 3.47,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "La Banderita Flour Tortillas 22.5oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.37,
+    "totalSpend": 3.37,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "GV Oven Ready Lasagna 12oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 1.57,
+    "totalSpend": 3.14,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Bananas",
+    "category": "Grocery",
+    "purchases": 3,
+    "totalUnits": 12,
+    "averageUnitRetail": 0.26,
+    "totalSpend": 3.08,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Strawberries",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.0,
+    "totalSpend": 3.0,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "GV All Purpose Flour",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.0,
+    "totalSpend": 3.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "Rice Cakes",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 3.0,
+    "totalSpend": 3.0,
+    "lastPurchase": "2026-03-21"
+  },
+  {
+    "name": "GV Parmesan & Romano Cheese 8oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.98,
+    "totalSpend": 2.98,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Las Palmas Green Chile Enchilada Sauce 28oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.97,
+    "totalSpend": 2.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Neapolitan Ice Cream Sandwiches 12pk",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.97,
+    "totalSpend": 2.97,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "GV Wavy Potato Chips 13oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.96,
+    "totalSpend": 2.96,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "GV Whipped Cream Cheese 12oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.92,
+    "totalSpend": 2.92,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Cake mix",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.5,
+    "totalSpend": 2.5,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Wonder Bread 20oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.47,
+    "totalSpend": 2.47,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Sugar Snap Peas 8oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.39,
+    "totalSpend": 2.39,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV California Style Veggie Mix 12oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 1.16,
+    "totalSpend": 2.32,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Baby Peeled Carrots 1lb",
+    "category": "Grocery",
+    "purchases": 2,
+    "totalUnits": 2,
+    "averageUnitRetail": 1.05,
+    "totalSpend": 2.1,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "GV Chocolate Milk 64oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.1,
+    "totalSpend": 2.1,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Taco seasoning",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.0,
+    "totalSpend": 2.0,
+    "lastPurchase": "2026-04-01"
+  },
+  {
+    "name": "Broccoli",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.0,
+    "totalSpend": 2.0,
+    "lastPurchase": "2026-03-30"
+  },
+  {
+    "name": "Tomatoes",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 2.0,
+    "totalSpend": 2.0,
+    "lastPurchase": "2026-03-28"
+  },
+  {
+    "name": "Equate Fabric Bandages 30ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.98,
+    "totalSpend": 1.98,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Fiesta Blend Cheese 8oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.97,
+    "totalSpend": 1.97,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Panko Bread Crumbs 8oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.87,
+    "totalSpend": 1.87,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Bai Coconut Pineapple Water 18oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.78,
+    "totalSpend": 1.78,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "GV Half & Half 16oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.78,
+    "totalSpend": 1.78,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "GV Facial Tissues 60ct",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.72,
+    "totalSpend": 1.72,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "GV Iodized Salt 26oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 0.84,
+    "totalSpend": 1.68,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Prescription",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.62,
+    "totalSpend": 1.62,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Chobani Flip Mint Choc Chip",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.58,
+    "totalSpend": 1.58,
+    "lastPurchase": "2026-04-11"
+  },
+  {
+    "name": "Russet Baking Potatoes",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 2,
+    "averageUnitRetail": 0.75,
+    "totalSpend": 1.5,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "Birds Eye Sweet Corn 10oz",
+    "category": "Grocery",
+    "purchases": 1,
+    "totalUnits": 1,
+    "averageUnitRetail": 1.27,
+    "totalSpend": 1.27,
+    "lastPurchase": "2026-04-14"
+  },
+  {
+    "name": "TOTAL",
+    "category": "Other",
+    "purchases": 145,
+    "totalUnits": 194,
+    "averageUnitRetail": 5.24,
+    "totalSpend": 1016.33,
+    "lastPurchase": null
+  }
+]
