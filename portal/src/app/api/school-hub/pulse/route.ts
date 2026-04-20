@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import {
+  formatHeaderDate,
+  getDayOfWeekInChicago,
+  getTodayInChicago,
+} from "@/lib/school-hub-date";
 
 const BENTONVILLE_LAT = 36.3729;
 const BENTONVILLE_LON = -94.2088;
@@ -51,29 +56,20 @@ async function getWeather(): Promise<WeatherData> {
   }
 }
 
-// Simple in-memory cache (1 hour)
-let cachedPulse: { data: unknown; expiry: number } | null = null;
+// In-memory cache keyed by Chicago-local date (survives instance reuse, not day rollover)
+let cachedPulse: { data: unknown; expiry: number; dayKey: string } | null = null;
 
 export async function GET() {
   const now = Date.now();
-  if (cachedPulse && cachedPulse.expiry > now) {
+  const dayKey = getTodayInChicago();
+  if (cachedPulse && cachedPulse.expiry > now && cachedPulse.dayKey === dayKey) {
     return NextResponse.json(cachedPulse.data);
   }
 
   const weather = await getWeather();
 
-  const today = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "America/Chicago",
-  });
-
-  const dayOfWeek = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-    timeZone: "America/Chicago",
-  });
+  const today = formatHeaderDate();
+  const dayOfWeek = getDayOfWeekInChicago();
 
   const isWeekend = dayOfWeek === "Saturday" || dayOfWeek === "Sunday";
 
@@ -116,8 +112,8 @@ Write a 2-3 sentence morning pulse summary for Brady. Be concise, practical, and
       generatedAt: new Date().toISOString(),
     };
 
-    // Cache for 1 hour
-    cachedPulse = { data: pulse, expiry: now + 3600000 };
+    // Cache for 30 min (matches weather revalidate) — dayKey invalidates at midnight CT
+    cachedPulse = { data: pulse, expiry: now + 1800000, dayKey };
 
     return NextResponse.json(pulse);
   } catch {

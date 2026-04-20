@@ -1,11 +1,31 @@
 export type KidId = "lily" | "faith" | "isla" | "luke" | "quinn";
 
+export interface Ride {
+  direction: "pickup" | "dropoff" | "round-trip";
+  driver: string;
+  pickupTime?: string;
+  dropoffTime?: string;
+  location?: string;
+  confirmed: boolean;
+  notes?: string;
+}
+
+export interface HomeworkItem {
+  id: string;
+  subject: string;
+  task: string;
+  dueDate?: string;
+  status: "pending" | "done";
+  notes?: string;
+}
+
 export interface Activity {
   name: string;
   schedule?: string;
   location?: string;
   type: "extracurricular" | "work" | "school-project";
   notes?: string;
+  rides?: Ride[];
 }
 
 export interface WeeklyEvent {
@@ -36,6 +56,7 @@ export interface Kid {
   dismissalTime: string;
   weeklySchedule: WeeklyEvent[];
   upcomingEvents: UpcomingEvent[];
+  homework?: HomeworkItem[];
 }
 
 export interface SchoolEvent {

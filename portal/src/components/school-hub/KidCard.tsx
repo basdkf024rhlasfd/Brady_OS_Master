@@ -13,7 +13,7 @@ export function KidCard({ kid, events = [], actionItemCount = 0 }: KidCardProps)
   return (
     <Link
       href={`/school-hub/kids/${kid.id}`}
-      className="block p-5 rounded-xl bg-card border border-white/[0.08] hover:border-white/[0.16] transition-colors group"
+      className="block p-5 rounded-xl bg-card border border-white/10 hover:border-white/25 hover:bg-white/[0.02] transition-colors group"
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
@@ -65,7 +65,7 @@ export function KidCard({ kid, events = [], actionItemCount = 0 }: KidCardProps)
 
       {/* Activities */}
       {kid.activities.length > 0 && (
-        <div className="mt-3 pt-3 border-t border-white/[0.06] flex flex-wrap gap-1.5">
+        <div className="mt-3 pt-3 border-t border-white/10 flex flex-wrap gap-1.5">
           {kid.activities.map((activity) => (
             <span
               key={activity.name}
@@ -77,10 +77,16 @@ export function KidCard({ kid, events = [], actionItemCount = 0 }: KidCardProps)
         </div>
       )}
 
-      {/* Dismissal */}
-      <div className="mt-3 pt-3 border-t border-white/[0.06] flex items-center justify-between">
-        <span className="text-[10px] text-muted-foreground">Dismissal</span>
-        <span className="text-xs font-medium text-foreground">{kid.dismissalTime}</span>
+      {/* Dismissal pill */}
+      <div className="mt-4 pt-4 border-t border-white/10 flex justify-center">
+        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-xs">
+          <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+            Dismissal
+          </span>
+          <span className="font-semibold text-foreground tabular-nums">
+            {kid.dismissalTime}
+          </span>
+        </span>
       </div>
     </Link>
   );

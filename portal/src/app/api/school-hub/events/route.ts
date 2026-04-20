@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { google } from "googleapis";
 import type { SchoolEvent, KidId } from "@/lib/school-hub-types";
+import { getTodayInChicago } from "@/lib/school-hub-date";
 
 // Calendar IDs from Brady's morning sweep config
 const CALENDAR_IDS = [
@@ -97,7 +98,7 @@ async function fetchGoogleCalendarEvents(startDate: string, endDate: string): Pr
         if (kidIds.length === 0) continue;
 
         const dateStr = item.start?.dateTime
-          ? new Date(item.start.dateTime).toISOString().split("T")[0]
+          ? getTodayInChicago(new Date(item.start.dateTime))
           : item.start?.date?.split("T")[0] ?? "";
 
         events.push({
@@ -125,11 +126,17 @@ function getStaticEvents(): SchoolEvent[] {
   const events: SchoolEvent[] = [];
   const now = new Date();
 
+  const shortDay = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    weekday: "short",
+  });
+  const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   for (let d = 0; d < 14; d++) {
     const date = new Date(now);
     date.setDate(now.getDate() + d);
-    const dayOfWeek = date.getDay();
-    const dateStr = date.toISOString().split("T")[0];
+    const dayOfWeek = dayIndex.indexOf(shortDay.format(date));
+    const dateStr = getTodayInChicago(date);
 
     if (dayOfWeek >= 1 && dayOfWeek <= 5) {
       events.push({
@@ -183,7 +190,7 @@ function getStaticEvents(): SchoolEvent[] {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const start = searchParams.get("start") ?? new Date().toISOString().split("T")[0];
+  const start = searchParams.get("start") ?? getTodayInChicago();
   const end = searchParams.get("end") ?? start;
   const kidId = searchParams.get("kidId");
 
