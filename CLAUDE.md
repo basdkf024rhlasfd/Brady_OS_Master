@@ -75,6 +75,7 @@
 - **mception Local Dev:** `3-reference/skills/mception-local-dev/SKILL.md` — Spin up mception.ai portal locally for rapid UI iteration. Auth bypass, known .env.local template, all Clerk/Vercel traps documented. Trigger: "spin up mception locally", "local dev server".
 - **mception Navigator:** `3-reference/skills/mception-navigator/SKILL.md` — Browser-native portal navigator for Claude in Chrome. Orients to current page, scans Calendar/Gmail/Notion, presents prioritized action menu with guided navigation. Trigger: "what should I do next", "navigate mception", "portal check", "next actions".
 - **Suno Songwriter:** `3-reference/skills/suno-songwriter/SKILL.md` — One-liner prompt to finished Suno song via Chrome automation. Generates lyrics in Brady's voice, submits to suno.com, waits for generation, downloads MP3. Trigger: "write me a song", "suno song", "song about".
+- **All-Aware Agent:** `3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md` — Full project instructions for a Claude.ai Project agent with complete OS orientation: all data sources, MCP tools, sweep outputs, trust tiers, authority horizons, and hands-off vision. Paste into Claude.ai Project Instructions field.
 
 ## Feedback Capture (Rules & Preferences)
 
