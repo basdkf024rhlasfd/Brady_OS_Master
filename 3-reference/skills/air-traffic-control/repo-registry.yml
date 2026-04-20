@@ -39,6 +39,7 @@ repos:
       git_tracked:
         - "3-reference/skills/*/SKILL.md"
         - "3-reference/skills/*/references/**"
+        - "3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md"
         - "3-reference/skills/CLAUDE.md"
         - "0-agents/custom-built-agents/*.md"
         - "0-agents/CLAUDE.md"
@@ -46,12 +47,20 @@ repos:
       standalone:
         - path: "~/.claude/CLAUDE.md"
           canonical_source: "in-repo"
+      # CoWork execution prompts that mirror repo skill files — compared via content hash
       cowork_prompts:
-        description: "CoWork execution prompts that mirror repo skill files — compared via content hash"
         - repo_source: "3-reference/skills/morning-sweep/SKILL.md"
           cowork_copies:
             - "~/Documents/Claude/Scheduled/morning-sweep/SKILL.md"
             - "~/Downloads/morning-sweep-v2-prompt.md"
+      # Repo files pasted into Claude.ai Project "Project Instructions" fields.
+      # Config-sync cannot hash-compare the Claude.ai side, so it compares the repo file's
+      # latest commit date to `last_pasted` and flags re-paste if repo is newer.
+      # Brady updates `last_pasted` manually after re-pasting.
+      claude_project_prompts:
+        - repo_source: "3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md"
+          claude_project: "All-Aware Agent"
+          last_pasted: null
 
   telly-bot:
     description: "Telegram-to-Notion dispatch bot — captures messages, photos, files to Streaming Notes"
