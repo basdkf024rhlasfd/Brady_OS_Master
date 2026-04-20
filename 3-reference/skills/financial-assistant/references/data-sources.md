@@ -2,7 +2,7 @@
 
 Tracks all financial data sources: what we have, what's stale, what needs scraping.
 
-Last updated: 2026-04-17
+Last updated: 2026-04-19
 
 ---
 
@@ -19,7 +19,8 @@ Last updated: 2026-04-17
 | File | Coverage | Rows | Status | Notes |
 |------|----------|------|--------|-------|
 | `Financial history through Jan 26.csv` | Jul 2023 – Jan 2026 | 17,160 | Current | Deep history. Best for pre-2026 analysis. Karissa = "Family checking" |
-| `Financial history through 4.9.26.csv` | Apr 2024 – Apr 9 2026 | 3,361 | Stale (8 days) | Current accounts. Karissa = "FREE BLUE (...9380)". MISSING full Amex history. |
+| `Financial history through 4.9.26.csv` | Apr 2024 – Apr 9 2026 | 3,361 | Superseded | Replaced by Apr 19 export. |
+| `Transactions_2026-04-19T22-16-00.csv` | All time – Apr 19 2026 | 13,788 | Current | Fresh export. Full account coverage including Amex. Karissa = "FREE BLUE (...9380)". |
 
 ### Deduplication Rules (CRITICAL)
 - These files **OVERLAP** Apr 2024 – Jan 2026. **NEVER sum them.**
@@ -28,8 +29,8 @@ Last updated: 2026-04-17
 - Feb 2026 in File 1 shows near-zero for Arvest (data gap from relinking) — NOT real
 
 ### Refresh Action
-- [ ] **Export fresh Monarch CSV** — Go to monarchmoney.com → Transactions → set range to "All Time" or at least Feb 1 2026 – today → Export → Download CSV → drop in `data/`
-- Priority: **HIGH** — current data ends Apr 9, 8+ days stale
+- [x] **Export fresh Monarch CSV** — Exported Apr 19, 2026. 13,788 rows, full account coverage.
+- Priority: Done — refresh in ~7 days
 
 ---
 
@@ -171,7 +172,7 @@ Always use these consistently across all analysis:
 
 Run before any major analysis session:
 
-- [ ] Fresh Monarch CSV export (monarchmoney.com → Transactions → Export) — **STALE, last data Apr 9**
+- [x] Fresh Monarch CSV export — **DONE Apr 19** (13,788 rows, through Apr 19)
 - [ ] Fresh Venmo statement (venmo.com → Download April) — current through ~Apr 9
 - [x] Gmail financial email scan (Gmail MCP) — **DONE Apr 17** (see gmail-scan file)
 - [~] Walmart.com order scrape (Chrome agent) — **PARTIAL Apr 17** (2 pages, key Utah address found)
