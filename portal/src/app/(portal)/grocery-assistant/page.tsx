@@ -35,6 +35,7 @@ const ADHOC_KEY = "groceryDashboard_adhocList";
 
 type SortKey = "name" | "purchases" | "totalSpend" | "lastPurchase";
 type SortDir = "asc" | "desc";
+type GroceryTab = "order" | "meals" | "pantry";
 
 function formatShortDate(iso: string | null | Date): string {
   if (!iso) return "—";
@@ -50,6 +51,7 @@ export default function GroceryDashboard() {
   const [loaded, setLoaded] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>("totalSpend");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const [groceryTab, setGroceryTab] = useState<GroceryTab>("order");
 
   // Notion-backed metadata
   const [itemMeta, setItemMeta] = useState<ItemMetaMap>({});
@@ -231,7 +233,48 @@ export default function GroceryDashboard() {
           <h1 className="text-xl font-semibold text-foreground">
             Grocery Dashboard
           </h1>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            ~${totalWeeklyCost.toFixed(0)}/wk subscription · {SUBSCRIPTION_ITEMS.length} items
+          </p>
         </div>
+
+        {/* Tab bar */}
+        <div className="flex items-center gap-0 border-b border-white/[0.08] -mx-4 sm:-mx-6 px-4 sm:px-6">
+          {(["order", "meals", "pantry"] as GroceryTab[]).map((t) => {
+            const labels: Record<GroceryTab, string> = { order: "Order List", meals: "Meal Plan", pantry: "Pantry" };
+            return (
+              <button
+                key={t}
+                onClick={() => setGroceryTab(t)}
+                className={`relative px-4 py-2.5 text-[12px] font-medium transition-colors ${
+                  groceryTab === t ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {labels[t]}
+                {groceryTab === t && <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full" />}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Meal Plan stub */}
+        {groceryTab === "meals" && (
+          <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-8 text-center">
+            <p className="text-sm font-medium text-foreground mb-1">Meal Plan</p>
+            <p className="text-xs text-muted-foreground">Coming soon — meal planning will appear here.</p>
+          </div>
+        )}
+
+        {/* Pantry stub */}
+        {groceryTab === "pantry" && (
+          <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-8 text-center">
+            <p className="text-sm font-medium text-foreground mb-1">Pantry</p>
+            <p className="text-xs text-muted-foreground">Coming soon — pantry inventory will appear here.</p>
+          </div>
+        )}
+
+        {/* Order List content */}
+        {groceryTab === "order" && <>
 
         {/* Stale data banner */}
         {isStale && (
@@ -579,6 +622,8 @@ export default function GroceryDashboard() {
         <p className="text-[11px] text-muted-foreground">
           {SUBSCRIPTION_ITEMS.length} active subscriptions · {walmartItems.length} tracked items
         </p>
+
+        </>}
       </div>
     </div>
   );
