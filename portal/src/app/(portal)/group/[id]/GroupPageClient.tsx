@@ -6,6 +6,7 @@ import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { GroupChatBar } from "@/components/portal/GroupChatBar";
 import type { GroupChatBarHandle } from "@/components/portal/GroupChatBar";
 import type { ProjectConfig } from "@/config/load-projects";
+import { nextDeliveryDate, cutoffTime, formatCountdown } from "@/lib/subscription-data";
 
 export interface GroupProject {
   slug: string;
@@ -132,6 +133,20 @@ export function GroupPageClient({
   const [layout, setLayout] = useState<"bar" | "panel">("bar");
   const [mounted, setMounted] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
+
+  // Grocery countdown badge — ticks every minute, shows within 24h of cutoff
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(id);
+  }, []);
+  const groceryDelivery = nextDeliveryDate(now);
+  const groceryCutoff = cutoffTime(groceryDelivery);
+  const msUntilCutoff = groceryCutoff.getTime() - now.getTime();
+  const groceryBadgeText = msUntilCutoff > 0 && msUntilCutoff < 24 * 60 * 60 * 1000
+    ? `Order closes in ${formatCountdown(msUntilCutoff)}`
+    : null;
+  const groceryBadgeUrgent = msUntilCutoff > 0 && msUntilCutoff < 3 * 60 * 60 * 1000;
 
   // Chat bar ref for programmatic messaging
   const chatBarRef = useRef<GroupChatBarHandle>(null);
@@ -383,6 +398,15 @@ export function GroupPageClient({
                       <span className="text-[10px] text-text-muted">{typeLabels[p.type]}</span>
                     </div>
                   </div>
+                  {p.slug === "grocery-assistant" && groceryBadgeText && (
+                    <div className="px-5 pt-3 pb-0">
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${
+                        groceryBadgeUrgent ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"
+                      }`}>
+                        {groceryBadgeText}
+                      </span>
+                    </div>
+                  )}
                   {p.description && (
                     <div className="px-5 pt-4 pb-1">
                       <p className="text-sm text-text-secondary leading-relaxed">{p.description}</p>
@@ -417,18 +441,34 @@ export function GroupPageClient({
               <p className="text-sm text-text-muted">No data sources configured for this group.</p>
             ) : (
               <>
-                {/* Status legend */}
-                <div className="flex items-center gap-4 mb-6 text-[10px] text-text-muted">
-                  {(["ready", "partial", "not-started", "recommended"] as const).map((s) => {
-                    const count = dataSources.filter((d) => d.status === s).length;
-                    if (count === 0) return null;
-                    return (
-                      <span key={s} className="flex items-center gap-1.5">
-                        <span className={`h-2 w-2 rounded-full ${statusDots[s]}`} />
-                        {statusLabels[s]} ({count})
-                      </span>
-                    );
-                  })}
+                {/* Status summary — segmented bar + legend */}
+                <div className="mb-6 space-y-1.5">
+                  <div className="flex h-2 w-full overflow-hidden rounded-full">
+                    {(["ready", "partial", "not-started", "recommended"] as const).map((s) => {
+                      const count = dataSources.filter((d) => d.status === s).length;
+                      if (count === 0) return null;
+                      const pct = (count / dataSources.length) * 100;
+                      const segColors: Record<string, string> = {
+                        ready: "bg-emerald-400",
+                        partial: "bg-amber-400",
+                        "not-started": "bg-red-400",
+                        recommended: "bg-slate-300",
+                      };
+                      return <div key={s} style={{ width: `${pct}%` }} className={segColors[s]} />;
+                    })}
+                  </div>
+                  <div className="flex items-center gap-4 text-[10px] text-text-muted">
+                    {(["ready", "partial", "not-started", "recommended"] as const).map((s) => {
+                      const count = dataSources.filter((d) => d.status === s).length;
+                      if (count === 0) return null;
+                      return (
+                        <span key={s} className="flex items-center gap-1.5">
+                          <span className={`h-1.5 w-1.5 rounded-full ${statusDots[s]}`} />
+                          {statusLabels[s]} ({count})
+                        </span>
+                      );
+                    })}
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
                   {dataSources.map((ds) => {

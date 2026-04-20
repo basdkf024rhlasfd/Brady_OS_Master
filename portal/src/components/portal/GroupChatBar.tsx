@@ -262,7 +262,7 @@ export const GroupChatBar = forwardRef<GroupChatBarHandle, {
       </div>
 
       {/* Messages — scrollable area */}
-      <div className="max-h-72 overflow-y-auto px-4 py-2 space-y-2">
+      <div className="max-h-72 overflow-x-hidden overflow-y-auto px-4 py-2 space-y-2">
         {isEmpty && (
           <div className="py-2 space-y-3">
             {welcomeMessage && (
