@@ -83,6 +83,14 @@ For each kid and Karissa:
 - Pickup/dropoff logistics — who drives what, when
 - Sitter windows needed vs. available
 - Birthdays, deadlines, or special events (check calendar)
+### 2.2b Sync Family Week Ahead to Portal KB
+Write the Family Week Ahead section (step 2.2 output) to:
+`brady-os-master/rabat/portal/public/family/kb/11-week-ahead.md`
+
+Format as clean markdown with the week's date range as the header. Include per-kid activities,
+school events, logistics, sitter windows, and any special events. This file is read by the
+mception.ai family chatbot to answer questions about the upcoming week.
+
 ### 2.3 Project Status Review
 Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - List all active projects with current status
@@ -112,7 +120,18 @@ Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - Identify threads that can be bulk-archived
 - Draft replies for the top 3 most overdue items
 
-### 2.7 Transparency Audit
+### 2.7 mception Portal Review
+Run the `mception-action-scanner` skill in full mode. Read all YAML files in
+`portal/src/config/chat-configs/`, extract `dataSources` where status != "ready".
+Include the full report (grouped by status and actor).
+
+Additionally:
+- Review whether any "recommended" items should be promoted to "not-started" this week
+- Check `git log --since="2 weeks ago" -- portal/src/config/chat-configs/` for items that
+  have been "partial" for 2+ weeks without progress — flag as stale
+- If any new group pages were added without `dataSources`, note them as candidates for setup
+
+### 2.8 Transparency Audit
 - Check `TRANSPARENCY.md` against current repo state
 - Look for: new scripts with external reach not yet documented, sensitive data in tracked files, hardcoded IDs not in `infrastructure-registry.yml`, new autonomous behaviors without audit trails
 - If drift found, flag it in the Phase 4 report

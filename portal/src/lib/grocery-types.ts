@@ -162,6 +162,29 @@ export interface TasteProfile {
   totalRatings: number;
 }
 
+// --- Walmart purchase history (parsed from xlsx, committed as JSON) ---
+
+export interface WalmartItem {
+  name: string;
+  category: string;
+  purchases: number;
+  totalUnits: number;
+  averageUnitRetail: number;
+  totalSpend: number;
+  lastPurchase: string | null; // ISO date
+}
+
+export interface WalmartOrder {
+  date: string | null; // ISO date
+  type: string; // "Delivery from Store", "Online Delivery", "In-Store"
+  orderNumber: string;
+  shipTo: string;
+  who: string;
+  itemCount: number;
+  total: number;
+  details: string;
+}
+
 export const REQUEST_CATEGORIES = [
   { emoji: "🥩", label: "Meat", items: ["Chicken Nuggets", "Hot Dogs", "Ground Beef", "Bacon", "Deli Meat"] },
   { emoji: "🧀", label: "Dairy", items: ["Milk", "Cheese Sticks", "Yogurt", "Butter", "Cream Cheese"] },

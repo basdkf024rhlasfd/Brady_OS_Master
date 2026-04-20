@@ -1,4 +1,4 @@
-import { streamText, convertToModelMessages, type UIMessage } from "ai";
+import { streamText, convertToModelMessages, stepCountIs, type UIMessage } from "ai";
 import { anthropic } from "@ai-sdk/anthropic";
 import {
   buildUnifiedSystemPrompt,
@@ -6,10 +6,18 @@ import {
   type ProjectContext,
 } from "@/lib/chat/global-chat-engine";
 import { getPortalAccess } from "@/lib/portal-access";
+import { resolveTools } from "@/lib/chat/tools";
 
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return new Response(JSON.stringify({ error: "ANTHROPIC_API_KEY not configured" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   const { messages, projectContext } = (await req.json()) as {
     messages: UIMessage[];
     projectContext?: ProjectContext;
@@ -59,11 +67,16 @@ export async function POST(req: Request) {
 
   const systemPrompt = buildUnifiedSystemPrompt(projectContext, queryText, conversationContext);
 
+  const tools = resolveTools(activeConfig.tools ?? []);
+  const hasTools = Object.keys(tools).length > 0;
+
   const result = streamText({
     model: anthropic(model),
     system: systemPrompt,
     messages: await convertToModelMessages(messages),
     maxOutputTokens: activeConfig.maxOutputTokens,
+    tools: hasTools ? tools : undefined,
+    stopWhen: hasTools ? stepCountIs(3) : undefined,
   });
 
   return result.toUIMessageStreamResponse();
