@@ -68,10 +68,10 @@ export function KidCard({ kid, events = [], actionItemCount = 0 }: KidCardProps)
         <div className="mt-3 pt-3 border-t border-white/[0.06] flex flex-wrap gap-1.5">
           {kid.activities.map((activity) => (
             <span
-              key={activity}
+              key={activity.name}
               className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-white/[0.06] text-muted-foreground"
             >
-              {activity}
+              {activity.name}
             </span>
           ))}
         </div>
