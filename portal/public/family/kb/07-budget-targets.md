@@ -16,12 +16,15 @@ Monthly budget categories and targets for household spending.
 
 ## Walmart+ Budget Details
 
-- Weekly grocery target: TBD
-- Delivery fee savings vs in-store: Walmart+ membership covers delivery
+- **Subscription baseline: ~$83/week (~$360/month)** — 67 items on auto-ship (see 14-walmart-subscriptions.md for full list)
+- Delivery: Tuesdays, 10am–12pm — Walmart+ membership covers delivery fees
+- Subscription covers staples (chicken, milk, eggs, butter, rice, beans, bread, paper goods, cleaning supplies)
+- Ad hoc grocery runs for fresh produce, recipe-specific items, and one-offs add on top
 - Price comparison: Walmart vs Sam's Club vs Aldi vs Harps
+- **Action needed**: Visa ending in 2021 is expiring — update payment to avoid delivery disruption
 
 ## Notes
 
 - Financial Cockpit project handles the full financial picture (personal + business)
 - This file focuses on family-specific spending categories
-- Ask Brady: "What's your weekly grocery budget? And what are the big recurring family expenses?"
+- Subscription baseline is the floor — total weekly grocery spend = subscriptions + ad hoc runs + dining

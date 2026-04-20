@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { walmartItems, totalHistoricalSpend, topItemsBySpend, recentOrders } from "@/lib/grocery-data";
 
 const client = new Anthropic();
 
@@ -34,9 +35,16 @@ async function handleBudgetAnalysis(budget: unknown) {
 - Uses Walmart+ delivery (no in-store shopping)
 - Total food budget covers: groceries, dining out/takeout, school lunch funds, and delivery fees
 
-Analyze this week's budget data and provide practical, actionable advice:
+Here is Brady's Walmart purchase history for context:
+- Total historical spend: $${totalHistoricalSpend.toFixed(2)} across ${walmartItems.length} distinct items
+- Top 10 items by spend: ${JSON.stringify(topItemsBySpend(10).map(i => ({ name: i.name, spend: i.totalSpend, purchases: i.purchases })))}
+- Recent orders: ${JSON.stringify(recentOrders().slice(0, 5).map(o => ({ date: o.date, total: o.total, items: o.itemCount, type: o.type })))}
+
+Now analyze this week's budget data and provide practical, actionable advice:
 
 ${JSON.stringify(budget)}
+
+Use the purchase history to identify patterns (repeat buys, price trends, bulk opportunities).
 
 Write a concise analysis (3-5 paragraphs) covering:
 1. How they're tracking vs. their weekly target
