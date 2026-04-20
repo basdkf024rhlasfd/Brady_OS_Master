@@ -422,6 +422,50 @@ idea_library:
       - "Canva quota hit after 14 of 20 hero images — for future runs, prioritize top-10 ideas for image generation rather than all 20"
       - "One hero image per product is confirmed as sufficient for ideation stage (matching Run 3-4 learning)"
 
+  # Run 6 — Global Fermented Functional Foods (text-only, 136 concepts)
+  - date: "2026-04-20"
+    category: "Global Fermented Functional Foods"
+    input_source: "Brady reverse-engineered Runs 1/4 + AI Native CPG Brazilian/Japanese/health-adjacent ideas"
+    stage_0_readiness_level: 2
+    cluster_id_used: null
+    cluster_name: "Global Fermented Functional Foods"
+    sharpness_gate_passes: 1
+    sharpness_gate_override: false
+    methods_used: [4, 21, 24, 51, 56, 58, 59, 60, 79]
+    ideas_generated: 34   # parent concepts
+    spin_offs_generated: 102  # 3 per parent
+    total_concepts: 136
+    ideas_surviving: 136  # text-only, no filter applied per Brady's instruction
+    stage_at_save: 1  # Text Pitch — no images generated
+    top_picks:
+      - name: "Kimchi Jerky"
+        method: 24
+        score: 4.30
+      - name: "Gochujang Honey Butter"
+        method: 24
+        score: 4.28
+      - name: "Amazake Oat Milk"
+        method: 51
+        score: 4.28
+      - name: "Gochujang Honey"
+        method: 24
+        score: 4.28
+      - name: "Ramen Bomb Culture Cubes"
+        method: 58
+        score: 4.23
+    architecture_changes:
+      - "Innovation-lab viewer refactored from hardcoded IDEAS array to live Notion fetch via /api/ideas"
+      - "Added Vercel Function at /api/ideas.js proxying Innovation Idea Pipeline DB"
+      - "Uses telly-bot Notion integration (shared with Innovation Idea Pipeline DB)"
+      - "Legacy 145 hardcoded ideas remain as fallback; new ideas go to Notion only"
+      - "Stage changes, archives, and edits no longer require a PR — just edit Notion"
+    learnings:
+      - "Reverse-engineering existing ideas → problem clusters → sharper Stage 0 produces more differentiated spin-offs than cold-start ideation"
+      - "Spin-off ratio of 3-per-parent gave good coverage without fatigue — 102 spin-offs retained value, would degrade past 5x"
+      - "Mashup (#24) produced 3 of top 5 ideas — cross-category blending (Korean × American pantry staples) is the current highest-yield method"
+      - "Notion DB as live source scales better than hardcoded HTML — future runs skip the deploy step entirely"
+      - "Telly-bot integration reuse avoided creating a new Notion integration; one-time DB share was enough"
+
   # Run 5 idea library
   - { name: "Charm Cargo", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
   - { name: "The Canvas Collection", category: "Kids Fashion / DTC", method: 24, date: "2026-04-19" }

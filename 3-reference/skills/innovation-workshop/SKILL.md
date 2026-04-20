@@ -512,28 +512,26 @@ After each run, automatically:
      the Category Intel DB. Then update the cluster record: increment `Runs Spawned`,
      refresh `Last Refreshed`.
 
-2. **Regenerate the idea library viewer** (`output/idea-library.html`):
-   - Add the new ideas to the IDEAS array in the HTML file
-   - Preserve all existing ideas — append only, never overwrite
-   - Include all research details (pitch, RTBs, competitive, ops, method, scores)
-   - Include image paths for any ideas with Canva visuals
-   - Include new Stage 2 fields introduced in Batch D:
-     - `cost`: full cost model object (see Step 5 schema)
-     - `retailerFit`: array of `{channel, why}` — top pick first
-     - `comparables`: array of `{name, retailer, url, price}`
-     - `clusterId`: Category Intel cluster ID if the run came from one
-   - All new fields are optional on existing ideas; viewer renders them conditionally.
+2. **Viewer updates automatically from Notion — no deploy needed.**
+   As of Run 6 (2026-04-20), the mception.ai/innovation-lab viewer fetches live
+   from `/api/ideas` on every page load. The API proxies the Innovation Idea
+   Pipeline Notion DB via the telly-bot integration. Pushing new ideas to Notion
+   in Step 9.1 is sufficient — the viewer picks them up within the 60s cache window.
 
-3. **Ask Brady before deploying to mception.ai**:
-   - "Ready to push to mception.ai? This will update the live Innovation Lab viewer."
-   - If yes: copy updated idea-library.html + any new image folders to
-     `/tmp/innovation-lab/`, push to GitHub (`basdkf024rhlasfd/innovation-lab`),
-     and deploy via `npx vercel --prod`
-   - If no: leave the local file updated but don't deploy
+   The legacy `output/idea-library.html` is no longer the deploy target. It exists
+   as a local reference snapshot only. Do NOT push HTML edits to the innovation-lab
+   repo for new ideas — that path is deprecated.
 
-**Stage gate changes**: When Brady says to change an idea's stage, update both:
-- The Notion database page (via `notion-update-page`)
-- The IDEAS array in `idea-library.html` (change the `stage` property)
+3. **Architecture changes** (e.g., new fields rendered, view changes, API contract)
+   still require a code PR on `basdkf024rhlasfd/innovation-lab`:
+   - `/api/ideas.js` — Notion → JSON proxy (maps properties, handles pagination)
+   - `index.html` — viewer. The `augmentFromNotion()` block at the end fetches
+     `/api/ideas` and merges into the IDEAS array, rebuilding filter dropdowns.
+   - `NOTION_API_KEY` env var on Vercel project `innovation-lab` (uses telly-bot
+     integration token — Innovation Idea Pipeline DB must be shared with it).
+
+**Stage gate changes**: When Brady says to change an idea's stage, update the
+Notion database page (via `notion-update-page`). The viewer reflects it on next load.
 
 ### Step 10: Stage Gate Definitions
 
