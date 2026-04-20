@@ -54,8 +54,11 @@ The skill produces three output modes depending on how it's called:
 
 ## Pre-Flight (Silent)
 
-1. **Check for CSV data.** Scan `data/` folder for `.csv` files.
-   - If no CSVs found: warn "No Monarch data — operating on Gmail/Calendar/Notion only"
+1. **Check for CSV data.** Scan these locations in order for Monarch `.csv` files:
+   1. `~/Downloads/` — where Monarch exports land by default
+   2. `3-reference/skills/financial-assistant/data/` — local skill data folder
+   Use the **newest** CSV found across both locations. If a newer file is in Downloads, copy it to `data/` for archival before processing.
+   - If no CSVs found in either location: warn "No Monarch data — operating on Gmail/Calendar/Notion only"
    - If newest CSV is >14 days old: warn "⚠️ Monarch data is [N] days stale — drop a fresh export"
 2. **Load reference files:**
    - `references/data-sources.md` — master registry of all data files, coverage dates, staleness, dedup rules
@@ -71,7 +74,7 @@ The skill produces three output modes depending on how it's called:
 ## Phase 1: INGEST (Silent — gather everything)
 
 ### 1.1 Monarch CSV Parse
-- Read Monarch CSV files in `data/` folder
+- Read Monarch CSV files (from Downloads or `data/` — whichever is newest, per Pre-Flight step 1)
 - Columns: `Date, Merchant, Category, Account, Original Statement, Notes, Amount, Tags, Owner`
 - **Amount convention:** Negative = money spent. Positive = returns/refunds/income/transfers.
 - **CRITICAL DEDUPLICATION:** Multiple Monarch exports may overlap. See `references/data-sources.md` for file-specific date ranges and dedup rules. General rule:
