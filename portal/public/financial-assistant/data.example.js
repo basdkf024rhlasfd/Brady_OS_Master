@@ -49,5 +49,34 @@ window.COCKPIT_DATA = {
   recurring: [],
   openQuestions: [],
   dataSources: [],
-  recentTransactions: []
+  recentTransactions: [],
+
+  // Family Budget — household vs business spend split
+  familyBudget: {
+    month: "April 2026",
+    familyTotal: 0,
+    businessTotal: 0,
+    categories: [
+      { name: "Groceries (Walmart+)", budget: 560, actual: 0, subscription: 360, notes: "$360 subscription + ~$200 ad hoc" },
+      { name: "Kids Activities", budget: 350, actual: 0, notes: "BJJ $100-150, voice lessons $80-120" },
+      { name: "Dining / DoorDash", budget: null, actual: 0, notes: "TBD — needs input" },
+      { name: "School Expenses", budget: null, actual: 0, notes: "TBD — lunches, supplies, field trips" },
+      { name: "Childcare (Serena)", budget: null, actual: 0, notes: "TBD — needs input" },
+      { name: "Gas / Transportation", budget: null, actual: 0, notes: "TBD — needs input" },
+      { name: "Entertainment", budget: null, actual: 0, notes: "TBD — needs input" }
+    ],
+    businessCategories: [
+      { name: "Software / SaaS", budget: null, actual: 0, notes: "" },
+      { name: "Consulting Expenses", budget: null, actual: 0, notes: "" }
+    ]
+  },
+
+  // Revenue & Runway — consulting income vs burn
+  revenue: {
+    month: "April 2026",
+    consulting: { invoiced: 0, collected: 0, pipeline: 0 },
+    netIncome: 0,
+    runwayMonths: 0,
+    note: "Connect Notion API to populate from Consulting Practice Wiki"
+  }
 };

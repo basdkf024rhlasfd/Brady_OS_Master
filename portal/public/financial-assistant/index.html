@@ -199,6 +199,21 @@
       font-size: 0.6rem; letter-spacing: 1px; color: var(--gray);
     }
 
+    /* FAMILY BUDGET BARS */
+    .fb-row {
+      display: flex; align-items: center; padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .fb-row:last-child { border-bottom: none; }
+    .fb-label { width: 180px; flex-shrink: 0; font-size: 0.78rem; color: var(--gray-light); }
+    .fb-bar-outer { flex: 1; height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; margin: 0 12px; position: relative; }
+    .fb-bar-budget { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; opacity: 0.25; }
+    .fb-bar-actual { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; }
+    .fb-bar-sub { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; }
+    .fb-vals { width: 140px; flex-shrink: 0; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+    .fb-notes { font-size: 0.65rem; color: var(--gray); margin-left: 180px; padding: 0 0 4px 12px; }
+    .fb-tbd { border: 1px dashed rgba(255,255,255,0.12); border-radius: 4px; padding: 2px 6px; font-size: 0.6rem; color: var(--gray); }
+
     /* NO DATA */
     .no-data {
       text-align: center; padding: 60px 20px; color: var(--gray);
@@ -350,6 +365,100 @@
     </div>`;
 
     html += `</div>`; // close section
+  }
+
+  // FAMILY BUDGET — household vs business split
+  if (D.familyBudget) {
+    const fb = D.familyBudget;
+    html += `<div class="section-header">Family Budget &middot; ${fb.month}</div>`;
+    html += `<div class="grid-2">`;
+
+    // Family spend column
+    html += `<div class="section" style="margin-bottom:0">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue)">Household</span>
+        <span class="med" style="color:var(--blue)">${$(fb.familyTotal)}<span style="font-size:0.6em;color:var(--gray)">/mo</span></span>
+      </div>`;
+
+    const maxFamBudget = Math.max(...fb.categories.map(c => c.budget || 0), ...fb.categories.map(c => c.actual || 0), 1);
+    fb.categories.forEach(c => {
+      const hasBudget = c.budget != null && c.budget > 0;
+      const budgetPct = hasBudget ? (c.budget / maxFamBudget * 100) : 0;
+      const actualPct = c.actual > 0 ? (c.actual / maxFamBudget * 100) : 0;
+      const subPct = c.subscription ? (c.subscription / maxFamBudget * 100) : 0;
+      const overBudget = hasBudget && c.actual > c.budget;
+      const barColor = overBudget ? 'var(--red)' : 'var(--blue)';
+
+      html += `<div class="fb-row">
+        <span class="fb-label">${c.name}</span>
+        <span class="fb-bar-outer">
+          ${hasBudget ? `<span class="fb-bar-budget" style="width:${budgetPct}%;background:var(--blue)"></span>` : ''}
+          ${subPct > 0 ? `<span class="fb-bar-sub" style="width:${subPct}%;background:var(--green);opacity:0.4"></span>` : ''}
+          ${c.actual > 0 ? `<span class="fb-bar-actual" style="width:${actualPct}%;background:${barColor}"></span>` : ''}
+        </span>
+        <span class="fb-vals">
+          ${c.actual > 0 ? `<span style="color:${overBudget ? 'var(--red)' : 'var(--white)'}">${$(c.actual)}</span>` : '<span style="color:var(--gray)">$0</span>'}
+          ${hasBudget ? ` <span style="color:var(--gray)">/ ${$(c.budget)}</span>` : ` <span class="fb-tbd">TBD</span>`}
+        </span>
+      </div>`;
+    });
+    html += `</div>`;
+
+    // Business spend column
+    html += `<div class="section" style="margin-bottom:0">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)">Business</span>
+        <span class="med" style="color:var(--gold)">${$(fb.businessTotal)}<span style="font-size:0.6em;color:var(--gray)">/mo</span></span>
+      </div>`;
+
+    const maxBizBudget = Math.max(...fb.businessCategories.map(c => c.budget || 0), ...fb.businessCategories.map(c => c.actual || 0), 1);
+    fb.businessCategories.forEach(c => {
+      const hasBudget = c.budget != null && c.budget > 0;
+      const actualPct = c.actual > 0 ? (c.actual / maxBizBudget * 100) : 0;
+
+      html += `<div class="fb-row">
+        <span class="fb-label">${c.name}</span>
+        <span class="fb-bar-outer">
+          ${c.actual > 0 ? `<span class="fb-bar-actual" style="width:${actualPct}%;background:var(--gold)"></span>` : ''}
+        </span>
+        <span class="fb-vals">
+          ${c.actual > 0 ? `<span style="color:var(--white)">${$(c.actual)}</span>` : '<span style="color:var(--gray)">$0</span>'}
+          ${hasBudget ? ` <span style="color:var(--gray)">/ ${$(c.budget)}</span>` : ` <span class="fb-tbd">TBD</span>`}
+        </span>
+      </div>`;
+    });
+
+    if (fb.businessCategories.every(c => !c.actual && !c.budget)) {
+      html += `<div style="text-align:center;padding:20px 0;color:var(--gray);font-size:0.75rem">No business expenses tracked yet</div>`;
+    }
+    html += `</div>`;
+    html += `</div>`; // close grid-2
+  }
+
+  // REVENUE & RUNWAY
+  if (D.revenue) {
+    const r = D.revenue;
+    html += `<div class="section-header">Revenue &amp; Runway &middot; ${r.month}</div>`;
+    html += `<div class="grid-3">
+      <div class="card card-green">
+        <h3>Consulting Revenue</h3>
+        <div class="med c-green">${$(r.consulting.collected)}</div>
+        <div class="small">Collected &middot; ${$(r.consulting.invoiced)} invoiced &middot; ${$(r.consulting.pipeline)} pipeline</div>
+      </div>
+      <div class="card">
+        <h3>Net Income</h3>
+        <div class="med ${r.netIncome >= 0 ? 'c-green' : 'c-red'}">${r.netIncome >= 0 ? '' : '-'}${$(r.netIncome)}</div>
+        <div class="small">Revenue minus all expenses</div>
+      </div>
+      <div class="card card-blue">
+        <h3>Runway</h3>
+        <div class="med" style="color:var(--blue)">${r.runwayMonths > 0 ? r.runwayMonths + ' mo' : '\u2014'}</div>
+        <div class="small">At current burn rate</div>
+      </div>
+    </div>`;
+    if (r.note) {
+      html += `<div style="font-size:0.7rem;color:var(--gray);margin-bottom:20px;font-style:italic">${r.note}</div>`;
+    }
   }
 
   // TOP-LINE ACTUALS
