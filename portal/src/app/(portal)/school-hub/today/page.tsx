@@ -3,19 +3,15 @@
 import { useState, useEffect } from "react";
 import { KidCard } from "@/components/school-hub/KidCard";
 import { MorningPulse } from "@/components/school-hub/MorningPulse";
+import { ConfidencePanel } from "@/components/school-hub/ConfidencePanel";
 import { KIDS, KID_IDS } from "@/lib/school-hub-data";
+import { formatHeaderDate, getTodayInChicago } from "@/lib/school-hub-date";
 import type { SchoolEvent } from "@/lib/school-hub-types";
 
 export default function TodayPage() {
   const [events, setEvents] = useState<SchoolEvent[]>([]);
-  const today = new Date().toISOString().split("T")[0];
-
-  const currentDate = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const today = getTodayInChicago();
+  const currentDate = formatHeaderDate();
 
   useEffect(() => {
     fetch(`/api/school-hub/events?start=${today}&end=${today}`)
@@ -37,6 +33,13 @@ export default function TodayPage() {
         <h1 className="text-2xl font-semibold text-foreground">Today</h1>
         <p className="text-sm text-muted-foreground mt-1">{currentDate}</p>
       </div>
+
+      {/* Today at a glance — counts + confirmation state */}
+      <ConfidencePanel
+        kids={KID_IDS.map((id) => KIDS[id])}
+        events={events}
+        today={today}
+      />
 
       {/* Morning Pulse — live from API */}
       <MorningPulse />

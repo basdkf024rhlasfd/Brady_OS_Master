@@ -40,6 +40,7 @@ export const KIDS: Record<KidId, Kid> = {
         location: "Arend Arts Center (BHS campus)",
       },
     ],
+    homework: [],
   },
   faith: {
     id: "faith",
@@ -64,11 +65,35 @@ export const KIDS: Record<KidId, Kid> = {
         location: "Life.Church Rogers, 5350 S 28th St, Rogers, AR",
         type: "extracurricular",
         notes: "Pickup at 8:50 PM",
+        rides: [
+          {
+            direction: "dropoff",
+            driver: "Brady",
+            dropoffTime: "5:45 PM",
+            confirmed: true,
+          },
+          {
+            direction: "pickup",
+            driver: "Brady",
+            pickupTime: "8:50 PM",
+            confirmed: true,
+          },
+        ],
       },
       {
         name: "Voice Lessons",
         schedule: "Thu 5:30–6:00 PM",
         type: "extracurricular",
+        rides: [
+          {
+            direction: "round-trip",
+            driver: "Brady",
+            dropoffTime: "5:20 PM",
+            pickupTime: "6:00 PM",
+            confirmed: false,
+            notes: "TODO: confirm location",
+          },
+        ],
       },
     ],
     teachers: [{ name: "Terry Hicks", subject: "Choir Director" }],
@@ -79,6 +104,7 @@ export const KIDS: Record<KidId, Kid> = {
       { day: "Thursday", time: "5:30 PM", event: "Voice Lessons" },
     ],
     upcomingEvents: [],
+    homework: [],
   },
   isla: {
     id: "isla",
@@ -109,6 +135,7 @@ export const KIDS: Record<KidId, Kid> = {
         location: "Bentonville Community Center Pool",
       },
     ],
+    homework: [],
   },
   luke: {
     id: "luke",
@@ -125,6 +152,15 @@ export const KIDS: Record<KidId, Kid> = {
         schedule: "Mon & Thu, 4:15–5:00 PM",
         type: "extracurricular",
         notes: "Green/orange belt. Drive at 3:55 PM, home ~5:20 PM.",
+        rides: [
+          {
+            direction: "round-trip",
+            driver: "Brady",
+            dropoffTime: "3:55 PM",
+            pickupTime: "5:20 PM",
+            confirmed: true,
+          },
+        ],
       },
     ],
     teachers: [{ name: "Mrs. Whitfield", subject: "3rd Grade" }],
@@ -135,6 +171,7 @@ export const KIDS: Record<KidId, Kid> = {
       { day: "Thursday", time: "3:55 PM", event: "Drive to BJJ (class 4:15–5:00, home ~5:20)" },
     ],
     upcomingEvents: [],
+    homework: [],
   },
   quinn: {
     id: "quinn",
@@ -169,6 +206,7 @@ export const KIDS: Record<KidId, Kid> = {
     dismissalTime: "2:45 PM",
     weeklySchedule: [],
     upcomingEvents: [],
+    homework: [],
   },
 };
 
