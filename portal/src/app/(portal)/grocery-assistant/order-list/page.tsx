@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import {
   CheckCircle2,
@@ -10,6 +10,7 @@ import {
   Plus,
   Check,
   X,
+  Clock,
 } from "lucide-react";
 import {
   SUBSCRIPTION_ITEMS,
@@ -18,8 +19,11 @@ import {
   formatCountdown,
   weeklyEquivalent,
   walmartSearchUrl,
+  isSubscribed,
+  nextSubOrderDate,
 } from "@/lib/subscription-data";
 import { walmartItems } from "@/lib/grocery-data";
+import type { ItemMetaMap } from "@/lib/grocery-notion";
 
 interface AdhocItem {
   id: string;
@@ -32,9 +36,9 @@ const ADHOC_KEY = "groceryDashboard_adhocList";
 type SortKey = "name" | "purchases" | "totalSpend" | "lastPurchase";
 type SortDir = "asc" | "desc";
 
-function formatShortDate(iso: string | null): string {
+function formatShortDate(iso: string | null | Date): string {
   if (!iso) return "—";
-  const d = new Date(iso);
+  const d = iso instanceof Date ? iso : new Date(iso);
   if (isNaN(d.getTime())) return "—";
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
@@ -47,6 +51,19 @@ export default function OrderListPage() {
   const [sortKey, setSortKey] = useState<SortKey>("totalSpend");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
 
+  // Notion-backed metadata
+  const [itemMeta, setItemMeta] = useState<ItemMetaMap>({});
+  const [lastScrapedAt, setLastScrapedAt] = useState<string | null>(null);
+  const [metaError, setMetaError] = useState(false);
+
+  // Inline editing
+  const [editingCell, setEditingCell] = useState<{
+    name: string;
+    field: "remaining" | "comments";
+  } | null>(null);
+  const [editValue, setEditValue] = useState("");
+  const editInputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(id);
@@ -57,6 +74,20 @@ export default function OrderListPage() {
     if (saved) setAdhocItems(JSON.parse(saved));
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    fetch("/api/grocery-assistant/item-meta")
+      .then((r) => r.json())
+      .then((data) => {
+        setItemMeta(data.items ?? {});
+        setLastScrapedAt(data.lastScrapedAt ?? null);
+      })
+      .catch(() => setMetaError(true));
+  }, []);
+
+  useEffect(() => {
+    if (editingCell) editInputRef.current?.focus();
+  }, [editingCell]);
 
   function saveAdhoc(items: AdhocItem[]) {
     setAdhocItems(items);
@@ -85,6 +116,44 @@ export default function OrderListPage() {
       setSortKey(key);
       setSortDir(key === "name" ? "asc" : "desc");
     }
+  }
+
+  function startEdit(name: string, field: "remaining" | "comments") {
+    const current =
+      field === "remaining"
+        ? String(itemMeta[name]?.remaining ?? "")
+        : (itemMeta[name]?.comments ?? "");
+    setEditingCell({ name, field });
+    setEditValue(current);
+  }
+
+  function commitEdit() {
+    if (!editingCell) return;
+    const { name, field } = editingCell;
+    const patch =
+      field === "remaining"
+        ? { remaining: editValue === "" ? null : parseFloat(editValue) }
+        : { comments: editValue };
+
+    setItemMeta((prev) => ({
+      ...prev,
+      [name]: {
+        remaining: prev[name]?.remaining ?? null,
+        comments: prev[name]?.comments ?? "",
+        ...patch,
+      },
+    }));
+    setEditingCell(null);
+
+    fetch("/api/grocery-assistant/item-meta", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, ...patch }),
+    }).catch(() => {});
+  }
+
+  function cancelEdit() {
+    setEditingCell(null);
   }
 
   const delivery = nextDeliveryDate(now);
@@ -128,6 +197,11 @@ export default function OrderListPage() {
     { weekday: "short" }
   )} 8am`;
 
+  const isStale =
+    !metaError &&
+    (lastScrapedAt === null ||
+      Date.now() - new Date(lastScrapedAt).getTime() > 24 * 60 * 60 * 1000);
+
   const rows = [...walmartItems].sort((a, b) => {
     const dir = sortDir === "asc" ? 1 : -1;
     if (sortKey === "name") return a.name.localeCompare(b.name) * dir;
@@ -141,8 +215,8 @@ export default function OrderListPage() {
   if (!loaded) return null;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-6">
-      {/* Header with weekly cost stat */}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-4">
+      {/* Header with always-visible weekly cost */}
       <div className="flex items-end justify-between">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground mb-1">
@@ -157,6 +231,20 @@ export default function OrderListPage() {
           </p>
         </div>
       </div>
+
+      {/* Stale data banner */}
+      {isStale && (
+        <div className="rounded-lg border border-orange-500/30 bg-orange-500/[0.04] px-4 py-2.5 flex items-center gap-2.5">
+          <Clock className="h-3.5 w-3.5 text-orange-400 flex-shrink-0" />
+          <p className="text-xs text-muted-foreground">
+            <span className="text-orange-300 font-medium">Data may be stale</span>
+            {lastScrapedAt
+              ? ` · Last scraped ${formatShortDate(lastScrapedAt)}`
+              : " · Never scraped"}
+            {" · "}Have Claude scrape Walmart basket, recent orders, and subscriptions
+          </p>
+        </div>
+      )}
 
       {/* Status banner */}
       <div
@@ -267,57 +355,135 @@ export default function OrderListPage() {
             <thead className="bg-white/[0.03] border-b border-white/[0.08]">
               <tr className="text-left">
                 <Th sortable active={sortKey === "name"} dir={sortDir} onClick={() => toggleSort("name")}>Item</Th>
-                <Th>Category</Th>
+                <Th>Cat</Th>
                 <Th align="right" sortable active={sortKey === "purchases"} dir={sortDir} onClick={() => toggleSort("purchases")}># Purch</Th>
                 <Th align="right">Units</Th>
                 <Th align="right">AUR</Th>
-                <Th align="right" sortable active={sortKey === "totalSpend"} dir={sortDir} onClick={() => toggleSort("totalSpend")}>Total Spend</Th>
+                <Th align="right" sortable active={sortKey === "totalSpend"} dir={sortDir} onClick={() => toggleSort("totalSpend")}>Total $</Th>
                 <Th sortable active={sortKey === "lastPurchase"} dir={sortDir} onClick={() => toggleSort("lastPurchase")}>Last</Th>
+                <Th>Sub / Next</Th>
                 <Th align="right">Avg/wk</Th>
-                <Th align="right">Remaining</Th>
-                <Th align="right">Low Point</Th>
+                <Th align="right">On Hand</Th>
+                <Th>Notes</Th>
                 <Th />
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.04]">
-              {rows.map((item) => (
-                <tr key={item.name} className="hover:bg-white/[0.02]">
-                  <td className="px-3 py-2 text-foreground max-w-[280px] truncate" title={item.name}>
-                    {item.name}
-                  </td>
-                  <td className="px-3 py-2">
-                    <span className="inline-block rounded bg-white/[0.05] px-1.5 py-0.5 text-[10px] text-muted-foreground uppercase tracking-wide">
-                      {item.category}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{item.purchases}</td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{item.totalUnits}</td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">${item.averageUnitRetail.toFixed(2)}</td>
-                  <td className="px-3 py-2 text-right tabular-nums text-foreground">${item.totalSpend.toFixed(2)}</td>
-                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{formatShortDate(item.lastPurchase)}</td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground/40">—</td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground/40">—</td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground/40">—</td>
-                  <td className="px-3 py-2">
-                    <a
-                      href={walmartSearchUrl(item.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 flex items-center"
-                      title="Search on Walmart"
+              {rows.map((item) => {
+                const meta = itemMeta[item.name];
+                const subbed = isSubscribed(item.name);
+                const nextOrder = subbed ? nextSubOrderDate(item.name, item.lastPurchase) : null;
+                const isEditingRemaining = editingCell?.name === item.name && editingCell.field === "remaining";
+                const isEditingComments = editingCell?.name === item.name && editingCell.field === "comments";
+
+                return (
+                  <tr key={item.name} className="hover:bg-white/[0.02]">
+                    <td className="px-3 py-2 text-foreground max-w-[220px] truncate" title={item.name}>
+                      {item.name}
+                    </td>
+                    <td className="px-3 py-2">
+                      <span className="inline-block rounded bg-white/[0.05] px-1.5 py-0.5 text-[10px] text-muted-foreground uppercase tracking-wide">
+                        {item.category}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{item.purchases}</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{item.totalUnits}</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">${item.averageUnitRetail.toFixed(2)}</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-foreground">${item.totalSpend.toFixed(2)}</td>
+                    <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{formatShortDate(item.lastPurchase)}</td>
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      {subbed ? (
+                        <span className="inline-flex items-center gap-1">
+                          <span className="inline-block rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-medium text-primary uppercase tracking-wide">SUB</span>
+                          {nextOrder && (
+                            <span className="text-xs text-muted-foreground tabular-nums">{formatShortDate(nextOrder)}</span>
+                          )}
+                        </span>
+                      ) : (
+                        <span className="text-muted-foreground/30">—</span>
+                      )}
+                    </td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground/40">—</td>
+                    <td
+                      className="px-3 py-2 text-right tabular-nums"
+                      onClick={() => !isEditingRemaining && startEdit(item.name, "remaining")}
                     >
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </td>
-                </tr>
-              ))}
+                      {isEditingRemaining ? (
+                        <input
+                          ref={editInputRef}
+                          type="number"
+                          step="0.1"
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onBlur={commitEdit}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") commitEdit();
+                            if (e.key === "Escape") cancelEdit();
+                          }}
+                          className="w-16 bg-white/[0.06] rounded px-1.5 py-0.5 text-xs text-right text-foreground outline-none focus:ring-1 focus:ring-primary tabular-nums"
+                        />
+                      ) : (
+                        <span
+                          className={cn(
+                            "cursor-pointer rounded px-1.5 py-0.5 text-xs hover:bg-white/[0.06] transition-colors",
+                            meta?.remaining != null ? "text-foreground" : "text-muted-foreground/30"
+                          )}
+                          title="Click to edit"
+                        >
+                          {meta?.remaining != null ? meta.remaining : "—"}
+                        </span>
+                      )}
+                    </td>
+                    <td
+                      className="px-3 py-2 max-w-[180px]"
+                      onClick={() => !isEditingComments && startEdit(item.name, "comments")}
+                    >
+                      {isEditingComments ? (
+                        <input
+                          ref={editInputRef}
+                          type="text"
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onBlur={commitEdit}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") commitEdit();
+                            if (e.key === "Escape") cancelEdit();
+                          }}
+                          className="w-full bg-white/[0.06] rounded px-1.5 py-0.5 text-xs text-foreground outline-none focus:ring-1 focus:ring-primary"
+                        />
+                      ) : (
+                        <span
+                          className={cn(
+                            "cursor-pointer rounded px-1.5 py-0.5 text-xs hover:bg-white/[0.06] transition-colors truncate block",
+                            meta?.comments ? "text-muted-foreground" : "text-muted-foreground/20"
+                          )}
+                          title={meta?.comments || "Click to add note"}
+                        >
+                          {meta?.comments || "+"}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-3 py-2">
+                      <a
+                        href={walmartSearchUrl(item.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-primary/80 flex items-center"
+                        title="Search on Walmart"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       </div>
 
       <p className="text-[11px] text-muted-foreground">
-        {SUBSCRIPTION_ITEMS.length} active subscriptions · {walmartItems.length} tracked items · Avg/wk, Remaining, and Low Point forecasts coming when inventory data is wired in.
+        {SUBSCRIPTION_ITEMS.length} active subscriptions · {walmartItems.length} tracked items
       </p>
     </div>
   );

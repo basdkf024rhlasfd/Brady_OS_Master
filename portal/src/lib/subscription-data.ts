@@ -83,6 +83,85 @@ export function weeklyEquivalent(items: SubscriptionItem[]): number {
 // All 67 subscription items from Walmart+ auto-ship
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Subscription matching helpers
+// ---------------------------------------------------------------------------
+
+const CADENCE_DAYS: Record<Cadence, number> = {
+  weekly: 7,
+  biweekly: 14,
+  "3-week": 21,
+  "4-week": 28,
+  "6-week": 42,
+};
+
+const MATCH_STOP_WORDS = new Set([
+  "a", "an", "the", "and", "or", "of", "in", "at", "by", "for", "with", "to",
+  "oz", "ct", "lb", "lbs", "fl", "pk", "bag", "box", "each", "fresh",
+  "great", "value", "all", "purpose", "enriched", "boneless", "skinless",
+  "natural", "reduced", "fat", "everyday", "disposable", "half", "gallon",
+  "low", "original", "style", "ready", "serve", "sweet", "cream", "salted",
+  "free", "gluten",
+]);
+
+function tokenize(name: string): string[] {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((t) => t.length > 2 && !MATCH_STOP_WORDS.has(t));
+}
+
+function findSubscriptionMatch(itemName: string): SubscriptionItem | null {
+  const tokens = new Set(tokenize(itemName));
+  if (tokens.size === 0) return null;
+
+  let bestMatch: SubscriptionItem | null = null;
+  let bestScore = 0;
+
+  for (const sub of SUBSCRIPTION_ITEMS) {
+    const subTokens = tokenize(sub.name);
+    const overlap = subTokens.filter((t) => tokens.has(t)).length;
+    if (overlap > bestScore) {
+      bestScore = overlap;
+      bestMatch = sub;
+    }
+  }
+
+  return bestScore >= 1 ? bestMatch : null;
+}
+
+export function isSubscribed(itemName: string): boolean {
+  return findSubscriptionMatch(itemName) !== null;
+}
+
+export function nextSubOrderDate(
+  itemName: string,
+  lastPurchase: string | null
+): Date | null {
+  const match = findSubscriptionMatch(itemName);
+  if (!match) return null;
+
+  const cadenceDays = CADENCE_DAYS[match.cadence];
+
+  if (!lastPurchase) return nextDeliveryDate();
+
+  const last = new Date(lastPurchase);
+  if (isNaN(last.getTime())) return nextDeliveryDate();
+
+  const now = new Date();
+  const next = new Date(last);
+  next.setDate(next.getDate() + cadenceDays);
+
+  while (next <= now) {
+    next.setDate(next.getDate() + cadenceDays);
+  }
+
+  return next;
+}
+
+// ---------------------------------------------------------------------------
+
 export const SUBSCRIPTION_ITEMS: SubscriptionItem[] = [
   // Weekly (8 items)
   { name: "Fresh Banana, Each", price: 0.13, cadence: "weekly" },

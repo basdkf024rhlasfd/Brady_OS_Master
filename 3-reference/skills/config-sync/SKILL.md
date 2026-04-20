@@ -66,6 +66,15 @@ Configured in `repo-registry.yml` under `brady-os.sync_paths.cowork_prompts`.
 - `~/Documents/Claude/Scheduled/morning-sweep/SKILL.md` — mirrors `3-reference/skills/morning-sweep/SKILL.md`
 - `~/Downloads/morning-sweep-v2-prompt.md` — backup copy, same source
 
+### Claude.ai Project Prompts (compared via last-pasted date)
+Repo files that are pasted into Claude.ai Project "Project Instructions" fields. The Claude.ai
+side is not a file — there's no hash to compare. Instead, config-sync checks whether the repo
+file has a newer git commit than the `last_pasted` date recorded in the registry, and prompts
+Brady to re-paste into the named Claude.ai Project if so.
+Configured in `repo-registry.yml` under `brady-os.sync_paths.claude_project_prompts`.
+
+- `3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md` → Claude.ai Project "All-Aware Agent"
+
 ## Execution Steps
 
 ### Step 1: Resolve Locations
@@ -112,6 +121,14 @@ For each file in the manifest:
 6. Note: CoWork prompts may intentionally contain extra sections (references, Notion IDs, etc.)
    that don't exist in the repo SKILL.md. Only compare the Phase 3 structure and skill logic,
    not supplementary reference sections. When hashes differ, show a summary of what's different.
+
+**Claude.ai Project prompt files (compared via last-pasted date):**
+1. For each entry in `sync_paths.claude_project_prompts`, read the `last_pasted` timestamp from the registry
+2. Run `git log -1 --format="%ai" -- <repo_source>` to get the repo file's latest commit date
+3. If `last_pasted` is `null` → flag as **NEVER PASTED** — Brady should paste into the named Claude.ai Project and set `last_pasted`
+4. If repo commit date is newer than `last_pasted` → flag as **CLAUDE.AI STALE** — re-paste into the named Claude.ai Project and update `last_pasted`
+5. If `last_pasted` is newer than or equal to the repo commit date → **CURRENT**
+6. Note: no hash comparison is possible (Claude.ai Projects are not filesystem-accessible). The date check is the source of truth.
 
 **Ambiguous cases (both sides changed independently):**
 - If both sides have different commits that are not ancestors of each other → flag as **CONFLICT**
@@ -167,6 +184,9 @@ FILE DRIFT
   CoWork Prompts:
     morning-sweep (Documents) .......... [CURRENT | COWORK STALE | MISSING]
     morning-sweep (Downloads) .......... [CURRENT | COWORK STALE | MISSING]
+
+  Claude.ai Projects:
+    all-aware-agent .................... [CURRENT | CLAUDE.AI STALE | NEVER PASTED]
 
 -----------------------------------------------
 SUMMARY
