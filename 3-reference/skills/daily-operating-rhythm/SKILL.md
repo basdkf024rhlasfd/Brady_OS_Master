@@ -48,6 +48,11 @@ Brady's full daily cycle from wake to archive. Each block triggers the skill tha
 **Agent:** Telly
 **What:** Captures Telegram messages, photos, files to Streaming Notes DB throughout the day. No manual trigger needed — runs autonomously.
 
+### Throughout Day — Portal Navigation (Browser)
+**Skill:** mception-navigator
+**What:** When Brady is browsing mception.ai in Chrome, provides real-time navigation guidance and next-action suggestions. Consumes morning sweep priorities and surfaces them as browser-actionable items. Runs exclusively in Claude in Chrome.
+**Output:** In-browser action menu with guided navigation
+
 ### End of Each Block — Pipeline Dashboard
 **Skill:** pipeline-dashboard
 **What:** Live snapshot of Streaming Notes DB pipeline (In/Processing/Out). Run at end of morning sweep and before evening sweep to track what moved.
