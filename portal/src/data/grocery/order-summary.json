@@ -150,13 +150,23 @@
     "details": "Paper towels, earphones, sticky rice, yogurt, cheese, bread"
   },
   {
+    "date": "2026-04-21",
+    "type": "Delivery from Store",
+    "orderNumber": "2000146-40514849",
+    "shipTo": "Bentonville, AR",
+    "who": "Brady",
+    "itemCount": 26,
+    "total": 106.28,
+    "details": "Groceries/Household — ice cream, chicken, pasta, butter, paper goods"
+  },
+  {
     "date": "TOTAL",
     "type": "",
     "orderNumber": "",
     "shipTo": "",
     "who": "",
-    "itemCount": 345,
-    "total": 1527.87,
+    "itemCount": 371,
+    "total": 1634.15,
     "details": ""
   }
 ]
