@@ -1,43 +1,63 @@
 # Monthly Budget Targets
 
-Last updated: [YYYY-MM-DD]
+Last updated: 2026-04-19
 
-## Household (Personal)
+## Three-Tier Model
 
-| Category | Monthly Target | Notes |
-|----------|---------------|-------|
-| Housing | $X,XXX | Mortgage / rent |
-| Groceries | $X,XXX | Family of 6, weekly Walmart run |
-| Kids Activities | $XXX | Sports, lessons, camps |
-| Dining Out | $XXX | Restaurants + fast food + coffee |
-| Gas / Transportation | $XXX | |
-| Utilities | $XXX | Electric, water, internet, phone |
-| Insurance | $XXX | Auto + home + health |
-| Subscriptions | $XXX | Streaming, apps, SaaS personal |
-| Kids Misc | $XXX | School supplies, clothes, medical copays |
-| Childcare / Sitter | $XXX | Serena + backup |
-| Personal / Discretionary | $XXX | |
-| Medical / Health | $XXX | |
+| Tier | Monthly | Description |
+|------|---------|-------------|
+| 12-mo actual avg | $18,088 | Trailing 12-month average household spend |
+| Strip frivolous/one-time | $14,704 | Remove one-time purchases, impulse shopping, non-recurring |
+| Zero-income floor | $10,990 | Bare minimum to keep casa running, kids at home |
 
-## Business (Consulting)
+## Zero-Income Floor Breakdown
 
-| Category | Monthly Target | Notes |
-|----------|---------------|-------|
-| Software / Tools | $XXX | Claude, Conductor, Vercel, domains, etc. |
-| Professional Development | $XXX | Courses, books, conferences |
-| Business Meals | $XXX | Client meetings |
-| Travel | $XXX | Client site visits |
-| Office / Equipment | $XXX | |
+### Fixed Obligations — $4,530
 
-## Income Targets
+| Item | Amount |
+|------|--------|
+| Mortgage (Truist) | — |
+| Home Insurance/Umbrella → Allstate | — |
+| Utilities (Gas, Electric, Water) | — |
+| Internet/Mobile (AT&T) | — |
+| Car(s) / SoFi auto loan(s) | — |
+| Life Insurance (Lincoln) | $89 |
 
-| Source | Monthly Target | Notes |
-|--------|---------------|-------|
-| Consulting Revenue | $XX,XXX | Blended across active clients |
-| Other Income | $XXX | |
+### Household Running — $4,450
+
+| Item | Amount |
+|------|--------|
+| Groceries (Walmart/Sam's/Costco/Target) | (est.) |
+| Gas / fuel | — |
+| Household supplies | — |
+
+### Kids & Medical — $1,160
+
+| Item | Amount |
+|------|--------|
+| Medical (copays, pharmacy, Rx) | — |
+| Kid expenses (shoes to this, haircuts, activities) | — |
+
+### Discretionary (Trimmed, Not Zero) — $850
+
+| Item | Amount |
+|------|--------|
+| Restaurants (mostly inside only) | — |
+| Movies / subscriptions | — |
+| Minor entertainment / coffee | — |
+
+### Zeroed Out — $0
+
+Travel, coffee shops, Pure Barre/GolfTec, charity, fine dining
+
+## Totals
+
+- **Monthly:** $10,990
+- **Annualized:** $131,880
 
 ## Notes
 
 - Update this file whenever budget targets change
 - The financial-assistant skill reads this file on every run
 - Categories here must match the unified categories in `category-mappings.md`
+- Line item amounts marked "—" are rolled into the tier total; individual amounts TBD as Brady refines
