@@ -380,16 +380,39 @@ Score health dimensions based on scan results:
 - 6-8 = yellow (watch)
 - 0-5 = red (needs attention)
 
-### 3.10 Sync Family Brief to Portal KB
-Write the Phase 2 Family Brief section (per-kid schedules, logistics, action items) to:
-`brady-os-master/rabat/portal/public/family/kb/10-sweep-state.md`
+### 3.10 Sync Family Brief to Portal KB ⚡ MANDATORY
 
-Format as a clean markdown file with today's date as the header. Include all per-kid sections,
-the logistics footer, and any family-related action items. This file is read by the mception.ai
-family chatbot for context-aware responses throughout the day.
+Write the Phase 2 Family Brief section (per-kid schedules, logistics, action items) to:
+`portal/public/family/kb/10-sweep-state.md` (relative to repo root)
+
+Format as a clean markdown file:
+```markdown
+# Today's Family Brief
+
+**[Day of week], [Month] [Day], [Year]**
+
+Last updated: [timestamp]
+
+## Today's Schedule
+
+| Time | Event | Who | Notes |
+|------|-------|-----|-------|
+| ... | ... | ... | ... |
+
+## Action Items
+
+- [ ] ...
+
+## Alerts
+
+- ...
+```
+
+Include all per-kid sections, the logistics footer, and any family-related action items.
+This file is read by the mception.ai family chatbot — if it's stale, the chatbot can't answer schedule questions.
 
 Also write any family-related open loops or carry-forward items to:
-`brady-os-master/rabat/portal/public/family/kb/12-open-loops.md`
+`portal/public/family/kb/12-open-loops.md`
 
 ### 3.11 mception Action Scan
 Run the `mception-action-scanner` skill in compact mode. Read all YAML files in

@@ -181,11 +181,11 @@ tools:
 kb:
   enabled: true
   directory: public/family/kb
-  maxFiles: 5
+  maxFiles: 6
   routing: keyword
   routes:
     - keywords: [kid, kids, lily, faith, isla, quinn, luke, child, children, triplet, roster, family]
-      files: [01-family-roster.md, 03-weekly-schedule.md]
+      files: [01-family-roster.md, 03-weekly-schedule.md, 09-activity-details.md, 11-week-ahead.md]
     - keywords: [school, homework, test, grade, teacher, apple glen, bhs, bentonville high, class]
       files: [02-school-calendar.md, 01-family-roster.md]
     - keywords: [meal, dinner, lunch, breakfast, food, eat, recipe, cook, picky, snack, menu]
@@ -193,7 +193,7 @@ kb:
     - keywords: [chore, clean, responsibility, allowance, room, laundry, dishes]
       files: [05-chore-assignments.md]
     - keywords: [schedule, calendar, week, today, tomorrow, pickup, dropoff, ride, logistics, morning, afternoon]
-      files: [03-weekly-schedule.md, 10-sweep-state.md]
+      files: [03-weekly-schedule.md, 11-week-ahead.md, 10-sweep-state.md]
     - keywords: [subscription, subscribe, recurring, auto-ship, delivery schedule, walmart+]
       files: [14-walmart-subscriptions.md, 07-budget-targets.md]
     - keywords: [budget, money, spend, cost, grocery, walmart, price, expensive]
@@ -206,7 +206,7 @@ kb:
       files: [08-family-rules.md]
     - keywords: [brief, sweep, morning, update, status, open loop, unresolved]
       files: [10-sweep-state.md, 12-open-loops.md]
-    - keywords: [week ahead, plan, next week, sunday, weekly, upcoming]
+    - keywords: [week ahead, this week, plan, next week, sunday, weekly, upcoming]
       files: [11-week-ahead.md]
     - keywords: [preference, remember, always, never, like, hate, prefer, rule]
       files: [13-family-preferences.md, 04-meal-preferences.md]
