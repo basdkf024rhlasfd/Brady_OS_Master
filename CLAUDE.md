@@ -74,6 +74,7 @@
 - **Weekly OS Recap:** `3-reference/skills/weekly-os-recap/SKILL.md` — Weekly visual changelog of Brady OS. Scans 7-day git history, classifies into plain-language categories, renders mception-styled HTML + PDF. Auto-delivered Friday 7 AM CT via email + text. GAS mailer: `3-reference/scripts/gas/scripts/os-recap-mailer/`
 - **mception Local Dev:** `3-reference/skills/mception-local-dev/SKILL.md` — Spin up mception.ai portal locally for rapid UI iteration. Auth bypass, known .env.local template, all Clerk/Vercel traps documented. Trigger: "spin up mception locally", "local dev server".
 - **mception Navigator:** `3-reference/skills/mception-navigator/SKILL.md` — Browser-native portal navigator for Claude in Chrome. Orients to current page, scans Calendar/Gmail/Notion, presents prioritized action menu with guided navigation. Trigger: "what should I do next", "navigate mception", "portal check", "next actions".
+- **Suno Songwriter:** `3-reference/skills/suno-songwriter/SKILL.md` — One-liner prompt to finished Suno song via Chrome automation. Generates lyrics in Brady's voice, submits to suno.com, waits for generation, downloads MP3. Trigger: "write me a song", "suno song", "song about".
 
 ## Feedback Capture (Rules & Preferences)
 
