@@ -216,13 +216,31 @@ Machine-readable index for programmatic search:
 }
 ```
 
-#### 3.7 Sync Open Loops to Portal KB
+#### 3.7 Sync Open Loops to Portal KB ⚡ MANDATORY
+
 Write the "Open Loops" section from the evening journal to:
-`brady-os-master/rabat/portal/public/family/kb/12-open-loops.md`
+`portal/public/family/kb/12-open-loops.md` (relative to repo root)
 
 Filter to family-related open loops only (kids, school, meals, logistics, household).
-Format as clean markdown with today's date. Include next steps for each loop.
-This file is read by the mception.ai family chatbot to surface unresolved items.
+Format as clean markdown:
+```markdown
+# Open Loops
+
+**As of [Day of week], [Month] [Day], [Year]**
+
+Last updated: [timestamp]
+
+## Carry-Forward Items
+
+- **[Item]** — [context]. Next step: [action].
+- ...
+
+## Resolved Today
+
+- ~~[Item]~~ — [how it was resolved]
+```
+
+This file is read by the mception.ai family chatbot to surface unresolved items via `/loops`.
 
 #### 3.8 Update index.md
 Append today's entry to `~/Documents/Daily-Journal/index.md`:
