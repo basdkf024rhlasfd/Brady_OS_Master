@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import type { ProjectNav } from "@/lib/nav-types";
+import Markdown from "react-markdown";
 
 export function GlobalChatPanel() {
   const {
@@ -231,9 +232,13 @@ export function GlobalChatPanel() {
               >
                 {msg.parts.map((part, i) =>
                   part.type === "text" ? (
-                    <p key={i} className="whitespace-pre-wrap">
-                      {part.text}
-                    </p>
+                    msg.role === "assistant" ? (
+                      <div key={i} className="prose prose-xs prose-neutral dark:prose-invert max-w-none leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                        <Markdown>{part.text}</Markdown>
+                      </div>
+                    ) : (
+                      <p key={i} className="whitespace-pre-wrap">{part.text}</p>
+                    )
                   ) : null
                 )}
               </div>
