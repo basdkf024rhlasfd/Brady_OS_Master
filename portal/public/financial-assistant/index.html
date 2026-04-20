@@ -4,330 +4,531 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Financial Cockpit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0d0d12;
-      --surface: #16161e;
-      --surface-2: #1c1c28;
-      --border: #2a2a3a;
-      --text: #e4e4ec;
-      --text-muted: #8888a0;
-      --text-hint: #55556a;
-      --green: #34d399;
-      --green-bg: rgba(52, 211, 153, 0.12);
-      --yellow: #fbbf24;
-      --yellow-bg: rgba(251, 191, 36, 0.12);
-      --red: #f87171;
-      --red-bg: rgba(248, 113, 113, 0.12);
-      --accent: #818cf8;
-      --accent-bg: rgba(129, 140, 248, 0.12);
+      --bg: #0C0F14;
+      --bg-card: #13161D;
+      --bg-card-alt: #181C25;
+      --gold: #D4A843;
+      --gold-dim: #9A7B32;
+      --blue: #4A7FB5;
+      --dark-blue: #1E3A5F;
+      --white: #F0EDE6;
+      --gray: #8A8D94;
+      --gray-light: #B0B3BA;
+      --red: #C45C5C;
+      --red-dim: #8B3A3A;
+      --green: #7CB97A;
+      --green-bg: rgba(124, 185, 122, 0.10);
+      --yellow: #D4A843;
+      --yellow-bg: rgba(212, 168, 67, 0.10);
+      --red-bg: rgba(196, 92, 92, 0.10);
+      --blue-bg: rgba(74, 127, 181, 0.10);
       --radius: 8px;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.5;
-      padding: 20px; max-width: 1000px; margin: 0 auto;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--white); line-height: 1.5;
+      padding: 32px 52px 40px; max-width: 1100px; margin: 0 auto;
     }
-    header { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.03em; }
-    .meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
-    .stale { color: var(--yellow); font-weight: 600; }
+    body::before {
+      content: '';
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none; z-index: 0;
+    }
+    body > * { position: relative; z-index: 1; }
 
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    /* HEADER */
+    header { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--gold-dim); }
+    header h1 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700;
+      letter-spacing: -0.5px; color: var(--white);
+    }
+    .meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gray); margin-top: 6px; }
+    .stale { color: var(--red); font-weight: 600; }
+
+    /* SECTION HEADERS */
+    .section-header {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .section-header::after {
+      content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.25);
+    }
+
+    /* GRIDS */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
     @media (max-width: 700px) {
       .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      body { padding: 20px; }
     }
 
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-    .card h3 { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px; }
-    .big { font-size: 1.8rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-    .med { font-size: 1.2rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-    .small { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-    .green { color: var(--green); }
-    .red { color: var(--red); }
-    .yellow { color: var(--yellow); }
+    /* CARDS */
+    .card {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 16px;
+      border-top: 3px solid var(--gold-dim);
+    }
+    .card.card-red { border-top-color: var(--red); }
+    .card.card-green { border-top-color: var(--green); }
+    .card.card-blue { border-top-color: var(--blue); }
+    .card h3 {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 2px; color: var(--gray); margin-bottom: 6px;
+    }
+    .big {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700;
+      font-variant-numeric: tabular-nums; color: var(--gold);
+    }
+    .med {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .small { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--gray); margin-top: 3px; }
+    .c-green { color: var(--green); }
+    .c-red { color: var(--red); }
+    .c-gold { color: var(--gold); }
 
-    .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
-    .section h2 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    /* SECTIONS */
+    .section {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 20px; margin-bottom: 20px;
+    }
 
-    .bar-row { display: flex; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(42,42,58,0.4); font-size: 0.8rem; }
+    /* BAR ROWS */
+    .bar-row {
+      display: flex; align-items: center; padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem;
+    }
     .bar-row:last-child { border-bottom: none; }
-    .bar-label { width: 140px; flex-shrink: 0; }
-    .bar-wrap { flex: 1; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; margin: 0 10px; }
-    .bar-fill { height: 100%; border-radius: 4px; }
-    .bar-val { width: 80px; text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+    .bar-label { width: 160px; flex-shrink: 0; font-family: 'DM Sans', sans-serif; color: var(--gray-light); }
+    .bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; margin: 0 12px; }
+    .bar-fill { height: 100%; border-radius: 3px; }
+    .bar-val {
+      width: 80px; text-align: right; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-variant-numeric: tabular-nums; flex-shrink: 0; color: var(--white);
+    }
 
+    /* TABLES */
     table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    th { text-align: left; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 6px 8px; border-bottom: 1px solid var(--border); }
-    td { padding: 6px 8px; border-bottom: 1px solid rgba(42,42,58,0.3); font-variant-numeric: tabular-nums; }
+    th {
+      text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+      text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray);
+      padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    td {
+      padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-variant-numeric: tabular-nums; color: var(--gray-light);
+    }
     tr:last-child td { border-bottom: none; }
     .amt-neg { color: var(--red); }
     .amt-pos { color: var(--green); }
-    .acct-brady { color: var(--accent); }
-    .acct-karissa { color: var(--yellow); }
-    .acct-kids { color: var(--text-muted); }
+    .acct-brady { color: var(--blue); }
+    .acct-karissa { color: var(--gold); }
+    .acct-kids { color: var(--gray); }
 
-    .flag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+    /* FLAGS / BADGES */
+    .flag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
     .flag-red { background: var(--red-bg); color: var(--red); }
-    .flag-yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .flag-yellow { background: var(--yellow-bg); color: var(--gold); }
     .flag-green { background: var(--green-bg); color: var(--green); }
-    .flag-blue { background: var(--accent-bg); color: var(--accent); }
+    .flag-blue { background: var(--blue-bg); color: var(--blue); }
 
-    .alert-box { background: var(--red-bg); border: 1px solid rgba(248,113,113,0.3); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; font-size: 0.8rem; }
+    /* ALERT BOX */
+    .alert-box {
+      background: var(--bg-card); border: 1px solid rgba(196,92,92,0.2);
+      border-top: 3px solid var(--red);
+      border-radius: var(--radius); padding: 14px 18px; margin-bottom: 24px;
+      font-size: 0.8rem; color: var(--gray-light);
+    }
     .alert-box strong { color: var(--red); }
 
-    .toggle-bar { display: flex; gap: 6px; margin-bottom: 12px; }
-    .toggle-bar button { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; font-size: 0.7rem; color: var(--text-muted); cursor: pointer; }
-    .toggle-bar button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    /* BUDGET TIER ROWS */
+    .budget-tier {
+      display: flex; align-items: center; padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .budget-tier:last-child { border-bottom: none; }
+    .budget-tier-name {
+      width: 220px; flex-shrink: 0; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-light);
+    }
+    .budget-tier-bar { flex: 1; height: 10px; background: rgba(255,255,255,0.04); border-radius: 5px; overflow: hidden; margin: 0 14px; }
+    .budget-tier-fill { height: 100%; border-radius: 5px; }
+    .budget-tier-val {
+      width: 80px; text-align: right; font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem; font-weight: 600; flex-shrink: 0; color: var(--white);
+    }
+    .budget-tier-items {
+      font-size: 0.7rem; color: var(--gray); margin-left: 220px; padding: 2px 0 6px 14px;
+      font-family: 'DM Sans', sans-serif;
+    }
 
-    .q-row { padding: 8px 0; border-bottom: 1px solid rgba(42,42,58,0.3); font-size: 0.8rem; }
+    /* BUDGET TOTALS */
+    .budget-totals {
+      display: flex; justify-content: flex-end; gap: 28px; padding-top: 12px;
+      margin-top: 8px; border-top: 1px solid rgba(212,168,67,0.2);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gray);
+    }
+    .budget-totals strong {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--gold);
+    }
+
+    /* QUESTION ROWS */
+    .q-row { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; color: var(--gray-light); }
     .q-row:last-child { border-bottom: none; }
-    .q-status { display: inline-block; width: 70px; }
+    .q-row strong { color: var(--white); }
 
-    footer { text-align: center; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 24px; font-size: 0.65rem; color: var(--text-hint); }
+    /* ZEROED-OUT STYLE */
+    .zeroed { text-decoration: line-through; color: var(--gray); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 28px; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 1px; color: var(--gray);
+    }
+
+    /* NO DATA */
+    .no-data {
+      text-align: center; padding: 60px 20px; color: var(--gray);
+      font-family: 'DM Sans', sans-serif; font-size: 1rem;
+    }
+    .no-data code { color: var(--gold); }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Financial Cockpit</h1>
-  <div class="meta">Monarch data through Apr 9, 2026 &middot; Gmail/Walmart/Amazon/DoorDash scraped Apr 17 &middot; <span class="stale">CSV is 9 days stale</span></div>
-</header>
+<div id="app"></div>
 
-<!-- ALERTS -->
-<div class="alert-box">
-  <strong>Post-Separation Spending Alert:</strong> Karissa's account (9380) averaging <strong>$6,494/week</strong> since Mar 20 across 254 transactions. March total: $23,349. Utah spend identified: $1,856 across 91 transactions.
-</div>
+<script src="data.js"></script>
+<script>
+(function() {
+  const D = window.COCKPIT_DATA;
+  const app = document.getElementById('app');
 
-<!-- TOP-LINE NUMBERS -->
-<div class="grid-4">
-  <div class="card">
-    <h3>April Spend (MTD)</h3>
-    <div class="big red">$11,344</div>
-    <div class="small">179 transactions &middot; 9 days</div>
-  </div>
-  <div class="card">
-    <h3>March Total</h3>
-    <div class="big red">$23,349</div>
-    <div class="small">328 transactions</div>
-  </div>
-  <div class="card">
-    <h3>April Returns</h3>
-    <div class="med yellow">$554</div>
-    <div class="small">21 returns in 9 days</div>
-  </div>
-  <div class="card">
-    <h3>Utah Spend</h3>
-    <div class="med yellow">$1,856</div>
-    <div class="small">91 transactions &middot; 3 weeks</div>
-  </div>
-</div>
+  if (!D || !D.generated) {
+    app.innerHTML = '<div class="no-data">No data loaded.<br>Run the <code>financial-assistant</code> skill to generate data.</div>';
+    return;
+  }
 
-<!-- SPEND BY OWNER -->
-<div class="grid-2">
-  <div class="card">
-    <h3>April by Account Owner</h3>
-    <div class="bar-row">
-      <span class="bar-label acct-karissa">Karissa (9380)</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:63%;background:var(--yellow)"></span></span>
-      <span class="bar-val">$7,115</span>
-    </div>
-    <div class="bar-row">
-      <span class="bar-label acct-brady">Brady</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:34%;background:var(--accent)"></span></span>
-      <span class="bar-val">$3,879</span>
-    </div>
-    <div class="bar-row">
-      <span class="bar-label acct-kids">Kids</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:3%;background:var(--text-muted)"></span></span>
-      <span class="bar-val">$338</span>
-    </div>
-  </div>
-  <div class="card">
-    <h3>Karissa Weekly Velocity (Post-Separation)</h3>
-    <div class="bar-row">
-      <span class="bar-label">W11 (Mar 20)</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:69%;background:var(--yellow)"></span></span>
-      <span class="bar-val">$5,928</span>
-    </div>
-    <div class="bar-row">
-      <span class="bar-label">W12 (Mar 27)</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:100%;background:var(--red)"></span></span>
-      <span class="bar-val">$8,622</span>
-    </div>
-    <div class="bar-row">
-      <span class="bar-label">W13 (Apr 3)</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:61%;background:var(--yellow)"></span></span>
-      <span class="bar-val">$5,268</span>
-    </div>
-    <div class="bar-row">
-      <span class="bar-label">W14 (Apr 7)</span>
-      <span class="bar-wrap"><span class="bar-fill" style="width:71%;background:var(--yellow)"></span></span>
-      <span class="bar-val">$6,158</span>
-    </div>
-  </div>
-</div>
+  const $ = (amt) => {
+    if (amt == null) return '\u2014';
+    const abs = Math.abs(amt);
+    if (abs >= 1000) return '$' + abs.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    return '$' + abs.toLocaleString('en-US', { minimumFractionDigits: amt % 1 !== 0 ? 2 : 0 });
+  };
 
-<!-- TOP CATEGORIES -->
-<div class="section">
-  <h2>April Spending by Category</h2>
-  <div class="bar-row"><span class="bar-label">Groceries</span><span class="bar-wrap"><span class="bar-fill" style="width:100%;background:var(--green)"></span></span><span class="bar-val">$2,707</span></div>
-  <div class="bar-row"><span class="bar-label">Shopping</span><span class="bar-wrap"><span class="bar-fill" style="width:87%;background:var(--yellow)"></span></span><span class="bar-val">$2,352</span></div>
-  <div class="bar-row"><span class="bar-label">Medical</span><span class="bar-wrap"><span class="bar-fill" style="width:58%;background:var(--red)"></span></span><span class="bar-val">$1,582</span></div>
-  <div class="bar-row"><span class="bar-label">Loan Repayment</span><span class="bar-wrap"><span class="bar-fill" style="width:54%;background:var(--text-muted)"></span></span><span class="bar-val">$1,463</span></div>
-  <div class="bar-row"><span class="bar-label">Auto Maintenance</span><span class="bar-wrap"><span class="bar-fill" style="width:25%;background:var(--text-muted)"></span></span><span class="bar-val">$670</span></div>
-  <div class="bar-row"><span class="bar-label">Gas &amp; Electric</span><span class="bar-wrap"><span class="bar-fill" style="width:19%;background:var(--text-muted)"></span></span><span class="bar-val">$518</span></div>
-  <div class="bar-row"><span class="bar-label">Fitness</span><span class="bar-wrap"><span class="bar-fill" style="width:14%;background:var(--text-muted)"></span></span><span class="bar-val">$377</span></div>
-  <div class="bar-row"><span class="bar-label">Child Activities</span><span class="bar-wrap"><span class="bar-fill" style="width:13%;background:var(--text-muted)"></span></span><span class="bar-val">$349</span></div>
-  <div class="bar-row"><span class="bar-label">Restaurants</span><span class="bar-wrap"><span class="bar-fill" style="width:12%;background:var(--text-muted)"></span></span><span class="bar-val">$335</span></div>
-  <div class="bar-row"><span class="bar-label">Financial Fees</span><span class="bar-wrap"><span class="bar-fill" style="width:10%;background:var(--text-muted)"></span></span><span class="bar-val">$270</span></div>
-  <div class="bar-row"><span class="bar-label">Office/Business</span><span class="bar-wrap"><span class="bar-fill" style="width:8%;background:var(--accent)"></span></span><span class="bar-val">$224</span></div>
-  <div class="bar-row"><span class="bar-label">Clothing</span><span class="bar-wrap"><span class="bar-fill" style="width:7%;background:var(--text-muted)"></span></span><span class="bar-val">$182</span></div>
-</div>
+  const $full = (amt) => {
+    if (amt == null) return '\u2014';
+    const abs = Math.abs(amt);
+    return '$' + abs.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
 
-<!-- TOP MERCHANTS -->
-<div class="section">
-  <h2>Top Merchants (April 1&ndash;9)</h2>
-  <table>
-    <tr><th>Merchant</th><th style="text-align:right">Amount</th><th>Notes</th></tr>
-    <tr><td>Springdale Bentonville</td><td style="text-align:right" class="amt-neg">$2,443</td><td><span class="flag flag-yellow">Medical? Investigate</span></td></tr>
-    <tr><td>Walmart</td><td style="text-align:right" class="amt-neg">$1,185</td><td>Multiple orders, mixed Brady/Karissa</td></tr>
-    <tr><td>Siloam Springs Clinic</td><td style="text-align:right" class="amt-neg">$1,020</td><td><span class="flag flag-red">Unknown &mdash; no email trail</span></td></tr>
-    <tr><td>Bridgecrest</td><td style="text-align:right" class="amt-neg">$839</td><td>Vehicle payment (AutoPay)</td></tr>
-    <tr><td>Norm The Tire Man</td><td style="text-align:right" class="amt-neg">$655</td><td>Brady &middot; Amex 2007</td></tr>
-    <tr><td>SoFi</td><td style="text-align:right" class="amt-neg">$624</td><td>Student loan (AutoPay)</td></tr>
-    <tr><td>Amazon</td><td style="text-align:right" class="amt-neg">$547</td><td>Karissa's card &mdash; her Amazon acct</td></tr>
-    <tr><td>City of Bentonville</td><td style="text-align:right" class="amt-neg">$518</td><td>Utilities</td></tr>
-    <tr><td>Inferno MMA</td><td style="text-align:right" class="amt-neg">$377</td><td>Kids fitness &middot; Luke Ninjas $125/mo</td></tr>
-    <tr><td>BHS Choir</td><td style="text-align:right" class="amt-neg">$349</td><td>Child activities</td></tr>
-    <tr><td>Maverik</td><td style="text-align:right" class="amt-neg">$253</td><td>Gas (Utah stations)</td></tr>
-    <tr><td>Wellness &amp; Courage</td><td style="text-align:right" class="amt-neg">$240</td><td>Karissa therapy (Utah)</td></tr>
-    <tr><td>Anthropic</td><td style="text-align:right" class="amt-neg">$200</td><td><span class="flag flag-blue">Business</span></td></tr>
-  </table>
-</div>
+  const colorVar = (c) => {
+    const map = { green: 'var(--green)', red: 'var(--red)', yellow: 'var(--gold)', muted: 'var(--gray)', accent: 'var(--blue)' };
+    return map[c] || 'var(--gray)';
+  };
 
-<!-- UTAH ACTIVITY -->
-<div class="section">
-  <h2>Utah Activity (Karissa &mdash; tracked via Original Statement)</h2>
-  <div class="grid-3" style="margin-bottom:12px">
-    <div class="card" style="text-align:center">
-      <h3>Total Utah Spend</h3>
-      <div class="med yellow">$1,856</div>
-      <div class="small">91 transactions</div>
-    </div>
-    <div class="card" style="text-align:center">
-      <h3>Utah Returns</h3>
-      <div class="med green">$567</div>
-      <div class="small">19 returns</div>
-    </div>
-    <div class="card" style="text-align:center">
-      <h3>Net Utah Spend</h3>
-      <div class="med yellow">$1,289</div>
-      <div class="small">~3 weeks</div>
-    </div>
-  </div>
-  <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px">Utah merchants detected via statement keywords (Orem, Pleasant Grove, Lindon, Murray, Smith's #4144/#4073, Macey's, Harmons, Eagle Mountain):</p>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-    <span class="flag flag-yellow">Smith's</span>
-    <span class="flag flag-yellow">Macey's</span>
-    <span class="flag flag-yellow">Harmons</span>
-    <span class="flag flag-yellow">Maverik</span>
-    <span class="flag flag-yellow">Target</span>
-    <span class="flag flag-yellow">Walmart</span>
-    <span class="flag flag-yellow">Trader Joe's</span>
-    <span class="flag flag-yellow">Sprouts</span>
-    <span class="flag flag-yellow">Walgreens</span>
-    <span class="flag flag-yellow">Dutch Bros</span>
-    <span class="flag flag-yellow">Dairy Queen</span>
-    <span class="flag flag-yellow">7-Eleven</span>
-    <span class="flag flag-yellow">Great Clips</span>
-    <span class="flag flag-yellow">American Eagle</span>
-    <span class="flag flag-yellow">Lovisa</span>
-    <span class="flag flag-yellow">Auntie Anne's</span>
-    <span class="flag flag-yellow">Yogurtland</span>
-    <span class="flag flag-yellow">Menchie's</span>
-  </div>
-  <p style="font-size:0.75rem;color:var(--text-hint)">Address confirmed: <strong style="color:var(--text)">196 Inglewood Dr, Orem, UT 84097</strong> (from Walmart + DoorDash scrape Apr 17)</p>
-</div>
+  const flagClass = (f) => {
+    const map = { red: 'flag-red', yellow: 'flag-yellow', green: 'flag-green', blue: 'flag-blue' };
+    return map[f] || '';
+  };
 
-<!-- RECURRING BILLS -->
-<div class="section">
-  <h2>Recurring Bills (from Gmail + Monarch)</h2>
-  <table>
-    <tr><th>Bill</th><th style="text-align:right">Amount</th><th>Method</th><th>AutoPay</th></tr>
-    <tr><td>Truist Mortgage</td><td style="text-align:right">&mdash;</td><td>Monthly statement</td><td>Yes</td></tr>
-    <tr><td>Bridgecrest (vehicle)</td><td style="text-align:right">$839</td><td>Bank draft</td><td>Yes</td></tr>
-    <tr><td>SoFi Student Loan</td><td style="text-align:right">$624</td><td>Auto debit</td><td>Yes</td></tr>
-    <tr><td>COBRA / WageWorks</td><td style="text-align:right" class="amt-neg">$8,596/mo</td><td>WageWorks</td><td><span class="flag flag-red">Mar only?</span></td></tr>
-    <tr><td>AT&T Wireless</td><td style="text-align:right">&mdash;</td><td>Bank draft</td><td>Yes</td></tr>
-    <tr><td>Allstate Auto</td><td style="text-align:right">&mdash;</td><td>Auto</td><td>Yes</td></tr>
-    <tr><td>Black Hills Energy</td><td style="text-align:right">$197</td><td>Manual</td><td>No</td></tr>
-    <tr><td>Bentonville Utilities</td><td style="text-align:right">&mdash;</td><td>Manual</td><td>No</td></tr>
-    <tr><td>Lincoln Life Insurance</td><td style="text-align:right">$89</td><td>Auto</td><td>Yes</td></tr>
-    <tr><td>Inferno MMA (Luke)</td><td style="text-align:right">$125</td><td>CC 1009</td><td>Yes</td></tr>
-    <tr><td>Sittercity</td><td style="text-align:right">&mdash;</td><td>CC</td><td>Yes</td></tr>
-    <tr><td>Anthropic (Claude)</td><td style="text-align:right">$200</td><td>CC</td><td>Yes</td></tr>
-    <tr><td>Midjourney</td><td style="text-align:right">&mdash;</td><td>CC</td><td>Yes</td></tr>
-    <tr><td>GitHub</td><td style="text-align:right">&mdash;</td><td>CC</td><td>Yes</td></tr>
-    <tr><td>GoDaddy (Klarna)</td><td style="text-align:right">$24</td><td>Klarna 3-pay</td><td>Yes</td></tr>
-  </table>
-</div>
+  const statusFlag = (s) => {
+    const map = { resolved: 'flag-green', open: 'flag-red', partial: 'flag-yellow', stale: 'flag-yellow', done: 'flag-green', missing: 'flag-red' };
+    return map[s] || '';
+  };
 
-<!-- OPEN QUESTIONS -->
-<div class="section">
-  <h2>Open Questions &amp; Investigations</h2>
-  <div class="q-row"><span class="q-status flag flag-green">Resolved</span> Lincoln National $89/mo &mdash; Brady's life insurance, policy T400520958 (Nov 2025)</div>
-  <div class="q-row"><span class="q-status flag flag-red">Open</span> <strong>Siloam Springs Clinic $1,843</strong> &mdash; no email trail, $1,020 in Apr alone. No idea what this is.</div>
-  <div class="q-row"><span class="q-status flag-red flag">Open</span> <strong>"Springdale Bentonville" $2,443 in April</strong> &mdash; categorized as medical. Needs investigation.</div>
-  <div class="q-row"><span class="q-status flag flag-red">Open</span> Card 1842 &mdash; Walmart gift card used in Orem. Not on DoorDash. Need Arvest login.</div>
-  <div class="q-row"><span class="q-status flag flag-yellow">Partial</span> Karissa's Utah address &mdash; <strong>196 Inglewood Dr, Orem, UT 84097</strong> confirmed (Walmart + DoorDash)</div>
-  <div class="q-row"><span class="q-status flag flag-red">Open</span> HELOC balance &amp; draw history &mdash; $4,700 in 4 days (Apr 10-14). Need Arvest login.</div>
-  <div class="q-row"><span class="q-status flag flag-yellow">Partial</span> DoorDash account &mdash; suspicious login Mar 25. Address changed to Utah. Only Karissa's Visa 2021 saved.</div>
-  <div class="q-row"><span class="q-status flag flag-red">Open</span> Zions Bancorporation &mdash; $15 deposit to Faith's card Jan 20. Possible Utah bank account.</div>
-  <div class="q-row"><span class="q-status flag flag-green">Resolved</span> Amazon returns &mdash; 0 returns on Brady's account. The 78 returns ($2,251) are from Karissa's Amazon.</div>
-</div>
+  const statusLabel = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
-<!-- SCRAPE STATUS -->
-<div class="section">
-  <h2>Data Sources &amp; Freshness</h2>
-  <table>
-    <tr><th>Source</th><th>Status</th><th>Coverage</th><th>Next Action</th></tr>
-    <tr><td>Monarch CSV</td><td><span class="flag flag-yellow">Stale</span></td><td>Through Apr 9</td><td>Export fresh CSV from monarchmoney.com</td></tr>
-    <tr><td>Gmail Scan</td><td><span class="flag flag-green">Done</span></td><td>Mar 1 &ndash; Apr 17</td><td>Re-scan monthly</td></tr>
-    <tr><td>Walmart Scrape</td><td><span class="flag flag-yellow">Partial</span></td><td>2 pages (Apr 9&ndash;21)</td><td>Continue past page 2 for Mar 20&ndash;Apr 9</td></tr>
-    <tr><td>Amazon Scrape</td><td><span class="flag flag-green">Done</span></td><td>42 orders, 3 months</td><td>&mdash;</td></tr>
-    <tr><td>DoorDash Scrape</td><td><span class="flag flag-green">Done</span></td><td>Orders + payments</td><td>&mdash;</td></tr>
-    <tr><td>Arvest Banking</td><td><span class="flag flag-red">Missing</span></td><td>&mdash;</td><td>Login to check HELOC, card 1842, account cards</td></tr>
-    <tr><td>Target</td><td><span class="flag flag-red">Missing</span></td><td>&mdash;</td><td>Low priority &mdash; scrape when ready</td></tr>
-    <tr><td>Venmo</td><td><span class="flag flag-green">Done</span></td><td>Jan&ndash;Apr CSVs</td><td>&mdash;</td></tr>
-  </table>
-</div>
+  // Build HTML
+  let html = '';
 
-<!-- RECENT TRANSACTIONS -->
-<div class="section">
-  <h2>Recent Transactions (Apr 8&ndash;9)</h2>
-  <table>
-    <tr><th>Date</th><th>Merchant</th><th style="text-align:right">Amount</th><th>Category</th><th>Account</th></tr>
-    <tr><td>Apr 9</td><td>Norm The Tire Man</td><td style="text-align:right" class="amt-neg">-$655.14</td><td>Auto Maintenance</td><td class="acct-brady">Amex 2007</td></tr>
-    <tr><td>Apr 9</td><td>Walmart</td><td style="text-align:right" class="amt-neg">-$203.67</td><td>Shopping</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>Amazon</td><td style="text-align:right" class="amt-neg">-$33.75</td><td>Shopping</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>The Nail Expo</td><td style="text-align:right" class="amt-neg">-$34.00</td><td>Personal</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>Smith's</td><td style="text-align:right" class="amt-neg">-$16.35</td><td>Groceries</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>Walmart</td><td style="text-align:right" class="amt-pos">+$28.42</td><td>Shopping</td><td class="acct-karissa">9380 (return)</td></tr>
-    <tr><td>Apr 9</td><td>Walmart</td><td style="text-align:right" class="amt-neg">-$18.83</td><td>Shopping</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>7 Brew Coffee</td><td style="text-align:right" class="amt-neg">-$8.75</td><td>Coffee</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>Macey's</td><td style="text-align:right" class="amt-neg">-$7.71</td><td>Shopping</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 9</td><td>Target</td><td style="text-align:right" class="amt-neg">-$7.42</td><td>Shopping</td><td class="acct-karissa">9380</td></tr>
-    <tr><td>Apr 8</td><td>Capital One</td><td style="text-align:right" class="amt-neg">-$59.00</td><td>Financial Fees</td><td class="acct-brady">Venture 1470</td></tr>
-  </table>
-</div>
+  // HEADER
+  html += `<header>
+    <h1>Financial Cockpit</h1>
+    <div class="meta">Monarch data through ${D.dataThrough} &middot; Scraped ${D.scrapedDate}${D.csvStaleDays > 0 ? ` &middot; <span class="stale">CSV is ${D.csvStaleDays} days stale</span>` : ''}</div>
+  </header>`;
 
-<footer>
-  Financial Cockpit &middot; Brady OS &middot; Last generated Apr 17, 2026 &middot; Data: Monarch CSV + Gmail + Walmart + Amazon + DoorDash
-</footer>
+  // ALERTS
+  if (D.alerts && D.alerts.length) {
+    D.alerts.forEach(a => {
+      html += `<div class="alert-box"><strong>${a.title}:</strong> ${a.text}</div>`;
+    });
+  }
+
+  // BUDGET SECTION
+  if (D.budget) {
+    const b = D.budget;
+    html += `<div class="section-header">Budget</div>`;
+
+    // Three summary cards
+    html += `<div class="grid-3">
+      <div class="card card-red">
+        <h3>12-Mo Actual Avg</h3>
+        <div class="big c-red">${$(b.summary.actualAvg12mo)}<span style="font-size:0.5em;color:var(--gray)">/mo</span></div>
+        <div class="small">Trailing 12-month average</div>
+      </div>
+      <div class="card">
+        <h3>Strip Frivolous/One-Time</h3>
+        <div class="big c-gold">${$(b.summary.strippedFrivolous)}<span style="font-size:0.5em;color:var(--gray)">/mo</span></div>
+        <div class="small">Remove impulse &amp; non-recurring</div>
+      </div>
+      <div class="card card-green">
+        <h3>Zero-Income Floor</h3>
+        <div class="big c-green">${$(b.summary.zeroIncomeFloor)}<span style="font-size:0.5em;color:var(--gray)">/mo</span></div>
+        <div class="small">Bare minimum, kids at home</div>
+      </div>
+    </div>`;
+
+    // Tier breakdown
+    html += `<div class="section">
+      <div class="section-header">Zero-Income Monthly Burn</div>`;
+
+    const maxTier = Math.max(...b.tiers.map(t => t.amount));
+    const tierColors = ['var(--blue)', 'var(--gold)', 'var(--gray-light)', 'var(--green)', 'var(--red)'];
+
+    b.tiers.forEach((tier, i) => {
+      const pct = maxTier > 0 ? (tier.amount / maxTier * 100) : 0;
+      const isZeroed = tier.amount === 0;
+      html += `<div class="budget-tier">
+        <span class="budget-tier-name">${tier.name}</span>
+        <span class="budget-tier-bar"><span class="budget-tier-fill" style="width:${pct}%;background:${tierColors[i]}"></span></span>
+        <span class="budget-tier-val${isZeroed ? ' zeroed' : ''}">${$(tier.amount)}</span>
+      </div>`;
+      // Item list
+      const itemNames = tier.items.map(it => it.name).join(', ');
+      if (isZeroed) {
+        html += `<div class="budget-tier-items zeroed">${itemNames}</div>`;
+      } else {
+        html += `<div class="budget-tier-items">${itemNames}</div>`;
+      }
+    });
+
+    // Totals
+    html += `<div class="budget-totals">
+      <span>Monthly <strong>${$(b.monthlyTotal)}</strong></span>
+      <span>Annualized <strong>${$(b.annualized)}</strong></span>
+    </div>`;
+
+    html += `</div>`; // close section
+  }
+
+  // TOP-LINE ACTUALS
+  if (D.topline) {
+    const t = D.topline;
+    html += `<div class="section-header">Actuals</div>`;
+    html += `<div class="grid-4">
+      <div class="card card-red">
+        <h3>April Spend (MTD)</h3>
+        <div class="big c-red">${$(t.aprilMTD.amount)}</div>
+        <div class="small">${t.aprilMTD.transactions} transactions &middot; ${t.aprilMTD.days} days</div>
+      </div>
+      <div class="card card-red">
+        <h3>March Total</h3>
+        <div class="big c-red">${$(t.marchTotal.amount)}</div>
+        <div class="small">${t.marchTotal.transactions} transactions</div>
+      </div>
+      <div class="card">
+        <h3>April Returns</h3>
+        <div class="med c-gold">${$(t.aprilReturns.amount)}</div>
+        <div class="small">${t.aprilReturns.count} returns in ${t.aprilMTD.days} days</div>
+      </div>
+      <div class="card">
+        <h3>Utah Spend</h3>
+        <div class="med c-gold">${$(t.utahSpend.amount)}</div>
+        <div class="small">${t.utahSpend.transactions} transactions &middot; ~${t.utahSpend.weeks} weeks</div>
+      </div>
+    </div>`;
+  }
+
+  // SPEND BY OWNER
+  if (D.byOwner && D.byOwner.owners.length) {
+    html += `<div class="grid-2">`;
+
+    // Owner breakdown
+    html += `<div class="card">
+      <h3>${D.byOwner.month} by Account Owner</h3>`;
+    D.byOwner.owners.forEach(o => {
+      html += `<div class="bar-row">
+        <span class="bar-label" style="color:${colorVar(o.color)}">${o.name}</span>
+        <span class="bar-wrap"><span class="bar-fill" style="width:${o.pct}%;background:${colorVar(o.color)}"></span></span>
+        <span class="bar-val">${$(o.amount)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+
+    // Karissa velocity
+    if (D.karissaVelocity && D.karissaVelocity.length) {
+      html += `<div class="card card-red">
+        <h3>Karissa Weekly Velocity (Post-Separation)</h3>`;
+      D.karissaVelocity.forEach(w => {
+        const c = w.pct >= 90 ? 'var(--red)' : 'var(--gold)';
+        html += `<div class="bar-row">
+          <span class="bar-label">${w.label}</span>
+          <span class="bar-wrap"><span class="bar-fill" style="width:${w.pct}%;background:${c}"></span></span>
+          <span class="bar-val">${$(w.amount)}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    html += `</div>`;
+  }
+
+  // TOP CATEGORIES
+  if (D.categories && D.categories.length) {
+    html += `<div class="section">
+      <div class="section-header">Spending by Category</div>`;
+    D.categories.forEach(c => {
+      html += `<div class="bar-row">
+        <span class="bar-label">${c.name}</span>
+        <span class="bar-wrap"><span class="bar-fill" style="width:${c.pct}%;background:${colorVar(c.color)}"></span></span>
+        <span class="bar-val">${$(c.amount)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // TOP MERCHANTS
+  if (D.merchants && D.merchants.length) {
+    html += `<div class="section">
+      <div class="section-header">Top Merchants</div>
+      <table>
+        <tr><th>Merchant</th><th style="text-align:right">Amount</th><th>Notes</th></tr>`;
+    D.merchants.forEach(m => {
+      const noteHtml = m.flag
+        ? `<span class="flag ${flagClass(m.flag)}">${m.note}</span>`
+        : (m.note || '');
+      html += `<tr>
+        <td style="color:var(--white)">${m.name}</td>
+        <td style="text-align:right" class="amt-neg">${$(m.amount)}</td>
+        <td>${noteHtml}</td>
+      </tr>`;
+    });
+    html += `</table></div>`;
+  }
+
+  // UTAH ACTIVITY
+  if (D.utah && D.utah.totalSpend > 0) {
+    html += `<div class="section">
+      <div class="section-header">Utah Activity (Karissa)</div>
+      <div class="grid-3" style="margin-bottom:14px">
+        <div class="card" style="text-align:center;border-top-color:var(--gold)">
+          <h3>Total Utah Spend</h3>
+          <div class="med c-gold">${$(D.utah.totalSpend)}</div>
+          <div class="small">${D.utah.transactions} transactions</div>
+        </div>
+        <div class="card card-green" style="text-align:center">
+          <h3>Utah Returns</h3>
+          <div class="med c-green">${$(D.utah.returns.amount)}</div>
+          <div class="small">${D.utah.returns.count} returns</div>
+        </div>
+        <div class="card" style="text-align:center;border-top-color:var(--gold)">
+          <h3>Net Utah Spend</h3>
+          <div class="med c-gold">${$(D.utah.netSpend)}</div>
+          <div class="small">~${D.utah.weeks} weeks</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">`;
+    D.utah.merchants.forEach(m => {
+      html += `<span class="flag flag-yellow">${m}</span>`;
+    });
+    html += `</div>`;
+    if (D.utah.address) {
+      html += `<div style="font-size:0.72rem;color:var(--gray)">Address confirmed: <strong style="color:var(--white)">${D.utah.address}</strong></div>`;
+    }
+    html += `</div>`;
+  }
+
+  // RECURRING BILLS
+  if (D.recurring && D.recurring.length) {
+    html += `<div class="section">
+      <div class="section-header">Recurring Bills</div>
+      <table>
+        <tr><th>Bill</th><th style="text-align:right">Amount</th><th>Method</th><th>AutoPay</th></tr>`;
+    D.recurring.forEach(r => {
+      const apStr = r.flag
+        ? `<span class="flag flag-red">${r.flag}</span>`
+        : (r.autopay ? 'Yes' : 'No');
+      html += `<tr>
+        <td style="color:var(--white)">${r.name}</td>
+        <td style="text-align:right"${r.amount && r.amount > 2000 ? ' class="amt-neg"' : ''}>${$(r.amount)}</td>
+        <td>${r.method}</td>
+        <td>${apStr}</td>
+      </tr>`;
+    });
+    html += `</table></div>`;
+  }
+
+  // OPEN QUESTIONS
+  if (D.openQuestions && D.openQuestions.length) {
+    html += `<div class="section">
+      <div class="section-header">Open Questions & Investigations</div>`;
+    D.openQuestions.forEach(q => {
+      html += `<div class="q-row">
+        <span class="flag ${statusFlag(q.status)}" style="width:70px;text-align:center;display:inline-block;margin-right:8px">${statusLabel(q.status)}</span>
+        ${q.text}
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // DATA SOURCES
+  if (D.dataSources && D.dataSources.length) {
+    html += `<div class="section">
+      <div class="section-header">Data Sources & Freshness</div>
+      <table>
+        <tr><th>Source</th><th>Status</th><th>Coverage</th><th>Next Action</th></tr>`;
+    D.dataSources.forEach(ds => {
+      html += `<tr>
+        <td style="color:var(--white)">${ds.name}</td>
+        <td><span class="flag ${statusFlag(ds.status)}">${statusLabel(ds.status)}</span></td>
+        <td>${ds.coverage || '\u2014'}</td>
+        <td>${ds.action || '\u2014'}</td>
+      </tr>`;
+    });
+    html += `</table></div>`;
+  }
+
+  // RECENT TRANSACTIONS
+  if (D.recentTransactions && D.recentTransactions.length) {
+    html += `<div class="section">
+      <div class="section-header">Recent Transactions</div>
+      <table>
+        <tr><th>Date</th><th>Merchant</th><th style="text-align:right">Amount</th><th>Category</th><th>Account</th></tr>`;
+    D.recentTransactions.forEach(tx => {
+      const amtClass = tx.amount >= 0 ? 'amt-pos' : 'amt-neg';
+      const sign = tx.amount >= 0 ? '+' : '-';
+      const ownerClass = tx.owner === 'brady' ? 'acct-brady' : (tx.owner === 'karissa' ? 'acct-karissa' : 'acct-kids');
+      html += `<tr>
+        <td>${tx.date}</td>
+        <td style="color:var(--white)">${tx.merchant}</td>
+        <td style="text-align:right" class="${amtClass}">${sign}${$full(tx.amount)}</td>
+        <td>${tx.category}</td>
+        <td class="${ownerClass}">${tx.account}</td>
+      </tr>`;
+    });
+    html += `</table></div>`;
+  }
+
+  // FOOTER
+  html += `<footer>Financial Cockpit &middot; Brady OS &middot; Generated ${new Date(D.generated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</footer>`;
+
+  app.innerHTML = html;
+})();
+</script>
 
 </body>
 </html>

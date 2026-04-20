@@ -6,6 +6,7 @@
 
 # Live cockpit data (contains PII, financials, family schedules)
 os-cockpit/data.js
+portal/public/financial-assistant/data.js
 
 # Portal (mception.ai Next.js app)
 portal/node_modules/

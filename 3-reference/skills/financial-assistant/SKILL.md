@@ -244,20 +244,63 @@ TAX ITEMS
 
 ## Phase 4: PUBLISH (Full mode only)
 
-1. **Generate HTML dashboard** — self-contained static HTML file with:
-   - Cash flow gauge (big number, green/yellow/red)
-   - Budget vs actual grid (progress bars, color-coded)
-   - Consulting revenue per-client cards
-   - Spending trends (CSS bar chart, last 3-4 months)
-   - Upcoming obligations (chronological list)
-   - Recent transactions (last 20, personal/business toggle)
-   - Responsive, mobile-friendly, system fonts, no external dependencies
+1. **Generate `data.js`** — write `window.COCKPIT_DATA` object to:
+   - Primary: `portal/public/financial-assistant/data.js` (in brady-os repo)
+   - Mirror: `/Users/bs/conductor/workspaces/mception-ai/harrisburg-v1/public/financial-assistant/data.js`
 
-2. **Write to mception-ai:**
-   - File: `/Users/bs/conductor/workspaces/mception-ai/harrisburg-v1/public/financial-assistant/index.html`
-   - Overwrites previous version (dashboard is always current snapshot)
+   The HTML template (`index.html`) is a stable artifact that reads from `data.js`. Do NOT regenerate `index.html` unless the template structure needs to change. Only regenerate `data.js`.
 
-3. **Log to console:** "Dashboard published to mception.ai/financial-assistant"
+   **`COCKPIT_DATA` schema:**
+   ```js
+   window.COCKPIT_DATA = {
+     generated: "ISO-8601 timestamp",
+     dataThrough: "YYYY-MM-DD",          // last transaction date in Monarch CSV
+     scrapedDate: "YYYY-MM-DD",          // last scrape date
+     csvStaleDays: Number,               // days since last CSV export
+
+     budget: {
+       summary: { actualAvg12mo, strippedFrivolous, zeroIncomeFloor },
+       tiers: [{ name, amount, items: [{ name, amount }] }],
+       monthlyTotal, annualized
+     },
+
+     alerts: [{ type: "red"|"yellow", title, text }],
+
+     topline: {
+       aprilMTD: { amount, transactions, days },
+       marchTotal: { amount, transactions },
+       aprilReturns: { amount, count },
+       utahSpend: { amount, transactions, weeks }
+     },
+
+     byOwner: { month, owners: [{ name, amount, pct, color }] },
+     karissaVelocity: [{ label, amount, pct }],
+     categories: [{ name, amount, pct, color }],
+     merchants: [{ name, amount, note, flag }],
+
+     utah: {
+       totalSpend, transactions,
+       returns: { amount, count },
+       netSpend, weeks, address,
+       merchants: [String]
+     },
+
+     recurring: [{ name, amount, method, autopay, flag }],
+     openQuestions: [{ status, text }],
+     dataSources: [{ name, status, coverage, action }],
+     recentTransactions: [{ date, merchant, amount, category, owner, account }]
+   };
+   ```
+
+   - `budget` data comes from `references/budget-targets.md` (three-tier model)
+   - Transaction data comes from Monarch CSV parsing + scrape results
+   - Color values: "green", "red", "yellow", "muted", "accent"
+   - Status values: "resolved", "open", "partial", "stale", "done", "missing"
+   - Owner values: "brady", "karissa", "kids"
+
+2. **Copy `index.html` if missing** at mirror target. The template only needs to be copied once or when the UI changes.
+
+3. **Log to console:** "Dashboard data published to mception.ai/financial-assistant"
 
 ---
 
