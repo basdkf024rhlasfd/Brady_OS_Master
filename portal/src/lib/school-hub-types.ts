@@ -1,16 +1,41 @@
 export type KidId = "lily" | "faith" | "isla" | "luke" | "quinn";
 
+export interface Activity {
+  name: string;
+  schedule?: string;
+  location?: string;
+  type: "extracurricular" | "work" | "school-project";
+  notes?: string;
+}
+
+export interface WeeklyEvent {
+  day: string;
+  time: string;
+  event: string;
+}
+
+export interface UpcomingEvent {
+  title: string;
+  date: string;
+  time?: string;
+  location?: string;
+}
+
 export interface Kid {
   id: KidId;
   name: string;
+  fullName: string;
+  age: number;
   grade: string;
   school: string;
   color: string;
   colorTw: string;
-  activities: string[];
+  activities: Activity[];
   teachers: { name: string; subject?: string }[];
   medicalNotes: string;
   dismissalTime: string;
+  weeklySchedule: WeeklyEvent[];
+  upcomingEvents: UpcomingEvent[];
 }
 
 export interface SchoolEvent {
