@@ -13,11 +13,18 @@ Key people for family logistics coordination.
 
 ## School Contacts
 
-| Contact | Role | School |
-|---------|------|--------|
-| Terry Hicks | BHS Choir Director | Bentonville High School |
-| Apple Glen front office | — | Apple Glen Elementary |
-| BHS front office | — | Bentonville High School |
+| Contact | School | Phone | Address |
+|---------|--------|-------|---------|
+| BHS front office | Bentonville High School | (479) 254-5100 | 1801 SE J St, Bentonville, AR 72712 |
+| Terry Hicks | BHS Choir Director | (via BHS front office) | — |
+| Apple Glen front office | Apple Glen Elementary | (479) 254-5580 | 1801 NE Brave Ln, Bentonville, AR 72712 |
+
+## Activity Locations
+
+| Venue | Address | Used For |
+|-------|---------|----------|
+| Life.Church Rogers | 5350 S 28th St, Rogers, AR 72758 | Faith's Switch Youth Group (Wed 6–9 PM) |
+| Arend Arts Center (BHS campus) | 1801 SE J St, Bentonville, AR 72712 | Choir concerts (Lily, Faith) |
 
 ## Medical
 
@@ -29,3 +36,4 @@ Key people for family logistics coordination.
 
 - Morning sweep scans iMessage from: Jill, Serena, and family contacts
 - If Brady mentions a new logistics contact, suggest logging them here
+- School and venue info last verified April 2026
