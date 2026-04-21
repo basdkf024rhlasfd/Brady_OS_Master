@@ -58,7 +58,7 @@ dataSources:
     type: "kb-directory"
     status: "ready"
     id: "portal/public/family/kb"
-    description: "13 markdown files powering the chatbot — roster, schedules, meals, rules, sweep state"
+    description: "17 markdown files powering the chatbot — roster, schedules, meals, rules, sweep state, routines, decisions log, rejected approaches"
 
   # --- Partial (yellow) ---
   - label: "Family Calendar"
@@ -86,8 +86,8 @@ dataSources:
     type: "skill"
     status: "partial"
     id: "3-reference/skills/morning-sweep/SKILL.md"
-    description: "Step 3.10 added to write family brief to KB — 10-sweep-state.md seeded with calendar data"
-    nextStep: "Run morning sweep daily to keep 10-sweep-state.md current with today's events"
+    description: "Step 3.10 emits 10-sweep-state.md, 12-open-loops.md, 20-routines.md, 21-decisions-log.md, 22-rejected.md — context layer added"
+    nextStep: "Run morning sweep daily to keep sweep-state and context files current"
     nextStepActor: "claude-desktop"
   - label: "Weekly Sweep"
     type: "skill"
@@ -100,8 +100,8 @@ dataSources:
     type: "skill"
     status: "partial"
     id: "3-reference/skills/evening-sweep/SKILL.md"
-    description: "Step 3.7 added to write open loops to KB — needs first run to populate"
-    nextStep: "Run evening sweep to populate 12-open-loops.md with carry-forward items"
+    description: "Step 3.7 writes 12-open-loops.md; step 3.7b appends to 21-decisions-log.md — needs first run to populate"
+    nextStep: "Run evening sweep to populate open-loops and start building the decisions log"
     nextStepActor: "claude-desktop"
   - label: "Grocery Assistant"
     type: "external"
@@ -210,3 +210,9 @@ kb:
       files: [11-week-ahead.md]
     - keywords: [preference, remember, always, never, like, hate, prefer, rule]
       files: [13-family-preferences.md, 04-meal-preferences.md]
+    - keywords: [routine, typical, usually, normally, every week, weekly, rhythm, pattern, habit, always do]
+      files: [20-routines.md, 03-weekly-schedule.md]
+    - keywords: [decided, decision, why, reason, changed, switched, chose, because, rationale, history]
+      files: [21-decisions-log.md]
+    - keywords: [tried, didn't work, stopped, rejected, abandoned, failed, not working, used to, gave up]
+      files: [22-rejected.md]
