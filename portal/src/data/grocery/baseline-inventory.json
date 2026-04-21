@@ -1,0 +1,101 @@
+{
+  "snapshot_date": "2026-04-21",
+  "snapshot_context": "pre-delivery baseline; Walmart+ order arrived same day",
+  "source": "photos IMG_1974 through IMG_1985",
+  "photographer": "Brady",
+  "household_size": 6,
+  "locations": {
+    "pantry": [
+      { "item": "Tomato soup (Campbell's)", "category": "canned", "quantity_estimate": "multiple", "notes": "stacked in canned-goods column" },
+      { "item": "Cream of chicken soup", "category": "canned", "quantity_estimate": "multiple", "notes": "Campbell's" },
+      { "item": "Cream of mushroom soup", "category": "canned", "quantity_estimate": "1-2" },
+      { "item": "Chunky soup", "category": "canned", "quantity_estimate": "2+", "notes": "Progresso/Campbell's Chunky" },
+      { "item": "Canned tuna", "category": "canned", "quantity_estimate": "2+", "notes": "StarKist-style red can" },
+      { "item": "Canned mixed vegetables", "category": "canned", "quantity_estimate": "1-2", "notes": "Great Value" },
+      { "item": "Canned peas", "category": "canned", "quantity_estimate": "1-2", "notes": "Easy Peas 'n Carrots" },
+      { "item": "Canned corn", "category": "canned", "quantity_estimate": "1-2" },
+      { "item": "Canned potatoes", "category": "canned", "quantity_estimate": "1" },
+      { "item": "Diced tomatoes", "category": "canned", "quantity_estimate": "1-2" },
+      { "item": "Cashews", "category": "snack", "quantity_estimate": "partial", "notes": "plastic container" },
+      { "item": "Original sea-salt tortilla chips", "category": "snack", "quantity_estimate": "full", "notes": "large bag, unopened" },
+      { "item": "Cereal (assorted)", "category": "dry", "quantity_estimate": "3-4 boxes", "notes": "Corn Pops visible + others" },
+      { "item": "Cake mix", "category": "baking", "quantity_estimate": "2 boxes" },
+      { "item": "Oven-ready lasagna noodles", "category": "dry", "quantity_estimate": "1 box", "notes": "Barilla" },
+      { "item": "Boxed pasta (assorted)", "category": "dry", "quantity_estimate": "3+ boxes" },
+      { "item": "Rice", "category": "dry", "quantity_estimate": "unknown", "notes": "labeled canister" },
+      { "item": "Sugar", "category": "baking", "quantity_estimate": "full", "notes": "labeled canister" },
+      { "item": "Bread loaf", "category": "dry", "quantity_estimate": "1", "notes": "visible on shelf" },
+      { "item": "Duke's mayo", "category": "condiment", "quantity_estimate": "1" },
+      { "item": "Mustard (pantry backup)", "category": "condiment", "quantity_estimate": "1-2" },
+      { "item": "Cooking oil (assorted)", "category": "oil", "quantity_estimate": "4+ bottles", "notes": "upper cabinet rack" },
+      { "item": "Vinegar (assorted)", "category": "oil", "quantity_estimate": "2+ bottles" },
+      { "item": "Salad dressings", "category": "condiment", "quantity_estimate": "3+ bottles", "notes": "ranch, Italian, etc." },
+      { "item": "Spice rack", "category": "spice", "quantity_estimate": "full", "notes": "appears fully stocked" },
+      { "item": "Aluminum foil", "category": "household", "quantity_estimate": "1", "notes": "in cabinet" }
+    ],
+    "fridge_main": [
+      { "item": "Eggs", "category": "dairy", "quantity_estimate": "2 cartons", "notes": "both appear near-full" },
+      { "item": "Philadelphia cream cheese", "category": "dairy", "quantity_estimate": "1" },
+      { "item": "Coffee-mate creamer", "category": "dairy", "quantity_estimate": "1", "notes": "flavored, white/red bottle" },
+      { "item": "Labeled leftovers (foil)", "category": "leftover", "quantity_estimate": "1-2", "notes": "dated with sharpie" },
+      { "item": "Leftovers (small containers)", "category": "leftover", "quantity_estimate": "3+" },
+      { "item": "Cheese block/slices", "category": "dairy", "quantity_estimate": "1-2" },
+      { "item": "Mixing-bowl of food (covered)", "category": "leftover", "quantity_estimate": "1", "notes": "large silver bowl on middle shelf" }
+    ],
+    "fridge_door": [
+      { "item": "French's yellow mustard (40% more)", "category": "condiment", "quantity_estimate": "1", "notes": "large bottle" },
+      { "item": "Heinz ketchup", "category": "condiment", "quantity_estimate": "1" },
+      { "item": "BBQ sauce", "category": "condiment", "quantity_estimate": "1" },
+      { "item": "Salad dressing (brown bottle)", "category": "condiment", "quantity_estimate": "1", "notes": "likely balsamic or Worcestershire" },
+      { "item": "Dijon/brown mustard", "category": "condiment", "quantity_estimate": "1" },
+      { "item": "Daisy sour cream", "category": "dairy", "quantity_estimate": "1", "notes": "blue tub" },
+      { "item": "Half-and-half", "category": "dairy", "quantity_estimate": "1", "notes": "Land O Lakes carton" },
+      { "item": "Milk (gallon)", "category": "dairy", "quantity_estimate": "1", "notes": "red cap, ~2% likely" },
+      { "item": "Milk (half gallon)", "category": "dairy", "quantity_estimate": "1", "notes": "blue cap" },
+      { "item": "Orange juice", "category": "beverage", "quantity_estimate": "1" },
+      { "item": "Pickles", "category": "condiment", "quantity_estimate": "1 jar", "notes": "dill, green lid" },
+      { "item": "Limes", "category": "produce", "quantity_estimate": "2-3" },
+      { "item": "Parmesan (green can)", "category": "dairy", "quantity_estimate": "1" },
+      { "item": "Green dressing bottle", "category": "condiment", "quantity_estimate": "1" }
+    ],
+    "freezer_top": [
+      { "item": "Frozen dumplings", "category": "frozen-meal", "quantity_estimate": "2 boxes" },
+      { "item": "Pillsbury Toaster Strudels", "category": "breakfast", "quantity_estimate": "1 box" },
+      { "item": "Freezer bag of bread/buns", "category": "bread", "quantity_estimate": "1-2 bags", "notes": "labeled freezer-bag" },
+      { "item": "Freezer bag of tortillas/wraps", "category": "bread", "quantity_estimate": "1", "notes": "labeled freezer-bag" }
+    ],
+    "freezer_chest": [
+      { "item": "Great Value Strawberry Banana Blend", "category": "frozen-fruit", "quantity_estimate": "1 bag (3 lb)", "notes": "smoothie mix" },
+      { "item": "Great Value mixed vegetables", "category": "frozen-veg", "quantity_estimate": "1 large bag (partial)" },
+      { "item": "Seapak Edamame in the Pod", "category": "frozen-veg", "quantity_estimate": "1 bag" },
+      { "item": "Seapak stir-fry vegetable mix", "category": "frozen-veg", "quantity_estimate": "1 bag", "notes": "peppers, broccoli" },
+      { "item": "Delimex chicken & cheese taquitos", "category": "frozen-meal", "quantity_estimate": "1 box (10ct)" },
+      { "item": "Great Value chicken patties", "category": "frozen-protein", "quantity_estimate": "1 bag" },
+      { "item": "Smashed burger patties (8-pack)", "category": "frozen-protein", "quantity_estimate": "1 box", "notes": "100% beef" },
+      { "item": "State Fair classic corn dogs", "category": "frozen-meal", "quantity_estimate": "1 box" },
+      { "item": "Blake's all-natural frozen meal", "category": "frozen-meal", "quantity_estimate": "1 small box" },
+      { "item": "Drumstick variety pack", "category": "frozen-dessert", "quantity_estimate": "1 box" },
+      { "item": "Magnum / Haagen-Dazs-style ice cream bars", "category": "frozen-dessert", "quantity_estimate": "1 box" },
+      { "item": "Airheads / frozen candy box", "category": "frozen-dessert", "quantity_estimate": "1 box", "notes": "red 'AIR' box; exact ID uncertain" },
+      { "item": "Foil-wrapped labeled leftover", "category": "leftover", "quantity_estimate": "1", "notes": "handwritten label; likely meal component" },
+      { "item": "Ice pack / cooler block", "category": "other", "quantity_estimate": "1" }
+    ]
+  },
+  "observed_gaps": [
+    "fresh produce (lettuce, tomatoes, peppers, onions, carrots not visible)",
+    "fresh proteins (no raw chicken/beef/pork in fridge)",
+    "yogurt",
+    "deli meats / lunch meat",
+    "fresh fruit (apples, bananas, berries)",
+    "snack bars / granola bars",
+    "bread (sandwich loaf; only freezer bread visible)",
+    "tortillas (fresh; only freezer bag visible)",
+    "butter (not clearly visible)",
+    "juice boxes / kid drinks"
+  ],
+  "notes": [
+    "Photos are a visual survey, not a scan — quantity estimates are approximate.",
+    "Chest freezer bottom layers may contain additional items not captured in these photos.",
+    "Pantry had a full spice rack and full oil/vinegar rack; individual bottles were not enumerated."
+  ]
+}
