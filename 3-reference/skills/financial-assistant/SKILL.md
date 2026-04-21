@@ -291,9 +291,51 @@ TAX ITEMS
      recurring: [{ name, amount, method, autopay, flag }],
      openQuestions: [{ status, text }],
      dataSources: [{ name, status, coverage, action }],
-     recentTransactions: [{ date, merchant, amount, category, owner, account }]
+     recentTransactions: [{ date, merchant, amount, category, owner, account }],
+
+     burnRate: {
+       fourWeekTotal, twelveWeekTotal,
+       fourWeekWeekly, twelveWeekWeekly,
+       deltaPct, trend,          // trend: "up" | "down" | "flat"
+       alert                     // string or null
+     },
+
+     forecast: {
+       daysElapsed, daysInMonth, monthProgressPct,
+       projectedMonth, budgetMonth,
+       byCategory: [{ bucket, actual, projected, budget, pctOfBudget, flag }],
+       alerts: [{ bucket, projected, budget, over_pct }]
+     },
+
+     runway: {
+       liquidAssets,             // from references/liquid-assets.md, null if TBD
+       monthlyBurn,
+       months, weeks,            // null if liquid is TBD
+       status,                   // "red" | "yellow" | "green" | "unknown"
+       alert
+     },
+
+     business: {
+       month, revenue, expenses, net, margin,
+       monthlyRecurringRevenue,
+       revenueTransactions, expenseTransactions
+     },
+
+     consulting: {               // populated by skill run (Gmail/Notion enrichment), not generate-data.py
+       month,
+       invoicesSent: [{ client, amount, date }],
+       invoicesReceived: [{ client, amount, date }],
+       outstanding: [{ client, amount, daysOutstanding }],
+       pipelineMRR,
+       note
+     }
    };
    ```
+
+   `burnRate`, `forecast`, `runway`, `business` are computed in `scripts/generate-data.py`.
+   `consulting` is written by this skill at runtime (Phase 1.2 Gmail scan + Phase 1.4 Notion pipeline).
+   `runway.liquidAssets` reads from `references/liquid-assets.md` — Brady maintains this manually.
+   `business` classification rules live in `references/business-vs-personal-rules.md`.
 
    - `budget` data comes from `references/budget-targets.md` (three-tier model)
    - Transaction data comes from Monarch CSV parsing + scrape results

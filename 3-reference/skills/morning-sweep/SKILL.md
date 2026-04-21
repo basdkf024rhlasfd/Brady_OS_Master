@@ -106,6 +106,7 @@ Flag:
 - Scans Gmail for invoices/receipts/payments (last 7 days)
 - Scans Calendar for bills due this week
 - Queries Notion consulting pipeline for revenue status
+- Reads `COCKPIT_DATA.burnRate`, `.runway`, `.forecast`, `.business` from the generated `data.js` — surface the single-line burn/runway summary in the brief
 - Produces the compact `💰 FINANCES` block (see Phase 2 output below)
 - If no CSV data exists, falls back to Gmail/Calendar/Notion only with degraded output
 
@@ -204,12 +205,14 @@ Pending Instructions: [any system instructions not yet executed]
 💰 FINANCES (data through [YYYY-MM-DD])
 ───────────────────────────────────────────────────
 Cash Flow MTD: +$X,XXX (income $XX,XXX / spend $XX,XXX)
+🔥 Burn $X,XXX/wk · Runway X mo [color: red/yellow/green] · [forecast note if any]
 Consulting Revenue: $XX,XXX of $XX,XXX target (XX%)
 ⚠️ Over budget: [category] at XXX% ($XXX over)
 📬 Outstanding invoices: [client] $X,XXX (sent [date])
 📅 Due this week: [bill] $XXX ([day])
 [If CSV stale: ⚠️ Monarch data is XX days old — drop a fresh export]
 [If no CSV: ⚠️ No Monarch data — Gmail/Calendar/Notion only]
+[If runway < 3mo: 🔴 Runway X mo — below 3-month threshold]
 ───────────────────────────────────────────────────
 🔨 PROJECTS
 ───────────────────────────────────────────────────
@@ -406,7 +409,7 @@ For each entry:
 2. Determine the correct section in Rules & Preferences (Agent Defaults, Voice, Confidentiality, Topic Rules, Client-Specific, Platform-Specific)
 3. Append a new row to that section's table on the Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`): Rule | Date Added | Source (include platform + conversation context)
 4. Set the Streaming Note's `Status = "Complete"`, `Done = "__YES__"`, `Action = "Move to Context Hub"`
-5. Append a row to the Routing Log (`344ed43b-89c5-816a-ab54-ca49ca239748`): date, original title, "Rules & Preferences", reason, summary
+5. Append a row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`): `date`, `original_title`, `destination="Rules & Preferences"`, `reason`, `summary`
 6. If the rule affects CLAUDE.md or Claudine Onboarding, flag it in the brief output: `⚠️ New rule added: [x]. CLAUDE.md / Onboarding update recommended.`
 
 ### 3.6c Propagate Rules to Config Files

@@ -23,7 +23,7 @@ import os
 import re
 import sys
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -33,6 +33,10 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent.resolve()
 REPO_ROOT = (SCRIPT_DIR / "../../../../").resolve()
 OUTPUT_PATH = REPO_ROOT / "portal/public/financial-assistant/data.js"
+REFERENCES_DIR = SCRIPT_DIR.parent / "references"
+LIQUID_ASSETS_PATH = REFERENCES_DIR / "liquid-assets.md"
+BUSINESS_RULES_PATH = REFERENCES_DIR / "business-vs-personal-rules.md"
+BALANCE_SHEET_PATH = REFERENCES_DIR / "balance-sheet.md"
 
 TODAY = date.today()
 CURRENT_MONTH = TODAY.month
@@ -189,6 +193,365 @@ def detect_recurring(txns: list[dict]) -> list[dict]:
     return recurring[:30]
 
 # ---------------------------------------------------------------------------
+# Business vs Personal classification
+# ---------------------------------------------------------------------------
+
+BUSINESS_MERCHANT_PATTERNS = [
+    "anthropic", "openai", "claude", "chatgpt",
+    "aws", "amazon web services", "vercel", "supabase", "render.com", "railway",
+    "github", "gitlab", "linear", "notion", "canva", "figma",
+    "google workspace", "gsuite", "domains.google", "namecheap", "cloudflare",
+    "stripe fee", "quickbooks", "gusto", "rippling",
+    "zoom", "calendly", "loom", "descript",
+    "substack", "beehiiv",
+    "apple.com/business", "adobe", "microsoft 365",
+]
+
+BUSINESS_REVENUE_PATTERNS = [
+    "stripe", "wire in", "ach credit", "invoice", "consulting",
+    "ffh", "florida food", "panda", "paulette", "danville humane",
+    "kroger", "oldcastle", "crh", "contour", "schmulen", "stihl",
+]
+
+def is_business_txn(row: dict) -> bool:
+    """True if the transaction is a business expense (negative amount)."""
+    if row["amount"] >= 0:
+        return False
+    text = f"{row['merchant']} {row['original_statement']}".lower()
+    if any(pat in text for pat in BUSINESS_MERCHANT_PATTERNS):
+        return True
+    cat = normalize_cat(row["category"])
+    if cat in ("business services", "office supplies", "professional services"):
+        return True
+    if row["bucket"] == "Business":
+        return True
+    return False
+
+def is_business_revenue(row: dict) -> bool:
+    """True if the transaction is business revenue (positive amount into Brady's checking)."""
+    if row["amount"] <= 0:
+        return False
+    acct = row["account"].lower()
+    if "1907" not in acct and "sofi checking" not in acct:
+        return False
+    text = f"{row['merchant']} {row['original_statement']}".lower()
+    return any(pat in text for pat in BUSINESS_REVENUE_PATTERNS)
+
+# ---------------------------------------------------------------------------
+# Burn rate, forecast, runway
+# ---------------------------------------------------------------------------
+
+BURN_BUCKETS = {"Discretionary (Trimmed)", "Household Running", "Other Spending"}
+# These buckets don't exist by that exact name in CATEGORY_BUCKETS — we map
+# via bucket() below to the closest categorical groupings that represent
+# Brady's burn surface (discretionary + running household, not fixed obligations).
+BURN_CATEGORY_BUCKETS = {
+    "Dining Out", "Shopping / Retail", "Groceries", "Gas / Transportation",
+    "Subscriptions / Services", "Other Spending",
+}
+
+def burn_txns_in_window(all_txns: list[dict], days: int) -> list[dict]:
+    cutoff = TODAY - timedelta(days=days)
+    return [
+        t for t in all_txns
+        if t["date"] >= cutoff
+        and t["date"] <= TODAY
+        and not t["excluded"]
+        and t["amount"] < 0
+        and t["bucket"] in BURN_CATEGORY_BUCKETS
+    ]
+
+def calc_burn_rate(all_txns: list[dict]) -> dict:
+    last_4w = burn_txns_in_window(all_txns, 28)
+    last_12w = burn_txns_in_window(all_txns, 84)
+
+    four_total = sum(abs(t["amount"]) for t in last_4w)
+    twelve_total = sum(abs(t["amount"]) for t in last_12w)
+
+    four_weekly = four_total / 4 if last_4w else 0
+    twelve_weekly = twelve_total / 12 if last_12w else 0
+
+    if twelve_weekly == 0:
+        trend = "flat"
+        delta_pct = 0
+    else:
+        delta_pct = ((four_weekly - twelve_weekly) / twelve_weekly) * 100
+        if delta_pct > 10:
+            trend = "up"
+        elif delta_pct < -10:
+            trend = "down"
+        else:
+            trend = "flat"
+
+    alert = None
+    if trend == "up" and delta_pct > 25:
+        alert = f"Burn up {delta_pct:.0f}% vs 12-week average"
+
+    return {
+        "fourWeekTotal": round(four_total, 2),
+        "twelveWeekTotal": round(twelve_total, 2),
+        "fourWeekWeekly": round(four_weekly, 2),
+        "twelveWeekWeekly": round(twelve_weekly, 2),
+        "deltaPct": round(delta_pct, 1),
+        "trend": trend,
+        "alert": alert,
+    }
+
+def calc_forecast(all_txns: list[dict], budget_data: dict) -> dict:
+    """Project current-month category spend to month-end and compare to budget."""
+    import calendar
+    days_in_month = calendar.monthrange(CURRENT_YEAR, CURRENT_MONTH)[1]
+    days_elapsed = TODAY.day
+    if days_elapsed == 0:
+        days_elapsed = 1
+
+    cur_spend = [
+        t for t in all_txns
+        if t["date"].year == CURRENT_YEAR and t["date"].month == CURRENT_MONTH
+        and not t["excluded"] and t["amount"] < 0
+    ]
+
+    by_bucket: dict[str, float] = defaultdict(float)
+    for t in cur_spend:
+        by_bucket[t["bucket"]] += abs(t["amount"])
+
+    # Budget targets per bucket (rough mapping from budget-targets.md tiers)
+    # Groceries + Gas + Household supplies land under Household Running ($4,450)
+    # Kids + Medical under Kids & Medical ($1,160)
+    # Dining + entertainment + subscriptions under Discretionary ($850)
+    bucket_budget = {
+        "Groceries": 2400,
+        "Gas / Transportation": 800,
+        "Shopping / Retail": 1250,
+        "Kids / Family": 700,
+        "Medical / Health": 460,
+        "Housing": 4530,
+        "Dining Out": 400,
+        "Subscriptions / Services": 300,
+        "Insurance": 89,
+        "Business": 0,
+        "Other Spending": 150,
+    }
+
+    by_category = []
+    alerts = []
+    total_projected = 0.0
+    for bucket, actual in sorted(by_bucket.items(), key=lambda x: -x[1]):
+        projected = actual * (days_in_month / days_elapsed)
+        total_projected += projected
+        budget = bucket_budget.get(bucket, 0)
+        pct_of_budget = (projected / budget * 100) if budget > 0 else None
+        flag = None
+        if budget > 0 and projected > budget * 1.15:
+            flag = "over"
+            alerts.append({
+                "bucket": bucket,
+                "projected": round(projected, 2),
+                "budget": budget,
+                "over_pct": round(((projected - budget) / budget) * 100, 1),
+            })
+        by_category.append({
+            "bucket": bucket,
+            "actual": round(actual, 2),
+            "projected": round(projected, 2),
+            "budget": budget,
+            "pctOfBudget": round(pct_of_budget, 1) if pct_of_budget is not None else None,
+            "flag": flag,
+        })
+
+    return {
+        "daysElapsed": days_elapsed,
+        "daysInMonth": days_in_month,
+        "monthProgressPct": round(days_elapsed / days_in_month * 100, 1),
+        "projectedMonth": round(total_projected, 2),
+        "budgetMonth": sum(bucket_budget.values()),
+        "byCategory": by_category,
+        "alerts": alerts,
+    }
+
+def read_liquid_assets() -> float | None:
+    """Parse the total accessible liquidity from liquid-assets.md. Returns None if TBD."""
+    if not LIQUID_ASSETS_PATH.exists():
+        return None
+    text = LIQUID_ASSETS_PATH.read_text(encoding="utf-8")
+    # Support both old ("Total liquid assets:") and new ("Total accessible liquidity:") headers
+    for pattern in (
+        r"\*\*Total accessible liquidity:\*\*\s*`?([^\n`]+)`?",
+        r"\*\*Total liquid assets:\*\*\s*`?([^\n`]+)`?",
+    ):
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            value = m.group(1).strip().strip("`")
+            if "TBD" in value.upper():
+                return None
+            cleaned = re.sub(r"[^\d.]", "", value)
+            try:
+                return float(cleaned)
+            except ValueError:
+                continue
+    return None
+
+def read_balance_sheet() -> dict | None:
+    """Parse balance-sheet.md into a structured snapshot dict."""
+    if not BALANCE_SHEET_PATH.exists():
+        return None
+    text = BALANCE_SHEET_PATH.read_text(encoding="utf-8")
+
+    def dollars(pattern: str) -> float | None:
+        m = re.search(pattern, text, re.IGNORECASE)
+        if not m:
+            return None
+        cleaned = re.sub(r"[^\d.]", "", m.group(1))
+        try:
+            return float(cleaned)
+        except ValueError:
+            return None
+
+    def find_date() -> str | None:
+        m = re.search(r"Last updated:\s*(\d{4}-\d{2}-\d{2})", text)
+        return m.group(1) if m else None
+
+    return {
+        "snapshotDate": find_date(),
+        "netWorth": dollars(r"Net worth:\*\*\s*\$([\d,\.]+)"),
+        "assets": {
+            "total": dollars(r"Total assets:\*\*\s*\$([\d,\.]+)"),
+            "realEstate": {
+                "grossValue": dollars(r"Gross value:\*\*\s*\$([\d,\.]+)"),
+                "netEquity": dollars(r"Net equity:\*\*\s*\$([\d,\.]+)"),
+                "mortgage": dollars(r"Mortgage balance:\*\*\s*\$([\d,\.]+)"),
+                "heloc": dollars(r"HELOC balance:\*\*\s*\$([\d,\.]+)"),
+            },
+            "investments": {
+                "total": dollars(r"###\s*Investments\s*—\s*\$([\d,\.]+)"),
+                "ira": dollars(r"IRA \(Rollover\):\s*\$([\d,\.]+)"),
+                "k401": dollars(r"401k:\s*\$([\d,\.]+)"),
+                "roth": dollars(r"Roth IRA:\s*\$([\d,\.]+)"),
+                "taxableBrokerage": dollars(r"Brokerage \(Taxable\):\s*\$([\d,\.]+)"),
+            },
+            "bankCash": dollars(r"###\s*Bank Cash\s*—\s*\$([\d,\.]+)"),
+        },
+        "liabilities": {
+            "total": dollars(r"Total liabilities:\*\*\s*\$([\d,\.]+)"),
+        },
+        "helocAvailable": dollars(r"Available to draw \(estimated\):\*\*\s*\$([\d,\.]+)"),
+    }
+
+COMPENSATION_TARGET_MONTHLY = 24000
+COMPENSATION_TARGET_ANNUAL = COMPENSATION_TARGET_MONTHLY * 12
+
+def build_compensation_target(business: dict) -> dict:
+    """Compare current-month income against the $24K/mo gross target."""
+    current = business.get("revenue", 0) or 0
+    gap = COMPENSATION_TARGET_MONTHLY - current
+    if gap <= 0:
+        status = "above"
+        surplus = -gap
+        headline = f"Above target by ${surplus:,.0f} — allocate surplus explicitly"
+    elif current == 0:
+        status = "no-income-tracked"
+        surplus = 0
+        headline = f"No income tracked MTD — target ${COMPENSATION_TARGET_MONTHLY:,}"
+    else:
+        status = "below"
+        surplus = 0
+        pct = (current / COMPENSATION_TARGET_MONTHLY) * 100
+        headline = f"${current:,.0f} of ${COMPENSATION_TARGET_MONTHLY:,} target ({pct:.0f}%) — gap ${gap:,.0f}"
+    return {
+        "monthlyTarget": COMPENSATION_TARGET_MONTHLY,
+        "annualTarget": COMPENSATION_TARGET_ANNUAL,
+        "monthActual": round(current, 2),
+        "gap": round(gap, 2),
+        "surplus": round(surplus, 2),
+        "status": status,
+        "headline": headline,
+        "note": "Above target = save more / fund goals / reinvest. Below = push pipeline. Only tracks what business rules identify as revenue.",
+    }
+
+def build_budget_baseline(accessible_cash: float | None, burn: dict) -> dict:
+    """Three-tier budget with runway at each tier."""
+    tiers = [
+        {"name": "Zero-income floor", "monthly": 10990, "annual": 131880},
+        {"name": "Strip frivolous", "monthly": 14704, "annual": 176448},
+        {"name": "12-mo actual avg", "monthly": 18088, "annual": 217056},
+    ]
+    for tier in tiers:
+        if accessible_cash and tier["monthly"] > 0:
+            tier["runwayMonths"] = round(accessible_cash / tier["monthly"], 1)
+        else:
+            tier["runwayMonths"] = None
+    return {
+        "accessibleLiquidity": accessible_cash,
+        "currentMonthlyBurn": burn.get("monthlyBurn") if isinstance(burn, dict) else None,
+        "tiers": tiers,
+    }
+
+def calc_runway(burn: dict) -> dict:
+    liquid = read_liquid_assets()
+    weekly = burn.get("fourWeekWeekly", 0)
+    monthly = weekly * (52 / 12) if weekly else 0
+
+    if liquid is None or monthly <= 0:
+        return {
+            "liquidAssets": liquid,
+            "monthlyBurn": round(monthly, 2),
+            "months": None,
+            "weeks": None,
+            "status": "unknown",
+            "alert": "Update references/liquid-assets.md to unlock runway" if liquid is None else None,
+        }
+
+    months = liquid / monthly
+    weeks = liquid / weekly if weekly > 0 else 0
+
+    if months < 3:
+        status = "red"
+        alert = f"Runway {months:.1f} months — below 3-month threshold"
+    elif months < 6:
+        status = "yellow"
+        alert = None
+    else:
+        status = "green"
+        alert = None
+
+    return {
+        "liquidAssets": round(liquid, 2),
+        "monthlyBurn": round(monthly, 2),
+        "months": round(months, 1),
+        "weeks": round(weeks, 1),
+        "status": status,
+        "alert": alert,
+    }
+
+def calc_business(all_txns: list[dict]) -> dict:
+    cur_txns = [
+        t for t in all_txns
+        if t["date"].year == CURRENT_YEAR and t["date"].month == CURRENT_MONTH
+    ]
+    expenses_mtd = [t for t in cur_txns if t.get("is_business")]
+    revenue_mtd = [t for t in cur_txns if t.get("is_business_revenue")]
+
+    expense_total = sum(abs(t["amount"]) for t in expenses_mtd)
+    revenue_total = sum(t["amount"] for t in revenue_mtd)
+    margin = ((revenue_total - expense_total) / revenue_total) if revenue_total > 0 else None
+
+    # 3-month rolling to smooth monthly variance
+    three_month_cutoff = TODAY - timedelta(days=90)
+    rev_3mo = [t for t in all_txns if t["date"] >= three_month_cutoff and t.get("is_business_revenue")]
+    monthly_recurring = (sum(t["amount"] for t in rev_3mo) / 3) if rev_3mo else 0
+
+    return {
+        "month": f"{MONTH_NAMES[CURRENT_MONTH]} {CURRENT_YEAR}",
+        "revenue": round(revenue_total, 2),
+        "expenses": round(expense_total, 2),
+        "net": round(revenue_total - expense_total, 2),
+        "margin": round(margin, 3) if margin is not None else None,
+        "monthlyRecurringRevenue": round(monthly_recurring, 2),
+        "revenueTransactions": len(revenue_mtd),
+        "expenseTransactions": len(expenses_mtd),
+    }
+
+# ---------------------------------------------------------------------------
 # Alert generation
 # ---------------------------------------------------------------------------
 
@@ -264,6 +627,8 @@ def run(csv_path: Path):
         t["utah"] = is_utah(t["original_statement"])
         t["is_return"] = is_merchant_return(t)
         t["excluded"] = is_excluded(t["category"])
+        t["is_business"] = is_business_txn(t)
+        t["is_business_revenue"] = is_business_revenue(t)
 
     # Spend = negative amount, non-excluded
     def spend_txns(txn_list):
@@ -369,8 +734,34 @@ def run(csv_path: Path):
     # --- Recurring ---
     recurring = detect_recurring(all_txns)
 
+    # --- Burn rate, forecast, runway, business ---
+    burn_rate = calc_burn_rate(all_txns)
+    forecast = calc_forecast(all_txns, None)
+    runway = calc_runway(burn_rate)
+    business_metrics = calc_business(all_txns)
+    balance_sheet = read_balance_sheet()
+    budget_baseline = build_budget_baseline(
+        runway.get("liquidAssets"),
+        {"monthlyBurn": runway.get("monthlyBurn")},
+    )
+    compensation_target = build_compensation_target(business_metrics)
+
     # --- Alerts ---
     alerts = build_alerts(all_txns)
+    if burn_rate.get("alert"):
+        alerts.append({
+            "level": "warning",
+            "title": "Burn rate trending up",
+            "detail": burn_rate["alert"],
+            "action": "Review Discretionary + Other Spending categories in weekly sweep.",
+        })
+    if runway.get("alert") and runway.get("status") == "red":
+        alerts.append({
+            "level": "critical",
+            "title": "Cash runway below 3 months",
+            "detail": runway["alert"],
+            "action": "Accelerate consulting collections or cut Discretionary tier.",
+        })
 
     # --- Recent transactions (last 20 spend) ---
     recent = sorted(cur_spend, key=lambda x: x["date"], reverse=True)[:20]
@@ -573,12 +964,33 @@ def run(csv_path: Path):
 
         "familyBudget": family_budget,
 
+        "burnRate": burn_rate,
+        "forecast": forecast,
+        "runway": runway,
+        "business": business_metrics,
+        "balanceSheet": balance_sheet,
+        "budgetBaseline": budget_baseline,
+        "compensationTarget": compensation_target,
+
+        "consulting": {
+            "month": f"{MONTH_NAMES[CURRENT_MONTH]} {CURRENT_YEAR}",
+            "invoicesSent": [],
+            "invoicesReceived": [],
+            "outstanding": [],
+            "pipelineMRR": 0,
+            "note": "Populated by financial-assistant skill run (Gmail/Calendar/Notion enrichment). Empty until next skill execution.",
+        },
+
         "revenue": {
             "month": f"{MONTH_NAMES[CURRENT_MONTH]} {CURRENT_YEAR}",
-            "consulting": {"invoiced": 0, "collected": 0, "pipeline": 0},
-            "netIncome": 0,
-            "runwayMonths": 0,
-            "note": "Connect Notion API to populate from Consulting Practice Wiki",
+            "consulting": {
+                "invoiced": business_metrics["revenue"],
+                "collected": business_metrics["revenue"],
+                "pipeline": 0,
+            },
+            "netIncome": business_metrics["net"],
+            "runwayMonths": runway.get("months") or 0,
+            "note": "Revenue numbers reflect txns tagged via business-vs-personal-rules.md. Pipeline populated by skill run.",
         },
     }
 
@@ -595,8 +1007,14 @@ def run(csv_path: Path):
     )
     OUTPUT_PATH.write_text(js_content, encoding="utf-8")
     print(f"[generate-data] Written → {OUTPUT_PATH}")
-    print(f"[generate-data] April MTD spend: ${cur_total:,.2f} across {len(cur_spend)} transactions")
-    print(f"[generate-data] March total: ${prev_total:,.2f}")
+    print(f"[generate-data] {MONTH_NAMES[CURRENT_MONTH]} MTD spend: ${cur_total:,.2f} across {len(cur_spend)} transactions")
+    print(f"[generate-data] {MONTH_NAMES[PREV_MONTH]} total: ${prev_total:,.2f}")
+    print(f"[generate-data] Burn: ${burn_rate['fourWeekWeekly']:,.0f}/wk (4w) vs ${burn_rate['twelveWeekWeekly']:,.0f}/wk (12w) — trend {burn_rate['trend']}")
+    runway_display = f"{runway['months']} months" if runway.get("months") else "—"
+    print(f"[generate-data] Runway: {runway_display} (liquid {runway.get('liquidAssets') or 'TBD'})")
+    print(f"[generate-data] Business MTD: revenue ${business_metrics['revenue']:,.0f} / expenses ${business_metrics['expenses']:,.0f} / net ${business_metrics['net']:,.0f}")
+    print(f"[generate-data] Comp target: ${COMPENSATION_TARGET_MONTHLY:,}/mo — {compensation_target['headline']}")
+    print(f"[generate-data] Forecast: on pace for ${forecast['projectedMonth']:,.0f} this month ({len(forecast['alerts'])} category alerts)")
     print(f"[generate-data] Alerts: {len(alerts)}")
     print(f"[generate-data] Done.")
     return OUTPUT_PATH

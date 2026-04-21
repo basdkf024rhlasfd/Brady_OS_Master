@@ -109,3 +109,9 @@ If no stale items, drop the warning.
 - **First run (no existing v2)**: Create from scratch using the layout spec above
 - **Very large IN bucket (>20 items)**: Show top 3 recent + "[N] more..." — don't list everything
 - **Items with no Name**: Show "[untitled]" with the Type
+
+---
+
+## Routing Log
+
+This skill is read-only — it reports state, it does not disposition items, so it does not write to the Routing Log. If it is ever extended to move, archive, or auto-reject items, each disposition must append a row per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`).
