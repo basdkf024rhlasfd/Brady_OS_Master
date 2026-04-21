@@ -170,6 +170,34 @@ If Playwright unavailable: `pip install playwright --break-system-packages && pl
 Save to `/mnt/user-data/outputs/[Company]_Brief_[YYYY-MM-DD].pdf`
 Present to Brady via `present_files`.
 
+### Step 7: Log to Routing Log
+
+Append one row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`):
+- `date` = today
+- `original_title` = `[Company] Exec Brief — YYYY-MM-DD`
+- `destination` = PDF output path
+- `reason` = `Daily exec intel brief generated for [Company]`
+- `summary` = 1-line of the brief's top headline/theme
+
+### Step 8: Telly Completion Push
+
+Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*${CLIENT} intel brief ready for review.* ${HEADLINE}"
+  LINK="$PDF_PATH"
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+`CLIENT` = client name from config. `HEADLINE` = one-line synthesis of the day's top finding. `PDF_PATH` = output PDF path.
+
 ---
 
 ## Section Definitions

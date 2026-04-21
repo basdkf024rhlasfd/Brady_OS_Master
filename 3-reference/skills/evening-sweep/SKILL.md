@@ -309,7 +309,7 @@ For each item, assign `Action` based on `Type`:
 - **Pulse Log** → no action needed (auto-archive handles these)
 - **Daily State** → no action needed (auto-close handles these)
 
-For each routed item, append a row to the Routing Log (`344ed43b-89c5-816a-ab54-ca49ca239748`).
+For each routed item, append a row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`): `date`, `original_title`, `destination` (where the item was routed), `reason`, `summary` (1-line outcome).
 
 #### 4.6 Archive Old Pulse Logs
 Query Streaming Notes where `Type = "Pulse Log"` AND `Created Date < (now - 7 days)` AND `Status != "Remove"`.
@@ -399,7 +399,26 @@ You're done. Go read. 📖
 #### 6.2 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 
-#### 6.3 Permission to Stop
+#### 6.3 Telly Completion Push
+
+Push a one-line day-archived summary to Brady's phone. Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*Day archived.* ${N_DECISIONS} decisions · ${N_LOOPS} open loops · tomorrow ${FIRST_EVENT}"
+  LINK="$JOURNAL_URL"  # optional — journal file path or Notion Daily State URL
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+Fill from Phase 6.1 stats: `N_DECISIONS`, `N_LOOPS`, `FIRST_EVENT` = tomorrow's first calendar event time.
+
+#### 6.4 Permission to Stop
 End with something that gives Brady permission to close the laptop.
 Match the energy — if it was a hard day, acknowledge it. If it was productive, celebrate it.
 Don't be saccharine. Be real.

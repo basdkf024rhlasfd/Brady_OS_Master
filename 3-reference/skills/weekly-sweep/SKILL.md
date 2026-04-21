@@ -139,6 +139,7 @@ Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - Scans Gmail for invoices/receipts/payments (last 7 days)
 - Scans Calendar for all financial events in next 30 days
 - Queries Notion consulting pipeline for revenue + pipeline status
+- Emits the full `burnRate`, `forecast`, `runway`, `business`, and `consulting` blocks from `COCKPIT_DATA` into the weekly brief (see Phase 2 output below)
 - Produces the detailed `💰 FINANCIAL WEEK` block (see Phase 2 output below)
 - If no CSV data: falls back to Gmail/Calendar/Notion with degraded output
 
@@ -243,9 +244,15 @@ TUESDAY [Date]
 🔥 Deadline: [anything due in < 14 days]
 
 ───────────────────────────────────────────────────
-💰 FINANCIAL
+💰 FINANCIAL WEEK
 ───────────────────────────────────────────────────
-[Bills due, upcoming deadlines, Monarch status]
+🔥 Burn: $X,XXX/wk (4w) vs $X,XXX/wk (12w) — trend ↑/↓/→ [X%]
+💵 Runway: X months (liquid $XX,XXX / monthly burn $X,XXX) — [red/yellow/green]
+📈 Forecast: on pace for $XX,XXX this month (budget $XX,XXX) — [N] categories on track to overshoot
+🏢 Business: revenue $X,XXX / expenses $X,XXX / net $X,XXX / margin X%
+📬 Outstanding invoices: [client] $X,XXX (X days out)
+📅 Bills due next 7 days: [bill] $XXX ([day])
+[If any alert from burnRate or runway: ⚠️/🔴 surface it here]
 
 ───────────────────────────────────────────────────
 📧 EMAIL CLEANUP
@@ -359,6 +366,9 @@ Report the output paths so Brady can paste/upload them into his Claude Chat Proj
 the week starts. This is how the Chat brainstorm layer stays aligned with canonical
 intelligence state without needing Chat to write back to Notion.
 
+### 5.9b Append Routing Log entries
+For every item routed during this sweep — prompt feedback dispositioned (5.5), Canonical Index updates (5.7b), Rules flagged for promotion (5.7c), builds executed (5.11), disposition audit actions (5.12) — append one row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`).
+
 ### 5.10 Close
 - Report all calendar changes made
 - Report all prompt changes applied
@@ -400,6 +410,33 @@ This is the "never forget" gate. It surfaces every open Streaming Notes item tha
 Brady reviews the report and approves dispositions in-session. The audit summary (e.g., "8 archived, 5 got next actions, 3 cleaned up") is included in the weekly sweep output.
 
 **Do not skip this step.** It is the primary mechanism preventing Streaming Notes from becoming a graveyard.
+
+### 5.13 Commissioner Brief
+
+Run the commissioner-brief skill (`3-reference/skills/commissioner-brief/SKILL.md`) after the disposition audit settles.
+
+It synthesizes the week into one markdown brief (Headline / Wins / Signal from sweeps / Blocked or drifting / Next week's 3 bets) drawn from Routing Log, Streaming Notes, git history, and recent sweep dev plans. The file is saved to `1-execution/areas/brady-os/commissioner-briefs/YYYY-MM-DD.md`.
+
+Include the one-line Commissioner Brief headline in the weekly sweep's closing summary.
+
+### 5.14 Telly Completion Push
+
+After the commissioner brief lands, push a one-line week-planned summary to Brady's phone. Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*Week planned.* TOP ${N_TOP} ready · ${N_BLOCKS} calendar blocks · ${N_FLAGS} flags · audit: ${AUDIT_SUMMARY}"
+  LINK="$WEEK_PLAN_URL"  # optional
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+Fill: `N_TOP` = TOP priorities count, `N_BLOCKS` = calendar blocks created, `N_FLAGS` = project/finance flags, `AUDIT_SUMMARY` = one-line from 5.12 (e.g. "8 archived, 5 next actions").
 
 ## Done/Status Consistency Rule
 
