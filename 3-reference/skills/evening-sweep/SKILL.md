@@ -307,6 +307,48 @@ For each, add to sweep output as a forced decision:
 
 If Brady is not present (automated overnight run), auto-set `Status = "Remove"` and `Done = "__YES__"` and log: `Auto-archived after 5 days unprocessed. Brady can restore if needed.`
 
+### Phase 4.8 Build Queue Execution
+
+Query Streaming Notes for build work to execute this evening:
+- `Type = "Build Request"`, `Status = "Not Started"` (any new ones since morning, or missed)
+- `Type = "Build Request"`, `Status = "Processing"` (medium builds queued by this morning's sweep)
+
+**Autonomy assessment** (same rules as morning sweep 3.4b):
+- **Scope** ✓ if edits files in Brady OS repos (SKILL.md, configs, YAML, reference files, portal configs, agent profiles). ✗ if requires new external service, unconfigured credentials, or production deployment.
+- **Clarity** ✓ if specific enough to act on. ✗ if vague — leave "Not Started", add body note asking Brady to clarify, convert Type to "To Do".
+- **Risk** ✓ if reversible via git. ✗ if affects production deployments, sends messages, or modifies shared infrastructure.
+- **Size** — In the evening both small (< 30 min) AND medium (30–90 min) are eligible. Large (> 90 min) → flag for weekly sweep or Conductor.
+
+For each "Processing" build: load the corresponding plan from `.context/plans/`, execute it using file system MCP.
+
+For each eligible build executed, follow this log protocol:
+1. Set the Streaming Note `Status = "In Progress"` while building
+2. Create a Build Session log in Streaming Notes:
+   - Type = "Thread Log"
+   - Name = "Build: [request title] — [YYYY-MM-DD]"
+   - Tags = ["Build Session", "Auto-Built"]
+   - Status = "Complete" (fully done) or "In Progress" (partial)
+   - Done = "__YES__" only if Status = "Complete"
+   - Body:
+     ## What Was Requested
+     [Original request text verbatim]
+     ## What Was Built
+     [Specific files changed and what changed in each]
+     ## What's Remaining
+     [Anything not completed and why — "none" if fully done]
+     ## Outcome
+     Scope: small/medium | Outcome: complete / partial / blocked
+3. Mark original Build Request: `Status = "Complete"`, `Done = "__YES__"`
+4. If partial: create a NEW Build Request entry for remaining work
+   - Type = "Build Request", Status = "Not Started", Tags = ["Carry Forward"]
+   - Name = "[original title] — remaining"
+   - Body = summary of what was built + what's still needed (full context for next session)
+
+Add to the Phase 6 close report:
+```
+🔧 BUILDS: [N] completed | [N] partial (carry-forward created) | [N] blocked (→ To Do)
+```
+
 ### Phase 5: REFRESH OS COCKPIT
 
 Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).

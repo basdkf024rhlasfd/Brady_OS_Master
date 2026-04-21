@@ -131,6 +131,16 @@ proposed dev plans that Brady can review and execute in Conductor.build.
   OR events explicitly tagged with `[build]` or `[dev]` in the title
 - Exclude recurring logistics events (school, chores, Get Ready, Email Catchup)
 
+**Source C — Explicit Build Requests (Streaming Notes)**
+- Query: `Type = "Build Request"`, `Status = "Not Started"`
+- For each: read the full title and body, extract any target repo/files mentioned
+- Apply the autonomy assessment (Scope / Clarity / Risk / Size — see Section 3.4b):
+  - **Small** (< 30 min, file edits in Brady OS repos): classify as execute-now
+  - **Medium** (30–90 min): classify as queue-evening
+  - **Large** (> 90 min / multi-file architectural): classify as queue-conductor
+  - **Blocked** (vague, requires external credentials, or touches production): classify as blocked
+- Do NOT change Status yet — that happens in 3.4b during the execute phase
+
 ## Phase 2: REPORT (Structured Output)
 
 Now write the brief. Every section is scannable. No fluff.
@@ -208,16 +218,29 @@ Consulting Revenue: $XX,XXX of $XX,XXX target (XX%)
 [Otter recordings with unprocessed instructions]
 
 ───────────────────────────────────────────────────
-🔧 BUILD REQUESTS ([N] detected → dev plans drafted)
+🔧 BUILD REQUESTS ([N] detected)
 ───────────────────────────────────────────────────
-[For each detected build request:]
+BUILT THIS MORNING:
+• "[title]" — [1-line summary of what was done] — [outcome: complete/partial]
+  Files: [list changed files]
+
+QUEUED FOR EVENING:
+• "[title]" — [why medium, not small]
+
+QUEUED FOR CONDUCTOR:
+• "[title]" — plan at .context/plans/[slug].md
+
+BLOCKED (not auto-buildable):
+• "[title]" — [reason: vague / external dependency / production risk]
+  → Converted to To Do for Brady
+
+KEYWORD DETECTIONS (from Telly/Calendar, plans drafted):
 • [Source: Telly/Calendar] — "[title]" → Dev plan written to .context/plans/[slug].md
   Summary: [1-line description of what the plan proposes]
   Estimated scope: [small / medium / large]
-  Ready for: conductor.build review
 
-[If none detected:]
-No build requests detected in Telly captures or calendar.
+[If none in any category:]
+No build requests detected.
 
 ───────────────────────────────────────────────────
 🎙️ OTTER
@@ -308,6 +331,56 @@ Paste this plan into a Conductor workspace targeting [repo]. Or review and refin
   get re-detected tomorrow.
 - Build requests with estimated scope "medium" or "large" are candidates for the TOP 3 if nothing
   more urgent is present.
+
+### 3.4b Autonomous Build Execution
+
+For each Build Request classified as **execute-now (small)** in Section 1.9 Source C:
+
+**Autonomy assessment** — before building, verify all four gates pass:
+1. **Scope** ✓ if: edits files in Brady OS repos (SKILL.md, configs, YAML, reference files, portal configs, agent profiles). ✗ if: requires a new external service, unconfigured credentials, or production deployment → **blocked**.
+2. **Clarity** ✓ if: specific enough to act on without guessing. ✗ if: vague → leave "Not Started", add body note asking Brady to clarify, convert Type to "To Do" → **blocked**.
+3. **Risk** ✓ if: reversible via git. ✗ if: affects production deployments, sends external messages, or modifies shared infrastructure → **blocked**.
+4. **Size confirmed small** (< 30 min of execution): proceed. If reassessed as medium → queue-evening. If large → Conductor plan.
+
+**Execution protocol:**
+1. Set the Streaming Note `Status = "In Progress"`
+2. Execute the build using file system MCP — edit files directly in the repo
+3. Create a Build Session log in Streaming Notes:
+   - Type = "Thread Log"
+   - Name = "Build: [request title] — [YYYY-MM-DD]"
+   - Tags = ["Build Session", "Auto-Built"]
+   - Status = "Complete" (if fully done) or "In Progress" (if partial)
+   - Done = "__YES__" only if Status = "Complete"
+   - Body:
+     ```
+     ## What Was Requested
+     [Original request text verbatim]
+     ## What Was Built
+     [Specific files changed and what changed in each]
+     ## What's Remaining
+     [Anything not completed and why — "none" if fully done]
+     ## Outcome
+     Scope: small | Outcome: complete / partial / blocked
+     ```
+4. Mark original Build Request: `Status = "Complete"`, `Done = "__YES__"`
+5. If partial: create a NEW Build Request entry for remaining work
+   - Type = "Build Request", Status = "Not Started", Tags = ["Carry Forward"]
+   - Name = "[original title] — remaining"
+   - Body = summary of what was built + what's still needed (full context for next session)
+6. Report under 🔧 BUILD REQUESTS in Phase 2 output
+
+**For medium requests (queue-evening):**
+- Generate a plan at `.context/plans/sweep-[date]-[slug].md`
+- Set Build Request `Status = "Processing"`
+- Flag in BUILD REQUESTS output: "Queued for evening sweep — [title]"
+
+**For large requests (queue-conductor):**
+- Generate a Conductor plan per the 3.4 template above
+- Set Build Request `Status = "Processing"`
+
+**For blocked requests:**
+- Change Type to "To Do", add a body note explaining the blocker
+- Report under BLOCKED in Phase 2 BUILD REQUESTS output
 
 ### 3.5 Report Applied Feedback
 If any Sweep Feedback notes were applied in Pre-Flight step 4, report what changed:
