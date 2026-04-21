@@ -50,6 +50,7 @@ priorities that need protected time.
 ### 1.1 Last Week's Unfinished Business
 - **Notion**: Query Streaming Notes DB for the past 7 days — find any Thread Logs still "In Progress",
   Pulse Notes still "Not Started", System Instructions not executed
+- **Build Requests**: Query `Type = "Build Request"`, `Status` in ["Not Started", "In Progress", "Processing"], created in past 7 days. Count completed vs. carried vs. blocked for the LAST WEEK RETRO.
 - **Phil Flags**: Any open flags from the week
 - **Email**: Search Gmail for anything > 48 hours old that's still in the "Needs Reply" category
   (i.e., stuff the daily sweep flagged but Brady hasn't handled)
@@ -347,6 +348,30 @@ intelligence state without needing Chat to write back to Notion.
 - Report all calendar changes made
 - Report all prompt changes applied
 - Ask: "Anything to adjust before the week starts?"
+
+### 5.11 Weekly Build Review & Large Build Execution
+
+1. **Review the week's build activity**: from the Phase 1.1 scan, count Build Requests completed / partial / blocked / still queued.
+
+2. **Execute large builds now**: For any Build Request still "Not Started" or "Processing" after 7+ days, the weekly sweep is authorized to attempt large-scope builds (> 90 min). Apply the same autonomy assessment (Scope / Clarity / Risk). If clear and safe, build it. If still ambiguous, flag for Brady with a specific question.
+
+3. **Reconcile partial builds**: For Build Requests still "In Progress" (partial), assess whether to continue or break into smaller pieces. If breaking up, create new Build Request entries for each remaining chunk (Type="Build Request", Status="Not Started", Tags=["Carry Forward"]).
+
+4. **For each executed build**, follow the same log protocol as morning sweep 3.4b:
+   - Create Thread Log (Name = "Build: [title] — [date]", Tags = ["Build Session", "Auto-Built"])
+   - Mark original Build Request complete (or partial + carry-forward new entry)
+
+5. **Add to Phase 4 report:**
+   ```
+   ───────────────────────────────────────────────────
+   🔧 BUILD ACTIVITY (this week)
+   ───────────────────────────────────────────────────
+   Completed: [N] — [titles]
+   Partial / Carry-Forward: [N] — [titles, what's remaining]
+   Blocked: [N] — [titles and reasons]
+   Built this session: [N] — [titles, files changed]
+   In Queue (next week): [N] — [titles, estimated scope]
+   ```
 
 ## Done/Status Consistency Rule
 
