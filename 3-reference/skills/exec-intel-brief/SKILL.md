@@ -179,6 +179,25 @@ Append one row to the Routing Log per `3-reference/skills/_shared/routing-log.md
 - `reason` = `Daily exec intel brief generated for [Company]`
 - `summary` = 1-line of the brief's top headline/theme
 
+### Step 8: Telly Completion Push
+
+Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*${CLIENT} intel brief ready for review.* ${HEADLINE}"
+  LINK="$PDF_PATH"
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+`CLIENT` = client name from config. `HEADLINE` = one-line synthesis of the day's top finding. `PDF_PATH` = output PDF path.
+
 ---
 
 ## Section Definitions

@@ -547,6 +547,26 @@ candidates for the current session.
 ### 3.12 Close
 Ask one question: "What are you starting with?"
 
+### 3.13 Telly Completion Push
+
+After Brady's close response (or right before asking the close question if he's not at the chat), push a one-line summary to his phone via Telly. Non-critical — never block the sweep if it fails.
+
+```bash
+# Source Telly push creds (gitignored)
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*Morning sweep done.* ${N_PRIORITIES} priorities · ${N_VIP_EMAILS} VIP emails · ${N_THREADS} threads"
+  LINK="$BRIEF_URL"  # optional — Notion page / local file URL
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+Fill the variables from the sweep output: `N_PRIORITIES` = count from TOP priorities section, `N_VIP_EMAILS` = VIP emails needing reply, `N_THREADS` = active Notion threads. Omit `LINK` if there's no canonical URL.
+
 ## Mid-Day Feedback (Anytime)
 
 Brady can give feedback on the sweep at any point during the day. Claudine handles it based on type:
