@@ -373,6 +373,19 @@ intelligence state without needing Chat to write back to Notion.
    In Queue (next week): [N] — [titles, estimated scope]
    ```
 
+### 5.12 Streaming Notes Disposition Audit
+
+Run the disposition audit skill (`3-reference/skills/streaming-notes-disposition-audit/SKILL.md`) as the final step of the weekly sweep.
+
+This is the "never forget" gate. It surfaces every open Streaming Notes item that is:
+- Stale (>14 days, no movement)
+- Missing a Next Action (>3 days)
+- Blocked with no Blockers field filled
+
+Brady reviews the report and approves dispositions in-session. The audit summary (e.g., "8 archived, 5 got next actions, 3 cleaned up") is included in the weekly sweep output.
+
+**Do not skip this step.** It is the primary mechanism preventing Streaming Notes from becoming a graveyard.
+
 ## Done/Status Consistency Rule
 
 Whenever this sweep sets `Status = "Complete"` or `Status = "Remove"` on any Streaming Note, ALSO set `Done = "__YES__"`. These two fields must always move together. No exceptions.
