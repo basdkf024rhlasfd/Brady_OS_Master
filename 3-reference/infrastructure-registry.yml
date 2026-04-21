@@ -40,6 +40,13 @@ notion:
     used_by:
       - CLAUDE.md (agent reference)
 
+  life_events_db:
+    id: ""  # populated on first-run DB creation by skills/life-events-review
+    purpose: Brady's major life events (travel, milestones, financial meetings, school, medical) with prep checklist, countdown, and owner
+    used_by:
+      - skills/life-events-review
+      - skills/weekly-sweep
+
 # ─── Google Drive ───
 google_drive:
   os_recaps_folder:

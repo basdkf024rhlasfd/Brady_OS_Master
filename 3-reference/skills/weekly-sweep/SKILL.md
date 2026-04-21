@@ -114,6 +114,16 @@ Also refresh `portal/public/family/kb/09-activity-details.md` if any activities 
 (new class times, dropped activities, new sports/lessons) — compare calendar recurring events
 against what's currently in the file.
 
+### 2.2c Life Events Review (via life-events-review skill)
+Run the `life-events-review` skill (`3-reference/skills/life-events-review/SKILL.md`).
+It queries the Life Events Notion DB (see `3-reference/infrastructure-registry.yml` →
+`life_events_db`) + Google Calendar for the next 90 days, produces a three-tier report
+(Imminent / Near-term / Horizon), writes any new prep tasks back to Streaming Notes,
+and syncs `portal/public/family/kb/15-life-events.md` for the family chatbot.
+
+Append the skill's Phase 3 report under the `👁️ LIFE EVENTS` section of the Phase 4
+output below. Append the skill's one-line summary to the `📋 OPEN ITEMS` section.
+
 ### 2.3 Project Status Review
 Query Notion Projects DB (`2c2ed43b89c580afac9bededd48b98e7`):
 - List all active projects with current status
@@ -220,6 +230,11 @@ TUESDAY [Date]
 ───────────────────────────────────────────────────
 [Per-kid summary of the week's activities, logistics, and coverage needs]
 🚗 Sitter needs: [days/times where coverage is required]
+
+───────────────────────────────────────────────────
+👁️ LIFE EVENTS (next 90 days)
+───────────────────────────────────────────────────
+[life-events-review skill Phase 3 report — Imminent / Near-term / Horizon tiers]
 
 ───────────────────────────────────────────────────
 🔨 PROJECTS STATUS───────────────────────────────────────────────────
