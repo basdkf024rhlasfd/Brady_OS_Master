@@ -386,9 +386,17 @@ Brady reviews the report and approves dispositions in-session. The audit summary
 
 **Do not skip this step.** It is the primary mechanism preventing Streaming Notes from becoming a graveyard.
 
-### 5.13 Telly Completion Push
+### 5.13 Commissioner Brief
 
-After disposition audit finishes, push a one-line week-planned summary to Brady's phone. Non-critical — never block on failure.
+Run the commissioner-brief skill (`3-reference/skills/commissioner-brief/SKILL.md`) after the disposition audit settles.
+
+It synthesizes the week into one markdown brief (Headline / Wins / Signal from sweeps / Blocked or drifting / Next week's 3 bets) drawn from Routing Log, Streaming Notes, git history, and recent sweep dev plans. The file is saved to `1-execution/areas/brady-os/commissioner-briefs/YYYY-MM-DD.md`.
+
+Include the one-line Commissioner Brief headline in the weekly sweep's closing summary.
+
+### 5.14 Telly Completion Push
+
+After the commissioner brief lands, push a one-line week-planned summary to Brady's phone. Non-critical — never block on failure.
 
 ```bash
 [ -f ~/.telly-push.env ] && source ~/.telly-push.env
