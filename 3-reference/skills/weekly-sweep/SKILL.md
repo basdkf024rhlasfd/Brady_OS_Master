@@ -386,6 +386,14 @@ Brady reviews the report and approves dispositions in-session. The audit summary
 
 **Do not skip this step.** It is the primary mechanism preventing Streaming Notes from becoming a graveyard.
 
+### 5.13 Commissioner Brief
+
+Run the commissioner-brief skill (`3-reference/skills/commissioner-brief/SKILL.md`) as the very last step — after the disposition audit has settled.
+
+It synthesizes the week into one markdown brief (Headline / Wins / Signal from sweeps / Blocked or drifting / Next week's 3 bets) drawn from Routing Log, Streaming Notes, git history, and recent sweep dev plans. The file is saved to `1-execution/areas/brady-os/commissioner-briefs/YYYY-MM-DD.md`.
+
+Include the one-line Commissioner Brief headline in the weekly sweep's closing summary.
+
 ## Done/Status Consistency Rule
 
 Whenever this sweep sets `Status = "Complete"` or `Status = "Remove"` on any Streaming Note, ALSO set `Done = "__YES__"`. These two fields must always move together. No exceptions.
