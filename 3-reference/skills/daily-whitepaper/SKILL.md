@@ -167,6 +167,22 @@ On CoWork: also save to `~/Documents/Daily-Briefs/YYYY/MM/daily-brief-YYYY-MM-DD
 1. Present the PDF file
 2. In-chat: 3 bullet points — one per vertical — covering the top stories
 3. Flag anything with direct Broker Co or client relevance
+4. **Telly push** (final step, non-critical):
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*Whitepaper ready.* ${HEADLINE}"
+  LINK="$PDF_PATH"
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+`HEADLINE` = one-line synthesis of the day's top story. `PDF_PATH` = path or URL to the rendered PDF.
 
 ## Edge Cases
 

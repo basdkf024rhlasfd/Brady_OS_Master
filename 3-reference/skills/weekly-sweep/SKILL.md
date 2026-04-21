@@ -386,6 +386,25 @@ Brady reviews the report and approves dispositions in-session. The audit summary
 
 **Do not skip this step.** It is the primary mechanism preventing Streaming Notes from becoming a graveyard.
 
+### 5.13 Telly Completion Push
+
+After disposition audit finishes, push a one-line week-planned summary to Brady's phone. Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*Week planned.* TOP ${N_TOP} ready · ${N_BLOCKS} calendar blocks · ${N_FLAGS} flags · audit: ${AUDIT_SUMMARY}"
+  LINK="$WEEK_PLAN_URL"  # optional
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+Fill: `N_TOP` = TOP priorities count, `N_BLOCKS` = calendar blocks created, `N_FLAGS` = project/finance flags, `AUDIT_SUMMARY` = one-line from 5.12 (e.g. "8 archived, 5 next actions").
+
 ## Done/Status Consistency Rule
 
 Whenever this sweep sets `Status = "Complete"` or `Status = "Remove"` on any Streaming Note, ALSO set `Done = "__YES__"`. These two fields must always move together. No exceptions.
