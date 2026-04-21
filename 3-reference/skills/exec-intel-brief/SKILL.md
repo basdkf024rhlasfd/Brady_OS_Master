@@ -170,7 +170,16 @@ If Playwright unavailable: `pip install playwright --break-system-packages && pl
 Save to `/mnt/user-data/outputs/[Company]_Brief_[YYYY-MM-DD].pdf`
 Present to Brady via `present_files`.
 
-### Step 7: Telly Completion Push
+### Step 7: Log to Routing Log
+
+Append one row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`):
+- `date` = today
+- `original_title` = `[Company] Exec Brief — YYYY-MM-DD`
+- `destination` = PDF output path
+- `reason` = `Daily exec intel brief generated for [Company]`
+- `summary` = 1-line of the brief's top headline/theme
+
+### Step 8: Telly Completion Push
 
 Non-critical — never block on failure.
 

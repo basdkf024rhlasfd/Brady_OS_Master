@@ -14,6 +14,24 @@ notion:
       - skills/evening-sweep
       - skills/pipeline-dashboard
 
+  routing_log_db:
+    id: "344ed43b-89c5-816a-ab54-ca49ca239748"
+    purpose: Canonical action log. Every sweep/skill that routes, dispositions, or publishes appends a row.
+    schema:
+      - date          # YYYY-MM-DD of the routing action
+      - original_title # the item being routed (email subject, note title, etc.)
+      - destination   # where it was routed to (page title, DB, file path, URL)
+      - reason        # why this destination (one clause)
+      - summary       # one-line description of the content or outcome
+    sop: 3-reference/skills/_shared/routing-log.md
+    used_by:
+      - skills/morning-sweep
+      - skills/evening-sweep
+      - skills/weekly-sweep
+      - skills/daily-whitepaper
+      - skills/exec-intel-brief
+      - skills/pipeline-dashboard
+
   email_hub_db:
     id: "9b63f611b5744195b18e9f122579d4e2"
     purpose: Email classification results from GAS email-classifier

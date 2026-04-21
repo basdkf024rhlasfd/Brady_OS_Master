@@ -309,7 +309,7 @@ For each item, assign `Action` based on `Type`:
 - **Pulse Log** → no action needed (auto-archive handles these)
 - **Daily State** → no action needed (auto-close handles these)
 
-For each routed item, append a row to the Routing Log (`344ed43b-89c5-816a-ab54-ca49ca239748`).
+For each routed item, append a row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`): `date`, `original_title`, `destination` (where the item was routed), `reason`, `summary` (1-line outcome).
 
 #### 4.6 Archive Old Pulse Logs
 Query Streaming Notes where `Type = "Pulse Log"` AND `Created Date < (now - 7 days)` AND `Status != "Remove"`.

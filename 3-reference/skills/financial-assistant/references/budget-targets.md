@@ -1,6 +1,20 @@
 # Monthly Budget Targets
 
-Last updated: 2026-04-19
+Last updated: 2026-04-21
+
+## Compensation Target (Income)
+
+| Metric | Monthly | Annual |
+|---|---|---|
+| **Gross income target** | **$24,000** | **$288,000** |
+
+The $24K/mo line is Brady's baseline comp goal — covers household spend, saves meaningfully, and funds taxes. Anything above $24K in a given month is discretionary: save more, accelerate investments, fund specific goals (kid accounts, vacation sinking funds), or reinvest in the consulting practice.
+
+- Below target → focus energy on pipeline / delivery / collections
+- At target → maintain current rhythm
+- Above target → allocate the surplus explicitly (don't let it drift into lifestyle creep)
+
+Tracked against `COCKPIT_DATA.business.revenue` (consulting revenue MTD) plus any other income surfaced by the skill.
 
 ## Three-Tier Model
 

@@ -35,6 +35,7 @@
 - If the allowlist cannot be read or validated, agents must fail closed for any new publication or visibility expansion. Existing production maintenance may proceed only when the slug is independently verified as already live and the work does not broaden visibility.
 
 ## Skills Registry
+- **Routing Log SOP (shared):** `3-reference/skills/_shared/routing-log.md` — Canonical write pattern for the Routing Log DB (`344ed43b-89c5-816a-ab54-ca49ca239748`). Every sweep/skill that routes, dispositions, or publishes appends a row with the 5-field schema (date, original_title, destination, reason, summary). Referenced by morning/evening/weekly sweeps, daily-whitepaper, and exec-intel-brief.
 - **Air Traffic Control:** `3-reference/skills/air-traffic-control/SKILL.md` — Route tasks across repos, generate handoff prompts, coordinate cross-repo changes. Registry: `3-reference/skills/air-traffic-control/repo-registry.yml`
 - **DiCaprio:** `0-agents/custom-built-agents/dicaprio-SKILL.md` — 20K-foot recon across all projects and workspaces. Template: `0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md`
 - **Project Creator:** `3-reference/skills/project-creator/SKILL.md` — Turn a conversation into an execution-ready project brief. Template: `3-reference/skills/project-creator/BRIEF-TEMPLATE.md`
