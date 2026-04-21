@@ -388,11 +388,30 @@ Brady reviews the report and approves dispositions in-session. The audit summary
 
 ### 5.13 Commissioner Brief
 
-Run the commissioner-brief skill (`3-reference/skills/commissioner-brief/SKILL.md`) as the very last step — after the disposition audit has settled.
+Run the commissioner-brief skill (`3-reference/skills/commissioner-brief/SKILL.md`) after the disposition audit settles.
 
 It synthesizes the week into one markdown brief (Headline / Wins / Signal from sweeps / Blocked or drifting / Next week's 3 bets) drawn from Routing Log, Streaming Notes, git history, and recent sweep dev plans. The file is saved to `1-execution/areas/brady-os/commissioner-briefs/YYYY-MM-DD.md`.
 
 Include the one-line Commissioner Brief headline in the weekly sweep's closing summary.
+
+### 5.14 Telly Completion Push
+
+After the commissioner brief lands, push a one-line week-planned summary to Brady's phone. Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*Week planned.* TOP ${N_TOP} ready · ${N_BLOCKS} calendar blocks · ${N_FLAGS} flags · audit: ${AUDIT_SUMMARY}"
+  LINK="$WEEK_PLAN_URL"  # optional
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+Fill: `N_TOP` = TOP priorities count, `N_BLOCKS` = calendar blocks created, `N_FLAGS` = project/finance flags, `AUDIT_SUMMARY` = one-line from 5.12 (e.g. "8 archived, 5 next actions").
 
 ## Done/Status Consistency Rule
 

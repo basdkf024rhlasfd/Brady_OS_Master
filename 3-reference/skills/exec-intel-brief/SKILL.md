@@ -170,6 +170,25 @@ If Playwright unavailable: `pip install playwright --break-system-packages && pl
 Save to `/mnt/user-data/outputs/[Company]_Brief_[YYYY-MM-DD].pdf`
 Present to Brady via `present_files`.
 
+### Step 7: Telly Completion Push
+
+Non-critical — never block on failure.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  MSG="*${CLIENT} intel brief ready for review.* ${HEADLINE}"
+  LINK="$PDF_PATH"
+  curl -sS -X POST "$TELLY_PUSH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg m "$MSG" --arg l "$LINK" '{message:$m} + (if $l == "" then {} else {link:$l} end)')" \
+    > /dev/null || echo "[telly push failed — non-critical]"
+fi
+```
+
+`CLIENT` = client name from config. `HEADLINE` = one-line synthesis of the day's top finding. `PDF_PATH` = output PDF path.
+
 ---
 
 ## Section Definitions
