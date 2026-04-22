@@ -233,19 +233,53 @@ def render_exec_summary(ideas: list[dict]) -> str:
 
 
 def render_matrix_svg(ideas: list[dict]) -> str:
-    # Position each idea in a 2x2 based on TtP (x) and composite score (y proxy).
+    # Position each idea in a 2x2 based on time-to-pilot (x) and financial impact (y).
+    # Heuristics extract values from pilot_spec (days) and impact (dollars) text
+    # because the YAML idea schema doesn't carry explicit scores.ttp/scores.lc fields.
     # Only plot Tier 1 and Tier 2 to keep legible.
+    import re as _re
     plottable = [i for i in ideas if i.get("tier") in (1, 2)]
 
+    def _ttp(idea):
+        """Time-to-pilot score 1 (>12mo) → 5 (<60d). Parse pilot_spec for smallest duration."""
+        ps = str(idea.get("pilot_spec", "")).lower()
+        days = 10_000
+        for m in _re.finditer(r"(\d+)\s*(day|week|month)", ps):
+            n, unit = int(m.group(1)), m.group(2)
+            d = n if unit == "day" else n * 7 if unit == "week" else n * 30
+            days = min(days, d)
+        if days < 60: return 5
+        if days < 90: return 4
+        if days < 180: return 3
+        if days < 365: return 2
+        return 1
+
+    def _impact(idea):
+        """Financial impact score 1 (tiny) → 5 (huge $10M+). Parse impact text for dollar amounts."""
+        txt = str(idea.get("impact", "")).lower()
+        max_m = 0.0
+        for m in _re.finditer(r"\$(\d+(?:\.\d+)?)\s*-?\s*(\d+(?:\.\d+)?)?\s*m", txt):
+            hi = float(m.group(2) or m.group(1))
+            max_m = max(max_m, hi)
+        if max_m == 0:
+            for m in _re.finditer(r"\$(\d+(?:\.\d+)?)\s*-?\s*(\d+(?:\.\d+)?)?\s*k", txt):
+                hi = float(m.group(2) or m.group(1))
+                max_m = max(max_m, hi / 1000.0)
+        if max_m >= 10: return 5
+        if max_m >= 3: return 4
+        if max_m >= 1: return 3
+        if max_m >= 0.3: return 2
+        return 1
+
     def x_for(i):
-        ttp = i.get("scores", {}).get("ttp", 3)
-        # score 1 (>12mo) → left, score 5 (<90d) → right
+        ttp = _ttp(i)
+        # score 1 (slow) → left, score 5 (fast) → right
         return 0.1 + (ttp - 1) * 0.20
 
     def y_for(i):
-        lc = i.get("scores", {}).get("lc", 3)
-        # labor/cost impact: 1 → bottom, 5 → top
-        return 0.9 - (lc - 1) * 0.20
+        imp = _impact(i)
+        # impact 1 → bottom, 5 → top
+        return 0.9 - (imp - 1) * 0.20
 
     # Slight deterministic jitter so dots don't overlap exactly
     buckets: dict[tuple[float, float], int] = {}

@@ -88,6 +88,29 @@
     background: var(--bg-card); border-left: 3px solid var(--accent);
     border-radius: 4px; margin: 18px 0;
   }
+
+  .concepts {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px; margin: 14px 0 12px;
+  }
+  .concept {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden; transition: all 0.15s ease;
+  }
+  .concept:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+  .concept img {
+    display: block; width: 100%; aspect-ratio: 3/2; object-fit: cover;
+    background: var(--bg-card-alt);
+  }
+  .concept-meta { padding: 10px 14px 14px; }
+  .concept-id {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .concept-name {
+    font-size: 13px; font-weight: 600; color: var(--white);
+    margin-top: 4px; line-height: 1.35;
+  }
   @media (max-width: 720px) {
     .wrap { padding: 32px 24px; }
     h1 { font-size: 32px; }
@@ -115,6 +138,21 @@
   <div class="fact-card"><h3>M&A cadence</h3><p>2 deals in 3 years — Fineman (Jax, 2022) + Yulee (FL, 2025). Roll-up thesis real, not hypothetical.</p></div>
   <div class="fact-card"><h3>Brady's positioning</h3><p>Not fractional CFO. M&A-and-capital operating partner with AI decision layer. Role Justin described April 20.</p></div>
   <div class="fact-card"><h3>Next gates</h3><p>Formalize M&A playbook · redesign CFO role · Koalafi/Synchrony + Zapsight partnership resets · introduce 2-3 capital partners informally.</p></div>
+</div>
+
+<h2>Product concepts — Track A hero visuals</h2>
+<p class="lede">10 concept renders from the Innovation Workshop (Midjourney-generated, Track A Format/Product). Click the <a href="../files/innovation-workshop-1915-south-2026-04-22.pdf" target="_blank">Innovation Workshop PDF</a> below for the full pitch behind each.</p>
+<div class="concepts">
+  <figure class="concept"><img src="../viewer/images-1915-south/a1-sleep-lab-specialty-stores-hero.png" alt="A1 Sleep Lab"><figcaption class="concept-meta"><div class="concept-id">A1 · Format</div><div class="concept-name">Sleep Lab / Specialty Stores</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a2b-store-of-future-single-element-pilot-hero.png" alt="A2b Store of the Future"><figcaption class="concept-meta"><div class="concept-id">A2b · Format</div><div class="concept-name">Store-of-Future Single-Element Pilot</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a3-15-minute-showroom-small-format-hero.png" alt="A3 15-Minute Showroom"><figcaption class="concept-meta"><div class="concept-id">A3 · Format</div><div class="concept-name">15-Minute Showroom · Small Format</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a4-concierge-appointment-showroom-hero.png" alt="A4 Concierge Showroom"><figcaption class="concept-meta"><div class="concept-id">A4 · Format</div><div class="concept-name">Concierge Appointment Showroom</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a5-ashley-care-plus-service-as-product-hero.png" alt="A5 Ashley Care Plus"><figcaption class="concept-meta"><div class="concept-id">A5 · Product</div><div class="concept-name">Ashley Care Plus — Service as Product</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a6-regional-assortment-editor-hero.png" alt="A6 Regional Assortment Editor"><figcaption class="concept-meta"><div class="concept-id">A6 · Product</div><div class="concept-name">Regional Assortment Editor</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a7-final-mile-branded-white-glove-experience-hero.png" alt="A7 Final-Mile White-Glove"><figcaption class="concept-meta"><div class="concept-id">A7 · Service</div><div class="concept-name">Final-Mile Branded White-Glove</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a8-furniture-subscription-rent-to-own-tier-hero.png" alt="A8 Subscription Tier"><figcaption class="concept-meta"><div class="concept-id">A8 · Product</div><div class="concept-name">Furniture Subscription / Rent-to-Own</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a9-builder-pro-b2b-channel-hero.png" alt="A9 Builder Pro B2B"><figcaption class="concept-meta"><div class="concept-id">A9 · Channel</div><div class="concept-name">Builder Pro B2B Channel</div></figcaption></figure>
+  <figure class="concept"><img src="../viewer/images-1915-south/a10-kids-room-in-a-box-hero.png" alt="A10 Kids Room in a Box"><figcaption class="concept-meta"><div class="concept-id">A10 · Product</div><div class="concept-name">Kids Room in a Box</div></figcaption></figure>
 </div>
 
 <h2>Deliverables — M&A / Investment / Partnership Deep Research (2026-04-22)</h2>
