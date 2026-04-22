@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>1915 South | Ashley — Engagement Hub</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-card: #161A23;
+    --bg-card-alt: #1E2330;
+    --white: #F5F1E8;
+    --gray: #A8ADB8;
+    --gray-light: #D4D7DD;
+    --accent: #E8A547;
+    --accent-soft: #C97E2A;
+    --line: #2A2F3D;
+    --internal: #E86464;
+    --client: #6FC37E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--bg); color: var(--white);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); background: var(--bg-card); padding: 2px 6px; border-radius: 3px; }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 48px 80px; }
+
+  .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 0.18em; font-size: 11px; text-transform: uppercase; }
+  h1 { font-size: 40px; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; margin: 12px 0 8px; }
+  .subtitle { font-size: 17px; color: var(--gray-light); margin-bottom: 12px; max-width: 720px; }
+  .meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); margin-bottom: 36px; letter-spacing: 0.04em; }
+  .meta span { margin-right: 24px; }
+  .meta strong { color: var(--white); font-weight: 500; }
+
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 14px; padding-top: 16px; border-top: 1px solid var(--line); letter-spacing: -0.005em; }
+  h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 32px; }
+  p { margin: 0 0 14px; }
+  p.lede { font-size: 16px; color: var(--gray-light); max-width: 780px; }
+
+  .files {
+    display: grid; grid-template-columns: 1fr; gap: 12px; margin: 14px 0 12px;
+  }
+  .file-card {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 18px; transition: all 0.15s ease;
+  }
+  .file-card:hover { background: var(--bg-card-alt); border-color: var(--accent-soft); text-decoration: none; }
+  .file-icon {
+    flex-shrink: 0; width: 36px; height: 36px; background: var(--bg-card-alt);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    color: var(--accent); border-radius: 4px;
+  }
+  .file-title { font-weight: 600; color: var(--white); font-size: 14px; }
+  .file-desc { font-size: 13px; color: var(--gray); margin-top: 2px; }
+  .file-body { flex: 1; }
+  .chip {
+    display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-left: 8px;
+  }
+  .chip-internal { background: rgba(232,100,100,0.15); color: var(--internal); }
+  .chip-shareable { background: rgba(111,195,126,0.15); color: var(--client); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fact-card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .fact-card h3 { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 8px; }
+  .fact-card p { margin: 0; font-size: 14px; color: var(--gray-light); }
+
+  ul { margin: 0 0 14px 20px; }
+  li { margin-bottom: 6px; color: var(--gray-light); }
+  li strong { color: var(--white); }
+
+  .note {
+    font-size: 13px; color: var(--gray); padding: 14px 18px;
+    background: var(--bg-card); border-left: 3px solid var(--accent);
+    border-radius: 4px; margin: 18px 0;
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 24px; }
+    h1 { font-size: 32px; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Consulting Engagement · Internal Hub</div>
+<h1>1915 South | Ashley</h1>
+<p class="subtitle">Justin Woods (President). $182M · 14% EBITDA · 30 stores · 6 Southeast states · sole-owner Russell Turner, 4th generation.</p>
+<div class="meta">
+  <span><strong>Status</strong> active inbound</span>
+  <span><strong>Last update</strong> 2026-04-22</span>
+  <span><strong>Classification</strong> internal</span>
+</div>
+
+<p class="lede">Engagement workspace for the 1915 South consulting relationship. Links below to every detailed artifact produced across two working sessions (2026-04-21 briefing + 2026-04-22 workshop + deep research). All files internal-first; redact sensitive sections before any client-facing cut.</p>
+
+<h2>Fast facts</h2>
+<div class="grid-2">
+  <div class="fact-card"><h3>Valuation anchor</h3><p>$140–180M EV operating (5.5–7x EBITDA); $200M+ with strategic premium; floor ~$100M at trough.</p></div>
+  <div class="fact-card"><h3>M&A cadence</h3><p>2 deals in 3 years — Fineman (Jax, 2022) + Yulee (FL, 2025). Roll-up thesis real, not hypothetical.</p></div>
+  <div class="fact-card"><h3>Brady's positioning</h3><p>Not fractional CFO. M&A-and-capital operating partner with AI decision layer. Role Justin described April 20.</p></div>
+  <div class="fact-card"><h3>Next gates</h3><p>Formalize M&A playbook · redesign CFO role · Koalafi/Synchrony + Zapsight partnership resets · introduce 2-3 capital partners informally.</p></div>
+</div>
+
+<h2>Deliverables — M&A / Investment / Partnership Deep Research (2026-04-22)</h2>
+<p class="lede">10-section brief with 60+ source citations, named target pool, capital partner universe, and warm-intro map. <strong>Section 9 + Appendix D must be redacted before any client-facing cut.</strong></p>
+<div class="files">
+  <a class="file-card" href="../files/m-and-a-deep-research-2026-04-22.pdf" target="_blank">
+    <div class="file-icon">PDF</div>
+    <div class="file-body">
+      <div class="file-title">M&A Deep Research — PDF<span class="chip chip-internal">Internal</span></div>
+      <div class="file-desc">Letter format, light mode, print-ready. Primary read.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/m-and-a-deep-research-2026-04-22.html" target="_blank">
+    <div class="file-icon">HTM</div>
+    <div class="file-body">
+      <div class="file-title">M&A Deep Research — HTML (dark)<span class="chip chip-internal">Internal</span></div>
+      <div class="file-desc">On-screen read, dark mception palette.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/m-and-a-deep-research-2026-04-22-light.html" target="_blank">
+    <div class="file-icon">HTM</div>
+    <div class="file-body">
+      <div class="file-title">M&A Deep Research — HTML (light)<span class="chip chip-internal">Internal</span></div>
+      <div class="file-desc">Print-ready light version (PDF source).</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/m-and-a-deep-research-2026-04-22.md" target="_blank">
+    <div class="file-icon">MD</div>
+    <div class="file-body">
+      <div class="file-title">M&A Deep Research — Markdown<span class="chip chip-internal">Internal</span></div>
+      <div class="file-desc">Source of truth. Edit + re-render when updating.</div>
+    </div>
+  </a>
+</div>
+
+<div class="note">
+  <strong>What's in it:</strong> 10 sections (Exec Summary, Valuation, Buy-side Roll-up, FRG Dividend, Sell-side / Capital-in, Strategic Partnerships, Adjacencies, Ashley Corporate Context, Strategic Sequence, Risks & Open Questions) plus 5 appendices (source library 60+ URLs, named target pool of 15, capital partner universe 20+, warm-intro map, next-phase research table).
+</div>
+
+<h2>Deliverables — Innovation Workshop (2026-04-22)</h2>
+<p class="lede">30+ scored ideas across 3 tracks: Track A Format/Product (with Canva hero visuals), Track B Ops/AI Arbitrage, Track C Back-Office/CFO Transition. Designed as a capability demo for Justin. Largely client-shareable with light redaction.</p>
+<div class="files">
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22.pdf" target="_blank">
+    <div class="file-icon">PDF</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — PDF<span class="chip chip-shareable">Client-safe</span></div>
+      <div class="file-desc">Tabloid format with Canva visuals. Primary share-with-Justin artifact.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22.html" target="_blank">
+    <div class="file-icon">HTM</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — HTML (dark)<span class="chip chip-shareable">Client-safe</span></div>
+      <div class="file-desc">Screen-read version.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22-light.html" target="_blank">
+    <div class="file-icon">HTM</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — HTML (light)<span class="chip chip-shareable">Client-safe</span></div>
+      <div class="file-desc">Print-ready light version.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/summary.md" target="_blank">
+    <div class="file-icon">MD</div>
+    <div class="file-body">
+      <div class="file-title">Workshop summary / framing doc<span class="chip chip-internal">Internal</span></div>
+      <div class="file-desc">P1-P10 problem statements, methods used, operator-wisdom cards, framing for Brady.</div>
+    </div>
+  </a>
+</div>
+
+<h2>Engagement context</h2>
+<ul>
+  <li><strong>Inbound.</strong> Justin reached out April 19, 2026 after seeing a Brady LinkedIn post. Scheduled call April 20; follow-up email April 20 outlined six leadership-role redesigns including a "CFO + technology + agentic AI" hybrid role positioned as Brady's natural fit.</li>
+  <li><strong>The Ashley context.</strong> Todd Wanek (CEO, Ashley Furniture Industries) has publicly stated businesses have "3-5 years to figure out AI or get left behind." $2B innovation commitment. 170+ AI projects. GMROI Excellence Framework (Dec 2024). China sourcing ceased April 2025. Resident Home acquired March 2024 for ~$1B. Wanek's AI mandate creates top-down cover for a showcase licensee.</li>
+  <li><strong>Relationship.</strong> Walmart Bentonville 2015-2020 peer (Justin ran Pricing + Flight Deck merch analytics at Walmart). Direct operator-to-operator conversation; shared network. Russell Turner sign-off required for any material move — first conversation with him should be substantive, not a pitch.</li>
+</ul>
+
+<h2>Historical context — raw research</h2>
+<ul>
+  <li><strong>Claudine comprehensive analysis</strong> — 2026-04-21, covering company profile, key people, relationship timeline, back-office assessment, product/ops innovation, AI arbitrage, Zapsight competitive framing, recommended engagement model. Source document for the Innovation Workshop and M&A brief. Lives in <code>.context/attachments/pasted_text_2026-04-21_18-58-46.txt</code> in the repo.</li>
+  <li><strong>Research harvest files</strong> — 2026-04-22, all raw research traces (consolidated harvest, thread-1 valuation synthesis, rolodex map). Live in <code>.context/research-briefs/</code> in the repo; not copied here because the <code>.context/</code> directory is gitignored.</li>
+  <li><strong>Prior workshop idea files</strong> — <code>ideas/track-*.yml</code> in the project folder. 30+ scored ideas with pilot specs, impact modeling, risk notes.</li>
+</ul>
+
+<div class="note">
+  <strong>Workflow reminder.</strong> Every update to M&A brief source (.md) → re-run <code>python3 render-ma-brief.py</code> from the project folder → copy new PDF/HTML to <code>portal/public/1915-south/files/</code> → rebuild portal. Pipeline intentionally explicit — no auto-sync.
+</div>
+
+</div>
+</body>
+</html>
