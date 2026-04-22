@@ -34,7 +34,7 @@ projects:
     description: "Innovation workshop engine. Generate, score, and pitch product ideas with AI-backed research and Canva visuals."
     approved: 2026-04-15
     type: iframe-external
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: "https://innovation-lab-silk.vercel.app"
       path: "/"
