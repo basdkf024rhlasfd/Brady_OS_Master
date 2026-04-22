@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "baseline_ref": "2026-04-21",
+  "adjustments": [
+    {
+      "date": "2026-04-21",
+      "type": "delivery",
+      "source": "Walmart+ order 2000146-40514849",
+      "items": [
+        { "item": "Chicken breasts (fresh)", "location": "fridge_main", "qty_delta": "+1 pack", "notes": "weekly sub" },
+        { "item": "Butter", "location": "fridge_main", "qty_delta": "+1 lb", "notes": "was missing in baseline" },
+        { "item": "Boxed pasta", "location": "pantry", "qty_delta": "+2 boxes", "notes": "weekly restock" },
+        { "item": "Ice cream / frozen dessert", "location": "freezer_chest", "qty_delta": "+1 box", "notes": "replenish" },
+        { "item": "Paper goods (bowls/plates)", "location": "pantry", "qty_delta": "+1 pack", "notes": "household restock" }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "type": "meal_consumed",
+      "source": "Brady cooked",
+      "meal": "leftover curry + taquitos",
+      "items": [
+        { "item": "Labeled leftovers (foil)", "location": "fridge_main", "qty_delta": "-1", "notes": "curry leftovers consumed" },
+        { "item": "Leftovers (small containers)", "location": "fridge_main", "qty_delta": "-1", "notes": "curry sides" }
+      ]
+    }
+  ]
+}
