@@ -9,3 +9,4 @@
 - Telly is the Telegram-to-Notion dispatch bot (captures messages, photos, files to Streaming Notes)
 - Wyatt Earp is the ad hoc dissent agent (pressure-tests pitches and strategic recommendations for being too timid)
 - OC Optimus is the Panda Express project intelligence agent (Cycle-horizon coach; knows the full corpus, sizes problems, generates SFDRs, maintains Notion wiki). Files: `oc-optimus.md`, `oc-optimus-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
+- Fran is the 1915 South (Ashley HomeStore franchisee) project intelligence agent (Cycle-horizon coach; furniture retail ops, GMROI pressure, franchise economics). Files: `fran.md`, `fran-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
