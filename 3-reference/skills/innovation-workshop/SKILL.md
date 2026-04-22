@@ -261,16 +261,36 @@ point of this gate is to avoid burning resources on ideas that won't survive.
 **Escape hatch:** If Brady says "run it all" or "full auto" at the start of the workshop,
 skip this gate and run the entire pipeline without pausing.
 
-### Step 4: Generate Visuals via Canva
+### Step 4: Generate Visuals — Midjourney for heroes, Canva for polish
 
-For each surviving idea, generate 4 Canva images using `mcp__claude_ai_Canva__generate-design`:
+**Default image generator is Midjourney, not Canva.** Verified across multiple runs
+(2026-04 workshop series): MJ v7 produces commercial product-photography quality
+that reads as real photography; Canva's native image AI returns flatter,
+stylized output that doesn't pass as a product shot. Use Canva downstream for
+text overlays, logo fixes, brand-matched slides, and client collateral — not
+for the hero render itself.
 
-| Shot | Purpose | Prompt Guidance |
-|------|---------|-----------------|
-| **Hero** | Primary product shot, clean commercial photography | Follow midjourney-prompt SKILL.md category table for shot type, surface, lighting |
-| **Lifestyle** | Product in real-world context (kitchen, table, store shelf) | Add environment context, people optional, warm natural lighting |
-| **Close-Up** | Detail/texture shot showing materials, label, finish | Tight crop, macro-style, dramatic lighting, material specificity |
-| **Alternate** | Different angle, color variant, or packaging option | 45-degree, flat lay, or collection arrangement |
+**Process per surviving idea:**
+
+1. Use `midjourney-prompt` SKILL.md to craft one optimal prompt per shot type
+   below. Write the prompts into a `midjourney-prompts.md` file in the project
+   directory with the expected download filenames so the batch and renderer
+   stay in sync.
+2. Invoke `midjourney-generate` skill to run the batch (one `Submit` click per
+   prompt — pressing Enter does NOT submit). Use the in-page canvas-capture
+   download path documented in that skill — it lets you specify exact output
+   filenames, bypasses MJ CDN auth, and works unattended.
+3. **Shot types to generate (pick based on idea type):**
+
+| Shot | When to include | Prompt Guidance |
+|------|-----------------|-----------------|
+| **Hero** | Always | Follow midjourney-prompt SKILL.md category table for shot type, surface, lighting |
+| **Lifestyle** | When in-context matters (service products, retail formats) | Add environment context, people optional, warm natural lighting |
+| **Close-Up** | When material/finish is the story | Tight crop, macro-style, dramatic lighting, material specificity |
+| **Alternate** | When a second angle meaningfully differs | 45-degree, flat lay, or collection arrangement |
+
+For most ops- and format-oriented runs, one Hero per idea is enough. Reserve
+multi-shot treatments for truly buyer-ready CPG runs.
 
 **Prompt construction rules** (from midjourney-prompt skill):
 - Be specific about materials: "brushed aluminum" not "metal"
@@ -278,24 +298,32 @@ For each surviving idea, generate 4 Canva images using `mcp__claude_ai_Canva__ge
 - Say "commercial product photography" — never "photorealistic"
 - No filler words, no camera specs
 - 2-3 lines max per prompt
+- MJ v7 reliably renders 3-4 words of in-image text. Longer brand names get
+  mangled — generate text-free and overlay in Canva during polish.
 
-Pick the best hero. Present all 4 on the product page.
+**Image Embedding Protocol:**
+1. Save downloaded MJ PNGs to `images-<project-slug>/` with
+   `<id>-<slug>-hero.png` naming so render.py picks them up automatically.
+2. The renderer floats the hero image left at 280px with text wrapping to the
+   right — do NOT use a 60/40 stacked layout unless doing a buyer-ready
+   multi-shot page.
+3. CSS for images: `object-fit: contain` (NOT `cover`) so the full image
+   displays without cropping. No max-height constraint.
 
-**IMPORTANT — Image Embedding Protocol:**
-Canva `design.canva.ai` thumbnail URLs are authenticated and short-lived — they will NOT
-render in standalone HTML files or PDFs. Instead:
-1. After generating ALL designs, use `mcp__claude_ai_Canva__create-design-from-candidate` to
-   save ALL 4 images per product (hero, lifestyle, close-up, alternate) to Brady's Canva account
-2. Then use `mcp__claude_ai_Canva__export-design` to get a permanent public URL
-3. Download ALL exported PNGs locally to `output/images/` using curl
-   Naming: `XX-product-name-hero.png`, `XX-product-name-lifestyle.png`,
-   `XX-product-name-closeup.png`, `XX-product-name-alt.png`
-4. Embed ALL 4 in HTML per product: hero image large, 3 alternates as smaller thumbnails
-5. Never embed `design.canva.ai` URLs as `<img src>` — they will break
-6. CSS for ALL images: use `object-fit: contain` (NOT `cover`) so the full image displays
-   without cropping. No max-height constraint — let images show in their entirety.
-7. Layout: hero image at ~60% width, 3 alternates stacked vertically alongside it at ~35%
-   width, each labeled (LIFESTYLE, CLOSE-UP, ALTERNATE)
+**Handoff to Canva for polish (optional per idea):**
+When the MJ hero has a text or branding requirement MJ couldn't hit (e.g.,
+accurate client logos, long brand names, precise copy overlays), save the
+MJ PNG and run it through Canva as a polish pass:
+1. Import the MJ PNG into Canva as a design asset.
+2. Overlay the final logo/text cleanly.
+3. Export the polished PNG and save with `-polished` suffix
+   (e.g., `a7-...-hero-polished.png`).
+4. Update render.py's image-resolution logic (or a simple file swap) to prefer
+   the `-polished` variant when present.
+
+This split — MJ for photography, Canva for the page it lives on — is the
+default for all workshops going forward. Pure-Canva image generation is
+deprecated for hero shots.
 
 ### Step 5: Write Pitch + RTBs + Competitive Landscape + Ops Complexity
 

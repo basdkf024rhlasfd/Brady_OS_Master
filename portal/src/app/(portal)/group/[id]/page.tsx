@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { loadProjects, type ProjectConfig } from "@/config/load-projects";
 import { SIDEBAR_GROUPS } from "@/lib/sidebar-groups";
 import { getChatConfig } from "@/lib/chat/chat-config";
+import { applyProbes } from "@/lib/group-health";
 import { GroupPageClient, type GroupProject } from "./GroupPageClient";
 
 function getSubPages(slug: string): { label: string; href: string }[] {
@@ -43,7 +44,7 @@ export default async function GroupPage({ params }: { params: Promise<{ id: stri
   const chatConfig = getChatConfig(id);
   const shortcuts = chatConfig.shortcuts ?? [];
   const welcomeMessage = chatConfig.enabled ? chatConfig.welcomeMessage : "";
-  const dataSources = chatConfig.dataSources ?? [];
+  const dataSources = await applyProbes(chatConfig.dataSources ?? []);
   const agentInstructions = chatConfig.agentInstructions ?? "";
 
   return (

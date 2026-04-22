@@ -345,6 +345,18 @@
   /* CONDENSED IDEA PAGE */
   .idea-page.condensed { min-height: auto; padding: 40px 52px 28px; }
   .idea-page.condensed .idea-body p { font-size: 14px; color: var(--gray-light); max-width: 820px; }
+  .image-block-condensed {
+    float: left;
+    margin: 0 20px 12px 0;
+  }
+  .image-block-condensed img {
+    width: 200px; height: 133px;
+    object-fit: cover;
+    background: var(--bg-card);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 3px;
+  }
+  .idea-page.condensed .idea-body::after { content: ""; display: block; clear: both; }
 
 
   :root {
@@ -665,6 +677,10 @@
       <div class="idea-meta">ID A9 · PROBLEMS P10 · P9 · METHOD #5 · sam-walton-retail-doctrine</div>
       <div class="idea-body">
         
+        <div class="image-block">
+          <img src="images-1915-south/a9-builder-pro-b2b-channel-hero.png" alt="Builder Pro B2B Channel hero">
+        </div>
+        
         <div class="section"><div class="section-label">What</div><p>A dedicated B2B channel for home builders, Airbnb hosts, and professional stagers. Volume pricing (20-35% off retail), dedicated rep, direct-to-jobsite delivery, flat monthly billing, white-label furniture packages (&quot;studio,&quot; &quot;1BR,&quot; &quot;3BR family&quot;). A channel Ashley corporate doesn&#x27;t serve well.</p></div>
         <div class="section"><div class="section-label">Why now</div><p>Southeast US housing starts remain high (~30% above pre-pandemic on rolling average). Airbnb hosts in FL and GA are underserved by traditional retail. Professional stagers buy from whoever has volume terms. Builder channel is a growth lane Justin&#x27;s Corp Dev vision should capture.</p></div>
         <div class="section"><div class="section-label">Pilot spec</div><p>Target 20 builder accounts in Jacksonville + Tallahassee, 180 days. Instrument GMV, order frequency, margin vs retail blended, referrals, collection risk. Success: $2M GMV, 38%+ margin, &lt;2% bad debt.</p></div>
@@ -727,6 +743,11 @@
       <h2 class="idea-title">Sleep Lab Specialty Stores</h2>
       <div class="idea-meta">ID A1 · PROBLEMS P6 · METHOD #9</div>
       <div class="idea-body">
+        
+        <div class="image-block image-block-condensed">
+          <img src="images-1915-south/a1-sleep-lab-specialty-stores-hero.png" alt="Sleep Lab Specialty Stores hero">
+        </div>
+        
         <p>A standalone 3-5K sqft sleep-specialty format with biometric mattress matching, pillow fitting, and sleep-coaching staff. Pilot 1-3 locations in dense markets. Ashley corporate is pushing sleep — the tailwind is there. First move: spend 30 days validating Ashley corporate&#x27;s sleep franchise concept, then decide build vs. wait.</p>
       </div>
       <div class="attribution">method</div>
@@ -741,6 +762,11 @@
       <h2 class="idea-title">15-Minute Showroom (Small Format)</h2>
       <div class="idea-meta">ID A3 · PROBLEMS P10 · METHOD #57</div>
       <div class="idea-body">
+        
+        <div class="image-block image-block-condensed">
+          <img src="images-1915-south/a3-15-minute-showroom-small-format-hero.png" alt="15-Minute Showroom (Small Format) hero">
+        </div>
+        
         <p>Neighborhood store under 3K sqft stocked with the top 20 SKUs and a same-day delivery promise. Suburban trade areas adjacent to flagship stores. First move: pick one trade area where flagship traffic is constrained, open a pop-up small format for 6 months, measure.</p>
       </div>
       <div class="attribution">method</div>
@@ -755,6 +781,11 @@
       <h2 class="idea-title">Concierge Appointment Showroom</h2>
       <div class="idea-meta">ID A4 · PROBLEMS P7 · METHOD #9</div>
       <div class="idea-body">
+        
+        <div class="image-block image-block-condensed">
+          <img src="images-1915-south/a4-concierge-appointment-showroom-hero.png" alt="Concierge Appointment Showroom hero">
+        </div>
+        
         <p>By-appointment format for $10K+ customers. Three to four designers per location, full room mockups in Unity/AR, wine and champagne on arrival. First move: run a &quot;Concierge Saturday&quot; event at one flagship for 8 weeks and measure ticket lift vs baseline.</p>
       </div>
       <div class="attribution">method</div>
@@ -769,6 +800,11 @@
       <h2 class="idea-title">Regional Assortment Editor</h2>
       <div class="idea-meta">ID A6 · PROBLEMS P10 · METHOD #32</div>
       <div class="idea-body">
+        
+        <div class="image-block image-block-condensed">
+          <img src="images-1915-south/a6-regional-assortment-editor-hero.png" alt="Regional Assortment Editor hero">
+        </div>
+        
         <p>Curated micro-collections per store based on demographic cluster. FL coastal stores get different merchandise than AL rural. First move: segment 30 stores into 4-5 clusters, pilot 10% merchandise variance at two clusters for one quarter, measure sell-through delta.</p>
       </div>
       <div class="attribution">method</div>
@@ -783,6 +819,11 @@
       <h2 class="idea-title">Furniture Subscription (Rent-to-Own Tier)</h2>
       <div class="idea-meta">ID A8 · PROBLEMS P10 · METHOD #57</div>
       <div class="idea-body">
+        
+        <div class="image-block image-block-condensed">
+          <img src="images-1915-south/a8-furniture-subscription-rent-to-own-tier-hero.png" alt="Furniture Subscription (Rent-to-Own Tier) hero">
+        </div>
+        
         <p>Monthly-swap subscription targeted at Airbnb hosts, stagers, and military moves. Tiered by room size and quality level. First move: test demand via a landing page + waitlist in two markets before building the ops spine. Caution — Acima and Progressive Leasing already crowd the rent-to-own lane; differentiation has to be real.</p>
       </div>
       <div class="attribution">method</div>
@@ -1245,6 +1286,7 @@
       <h2 class="idea-title">Showroom Traffic + Conversion Analytics</h2>
       <div class="idea-meta">ID B7 · PROBLEMS P2 · METHOD #45</div>
       <div class="idea-body">
+        
         <p>Anonymized camera + beacon analytics to track foot traffic, dwell time, and conversion in-store. Feeds staffing (B9) and layout optimization. First move: 3-store pilot with off-the-shelf tools (RetailNext, Placer.ai). Privacy considerations are the primary governance question.</p>
       </div>
       <div class="attribution">method</div>
@@ -1259,6 +1301,7 @@
       <h2 class="idea-title">DC Put-Away + Pick Optimization AI</h2>
       <div class="idea-meta">ID B11 · PROBLEMS P8 · METHOD #45</div>
       <div class="idea-body">
+        
         <p>Warehouse slotting + pick-path AI across 3 DCs. 20-30% picker-step reduction is standard in the industry. First move: pick one DC, benchmark current picker steps/order, pilot a WMS upgrade with slot optimization. Requires capital more than it requires strategy.</p>
       </div>
       <div class="attribution">method</div>
@@ -1273,6 +1316,7 @@
       <h2 class="idea-title">Lead Scoring for Sales Associates</h2>
       <div class="idea-meta">ID B14 · PROBLEMS P2 · METHOD #45</div>
       <div class="idea-body">
+        
         <p>Score web leads and in-store visitors by close probability. Prioritize associate follow-up time toward high-probability customers. First move: collect 6 months of historical close data, train a model, pilot with top 5 stores. Quick win if data is clean.</p>
       </div>
       <div class="attribution">method</div>
@@ -1287,6 +1331,7 @@
       <h2 class="idea-title">AI Sales Coach (Real-Time Associate Assistant)</h2>
       <div class="idea-meta">ID B15 · PROBLEMS P2 · METHOD #55</div>
       <div class="idea-body">
+        
         <p>Tablet-based assistant for floor associates. Product knowledge, objection handling, CRM prompts, inventory check. First move: build a minimal version on GPT-4 + product catalog, test in 2 stores for 90 days. Risk: associate adoption, which is gating for every retail-tech pilot.</p>
       </div>
       <div class="attribution">method</div>

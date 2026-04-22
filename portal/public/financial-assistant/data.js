@@ -1027,10 +1027,10 @@ window.COCKPIT_DATA = {
     "expenseTransactions": 3
   },
   "balanceSheet": {
-    "snapshotDate": "2026-04-21",
-    "netWorth": 984645.47,
+    "snapshotDate": "2026-04-22",
+    "netWorth": 1349346.24,
     "assets": {
-      "total": 1739920.82,
+      "total": 2104621.59,
       "realEstate": {
         "grossValue": 1079200.0,
         "netEquity": 508098.86,
@@ -1038,11 +1038,15 @@ window.COCKPIT_DATA = {
         "heloc": 101073.25
       },
       "investments": {
-        "total": 659415.74,
-        "ira": 303945.68,
+        "total": 1024116.51,
+        "ira": 599194.16,
         "k401": 100058.23,
-        "roth": 71785.51,
-        "taxableBrokerage": 183626.32
+        "roth": 141237.80,
+        "taxableBrokerage": 183626.32,
+        "fidelityAccounts": [
+          {"name": "ROTH IRA (...9970)", "type": "roth", "amount": 69452.29},
+          {"name": "Rollover IRA C (...3144)", "type": "ira", "amount": 295248.48}
+        ]
       },
       "bankCash": 1305.08
     },

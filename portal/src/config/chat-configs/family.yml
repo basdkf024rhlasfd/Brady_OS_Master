@@ -81,16 +81,25 @@ dataSources:
     status: "partial"
     id: "3-reference/skills/morning-sweep/SKILL.md"
     description: "Step 3.10 emits 10-sweep-state.md, 12-open-loops.md, 20-routines.md, 21-decisions-log.md, 22-rejected.md — context layer added"
+    evidence:
+      file: "portal/public/family/kb/10-sweep-state.md"
+      max_age_days: 2
   - label: "Weekly Sweep"
     type: "skill"
     status: "partial"
     id: "3-reference/skills/weekly-sweep/SKILL.md"
     description: "Step 2.2b added to write week-ahead to KB — 11-week-ahead.md seeded with calendar data"
+    evidence:
+      file: "portal/public/family/kb/11-week-ahead.md"
+      max_age_days: 8
   - label: "Evening Sweep"
     type: "skill"
     status: "partial"
     id: "3-reference/skills/evening-sweep/SKILL.md"
     description: "Step 3.7 writes 12-open-loops.md; step 3.7b appends to 21-decisions-log.md — needs first run to populate"
+    evidence:
+      file: "portal/public/family/kb/12-open-loops.md"
+      max_age_days: 2
   - label: "Grocery Assistant"
     type: "external"
     status: "partial"

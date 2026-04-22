@@ -34,9 +34,14 @@ Arguments: $ARGUMENTS
 
 6. If type is `native`, tell the user they need to build the page components manually.
 
-7. Tell the user to set the Vercel env var:
-   `MCEPTION_<SLUG_UPPER>_EMAILS` on project "munich"
-   Or offer to do it via `/portal-access`.
+7. Set the Vercel env var automatically (do not ask Brady to do this):
+   ```
+   cd portal && vercel link --yes --project mception-ai
+   printf "<emails-csv>" | vercel env add MCEPTION_<SLUG_UPPER>_EMAILS production
+   printf "<emails-csv>" | vercel env add MCEPTION_<SLUG_UPPER>_EMAILS preview
+   printf "<emails-csv>" | vercel env add MCEPTION_<SLUG_UPPER>_EMAILS development
+   ```
+   Production is the actual mception.ai project name — NOT "munich" (legacy project of the same app). Verify with `vercel env ls production`.
 
 ## Done
 Report: slug, label, type, files created. Remind about the env var.

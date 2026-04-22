@@ -2,22 +2,36 @@
 
 Canonical write pattern for the Routing Log DB. Every sweep and skill that dispositions an item (routes a note, publishes a brief, sends a dev plan to Conductor, moves a capture to its permanent home) appends one row here. This is the action log that Commissioner Brief, Traffic Light, and any future OS-wide reporting read from.
 
-## Database
+## Location
 
-- **Notion DB ID:** `344ed43b-89c5-816a-ab54-ca49ca239748`
+- **Notion page ID:** `344ed43b-89c5-816a-ab54-ca49ca239748`
+- **Page title:** 📍 Routing Log
 - **Registered in:** `3-reference/infrastructure-registry.yml` under `notion.routing_log_db`
+  (name is legacy — this is a page with a markdown table, not a DB)
+
+**Implementation note (verified 2026-04-22):** The Routing Log is a flat
+markdown **table** on a single Notion page, NOT a Notion database. Rationale
+per the page itself: "an agent loads the full routing history in one fetch.
+For the lookup pattern ('where did X go?'), this is faster and cheaper on
+tokens than a paginated DB query." Use `notion-update-page` with
+`command: update_content` to append rows — do NOT use `notion-create-pages`
+with a database_id parent (that call will 400 because the target is a page).
 
 ## Schema
 
-5 fields per entry. Do not add fields without updating this SOP and the registry.
+8 columns in the current table. Additions have accumulated over time — keep
+new rows consistent with existing column headers:
 
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `date` | Date | yes | YYYY-MM-DD of the routing action |
-| `original_title` | Title | yes | The item being routed (email subject, note title, capture text) |
-| `destination` | Rich text | yes | Where it was routed (Notion page title, DB name, file path, URL, "Complete") |
-| `reason` | Rich text | yes | Why this destination — one clause |
-| `summary` | Rich text | yes | One-line description of content or outcome |
+| Column | Required | Description |
+|---|---|---|
+| `Date` | yes | YYYY-MM-DD of the routing action |
+| `Original Title` | yes | The item being routed |
+| `Original ID` | optional | Source page ID or commit hash in backticks; `—` if none |
+| `Source Type` | optional | e.g. Pulse Note, Thread Log, Consulting deliverable, System Instruction |
+| `Routed To` | yes | Where it was routed (Notion page path, URL, file path) |
+| `Destination ID` | optional | Target page ID or PR number; `—` if none |
+| `Why` | yes | One clause — why this destination |
+| `Summary` | yes | One-line description of content or outcome |
 
 ## When to write
 
@@ -34,24 +48,40 @@ Do NOT write a row for pure reads (scans, queries, dashboards). Routing Log is a
 
 ## Write pattern (Notion MCP)
 
-Use `mcp__claude_ai_Notion__notion-create-pages` with the DB ID above. One page = one row.
+Use `mcp__claude_ai_Notion__notion-update-page` with `command: update_content`
+to append rows to the markdown table. Find the last `<tr>...</tr>` block
+ending the table, replace it with `last_row + new_rows + </table>`.
 
-Example payload:
+Example (one new row):
 
+```python
+notion-update-page(
+  page_id="344ed43b-89c5-816a-ab54-ca49ca239748",
+  command="update_content",
+  properties={},
+  content_updates=[{
+    "old_str": "<td>Past weekly sweep moved to Notes DB</td>\n</tr>\n</table>",
+    "new_str": (
+      "<td>Past weekly sweep moved to Notes DB</td>\n</tr>\n"
+      "<tr>\n"
+      "<td>2026-04-22</td>\n"
+      "<td>Batch Sittercity replies on Wed 2 PM</td>\n"
+      "<td>—</td>\n"
+      "<td>System Instruction</td>\n"
+      "<td>Rules & Preferences — Agent Defaults</td>\n"
+      "<td>—</td>\n"
+      "<td>Captured via Cowork; permanent behavioral rule</td>\n"
+      "<td>Batched Sittercity replies scheduled for Wed 2 PM block; added as agent default</td>\n"
+      "</tr>\n"
+      "</table>"
+    )
+  }]
+)
 ```
-{
-  "parent": { "database_id": "344ed43b-89c5-816a-ab54-ca49ca239748" },
-  "properties": {
-    "original_title": "Batch Sittercity replies on Wed 2 PM",
-    "date": "2026-04-21",
-    "destination": "Rules & Preferences — Agent Defaults",
-    "reason": "System Instruction captured via Cowork; permanent behavioral rule",
-    "summary": "Batched Sittercity replies scheduled for Wed 2 PM block; added as agent default"
-  }
-}
-```
 
-Match the field names exactly to whatever they are in the Notion DB. If the DB property is titled differently, translate — but document the mapping here when you discover it.
+**Tips for multi-row appends:** emit all new rows together in one
+content_update call. The `old_str` must exactly match the current last-row
++ `</table>` in the page — fetch first if unsure.
 
 ## Examples of good rows
 

@@ -1,5 +1,6 @@
 ---
 name: financial-assistant
+agent: Finn (0-agents/custom-built-agents/finn.md)
 description: >
   Unified personal + business financial cockpit. Parses Monarch Money CSV exports,
   enriches with Gmail invoice/receipt scanning, Calendar bill tracking, and Notion

@@ -163,6 +163,47 @@ two uniformed delivery technicians in a modern apartment living room, one rollin
 
 ---
 
+## A6 · Regional Assortment Editor
+
+**Concept:** Split-composition contrasting two regional merchandising moods
+in the same retailer — coastal Florida on one side, rural Alabama on the
+other. Conveys "one brand, two local sensibilities."
+
+**Prompt:**
+
+```
+split composition two side-by-side furniture store vignettes inside the same retailer, left side a coastal Florida showroom with rattan chairs linen sofa driftwood accents and pale blue palette, right side a rural Alabama showroom with leather sofa dark walnut wood plaid accents and warm amber palette, visible center seam between the two, wide editorial shot at eye level, commercial retail photography
+--ar 3:2 --v 7 --q 2 --style raw --no watermark, text artifacts
+```
+
+**Download filename:** `a6-regional-assortment-editor-hero.png`
+
+**Notes:** If MJ can't hold the split cleanly, fallback is a single coastal-style
+Florida showroom with a note in the pitch that the rural AL variant reads
+differently — the idea is about variance, not one image.
+
+---
+
+## A9 · Builder Pro B2B Channel
+
+**Concept:** Builder or general-contractor reviewing furniture layouts on a
+tablet inside a newly-constructed spec home. Signals B2B and jobsite, not
+retail or residential styling.
+
+**Prompt:**
+
+```
+a general contractor in work boots and a flannel shirt holding an iPad showing a furniture layout plan, standing inside a newly-constructed spec home with bare drywall still visible at the edges and finished hardwood floors, staged furniture arriving through the front door behind him, bright midday natural light, wide lifestyle shot at eye level, commercial product photography
+--ar 3:2 --v 7 --q 2 --style raw --no watermark, text artifacts
+```
+
+**Download filename:** `a9-builder-pro-b2b-channel-hero.png`
+
+**Notes:** The drywall-visible detail is what keeps it B2B — without it MJ will
+default to a finished home, which reads as retail/residential.
+
+---
+
 ## Running the batch
 
 Via the `midjourney-generate` skill (Chrome required, Midjourney session

@@ -146,6 +146,7 @@ def render_full_idea(idea: dict) -> str:
 
 def render_condensed_idea(idea: dict) -> str:
     problems = " · ".join(idea.get("problems", []))
+    img_html = condensed_image_block_for(idea)
     return f"""
     <section class="page idea-page condensed">
       <div class="idea-header">
@@ -156,11 +157,27 @@ def render_condensed_idea(idea: dict) -> str:
       <h2 class="idea-title">{esc(idea["name"])}</h2>
       <div class="idea-meta">ID {idea["id"]} · PROBLEMS {esc(problems)} · METHOD #{idea["method"]}</div>
       <div class="idea-body">
+        {img_html}
         <p>{body(idea.get("condensed", ""))}</p>
       </div>
       <div class="attribution">{esc(idea.get("attribution", ""))}</div>
     </section>
     """
+
+
+def condensed_image_block_for(idea: dict) -> str:
+    if not idea.get("canva"):
+        return ""
+    slug = re.sub(r"[^a-z0-9]+", "-", idea["name"].lower()).strip("-")
+    hero = IMAGES_DIR / f"{idea['id'].lower()}-{slug}-hero.png"
+    if not hero.exists():
+        return ""
+    rel_hero = hero.relative_to(HERE)
+    return f"""
+        <div class="image-block image-block-condensed">
+          <img src="{rel_hero}" alt="{esc(idea['name'])} hero">
+        </div>
+        """
 
 
 def render_cover() -> str:
@@ -712,6 +729,18 @@ CSS = r"""
   /* CONDENSED IDEA PAGE */
   .idea-page.condensed { min-height: auto; padding: 40px 52px 28px; }
   .idea-page.condensed .idea-body p { font-size: 14px; color: var(--gray-light); max-width: 820px; }
+  .image-block-condensed {
+    float: left;
+    margin: 0 20px 12px 0;
+  }
+  .image-block-condensed img {
+    width: 200px; height: 133px;
+    object-fit: cover;
+    background: var(--bg-card);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 3px;
+  }
+  .idea-page.condensed .idea-body::after { content: ""; display: block; clear: both; }
 """
 
 

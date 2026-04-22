@@ -18,18 +18,6 @@ projects:
       baseUrl: ""
       path: "/kroger/viewer/index.html"
 
-  - slug: 1915-south
-    label: "1915 South"
-    short: "19"
-    href: "/1915-south"
-    description: "1915 South | Ashley — consulting engagement with Justin Woods. Innovation Workshop + M&A/Investment/Partnership Deep Research. Internal hub with links to all detailed files."
-    approved: 2026-04-22
-    type: iframe-local
-    magic_link: false
-    frame:
-      baseUrl: ""
-      path: "/1915-south/viewer/index.html"
-
   - slug: content-engine
     label: "Content Engine"
     short: "E"
@@ -100,6 +88,19 @@ projects:
     frame:
       baseUrl: "https://ops-lab-tau.vercel.app"
       path: "/"
+
+  # --- 1915 South engagement ---
+  - slug: 1915-south
+    label: "1915 South"
+    short: "T"
+    href: "/1915-south"
+    description: "Consulting hub for 1915 South | Ashley (Justin Woods). Innovation Workshop + M&A / Investment / Partnership Deep Research with direct links to every detailed artifact."
+    approved: 2026-04-22
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south/viewer/index.html"
 
   # --- Family group ---
   - slug: grocery-assistant

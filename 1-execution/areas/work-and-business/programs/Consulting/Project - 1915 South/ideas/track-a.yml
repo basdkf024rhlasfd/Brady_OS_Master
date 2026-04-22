@@ -158,7 +158,7 @@ ideas:
     problems: [P10, P9]
     method: 5
     frameworks: [sam-walton-retail-doctrine]
-    canva: false
+    canva: true
     what: >
       A dedicated B2B channel for home builders, Airbnb hosts, and professional
       stagers. Volume pricing (20-35% off retail), dedicated rep, direct-to-jobsite
@@ -252,7 +252,7 @@ ideas:
     problems: [P6]
     method: 9
     frameworks: [bezos-shareholder-letters]
-    canva: false
+    canva: true
     condensed: >
       A standalone 3-5K sqft sleep-specialty format with biometric mattress
       matching, pillow fitting, and sleep-coaching staff. Pilot 1-3 locations in
@@ -269,7 +269,7 @@ ideas:
     problems: [P10]
     method: 57
     frameworks: [foran-radical-simplification]
-    canva: false
+    canva: true
     condensed: >
       Neighborhood store under 3K sqft stocked with the top 20 SKUs and a
       same-day delivery promise. Suburban trade areas adjacent to flagship
@@ -285,7 +285,7 @@ ideas:
     problems: [P7]
     method: 9
     frameworks: [danny-meyer-hospitality]
-    canva: false
+    canva: true
     condensed: >
       By-appointment format for $10K+ customers. Three to four designers per
       location, full room mockups in Unity/AR, wine and champagne on arrival.
@@ -301,7 +301,7 @@ ideas:
     problems: [P10]
     method: 32
     frameworks: [sam-walton-retail-doctrine]
-    canva: false
+    canva: true
     condensed: >
       Curated micro-collections per store based on demographic cluster. FL
       coastal stores get different merchandise than AL rural. First move:
@@ -317,7 +317,7 @@ ideas:
     problems: [P10]
     method: 57
     frameworks: [foran-radical-simplification]
-    canva: false
+    canva: true
     condensed: >
       Monthly-swap subscription targeted at Airbnb hosts, stagers, and military
       moves. Tiered by room size and quality level. First move: test demand via
