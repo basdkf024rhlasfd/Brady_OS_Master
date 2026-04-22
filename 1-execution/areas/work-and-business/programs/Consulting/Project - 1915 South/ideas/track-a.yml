@@ -1,0 +1,327 @@
+# Track A — Format / Product (10 survivors)
+# Full detail for Tier 1 + Tier 2; condensed for Tier 3
+ideas:
+  - id: A5
+    track: A
+    tier: 1
+    score: 4.30
+    name: Ashley Care Plus — Service-as-Product
+    problems: [P8]
+    method: 5
+    frameworks: [danny-meyer-hospitality]
+    canva: true
+    what: >
+      A productized service tier attached to every delivery: white-glove assembly,
+      in-home placement, three-year fabric and mechanism warranty, annual upholstery
+      check-up. Sold as a SKU — $149 one-time, $299 premium, or $19/month for the
+      life of the piece. Margin lives in attach rate and the subscription tail.
+    why_now: >
+      Appliance retailers (Best Buy Geek Squad, Home Depot Pro) have normalized the
+      service-attached-to-product motion. Furniture hasn't. At 1915 South's $2,500
+      average ticket, a 30% attach at $149 = $44 per delivery = ~$1.8M on 40K annual
+      deliveries.
+    pilot_spec: >
+      5 stores across 2 states, 90 days. Instrument attach rate, repeat purchase
+      velocity, NPS delta, warranty claim rate. Success metric: attach ≥25% at a
+      blended $120 AOV for the service SKU.
+    impact: >
+      Revenue: +$1.5-2.5M at scale. Margin: service margins typically 55-70% vs
+      furniture's blended 42% — accretive to EBITDA. Retention: customers with a
+      warranty subscription return at ~1.7x the base.
+    precedent: >
+      Best Buy Total Tech Support generates $300M+ annually at 70%+ margin. Geek
+      Squad is often cited by Hubert Joly as the lever that saved Best Buy from
+      Amazon. Home Depot Pro Xtra and Lowe's MyLowe's Rewards prove the concept in
+      big-box hard goods. No one has applied it to mid-market furniture.
+    competitive: >
+      Closest analogs: RoomToGo Guardian, Ashley Furniture Protection Plan (carrier-
+      administered), local delivery contractors offering assembly. Nobody sells it
+      as a branded service tier with subscription mechanics. Incumbents could copy
+      within 12 months — so speed matters.
+    complexity: >
+      Moderate. Need a back-office for claims, a roster of assembly techs, a CRM
+      hook to track subscription renewals. Most of this plumbing exists already;
+      the work is packaging and pricing.
+    risks:
+      - Attach rate fails at 15% and the economics break — mitigate with a stripped
+        $49 tier that's purely assembly
+      - Warranty claim frequency exceeds reserve — price conservatively in year one,
+        get actuarial data before scaling
+      - Service techs become the brand — under-invest in hiring and satisfaction
+        craters
+    attribution: method #5 Value Chain Expansion · framework danny-meyer-hospitality
+
+  - id: A7
+    track: A
+    tier: 1
+    score: 4.30
+    name: Final-Mile Branded White-Glove Experience
+    problems: [P8]
+    method: 5
+    frameworks: [sam-walton-retail-doctrine]
+    canva: true
+    what: >
+      Own the final mile as a branded customer asset, not a cost center. 1915 South-
+      branded delivery vehicles and uniformed teams; photograph every delivered
+      piece in-home and send to the customer; target <1% damage rate vs industry
+      4-6%. Partner with JB Hunt on the rolling stock, but the customer experience
+      is 1915 South.
+    why_now: >
+      Justin is actively evaluating a JB Hunt partnership — the contract window is
+      the moment to negotiate the experience layer, not just the logistics. Once
+      JB Hunt owns the customer touchpoint, you never get it back. Damage rates at
+      4-6% of $2,500 tickets = $5M+ annual leak on 40K deliveries.
+    pilot_spec: >
+      Jacksonville + Tallahassee, 120 days. One dedicated crew per market, two
+      vehicles each. Instrument damage rate, NPS, photo-delivery send rate, repeat
+      purchase velocity, referral rate. Success: damage <2%, NPS +15 vs baseline,
+      photo-send ≥90%.
+    impact: >
+      Damage savings: ~$1-2M at scale if rate drops from 5% to 1.5%. Customer
+      lifetime value: white-glove delivery is the #1 NPS driver in furniture per
+      Furniture Today 2024 consumer panel. Referral: every delivery is a photo
+      moment — inbound social asset.
+    precedent: >
+      Williams-Sonoma and Restoration Hardware own their delivery experience and
+      command premium pricing for it. IKEA's TaskRabbit acquisition was a defensive
+      move against this exact loss of touchpoint. In appliances, Best Buy's delivery
+      is rated higher than Amazon's despite higher price.
+    competitive: >
+      Most Ashley franchisees outsource delivery to 3PLs with no brand overlay.
+      RoomToGo and Havertys are better than average but still transactional. White-
+      glove in furniture is a white-space gap at the franchisee tier.
+    complexity: >
+      Moderate-High. Branded vehicles + uniforms + training + photo workflow + CRM
+      hook. JB Hunt negotiation is the critical path — must preserve customer touch
+      in the SOW.
+    risks:
+      - JB Hunt refuses to let 1915 South brand ride on their equipment — negotiate
+        for co-brand or decal-only
+      - Photo-send workflow fails at the driver level — solve with an iPad + app,
+        not paper
+      - Uniformed teams = higher labor cost; the margin play requires the damage
+        and CLV math to hold
+    attribution: method #5 Value Chain Expansion · framework sam-walton-retail-doctrine
+
+  - id: A2b
+    track: A
+    tier: 2
+    score: 3.70
+    name: Store-of-Future Single-Element Pilot
+    problems: [P7]
+    method: 55
+    frameworks: [bezos-shareholder-letters]
+    canva: true
+    what: >
+      Instead of building one $5M store-of-future flagship, pilot ONE
+      high-impact element in one existing store. Three candidates: (1) AR room
+      visualization app for customer use, (2) AI sales assistant on associate
+      tablets, (3) smart-home integration demo zone. Run 90 days, measure, keep
+      the winner, roll it.
+    why_now: >
+      Retail-tech capex is notoriously vendor-pitched and under-measured. Every
+      Ashley franchisee that built a "store of the future" flagship in 2019-2023
+      is quiet about the ROI. Small, measurable pilots beat big bets.
+    pilot_spec: >
+      One Tallahassee store, 90 days per element. Instrument conversion rate,
+      ticket size, time-in-store, associate Net Promoter (do the associates
+      actually use the tool?). Success: +5% conversion OR +$200 ticket OR
+      unanimous associate adoption.
+    impact: >
+      If AR app lifts conversion 5% across 30 stores, +$9M revenue. If AI sales
+      assistant lifts ticket $200, +$8M. If smart-home demo zone drives no
+      measurable lift, kill it — and you saved the $5M flagship.
+    precedent: >
+      Apple Store's Genius Bar was originally a one-store pilot. Nordstrom tested
+      mobile checkout in one store for 18 months before rollout. Lowe's Holoroom
+      AR pilot ran in two stores for 2 years.
+    competitive: >
+      Most furniture retailers skip piloting and buy "retail tech" in one
+      consultant-driven fit-out. The pilot approach is rare and it's the reason
+      it works.
+    complexity: >
+      Low-Moderate per element. AR app: off-the-shelf platforms exist (Hutch,
+      IKEA Place clone). AI sales assistant: GPT-4 + product catalog + light CRM
+      integration. Smart-home: requires physical buildout.
+    risks:
+      - Pilot gets infected by vendor over-engineering — scope ruthlessly
+      - Associate adoption fails — without it, the tech is dead regardless of
+        customer signal
+      - Ashley corporate has a competing store-of-future program and you conflict
+    attribution: method #55 Category Design · framework bezos-shareholder-letters
+
+  - id: A9
+    track: A
+    tier: 2
+    score: 3.90
+    name: Builder Pro B2B Channel
+    problems: [P10, P9]
+    method: 5
+    frameworks: [sam-walton-retail-doctrine]
+    canva: false
+    what: >
+      A dedicated B2B channel for home builders, Airbnb hosts, and professional
+      stagers. Volume pricing (20-35% off retail), dedicated rep, direct-to-jobsite
+      delivery, flat monthly billing, white-label furniture packages ("studio,"
+      "1BR," "3BR family"). A channel Ashley corporate doesn't serve well.
+    why_now: >
+      Southeast US housing starts remain high (~30% above pre-pandemic on rolling
+      average). Airbnb hosts in FL and GA are underserved by traditional retail.
+      Professional stagers buy from whoever has volume terms. Builder channel is
+      a growth lane Justin's Corp Dev vision should capture.
+    pilot_spec: >
+      Target 20 builder accounts in Jacksonville + Tallahassee, 180 days.
+      Instrument GMV, order frequency, margin vs retail blended, referrals,
+      collection risk. Success: $2M GMV, 38%+ margin, <2% bad debt.
+    impact: >
+      $5-15M annual revenue at maturity. Margin lower than retail (25-35% vs 42%)
+      but CAC is near zero and volumes are higher. Customer lifetime value is
+      multi-year by definition.
+    precedent: >
+      Home Depot Pro generates 50%+ of Home Depot revenue and is the company's
+      fastest growth vector. Lowe's Pro is a strategic priority. Sherwin-Williams
+      Pro is a case study in B2B retail expansion.
+    competitive: >
+      Regional competitors (Havertys, RoomToGo) have limited B2B programs.
+      Builder supply houses (Ferguson, Builders FirstSource) don't do furniture.
+      White space.
+    complexity: >
+      Moderate. Need B2B-specific pricing logic, credit terms, a dedicated rep,
+      a builder-package catalog, a jobsite-delivery workflow. Most existing
+      infrastructure adapts; the work is the go-to-market motion.
+    risks:
+      - Credit/collections risk — install a credit bureau hook and hard terms
+      - Cannibalizes retail — monitor and only accept it if builder margin holds
+      - Requires a hunter rep Ashley-franchisees typically don't have — hire
+        before launching
+    attribution: method #5 Value Chain Expansion · framework sam-walton-retail-doctrine
+
+  - id: A10
+    track: A
+    tier: 2
+    score: 3.70
+    name: Kids-Room-in-a-Box
+    problems: [P10]
+    method: 24
+    frameworks: [foran-radical-simplification]
+    canva: true
+    what: >
+      Pre-styled, age-banded furniture packages sold as one SKU. "Toddler Room"
+      ($899): bed, rug, dresser, nightstand. "Tween Room" ($1,299). "Teen Room"
+      ($1,499). One decision, one price, one delivery. Photograph the full room
+      staged; that's the product.
+    why_now: >
+      Parental decision fatigue is the core insight. A parent shopping for a
+      child's room furniture is making 8-12 decisions; Room-in-a-Box collapses
+      that to one. Wayfair and IKEA have proven the packaged-room appetite;
+      nobody has done it as a single-SKU retail product at scale.
+    pilot_spec: >
+      All 30 stores, 120 days. Three age bands × three style variants = 9 SKUs.
+      Instrument attach rate when parent is in the store for kids' furniture,
+      total ticket, return rate. Success: 20% of kids-room visits result in a
+      Room-in-a-Box sale at a blended $1,100 AOV.
+    impact: >
+      Net-new revenue $5-10M annually. Margin higher than piecemeal (reduced
+      picking, reduced delivery complexity, fewer SKUs per order). Photogenic =
+      social media asset.
+    precedent: >
+      IKEA's "roomplanner" and packaged room concepts. Wayfair's collections.
+      Restoration Hardware's full-room staging. The Citizenry's "bundles." In
+      automotive, "trim packages" are the closest retail analog — they simplify
+      choice and lift average ticket.
+    competitive: >
+      Most furniture retailers let customers build their own. Room-in-a-Box as
+      a single SKU with one price is uncommon in mid-market retail.
+    complexity: >
+      Low. No new suppliers needed — just bundle existing SKUs. Need styling
+      work, photography, pricing logic, and in-store merchandising. A 60-day
+      build.
+    risks:
+      - Cannibalizes higher-margin per-piece sales — size via incrementality
+        test
+      - SKUs within the box go out of stock unevenly — build substitution rules
+      - Taste variance — three style variants may not be enough; iterate
+    attribution: method #24 Mashup Method · framework foran-radical-simplification
+
+  # Tier 3 — condensed treatment
+  - id: A1
+    track: A
+    tier: 3
+    score: 3.10
+    name: Sleep Lab Specialty Stores
+    problems: [P6]
+    method: 9
+    frameworks: [bezos-shareholder-letters]
+    canva: false
+    condensed: >
+      A standalone 3-5K sqft sleep-specialty format with biometric mattress
+      matching, pillow fitting, and sleep-coaching staff. Pilot 1-3 locations in
+      dense markets. Ashley corporate is pushing sleep — the tailwind is there.
+      First move: spend 30 days validating Ashley corporate's sleep franchise
+      concept, then decide build vs. wait.
+    attribution: method #9 Blue Ocean · framework bezos-shareholder-letters
+
+  - id: A3
+    track: A
+    tier: 3
+    score: 3.40
+    name: 15-Minute Showroom (Small Format)
+    problems: [P10]
+    method: 57
+    frameworks: [foran-radical-simplification]
+    canva: false
+    condensed: >
+      Neighborhood store under 3K sqft stocked with the top 20 SKUs and a
+      same-day delivery promise. Suburban trade areas adjacent to flagship
+      stores. First move: pick one trade area where flagship traffic is
+      constrained, open a pop-up small format for 6 months, measure.
+    attribution: method #57 Downmarket Disruption · framework foran-radical-simplification
+
+  - id: A4
+    track: A
+    tier: 3
+    score: 3.00
+    name: Concierge Appointment Showroom
+    problems: [P7]
+    method: 9
+    frameworks: [danny-meyer-hospitality]
+    canva: false
+    condensed: >
+      By-appointment format for $10K+ customers. Three to four designers per
+      location, full room mockups in Unity/AR, wine and champagne on arrival.
+      First move: run a "Concierge Saturday" event at one flagship for 8 weeks
+      and measure ticket lift vs baseline.
+    attribution: method #9 Blue Ocean · framework danny-meyer-hospitality
+
+  - id: A6
+    track: A
+    tier: 3
+    score: 3.40
+    name: Regional Assortment Editor
+    problems: [P10]
+    method: 32
+    frameworks: [sam-walton-retail-doctrine]
+    canva: false
+    condensed: >
+      Curated micro-collections per store based on demographic cluster. FL
+      coastal stores get different merchandise than AL rural. First move:
+      segment 30 stores into 4-5 clusters, pilot 10% merchandise variance at
+      two clusters for one quarter, measure sell-through delta.
+    attribution: method #32 Platform Thinking · framework sam-walton-retail-doctrine
+
+  - id: A8
+    track: A
+    tier: 3
+    score: 3.00
+    name: Furniture Subscription (Rent-to-Own Tier)
+    problems: [P10]
+    method: 57
+    frameworks: [foran-radical-simplification]
+    canva: false
+    condensed: >
+      Monthly-swap subscription targeted at Airbnb hosts, stagers, and military
+      moves. Tiered by room size and quality level. First move: test demand via
+      a landing page + waitlist in two markets before building the ops spine.
+      Caution — Acima and Progressive Leasing already crowd the rent-to-own
+      lane; differentiation has to be real.
+    attribution: method #57 Downmarket Disruption · framework foran-radical-simplification
