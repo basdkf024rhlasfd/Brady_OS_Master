@@ -1,0 +1,191 @@
+# Track B — Tier 1 (4 ideas)
+ideas:
+  - id: B1
+    track: B
+    tier: 1
+    score: 4.70
+    name: GMROI Optimization Engine
+    problems: [P1]
+    method: 45
+    frameworks: [toc-five-focusing-steps]
+    anchor: true
+    what: >
+      A live GMROI view at the SKU × store × region level, with weekly buy/cut/
+      rebalance recommendations and a standing 45-minute exec ritual to act on
+      them. This is the execution layer Ashley corporate's GMROI Excellence
+      Framework demands — the metric already exists, but nobody at 1915 South
+      is using it to move money on a weekly cadence.
+    why_now: >
+      Ashley corporate's December 2024 GMROI Excellence Framework is a
+      top-down directive. Every franchisee will be scored. At $182M revenue,
+      a 10% GMROI shift equals $2-4M of freed-up inventory capital. The
+      infrastructure exists (Zapsight data foundation) — the ritual doesn't.
+    pilot_spec: >
+      All 30 stores, 90 days. Instrument SKU-level inventory turns, gross
+      margin per SKU, weeks of supply, store-level sell-through. Success:
+      measurable improvement in GMROI score within one quarter; cash freed
+      reallocated to top 20% SKUs.
+    impact: >
+      $2-4M freed inventory capital at 10% GMROI lift. Margin percentage
+      improvement of 0.5-1.5 points through better buy/cut decisions. Scales
+      to other Ashley franchisees as an exportable framework.
+    precedent: >
+      Theory of Constraints (Goldratt): identify the constraint, exploit it,
+      subordinate everything else. In retail, Walmart's item-level P&L drives
+      the entire buying discipline. Ashley corporate has already proven
+      AI-forecasting lifts of 20-30% internally.
+    competitive: >
+      Most Ashley franchisees rely on the vendor dashboards corporate provides.
+      A dedicated franchisee-level execution layer is rare. First-mover can
+      publish the framework and become the reference implementation.
+    complexity: >
+      Moderate. Data plumbing exists via Zapsight. The work is (a) the
+      analytical model, (b) the weekly ritual design, (c) the exec buy-in to
+      actually cut SKUs based on the recommendations.
+    risks:
+      - Recommendations get ignored by buyers — solve with the exec ritual and
+        scorecard, not more data
+      - Zapsight data has quality issues — budget for 30 days of data
+        reconciliation before trusting recommendations
+      - Ashley corporate changes the GMROI methodology — stay close to Wanek's
+        team
+    attribution: method #45 Bottleneck Analysis · framework toc-five-focusing-steps
+
+  - id: B4
+    track: B
+    tier: 1
+    score: 4.60
+    name: Marketing Content Factory (30-Market Engine)
+    problems: [P2]
+    method: 32
+    frameworks: [foran-radical-simplification]
+    what: >
+      A content engine that produces local-market content at scale across 30
+      stores — SEO landing pages, social posts, email sequences, Google
+      Business Profile updates, local search answers. Feed it the store
+      locations + inventory + local events; it produces 30 local pages monthly
+      plus weekly social per market. Zero incremental marketing headcount.
+    why_now: >
+      A 30-location retailer has a 30× SEO opportunity that single-location
+      competitors can't match. Meanwhile AI-generated content costs have
+      dropped 95%+ in 18 months. The gap between what's possible and what
+      1915 South is doing is the arbitrage.
+    pilot_spec: >
+      10 stores first, 90 days. Instrument: organic traffic delta, Google
+      Business Profile actions, local search ranking, conversion from
+      content-driven traffic. Success: 40% organic traffic growth on pilot
+      stores vs control stores.
+    impact: >
+      Content creation cost: -60-80% vs agency baseline. Incremental traffic:
+      500K-1M annual sessions at 30-store scale. Revenue: $500K-$2M from
+      existing-customer re-engagement and new SEO acquisition.
+    precedent: >
+      Yelp, TripAdvisor, and Nextdoor all built content at location scale.
+      In retail, Kohl's and Home Depot run programmatic local content. In
+      furniture, this is almost completely unexploited.
+    competitive: >
+      Regional furniture retailers either don't do local SEO or pay an agency
+      per-store (expensive). At-scale AI-generated local content is a
+      structural advantage.
+    complexity: >
+      Low-Moderate. Stack: a structured content CMS (Sanity or similar) + an
+      LLM workflow + a review queue. Existing PIM and Google Business Profile
+      feeds do most of the heavy lift.
+    risks:
+      - Google AI-content penalties — use AI for drafts, human review for
+        publish
+      - Content becomes generic — solve with local-event + inventory
+        specificity
+      - Reputation risk on auto-posted content — gate sensitive categories
+    attribution: method #32 Platform Thinking · framework foran-radical-simplification
+
+  - id: B8
+    track: B
+    tier: 1
+    score: 4.30
+    name: AI Demand Forecasting (SKU × Store × Week)
+    problems: [P1]
+    method: 41
+    frameworks: [toyota-way-pillars]
+    what: >
+      A forecasting model that predicts demand at the SKU × store × week
+      level, incorporating seasonality, local events, weather, and
+      promotional activity. Feeds the buying team's PO decisions and the
+      cross-store balance engine. 20-30% accuracy improvement over
+      baseline is the target, matching Ashley corporate's published results.
+    why_now: >
+      Ashley corporate has publicly claimed 20-30% forecast accuracy
+      improvement from AI in their operation. Franchisees have not
+      replicated it. Meanwhile ceased China sourcing (April 2025) and
+      reshoring cost pressure make forecast accuracy more valuable than
+      before.
+    pilot_spec: >
+      Top 500 SKUs, 120 days, all 30 stores. Instrument forecast accuracy
+      vs baseline, stockout rate, overstock/markdown rate. Success: 20%
+      accuracy improvement; 15% stockout reduction.
+    impact: >
+      Inventory capital freed: $1-2M. Markdown reduction: $500K-$1M.
+      Customer experience: fewer out-of-stocks on hero SKUs. Labor:
+      buying team time freed from tactical PO work.
+    precedent: >
+      Walmart's retail link and forecasting systems. Ashley corporate's
+      own AI forecasting program (20-30% accuracy lift published). Target's
+      Guest inventory deployment.
+    competitive: >
+      Mid-market retailers rely on vendor-provided forecasts or Excel-based
+      triangulation. An AI forecast specifically tuned to 1915 South's
+      30-store, 6-state footprint is a meaningful edge.
+    complexity: >
+      Moderate-High. Requires clean POS data, transfer data, and promotional
+      calendar. Zapsight's data layer is the foundation. Model maintenance
+      is ongoing.
+    risks:
+      - Cold start problem — first 90 days will be rough, budget for it
+      - Model drift as demand patterns change — plan for quarterly retrain
+      - Buyers override the model without learning — instrument override
+        rates
+    attribution: method #41 Second-Order Thinking · framework toyota-way-pillars
+
+  - id: B18
+    track: B
+    tier: 1
+    score: 4.70
+    name: AP Automation + 13-Week Cash Forecast
+    problems: [P3]
+    method: 8
+    frameworks: [toyota-way-pillars]
+    what: >
+      Invoice OCR, 3-way match automation, vendor payment optimization, plus
+      a rolling 13-week cash forecast with variance alerts. AP processing cost
+      drops 40-60% per industry data; cash visibility improves dramatically.
+      The piece of the back office that writes itself.
+    why_now: >
+      AP automation is the most mature back-office AI application. Ashley
+      corporate has already built this internally — the blueprint exists. A
+      $182M retailer with manual AP and batch cash reporting is leaving
+      obvious money on the floor.
+    pilot_spec: >
+      All legal entities, 120 days. Instrument: invoice cycle time, AP FTE
+      hours, early-pay discount capture, cash forecast accuracy. Success:
+      50% cycle-time reduction; 80%+ early-pay discounts captured;
+      ±5% cash forecast accuracy at 4 weeks.
+    impact: >
+      AP cost: -$200-400K annually. Early-pay discount capture: +$100-300K.
+      Working capital: $1-3M timing improvement via cash forecast accuracy.
+      Finance team: frees 1.5-2.5 FTE for higher-value work.
+    precedent: >
+      Bill.com and Stampli have productized this for mid-market. Ashley
+      corporate has published 40-60% AP cost reductions from their internal
+      deployment. Foran's Kogan.com case study (radical back-office
+      simplification) is instructive.
+    competitive: >
+      Most $100-300M retailers are behind on AP automation — it's an open
+      goal. Vendors make implementation turnkey.
+    complexity: >
+      Moderate. Off-the-shelf tools exist. Implementation is disciplined
+      change management, not technology. 90-day go-live feasible.
+    risks:
+      - ERP integration complexity — budget for this up-front
+      - Vendor onboarding friction — prioritize top 50 vendors by spend
+      - AP team resistance — redeploy, don't cut, during pilot
+    attribution: method #8 Constraint-Based Ideation · framework toyota-way-pillars

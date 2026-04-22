@@ -1,0 +1,418 @@
+# Track C — Back-Office / CFO Transition (10 survivors)
+ideas:
+  - id: C1
+    track: C
+    tier: 1
+    score: 4.60
+    name: CFO Role Redesign — Hybrid Financial + Tech + AI Officer
+    problems: [P4]
+    method: 3
+    frameworks: [high-output-management]
+    anchor: true
+    what: >
+      A written role definition, scorecard, and year-1/2/3 mandate for a
+      Chief Financial + Technology Officer. Core: traditional controllership
+      plus explicit ownership of the Zapsight relationship, the AI/tech
+      investment roadmap, and the analytics spine. Explicit NOT-my-job list
+      so the role doesn't collapse back to bookkeeping. The unlock for
+      everything else in this document.
+    why_now: >
+      Justin said in the April 20 email that this is "where I feel like you
+      could bring some pretty significant value." The role as he described
+      it does not exist in the market without redesign — a traditional CFO
+      will not do AI strategy; a strategist will not do controllership.
+      Someone has to define it.
+    pilot_spec: >
+      30-day write-up: role definition, KPI set, first-90-day mandate,
+      year-1 mandate, year-2/3 expansion map, NOT-my-job list. Russell
+      and Justin sign off. Hiring timeline: 60-120 days for full-time;
+      30 days for fractional/advisory.
+    impact: >
+      The enabling condition for every ops, product, and back-office idea
+      in this workshop. Without it, initiatives scatter across VPs without
+      the financial + tech seniority to make tradeoffs.
+    precedent: >
+      Andy Grove on role design in High Output Management. The CFO-plus-
+      technology pattern at Gainsight, Stripe, and Datadog in their growth
+      years. Brady has lived this peer role at a COO level.
+    competitive: >
+      A defined role is not a competitive differentiator — it's the
+      foundation that makes every other differentiator possible.
+    complexity: >
+      Low technically, High politically. Russell has to endorse, Justin
+      has to back, existing CFO conversation has to be managed.
+    risks:
+      - Existing CFO transition is mishandled — plan succession/exit first
+      - Role becomes a god-role — balance with a strong VP People partnership
+      - Hiring takes 9-12 months — interim fractional arrangement covers the
+        gap
+    attribution: method #3 First Principles · framework high-output-management
+
+  - id: C5
+    track: C
+    tier: 1
+    score: 4.60
+    name: AI/Tech Investment ROI Framework
+    problems: [P7, P5]
+    method: 41
+    frameworks: [thorndike-capital-allocation]
+    what: >
+      A common scoring template for every tech/AI investment — initial
+      business case, expected ROI, milestones at 3/6/12 months, kill-or-
+      scale decision criteria. Quarterly review at the exec level. Every
+      Zapsight scope, every software procurement, every AI tool goes
+      through the same gate.
+    why_now: >
+      Retail-tech capex is notoriously vendor-pitched and measured poorly.
+      Zapsight is an active example — what's the ROI framework for that
+      engagement? The AI/tech spend is about to accelerate; without a
+      framework it accelerates into waste.
+    pilot_spec: >
+      30 days to build the framework. Apply retroactively to 5 in-flight
+      tech investments (Zapsight included). Then every new investment
+      runs through it. Instrument: % of tech spend scored, kill rate on
+      underperforming investments.
+    impact: >
+      Capital preservation: 10-20% of poor tech spend killed at 6-month
+      gate instead of running 2 years. At $2-4M annual tech budget,
+      that's $200-800K annually.
+    precedent: >
+      Thorndike's capital allocation discipline (Outsiders). Bezos's
+      reversible vs irreversible decision framing. GE's old 4-gate
+      Six Sigma framework.
+    competitive: >
+      Structural capital discipline — Ashley corporate could adopt
+      this at the franchise level.
+    complexity: >
+      Low. It's a template + a governance rhythm.
+    risks:
+      - Framework becomes theater — enforce the kill decisions
+      - Vendors game the milestones — require objective metrics
+      - Delays good decisions — set a 2-week fast-track for clear wins
+    attribution: method #41 Second-Order Thinking · framework thorndike-capital-allocation
+
+  - id: C6
+    track: C
+    tier: 1
+    score: 4.20
+    name: Vendor Management Office (VMO)
+    problems: [P3, P5]
+    method: 8
+    frameworks: [slootman-amp-it-up]
+    what: >
+      Centralized register of all SaaS/tech/services vendors. Contract
+      terms, pricing, renewal calendar, performance metrics, consolidation
+      targets. One person owns it (inside the CFO org). Prevents renewal
+      auto-pilot, surfaces consolidation opportunity, governs new
+      procurement.
+    why_now: >
+      $182M multi-generation businesses accumulate vendor bloat. Without
+      a VMO, renewals happen in silos and consolidation never occurs.
+    pilot_spec: >
+      30-day build of the register and renewal calendar. 60 days to
+      consolidate top 10 opportunities. Instrument: vendor count,
+      spend, renewal cycle discipline. Success: 15% vendor count
+      reduction, $250-500K annual savings.
+    impact: >
+      Direct savings $250K-$1M annually. Indirect: faster procurement,
+      better negotiating position.
+    precedent: >
+      Standard PE-owned company playbook. Slootman's Snowflake era on
+      pace and discipline.
+    competitive: >
+      Not differentiating externally. Internal efficiency play.
+    complexity: >
+      Low. One register + one owner + a quarterly review.
+    risks:
+      - Register atrophies without ownership — name one person, not a
+        committee
+      - Consolidation disrupts a critical vendor — require transition
+        plans
+      - Renewal pressure ignored — CFO enforcement required
+    attribution: method #8 Constraint-Based Ideation · framework slootman-amp-it-up
+
+  - id: C2
+    track: C
+    tier: 2
+    score: 3.80
+    name: ERP Migration Decision Framework
+    problems: [P3]
+    method: 3
+    frameworks: [thorndike-capital-allocation]
+    what: >
+      A structured evaluation of Sage Intacct vs NetSuite vs Acumatica
+      vs QBO Advanced, scored against 1915 South's actual requirements:
+      30-location multi-entity reporting, M&A integration capability,
+      Ashley corporate reporting requirements, retail POS integration,
+      growth headroom to $500M.
+    why_now: >
+      QBO transition is floated in the brief. QBO may be undersized at
+      $182M. The decision should happen with a framework, not by vendor
+      pitch. This is the kind of decision a new CFO owns in first 90 days.
+    pilot_spec: >
+      45-day evaluation. Vendor demos, reference checks, cost modeling,
+      integration mapping. Output: scored decision document and rollout
+      plan. Success: clear recommendation with board sign-off.
+    impact: >
+      A bad ERP choice costs 2-3 years of productivity; a good one
+      enables everything else. Decision value is measured in years.
+    precedent: >
+      Standard CFO playbook for mid-market ERP selection. Firms like
+      Eide Bailly, BDO have public methodology.
+    competitive: >
+      Not differentiating.
+    complexity: >
+      Moderate. The choice is load-bearing for 5+ years.
+    risks:
+      - Vendor capture during eval — structure the eval to prevent
+      - Under-scoping integration requirements — map end-state first
+      - Ashley corporate dictates a platform — check early
+    attribution: method #3 First Principles · framework thorndike-capital-allocation
+
+  - id: C3
+    track: C
+    tier: 2
+    score: 3.80
+    name: Multi-Entity Financial Reporting Framework
+    problems: [P3]
+    method: 32
+    frameworks: [sam-walton-retail-doctrine]
+    what: >
+      Canonical P&L + balance sheet + cash flow structure across legal
+      entities × stores × merchandise categories. Makes Ashley corporate
+      reporting + GMROI reporting + store-level P&L (B19) come from the
+      same source of truth.
+    why_now: >
+      Growing from hardware store to $182M franchisee without a clean
+      reporting structure creates fragmentation. The new CFO + ERP
+      decision must land on one canonical structure, not inherit five.
+    pilot_spec: >
+      60 days to design the canonical structure with the current FP&A
+      team. 90 days to implement across existing reporting. Success:
+      single source of truth, all exec reports source from it.
+    impact: >
+      Enabler for B1, B19, C4, C8 — the operating cadence depends on
+      trusted numbers.
+    precedent: >
+      Standard multi-entity retailer practice. Walmart's store-level
+      P&L discipline is the reference.
+    competitive: >
+      Foundational, not competitive.
+    complexity: >
+      Moderate. Cross-functional alignment is the hard part.
+    risks:
+      - Current reports get abandoned before new ones are trusted —
+        phase carefully
+      - GL chart of accounts conflicts — resolve before rollout
+      - Store managers lose visibility — build local views alongside
+    attribution: method #32 Platform Thinking · framework sam-walton-retail-doctrine
+
+  - id: C4
+    track: C
+    tier: 2
+    score: 3.80
+    name: Month-End Close Acceleration
+    problems: [P3]
+    method: 45
+    frameworks: [toyota-way-pillars]
+    what: >
+      Cut the month-end close from typical 10-15 days to 3-5 days
+      through automation (AP, bank rec, accrual rules), standardization
+      (close checklist), and discipline (close-day ritual). Every day
+      earlier is a day more of decision time.
+    why_now: >
+      A slow close blocks every downstream decision. Modern finance
+      tools (FloQast, BlackLine, and ERP-native) make a faster close
+      standard.
+    pilot_spec: >
+      90 days. Instrument: close days, error rate, re-open rate.
+      Success: 3-day reduction in close cycle; error rate flat or
+      improved.
+    impact: >
+      Decision velocity: exec team operates on prior-month data 5-10
+      days sooner. Indirect financial impact: faster variance action.
+    precedent: >
+      Amazon's 1-day close was published in 2019. Airbnb runs a 2-day
+      close. Toyota Way applied to accounting.
+    competitive: >
+      Foundational, not competitive.
+    complexity: >
+      Moderate. Requires disciplined accounting team + tooling.
+    risks:
+      - Errors increase under pressure — instrument
+      - Ashley corporate reporting deadlines constrain — align early
+      - Resistance from CFO/controller — tie to new CFO mandate
+    attribution: method #45 Bottleneck Analysis · framework toyota-way-pillars
+
+  - id: C8
+    track: C
+    tier: 2
+    score: 3.70
+    name: Capital Allocation Dashboard (Russell's View)
+    problems: [P9]
+    method: 49
+    frameworks: [thorndike-capital-allocation]
+    what: >
+      A single-page executive dashboard for Russell: cash balance, rolling
+      free cash flow, capital deployment options (new stores / tech
+      investment / M&A / dividend to family), expected ROI on each.
+      Purpose-built for the sole owner's decision rhythm.
+    why_now: >
+      14% EBITDA on $182M = ~$25M annual EBITDA, roughly $15-18M free
+      cash flow after debt service + capex. That's a significant annual
+      capital allocation decision. Russell has stepped back operationally
+      but still owns the capital decisions.
+    pilot_spec: >
+      30 days to design + build. Monthly review rhythm with Russell
+      and Justin. Success: Russell uses it as his primary capital
+      reference.
+    impact: >
+      Better allocation decisions compound. 200 bps of improved ROI on
+      $15M deployed = $300K annually, compounding.
+    precedent: >
+      Thorndike's Outsiders case studies (Tom Murphy, John Malone,
+      Henry Singleton). Berkshire's reporting discipline.
+    competitive: >
+      Foundational.
+    complexity: >
+      Low-Moderate. Data exists; the UX is the work.
+    risks:
+      - Russell distrusts a dashboard over his instincts — design it
+        with him
+      - Garbage in, garbage out on ROI assumptions — govern carefully
+      - Becomes a vanity dashboard — tie to decisions
+    attribution: method #49 Margin Stack Thinking · framework thorndike-capital-allocation
+
+  - id: C9
+    track: C
+    tier: 2
+    score: 3.50
+    name: Finance Org Redesign — Flat + AI-Native
+    problems: [P3, P4]
+    method: 3
+    frameworks: [slootman-amp-it-up]
+    what: >
+      Redesign the finance org around AI-native workflows. Fewer,
+      higher-leverage roles (FP&A analyst → strategic finance business
+      partner). AI handles AP/AR/reconciliation; humans focus on
+      analysis and business partnering. Net headcount flat or slightly
+      reduced; output 2-3x.
+    why_now: >
+      AI is reshaping finance roles faster than most retailers realize.
+      Doing the redesign now (during CFO transition) is cheaper than
+      doing it later as a forced restructuring.
+    pilot_spec: >
+      90 days to design. 180 days to phase in. Instrument:
+      role clarity, FTE productivity, employee engagement, output
+      velocity. Success: no headcount increase despite 50% more analysis
+      output.
+    impact: >
+      Productivity 2-3x at flat cost. Finance team becomes a business
+      partner, not a scorekeeper.
+    precedent: >
+      Slootman at Snowflake — intensity and role clarity. Stripe's
+      finance org is oft-cited as AI-native.
+    competitive: >
+      Edge, not table-stakes.
+    complexity: >
+      High. People + process + tech redesign in parallel.
+    risks:
+      - Morale damage during transition — invest in comms and
+        re-skilling
+      - AI fails on core workflows — pilot before committing
+      - Losing institutional knowledge — retain the best
+    attribution: method #3 First Principles · framework slootman-amp-it-up
+
+  - id: C10
+    track: C
+    tier: 2
+    score: 3.70
+    name: Zapsight Relationship Redesign (RACI + SOW)
+    problems: [P5]
+    method: 8
+    frameworks: [high-output-management]
+    what: >
+      A clear RACI for the Zapsight relationship: what 1915 South owns
+      vs what Zapsight delivers, SOW milestones with measurable exit
+      criteria, data-ownership terms, exit clauses. Prevents vendor
+      lock-in and scope creep.
+    why_now: >
+      Zapsight is mid-engagement. The brief notes "data foundation
+      largely complete; Agentic AI capabilities development." This is
+      the moment to clarify boundaries before Phase 2 expands the
+      scope.
+    pilot_spec: >
+      30 days. RACI document, revised SOW, data-ownership terms. Success:
+      signed new SOW with explicit milestones and exit clauses.
+    impact: >
+      Prevents the common vendor-capture trap. Preserves 1915 South's
+      optionality.
+    precedent: >
+      Standard CIO playbook for managed services relationships. High
+      Output Management on role clarity applied to vendor relationships.
+    competitive: >
+      Foundational governance.
+    complexity: >
+      Low-Moderate.
+    risks:
+      - Zapsight resists — negotiate from a clear alternative
+      - Internal team prefers vendor-led delivery — establish ownership
+      - Contract friction delays delivery — agree on phases
+    attribution: method #8 Constraint-Based Ideation · framework high-output-management
+
+  - id: C7
+    track: C
+    tier: 2
+    score: 3.70
+    name: M&A Acquisition Playbook
+    problems: [P9]
+    method: 3
+    frameworks: [thorndike-capital-allocation]
+    what: >
+      A repeatable financial + operational due-diligence template and integration
+      runbook for furniture-store acquisitions. Two artifacts: (1) a 40-item
+      diligence checklist covering financials, operations, real estate, inventory,
+      staff, customer base, vendor contracts, and Ashley corporate considerations;
+      (2) a 90-day integration runbook with RACI, milestones, and kill criteria.
+      Built while Yulee integration is still fresh in muscle memory.
+    why_now: >
+      Justin added a net-new executive role — VP of Corporate Development and
+      Strategy — in his April 20 email. Yulee, FL was acquired in 2025. Ashley
+      franchisee consolidation is active across the Southeast. Without a playbook,
+      each deal is built from scratch; with one, deal cadence and quality both rise.
+      The moment is now because the Yulee lessons will atrophy in 6-12 months.
+    pilot_spec: >
+      60 days. Reverse-engineer the Yulee deal into a structured checklist and
+      integration timeline. Validate with Justin and the new VP Corp Dev. Test
+      against one hypothetical pipeline target (paper exercise). Success: signed
+      playbook, first deal sourced/evaluated through it within 120 days.
+    impact: >
+      Direct: reduces diligence cycle time by 30-50% on the next deal. Indirect:
+      enables deal throughput (1-2 deals/year becomes achievable without burning
+      the exec team). Margin protection: fewer post-close surprises from things
+      a checklist would have caught. Value of one avoided bad deal on a $5-15M
+      acquisition: enormous and uncounted.
+    precedent: >
+      Thorndike's Outsiders is the canonical reference — capital allocators with
+      repeatable M&A processes (Tom Murphy at Capital Cities, Henry Singleton at
+      Teledyne) compounded faster than peers. In retail: Danaher Business System
+      applied to acquisitions, Roper Technologies' decentralized playbook. In
+      furniture specifically: Ashley corporate's own franchisee consolidation
+      moves produce unpublished know-how that a franchisee-side playbook can
+      selectively mirror.
+    competitive: >
+      Most single-state Ashley franchisees have no M&A discipline and treat each
+      opportunity as one-off. 1915 South as a roll-up platform in the Southeast
+      is a credible strategic position — a playbook is the infrastructure that
+      makes it real.
+    complexity: >
+      Low-Moderate. Document + process work, not technology. Requires 20-30 hours
+      of VP Corp Dev time plus CFO review. Biggest complexity is retaining
+      institutional knowledge of the Yulee deal before it fades.
+    risks:
+      - Playbook becomes shelfware — tie it to the first deal review rhythm
+      - Ashley corporate changes franchise transfer rules — monitor and version
+      - Over-indexing on Yulee patterns that don't generalize — red-team the
+        checklist against 2-3 hypothetical deal archetypes (distressed, growth,
+        tuck-in) before finalizing
+    attribution: method #3 First Principles · framework thorndike-capital-allocation

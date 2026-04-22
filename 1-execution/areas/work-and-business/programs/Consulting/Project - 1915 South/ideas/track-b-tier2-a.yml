@@ -1,0 +1,249 @@
+# Track B — Tier 2 (first 6 ideas)
+ideas:
+  - id: B2
+    track: B
+    tier: 2
+    score: 3.90
+    name: AI Pricing Engine
+    problems: [P1, P10]
+    method: 41
+    frameworks: [sam-walton-retail-doctrine]
+    what: >
+      Dynamic pricing on the top 500 SKUs, tuned by region, season, and
+      competitive signal. Price elasticity derived from 1915 South's own POS
+      history plus competitive scrape data. Justin ran Flight Deck pricing
+      analytics at Walmart — this is his home turf translated to 1915 South.
+    why_now: >
+      Furniture pricing is largely static — Ashley MSRP minus a chain-wide
+      discount. POS elasticity data is sitting unused. Regional variance
+      (FL coastal vs AL rural) creates obvious arbitrage that one-price
+      discipline leaves on the floor.
+    pilot_spec: >
+      Top 500 SKUs, 90 days, all 30 stores. A/B hold on 5 stores as control.
+      Instrument gross margin, sell-through, ticket size. Success: +0.5-1.0
+      points of gross margin without sell-through degradation.
+    impact: >
+      Gross margin: +$900K-$1.8M annually at 0.5-1.0 point lift. Scales to
+      all SKUs in year two.
+    precedent: >
+      Amazon's dynamic pricing. Walmart's Flight Deck (Justin's domain).
+      Target's price optimization. In furniture, regional pricing variance
+      is almost completely absent.
+    competitive: >
+      Most Ashley franchisees price from corporate MSRP. Dynamic, regional
+      pricing is a structural edge that scales with the store count.
+    complexity: >
+      Moderate. Data exists, elasticity models exist, pricing workflow tools
+      exist. The work is integration and governance.
+    risks:
+      - Price churn erodes customer trust — set guardrails on price change
+        frequency
+      - Ashley corporate objects to deviation from MSRP — pre-align with Wanek's team
+      - Competitive retaliation — monitor for 90-day symmetric moves
+    attribution: method #41 Second-Order Thinking · framework sam-walton-retail-doctrine
+
+  - id: B3
+    track: B
+    tier: 2
+    score: 3.90
+    name: Automated Markdown Strategy
+    problems: [P1]
+    method: 8
+    frameworks: [toc-five-focusing-steps]
+    what: >
+      A markdown engine that determines the optimal timing and depth of
+      markdowns by SKU, protecting margin while clearing slow-movers before
+      they become liabilities. The companion to the pricing engine — dynamic
+      pricing going down instead of up.
+    why_now: >
+      The typical furniture markdown cycle is reactive — a SKU sits, eventually
+      gets blanket 20-30% off. An AI model can stair-step markdowns earlier
+      and shallower, protecting more margin. With Ashley's GMROI framework,
+      slow-mover exposure is measured.
+    pilot_spec: >
+      90 days on all SKUs aged >90 days. Instrument sell-through rate,
+      recovered margin vs baseline blanket markdown, carrying cost
+      reduction. Success: +2-4 margin points on cleared SKUs vs baseline.
+    impact: >
+      Recovered margin: $500K-$1.5M annually. Working capital: faster
+      inventory turns on slow-movers = freed cash.
+    precedent: >
+      Zara and H&M run algorithmic markdown. Macy's and Nordstrom have
+      matured markdown optimization. In furniture retail this is rare and
+      underexploited.
+    competitive: >
+      Blanket seasonal markdowns are the norm. Algorithmic markdown is a
+      clear differentiation.
+    complexity: >
+      Moderate. Shares infrastructure with B2 (pricing engine). The work is
+      the markdown curve model.
+    risks:
+      - Customers learn the algorithm and wait for markdowns — rotate
+        mechanics
+      - Ashley corporate pricing policy — coordinate
+      - Floor associates make ad-hoc deals — enforce via POS
+    attribution: method #8 Constraint-Based Ideation · framework toc-five-focusing-steps
+
+  - id: B5
+    track: B
+    tier: 2
+    score: 3.70
+    name: Review Management Autopilot
+    problems: [P2]
+    method: 8
+    frameworks: [danny-meyer-hospitality]
+    what: >
+      AI-drafted responses to Google, Yelp, and Facebook reviews across all
+      30 locations. Sentiment triage routes negative reviews to local store
+      manager; positive reviews get thanked fast; patterns get flagged to
+      corporate. Turns a time-hog into a background process.
+    why_now: >
+      Review volume at 30 stores is overwhelming for manual response but
+      critical for local search ranking. AI-drafted responses at scale, with
+      human approval on negatives, is mature technology.
+    pilot_spec: >
+      All 30 stores, 60 days. Instrument: response rate, response time, star
+      rating delta, sentiment trend. Success: 95% response rate within 24h;
+      +0.2 star average across portfolio.
+    impact: >
+      Local SEO lift: moderate but compounding. Customer recovery: more
+      bad experiences recovered. Operational: ~2 hours per store per
+      week returned.
+    precedent: >
+      Birdeye, Podium, and Yext all productize this. Marriott and Hilton
+      run it at chain scale. In retail, Best Buy and Home Depot have
+      mature review workflows.
+    competitive: >
+      Most Ashley franchisees respond sporadically. Systematic response is
+      an SEO and CX edge.
+    complexity: >
+      Low. Off-the-shelf tools (Birdeye, Podium) + local store manager
+      workflow. 30-day go-live.
+    risks:
+      - AI drafts sound generic — human review is mandatory on negatives
+      - Privacy issues with customer names in reviews — policy + training
+      - Gaming via fake reviews — use review verification tools
+    attribution: method #8 Constraint-Based Ideation · framework danny-meyer-hospitality
+
+  - id: B6
+    track: B
+    tier: 2
+    score: 3.90
+    name: Regional Ad Spend Optimizer
+    problems: [P2]
+    method: 49
+    frameworks: [sam-walton-retail-doctrine]
+    what: >
+      AI-driven allocation of paid media budget across 30 markets based on
+      real-time conversion data. Instead of equal spend per market or gut
+      feel, budget flows to where each dollar converts hardest. Reduces
+      waste, increases ROAS at the portfolio level.
+    why_now: >
+      Furniture advertising is 5-7% of revenue — at $182M that's $9-12M
+      annually. If 15% is wasted on low-ROAS markets (typical), that's
+      $1.5-1.8M of reclaimable spend. Attribution tools (Google Ads,
+      Meta) have matured to enable this.
+    pilot_spec: >
+      90 days on 10 markets, pure-play A/B against 10 control markets.
+      Instrument: ROAS by market, conversion rate, cost per lead,
+      attributed revenue. Success: +15% ROAS on pilot markets vs control.
+    impact: >
+      Reclaimed ad spend: $800K-$1.5M annually. Incremental revenue from
+      reallocation to high-ROAS markets: $1-3M.
+    precedent: >
+      Amazon, Walmart.com, and DTC brands have matured attribution-driven
+      allocation. Casper and Purple scaled this way. In furniture retail,
+      it's rare.
+    competitive: >
+      Regional retailers typically equal-allocate or gut-allocate. Data-
+      driven optimization is a defensible edge.
+    complexity: >
+      Moderate. Requires first-party conversion data + Meta/Google API
+      integration + a small ops team to act on reallocations.
+    risks:
+      - Attribution noise in early weeks — budget for 45-day observation
+      - Local market relationships (media buyers) disrupted — involve
+        early
+      - Over-optimization for short-run ROAS erodes brand — balance
+    attribution: method #49 Margin Stack Thinking · framework sam-walton-retail-doctrine
+
+  - id: B9
+    track: B
+    tier: 2
+    score: 3.90
+    name: Labor Scheduling AI
+    problems: [P2]
+    method: 45
+    frameworks: [chipotle-throughput-model]
+    what: >
+      Demand-based staffing across 30 stores. POS history + foot traffic +
+      weather + local events feed a scheduling model that builds shifts. Cut
+      over-staffing on slow days, cover under-staffing on peak. Target 5%
+      labor reduction on a ~$30-40M labor base.
+    why_now: >
+      Labor as % of revenue is rising across retail. Scheduling accuracy is
+      where AI shows clear ROI fastest. Mature solutions (UKG, Legion) exist.
+    pilot_spec: >
+      6 stores, 90 days. Instrument: sales-per-labor-hour, conversion
+      rate by shift, associate satisfaction, overtime. Success: +10%
+      sales per labor hour without satisfaction decline.
+    impact: >
+      Labor savings: $1.5-2M annually at 5% reduction. Customer experience
+      improvement from better staffing at peak.
+    precedent: >
+      Chipotle, Starbucks, and Target run AI-driven labor scheduling.
+      Legion, UKG Dimensions, and Deputy have productized this.
+    competitive: >
+      Most Ashley franchisees use manual scheduling or basic POS-driven
+      templates. AI scheduling is a meaningful edge.
+    complexity: >
+      Moderate. Needs POS integration, foot-traffic data source (B7
+      optional), and manager buy-in. 90-day go-live.
+    risks:
+      - Associates resist schedule unpredictability — provide 2-week
+        lookahead minimum
+      - Data quality on foot traffic — can run without initially
+      - Labor regulations (FL/AL/GA variance) — ensure compliance
+    attribution: method #45 Bottleneck Analysis · framework chipotle-throughput-model
+
+  - id: B10
+    track: B
+    tier: 2
+    score: 3.90
+    name: Cross-Store Inventory Balance Engine
+    problems: [P1]
+    method: 45
+    frameworks: [toc-five-focusing-steps]
+    what: >
+      Automated rebalance recommendations — and eventually auto-execution —
+      across 30 stores and 3 DCs. A sofa stocked out in Store 14 while three
+      sit at Store 22? System flags it, schedules transfer, updates both POS.
+      A companion to the GMROI engine (B1).
+    why_now: >
+      Multi-location stockouts are the #1 lost-sale driver in distributed
+      retail. Ashley corporate has not solved this for franchisees. 3 DCs
+      + 30 stores is operationally complex enough to justify the model but
+      manageable enough to pilot.
+    pilot_spec: >
+      2 DCs + 10 stores, 90 days. Instrument: store-level stockout hours,
+      transfer volume, in-stock rate, customer save-the-sale rate.
+      Success: 30% reduction in stockout hours on top-100 SKUs.
+    impact: >
+      Stockout revenue recovery: $1-2M annually. Inventory efficiency:
+      2-5% reduction in total inventory for same service level.
+    precedent: >
+      Walmart's store-to-store transfer engine. Best Buy's ship-from-store
+      logic. Amazon's multi-node inventory balancing.
+    competitive: >
+      Rare among Ashley franchisees. Clear edge.
+    complexity: >
+      High. Requires real-time inventory accuracy, transfer logistics
+      capacity, and exec sign-off on auto-execution thresholds.
+    risks:
+      - Inventory inaccuracy sinks the model — fix cycle-count discipline
+        first
+      - Transfer logistics cost exceeds save-the-sale value — govern with
+        unit economics
+      - Associates resent transfer work — automate execution, not just
+        recommendation
+    attribution: method #45 Bottleneck Analysis · framework toc-five-focusing-steps

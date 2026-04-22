@@ -1,0 +1,198 @@
+# Track B — Tier 2 (final 5 ideas)
+ideas:
+  - id: B12
+    track: B
+    tier: 2
+    score: 3.90
+    name: Final-Mile Routing + Damage Telemetry
+    problems: [P8]
+    method: 8
+    frameworks: [toc-five-focusing-steps]
+    what: >
+      Route optimization for all final-mile deliveries plus damage-rate
+      telemetry by driver, by SKU, and by route type. Direct operating
+      savings on miles and fuel; compounded savings on damage prevention.
+      The data infrastructure that makes the JB Hunt partnership
+      measurable.
+    why_now: >
+      JB Hunt partnership is under evaluation — the right time to set
+      measurement expectations. Damage rates of 4-6% on $2,500 average
+      tickets leak $5M+ annually at 40K deliveries.
+    pilot_spec: >
+      2 DCs, 90 days. Instrument miles per delivery, fuel cost, damage
+      rate per driver, customer NPS tied to delivery experience.
+      Success: 8% mile reduction, 25% damage rate reduction.
+    impact: >
+      Fuel + miles: $400K-$800K. Damage: $1-2M. Combined $1.5-3M.
+    precedent: >
+      ORION at UPS saved ~100M miles and $400M annually. FedEx Ground
+      optimization. Amazon's last-mile routing model.
+    competitive: >
+      Table-stakes in parcel logistics, rare in furniture final-mile.
+    complexity: >
+      Moderate. Route optimization tools are mature. Damage telemetry
+      is the less-automated piece.
+    risks:
+      - Drivers feel surveilled — frame as performance enablement,
+        reward top performers
+      - JB Hunt runs their own optimization — negotiate co-visibility
+      - Damage attribution disputes — install photo-documentation at
+        dock and delivery
+    attribution: method #8 Constraint-Based Ideation · framework toc-five-focusing-steps
+
+  - id: B16
+    track: B
+    tier: 2
+    score: 3.70
+    name: Dynamic Bundle Merchandising
+    problems: [P10]
+    method: 24
+    frameworks: [sam-walton-retail-doctrine]
+    what: >
+      AI suggests high-attach-rate bundles (sofa + coffee table + rug +
+      end tables) per store or region. Offered in-store and online with
+      bundle discount. Lifts average ticket, increases attach rate,
+      simplifies the customer decision.
+    why_now: >
+      Furniture attach rates are typically low because complementary
+      items live across store sections. A bundle engine powered by
+      affinity analysis (what do these customers actually buy together)
+      raises attach.
+    pilot_spec: >
+      10 stores, 60 days. Instrument attach rate, ticket lift, bundle
+      AOV vs à la carte, customer satisfaction. Success: +$300 ticket
+      lift when bundle is purchased; 15% attach.
+    impact: >
+      Revenue lift: $2-5M annually from higher tickets and more
+      attaches.
+    precedent: >
+      Amazon's "frequently bought together." Restoration Hardware's
+      room packaging. Crate & Barrel's room scenes.
+    competitive: >
+      Most Ashley franchisees don't do affinity-driven bundling.
+    complexity: >
+      Low-Moderate. POS affinity data exists; UX work is the bigger
+      lift.
+    risks:
+      - Cannibalizes higher-margin single-item sales — size carefully
+      - Bundle pricing erodes margin — enforce margin floors
+      - Customer confusion — present bundles alongside à la carte, not
+        replacing
+    attribution: method #24 Mashup Method · framework sam-walton-retail-doctrine
+
+  - id: B17
+    track: B
+    tier: 2
+    score: 3.90
+    name: Supplier + Vendor Consolidation Engine
+    problems: [P3]
+    method: 3
+    frameworks: [thorndike-capital-allocation]
+    what: >
+      Data-driven vendor scorecards across all suppliers (furniture, SaaS,
+      services). Consolidation recommendations based on total spend,
+      reliability, unit economics. Price negotiation leverage from spend
+      visibility. A back-office discipline Thorndike-style capital allocators
+      run by default.
+    why_now: >
+      Multi-generation family businesses typically have vendor bloat from
+      accumulated relationships. $182M of spend is enough to negotiate
+      hard if visibility exists.
+    pilot_spec: >
+      90 days to build vendor register + scorecard + consolidation plan.
+      Execute on top 20 vendors in next 90 days. Instrument spend
+      reduction, service delta, vendor count reduction.
+      Success: 10-20% spend reduction on targeted category.
+    impact: >
+      Spend reduction: $500K-$2M annually across targeted categories.
+    precedent: >
+      Private equity vendor consolidation playbook. Thorndike's
+      case studies on capital discipline.
+    competitive: >
+      Not competitive differentiation per se, but a margin unlock.
+    complexity: >
+      Low-Moderate. Data + analysis work. No new tech required.
+    risks:
+      - Vendor relationships predate current exec team — handle with
+        care
+      - Short-term disruption during switchovers — plan carefully
+      - Volume discounts hide in opaque contracts — budget audit time
+    attribution: method #3 First Principles · framework thorndike-capital-allocation
+
+  - id: B19
+    track: B
+    tier: 2
+    score: 3.80
+    name: Real-Time Store-Level P&L
+    problems: [P3]
+    method: 45
+    frameworks: [sam-walton-retail-doctrine]
+    what: >
+      Daily/weekly P&L by store, region, and category. Automated variance
+      triage ("why is Store 14 underperforming vs Store 22 this week?"
+      with root-cause breakdown). Powers the weekly ops ritual.
+    why_now: >
+      Sam Walton's management was built on knowing every store's numbers.
+      Most mid-market retailers have monthly P&L at best. Real-time
+      store P&L is the single biggest lever in store operations
+      discipline.
+    pilot_spec: >
+      10 stores, 90 days. Instrument: dashboard adoption, action
+      velocity on variance alerts, store performance delta vs baseline.
+      Success: weekly exec ritual established, 3+ documented
+      variance-driven actions per month.
+    impact: >
+      Difficult to isolate, but management discipline is upstream of
+      every other operating improvement. Conservative: 0.5 points of
+      EBITDA = $900K annually.
+    precedent: >
+      Walmart's weekly Saturday meeting. Costco's real-time sales
+      reporting. Chick-fil-A operator dashboards.
+    competitive: >
+      Every strong retailer has this. Most Ashley franchisees don't.
+    complexity: >
+      Moderate. Data plumbing exists via Zapsight. Work is the UX
+      and the exec ritual design.
+    risks:
+      - Data quality — validate before deploying
+      - Info overload without clear actions — design around 5 key KPIs
+      - Store managers game the metrics — include quality measures
+    attribution: method #45 Bottleneck Analysis · framework sam-walton-retail-doctrine
+
+  - id: B20
+    track: B
+    tier: 2
+    score: 3.70
+    name: Competitive Price Scraping + Alerts
+    problems: [P2]
+    method: 42
+    frameworks: [sam-walton-retail-doctrine]
+    what: >
+      Daily scrape of Rooms To Go, Havertys, Bob's Discount Furniture,
+      Ashley direct, Wayfair, and Amazon pricing on top 500 matching
+      SKUs. Alert when price delta exceeds threshold. Feeds the
+      pricing engine (B2) and the buying team's competitive awareness.
+    why_now: >
+      Competitive price scraping is a commodity service. Furniture has
+      lagged in price transparency but it's coming — online price
+      comparison is normalizing.
+    pilot_spec: >
+      Top 500 SKUs, 60 days. Instrument: price-delta alerts generated,
+      action rate, margin impact of responses. Success: daily scrape
+      reliability >95%, <5% false match rate, pricing team acts on
+      2-3 alerts per week.
+    impact: >
+      Margin protection: $300K-$800K annually via timely competitive
+      responses. Buyer confidence: better PO negotiation.
+    precedent: >
+      DataWeave, Price2Spy, Prisync. Amazon's internal competitive
+      monitoring. Walmart's price intelligence operation.
+    competitive: >
+      Table stakes in online, rare in furniture retail.
+    complexity: >
+      Low. Commodity vendors do this. 30-day go-live.
+    risks:
+      - SKU matching accuracy — budget for a matching taxonomy
+      - Retaliatory pricing war — govern with discipline
+      - Scraping blocked by competitors — switch vendors if needed
+    attribution: method #42 Game Theory Lens · framework sam-walton-retail-doctrine
