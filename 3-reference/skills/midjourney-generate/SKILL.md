@@ -66,16 +66,34 @@ For each prompt in the batch:
 1. `left_click` the prompt textbox.
 2. `type` the prompt text exactly as given. Do not auto-edit, do not strip
    Midjourney flags, do not add a period.
-3. `key: Return` to submit.
-4. Wait ~2 seconds for the job to register (Midjourney shows `Create N/M` in the
-   left sidebar).
+3. **Click the Submit button next to the textbox** — do NOT press Return.
+   `find` it with query `"Submit button next to prompt textbox"` (it's labeled
+   exactly `"Submit"` in the accessibility tree). Then `left_click` that ref.
+   The Submit button's ref ID changes after every submission — re-run `find`
+   each time to get a fresh ref before clicking.
+4. Wait ~2 seconds for the job to register (Midjourney shows `N queued jobs`
+   above the feed and the newest job appears as a 2×2 grid with a `Starting...`
+   or `N% Complete` label).
 5. Move to the next prompt — do NOT wait for completion yet.
+
+**⚠️ Pressing `key: Return` does NOT submit on midjourney.com.** The Enter key
+just moves the cursor/wraps the prompt; no job is created. The textbox will
+visibly clear when Return is pressed but no `Starting...` tile appears. Always
+use the Submit button. This was verified 2026-04-22 — if MJ ever adds real
+Enter-to-submit behavior, update this note.
 
 Submitting all prompts first exploits Midjourney's server-side queue. For a
 batch of 20, this takes ~1 minute instead of ~30 minutes of sequential waits.
 
 **Rate guard:** If Midjourney shows a queue-full or fast-hours-exhausted warning,
 pause and surface it to Brady before continuing.
+
+**Extension interference guard:** If you see an `AutoSail` panel or popup
+(paywalled third-party Midjourney extension), it will visually overlap the
+native MJ textbox but NOT intercept submissions through the native Submit
+button. Close the popup (X in top-right of its frame) and proceed with the
+native flow. Do NOT click icons near the top-right of the page — those belong
+to AutoSail, not MJ.
 
 ---
 
@@ -96,10 +114,31 @@ For each job (top-to-bottom, newest first):
      to the one with the clearest subject-matter match.
    - **Batch mode, unattended:** default to index 2 (bottom-left) unless the
      upstream skill (e.g., innovation-workshop) specifies a selection rule.
-4. Right-click the large image → click "Save Image" from the context menu.
-   - Do NOT use the toolbar download icon alone — it has been flaky in testing.
-   - Confirm the file lands in `~/Downloads/` with `ls -lt ~/Downloads/*.png`.
-5. Record the file path + which prompt it corresponds to.
+4. Download via one of two paths (pick based on what's available):
+   - **Preferred — in-page canvas capture (works unattended, bypasses MJ CDN
+     auth, and lets you specify exact output filenames):** Use
+     `javascript_tool` to load the high-res URL
+     `https://cdn.midjourney.com/<jobId>/0_<idx>_2048_N.webp?method=shortest`
+     into an `Image` with `crossOrigin='anonymous'`, draw to a `canvas`,
+     `canvas.toBlob('image/png')`, `URL.createObjectURL` it, and click a
+     dynamically-created `<a>` with `download=<desired-filename>.png`. The
+     browser drops the PNG in `~/Downloads/` under your chosen name.
+     **Important:** Chrome blocks multi-download batches from one JS call —
+     run ONE download per `javascript_tool` invocation, not a for-loop.
+     Verified 2026-04-22: 1344×896 PNG ≈ 1.7-2.2 MB.
+   - **Fallback — right-click → Save Image** from the context menu when
+     canvas capture fails (e.g., CORS issue on new MJ variants). Do NOT use
+     the toolbar download icon alone — it has been flaky in testing.
+5. Confirm the file lands in `~/Downloads/` with `ls -lt ~/Downloads/*.png`.
+6. Record the file path + which prompt it corresponds to.
+
+**Job ID lookup** (for canvas-capture path): jobIds aren't visible in the UI
+but are embedded in every `<img src>` on the page — pattern
+`cdn.midjourney.com/<jobId>/0_<idx>_640_N.webp`. Use `javascript_tool` to
+walk `document.querySelectorAll('img')`, regex-match the jobId, and walk 20
+ancestors up to find the nearest container whose `innerText` starts with
+your prompt text — that maps jobId → prompt. Keep the walk bounded
+(`length<1500` chars) so you don't snag the whole page.
 
 ---
 
