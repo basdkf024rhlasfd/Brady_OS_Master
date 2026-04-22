@@ -28,20 +28,9 @@ export interface ShortcutConfig {
   command: string;
 }
 
-export interface DataSourceConfig {
-  label: string;
-  type: "notion-db" | "notion-page" | "notion-wiki" | "google-calendar" | "kb-directory" | "skill" | "external";
-  status: "ready" | "partial" | "not-started" | "recommended";
-  id?: string;
-  url?: string;
-  description: string;
-  nextStep?: string;
-  nextStepActor?: "brady" | "chrome-agent" | "claude-desktop" | "conductor";
-}
-
-export interface ShortcutConfig {
-  label: string;
-  command: string;
+export interface DataSourceEvidence {
+  file?: string;          // file path relative to repo root; mtime must be fresh
+  max_age_days?: number;  // override per-type default
 }
 
 export interface DataSourceConfig {
@@ -53,6 +42,9 @@ export interface DataSourceConfig {
   description: string;
   nextStep?: string;
   nextStepActor?: "brady" | "chrome-agent" | "claude-desktop" | "conductor";
+  evidence?: DataSourceEvidence;
+  lastActivity?: string;  // ISO timestamp — set by probe, not in YAML
+  lastActivitySource?: string; // short label: "sweep file", "Notion", "Calendar", "Streaming Notes"
 }
 
 export interface ChatConfig {
