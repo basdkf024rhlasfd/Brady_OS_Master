@@ -1,0 +1,65 @@
+# Track B — Tier 3 (condensed)
+ideas:
+  - id: B7
+    track: B
+    tier: 3
+    score: 3.00
+    name: Showroom Traffic + Conversion Analytics
+    problems: [P2]
+    method: 45
+    frameworks: [chipotle-throughput-model]
+    condensed: >
+      Anonymized camera + beacon analytics to track foot traffic, dwell
+      time, and conversion in-store. Feeds staffing (B9) and layout
+      optimization. First move: 3-store pilot with off-the-shelf tools
+      (RetailNext, Placer.ai). Privacy considerations are the primary
+      governance question.
+    attribution: method #45 Bottleneck Analysis · framework chipotle-throughput-model
+
+  - id: B11
+    track: B
+    tier: 3
+    score: 3.40
+    name: DC Put-Away + Pick Optimization AI
+    problems: [P8]
+    method: 45
+    frameworks: [toyota-way-pillars]
+    condensed: >
+      Warehouse slotting + pick-path AI across 3 DCs. 20-30% picker-step
+      reduction is standard in the industry. First move: pick one DC,
+      benchmark current picker steps/order, pilot a WMS upgrade with
+      slot optimization. Requires capital more than it requires
+      strategy.
+    attribution: method #45 Bottleneck Analysis · framework toyota-way-pillars
+
+  - id: B14
+    track: B
+    tier: 3
+    score: 3.40
+    name: Lead Scoring for Sales Associates
+    problems: [P2]
+    method: 45
+    frameworks: [chipotle-throughput-model]
+    condensed: >
+      Score web leads and in-store visitors by close probability.
+      Prioritize associate follow-up time toward high-probability
+      customers. First move: collect 6 months of historical close
+      data, train a model, pilot with top 5 stores. Quick win if data
+      is clean.
+    attribution: method #45 Bottleneck Analysis · framework chipotle-throughput-model
+
+  - id: B15
+    track: B
+    tier: 3
+    score: 3.00
+    name: AI Sales Coach (Real-Time Associate Assistant)
+    problems: [P2]
+    method: 55
+    frameworks: [chipotle-throughput-model]
+    condensed: >
+      Tablet-based assistant for floor associates. Product knowledge,
+      objection handling, CRM prompts, inventory check. First move:
+      build a minimal version on GPT-4 + product catalog, test in 2
+      stores for 90 days. Risk: associate adoption, which is gating
+      for every retail-tech pilot.
+    attribution: method #55 Category Design · framework chipotle-throughput-model

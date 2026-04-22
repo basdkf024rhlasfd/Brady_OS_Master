@@ -1,0 +1,381 @@
+# Raw idea pool — pre-Gate-1 — 1915 South
+# Scores are 1/3/5 per ops rubric; composite weighted:
+#   Labor/Cost (0.25) + Throughput/Speed (0.20) + Scalability (0.20) + Time-to-Pilot (0.15) + Feasibility (0.20)
+# Tier: 1 (≥4.0) / 2 (3.5-3.9) / 3 (3.0-3.4) / cut (<3.0)
+
+track_a:
+  - id: A1
+    name: Sleep Lab Specialty Stores
+    one_liner: Standalone 3-5K sqft sleep-specialty format; biometric mattress matching; 1-3 pilots in dense markets
+    p: [P6]
+    method: 9
+    framework: bezos-shareholder-letters
+    scores: { lc: 3, ts: 3, scale: 5, ttp: 1, feas: 3 }
+    composite: 3.10
+    tier: 3
+  - id: A2
+    name: Store-of-Future Flagship
+    one_liner: Single 2-story AR/VR furniture flagship in Tallahassee; full smart-home integration demos
+    p: [P7]
+    method: 55
+    framework: bezos-shareholder-letters
+    scores: { lc: 1, ts: 3, scale: 5, ttp: 1, feas: 3 }
+    composite: 2.60
+    tier: cut
+    cut_reason: Capex and time-to-pilot make it a 2-year bet; A2b is the pilot version
+  - id: A2b
+    name: Store-of-Future Single-Element Pilot
+    one_liner: Pilot ONE store-of-future element (AR app OR smart-home corner OR AI sales assistant) in one existing store
+    p: [P7]
+    method: 55
+    framework: bezos-shareholder-letters
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
+  - id: A3
+    name: 15-Minute Showroom Small Format
+    one_liner: Neighborhood store <3K sqft; top-20 SKUs only; same-day delivery; adjacent to flagship trade areas
+    p: [P10]
+    method: 57
+    framework: foran-radical-simplification
+    scores: { lc: 3, ts: 5, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.40
+    tier: 3
+  - id: A4
+    name: Concierge Appointment Showroom
+    one_liner: High-ticket ($10K+) by-appointment format; 3-4 designers; Unity/AR room mockups
+    p: [P7]
+    method: 9
+    framework: danny-meyer-hospitality
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.00
+    tier: 3
+  - id: A5
+    name: Ashley Care Plus — Service-as-Product
+    one_liner: Productized delivery + assembly + warranty + upholstery-care; subscription option
+    p: [P8]
+    method: 5
+    framework: danny-meyer-hospitality
+    scores: { lc: 5, ts: 3, scale: 5, ttp: 3, feas: 5 }
+    composite: 4.30
+    tier: 1
+  - id: A6
+    name: Regional Assortment Editor
+    one_liner: Curated micro-collections per store based on demographic cluster (FL coastal vs AL rural vs GA urban)
+    p: [P10]
+    method: 32
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.40
+    tier: 3
+  - id: A7
+    name: Final-Mile Branded White-Glove Experience
+    one_liner: 1915-South-branded delivery; <1% damage target; photo + delivery notes sent to customer; net-new brand asset
+    p: [P8]
+    method: 5
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 5, ts: 5, scale: 3, ttp: 3, feas: 5 }
+    composite: 4.30
+    tier: 1
+  - id: A8
+    name: Furniture Subscription (Rent-to-Own Tier)
+    one_liner: Monthly-swap subscription aimed at Airbnb hosts, stagers, military moves
+    p: [P10]
+    method: 57
+    framework: foran-radical-simplification
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.00
+    tier: 3
+  - id: A9
+    name: Builder Pro B2B Channel
+    one_liner: Dedicated channel for home builders, stagers, Airbnb hosts; volume pricing; direct-to-jobsite; flat monthly contracts
+    p: [P10, P9]
+    method: 5
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.90
+    tier: 2
+  - id: A10
+    name: Kids-Room-in-a-Box
+    one_liner: Pre-styled, age-banded (toddler/tween/teen) themed SKU packs; one decision, one receipt
+    p: [P10]
+    method: 24
+    framework: foran-radical-simplification
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
+
+track_b:
+  - id: B1
+    name: GMROI Optimization Engine
+    one_liner: Live SKU × store × region GMROI view with buy/cut/rebalance recommendations; weekly exec ritual
+    p: [P1]
+    method: 45
+    framework: toc-five-focusing-steps
+    scores: { lc: 5, ts: 5, scale: 5, ttp: 3, feas: 5 }
+    composite: 4.70
+    tier: 1
+  - id: B2
+    name: AI Pricing Engine
+    one_liner: Regional + seasonal dynamic pricing on top 500 SKUs; price elasticity from POS data
+    p: [P1, P10]
+    method: 41
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.90
+    tier: 2
+  - id: B3
+    name: Automated Markdown Strategy
+    one_liner: AI-determined markdown curves per SKU; protect margin; clear slow-movers before they become liabilities
+    p: [P1]
+    method: 8
+    framework: toc-five-focusing-steps
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.90
+    tier: 2
+  - id: B4
+    name: Marketing Content Factory (30-Market Engine)
+    one_liner: AI-generated local-market social/email/SEO content at scale; 30 local landing pages monthly; 30 local ad accounts
+    p: [P2]
+    method: 32
+    framework: foran-radical-simplification
+    scores: { lc: 5, ts: 3, scale: 5, ttp: 5, feas: 5 }
+    composite: 4.60
+    tier: 1
+  - id: B5
+    name: Review Management Autopilot
+    one_liner: AI-drafted responses to Google/Yelp/FB reviews across 30 locations; sentiment triage; escalation routing
+    p: [P2]
+    method: 8
+    framework: danny-meyer-hospitality
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
+  - id: B6
+    name: Regional Ad Spend Optimizer
+    one_liner: AI-driven allocation of paid media budget across 30 markets based on real-time conversion; kill spray-and-pray
+    p: [P2]
+    method: 49
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.90
+    tier: 2
+  - id: B7
+    name: Showroom Traffic + Conversion Analytics
+    one_liner: Anonymized camera + beacon analytics; foot-traffic, dwell-time, conversion; staffing + layout recs
+    p: [P2]
+    method: 45
+    framework: chipotle-throughput-model
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.00
+    tier: 3
+  - id: B8
+    name: AI Demand Forecasting (SKU × Store × Week)
+    one_liner: Ashley-corporate-grade forecasting at franchisee scale; 20-30% accuracy lift on published benchmark
+    p: [P1]
+    method: 41
+    framework: toyota-way-pillars
+    scores: { lc: 5, ts: 3, scale: 5, ttp: 3, feas: 5 }
+    composite: 4.30
+    tier: 1
+  - id: B9
+    name: Labor Scheduling AI
+    one_liner: Demand-based staffing across 30 stores; POS + traffic integration; target 5% labor reduction on $30-40M base
+    p: [P2]
+    method: 45
+    framework: chipotle-throughput-model
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.90
+    tier: 2
+  - id: B10
+    name: Cross-Store Inventory Balance Engine
+    one_liner: Automated rebalance recommendations across 30 stores + 3 DCs; reduce store-level stockouts and overstocks
+    p: [P1]
+    method: 45
+    framework: toc-five-focusing-steps
+    scores: { lc: 5, ts: 5, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.90
+    tier: 2
+  - id: B11
+    name: DC Put-Away + Pick Optimization AI
+    one_liner: Warehouse slot optimization; pick-path AI; cut picker steps 20-30%
+    p: [P8]
+    method: 45
+    framework: toyota-way-pillars
+    scores: { lc: 3, ts: 5, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.40
+    tier: 3
+  - id: B12
+    name: Final-Mile Routing + Damage Telemetry
+    one_liner: Route optimization + damage-rate telemetry per driver/per SKU; 5-10% delivery cost reduction
+    p: [P8]
+    method: 8
+    framework: toc-five-focusing-steps
+    scores: { lc: 5, ts: 5, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.90
+    tier: 2
+  - id: B13
+    name: Customer Data Platform (Unified Record)
+    one_liner: Unified customer across 30 stores + online; LTV, churn, segment; powers CRM and acquisition
+    p: [P1]
+    method: 32
+    framework: bezos-shareholder-letters
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 1, feas: 3 }
+    composite: 2.70
+    tier: cut
+    cut_reason: 12-month build without a narrower use case; revisit after B4/B6 generate first-party signal
+  - id: B14
+    name: Lead Scoring for Sales Associates
+    one_liner: Score showroom visitors and web leads by close probability; prioritize associate time
+    p: [P2]
+    method: 45
+    framework: chipotle-throughput-model
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.40
+    tier: 3
+  - id: B15
+    name: AI Sales Coach (Real-Time Associate Assistant)
+    one_liner: Tablet-based assistant for floor associates; objection handling, product knowledge, CRM prompts
+    p: [P2]
+    method: 55
+    framework: chipotle-throughput-model
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.00
+    tier: 3
+  - id: B16
+    name: Dynamic Bundle Merchandising
+    one_liner: AI suggests high-attach-rate bundles (sofa + table + rug) per region; lifts ticket size
+    p: [P10]
+    method: 24
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
+  - id: B17
+    name: Supplier + Vendor Consolidation Engine
+    one_liner: Data-driven vendor scorecards; consolidation recommendations; price negotiation leverage
+    p: [P3]
+    method: 3
+    framework: thorndike-capital-allocation
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.90
+    tier: 2
+  - id: B18
+    name: AP Automation + 13-Week Cash Forecast
+    one_liner: Invoice OCR, 3-way match, AP automation; rolling 13-week cash forecast with variance alerts
+    p: [P3]
+    method: 8
+    framework: toyota-way-pillars
+    scores: { lc: 5, ts: 5, scale: 5, ttp: 3, feas: 5 }
+    composite: 4.70
+    tier: 1
+  - id: B19
+    name: Real-Time Store-Level P&L
+    one_liner: Daily/weekly P&L by store × region × category; automated variance triage ("why is #14 under?")
+    p: [P3]
+    method: 45
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 3, ts: 5, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.80
+    tier: 2
+  - id: B20
+    name: Competitive Price Scraping + Alerts
+    one_liner: Daily scrape of Rooms To Go / Havertys / Bob's pricing; alert when price delta exceeds threshold
+    p: [P2]
+    method: 42
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
+
+track_c:
+  - id: C1
+    name: CFO Role Redesign (Hybrid Financial + Tech + AI Officer)
+    one_liner: Written role definition, KPI set, year-1/2/3 mandate, explicit NOT-my-job list; the unlock for everything else
+    p: [P4]
+    method: 3
+    framework: high-output-management
+    scores: { lc: 5, ts: 5, scale: 3, ttp: 5, feas: 5 }
+    composite: 4.60
+    tier: 1
+  - id: C2
+    name: ERP Migration Decision Framework
+    one_liner: Sage Intacct vs NetSuite vs Acumatica vs QBO-Advanced, scored for 1915 South's scale, integrations, and M&A roadmap
+    p: [P3]
+    method: 3
+    framework: thorndike-capital-allocation
+    scores: { lc: 3, ts: 5, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.80
+    tier: 2
+  - id: C3
+    name: Multi-Entity Financial Reporting Framework
+    one_liner: Canonical P&L + BS + CF structure across legal entities × stores × categories; powers GMROI and Ashley reporting
+    p: [P3]
+    method: 32
+    framework: sam-walton-retail-doctrine
+    scores: { lc: 3, ts: 5, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.80
+    tier: 2
+  - id: C4
+    name: Month-End Close Acceleration
+    one_liner: Cut close cycle from typical 10-15 days to 3-5 days via automation, standardization, playbook
+    p: [P3]
+    method: 45
+    framework: toyota-way-pillars
+    scores: { lc: 3, ts: 5, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.80
+    tier: 2
+  - id: C5
+    name: AI/Tech Investment ROI Framework
+    one_liner: Common scoring template for every tech/AI investment; tracked quarterly; kill-or-scale decision at 6 months
+    p: [P7, P5]
+    method: 41
+    framework: thorndike-capital-allocation
+    scores: { lc: 5, ts: 3, scale: 5, ttp: 5, feas: 5 }
+    composite: 4.60
+    tier: 1
+  - id: C6
+    name: Vendor Management Office (VMO)
+    one_liner: Centralized register of all SaaS/vendors; contract terms; renewal calendar; consolidation targets
+    p: [P3, P5]
+    method: 8
+    framework: slootman-amp-it-up
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 4.20
+    tier: 1
+  - id: C7
+    name: M&A Acquisition Playbook
+    one_liner: Repeatable financial + operational due-diligence template; integration runbook; synergy scorecard
+    p: [P9]
+    method: 3
+    framework: thorndike-capital-allocation
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 3, feas: 5 }
+    composite: 3.40
+    tier: 3
+  - id: C8
+    name: Capital Allocation Dashboard (Russell's View)
+    one_liner: Single page — cash balance, FCF, deployment options (stores/tech/M&A/dividend), expected ROI on each
+    p: [P9]
+    method: 49
+    framework: thorndike-capital-allocation
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
+  - id: C9
+    name: Finance Org Redesign (Flat + AI-Native)
+    one_liner: Fewer higher-leverage finance roles; AI handles AP/AR/recon; humans focus on analysis and partnering
+    p: [P3, P4]
+    method: 3
+    framework: slootman-amp-it-up
+    scores: { lc: 5, ts: 3, scale: 3, ttp: 3, feas: 3 }
+    composite: 3.50
+    tier: 2
+  - id: C10
+    name: Zapsight Relationship Redesign (RACI + SOW)
+    one_liner: Clear RACI, SOW milestones, what 1915 South owns vs what Zapsight delivers, exit terms
+    p: [P5]
+    method: 8
+    framework: high-output-management
+    scores: { lc: 3, ts: 3, scale: 3, ttp: 5, feas: 5 }
+    composite: 3.70
+    tier: 2
