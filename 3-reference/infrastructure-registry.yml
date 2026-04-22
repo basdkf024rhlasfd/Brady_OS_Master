@@ -59,7 +59,7 @@ notion:
       - CLAUDE.md (agent reference)
 
   life_events_db:
-    id: ""  # populated on first-run DB creation by skills/life-events-review
+    id: "c5ce4840162c4702a629081d66492760"  # created 2026-04-22 by Code agent
     purpose: Brady's major life events (travel, milestones, financial meetings, school, medical) with prep checklist, countdown, and owner
     used_by:
       - skills/life-events-review
