@@ -11,10 +11,13 @@ description: >
   [X]", "put [X] on mception.ai", "add [name] to the allowlist", "give
   [email] access", "what's the env var for [X]", "the deploy is broken",
   "fix the build", "why is the portal 404ing", "set up a new subdomain",
-  "wire up [API] on Vercel", or any variation that touches mception.ai
-  publishing, Vercel config, or portal access control. Also trigger
+  "wire up [API] on Vercel", "permissions audit", "who can see what",
+  "permissions check", "UAT [slug]", "check the images", "test the
+  chatbot", or any variation that touches mception.ai publishing, Vercel
+  config, portal access control, or UAT verification. Also trigger
   proactively if Brady starts describing a deploy problem or asking "where
-  does [X] live."
+  does [X] live." And proactively offer the weekly permissions audit if
+  8+ days have elapsed since the last one.
 
   This skill owns all mception.ai publishing + Vercel operations workflows.
   It does NOT own general Vercel app architecture decisions (that's
@@ -245,7 +248,130 @@ from [slug]."
 
 ---
 
-## Runbook 5 — Add a new Vercel project (separate app, not a mception slug)
+## Runbook 5 — UAT (MANDATORY after every publish)
+
+**Use when:** Any publish, redeploy, or visible change to a mception.ai slug.
+Runs immediately after Runbook 1 or 2 before declaring "done."
+
+### 5a — Broken image check
+
+```bash
+SLUG=<slug>
+# Fetch the rendered viewer HTML and extract every img src
+curl -sL "https://mception.ai/${SLUG}/viewer/index.html" | \
+  grep -oE '<img[^>]+src="[^"]+"' | \
+  sed -E 's/.*src="([^"]+)".*/\1/' | \
+  while read src; do
+    # Resolve relative URLs to absolute
+    case "$src" in
+      http*) url="$src" ;;
+      /*)    url="https://mception.ai$src" ;;
+      *)     url="https://mception.ai/${SLUG}/viewer/$src" ;;
+    esac
+    code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+    echo "$code  $url"
+  done | tee /tmp/image-check.log
+grep -vE "^200" /tmp/image-check.log  # any non-200 = broken = STOP
+```
+
+**Action on failure:** If any image returns non-200, do NOT declare the
+publish complete. Options:
+- Re-upload: if the PNG exists locally but not on the server, copy to
+  `portal/public/<slug>/viewer/<path>` and redeploy
+- Rename: if the HTML references the wrong path, fix the HTML/renderer
+  and redeploy
+- Explicitly flag: if the image is intentionally missing (e.g., coming
+  later), report it to Brady and get `explicitly approved missing image`
+  confirmation before moving on
+
+### 5b — Chatbot functional check (if applicable)
+
+Applies when the slug has an embedded chatbot or AI endpoint. Look for:
+- `portal/src/config/chat/<slug>.yml` (page-chatbot config)
+- `/api/chat/<slug>` or similar route
+- Any `<iframe>` in the viewer that embeds a chat widget
+
+```bash
+SLUG=<slug>
+# 1. Confirm chat config file exists and references valid KB
+test -f "portal/src/config/chat/${SLUG}.yml" && \
+  grep -E "knowledge_base|system_prompt|kb_path" "portal/src/config/chat/${SLUG}.yml"
+# 2. Verify each referenced KB file exists
+for kb in $(grep "kb_path:" "portal/src/config/chat/${SLUG}.yml" | awk '{print $2}'); do
+  test -f "portal/${kb}" && echo "OK: $kb" || echo "MISSING: $kb"
+done
+# 3. End-to-end test message — authenticated Brady session required
+# Use Claude in Chrome with the live URL, send a KB-specific question,
+# confirm the response references specific KB content (not a generic answer)
+```
+
+**Action on failure:** Chat endpoint 500 = block publish until fixed.
+Response generic / ignores KB = flag to Brady with the test transcript and
+the config file path; likely a system prompt or KB path fix needed.
+
+### 5c — Permissions audit report
+
+After every publish — and weekly across ALL slugs — pull the current
+allowlist and surface it to Brady.
+
+**Single slug after publish:**
+```bash
+SLUG_UPPER=$(echo "<slug>" | tr 'a-z-' 'A-Z_')
+cd portal
+[ -d .vercel ] || vercel link --yes --project mception-ai
+vercel env ls production 2>/dev/null | grep "MCEPTION_${SLUG_UPPER}_EMAILS"
+# Pull actual value (env ls shows "Encrypted" only)
+vercel env pull /tmp/env-check --environment=production --yes >/dev/null 2>&1
+grep "MCEPTION_${SLUG_UPPER}_EMAILS" /tmp/env-check | head -1
+rm /tmp/env-check
+```
+
+Report back to Brady in this exact format:
+```
+ACCESS REPORT — <slug>
+  Platform owner: brady.smallwood@gmail.com (default, always has access)
+  Allowlisted: <list emails from env var, or "none beyond platform owner">
+
+Confirm this is correct? If anyone on this list should NOT have access,
+say so now — Webster removes them.
+```
+
+**Weekly audit across all slugs** (trigger: "permissions audit" or
+"review who has access"):
+```bash
+cd portal
+[ -d .vercel ] || vercel link --yes --project mception-ai
+vercel env pull /tmp/env-audit --environment=production --yes >/dev/null 2>&1
+grep -E '^MCEPTION_.*_EMAILS=' /tmp/env-audit | \
+  while IFS='=' read name value; do
+    # Strip surrounding quotes + show csv
+    value=${value#\"}; value=${value%\"}
+    echo "${name}: ${value}"
+  done | tee /tmp/access-report.txt
+rm /tmp/env-audit
+```
+
+Report format:
+```
+WEEKLY PERMISSIONS AUDIT — <date>
+  <SLUG_1>: <emails, or "(none — only platform owner)">
+  <SLUG_2>: <emails>
+  ...
+  ADMIN: <emails from MCEPTION_ADMIN_EMAILS>
+  ALL-PROJECTS: <emails from MCEPTION_ALL_PROJECTS_EMAILS>
+
+Anything here that shouldn't be? Webster can trim — just say which slug
+and which email.
+```
+
+**Reminder cadence:** Webster surfaces the weekly audit during the
+Sunday weekly-sweep by default, and on-demand any time Brady says
+"permissions check," "who can see what," or similar. If Webster hasn't
+surfaced an audit in 8+ days, he proactively offers one.
+
+---
+
+## Runbook 6 — Add a new Vercel project (separate app, not a mception slug)
 
 **Use when:** Brady wants a standalone Vercel app (like innovation-lab,
 ops-lab) instead of a mception.ai iframe slug.
