@@ -165,15 +165,17 @@ Compact block for morning sweep's `💰 FINANCES` section:
 ───────────────────────────────────────────────────
 💰 FINANCES (data through [YYYY-MM-DD])
 ───────────────────────────────────────────────────
-Cash Flow MTD: +$X,XXX (income $XX,XXX / spend $XX,XXX)
-Consulting Revenue: $XX,XXX of $XX,XXX target (XX%)
+$24K Pace:  $XX,XXX billed MTD (target $XX,XXX by day X) — [on track / $X,XXX behind / $X,XXX ahead]
+Tax sweep:  [✅ swept / ⚠️ not swept] on last payment
+Food/week:  $XXX this week vs $900 ceiling ([X] weeks at this rate = $X,XXX vs $3,900 budget)
 ⚠️ Over budget: [category] at XXX% ($XXX over)
 📬 Outstanding invoices: [client] $X,XXX (sent [date])
 📅 Due this week: [bill] $XXX ([day])
 [If CSV stale: ⚠️ Monarch data is XX days old — drop a fresh export]
 ```
 
-Only show the `⚠️ Over budget` line if any category is >100%. Show top 1-2 items only.
+`$24K Pace` is always shown first. Compute expected-by-today as `$24,000 × (day_of_month / days_in_month)`.
+Only show `⚠️ Over budget` if any category is >100%. Show top 1-2 items only.
 Only show `📬 Outstanding` if there are unpaid invoices. Limit to top 2.
 Only show `📅 Due this week` for items due in the next 7 days. Limit to top 3.
 
@@ -185,16 +187,24 @@ Detailed block for weekly sweep's `💰 FINANCIAL WEEK` section:
 💰 FINANCIAL WEEK (data through [YYYY-MM-DD])
 ───────────────────────────────────────────────────
 
-MONTH-TO-DATE SNAPSHOT ([Month], day X of XX)
+$24K BASELINE — [Month], Week [N]
+  Gross billed MTD:   $XX,XXX  (target $XX,XXX by today — [+/-$X,XXX])
+  This week:          $X,XXX   (floor $5,500 · target $5,539 · tier: SURVIVE / STABILIZE / THRIVE)
+  Tax reserve swept:  [✅ / ⚠️ pending] on $XX,XXX received
+  Operating (70%):    $XX,XXX available for bills + spending
+
+MONTH-TO-DATE SNAPSHOT ([Month], day X of XX — XX% through month)
   Income:    $XX,XXX (consulting: $XX,XXX | other: $XXX)
   Expenses:  $XX,XXX
   Net:       +/-$X,XXX
   Runway:    X.X months at current burn
 
-BUDGET STATUS (🟡 = trending over, 🔴 = over)
-  [category]: $actual / $budget (XX%) [flag]
-  [category]: $actual / $budget (XX%) [flag]
-  ... (show all flagged categories, then top 5 by spend)
+FOUR-BUCKET STATUS (🟡 = trending over, 🔴 = over)
+  Fixed obligations:    $actual / $8,228  (XX%) [flag]
+  Household ops:        $actual / $5,743  (XX%) [flag]
+    └─ Food/consumables: $actual / $3,900  ($actual/wk avg — $900 ceiling) [flag]
+  Savings:              $actual / $2,750  (XX%) [funded ✅ / not yet ⚠️]
+  Tax reserve:          [swept ✅ / pending ⚠️]
 
 CONSULTING PIPELINE
   [Client]: [type] — $X,XXX/mo — [status: invoiced/received/outstanding]
@@ -215,6 +225,8 @@ LAST 7 DAYS — TOP TRANSACTIONS
   ... (top 5 by amount)
 ```
 
+Tier classification: Survive = week billed <$7,000, Stabilize = $7,000–$9,599, Thrive = $9,600+.
+
 ### Full Mode (Default)
 Complete standalone output combining all sections from Phase 2, plus:
 
@@ -224,16 +236,31 @@ Complete standalone output combining all sections from Phase 2, plus:
   Data through: [YYYY-MM-DD] | Generated: [now]
 ═══════════════════════════════════════════════════
 
-[All sections from weekly summary, expanded]
+$24K BASELINE SCORECARD
+  Monthly target:     $24,000 gross ($5,539/wk)
+  Billed MTD:         $XX,XXX  (XX% of monthly target)
+  Expected by today:  $XX,XXX  ([on pace / $X,XXX behind / $X,XXX ahead])
+  Net available (70%): $XX,XXX after 30% tax reserve
+  Projected month-end: $XX,XXX  ([on track / shortfall $X,XXX])
+  Current tier:        SURVIVE / STABILIZE / THRIVE
+
+FOUR-BUCKET SCORECARD
+  Bucket              Budget    Actual    Delta    %Used   Status
+  Fixed obligations   $8,228    $X,XXX    +/-$XXX  XX%     🟢/🟡/🔴
+  Household ops       $5,743    $X,XXX    +/-$XXX  XX%     🟢/🟡/🔴
+    Food/consumables  $3,900    $X,XXX    +/-$XXX  XX%     🟢/🟡/🔴
+  Savings             $2,750    $X,XXX    +/-$XXX  XX%     🟢/🟡/🔴
+  Tax reserve (30%)   $7,200    [swept?]  —        —       ✅/⚠️
+  ─────────────────────────────────────────────────────
+  Total spend         $16,721   $XX,XXX   +/-$XXX  XX%
+
+[All remaining sections from weekly summary, expanded]
 
 PERSONAL vs BUSINESS SPLIT
   Personal spend: $XX,XXX (XX%)
   Business spend:  $X,XXX (XX%)
   Consulting revenue: $XX,XXX
   Net business:    +/-$X,XXX
-
-FULL BUDGET GRID
-  [All categories with budget/actual/delta/flag]
 
 FULL TRANSACTION LOG (current month)
   [All transactions sorted by date, grouped by week]
@@ -262,9 +289,39 @@ TAX ITEMS
      csvStaleDays: Number,               // days since last CSV export
 
      budget: {
-       summary: { actualAvg12mo, strippedFrivolous, zeroIncomeFloor },
-       tiers: [{ name, amount, items: [{ name, amount }] }],
-       monthlyTotal, annualized
+       // $24K canonical baseline (from budget-targets.md)
+       monthlyGrossTarget: 24000,
+       weeklyGrossTarget: 5539,
+       taxReservePct: 0.30,
+       operatingPct: 0.70,
+       tiers: [
+         { name: "Survive",    weeklyGross: 5500,  annualGross: 286000 },
+         { name: "Stabilize",  weeklyGross: 7000,  annualGross: 364000 },
+         { name: "Thrive",     weeklyGross: 9600,  annualGross: 500000 }
+       ],
+       buckets: [
+         { name: "Fixed obligations",   monthly: 8228, pct: 0.34 },
+         { name: "Household ops",       monthly: 5743, pct: 0.24,
+           items: [
+             { name: "Food & consumables", monthly: 3900, weeklyTarget: 900 },
+             { name: "Kids extracurriculars", monthly: 500 },
+             { name: "Random fun",        monthly: 433 },
+             { name: "Household projects", monthly: 333 },
+             { name: "Allowances",        monthly: 280 },
+             { name: "Clothes",           monthly: 167 },
+             { name: "Lawn",              monthly: 130 }
+           ]
+         },
+         { name: "Savings & investment", monthly: 2750, pct: 0.11,
+           items: [
+             { name: "Betterment (retirement)", monthly: 1500 },
+             { name: "Kids college (529s)",      monthly: 1250 }
+           ]
+         },
+         { name: "Tax reserve", monthly: 7200, pct: 0.30, rule: "30% swept on receipt" }
+       ],
+       slack: 79,
+       totalSpend: 16721,             // spend + savings (ex-tax)
      },
 
      alerts: [{ type: "red"|"yellow", title, text }],
@@ -291,11 +348,53 @@ TAX ITEMS
      recurring: [{ name, amount, method, autopay, flag }],
      openQuestions: [{ status, text }],
      dataSources: [{ name, status, coverage, action }],
-     recentTransactions: [{ date, merchant, amount, category, owner, account }]
+     recentTransactions: [{ date, merchant, amount, category, owner, account }],
+
+     burnRate: {
+       fourWeekTotal, twelveWeekTotal,
+       fourWeekWeekly, twelveWeekWeekly,
+       deltaPct, trend,          // trend: "up" | "down" | "flat"
+       alert                     // string or null
+     },
+
+     forecast: {
+       daysElapsed, daysInMonth, monthProgressPct,
+       projectedMonth, budgetMonth,
+       byCategory: [{ bucket, actual, projected, budget, pctOfBudget, flag }],
+       alerts: [{ bucket, projected, budget, over_pct }]
+     },
+
+     runway: {
+       liquidAssets,             // from references/liquid-assets.md, null if TBD
+       monthlyBurn,
+       months, weeks,            // null if liquid is TBD
+       status,                   // "red" | "yellow" | "green" | "unknown"
+       alert
+     },
+
+     business: {
+       month, revenue, expenses, net, margin,
+       monthlyRecurringRevenue,
+       revenueTransactions, expenseTransactions
+     },
+
+     consulting: {               // populated by skill run (Gmail/Notion enrichment), not generate-data.py
+       month,
+       invoicesSent: [{ client, amount, date }],
+       invoicesReceived: [{ client, amount, date }],
+       outstanding: [{ client, amount, daysOutstanding }],
+       pipelineMRR,
+       note
+     }
    };
    ```
 
-   - `budget` data comes from `references/budget-targets.md` (three-tier model)
+   `burnRate`, `forecast`, `runway`, `business` are computed in `scripts/generate-data.py`.
+   `consulting` is written by this skill at runtime (Phase 1.2 Gmail scan + Phase 1.4 Notion pipeline).
+   `runway.liquidAssets` reads from `references/liquid-assets.md` — Brady maintains this manually.
+   `business` classification rules live in `references/business-vs-personal-rules.md`.
+
+   - `budget` data comes from `references/budget-targets.md` ($24K baseline, four buckets, 30/70 split rule)
    - Transaction data comes from Monarch CSV parsing + scrape results
    - Color values: "green", "red", "yellow", "muted", "accent"
    - Status values: "resolved", "open", "partial", "stale", "done", "missing"

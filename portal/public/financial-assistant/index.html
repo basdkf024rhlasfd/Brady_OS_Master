@@ -461,6 +461,181 @@
     }
   }
 
+  // BALANCE SHEET & BUDGET BASELINE
+  if (D.balanceSheet || D.budgetBaseline) {
+    const bs = D.balanceSheet;
+    const bb = D.budgetBaseline;
+    html += `<div class="section-header">Balance Sheet &amp; Budget Baseline${bs?.snapshotDate ? ` <span style="color:var(--gray);font-size:0.7rem">as of ${bs.snapshotDate}</span>` : ''}</div>`;
+    if (bs) {
+      html += `<div class="grid-4">
+        <div class="card card-green">
+          <h3>Net Worth</h3>
+          <div class="big c-green">${$(bs.netWorth)}</div>
+          <div class="small">${$(bs.assets.total)} assets · ${$(bs.liabilities.total)} liabilities</div>
+        </div>
+        <div class="card">
+          <h3>Home Equity</h3>
+          <div class="med">${$(bs.assets.realEstate.netEquity)}</div>
+          <div class="small">${$(bs.assets.realEstate.grossValue)} value · ${$(bs.assets.realEstate.mortgage)} mortgage · ${$(bs.assets.realEstate.heloc)} HELOC drawn</div>
+        </div>
+        <div class="card">
+          <h3>Investments</h3>
+          <div class="med">${$(bs.assets.investments.total)}</div>
+          <div class="small">IRA ${$(bs.assets.investments.ira)} · 401k ${$(bs.assets.investments.k401)} · Roth ${$(bs.assets.investments.roth)} · Taxable ${$(bs.assets.investments.taxableBrokerage)}</div>
+        </div>
+        <div class="card ${(bs.assets.bankCash || 0) < 5000 ? 'card-red' : ''}">
+          <h3>Bank Cash</h3>
+          <div class="med ${(bs.assets.bankCash || 0) < 5000 ? 'c-red' : ''}">${$(bs.assets.bankCash)}</div>
+          <div class="small">${bs.helocAvailable ? 'HELOC available: ' + $(bs.helocAvailable) : ''}</div>
+        </div>
+      </div>`;
+    }
+    if (bb && bb.tiers) {
+      html += `<div class="card" style="margin-bottom:20px"><h3 style="margin-bottom:12px">Three-Tier Budget &middot; Runway at Each Tier</h3>`;
+      html += `<div style="font-size:0.8rem;color:var(--gray);margin-bottom:12px">Accessible liquidity: <strong>${$(bb.accessibleLiquidity)}</strong> (cash + Betterment + HELOC available). Current burn: <strong>${$(bb.currentMonthlyBurn)}/mo</strong>.</div>`;
+      html += `<div class="grid-3">`;
+      const tierColors = ['var(--red)', 'var(--gold)', 'var(--blue)'];
+      bb.tiers.forEach((t, i) => {
+        const runwayColor = t.runwayMonths != null && t.runwayMonths < 3 ? 'c-red' : t.runwayMonths != null && t.runwayMonths < 12 ? 'c-gold' : 'c-green';
+        html += `<div class="card" style="border-left:3px solid ${tierColors[i]}">
+          <h3>${t.name}</h3>
+          <div class="med" style="color:${tierColors[i]}">${$(t.monthly)}/mo</div>
+          <div class="small">${$(t.annual)}/yr · Runway: <strong class="${runwayColor}">${t.runwayMonths != null ? t.runwayMonths + ' mo' : '—'}</strong></div>
+        </div>`;
+      });
+      html += `</div></div>`;
+    }
+  }
+
+  // BURN RATE & RUNWAY (detailed)
+  if (D.burnRate) {
+    const b = D.burnRate;
+    const run = D.runway || {};
+    const trendArrow = b.trend === "up" ? "↑" : b.trend === "down" ? "↓" : "→";
+    const trendColor = b.trend === "up" ? "c-red" : b.trend === "down" ? "c-green" : "";
+    const runwayColor = run.status === "red" ? "c-red" : run.status === "yellow" ? "c-gold" : run.status === "green" ? "c-green" : "";
+    const runwayDisplay = run.months ? `${run.months} mo` : "—";
+    html += `<div class="section-header">Burn &amp; Runway</div>`;
+    html += `<div class="grid-4">
+      <div class="card">
+        <h3>4-Week Burn</h3>
+        <div class="med ${trendColor}">${$(b.fourWeekWeekly)}/wk</div>
+        <div class="small">${$(b.fourWeekTotal)} over 28 days</div>
+      </div>
+      <div class="card">
+        <h3>12-Week Avg</h3>
+        <div class="med">${$(b.twelveWeekWeekly)}/wk</div>
+        <div class="small">${$(b.twelveWeekTotal)} over 84 days</div>
+      </div>
+      <div class="card">
+        <h3>Trend</h3>
+        <div class="med ${trendColor}">${trendArrow} ${b.deltaPct}%</div>
+        <div class="small">4w vs 12w</div>
+      </div>
+      <div class="card ${run.status === 'red' ? 'card-red' : run.status === 'green' ? 'card-green' : ''}">
+        <h3>Cash Runway</h3>
+        <div class="med ${runwayColor}">${runwayDisplay}</div>
+        <div class="small">${run.liquidAssets ? $(run.liquidAssets) + ' liquid · ' + $(run.monthlyBurn) + '/mo' : 'Update liquid-assets.md'}</div>
+      </div>
+    </div>`;
+    if (b.alert) {
+      html += `<div style="font-size:0.75rem;color:var(--gold);margin-bottom:12px">⚠ ${b.alert}</div>`;
+    }
+    if (run.alert) {
+      html += `<div style="font-size:0.75rem;color:var(--red);margin-bottom:12px">🔴 ${run.alert}</div>`;
+    }
+  }
+
+  // MONTH FORECAST
+  if (D.forecast) {
+    const f = D.forecast;
+    html += `<div class="section-header">Month Forecast &middot; ${f.monthProgressPct}% through</div>`;
+    html += `<div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span>Projected month-end: <strong class="${f.projectedMonth > f.budgetMonth * 1.1 ? 'c-red' : 'c-green'}">${$(f.projectedMonth)}</strong></span>
+        <span class="small">Budget: ${$(f.budgetMonth)} · Day ${f.daysElapsed}/${f.daysInMonth}</span>
+      </div>`;
+    if (f.alerts && f.alerts.length) {
+      html += `<div style="font-size:0.8rem;color:var(--gold);margin-top:8px"><strong>Categories on pace to overshoot:</strong> `;
+      html += f.alerts.map(a => `${a.bucket} (+${a.over_pct}%)`).join(" · ");
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // COMPENSATION TARGET
+  if (D.compensationTarget) {
+    const ct = D.compensationTarget;
+    const statusColor = ct.status === "above" ? "c-green" : ct.status === "below" ? "c-red" : "c-gold";
+    const cardClass = ct.status === "above" ? "card-green" : ct.status === "below" ? "card-red" : "";
+    const pctOfTarget = ct.monthlyTarget > 0 ? Math.min(100, (ct.monthActual / ct.monthlyTarget) * 100) : 0;
+    html += `<div class="section-header">Compensation Target &middot; ${$(ct.monthlyTarget)}/mo gross</div>`;
+    html += `<div class="grid-3">
+      <div class="card ${cardClass}">
+        <h3>This Month</h3>
+        <div class="big ${statusColor}">${$(ct.monthActual)}</div>
+        <div class="small">of ${$(ct.monthlyTarget)} target (${pctOfTarget.toFixed(0)}%)</div>
+      </div>
+      <div class="card">
+        <h3>${ct.status === "above" ? "Surplus" : "Gap"}</h3>
+        <div class="med ${ct.status === "above" ? "c-green" : "c-red"}">${ct.status === "above" ? "+" : "-"}${$(ct.status === "above" ? ct.surplus : Math.abs(ct.gap))}</div>
+        <div class="small">${ct.status === "above" ? "Allocate explicitly — save, invest, or fund goals" : "Push pipeline / delivery / collections"}</div>
+      </div>
+      <div class="card">
+        <h3>Annual Target</h3>
+        <div class="med">${$(ct.annualTarget)}</div>
+        <div class="small">$24K/mo × 12</div>
+      </div>
+    </div>`;
+    html += `<div style="font-size:0.7rem;color:var(--gray);margin-bottom:20px;font-style:italic">${ct.note}</div>`;
+  }
+
+  // BUSINESS vs PERSONAL
+  if (D.business) {
+    const biz = D.business;
+    const marginDisplay = biz.margin != null ? (biz.margin * 100).toFixed(0) + "%" : "—";
+    html += `<div class="section-header">Business &middot; ${biz.month}</div>`;
+    html += `<div class="grid-4">
+      <div class="card card-green">
+        <h3>Revenue MTD</h3>
+        <div class="med c-green">${$(biz.revenue)}</div>
+        <div class="small">${biz.revenueTransactions} transactions</div>
+      </div>
+      <div class="card card-red">
+        <h3>Expenses MTD</h3>
+        <div class="med c-red">${$(biz.expenses)}</div>
+        <div class="small">${biz.expenseTransactions} transactions</div>
+      </div>
+      <div class="card">
+        <h3>Net</h3>
+        <div class="med ${biz.net >= 0 ? 'c-green' : 'c-red'}">${biz.net >= 0 ? '' : '-'}${$(Math.abs(biz.net))}</div>
+        <div class="small">Revenue − Expenses</div>
+      </div>
+      <div class="card">
+        <h3>3-Mo Recurring</h3>
+        <div class="med">${$(biz.monthlyRecurringRevenue)}</div>
+        <div class="small">Margin ${marginDisplay}</div>
+      </div>
+    </div>`;
+  }
+
+  // CONSULTING PIPELINE (populated by skill run, often empty between runs)
+  if (D.consulting && (D.consulting.invoicesSent.length || D.consulting.invoicesReceived.length || D.consulting.outstanding.length || D.consulting.pipelineMRR)) {
+    const c = D.consulting;
+    html += `<div class="section-header">Consulting Pipeline &middot; ${c.month}</div>`;
+    if (c.outstanding && c.outstanding.length) {
+      html += `<div class="card" style="margin-bottom:16px">
+        <h3>Outstanding Invoices</h3>`;
+      c.outstanding.forEach(o => {
+        html += `<div class="small" style="padding:4px 0">${o.client} — ${$(o.amount)} (${o.daysOutstanding}d)</div>`;
+      });
+      html += `</div>`;
+    }
+    if (c.pipelineMRR) {
+      html += `<div class="small" style="margin-bottom:20px">Pipeline MRR: ${$(c.pipelineMRR)}</div>`;
+    }
+  }
+
   // TOP-LINE ACTUALS
   if (D.topline) {
     const t = D.topline;

@@ -184,6 +184,15 @@ fi
 
 `HEADLINE` = one-line synthesis of the day's top story. `PDF_PATH` = path or URL to the rendered PDF.
 
+### Phase 5: LOG TO ROUTING LOG
+
+Append one row to the Routing Log per `3-reference/skills/_shared/routing-log.md` (DB `344ed43b-89c5-816a-ab54-ca49ca239748`):
+- `date` = today
+- `original_title` = `Daily Whitepaper YYYY-MM-DD`
+- `destination` = PDF output path (e.g., `~/Documents/Daily-Briefs/YYYY/MM/daily-brief-YYYY-MM-DD.pdf`)
+- `reason` = `Daily whitepaper published`
+- `summary` = 1-line of the executive summary's headline theme
+
 ## Edge Cases
 
 - **No Substack posts in 48 hours**: "No new Substack posts." Omit the Substack Digest section
