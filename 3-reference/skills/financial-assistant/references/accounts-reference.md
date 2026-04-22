@@ -52,6 +52,16 @@ Last updated: 2026-04-17
 - **Card ending 1842** — Walmart gift card used in-store in Orem, UT. Split payment with Arvest debit 2021 on Apr 1. Potential channel for untracked spending. Not linked in Monarch.
 - **Zions Bancorporation** — Utah bank deposited $15 to Faith's MONEY card Jan 20. Possible Utah banking relationship. Investigate.
 
+## Fidelity Investment Accounts (added to Monarch 2026-04-22)
+
+| Account (Monarch Name) | Owner | Type | Notes |
+|-------------------------|-------|------|-------|
+| Fidelity ROTH IRA (...9970) | Brady | Roth IRA | $69,452.29 as of 2026-04-22 |
+| Fidelity Rollover IRA C (...3144) | Brady | IRA | $295,248.48 as of 2026-04-22 |
+
+These are investment/retirement accounts — do NOT count toward liquid assets or runway.
+Transactions from these accounts in Monarch: classify as Brady, type = Investment (not spending).
+
 ## Other Financial Platforms (Not in Monarch)
 
 | Platform | URL | What's There | In Monarch? |
