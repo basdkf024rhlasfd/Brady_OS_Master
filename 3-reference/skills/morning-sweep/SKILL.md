@@ -142,6 +142,18 @@ proposed dev plans that Brady can review and execute in Conductor.build.
   - **Blocked** (vague, requires external credentials, or touches production): classify as blocked
 - Do NOT change Status yet — that happens in 3.4b during the execute phase
 
+### 1.9b Streaming Notes Daily Light Audit
+
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for items where:
+- `Last Modified` > 3 days ago
+- `Next Action` field is empty
+- `Status` NOT IN ["Complete", "Remove"]
+- `Type` NOT IN ["Daily State", "Keep Handy", "Pin to Top", "Sweep Feedback"]
+
+Cap at 5 items (oldest first). Store results for the Phase 2 report block.
+
+SLA reference: `3-reference/skills/_shared/streaming-notes-processing-paths.md`
+
 ## Phase 2: REPORT (Structured Output)
 
 Now write the brief. Every section is scannable. No fluff.
@@ -250,6 +262,15 @@ No build requests detected.
 ───────────────────────────────────────────────────
 [Recent recordings — title, date, any flagged action items]
 [If any contain detailed instructions: "⚡ Recording '[title]' has instructions to build into a plan — review after sweep."]
+
+───────────────────────────────────────────────────
+📊 STREAMING NOTES — NEEDS DIRECTION ([N] items)
+───────────────────────────────────────────────────
+[For each item from Phase 1.9b scan (oldest first, max 5):]
+• **[Name]** | [Type] | [N] days since last touch | Priority: [priority]
+  → Set a next action, or say "archive [name]" to close it
+
+[If 0 items: "All active items have next actions set. Pipeline healthy."]
 
 ═══════════════════════════════════════════════════
 👨‍👩‍👧‍👦 FAMILY BRIEF
