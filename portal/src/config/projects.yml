@@ -133,6 +133,16 @@ projects:
       baseUrl: "/financial-assistant"
       path: "/index.html"
 
+  # --- Personal / Holdings ---
+  - slug: sycamore-lane
+    label: "Sycamore Lane"
+    short: "S"
+    href: "/sycamore-lane"
+    description: "Sycamore Lane Holdings — operator-led strategy for CPG, retail, and foodservice. Private holding company site."
+    approved: 2026-04-22
+    type: native
+    magic_link: false
+
   # --- Incubator group (parked / not front-and-center) ---
   - slug: gary
     label: "Gary / IVFH"
