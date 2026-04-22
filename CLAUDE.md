@@ -5,7 +5,7 @@
 - `1-execution/` — Areas > Programs > Projects > Tasks. Consulting projects live under work-and-business.
 - `2-memory/` — Unstructured intake (lives in Notion, not repo).
 - `3-reference/` — Rules, governance, skills, publishing. Standalone reusable skills go in `3-reference/skills/<name>/`.
-- `portal/` — mception.ai Next.js app (Clerk auth, project portal). Deployed to Vercel project "munich". Config: `portal/src/config/projects.yml`.
+- `portal/` — mception.ai Next.js app (Clerk auth, project portal). Deployed to Vercel project **`mception-ai`** (the "munich" project is legacy — do not use). Config: `portal/src/config/projects.yml`. Webster agent owns all deploy + env-var operations here.
 
 ## Key Files
 - `3-reference/os-doctrine.md` — Authority horizons, Trust Loop
@@ -77,6 +77,7 @@
 - **Recursive Learning:** `3-reference/skills/recursive-learning/SKILL.md` — Captures working-style feedback to BOTH Streaming Notes pipeline (Type=System Instruction, picked up by morning sweep) AND Working Style Learnings table in Onboarding Brief.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. Inbound: classic intake + feedback capture (`rule:/never:/always:/remember:` → Streaming Notes as System Instruction, promoted by morning sweep). Outbound: `POST /api/push` used by sweeps for completion notifications. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`
 - **Wyatt Earp:** `0-agents/custom-built-agents/wyatt-earp.md` — Ad hoc dissent agent. Pressure-tests pitches and strategic recommendations for being too timid. Activated under Dissent Protocol.
+- **Webster:** `0-agents/custom-built-agents/webster.md` — Web publishing concierge. Owns mception.ai slug publishing, Vercel env vars, deploy diagnostics, Clerk allowlists, and API/token plumbing. SKILL: `0-agents/custom-built-agents/webster-SKILL.md` — 5 copy-paste runbooks covering publish-new-slug, edit-allowlist, diagnose-failed-deploy, wire-new-api, and spin-up-standalone-Vercel-app. Trigger on "publish to mception", "deploy [X]", "add access for [email]", "fix the build", "wire up [API]", or any web/deploy ops request.
 - **OS Context Pack:** `3-reference/skills/os-context-pack/SKILL.md` — Generates a portable context pack for Claude Chat Projects. Trigger: "brady os context". Outputs custom instructions + knowledge file.
 - **Agent Debate:** `3-reference/skills/agent-debate/SKILL.md` — Stages structured debates between Brady OS agents on strategic questions. War room transcript format. Trigger: "stage a debate", "agent debate", "war room".
 - **Cascading Accountability:** `3-reference/skills/cascading-accountability/SKILL.md` — AI-native management system for CEO daily briefings. Surfaces performance signals, risk flags, and pre-drafted communications. Templates + OKR tracker + whitepaper.
