@@ -14,3 +14,6 @@ portal/.next/
 portal/.env.local
 .vercel
 .env*.local
+
+# Claude Code runtime state
+.claude/
