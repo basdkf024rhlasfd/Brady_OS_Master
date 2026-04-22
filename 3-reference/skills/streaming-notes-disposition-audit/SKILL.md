@@ -32,7 +32,8 @@ and guarantees every item is seen within 7 days of going stale.
 
 **Runs on**: CoWork (Claude Desktop) on Brady's Mac  
 **Access needed**: Notion MCP  
-**Streaming Notes DB**: `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`  
+**Streaming Notes DB**: `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`  
+**Processing paths + per-Type SLAs**: `3-reference/skills/_shared/streaming-notes-processing-paths.md`  
 **Scheduled**: Sunday evening (or as final step of weekly-sweep)  
 **Expected runtime**: 10–15 minutes
 
@@ -67,12 +68,16 @@ Definition: `Last Modified` is more than 14 days ago AND `Status` is still "Not 
 
 These items need a Brady decision: Keep as-is / Set next action / Archive (mark Remove).
 
-### Bucket B — NEEDS NEXT ACTION (>3 days, no Next Action field set)
-Definition: `Last Modified` is more than 3 days ago AND `Next Action` field is empty.
+### Bucket B — NEEDS NEXT ACTION (no Next Action field set, past per-Type SLA)
+Definition: `Next Action` field is empty AND item is past its SLA threshold (per `3-reference/skills/_shared/streaming-notes-processing-paths.md`):
+- System Instruction / Build Request / Sweep Feedback: 24h
+- Pulse Note: 48h
+- Task / To Do / Note: 72h
+- Thread Log: 7d
 
 These items are active but directionless. Brady needs to write a next action or the item will drift into Bucket A.
 
-Exception: Items with Type = "Keep Handy" or "Pin to Top" — skip, they're intentionally persistent.
+Exception: Items with Type = "Keep Handy", "Pin to Top", or "Daily State" — skip, they're intentionally persistent.
 
 ### Bucket C — NEEDS UNBLOCK (Blocked status, no Blockers field)
 Definition: `Status` = "Blocked" AND `Blockers` field is empty.
@@ -167,6 +172,33 @@ After Brady confirms dispositions:
    ```
    Disposition Audit: [N] items reviewed — [A] archived, [B] got next actions, [C] unblocked, [D] cleaned up. [N] items carried forward.
    ```
+
+## Phase 6: Processing Score
+
+After Phase 5 batch updates, compute:
+
+```
+Processing Score = (items actioned this run) / (items open at start of audit) × 10
+```
+
+"Actioned" = Status moved to Complete or Remove, OR Next Action field set for the first time.
+"Open at start" = total items returned in Phase 1 query (before bucketing).
+
+Append a `## Processing Score` section to the Disposition Audit Thread Log:
+
+```
+## Processing Score
+Score: [X]/10
+Items open: [N] | Items actioned: [N] | Carried forward: [N]
+Trend: [▲ improving / ▼ declining / → flat] vs. last audit
+```
+
+Target: 9/10. Baseline: 2/10 (set 2026-04-22).
+
+Also include in the weekly-sweep one-line summary:
+```
+Disposition Audit: [N] items reviewed — [A] archived, [B] got next actions, [C] unblocked, [D] cleaned up. Score: [X]/10.
+```
 
 ## Rules
 
