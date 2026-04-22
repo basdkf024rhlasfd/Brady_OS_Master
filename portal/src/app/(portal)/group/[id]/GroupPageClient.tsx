@@ -49,6 +49,20 @@ interface DataSource {
   description: string;
   nextStep?: string;
   nextStepActor?: "brady" | "chrome-agent" | "claude-desktop" | "conductor";
+  lastActivity?: string;
+  lastActivitySource?: string;
+}
+
+function formatRelative(iso: string): string {
+  const ms = Date.now() - new Date(iso).getTime();
+  if (ms < 0) return "just now";
+  const m = Math.floor(ms / 60000);
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  const d = Math.floor(h / 24);
+  if (d < 30) return `${d}d ago`;
+  return `${Math.floor(d / 30)}mo ago`;
 }
 
 const actorLabels: Record<NonNullable<DataSource["nextStepActor"]>, string> = {
@@ -504,6 +518,12 @@ export function GroupPageClient({
                               )}
                             </p>
                           </div>
+                        )}
+                        {ds.lastActivity && (
+                          <p className="mt-1 pl-4 text-[9px] text-text-hint">
+                            Last: {formatRelative(ds.lastActivity)}
+                            {ds.lastActivitySource && <span className="text-text-hint/70"> · {ds.lastActivitySource}</span>}
+                          </p>
                         )}
                       </div>
                     );
