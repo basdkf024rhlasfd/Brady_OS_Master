@@ -1,6 +1,33 @@
 # James Ku — Person Deep Research
 
 **Date:** April 15, 2026 | **Research Type:** Person / Executive Due Diligence
+**Last updated:** April 23, 2026 (post-interview debrief)
+
+---
+
+## Post-Interview Update — April 23, 2026
+
+**Relationship status:** Warm and mutual. James is clearly bought in. He described Brady as the archetype he needs — "somebody like you, coming from Walmart, you've seen it happen before and you can put together, run a meeting, get people rolling." This is a buying signal, not a courtesy.
+
+**Communication style observed:**
+- Probing, conversational — asks follow-up questions before accepting an answer
+- Thinks in analogies and concrete examples (cited Starbucks Fire Center, clothespin example resonated)
+- Values operator embed culture; skeptical of "ivory tower innovation"
+- Comfortable with ambiguity on scope — prefers to iterate with a trusted person than over-engineer upfront
+
+**Operating philosophy:**
+- Top-down + bottom-up planning → OKRs
+- Innovation needs a champion operator, not just a sponsor exec
+- Prefers short, focused discovery before building systems
+- Data objectivity as a forcing function — "so stinking objective on the math that people don't have a chance to hide unsuccessful things"
+
+**His real fear:** An innovation team that ops never adopts because it was designed without them.
+
+**Personal context:**
+- Referenced Starbucks' innovation center (visited it) as his aspiration model for what Panda's team could look like
+- Comfortable with fractional/consulting model as a new way of working — mentioned Jordan Burke as a peer example
+- Building out a small consulting bench himself (BCG guy for labor analysis; Service Physics for broader consulting)
+- Wants an "extension of his brain" — someone who owns the accountability so he doesn't have to micromanage
 
 ---
 

@@ -34,9 +34,9 @@
 
 ## Competition
 
-- **Direct:** Whatever external advisors / strategy firms (McKinsey, Bain, Kearney, specialized QSR consultants) James may already be talking to. No visibility yet.
-- **Indirect:** Internal hiring — James could skip the consulting phase and go straight to a permanent leader. Brady's job is to prove the research-first scoping phase is worth doing first.
-- **Time pressure:** Next conversation being scheduled by Esmeralda (EA) for the week of April 20-24, 2026. Deliverable (research-backed problem statement brief) needs to land at or before that meeting.
+- **Direct:** **Service Physics** (Dallas boutique consulting firm) — confirmed active vendor at Panda as of April 23 call. James described them as "getting expensive" and not needing "all consulting firm resources." Brady's entry: structured, deliverable-scoped work Service Physics isn't positioned to run.
+- **Indirect:** Internal hiring — James could skip the consulting phase and go straight to a permanent leader. He acknowledged this is harder than finding Brady, and explicitly framed Brady as a bridge to that hire.
+- **Time pressure:** ~~Next conversation being scheduled by Esmeralda (EA) for the week of April 20-24.~~ Call happened April 23. Now in scope negotiation. Brady committed to a Monday (April 28) update on timing and availability.
 
 ---
 
@@ -79,8 +79,8 @@
 - Research viewer built (`viewer/index.html`) and published to mception.ai `/panda` route
 - **Outcome:** Call happened. Brief is obsolete as a sales tool. Research is still useful as baseline context.
 
-### Phase 2 — Research-First Problem Portfolio (ACTIVE)
-**Status:** Kicked off April 17, 2026.
+### Phase 2 — Research-First Problem Portfolio (COMPLETE)
+**Status:** Complete. April 17–23, 2026.
 **Goal:** Produce 15-25 validated problem statements that pass the Stage-0 sharpness gate, plus an operating-model recommendation for the Ops Innovation team, before the "next week" meeting.
 
 **Approach:**
@@ -89,6 +89,29 @@
 3. Per-thread extraction of candidate problem statements
 4. Cross-thread synthesis → 15-25 sharpened problem statements
 5. Final deliverable: `panda-problem-statements.html` + `.pdf` (mception design system) + operating-model one-pager
+
+**Outcome:** Deliverable complete. April 23 session served as engagement-scope interview — James had already seen the brief framing (via prior call) and was focused on fit, scope, and cadence. Phase 3 now active.
+
+### Phase 3 — Engagement Scope Negotiation (ACTIVE)
+**Status:** Started April 23, 2026.
+**Goal:** Secure a signed statement of work for a 3–6 month consulting engagement leading Panda's Ops Innovation team stand-up.
+
+**What was confirmed in April 23 session:**
+- 3–6 month deliverable-based engagement; Brady as program lead (not just advisor)
+- James's deliverable framing: "strategy in 3 months, order accuracy program in 2 months"
+- Success = 4-person team at steady state, successor identified
+- Brady committed to Monday (April 28) update on timing and other client clarity
+- James committed to sending JD and setting up team + HR intros
+
+**Key context:** Service Physics (Dallas boutique) is the current active vendor — expensive, Brady's positioning is more targeted. Jordan Burke (Tomorrow Consulting) surfaced as peer reference for Brady's independent model.
+
+**Next actions:**
+1. Brady resolves 1915 South bandwidth overlap → confirms availability to James by April 28
+2. James sends JD; Brady turns it into a scoped consulting engagement description
+3. Team + Heather Haber (CPO) intros
+4. Statement of work drafted and signed
+
+See: `call-notes-2026-04-23.md`, `monday-response-brief.md`, `jordan-burke.md`
 
 **Thread priorities (reframed):**
 | Thread | Topic | Priority |
@@ -114,9 +137,11 @@
 - **April 11–16:** Phase 1 — reconnection research + call prep ✅
 - **April 16:** James Ku call ✅
 - **April 17:** Pre-research + reframe + kick off Phase 2 ✅
-- **April 18:** All 14 research threads complete, synthesis done, deliverable shipped ← YOU ARE HERE
-- **April 22-24 target:** Deliverable ready for "next week" meeting
-- **Post-meeting:** Scope formal engagement
+- **April 18:** All 14 research threads complete, synthesis done, deliverable shipped ✅
+- **April 23:** Engagement-scope interview with James Ku ✅ — see `call-notes-2026-04-23.md`
+- **April 28:** Brady sends Monday response (timing clarity + scope sketch) ← YOU ARE HERE
+- **TBD:** Receive JD from James; team intros; finalize scope
+- **TBD:** Statement of work signed, engagement begins
 
 ---
 
@@ -160,5 +185,12 @@
 - [x] Phase 2 — Problem statement sharpening (5-criteria gate)
 - [x] Phase 2 — Operating-model one-pager (in cross-thread-synthesis.md)
 - [x] Phase 2 — Final deliverable (HTML + PDF)
-- [ ] Deliverable review with Brady
-- [ ] Delivery to James Ku / next meeting
+- [x] Deliverable review with Brady
+- [x] Delivery to James Ku / next meeting (April 23 session)
+- **Phase 3 — Engagement Scope Negotiation (ACTIVE)**
+- [x] April 23 engagement-scope interview — `call-notes-2026-04-23.md`
+- [x] People records updated (James Ku, Jordan Burke added)
+- [ ] Brady sends Monday response to James (by April 28) — see `monday-response-brief.md`
+- [ ] Receive JD from James
+- [ ] Team + HR intros (Heather Haber)
+- [ ] Finalize scope + statement of work
