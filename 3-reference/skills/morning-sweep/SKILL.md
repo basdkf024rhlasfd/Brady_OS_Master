@@ -70,6 +70,19 @@ Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "P
 
 Backup archive (full detail, for rollback or investigation): `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`.
 
+### 1.0c Load Musashi's Agent Review
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "Musashi Review"` created in the last 24 hours.
+
+**If found:**
+- Read the body (the Compact Summary from the `musashi-review` skill).
+- Hold the **TOP 3 RECOMMENDATIONS**, **TECH SCAN (top 2)**, and **BIZ IDEAS (top 2)** for Phase 2's new `🗡️ MUSASHI REVIEW` section. Each item arrives with an approval slug like `approve musashi phil-1` or `approve musashi tech-[slug]` — preserve it verbatim.
+- Note any recommendations flagged `size: large` or `cost: token-heavy` — these go in the review section with an explicit warning, never auto-executed.
+- Do NOT execute any recommendation in this phase. All execution is approval-gated (see Phase 3.4c below).
+
+**If no review found:** log `⚠️ No Musashi review today` in the 🗡️ MUSASHI REVIEW section of the brief and proceed normally. The review is additive — sweep works identically without it.
+
+Backup archive (full scorecard + rationale): `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
+
 ### 1.1 Gmail Scan
 - Search: last 24 hours, skip `category:promotions` and `category:social`
 - For each message: read full body (subject lines aren't enough)
@@ -287,6 +300,33 @@ No build requests detected.
 
 [If 0 items: "All active items have next actions set. Pipeline healthy."]
 
+───────────────────────────────────────────────────
+🗡️ MUSASHI REVIEW (last night's agent tension pass)
+───────────────────────────────────────────────────
+[If no Musashi Review row found today: "⚠️ No Musashi review today (Musashi may not have run)." Skip the rest of this section.]
+
+[If review found — surface the Compact Summary in this format:]
+
+SCORECARD: [N] agents scored, avg [X.X]/10. Top: [agent X/10]. Bottom: [agent X/10].
+
+TOP 3 AGENT RECOMMENDATIONS:
+1. [agent] [size] — [what + why] → say `approve musashi [slug]-1` to queue dev plan
+2. [agent] [size] — [...]   → `approve musashi [slug]-2`
+3. [agent] [size] — [...]   → `approve musashi [slug]-3`
+
+TECH SCAN (top 2):
+• [tool name + link] — [1-line fit] → `approve musashi tech-[slug]`
+• [...] → `approve musashi tech-[slug]`
+
+BIZ IDEAS (top 2):
+• [name] — [1-line pitch + economics] → `approve musashi biz-[slug]`
+• [...] → `approve musashi biz-[slug]`
+
+[If any recommendation is size:large OR cost:token-heavy, surface it with:]
+⚠️ LARGE / TOKEN-HEAVY — requires explicit approval; do NOT approve in a batch.
+
+Full scorecard + rationale: 1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md
+
 ═══════════════════════════════════════════════════
 👨‍👩‍👧‍👦 FAMILY BRIEF
 ═══════════════════════════════════════════════════
@@ -420,6 +460,24 @@ For each Build Request classified as **execute-now (small)** in Section 1.9 Sour
 **For blocked requests:**
 - Change Type to "To Do", add a body note explaining the blocker
 - Report under BLOCKED in Phase 2 BUILD REQUESTS output
+
+### 3.4c Musashi Review — Approval-Gated Processing
+
+If a Musashi Review row was loaded in Phase 1.0c, check Brady's response to the
+sweep brief for any `approve musashi [slug]` tokens.
+
+**For each approval slug matched:**
+1. Find the corresponding recommendation / tech item / biz idea in the review body or backup file at `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
+2. **Size gate:**
+   - **small + reversible + touches only `0-agents/` or `3-reference/skills/`** → eligible for the existing Phase 3.4b autonomous Build Request flow. Run through the same four gates (Scope / Clarity / Risk / Size). If all pass, execute directly. If any fail, fall through to the medium path.
+   - **medium** → draft a dev plan at `.context/plans/musashi-[slug].md`, set `Status = "Processing"` on the Musashi Review row, flag it in the brief as "Queued for evening sweep — [slug]".
+   - **large or token-heavy** → draft a Conductor plan at `.context/plans/musashi-[slug].md`, set `Status = "Processing"`. Do NOT auto-run even if Brady approved — large means the dev plan itself is expensive to generate. Report: `[slug] queued for Conductor — expected token cost [estimate if known].`
+3. After processing all approved items, if any unapproved items remain, leave the Musashi Review row `Status = "In Progress"` so tomorrow's sweep can continue surfacing them. If every item was approved or explicitly declined, mark `Status = "Complete"`, `Done = "__YES__"`.
+4. Append one Routing Log row per approved-and-actioned item (per `3-reference/skills/_shared/routing-log.md`): `destination` is the dev plan file or the edit target; `reason` is `Musashi recommendation approved by Brady`; `summary` is the one-line action.
+
+**If no approval slugs in Brady's reply:** do nothing. The review row stays `Not Started` for next sweep. Musashi's proposals are not debt — they compound as optionality.
+
+**Hard rule:** never auto-execute a Musashi recommendation without an approval slug. Even when the item passes every autonomy gate, the slug is required. This is the approval-gate contract Brady set when commissioning the skill.
 
 ### 3.5 Report Applied Feedback
 If any Sweep Feedback notes were applied in Pre-Flight step 4, report what changed:
