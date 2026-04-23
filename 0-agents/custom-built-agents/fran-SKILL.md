@@ -6,8 +6,8 @@ trust_tier: T1
 # Fran Operational Runbook
 **Engagement:** 1915 South (Ashley HomeStore franchisee, 30 stores, FL/GA/AL/NC/MS/VA + 3 DCs)
 **Client Contacts:** Justin Woods (President, primary) — Russell Turner (CEO / sole owner, on escalation only via Justin)
-**Brady's goal:** Convert Justin's April 20, 2026 CFO-shaped AI-strategy pitch into a scoped engagement — Innovation Workshop first (Scenario C, $25–50K, 4–6 weeks), optionality to convert to fractional or FTE operating role.
-**Current phase:** Phase 1 — Innovation Workshop delivery (in flight as of 2026-04-21)
+**Brady's goal:** Convert Justin's April 20, 2026 CFO-shaped AI-strategy pitch into a scoped engagement. Brady's pitch shape has evolved — not fractional CFO, but **M&A-and-capital operating partner with AI decision layer**.
+**Current phase:** **Phase 2 — Teaser + Resume sent to Justin 2026-04-22. Awaiting response.** Phase 1 (Innovation Workshop) + M&A Deep Research both shipped; mception.ai/1915-south hub live.
 
 ---
 
@@ -33,11 +33,17 @@ trust_tier: T1
 | `synthesis/knowledge-gaps.md` | Ranked open questions (High/Medium/Low) + seeded SFDRs |
 | `synthesis/kpi-benchmark-table.md` | 1915 South vs. Ashley corporate + peer furniture retailers (RH, Havertys, Rooms To Go, Arhaus) |
 
-**Deliverables:**
+**Deliverables (shipped 2026-04-22):**
 
 | File | Status |
 |---|---|
-| `deliverables/` | **Innovation Workshop output will land here** — currently in flight per Streaming Note `349ed43b-89c5-81d0-a9e1-fffd040000fb`. Fran absorbs on arrival. |
+| `summary.md` + `ideas/track-*.yml` + `images-1915-south/*.png` | **Innovation Workshop** — 39 ideas (9 T1 / 21 T2 / 9 T3), 10 Midjourney Track A hero visuals, YAML source |
+| `innovation-workshop-1915-south-2026-04-22.{html,pdf}` | Rendered Innovation Workshop deliverable (dark HTML + light PDF, Tabloid) |
+| `m-and-a-deep-research-2026-04-22.md` | **M&A Deep Research** — 10 sections, 60+ sources, $140-180M EV anchor, Appendices A-E (source library, 15 named targets, 20+ capital partners, warm-intro map, next-phase research) |
+| `m-and-a-deep-research-2026-04-22.{html,pdf}` | Rendered M&A brief (mception design system) |
+| `1915-south-teaser-2026-04-22.{html,pdf}` | **Teaser infographic** — single-page landscape, "Depth of Thinking Already Done", 3 priority cards (P9 M&A, P1 GMROI, P6 Sleep), hero images, M&A Takeaways panel. **Sent to Justin via email 2026-04-22 with resume.** |
+| `../../../Career/Project - Brady Job Search 2026/resume-1915-south-justin-woods.md` | **Resume tailored for CFO-plus-AI operating-partner role.** Sent to Justin 2026-04-22. |
+| `render.py`, `render-ma-brief.py`, `render-teaser.py`, `generate-pdf.py` | Rendering pipelines (Playwright + mception design tokens) |
 
 ### Notion Pages
 
@@ -70,8 +76,9 @@ trust_tier: T1
 
 ### Live Surfaces
 
-- mception.ai — Brady's public AI consulting presence; credentialing asset, not a 1915 South-specific route
-- No `mception.ai/1915-south` route live. Do not create without Brady approval + allowlist entry per repo CLAUDE.md.
+- mception.ai — Brady's public AI consulting presence
+- **`mception.ai/1915-south` is LIVE** (Clerk-gated owner-only via `MCEPTION_1915_SOUTH_EMAILS` env var; currently brady.smallwood@gmail.com only). Hub page links to all deliverable files (M&A brief MD/HTML/PDF, Innovation Workshop HTML/PDF, summary.md) with Internal vs Client-safe chips. Slug in `portal/src/config/projects.yml`. Production deploy: commit `fefcbc1` (PR #127, merged 2026-04-22).
+- Justin and Russell do NOT have portal access yet. Adding them is a separate Brady decision — do not propose without explicit ask.
 
 ---
 
@@ -149,36 +156,71 @@ Unlock: {What this enables — one sentence}
 - If only answerable via Justin → move to Open Questions (Notion wiki), not SFDR
 - When fulfilled: log in Notion wiki Data Requests page with outcome and what changed
 
-### Seeded SFDRs (from knowledge-gaps.md — open as of 2026-04-22)
+### SFDRs — Status as of 2026-04-22
+
+**Closed (answered via Phase 0 baseline + M&A Deep Research):**
 
 ```
-SFDR-001: What is Zapsight's scope of work at 1915 South — data infra only, or also strategy/analytics/operating?
-Source: Zapsight website, case studies, LinkedIn posts from 1915 South or Zapsight team, press releases
+SFDR-004 — CLOSED: Ashley has 170+ AI projects identified, 500+ robots deployed, AP + forecasting already AI-driven, $2B innovation commitment. Wanek quote corpus loaded. Source: TechEd Podcast, billionairereporter.com, myhfa.org, homenewsnow.com.
+
+SFDR-005 — CLOSED: 1915 South revenue confirmed ~$182M (2025), 14% EBITDA (~$25.5M), #50 on Furniture Today Top 100. Source: Claudine comprehensive analysis + Home News Now 125 retailer rankings.
+```
+
+**Still open:**
+
+```
+SFDR-001 — OPEN: Zapsight scope of work at 1915 South — data infra only, or also strategy/analytics/operating?
+Source: Zapsight website, case studies, LinkedIn posts, press releases
 Effort: Low (<30min)
-Unlock: Shapes the operating-layer pitch — tells Brady whether he's on top of Zapsight or alongside it
+Unlock: Shapes operating-layer pitch — tells Brady whether he's on top of Zapsight or alongside it
+Note: Most promising path is direct Justin question, not web research
 
-SFDR-002: Is 1915 South running any AI/analytics capability internal to their team, or entirely vendor-dependent?
-Source: LinkedIn searches for 1915 South employees with analytics/data/AI titles; job board posts; company news
+SFDR-002 — OPEN: 1915 South AI/analytics internal capability vs vendor-dependent?
+Source: LinkedIn searches for 1915 South employees with analytics/data/AI titles; job board posts
 Effort: Low-Medium
-Unlock: Identifies whether internal talent layer exists, and what gap the Innovation Workshop closes
+Unlock: Identifies internal talent layer + what gap the engagement closes
 
-SFDR-003: How are Ashley HomeStore franchisees publicly responding to the GMROI directive? Any HFA content or franchisee case studies?
-Source: HFA (Home Furnishings Association), Furniture Today, franchisee conference recaps
+SFDR-003 — OPEN: How are Ashley franchisees publicly responding to the GMROI directive?
+Source: HFA, Furniture Today, franchisee conference recaps
 Effort: Medium (1-2hr)
-Unlock: Gives Brady peer-franchisee precedent language for the workshop deliverable
-
-SFDR-004: What is the publicly reported scope and unit economics of Ashley's AP / forecasting AI deployment?
-Source: Ashley press releases, Wanek interviews (Billionaire Reporter, TechEd Podcast, HFA), Fortune Innovative Companies 2025
-Effort: Low-Medium
-Unlock: Calibrates Brady's AI recommendations against what corporate is already doing
-
-SFDR-005: What's 1915 South's revenue estimate? Triangulate from Ashley franchisee benchmarks, store count, AUV ranges.
-Source: HFA benchmarks, Furniture Today top-100, ECDB, industry analyst reports
-Effort: Medium
-Unlock: Sizes what a retainer or FTE engagement could defensibly price at
+Unlock: Peer-franchisee precedent language for workshop + teaser
 ```
 
-**Initial run order:** SFDR-001 → SFDR-003 → SFDR-004 (highest unlock per effort hour).
+**New SFDRs opened by M&A Deep Research + FRG context (2026-04-22):**
+
+```
+SFDR-006: Ashley corporate public commentary on FRG collapse specifically — Wanek has reason to acknowledge a major Southeast competitor going dark.
+Source: Ashley press releases Nov 2024 – Feb 2026, HFA interviews, Furniture Today
+Effort: Low (<30min)
+Unlock: Gives Brady talk-track cover for the "FRG real-estate dividend" narrative with Justin
+
+SFDR-007: Is Buddy's Home Furnishings (surviving FRG brand) being divested, and at what multiple?
+Source: FRG bankruptcy court docket, restructuring filings, trade press
+Effort: Medium (1-2hr)
+Unlock: Potentially a named acquisition target for 1915 South's roll-up if Buddy's comes to market
+
+SFDR-008: B. Riley Financial's current balance-sheet exposure to furniture retail outside FRG — any other stressed consumer-retail portfolio companies?
+Source: B. Riley 10-Q, SEC investigation filings, news
+Effort: Medium
+Unlock: Early-warning radar for adjacent distressed assets in 1915 South's wake
+
+SFDR-009: Has any former Badcock corporate territory been re-franchised by another operator post-2024?
+Source: Home News Now, Furniture Today, Ashley licensee announcements, state franchise registration filings (FL)
+Effort: Medium
+Unlock: Directly tests whether the roll-up thesis has competitive urgency — if operators are already re-taking Badcock territory, the window is closing fast
+
+SFDR-010: Named SW Virginia Ashley licensee (Roanoke / Lynchburg / Harrisonburg / Staunton / Blacksburg / Bluefield) — who owns, succession signals, store count, revenue estimate.
+Source: state business registrations, LinkedIn, D&B, local business press
+Effort: Medium-High
+Unlock: Directly identifies 1915 South's highest-priority tuck-in target (adjacent to Danville VA store)
+
+SFDR-011: Dufresne Spencer Group — current revenue, acquisition pipeline, posture as potential buyer of 1915 South vs consolidation partner.
+Source: DSG press releases, LinkedIn, Home News Now, trade show coverage
+Effort: Medium
+Unlock: Clarifies whether DSG is a competitive buyer threat or a neighbor
+```
+
+**Run order priority 2026-04-22+:** SFDR-006 → SFDR-009 → SFDR-010 (highest unlock; FRG-adjacent, roll-up-critical).
 
 ---
 
@@ -237,6 +279,31 @@ Date: 2026-04-22
 Decision: Research files graduate from Career/Job Search lens to Consulting project lens. New folder: `Project - 1915 South/`.
 Rationale: Engagement has moved past pure job-search evaluation into consulting project execution. Files moved via `git mv` to preserve history.
 Resolved: Whether the corpus lives under Career or Consulting. Answer: Consulting.
+
+Date: 2026-04-22
+Decision: Ship M&A Deep Research brief as a companion to the Innovation Workshop before any follow-up Justin conversation.
+Rationale: Justin added a VP Corp Dev & Strategy role and the FRG collapse cleared ~880 Southeast storefronts. M&A is the most pressing strategic lane and 1915 South has already done 2 deals (Fineman 2022, Yulee 2025). Brady positions as M&A-and-capital operating partner, NOT fractional CFO.
+Resolved: Whether the workshop alone was enough to anchor the Justin conversation. Answer: no, pair it with the M&A chessboard.
+
+Date: 2026-04-22
+Decision: Publish 1915 South hub to mception.ai, Clerk-gated, Brady-only access via MCEPTION_1915_SOUTH_EMAILS env var. Hub links all deliverables with Internal vs Client-safe chips.
+Rationale: Brady wanted a single destination that showcases depth + connects files. Kept permissions tight by default per Webster UAT rules (no magic link, no Justin/Russell access yet).
+Resolved: Whether to create a public 1915-south slug. Answer: yes but gated; slug uses main's magic_link:true setting for future flexibility, but allowlist remains brady@ only until Brady says otherwise.
+
+Date: 2026-04-22
+Decision: Build single-page teaser infographic + send with resume to Justin via email.
+Rationale: Depth needs to be visible without over-sharing. Teaser surfaces 3 priorities (P9 M&A, P1 GMROI, P6 Sleep Vertical — NOT P4 CFO role), includes M&A Takeaways but not the Chessboard, uses "role redefinitions" framing broadly. Resume is CFO-plus-AI-operating-partner cut.
+Resolved: Whether to send artifacts now or wait for follow-up. Answer: send now as a value-add — Justin is evaluating.
+
+Date: 2026-04-22
+Decision: Email signaled Brady's 4-week-max commitment posture with transparency about two other active client conversations (one angling for longer-term engagement).
+Rationale: Competitive tension + honesty = operator-to-operator peer signal. Brady committed to holding off on those offers if 1915 South needs more time — preserves optionality without looking desperate.
+Resolved: Whether to signal competing activity to Justin. Answer: yes, transparently and briefly.
+
+Date: 2026-04-22
+Decision: No CFO-specific framing in client-facing documents going forward. Org/people problems framed as "Role Redefinitions" broadly.
+Rationale: Leading with "Incoherent CFO Role" in a top-3 priority signals Brady is angling for that specific job and undercuts advisory frame. The CFO-plus-AI conversation is a separate private one-to-one with Justin, not a teaser headline.
+Resolved: Permanent feedback for all Fran-drafted client materials.
 ```
 
 ---
@@ -248,8 +315,9 @@ Brady is the sole communication channel with Justin Woods, Russell Turner, Todd 
 - Fran does not draft emails, messages, or documents for Justin or Russell without explicit request
 - When drafting: prepend `DRAFT — requires Brady review before sending`
 - When Brady asks "should I reach out?" → size the communication as Small/Medium/Large problem, recommend timing and framing, do not draft unless asked
-- Justin's April 20 pitch is the live open thread — if no response from Justin by EOD April 22, recommend Brady send a brief acknowledgment (talk-track has framing)
-- The 3-way-with-Russell ask is a milestone, not an early move. Don't recommend asking for it until the workshop deliverable is shippable.
+- **Last outbound from Brady: 2026-04-22 email to Justin** — resume + teaser infographic attached. Email signaled 4-week-max commitment posture, two other active client conversations (one angling for longer-term), willingness to postpone those for 1915 South. Thread is live and awaiting Justin's response.
+- **Follow-up cadence:** Give Justin 5-7 business days to respond before Fran recommends a nudge. Next natural check-in is ~2026-04-29. If silence by then, recommend a short acknowledgment referencing the other-clients-timeline context Brady already surfaced — not a fresh pitch.
+- The 3-way-with-Russell ask is a milestone, not an early move. Don't recommend asking for it until Justin has meaningfully engaged with the M&A brief or teaser (quoted, asked a specific question, or asked for a deeper conversation).
 
 ---
 
@@ -262,5 +330,12 @@ Brady is the sole communication channel with Justin Woods, Russell Turner, Todd 
 5. **4th-generation family ownership** — decentralization and culture preservation matter. Outside-COO framing is sensitive, especially so soon after the first non-family President (Justin, 13 months in).
 6. **Brady's June financial pressure is real** — May 15 soft gate per scenario-matrix for concrete engagement motion. Urgency is real but should never leak into client-facing posture.
 7. **mception stays preserved unless equity is meaningful** — Scenario B only viable with defined ownership structure.
-8. **Innovation Workshop output is both deliverable AND audition** — Brady is being evaluated as an operator, not just a consultant. Quality matters doubly.
+8. **Innovation Workshop + M&A brief are BOTH deliverable AND audition** — Brady is being evaluated as an operator, not just a consultant. Quality matters doubly.
 9. **The engagement is inbound, not outbound** — Justin went to Brady first. Posture should reflect peer-to-peer curiosity, not vendor-to-buyer selling.
+10. **Brady's pitch shape is M&A-and-capital operating partner with AI decision layer** — NOT fractional CFO. Never regress the framing. The CFO-plus-AI role is a private Justin conversation topic, not a client-facing headline.
+11. **No "Incoherent CFO Role" framing in client-facing docs** — use broader "Role Redefinitions" language. Role-design as a 1915 South priority is fine in general terms; CFO-specific framing signals Brady is angling for the job.
+12. **No personal Gmail in mception-facing documents** — no bradysmallz@gmail.com or brady.smallwood@gmail.com on teasers, briefs, or portal pages. Ask Brady for the right contact line; omit if unsure.
+13. **No cute/sarcastic closers** on client deliverables — "this one starts on page 47" or equivalent. Density and specificity carry the message; operator voice throughout.
+14. **Brady's current commitment posture (stated to Justin 2026-04-22):** Not committing to anything beyond four weeks while two other client conversations play out. Willing to postpone those commitments if 1915 South needs more time. Competitive tension is real and honest — don't coach Brady to soften it, but also don't escalate it.
+15. **FRG context is a talk-track asset** — ~880 Southeast storefronts vacated 2024-2025 is real; Kahn's Prophecy fraud (pleaded guilty Dec 2025, $294-300M, sentencing April 2 2026) is the root cause, NOT a market collapse. Frame FRG opportunity as "cheap boxes in a stable category whose largest regional competitor imploded from unrelated fraud," never as "furniture retail is dying."
+16. **B. Riley Financial was FRG's $2.8B take-private sponsor** and is now under SEC investigation — watch for spillover risk to any B. Riley-sponsored consumer-retail portfolio co. Material if a related transaction lands on Justin's desk.
