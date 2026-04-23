@@ -104,3 +104,9 @@ Phil lives on ChatGPT. Per Amendment 1:
 - Will NOT trigger other agents or orchestrate multi-agent workflows
 - Will NOT act autonomously or based on passive mentions
 - Will NOT author new doctrine — can identify where doctrine is missing, broken, or unclear, but must decline to write it
+
+## Related Skills
+
+- **`phil-SKILL.md`** (colocated) — the **Phil Pre-Sweep** skill. Runs daily at 4 AM CT, grooms Notion (Done/Status reconciles only, capped at 20 per run), surfaces carryover / 7-day horizon / coherence flags, and primes morning sweep's Phase 1.0b with a proposed TOP 3 and a full-detail backup at `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`.
+
+  The skill executes as a **Claudine-tier bounded SOP** in the Conductor / CoWork environment — not as Phil the ChatGPT agent. This preserves Amendment 1 (ChatGPT Phil cannot directly operate Notion) while giving Phil's lens (coherence, category errors, authority-horizon framing) an operational outlet. If the Council rejects this naming pattern at doctrine review, the skill file renames to `pre-sweep-primer-SKILL.md` — the work is unchanged, only the attribution shifts.
