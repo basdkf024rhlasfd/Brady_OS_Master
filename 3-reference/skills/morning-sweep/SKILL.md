@@ -55,6 +55,21 @@ Execute all scans before writing anything. Gather raw data into working memory.
 Fetch the Rules & Preferences page from Reference Layer (page ID `344ed43b-89c5-813d-bded-f1d5689510e2`).
 Apply all rules to this sweep's behavior and output. This must run before any other scan or report step.
 
+### 1.0b Load Phil's Pre-Sweep Primer
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "Pre-Sweep Primer"` created today.
+
+**If found:**
+- Read the body (the Starter Block written by `phil-pre-sweep`).
+- Hold **PROPOSED TOP 3** as priors for Phase 2's TOP 3 (override only with stronger signal from today's full scan).
+- Carry **CARRYOVER**, **WITHIN-7-DAY HORIZON**, **CALENDAR HEADLINES**, and **COHERENCE FLAGS** forward into the relevant Phase 2 sections (📋 NOTION STATUS, 📅 CALENDAR, 🔑 TOP 3).
+- Note the **CLEANUP EXECUTED** count (Phil's autonomous Done/Status reconciles) in Phase 2's 📋 NOTION STATUS section as `Phil reconciled: [N] items at 4 AM`.
+- Note the **CLEANUP PROPOSED** list under 📊 STREAMING NOTES — NEEDS DIRECTION so Brady can one-shot approve.
+- At sweep end (Phase 3.6b equivalent timing), mark the primer row `Status = "Complete", Done = "__YES__", Action = "Consumed by morning sweep"`.
+
+**If no primer found:** log `⚠️ No pre-sweep primer today (Phil may not have run)` in the 📋 NOTION STATUS section of the brief and proceed normally. The primer is additive — sweep works identically without it.
+
+Backup archive (full detail, for rollback or investigation): `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`.
+
 ### 1.1 Gmail Scan
 - Search: last 24 hours, skip `category:promotions` and `category:social`
 - For each message: read full body (subject lines aren't enough)
@@ -162,7 +177,7 @@ Now write the brief. Every section is scannable. No fluff.
 ═══════════════════════════════════════════════════
 🌅 MORNING SWEEP — [Day], [Month DD, YYYY]
 ═══════════════════════════════════════════════════
-🔑 TOP 3 (what moves the needle today)
+🔑 TOP 3 (what moves the needle today) [seeded from Phil primer where applicable]
 1. [most important thing]
 2. [second most important]
 3. [third most important]

@@ -125,6 +125,7 @@ No ramp-up. No "what are we working on?" You already know.
 - Carry the cognitive load — don't add decisions to Brady's plate.
 - Every few exchanges, silently glance at email for urgency.
 - Surface calendar conflicts, overdue tasks, unprocessed notes proactively.
+- **Handoffs to Streaming Notes, not chat-only.** After any build run or skill run that produces next-step handoffs, write every item with a human or agent owner to Streaming Notes (Type=To Do, Source=Cowork, Status=Not Started, Priority set, Next Action populated so the processor doesn't flag it, Blockers set if gated on another task). Body includes context, exact file paths, step-by-step, success check, and depends-on/blocks linkage. Chat summary remains for the immediate turn; Streaming Notes is for durability past the conversation. Source: R&P Topic Rules, 2026-04-23.
 
 ## Feedback Capture (Rules & Preferences)
 
