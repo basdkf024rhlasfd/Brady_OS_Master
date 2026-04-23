@@ -442,6 +442,22 @@ If any new System Instructions were processed in step 3.6b:
 
 This step only ADDS rules. It never removes or modifies existing rules without Brady's explicit instruction.
 
+### 3.6d Run the Streaming Notes Processor
+After Rules & Preferences propagation, call the streaming-notes processor
+(`3-reference/skills/streaming-notes-processor/SKILL.md`) for the remaining non-System-Instruction
+Types (Build Request, Pulse Note, Sweep Feedback, Task, To Do, Note).
+
+- The processor back-stops any System Instruction that 3.6b missed, drafts Build Request plans
+  at `.context/plans/streaming-notes-*.md`, auto-routes clear Pulse Notes, queues Sweep Feedback
+  for next Pre-Flight, and **drafts** (never auto-sets) Next Action candidates for Task/To Do/Note items.
+- It writes one Routing Log row per actioned item and appends a daily score to
+  `1-execution/areas/brady-os/processing-scores/YYYY-MM.md`.
+- Append the processor's ≤6-line summary block to the sweep brief. Do not repeat items
+  already covered in Phase 3.6b.
+- If the processor surfaces drafts awaiting Brady's approval, include them under a
+  `Drafts awaiting approval:` sub-heading in the brief — Brady replies "apply drafts"
+  to commit them.
+
 ### 3.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
 

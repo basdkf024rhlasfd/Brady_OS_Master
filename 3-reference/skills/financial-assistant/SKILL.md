@@ -53,7 +53,26 @@ The skill produces three output modes depending on how it's called:
 
 ---
 
+## Finn Knowledge Base
+
+Finn maintains a living KB in Notion that accumulates confirmed facts across every sweep — remote and local. Every run reads it first and writes back after.
+
+**Page ID:** `34bed43b-89c5-8113-8c76-ef579877e240`
+**Location:** Notion > 3 - Reference Layer > Finn Knowledge Base
+
+Four sections:
+- **Section 1 — Current Snapshot:** Overwrite each run with confirmed balances, budget pulse, pipeline status
+- **Section 2 — Confirmed Facts:** Append-only. Source + date required. Never re-log existing facts.
+- **Section 3 — Open Items:** Live checklist. Check off when resolved, never duplicate.
+- **Section 4 — Anomalies + Decisions Log:** Append on anomalies/decisions only. Prune entries >90 days on weekly runs.
+
+KB rules: read before any analysis, write after. Only append to Section 4 when something changes — never log routine runs.
+
+---
+
 ## Pre-Flight (Silent)
+
+0. **Read Finn KB.** Fetch Notion page `34bed43b-89c5-8113-8c76-ef579877e240`. Load Section 1 (ground truth balances/pipeline), Section 3 (open items to watch for), Section 4 (recent anomalies for context). Re-verify any Section 1 fact older than 30 days before treating as reliable.
 
 1. **Check for CSV data.** Scan these locations in order for Monarch `.csv` files:
    1. `~/Downloads/` — where Monarch exports land by default
@@ -404,6 +423,12 @@ TAX ITEMS
 2. **Copy `index.html` if missing** at mirror target. The template only needs to be copied once or when the UI changes.
 
 3. **Log to console:** "Dashboard data published to mception.ai/financial-assistant"
+
+4. **Write back to Finn KB** (Notion page `34bed43b-89c5-8113-8c76-ef579877e240`):
+   - Section 1: Overwrite with confirmed numbers from this run (balances, budget pulse, pipeline totals)
+   - Section 2: Append any newly confirmed facts not already listed (source = "Monarch CSV [date]" or "Gmail [sender] [date]")
+   - Section 3: Check off resolved open items; add new ones surfaced during this run
+   - Section 4: Append only if anomaly found or material decision logged — skip if clean run
 
 ---
 

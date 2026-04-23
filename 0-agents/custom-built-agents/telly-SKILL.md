@@ -212,7 +212,61 @@ export TELLY_PUSH_SECRET=<hex>
 
 ---
 
-## I. Future Roadmap (Not Started)
+## I. Inbound Ingest (`POST /api/ingest`) — ChatGPT bridge
+
+Telly exposes a second inbound endpoint so non-Telegram surfaces (ChatGPT Custom GPTs,
+browser extensions, other bots) can write to Streaming Notes using the same prefix
+routing as Telegram. This lets Brady capture from ChatGPT without a separate service.
+
+### Endpoint
+
+```
+POST https://<telly-vercel-url>/api/ingest
+Content-Type: application/json
+X-Telly-Secret: <TELLY_INGEST_SECRET>
+
+{
+  "text":   "rule: never commit secrets to public repos",
+  "source": "ChatGPT"        // optional; defaults to "ChatGPT"
+}
+```
+
+- **Auth:** shared secret via `X-Telly-Secret` header matching `TELLY_INGEST_SECRET`
+  env var (separate from `TELLY_PUSH_SECRET` so outbound and inbound can rotate
+  independently). 401 on mismatch. Never log the secret.
+- **Routing:** `text` is parsed through the same prefix routing table used by
+  Telegram DMs (section B). `rule:/never:/always:/remember:` write System Instructions;
+  `pulse:/task:/log:/idea:/bug:` write classic intake; no prefix → Pulse Note.
+- **Source tagging:** the `Source` property on the Notion page is set to the
+  request `source` value (defaults to "ChatGPT"). Must be one of the values
+  defined in the Streaming Notes DB select options for `Source` — unknown values
+  are coerced to "Chat" with a warning in the response.
+- **Response:**
+  ```json
+  { "ok": true, "notion_page_id": "349ed43b-...", "type": "System Instruction", "source": "ChatGPT" }
+  ```
+  On error: `401` (bad secret), `400` (malformed body), `502` (Notion write failed).
+- **Rate limit:** 30 writes per minute per IP (reject with 429 after).
+- **No file support** on this endpoint — text only. File capture stays on Telegram.
+
+### Where to deploy
+
+Webster's lane. The change lives in `~/telly-bot/api/ingest.js` and reuses
+`~/telly-bot/lib/prefix-router.js` (factored out of the webhook handler). See
+`references/chatgpt-to-telly-gpt-instructions.md` for the matching Custom GPT
+setup that calls this endpoint.
+
+### Fallback path
+
+If `/api/ingest` cannot be shipped on the telly-bot repo, the fallback is a
+standalone Vercel Function at `portal/src/app/api/chatgpt-capture/route.ts` in
+the portal repo that validates a shared token and writes straight to Notion via
+the existing `NOTION_API_KEY` env var. Same payload contract. Webster owns that
+fallback work.
+
+---
+
+## J. Future Roadmap (Not Started)
 
 - Two-way sync: Notion status changes trigger Telegram notifications
 - Scheduled digest: Daily summary of open Streaming Notes
