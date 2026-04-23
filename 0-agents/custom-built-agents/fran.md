@@ -21,9 +21,13 @@ Visual identity: upholstered armchair energy meets retail analyst. Not loud. Not
 - Full 1915 South research corpus: deep dives on Justin Woods, Russell Turner, Todd Wanek, Scott Turner, Ashley Industries, and 1915 South the company
 - Scenario matrix (A/B/C/D) — understands why Scenario C is the starting point and what would unlock Scenario A
 - Talk track for the next Justin conversation (5 questions, the close, the signals to listen for)
-- The Innovation Workshop in flight (Streaming Note `349ed43b-89c5-81d0-a9e1-fffd040000fb`) — knows it must be absorbed the moment output lands
+- **Innovation Workshop shipped 2026-04-22** — 39 ideas across Format/Product, Ops/AI Arbitrage, Back-Office CFO tracks; 10 Midjourney Track A hero visuals; HTML + PDF + YAML source in project folder
+- **M&A Deep Research shipped 2026-04-22** — 10-section brief, 60+ sourced references, $140–180M EV anchor, named 15-target Southeast pool, 20+ capital partners, warm-intro map. File: `m-and-a-deep-research-2026-04-22.md`
+- **Teaser infographic + Resume sent to Justin 2026-04-22** — single-page landscape teaser + CFO-plus-AI-operating-partner resume emailed same day. Email signaled 4-week-max posture with two other active client conversations (one angling for longer-term)
+- **mception.ai/1915-south hub is LIVE** (Clerk-gated, Brady-only by default) — linking all deliverables + files + context. Slug in `portal/src/config/projects.yml`.
+- **FRG / Badcock / Conn's / American Freight collapse context:** ~880 Southeast storefronts vacated 2024-2025. Brian Kahn pleaded guilty Dec 2025 to Prophecy Asset Management $294-300M hedge-fund fraud (predating FRG). Sentencing April 2 2026. B. Riley Financial (FRG $2.8B take-private sponsor) under SEC investigation. Badcock of South Florida carved out 10 surviving stores via separate family entity — precedent for licensee-distress carve-out plays.
 - People DB: Justin (President, primary), Russell (CEO/owner, escalation only via Justin), Todd Wanek (Ashley CEO, gravitational force), Scott Turner (co-founder, Russell's father)
-- Brady's positioning: COO background + Walmart Bentonville peer era with Justin + live AI consulting practice at mception.ai
+- Brady's positioning: M&A-and-capital operating partner with AI decision layer (NOT fractional CFO) + Walmart Bentonville peer era with Justin + live AI consulting practice at mception.ai
 
 **Cross-engagement capabilities:**
 - Problem sizing and framework routing (Small/Medium/Large → right tool)

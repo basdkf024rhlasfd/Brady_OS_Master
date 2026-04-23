@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>1915 South — Depth of Thinking Already Done</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-card: #161A23;
+    --bg-card-alt: #1E2330;
+    --bg-card-deep: #0F131B;
+    --white: #F5F1E8;
+    --gray: #A8ADB8;
+    --gray-light: #D4D7DD;
+    --gray-dim: #6B7080;
+    --accent: #E8A547;
+    --accent-soft: #C97E2A;
+    --accent-glow: rgba(232,165,71,0.10);
+    --line: #2A2F3D;
+    --line-dim: #1A1E28;
+    --positive: #6FC37E;
+  }
+  @page { size: 11in 8.5in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--bg); color: var(--white);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 8.5pt; line-height: 1.35; -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 11in; height: 8.5in; overflow: hidden;
+    padding: 0.26in 0.38in 0.22in;
+    display: flex; flex-direction: column; gap: 7px;
+    background: radial-gradient(ellipse at top right, rgba(232,165,71,0.04) 0%, transparent 55%), var(--bg);
+  }
+
+  /* === HERO === */
+  .hero {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    padding-bottom: 6px; border-bottom: 1px solid var(--line);
+  }
+  .hero-titleblock .eyebrow {
+    color: var(--accent); font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .hero-titleblock h1 {
+    font-size: 20pt; line-height: 1.02; font-weight: 900; letter-spacing: -0.02em;
+    margin-top: 3px;
+  }
+  .hero-titleblock .subtitle {
+    font-size: 9pt; color: var(--gray-light); margin-top: 3px;
+    font-style: italic; max-width: 7in;
+  }
+  .hero-metrics { display: flex; gap: 4px; flex-wrap: nowrap; }
+  .metric {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 3px;
+    padding: 5px 8px; min-width: 58px; text-align: center;
+  }
+  .metric .v {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt; font-weight: 700; color: var(--accent); display: block;
+  }
+  .metric .l {
+    font-size: 6.5pt; color: var(--gray); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-top: 1px;
+  }
+
+  .problem-frame {
+    font-size: 8.8pt; color: var(--gray-light); line-height: 1.4;
+    padding: 6px 12px; border-left: 3px solid var(--accent);
+    background: var(--accent-glow); border-radius: 0 3px 3px 0;
+  }
+  .problem-frame strong { color: var(--white); }
+
+  /* === DUAL: FOUNDATION + M&A TAKEAWAYS === */
+  .dual { display: grid; grid-template-columns: 1.55fr 1fr; gap: 8px; }
+  .panel {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px;
+    padding: 7px 10px 8px; display: flex; flex-direction: column;
+  }
+  .panel-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; font-weight: 600;
+    color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .foundation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .fight-card {
+    background: var(--bg-card-alt); border: 1px solid var(--line);
+    border-radius: 3px; padding: 5px 7px 6px 10px; position: relative;
+  }
+  .fight-card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); border-radius: 3px 0 0 3px;
+  }
+  .fight-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13pt; font-weight: 800; color: var(--accent); line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .fight-label {
+    font-size: 7.5pt; color: var(--gray-light); margin-top: 2px; line-height: 1.25;
+  }
+  .foundation-caption {
+    font-size: 8pt; font-style: italic; color: var(--gray);
+    margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--line);
+  }
+
+  .takeaways { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+  .takeaway {
+    font-size: 8.3pt; color: var(--gray-light); line-height: 1.35;
+    padding-left: 14px; position: relative;
+  }
+  .takeaway::before {
+    content: "●"; position: absolute; left: 0; top: 0; color: var(--accent);
+    font-size: 8pt;
+  }
+  .takeaway strong { color: var(--white); font-weight: 700; }
+  .takeaway em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+  /* === PROBLEMS === */
+  .triples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .problem-card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .problem-image {
+    width: 100%; height: 88px; object-fit: cover; display: block;
+    filter: brightness(0.82) contrast(1.05) saturate(0.92);
+    border-bottom: 1px solid var(--line);
+  }
+  .problem-inner {
+    padding: 7px 10px 8px; display: flex; flex-direction: column; gap: 5px; flex: 1;
+  }
+  .problem-head {
+    display: flex; align-items: baseline; gap: 6px;
+    padding-bottom: 4px; border-bottom: 1px solid var(--line);
+  }
+  .pid {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    color: var(--accent); font-size: 9pt; letter-spacing: 0.04em;
+  }
+  .problem-title {
+    font-size: 9pt; font-weight: 700; color: var(--white); line-height: 1.2;
+  }
+  .problem-body {
+    font-size: 7.8pt; color: var(--gray-light); line-height: 1.4;
+  }
+  .problem-body strong { color: var(--white); }
+  .problem-ideas {
+    margin-top: auto; padding-top: 5px; border-top: 1px dashed var(--line);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .problem-ideas-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 6pt; font-weight: 600;
+    color: var(--gray); letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1px;
+  }
+  .idea {
+    font-size: 7.6pt; color: var(--gray-light); line-height: 1.3;
+    padding-left: 10px; position: relative;
+  }
+  .idea::before {
+    content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
+  .idea em { color: var(--white); font-style: normal; font-weight: 600; }
+
+  .and-more {
+    font-size: 7.5pt; color: var(--gray); font-style: italic;
+    text-align: center; padding: 4px 12px; background: var(--bg-card-deep);
+    border: 1px dashed var(--line); border-radius: 3px; line-height: 1.35;
+  }
+  .and-more strong { color: var(--accent); font-weight: 700; font-style: normal; }
+
+  /* === PATH FORWARD === */
+  .path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; position: relative; }
+  .path-step {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 3px; padding: 5px 8px 6px; position: relative;
+  }
+  .path-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.08em;
+  }
+  .path-title {
+    font-size: 8.5pt; font-weight: 700; color: var(--white);
+    margin-top: 1px; margin-bottom: 2px; line-height: 1.15;
+  }
+  .path-body { font-size: 7.5pt; color: var(--gray-light); line-height: 1.3; }
+  .path-arrow {
+    position: absolute; top: 50%; right: -6px; color: var(--accent);
+    font-size: 10pt; transform: translateY(-50%); font-weight: 700;
+  }
+
+  /* === FOOTER === */
+  .footer-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-top: 6px; border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace; font-size: 7pt;
+    color: var(--gray); letter-spacing: 0.04em;
+  }
+  .footer-row strong { color: var(--white); font-weight: 600; }
+  .footer-row .classification { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-titleblock">
+      <div class="eyebrow">Innovation Workshop + M&amp;A Chessboard · Preview</div>
+      <h1>1915 South — Depth of Thinking Already Done</h1>
+      <div class="subtitle">What an Innovation Workshop + M&amp;A chessboard looks like when the research is already loaded.</div>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><span class="v">30</span><span class="l">Stores</span></div>
+      <div class="metric"><span class="v">6</span><span class="l">States</span></div>
+      <div class="metric"><span class="v">$182M</span><span class="l">Revenue</span></div>
+      <div class="metric"><span class="v">14%</span><span class="l">EBITDA</span></div>
+      <div class="metric"><span class="v">$25.5M</span><span class="l">EBITDA $</span></div>
+      <div class="metric"><span class="v">#50</span><span class="l">US Rank</span></div>
+    </div>
+  </div>
+
+  <!-- PROBLEM FRAME -->
+  <div class="problem-frame">
+    <strong>1915 South is a $182M, 14% EBITDA Ashley licensee at an inflection point</strong> — new President, active M&amp;A muscle, role redefinitions underway, and Ashley corporate's GMROI + AI mandate pressing from above. The question isn't whether to act. It's which moves, in what order, and with what decision layer on top.
+  </div>
+
+  <!-- FOUNDATION + M&A TAKEAWAYS -->
+  <div class="dual">
+    <div class="panel">
+      <div class="panel-label">Research Foundation · What's Already Loaded</div>
+      <div class="foundation-grid">
+        <div class="fight-card"><div class="fight-num">22</div><div class="fight-label">sources analyzed in Phase 0 baseline research</div></div>
+        <div class="fight-card"><div class="fight-num">30+</div><div class="fight-label">sources live-verified in M&amp;A deep research</div></div>
+        <div class="fight-card"><div class="fight-num">10</div><div class="fight-label">problem statements scoped with evidence + binding constraints</div></div>
+        <div class="fight-card"><div class="fight-num">15</div><div class="fight-label">named acquisition targets profiled across the Southeast</div></div>
+        <div class="fight-card"><div class="fight-num">8</div><div class="fight-label">open questions queued for the next working session</div></div>
+        <div class="fight-card"><div class="fight-num">5</div><div class="fight-label">capital-in options modeled for Russell's optionality</div></div>
+      </div>
+      <div class="foundation-caption">A second conversation, with the homework done.</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">M&amp;A Takeaways</div>
+      <ul class="takeaways">
+        <li class="takeaway"><strong>2 deals closed in 3 years</strong> — Fineman (Jacksonville, 2022) + Yulee FL (2025). Active muscle, not hypothetical.</li>
+        <li class="takeaway"><strong>~900 storefronts vacated</strong> in 1915 South's Southeast footprint 2024–2025 (Conn's / Badcock / American Freight collapse).</li>
+        <li class="takeaway"><strong>PE home-goods deal activity up 45.5% YoY in 2025</strong> — seller's market forming H2.</li>
+        <li class="takeaway">Current operating EV anchor <em>~$140–180M</em>; roll-up path opens real optionality at $250M revenue.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROBLEMS -->
+  <div class="triples">
+    <!-- Card 1: M&A / Roll-up -->
+    <div class="problem-card">
+      <img class="problem-image" src="images-1915-south/a9-builder-pro-b2b-channel-hero.png" alt="M&A expansion" onerror="this.src='images-1915-south/a9-builder-pro-b2b-channel-hero.png'">
+      <div class="problem-inner">
+        <div class="problem-head">
+          <span class="pid">P9</span>
+          <span class="problem-title">M&amp;A + Southeast Roll-Up Play</span>
+        </div>
+        <div class="problem-body">Justin added a <strong>VP Corporate Development &amp; Strategy</strong> role post-Yulee. The FRG collapse cleared the board. Without a repeatable playbook, each deal is built from scratch; with one, deal cadence and quality both rise.</div>
+        <div class="problem-ideas">
+          <div class="problem-ideas-label">Top ideas already developed</div>
+          <div class="idea"><em>Southeast roll-up playbook</em> — target Ashley licensee gaps (SW Virginia, NC/SC) + FRG-footprint real estate</div>
+          <div class="idea"><em>40-item diligence checklist + 90-day integration runbook</em> — codified from Yulee + Fineman muscle memory</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: GMROI -->
+    <div class="problem-card">
+      <img class="problem-image" src="images-1915-south/a6-regional-assortment-editor-hero.png" alt="Regional assortment" onerror="this.src='images-1915-south/a6-regional-assortment-editor-hero.png'">
+      <div class="problem-inner">
+        <div class="problem-head">
+          <span class="pid">P1</span>
+          <span class="problem-title">GMROI Execution Layer</span>
+        </div>
+        <div class="problem-body">Ashley corporate published the GMROI Excellence Framework Dec 2024. At 1915 South's scale, a <strong>10% GMROI shift = $2–4M in freed capital</strong>. No execution layer on 30 stores × 6 states × multi-category SKU today.</div>
+        <div class="problem-ideas">
+          <div class="problem-ideas-label">Top ideas already developed</div>
+          <div class="idea"><em>Regional Assortment Editor</em> — FL coastal / GA urban / AL rural mixes driven by data, not planogram</div>
+          <div class="idea"><em>Store-level GMROI dashboard with weekly cadence</em> — Ashley's framework made actionable at 30 stores</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Sleep Vertical -->
+    <div class="problem-card">
+      <img class="problem-image" src="images-1915-south/a1-sleep-lab-specialty-stores-hero.png" alt="Sleep Lab" onerror="this.src='images-1915-south/a1-sleep-lab-specialty-stores-hero.png'">
+      <div class="problem-inner">
+        <div class="problem-head">
+          <span class="pid">P6</span>
+          <span class="problem-title">Sleep Vertical Launch</span>
+        </div>
+        <div class="problem-body">Justin's April 20 email: <strong>"a lot could shift here if we open up a new line of business with sleep."</strong> Tempur Sealy closed Mattress Firm Feb 2025 and reserved 25% of floor space for third-party brands — window opens.</div>
+        <div class="problem-ideas">
+          <div class="problem-ideas-label">Top ideas already developed</div>
+          <div class="idea"><em>Sleep Lab specialty store format</em> — standalone branded destinations, not a corner of the furniture floor</div>
+          <div class="idea"><em>Tempur Sealy 3rd-party placement access</em> — structured preferred-supplier conversation, post-MFRM close</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="and-more"><strong>+ 7 more problems</strong> fully scoped — final-mile economics, 108-year-old back-office systems, role redefinitions across the leadership team, regional demand variance &nbsp;·&nbsp; <strong>+ 40+ more ideas</strong> across Format/Product, Ops/AI Arbitrage, Back-Office — fully scored, tiered, ready to sequence</div>
+
+  <!-- PATH FORWARD (hypothetical) -->
+  <div class="path">
+    <div class="path-step">
+      <div class="path-num">01</div>
+      <div class="path-title">Deeper Discovery</div>
+      <div class="path-body">Surface the questions each leader already has. Align on facts before choosing direction.</div>
+      <div class="path-arrow">›</div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">02</div>
+      <div class="path-title">Idea Iteration</div>
+      <div class="path-body">Narrow the full ideation library to what Justin and Russell actually want to back.</div>
+      <div class="path-arrow">›</div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">03</div>
+      <div class="path-title">Efficient Tests</div>
+      <div class="path-body">Pilot with objective measurements — GMROI delta, attach-rate, close-days — not opinion surveys.</div>
+      <div class="path-arrow">›</div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">04</div>
+      <div class="path-title">Scaled Implementation</div>
+      <div class="path-body">Winners become operating reality. Losers get archived with learnings.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-row">
+    <div>Prepared by <strong>Brady Smallwood</strong> · 2026-04-22</div>
+    <div>Internal preview — iteration copy</div>
+    <div class="classification">Shareable · 1915 South leadership only</div>
+  </div>
+
+</div>
+</body>
+</html>
