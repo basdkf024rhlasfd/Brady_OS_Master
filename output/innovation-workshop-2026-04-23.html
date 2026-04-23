@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Functional Indulgence in Asian Comfort Format — April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #f0f0f0;
+  --text-secondary: #888;
+  --text-muted: #555;
+  --accent: #FF6B00;
+  --accent2: #FFB830;
+  --accent3: #FF3D3D;
+  --green: #3DFF8F;
+  --tag-bg: #1e1e1e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size:14px; line-height:1.6; }
+body { max-width: 1100px; margin: 0 auto; padding: 0; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.cover-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  max-width: 700px;
+}
+.cover-title span { color: var(--accent); }
+.cover-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+.cover-meta {
+  display: flex;
+  gap: 48px;
+}
+.cover-meta-item { }
+.cover-meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.cover-meta-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.cover-brand {
+  position: absolute;
+  bottom: 48px;
+  right: 80px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+/* SECTION HEADER */
+.section-header {
+  padding: 64px 80px 40px;
+  border-bottom: 1px solid var(--border);
+}
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* EXEC SUMMARY */
+.exec-summary {
+  padding: 48px 80px;
+  border-bottom: 1px solid var(--border);
+  page-break-after: always;
+}
+.top5-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 32px 0;
+}
+.top5-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.top5-card.featured {
+  grid-column: 1/-1;
+  background: linear-gradient(135deg, rgba(255,107,0,0.08) 0%, var(--surface) 100%);
+  border-color: rgba(255,107,0,0.3);
+}
+.top5-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.4;
+  line-height: 1;
+  min-width: 40px;
+}
+.top5-content { }
+.top5-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.top5-one-liner {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.top5-score {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent2);
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+.theme-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+.theme-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.theme-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.theme-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.priority-matrix {
+  margin-top: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+}
+.matrix-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  height: 200px;
+  position: relative;
+}
+.matrix-q {
+  background: var(--surface2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  padding: 8px;
+  text-align: center;
+}
+.matrix-q.highlight { background: rgba(255,107,0,0.12); color: var(--text-secondary); }
+.matrix-label-x {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+.matrix-ideas {
+  font-size: 11px;
+  color: var(--accent2);
+  font-weight: 500;
+}
+
+/* PRODUCT PAGE */
+.product-page {
+  padding: 64px 80px;
+  border-bottom: 1px solid var(--border);
+  page-break-before: always;
+  page-break-inside: avoid;
+}
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.product-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.tag.accent { background: rgba(255,107,0,0.1); border-color: rgba(255,107,0,0.3); color: var(--accent); }
+.tag.green { background: rgba(61,255,143,0.08); border-color: rgba(61,255,143,0.2); color: var(--green); }
+.tag.amber { background: rgba(255,184,48,0.08); border-color: rgba(255,184,48,0.2); color: var(--accent2); }
+.product-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.product-tagline {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.score-badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  text-align: center;
+  min-width: 90px;
+}
+.score-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent2);
+}
+.score-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.product-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+}
+.product-image-block {
+  flex-shrink: 0;
+}
+.product-image-block img {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: block;
+}
+.img-placeholder {
+  width: 280px;
+  height: 280px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+.img-placeholder-emoji { font-size: 48px; }
+.img-placeholder-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+.sidebar-quick {
+  margin-top: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.sidebar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-row:last-child { border-bottom: none; }
+.sidebar-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sidebar-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.sidebar-val.green { color: var(--green); }
+.sidebar-val.amber { color: var(--accent2); }
+.sidebar-val.red { color: #FF5555; }
+
+.product-content {}
+.content-section { margin-bottom: 28px; }
+.content-section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,107,0,0.2);
+}
+.pitch-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.pitch-text p { margin-bottom: 10px; }
+.rtb-list {
+  list-style: none;
+  padding: 0;
+}
+.rtb-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+}
+.rtb-list li::before {
+  content: '→';
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+}
+.comp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.comp-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+}
+.comp-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.comp-detail {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.comp-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent2);
+  margin-top: 4px;
+}
+.gap-box {
+  background: rgba(255,107,0,0.06);
+  border: 1px solid rgba(255,107,0,0.2);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.cost-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.cost-table td:first-child { color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+.cost-table td:last-child { text-align: right; font-family: 'JetBrains Mono', monospace; color: var(--accent2); }
+.cost-table tr.total td { color: var(--text); font-weight: 600; border-top: 1px solid var(--accent); }
+.retailer-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.retailer-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.retailer-pill.primary {
+  background: rgba(255,107,0,0.1);
+  border-color: rgba(255,107,0,0.4);
+  color: var(--accent);
+}
+.ops-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.ops-simple { background: rgba(61,255,143,0.1); border: 1px solid rgba(61,255,143,0.3); color: var(--green); }
+.ops-moderate { background: rgba(255,184,48,0.1); border: 1px solid rgba(255,184,48,0.3); color: var(--accent2); }
+.ops-complex { background: rgba(255,107,0,0.1); border: 1px solid rgba(255,107,0,0.3); color: var(--accent); }
+.research-basis {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.6;
+  padding: 10px 14px;
+  border-left: 2px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 4px 4px 0;
+}
+
+/* APPENDIX */
+.appendix {
+  padding: 64px 80px;
+  page-break-before: always;
+}
+.appendix-section { margin-bottom: 48px; }
+.appendix-h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.appendix-p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.method-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+.method-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+}
+.method-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.method-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.method-ideas {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 16px;
+}
+.data-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+.data-table td:first-child { color: var(--text); font-weight: 500; }
+
+@media print {
+  body { background: #0a0a0a; }
+  .product-page { page-break-before: always; page-break-inside: avoid; }
+  .cover { page-break-after: always; }
+  .exec-summary { page-break-after: always; }
+  .appendix { page-break-before: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">mception.ai / Innovation Workshop / April 2026</div>
+  <h1 class="cover-title">Functional<br>Indulgence in<br><span>Asian Comfort</span><br>Format</h1>
+  <p class="cover-subtitle">20 research-backed product concepts at the intersection of health trends, orange chicken, functional beverages, and useful packaging innovation.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Run Date</div>
+      <div class="cover-meta-value">April 23, 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Ideas Generated</div>
+      <div class="cover-meta-value">30 → 20</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Methods Used</div>
+      <div class="cover-meta-value">10</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Cluster</div>
+      <div class="cover-meta-value">Functional Indulgence</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Category</div>
+      <div class="cover-meta-value">QSR / CPG / Beverage</div>
+    </div>
+  </div>
+  <div class="cover-brand">mception.ai</div>
+</div>
+
+<!-- EXEC SUMMARY -->
+<div class="exec-summary">
+  <div class="section-eyebrow">Executive Summary</div>
+  <h2 class="section-title" style="margin-bottom:16px;">The Big Picture</h2>
+  <p style="font-size:15px; color:var(--text-secondary); max-width:680px; line-height:1.7; margin-bottom:32px;">
+    GLP-1 is the #1 health trend of 2026. Orange chicken is America's most-loved Asian-American dish. Functional beverages are a $245B market growing at 8.8% annually. Packaging is becoming a strategic differentiator. This workshop asks: what happens when you put all four of these forces in a room together?
+  </p>
+
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:16px;">Top 5 Ideas</div>
+  <div class="top5-grid">
+    <div class="top5-card featured">
+      <div class="top5-num">01</div>
+      <div class="top5-content">
+        <div class="top5-name">Functional Takeout Brand Platform</div>
+        <div class="top5-one-liner">A new category at retail — beloved takeout flavors with functional upgrades. Orange chicken is the entry point.</div>
+      </div>
+      <div class="top5-score">4.4</div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-num">02</div>
+      <div class="top5-content">
+        <div class="top5-name">Orange Chicken Prebiotic RTD</div>
+        <div class="top5-one-liner">Mandarin orange + ginger + chili sparkling prebiotic. The Olipop for Asian food lovers.</div>
+      </div>
+      <div class="top5-score">4.4</div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-num">03</div>
+      <div class="top5-content">
+        <div class="top5-name">Orange Chicken Everything Sauce</div>
+        <div class="top5-one-liner">One sauce, infinite applications. Pour on anything — rice, noodles, protein, veggies. Displaces hot sauce on the shelf.</div>
+      </div>
+      <div class="top5-score">4.3</div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-num">04</div>
+      <div class="top5-content">
+        <div class="top5-name">Orange Chicken RTD Protein Shake</div>
+        <div class="top5-one-liner">30g protein, genuine orange zest + ginger flavor, savory-sweet RTD. The protein format that earns its format.</div>
+      </div>
+      <div class="top5-score">4.3</div>
+    </div>
+    <div class="top5-card">
+      <div class="top5-num">05</div>
+      <div class="top5-content">
+        <div class="top5-name">Dual-Chamber Sauce Bottle</div>
+        <div class="top5-one-liner">Orange chicken sauce + functional elixir in one bottle. Mix at the moment of pour. Packaging IS the innovation.</div>
+      </div>
+      <div class="top5-score">4.2</div>
+    </div>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin: 32px 0 16px;">Key Themes Across All 20 Ideas</div>
+  <div class="themes-grid">
+    <div class="theme-card">
+      <div class="theme-icon">🍊</div>
+      <div class="theme-name">Flavor Transfer</div>
+      <div class="theme-desc">Orange chicken's swicy profile — mandarin + chili + ginger — is one of the most beloved and transferable flavor systems in American food culture. 8 of 20 ideas leverage it in new formats.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">💊</div>
+      <div class="theme-name">Functional Uplift</div>
+      <div class="theme-desc">Every food idea adds one specific functional claim: protein, fiber, collagen, adaptogens, or prebiotic. No stacking. GLP-1 alignment is the unifying thread.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">📦</div>
+      <div class="theme-name">Packaging as Product</div>
+      <div class="theme-desc">4 ideas treat the package as a core feature — not just a container. Dual chambers, serve-from-pack, zero-dish formats, and portion-controlled vessels.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">🥤</div>
+      <div class="theme-name">Beverage Companions</div>
+      <div class="theme-desc">5 ideas are beverages — RTDs, tonics, electrolyte powders — designed to accompany the meal, not compete with it.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">🌿</div>
+      <div class="theme-name">Plant-Forward</div>
+      <div class="theme-desc">3 ideas swap the chicken entirely — tempeh, mushrooms, chickpeas — keeping the sauce and flavor profile while expanding the addressable market.</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">🏪</div>
+      <div class="theme-name">Retail + DTC Split</div>
+      <div class="theme-desc">Ideas span premium retail (Whole Foods, Target), mass (Walmart), DTC subscription, and B2B foodservice. No single channel dominates the portfolio.</div>
+    </div>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin: 32px 0 16px;">Prioritization Matrix</div>
+  <div class="priority-matrix">
+    <div class="matrix-title">EFFORT → / IMPACT ↑</div>
+    <div class="matrix-grid">
+      <div class="matrix-q highlight">
+        <div>
+          <div style="color:var(--accent); margin-bottom:6px; font-size:10px;">HIGH IMPACT / LOW EFFORT</div>
+          <div class="matrix-ideas">Everything Sauce · Seasoning Packet · OC Jerky · Prebiotic RTD</div>
+        </div>
+      </div>
+      <div class="matrix-q">
+        <div>
+          <div style="color:var(--text-muted); margin-bottom:6px; font-size:10px;">HIGH IMPACT / HIGH EFFORT</div>
+          <div class="matrix-ideas">Brand Platform · Serve-From-Pack Tray · Protein Shake · Dual-Chamber Bottle</div>
+        </div>
+      </div>
+      <div class="matrix-q">
+        <div>
+          <div style="color:var(--text-muted); margin-bottom:6px; font-size:10px;">LOW IMPACT / LOW EFFORT</div>
+          <div class="matrix-ideas">OC Popcorn · Seasoning · OC Salad Dressing</div>
+        </div>
+      </div>
+      <div class="matrix-q">
+        <div>
+          <div style="color:var(--text-muted); margin-bottom:6px; font-size:10px;">LOW IMPACT / HIGH EFFORT</div>
+          <div class="matrix-ideas">Bamboo Bowl · Onigiri</div>
+        </div>
+      </div>
+    </div>
+    <div class="matrix-label-x">← LOWER EFFORT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HIGHER EFFORT →</div>
+  </div>
+</div>
+
+
+<!-- IDEA 01 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Category Design #55</span>
+        <span class="tag">QSR / CPG</span>
+        <span class="tag green">Brand Platform</span>
+      </div>
+      <h2 class="product-name">Functional Takeout<br>Brand Platform</h2>
+      <p class="product-tagline">"You don't have to choose between delicious and functional. Not anymore."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.4</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a1-functional-takeout-brand-hero.png" alt="a1-functional-takeout-brand-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">Very High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Launch OC SKU</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">12–18 mo</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods → Mass</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>The $93.5B frozen food market has protein bars and it has takeout knockoffs, but it doesn't have a brand that commits fully to being both at once. "ZEST" (working name) enters as the first Functional Takeout brand — a line where every beloved takeout format gets a clean-ingredient, functional-purpose reformulation. Orange chicken is the anchor SKU. It's the category's most recognizable dish, the one everyone knows and loves, and the perfect bridge between comfort and aspiration.</p>
+          <p>The positioning isn't "healthy orange chicken." It's "orange chicken that does something." 22g protein, 8g prebiotic fiber, GLP-1 aligned portioning. The sauce is clean — no HFCS, no concentrates, actual orange zest. The chicken is whole-muscle. The first product does one thing well. Future SKUs follow the same formula applied to General Tso's, teriyaki, sweet-and-sour. The brand becomes a filter, not a flavor.</p>
+          <p>Category design is about owning a new lane before anyone else names it. "Functional Takeout" doesn't exist as a shelf set today. The first brand to claim it sets the terms for everyone who follows.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Frozen food market is $93.5B (Conagra 2026 Future of Frozen); functional reformulations are the fastest-growing subcategory within it</li>
+          <li>GLP-1 users are 48% more likely to eat out (Acosta Group, April 2026) — they want restaurant-quality flavor with health-compatible macros</li>
+          <li>Swicy (sweet + spicy) is the #1 flavor trend at US retail and foodservice for 2026 (IFT Flavor Trends); orange chicken IS swicy</li>
+          <li>No major brand currently occupies "functional frozen Asian comfort" — the closest are Healthy Choice (aging) and Tattooed Chef (declining); white space is real</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Healthy Choice Power Bowls</div><div class="comp-detail">Frozen meal line with protein claims, but no Asian comfort positioning. Aging brand, declining retail presence.</div><div class="comp-price">~$5.49 / serving</div></div>
+          <div class="comp-card"><div class="comp-name">Tattooed Chef</div><div class="comp-detail">Plant-based frozen meals, strong brand identity, but pulled back on Asian SKUs due to execution challenges.</div><div class="comp-price">~$6.99</div></div>
+          <div class="comp-card"><div class="comp-name">Panda Express Frozen (Walmart)</div><div class="comp-detail">Brand-licensed frozen orange chicken, but zero functional claims, high sodium, and no premium positioning.</div><div class="comp-price">~$8.98 / 22oz</div></div>
+          <div class="comp-card"><div class="comp-name">Trader Joe's Mandarin Chicken</div><div class="comp-detail">Cult favorite, but no functional upgrade, no transparency on ingredients, TJ's-only distribution.</div><div class="comp-price">~$4.99</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> Nothing in the frozen aisle simultaneously owns the Asian comfort flavor profile AND a clean, functional ingredient story. The incumbents chose one or the other. ZEST claims both.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">Whole Foods (launch)</span>
+          <span class="retailer-pill primary">Target</span>
+          <span class="retailer-pill">Kroger</span>
+          <span class="retailer-pill">Walmart (year 2)</span>
+          <span class="retailer-pill">Amazon Fresh</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Whole-muscle chicken (IQF)</td><td>$1.85/serving</td></tr>
+          <tr><td>Orange sauce (fresh-press, no concentrate)</td><td>$0.65/serving</td></tr>
+          <tr><td>Prebiotic fiber blend</td><td>$0.22/serving</td></tr>
+          <tr><td>Packaging (mono-material recyclable tray)</td><td>$0.38/serving</td></tr>
+          <tr><td>Co-man + labor</td><td>$0.90/serving</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$4.00/serving</td></tr>
+          <tr><td>Target retail</td><td>$9.99 (12oz, 2 servings)</td></tr>
+          <tr><td>Gross margin (to brand)</td><td>~42% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-complex">Complex</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Building a brand platform (not just a SKU) requires co-man relationships, frozen distribution, cold chain, and retailer negotiation simultaneously. First SKU can be tested via a single co-packer with IQF chicken capability. Brand extension cadence must be managed carefully — premature SKU proliferation kills margin.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Category Design method (#55). Triggered by white-space analysis of the frozen food aisle against GLP-1 behavioral shift data. NIQ Expo West 2026 confirms no incumbent has successfully planted a flag in functional Asian comfort. Timing window: 12–18 months before a major CPG company copies the thesis.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 02 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Mashup Method #24</span>
+        <span class="tag">Functional Beverage</span>
+        <span class="tag green">RTD</span>
+      </div>
+      <h2 class="product-name">Orange Chicken<br>Prebiotic RTD</h2>
+      <p class="product-tagline">"The Olipop for people who love takeout."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.4</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a2-orange-chicken-prebiotic-rtd-hero.png" alt="a2-orange-chicken-prebiotic-rtd-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val green">Low–Mod</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">Very High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Co-packer sample run</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–9 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>Olipop and Poppi proved that prebiotic soda could go mainstream by making gut health feel indulgent. Nobody has done this for Asian flavor profiles. The Orange Chicken Prebiotic RTD takes mandarin orange, fresh ginger, and chili — the exact flavor trio that defines orange chicken — and builds a sparkling prebiotic beverage around it. 35 calories. 5g prebiotic fiber (chicory root + green banana). Naturally sweetened with real orange juice and monk fruit. Zero sugar crash.</p>
+          <p>This isn't an "orange soda with a health claim." The flavor is earned — mandarin, not artificial orange; fresh ginger bite, not ginger flavoring; a whisper of chili that warms without burning. It's designed to be drunk alongside a meal, not instead of one. The can looks like it belongs on the same shelf as Vacation sunscreen and Fishwife tinned fish — premium, confident, visually distinctive.</p>
+          <p>The positioning hook: "Made for the meal everyone orders on Friday night." It pairs specifically with takeout. That's the occasion, that's the shelf placement pitch, and that's the TikTok content strategy.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Prebiotic soda is the fastest-growing segment in functional beverages (RisingTrends 2026); Olipop/Poppi combined at $500M+ in retail sales</li>
+          <li>Asian-inspired flavor profiles are among top 5 emerging flavors in US beverage innovation (Sensapure 2026 Trends)</li>
+          <li>Functional beverage market at $245.78B, 8.8% CAGR (Coherent Market Insights 2026) — room for dozens of sub-category leaders</li>
+          <li>Beverage co-packers for prebiotic soda are now widely available; formulation is achievable with beverage R&D partner in 4–6 months</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Olipop</div><div class="comp-detail">Classic soda flavors (Cola, Root Beer, Orange Squeeze). No Asian-inspired flavors. $3.99/can at Whole Foods.</div><div class="comp-price">$3.99 / 12oz</div></div>
+          <div class="comp-card"><div class="comp-name">Poppi</div><div class="comp-detail">Apple cider vinegar prebiotic soda. Classic American flavors. Strong retail presence, no cultural flavor experimentation.</div><div class="comp-price">$2.49–$3.49</div></div>
+          <div class="comp-card"><div class="comp-name">Kin Euphorics</div><div class="comp-detail">Adaptogenic sparkling beverages, more complex flavor profiles, positioned for mood/relaxation occasions.</div><div class="comp-price">$4.99–$6.00</div></div>
+          <div class="comp-card"><div class="comp-name">De La Calle Tepache</div><div class="comp-detail">Fermented pineapple soda, Mexican flavor profile — closest to cultural flavor transfer concept, but different occasion.</div><div class="comp-price">$2.99</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No prebiotic soda brand has committed to Asian flavor profiles or positioned around the takeout occasion. The white space is both flavor AND occasion.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">Whole Foods</span>
+          <span class="retailer-pill primary">DTC-subscription</span>
+          <span class="retailer-pill">Target</span>
+          <span class="retailer-pill">Sprouts</span>
+          <span class="retailer-pill">Amazon</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Mandarin orange juice (NFC)</td><td>$0.18/can</td></tr>
+          <tr><td>Prebiotic fiber blend (chicory + green banana)</td><td>$0.14/can</td></tr>
+          <tr><td>Ginger + chili extract</td><td>$0.06/can</td></tr>
+          <tr><td>Can + carbonation + co-packing</td><td>$0.48/can</td></tr>
+          <tr><td>Monk fruit sweetener</td><td>$0.04/can</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$0.90/can</td></tr>
+          <tr><td>Target retail</td><td>$3.49–$3.99 / 12oz</td></tr>
+          <tr><td>Gross margin (to brand)</td><td>~55% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple–Moderate</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Beverage co-packers for prebiotic soda are widely available (SCI, ABA, independent craft). Shelf-stable, no cold chain. DTC-first launch reduces retail complexity. Key challenge: mandarin NFC sourcing consistency and achieving ginger-chili balance at scale without bitterness.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Mashup Method (#24): Orange chicken flavor profile × Olipop prebiotic soda format. Triggered by RisingTrends data on prebiotic soda search growth and Sensapure 2026 report on Asian flavor emergence in US beverages. Occasion positioning (pairing with takeout meal) inspired by FoodNavigator-USA research on moment-based beverage behavior.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 03 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Analogous Inspiration #15</span>
+        <span class="tag">Functional Beverage</span>
+        <span class="tag amber">Protein RTD</span>
+      </div>
+      <h2 class="product-name">Orange Chicken<br>RTD Protein Shake</h2>
+      <p class="product-tagline">"30g protein. Real orange. No more chalky vanilla."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.3</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a3-orange-chicken-protein-shake-hero.png" alt="a3-orange-chicken-protein-shake-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">R&D + taste panel</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">8–12 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">GNC, Target, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>The protein shake category is drowning in vanilla, chocolate, and strawberry. Every format is sweet, every shake is dessert-adjacent, and the GLP-1 consumer who is already eating less sweet food is being ignored entirely. The Orange Chicken RTD Protein Shake takes the savory-sweet-citrus flavor profile of orange chicken and builds a 30g protein beverage around it — the first high-protein RTD positioned around a savory flavor tradition rather than a candy-bar analogue.</p>
+          <p>The flavor profile is orange zest, ginger, and a subtle umami warmth from chicken broth concentrate — essentially a drinkable orange chicken sauce that happens to be a protein delivery vehicle. Chilled in a 14oz glass-look bottle. Sweetened only with mandarin juice and monk fruit. No artificial flavors. The bottle says nothing about chicken — it says "Mandarin Ginger Protein" and leans into the citrus-and-spice branding.</p>
+          <p>This earns its format because it solves a real problem the protein shake market has ignored: the consumer who wants satiety and protein but is tired of eating dessert three times a day.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Protein is the #1 functional addition to all F&B categories at Expo West 2026; NIQ data shows protein now appearing in savory snacks and pantry staples, not just sweet formats</li>
+          <li>GLP-1 users consume 21% fewer calories (KPMG 2026) but prioritize protein per bite; savory protein formats align with this behavior shift</li>
+          <li>Premier Protein RTD market is $2B+; category is not saturated, it's flavor-saturated — all within sweet profiles. First savory protein RTD at scale wins by differentiation</li>
+          <li>Chicken broth + citrus flavor technology is established in Japan (clear protein beverages); co-packer technology is accessible</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Premier Protein Shake</div><div class="comp-detail">Market leader, 30g protein, exclusively sweet flavors. $2.50/bottle at Walmart. No savory option.</div><div class="comp-price">$2.49–$2.99</div></div>
+          <div class="comp-card"><div class="comp-name">Fairlife Core Power</div><div class="comp-detail">Milk-based protein shake, chocolate/vanilla/strawberry. Premium quality, no flavor innovation.</div><div class="comp-price">$3.49–$3.99</div></div>
+          <div class="comp-card"><div class="comp-name">Orgain Protein Shake</div><div class="comp-detail">Plant-based, organic, sweet flavors. No Asian flavor territory. Clean brand.</div><div class="comp-price">$3.29–$3.79</div></div>
+          <div class="comp-card"><div class="comp-name">No savory RTD protein exists at retail scale</div><div class="comp-detail">Closest is bone broth (low protein, not positioned as protein shake). True white space.</div><div class="comp-price">N/A</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No RTD protein shake brand has launched a savory flavor. The entire $2B+ category is vanilla-chocolate-strawberry. First mover in savory protein RTD wins a differentiated shelf position that incumbents can't easily copy without brand confusion.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">GNC / Vitamin Shoppe</span>
+          <span class="retailer-pill primary">Target</span>
+          <span class="retailer-pill">Whole Foods</span>
+          <span class="retailer-pill">Amazon</span>
+          <span class="retailer-pill">DTC-subscription</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Whey protein isolate (30g)</td><td>$0.72/bottle</td></tr>
+          <tr><td>Mandarin juice + ginger extract</td><td>$0.22/bottle</td></tr>
+          <tr><td>Chicken broth concentrate (umami base)</td><td>$0.08/bottle</td></tr>
+          <tr><td>Bottle + cap + label</td><td>$0.35/bottle</td></tr>
+          <tr><td>Aseptic filling / co-packing</td><td>$0.55/bottle</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$1.92/bottle</td></tr>
+          <tr><td>Target retail</td><td>$4.49–$4.99 / 14oz</td></tr>
+          <tr><td>Gross margin (to brand)</td><td>~48% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Aseptic RTD co-packers are available but require minimum runs of 50K+ units. Flavor stability of chicken broth concentrate in a chilled RTD requires R&D validation. Key risk: consumer acceptance of savory protein shake — requires taste panel investment before scale. Cold chain required for retail.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Analogous Inspiration (#15): protein shake industry format applied to savory Asian flavor profile. Triggered by NIQ Expo West 2026 data on protein appearing in non-sweet categories and GLP-1 consumer behavior research (KPMG 2026). Japanese clear protein beverage technology referenced as proof of concept.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 04 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">SCAMPER #21</span>
+        <span class="tag">Sauce / Condiment</span>
+        <span class="tag green">High Velocity</span>
+      </div>
+      <h2 class="product-name">Orange Chicken<br>Everything Sauce</h2>
+      <p class="product-tagline">"Pour it on anything. It works on everything."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.3</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a4-orange-chicken-everything-sauce-hero.png" alt="a4-orange-chicken-everything-sauce-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val green">Low</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">Very High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Co-man + retail pitch</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">4–6 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Walmart, Target, Amazon</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>Hot sauce had its cultural moment. Sriracha mainstreamed Asian condiments. What's next is the orange chicken sauce — not as a cooking sauce for one dish, but as a universal drizzle, glaze, and dipping sauce that goes on everything. The "everything" positioning is the entire strategy: rice bowl, noodles, grilled chicken, roasted vegetables, fried eggs, pizza, popcorn. One bottle, infinite applications, and the consumer never runs out of reasons to reach for it.</p>
+          <p>The sauce itself is real: NFC mandarin orange juice base, fresh ginger, chili, low-sodium soy, rice vinegar, a touch of sesame. No corn syrup. No artificial flavors. Clean enough to call out on-pack. Bold enough to not need any other sauce in the fridge. The bottle design is wide-neck for easy pouring and doubles as a serving vessel. The label is confident and minimal — "Orange Everything Sauce" in bold block letters, no illustration clutter.</p>
+          <p>The grocery pitch: section between hot sauce and Asian sauces. The DTC pitch: 3-pack subscription, $36/month, pairs with weekly meal ideas in email newsletter. The TikTok pitch: one video per week of unexpected things it makes better.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Hot sauce market is $3.77B in the US and growing 4.3% annually — orange chicken sauce has comparable or superior flavor appeal for mainstream consumers</li>
+          <li>Swicy condiment innovation is the #1 NPD trend in grocery sauces in 2026 (IFT Flavor Trends report); no branded orange chicken sauce owns this</li>
+          <li>Sauce co-packers are widely available at low MOQ ($15K–25K for first run); shelf-stable, low cold-chain complexity</li>
+          <li>Existing DTC sauce brands (Fly by Jing, Momofuku) prove premium Asian condiment willingness-to-pay at $12–18/bottle</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Panda Express Mandarin Sauce</div><div class="comp-detail">Restaurant brand sauce sold at Walmart. Positioned as a cooking sauce, not a condiment. High fructose corn syrup.</div><div class="comp-price">$3.48 / 20.75oz</div></div>
+          <div class="comp-card"><div class="comp-name">Fly by Jing Sichuan Chili Crisp</div><div class="comp-detail">Premium Asian condiment, DTC-first, strong brand. Savory/umami, not sweet-citrus. Different occasion.</div><div class="comp-price">$14.00 / 6oz</div></div>
+          <div class="comp-card"><div class="comp-name">Momofuku Chili Crunch</div><div class="comp-detail">Dave Chang brand, mass retail. Savory, oil-based, not citrus-forward. Different flavor profile.</div><div class="comp-price">$13.00 / 5.3oz</div></div>
+          <div class="comp-card"><div class="comp-name">House of Tsang Orange Ginger Sauce</div><div class="comp-detail">Legacy brand, cooking sauce positioning, outdated packaging, artificial flavors, grocery aisle presence.</div><div class="comp-price">$2.99 / 11.5oz</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No brand has taken orange chicken sauce from "cooking ingredient" to "universal condiment." Fly by Jing proved the DTC-to-retail arc works for premium Asian condiments. This is that playbook applied to America's most beloved Asian flavor.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">Walmart</span>
+          <span class="retailer-pill primary">Target</span>
+          <span class="retailer-pill primary">Amazon</span>
+          <span class="retailer-pill">Kroger</span>
+          <span class="retailer-pill">DTC-subscription</span>
+          <span class="retailer-pill">Costco (multipack)</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>NFC mandarin orange juice base</td><td>$0.28/bottle</td></tr>
+          <tr><td>Ginger + chili + soy + vinegar blend</td><td>$0.18/bottle</td></tr>
+          <tr><td>Glass bottle + cap + label</td><td>$0.55/bottle</td></tr>
+          <tr><td>Sauce co-packing (hot fill)</td><td>$0.35/bottle</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$1.36/bottle</td></tr>
+          <tr><td>Target retail</td><td>$7.99 / 12oz (DTC: $12.99)</td></tr>
+          <tr><td>Gross margin (to brand)</td><td>~52% retail, ~68% DTC (assumption)</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Shelf-stable hot-fill sauce. No cold chain. Co-packers widely available at accessible MOQs. DTC fulfillment is straightforward. Key challenge is achieving NFC orange flavor consistency without concentrates across production runs. Fastest-to-market idea in the portfolio.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">SCAMPER method (#21) — "Put to other use": orange chicken sauce removed from its cooking context and repositioned as a universal condiment. Triggered by hot sauce market data, Fly by Jing DTC success arc, and IFT 2026 swicy condiment trend data. Market gap confirmed by competitive audit showing no clean-label orange chicken condiment at scale.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 05 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Analogous Inspiration #15</span>
+        <span class="tag">Protein Snack</span>
+        <span class="tag amber">Savory Innovation</span>
+      </div>
+      <h2 class="product-name">Orange Chicken<br>Protein Bar</h2>
+      <p class="product-tagline">"The first protein bar that tastes like dinner, not dessert."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.2</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a5-orange-chicken-protein-bar-hero.png" alt="a5-orange-chicken-protein-bar-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Bar R&D + panels</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">9–12 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">GNC, Target, Amazon</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>The protein bar category has 800 SKUs and they all taste like chocolate peanut butter or a birthday cake. The GLP-1 consumer eating 300–500 fewer calories per day doesn't want another sweet bar — they want something that feels like a meal. The Orange Chicken Protein Bar is exactly that: 22g protein, 4g prebiotic fiber, orange-glazed chicken pieces bound in a savory-sweet matrix that actually tastes like the dish it's named after.</p>
+          <p>The bar uses real pulled chicken breast as the primary protein source (not protein powder), orange zest and ginger in the binder, and a thin orange glaze coat that adds the sweet-citrus finish without a sugar spike. 220 calories, 3g sugar, no artificial sweeteners. Packaged in a matte wrapper that looks nothing like a conventional protein bar — it looks like a premium snack, because it is one.</p>
+          <p>The first move is a 12-bar DTC sample pack targeting gym-adjacent consumers who are bored with sweet protein and explicitly searching for alternatives. The TikTok hook writes itself: "I made a protein bar that tastes like Panda Express."</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Protein bar market is $7.4B in the US; category innovation is stagnant in flavor — sweet monopoly is a vulnerability competitors could exploit</li>
+          <li>GLP-1 consumers explicitly report preference for savory snacks over sweet (KPMG 2026 GLP-1 consumer behavior study)</li>
+          <li>Meat bar analogs (EPIC, Country Archer) have proven savory protein snack market exists at premium price points ($3.50–$4.50/bar)</li>
+          <li>Orange chicken flavor profile has 90%+ American recognition and positive emotional association; transfers brand equity to new format</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">EPIC Provisions Chicken Sriracha Bar</div><div class="comp-detail">Meat-based protein bar, savory-spicy, whole30 aligned. Closest analog. No citrus/Asian profile.</div><div class="comp-price">$2.99–$3.49</div></div>
+          <div class="comp-card"><div class="comp-name">RX Bar</div><div class="comp-detail">Clean-label protein bar, sweet flavors, strong brand. 12g protein. Not savory.</div><div class="comp-price">$2.99</div></div>
+          <div class="comp-card"><div class="comp-name">Country Archer Jerky Co Bars</div><div class="comp-detail">Meat-based snack bars, savory profile. Teriyaki SKU is closest to Asian-flavor territory.</div><div class="comp-price">$3.29</div></div>
+          <div class="comp-card"><div class="comp-name">No orange-chicken positioned protein bar exists</div><div class="comp-detail">EPIC and Country Archer prove format. No one has taken it to the orange chicken flavor specifically.</div><div class="comp-price">—</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> EPIC proved the savory meat bar format works at scale. No brand has applied it to the orange chicken flavor profile — America's most recognizable Asian-American dish. The combination of proven format + beloved flavor is the entire thesis.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">GNC / Vitamin Shoppe</span>
+          <span class="retailer-pill primary">Target</span>
+          <span class="retailer-pill primary">Amazon</span>
+          <span class="retailer-pill">Whole Foods</span>
+          <span class="retailer-pill">DTC-one-time + subscription</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Pulled chicken breast (IQF, 22g protein per bar)</td><td>$0.88/bar</td></tr>
+          <tr><td>Orange glaze + ginger + binder</td><td>$0.24/bar</td></tr>
+          <tr><td>Prebiotic fiber blend</td><td>$0.12/bar</td></tr>
+          <tr><td>Wrapper + packaging</td><td>$0.22/bar</td></tr>
+          <tr><td>Bar co-packing</td><td>$0.44/bar</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$1.90/bar</td></tr>
+          <tr><td>Target retail</td><td>$3.99–$4.49 / bar</td></tr>
+          <tr><td>Gross margin (to brand)</td><td>~44% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Meat-based bar formulation is more complex than standard protein bars. Requires co-packer with meat handling certification. Refrigerated or nitrogen-flushed shelf-stable depending on format choice. Cold chain adds complexity. Key R&D challenge: achieving the orange-ginger glaze finish at scale without texture degradation.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Analogous Inspiration (#15): EPIC Provisions meat bar format applied to orange chicken flavor profile. Triggered by GLP-1 consumer savory snack preference data (KPMG 2026) and protein bar category stagnation analysis. EPIC's retail success ($100M+ revenue before Mars acquisition) validates format viability at scale.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- IDEA 06 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Packaging Innovation #58</span>
+        <span class="tag">Sauce / Condiment</span>
+        <span class="tag green">Format-First</span>
+      </div>
+      <h2 class="product-name">Dual-Chamber<br>Sauce Bottle</h2>
+      <p class="product-tagline">"The sauce. The boost. One bottle. You choose the ratio."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.2</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a6-dual-chamber-sauce-bottle-hero.png" alt="a6-dual-chamber-sauce-bottle-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Mod–High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Packaging R&D</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">10–14 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">DTC, Whole Foods</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>What if the packaging itself was the product differentiator — not the ingredients? The Dual-Chamber Sauce Bottle holds orange chicken sauce in one chamber and a functional elixir (ginger + turmeric prebiotic concentrate) in the adjacent chamber. You squeeze both simultaneously, controlling the ratio at the moment of pour. Heavy on sauce for a classic orange chicken experience. Heavy on elixir for a lighter, more gut-supportive drizzle. The mixing point is at the nozzle — the two liquids meet in the air and land together on your food.</p>
+          <p>The innovation is in the bottle engineering: a transparent dual-lumen squeeze bottle where the sauce-to-elixir ratio is visible and adjustable by finger pressure. It's a physical experience that's inherently TikTok-able — you can see both chambers, you can control them, and the result on your plate is visually distinct depending on your blend. First run: Orange Sauce + Ginger Prebiotic. Future runs: Teriyaki + Lion's Mane. General Tso + Magnesium.</p>
+          <p>The shelf presence is unlike anything else in the condiment aisle. Two-toned, transparent, architectural. It doesn't need to scream "functional" — the bottle shows you.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Dual-chamber packaging exists in cosmetics and pharmaceuticals; extension to food condiments is a materials-available manufacturing opportunity</li>
+          <li>Consumer personalization through mixing/blending is a documented 2026 trend (Glanbia Nutritionals MegaTrends 2026: personalization via ingredient selection)</li>
+          <li>TikTok content around "satisfying squeeze" videos drives multi-million view counts; dual-chamber creates organic viral moment at point of use</li>
+          <li>Premium DTC sauce brands (Fly by Jing, Momofuku) demonstrate $12–18 willingness-to-pay for distinctive condiment packaging</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">No food condiment dual-chamber exists at retail</div><div class="comp-detail">Hair care (Matrix, Kenra) and pharma use dual-chamber packaging. Zero food applications at US retail scale.</div><div class="comp-price">N/A</div></div>
+          <div class="comp-card"><div class="comp-name">Heinz Dual Action Ketchup Bottle</div><div class="comp-detail">Wide-mouth with removable cap — minimal engineering. Not dual-chamber. Shows Heinz has explored packaging differentiation.</div><div class="comp-price">$3.99</div></div>
+          <div class="comp-card"><div class="comp-name">Fly by Jing Sichuan Sauce</div><div class="comp-detail">Premium DTC positioning, distinctive packaging, strong brand story. Single chamber, no functional add-on.</div><div class="comp-price">$14.00</div></div>
+          <div class="comp-card"><div class="comp-name">Suja Functional Shots</div><div class="comp-detail">Functional shots in small bottles — proves functional liquid elixir market. Separate product, not integrated with food.</div><div class="comp-price">$4.49 / 2oz</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No food condiment has used dual-chamber packaging as a product differentiator. This is a genuine format-first innovation — the packaging creates the product, not the other way around. Incumbents can't copy it without a full SKU reformulation.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">DTC-one-time + subscription</span>
+          <span class="retailer-pill primary">Whole Foods</span>
+          <span class="retailer-pill">Target</span>
+          <span class="retailer-pill">Amazon</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Dual-lumen bottle (custom mold, amortized)</td><td>$1.20/unit</td></tr>
+          <tr><td>Orange chicken sauce (chamber 1)</td><td>$0.32/unit</td></tr>
+          <tr><td>Ginger prebiotic elixir (chamber 2)</td><td>$0.28/unit</td></tr>
+          <tr><td>Co-packing (dual-fill)</td><td>$0.65/unit</td></tr>
+          <tr><td>Label + sleeve</td><td>$0.22/unit</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$2.67/unit</td></tr>
+          <tr><td>Target retail</td><td>$16.99 / DTC, $12.99 / retail</td></tr>
+          <tr><td>Gross margin</td><td>~60% DTC (assumption)</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-complex">Complex</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Custom bottle tooling is the primary barrier — $80K–120K mold cost, amortized over minimum 50K units. Dual-fill co-packing is not standard; requires specialized equipment or manual operation at small scale. Shelf-stable formulation in both chambers must be validated for separation and flavor stability over 12-month shelf life.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Packaging Innovation method (#58). Inspired by dual-chamber packaging in cosmetics applied to food condiments. Triggered by 2026 personalization trend data (Glanbia MegaTrends) and TikTok engagement patterns around "satisfying" food product videos. No competitive analogues in food retail — first-mover advantage is significant.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 07 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Mashup Method #24</span>
+        <span class="tag">Functional Snack</span>
+        <span class="tag green">Adaptogenic</span>
+      </div>
+      <h2 class="product-name">Orange Shiitake<br>Adaptogenic Bites</h2>
+      <p class="product-tagline">"The snack where lion's mane meets orange chicken."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.2</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a7-orange-shiitake-adaptogenic-bites-hero.png" alt="a7-orange-shiitake-adaptogenic-bites-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Formulation + panel</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–9 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods, Sprouts</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>Mushrooms are the ingredient of the year at Expo West 2026. Lion's mane, shiitake, and reishi are moving from niche adaptogenic supplements to everyday snack formats. And orange chicken already has a culinary mushroom analog — meat-and-mushroom blends are the fastest-growing protein format in the frozen aisle because they're cheaper to produce and hit both flavor and protein targets simultaneously.</p>
+          <p>Orange Shiitake Adaptogenic Bites takes that insight and builds a snack bag around it: shiitake mushroom caps with lion's mane mycelium powder in the coating, glazed in an orange-chili sauce, baked (not fried), and sealed in a matte kraft bag that reads premium functional snack, not cheap mushroom chip. The flavor is genuinely orange chicken-adjacent — the shiitake provides the savory umami base, the orange glaze delivers the sweet-citrus top note, the chili adds the finish.</p>
+          <p>It's simultaneously a mushroom snack, a functional adaptogenic, and a plant-based orange chicken tribute. Three audience entry points from one product.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Mushroom snack category growing 28% YoY (Circana 2025); lion's mane + shiitake specifically trending at natural grocery</li>
+          <li>NIQ Expo West 2026: mushrooms cited as the most multifaceted ingredient of the show, moving into everyday snack formats</li>
+          <li>Meat-and-mushroom blends are growing fastest in frozen protein — validates flavor compatibility at commercial scale</li>
+          <li>Plant-based snack buyers (Whole Foods, Sprouts) actively seeking new formats; mushroom bites avoid "fake meat" skepticism entirely</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Pan's Mushroom Jerky</div><div class="comp-detail">Shiitake-based jerky snack, strong DTC brand. Savory flavors, no citrus-sweet positioning. $7.99/2.5oz.</div><div class="comp-price">$7.99 / 2.5oz</div></div>
+          <div class="comp-card"><div class="comp-name">Moku Plant-Based Jerky</div><div class="comp-detail">Mushroom jerky, heart-of-palm. Good flavor range including teriyaki. No orange-citrus SKU.</div><div class="comp-price">$8.99 / 2.2oz</div></div>
+          <div class="comp-card"><div class="comp-name">Four Sigmatic Mushroom Snacks</div><div class="comp-detail">Adaptogenic mushroom positioning, focused on beverages not snacks. Functional positioning is strong.</div><div class="comp-price">$14.99 / mix</div></div>
+          <div class="comp-card"><div class="comp-name">Crispy Maitake Mushroom Chips (WF 365)</div><div class="comp-detail">Private label mushroom chip, sea salt only. No adaptogenic claim, no flavoring innovation.</div><div class="comp-price">$5.99</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> Pan's and Moku proved mushroom jerky/snacks work. None have applied an orange-citrus-chili flavor profile or explicitly stacked an adaptogenic claim (lion's mane) with the snack format. The double positioning (flavor + function) is the differentiator.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">Whole Foods</span>
+          <span class="retailer-pill primary">Sprouts</span>
+          <span class="retailer-pill">Target (natural set)</span>
+          <span class="retailer-pill">Amazon</span>
+          <span class="retailer-pill">DTC</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Shiitake caps (dried, 2.5oz yield)</td><td>$1.10/bag</td></tr>
+          <tr><td>Lion's mane extract powder (coating)</td><td>$0.28/bag</td></tr>
+          <tr><td>Orange-chili glaze</td><td>$0.18/bag</td></tr>
+          <tr><td>Kraft bag + print</td><td>$0.38/bag</td></tr>
+          <tr><td>Baking + co-packing</td><td>$0.55/bag</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$2.49/bag</td></tr>
+          <tr><td>Target retail</td><td>$8.99 / 2.5oz</td></tr>
+          <tr><td>Gross margin</td><td>~50% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple–Moderate</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Dried mushroom snack manufacturing is established. Lion's mane extract powder is shelf-stable and easy to incorporate in coating. Key challenge: sourcing consistent shiitake quality and achieving flavor uniformity in the orange-chili glaze across production runs. Shelf-stable, no cold chain.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Mashup Method (#24): orange chicken flavor profile × adaptogenic mushroom snack format. NIQ Expo West 2026 confirmed mushrooms as the breakout ingredient of the year. Pan's Mushroom Jerky success validates consumer willingness to pay $8+ for premium mushroom snacks. Lion's mane adaptogenic positioning adds functional differentiation beyond just flavor.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 08 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Cultural Trend Mining #51</span>
+        <span class="tag">Sauce / Condiment</span>
+        <span class="tag amber">Korean-Chinese Fusion</span>
+      </div>
+      <h2 class="product-name">Orange-Gochujang<br>Fusion Sauce</h2>
+      <p class="product-tagline">"Korean heat. Chinese citrus. American comfort."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.2</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a8-orange-gochujang-sauce-hero.png" alt="a8-orange-gochujang-sauce-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val green">Low–Mod</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">DTC launch + Amazon</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">4–6 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods, Amazon, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>Gochujang hit mainstream American consciousness in 2022–2023 and hasn't slowed down. It's now available at Walmart, Target, and every grocery in between. But the American palate that discovered gochujang also already loves orange chicken — and nobody has fused them. Orange-Gochujang Sauce takes the sweet-citrus-chili foundation of orange chicken and builds it with gochujang's fermented, funky, deeply savory heat instead of generic chili sauce. The result is more complex, more layered, and more culturally authentic than standard orange chicken sauce.</p>
+          <p>It's a cooking sauce AND a condiment. Use it as a marinade for chicken thighs, a glaze for sheet pan vegetables, a dipping sauce for dumplings, or a bold alternative to your standard orange chicken sauce. The jar is squat and ceramic-inspired, evoking Korean pantry aesthetics. The label tells you exactly what's in it: orange, gochujang, ginger, garlic, sesame. No mystery. No filler.</p>
+          <p>The cultural story writes itself: the dish every American Asian restaurant makes, with the ingredient every serious home cook is already using. It's not fusion for the sake of it — it's the natural meeting point of two things people already love.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Gochujang grew 180% in US retail from 2020–2025 (SPINS); now mainstream at Walmart, Target, Kroger — consumer familiarity is established</li>
+          <li>Korean-Chinese fusion is an active food trend in 2026 social media (TikTok: #KoreanChinese has 400M+ views); this is the retail expression of that trend</li>
+          <li>Fermented ingredient positioning (gochujang is fermented) aligns with gut health macro trend — adds functional credibility without a clinical claim</li>
+          <li>Sauce co-packing is accessible at low MOQ; hot-fill shelf-stable, no cold chain required</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Bibigo Gochujang Sauce</div><div class="comp-detail">Korean brand, mainstream gochujang sauce at US retail. No orange/citrus element. Pure gochujang, wide distribution.</div><div class="comp-price">$4.49 / 11.5oz</div></div>
+          <div class="comp-card"><div class="comp-name">Sempio Gochujang</div><div class="comp-detail">Traditional Korean fermented paste, not a sauce. Ingredient, not a ready condiment. Different format.</div><div class="comp-price">$6.99 / 500g</div></div>
+          <div class="comp-card"><div class="comp-name">House of Tsang Orange Ginger Sauce</div><div class="comp-detail">Legacy brand, orange-forward cooking sauce. Artificial flavors, outdated positioning, no gochujang.</div><div class="comp-price">$2.99</div></div>
+          <div class="comp-card"><div class="comp-name">Trader Joe's Korean BBQ Sauce</div><div class="comp-detail">Gochujang-adjacent, TJ's exclusive. No orange citrus element. Cult following, but limited distribution.</div><div class="comp-price">$2.99</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No brand has combined gochujang with orange/citrus in a premium condiment positioning. Bibigo owns gochujang-forward. House of Tsang owns orange-forward (but poorly). The fusion space between them is unclaimed.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">Whole Foods</span>
+          <span class="retailer-pill primary">Amazon</span>
+          <span class="retailer-pill">Target</span>
+          <span class="retailer-pill">DTC</span>
+          <span class="retailer-pill">Kroger</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Gochujang base (imported, premium)</td><td>$0.35/jar</td></tr>
+          <tr><td>Orange juice + zest</td><td>$0.18/jar</td></tr>
+          <tr><td>Ginger + garlic + sesame</td><td>$0.12/jar</td></tr>
+          <tr><td>Ceramic-style jar + lid + label</td><td>$0.58/jar</td></tr>
+          <tr><td>Hot-fill co-packing</td><td>$0.32/jar</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$1.55/jar</td></tr>
+          <tr><td>Target retail</td><td>$9.99 / 10oz</td></tr>
+          <tr><td>Gross margin</td><td>~54% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Hot-fill sauce manufacturing is well-established. Gochujang is readily available from Korean importers in commercial quantities. Shelf-stable, no cold chain. Key challenge: achieving consistent gochujang-to-orange balance across batches and securing premium ceramic-look jar at competitive cost.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Cultural Trend Mining (#51): Korean food influence (gochujang mainstream adoption) combined with orange chicken cultural equity. SPINS gochujang growth data + TikTok trend analysis confirms consumer readiness for Korean-Chinese fusion products. House of Tsang's market share shows existing demand for orange-based Asian sauces; positioning gap is in premium/clean ingredient space.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 09 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">Mashup Method #24</span>
+        <span class="tag">Functional Beverage</span>
+        <span class="tag green">Evening Ritual</span>
+      </div>
+      <h2 class="product-name">Orange Ginger<br>Magnesium Sleep Tonic</h2>
+      <p class="product-tagline">"The wind-down drink for people who order takeout for dinner."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.2</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a9-orange-ginger-magnesium-tonic-hero.png" alt="a9-orange-ginger-magnesium-tonic-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">DTC sample drop</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–9 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">DTC, Whole Foods, Target</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>Magnesium was the breakout supplement of 2025, showing up in everything from sleep gummies to sparkling water. But the beverage format that emerged was almost uniformly sweet and berry-flavored — nothing that matched the flavor palate of people who actually eat dinner and want a wind-down drink that works with their food, not against it. The Orange Ginger Magnesium Sleep Tonic is an evening drink designed for exactly that moment: after the takeout, before the screen, as the transition ritual.</p>
+          <p>The flavor logic is sound: orange and ginger are both warming, digestive-supportive flavors that feel appropriate after a meal. Magnesium bisglycinate (the highly absorbable form) at 200mg per bottle. A splash of chamomile and lemon balm for the sedative note. Naturally sweetened with a small amount of date syrup. 25 calories, no caffeine, no melatonin (which causes grogginess in many users). The dark amber bottle with a midnight blue label reads as ritual object, not supplement.</p>
+          <p>The positioning is occasion-specific and that's the entire point: "Drink this after dinner. Feel the wind-down." No broad health claims, just a well-understood consumer moment executed with precision.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Magnesium retained strong visibility at Expo West 2026 — described as the top supplement for relaxation, recovery, and sleep (NIQ Expo West 2026 report)</li>
+          <li>Mood and mindset functional beverages are moving away from energy claims toward calm/balance/everyday focus (Instagram 2026 functional soda trend analysis)</li>
+          <li>FoodNavigator 2026: evening-occasion beverages are fastest-growing functional subcategory; moment-specific positioning drives repeat purchase</li>
+          <li>Magnesium bisglycinate ingredient is widely available from Albion Minerals at commercial quantities; formulation straightforward</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">CALM Magnesium Powder</div><div class="comp-detail">Market leader, flavored powder, sweet/citrus. Not a ready-to-drink, requires mixing. $24.99 / 8oz.</div><div class="comp-price">$24.99 / 8oz powder</div></div>
+          <div class="comp-card"><div class="comp-name">Kin Euphorics Dream Light</div><div class="comp-detail">Adaptogenic evening drink, RTD, $6–8/bottle. Strong positioning but expensive. No orange-ginger flavor.</div><div class="comp-price">$6.99 / 8.4oz</div></div>
+          <div class="comp-card"><div class="comp-name">Moon Juice Magnesi-Om</div><div class="comp-detail">Magnesium powder, supplement-forward positioning, berry flavors. No RTD format.</div><div class="comp-price">$42.00 / 30 servings</div></div>
+          <div class="comp-card"><div class="comp-name">Recess Mood Sparkling Water</div><div class="comp-detail">Hemp + adaptogens, calm positioning, sparkling format. No magnesium claim, no warm dinner-pairing flavor.</div><div class="comp-price">$3.99 / 12oz</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No RTD magnesium beverage occupies the "after-dinner wind-down" occasion with a warm, citrus-spice flavor that complements rather than contrasts with dinner flavors. Kin and Recess prove the market, but neither owns the dinner occasion specifically.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">DTC-subscription</span>
+          <span class="retailer-pill primary">Whole Foods</span>
+          <span class="retailer-pill">Target</span>
+          <span class="retailer-pill">Sprouts</span>
+          <span class="retailer-pill">Amazon</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Magnesium bisglycinate (200mg)</td><td>$0.18/bottle</td></tr>
+          <tr><td>Orange juice + ginger extract</td><td>$0.14/bottle</td></tr>
+          <tr><td>Chamomile + lemon balm</td><td>$0.06/bottle</td></tr>
+          <tr><td>Date syrup (sweetener)</td><td>$0.08/bottle</td></tr>
+          <tr><td>Dark amber glass bottle + cap + label</td><td>$0.62/bottle</td></tr>
+          <tr><td>Cold-fill co-packing</td><td>$0.44/bottle</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$1.52/bottle</td></tr>
+          <tr><td>Target retail</td><td>$5.99 / 8oz (DTC 4-pack: $22)</td></tr>
+          <tr><td>Gross margin</td><td>~58% DTC assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">RTD magnesium beverage formulation is achievable with beverage R&D partner. Key challenge: magnesium can cause off-notes in flavor — bisglycinate form minimizes this but requires taste panel validation. Cold fill co-packing required for fresh flavor profile. Refrigerated retail preferred; shelf-stable format possible with HPP processing.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Mashup Method (#24): magnesium sleep supplement × orange-ginger dinner flavor profile × evening occasion beverage positioning. Triggered by NIQ Expo West 2026 magnesium supplement visibility data and FoodNavigator 2026 moment-specific beverage trend analysis. Kin Euphorics premium pricing ($6.99+/bottle) validates consumer willingness to pay for positioned functional evening drinks.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 10 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta">
+        <span class="tag accent">SCAMPER #21</span>
+        <span class="tag">Functional Beverage</span>
+        <span class="tag amber">Sports / Recovery</span>
+      </div>
+      <h2 class="product-name">Orange Ginger<br>Electrolyte Powder</h2>
+      <p class="product-tagline">"Hydration that tastes like the sauce, not the lab."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.2</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a10-orange-ginger-electrolyte-powder-hero.png" alt="a10-orange-ginger-electrolyte-powder-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val green">Low</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Formulation sprint</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">4–6 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Amazon, DTC, GNC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section">
+        <div class="content-section-title">The Pitch</div>
+        <div class="pitch-text">
+          <p>LMNT proved that the electrolyte powder market would support bold, non-sweet flavors. Watermelon Salt, Mango Chili — savory-adjacent flavor profiles that broke from the Gatorade blue-raspberry tradition. Nobody has done Orange Ginger for electrolytes yet, and it's the most obvious next move: mandarin orange and fresh ginger are both high-recognition flavors, both have genuine functional associations (ginger: anti-inflammatory, digestive), and together they create a warm-citrus hydration flavor that works before a workout, after a workout, and during a meal.</p>
+          <p>The formula: sodium 1000mg, potassium 200mg, magnesium 60mg, ginger root extract 250mg, mandarin orange flavor (real juice powder). Zero sugar. Zero carbs. Keto/GLP-1 compatible. The sachet packaging is matte foil with a vivid orange design. The box of 30 sachets is designed to sit on a kitchen counter, not hide in a gym bag.</p>
+          <p>The kitchen counter positioning is deliberate: this isn't only a gym product. It's a hydration upgrade for the person who drinks water with dinner and would prefer something that actually tastes like something. The orange-ginger flavor bridges the gym and the dinner table.</p>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>LMNT has $100M+ in revenue with bold, savory-adjacent electrolyte flavors — validates the market for non-traditional hydration flavors</li>
+          <li>Electrolyte powder market growing 12% YoY (Mordor Intelligence 2025); new flavor innovation is the primary growth driver</li>
+          <li>Ginger's anti-inflammatory and digestive benefits are well-documented and widely known — adds credibility to the "functional" label without overpromising</li>
+          <li>Supplement co-packers for powder sachets are widely available at low MOQ ($10K–20K first run); fastest product to market in this portfolio</li>
+        </ul>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">LMNT Electrolytes</div><div class="comp-detail">Market leader in bold flavor electrolytes. Chocolate salt, watermelon, mango chili. No orange-ginger SKU.</div><div class="comp-price">$1.50/sachet</div></div>
+          <div class="comp-card"><div class="comp-name">Liquid IV</div><div class="comp-detail">Higher carb, mainstream positioning. Lemon-ginger SKU exists but is sweet, not savory-adjacent.</div><div class="comp-price">$1.69/sachet</div></div>
+          <div class="comp-card"><div class="comp-name">Nuun Sport</div><div class="comp-detail">Lower sodium electrolyte tablet, mild flavors. Ginger ale SKU exists — mild, carbonated. Different format.</div><div class="comp-price">$0.83/tablet</div></div>
+          <div class="comp-card"><div class="comp-name">DripDrop</div><div class="comp-detail">Medical-grade electrolytes, broad flavor range. No orange-ginger or Asian flavor profile.</div><div class="comp-price">$1.49/sachet</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> LMNT has mango chili but not orange-ginger. No electrolyte brand has committed to the Asian flavor landscape. Orange-ginger is the most natural extension that no one has taken yet. Easy to launch, hard to copy at scale once it builds brand association.</div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list">
+          <span class="retailer-pill primary">Amazon</span>
+          <span class="retailer-pill primary">DTC-subscription</span>
+          <span class="retailer-pill">GNC / Vitamin Shoppe</span>
+          <span class="retailer-pill">Target</span>
+          <span class="retailer-pill">Whole Foods</span>
+        </div>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Sodium + potassium + magnesium blend</td><td>$0.08/sachet</td></tr>
+          <tr><td>Ginger root extract + orange juice powder</td><td>$0.06/sachet</td></tr>
+          <tr><td>Foil sachet + print</td><td>$0.09/sachet</td></tr>
+          <tr><td>Powder blending + filling co-pack</td><td>$0.12/sachet</td></tr>
+          <tr class="total"><td>Total COGS</td><td>~$0.35/sachet</td></tr>
+          <tr><td>Target retail</td><td>$39.99 / 30-count box ($1.33/sachet)</td></tr>
+          <tr><td>Gross margin</td><td>~62% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Dry powder blending is the simplest manufacturing format in this portfolio. Shelf-stable, no cold chain. Sachet co-packers widely available. Key challenge: achieving natural orange-ginger flavor without bitterness at commercial scale. Ginger extract sourcing consistency is important. Fastest idea in the portfolio to reach a saleable sample.</p>
+      </div>
+      <div class="content-section">
+        <div class="content-section-title">Research Basis</div>
+        <div class="research-basis">SCAMPER method (#21) — "Adapt": LMNT's bold-flavor electrolyte format adapted to Asian citrus-ginger flavor profile. LMNT's $100M+ revenue validates premium electrolyte willingness-to-pay. Electrolyte category 12% YoY growth (Mordor Intelligence). Ginger's documented functional benefits add credibility without regulatory risk. Fastest path to a prototype in the entire portfolio.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- IDEA 11 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">JTBD #4</span><span class="tag">Frozen / Meal</span><span class="tag green">GLP-1 Aligned</span></div>
+      <h2 class="product-name">Functional Takeout<br>Frozen Bowl</h2>
+      <p class="product-tagline">"All the orange chicken. 350 calories. 26g protein. Zero guilt."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.1</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a11-functional-takeout-frozen-bowl-hero.png" alt="a11-functional-takeout-frozen-bowl-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Co-man RFQ</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">9–12 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Target, Walmart, Kroger</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>The GLP-1 consumer is eating 21% fewer calories but hasn't stopped wanting orange chicken. The Functional Takeout Frozen Bowl is the obvious response: whole-muscle chicken, real orange sauce (NFC mandarin, no HFCS), brown rice or cauliflower rice, prebiotic fiber blend, 26g protein, 350 calories. GLP-1 friendly portioning — single-serve, sealed, microwave-ready in 4 minutes.</p>
+        <p>The packaging does the work of explaining itself: big protein number on the front, clean ingredient list on the back, no asterisks. The design borrows from premium health food aesthetics, not the institutional frozen aisle. It costs more than Banquet and less than Factor, and it fills the gap between "cheap frozen dinner" and "delivered meal kit."</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>GLP-1 users consuming 21% fewer calories (KPMG 2026) need portion-controlled, protein-dense frozen meals — explicit consumer need, no brand is meeting it cleanly</li>
+          <li>Conagra "Future of Frozen 2026" confirms health-aligned frozen meals are the fastest-growing subcategory in $93.5B frozen market</li>
+          <li>Factor meal delivery at $12–15/meal proves premium willingness-to-pay for portion-controlled functional meals; frozen at $8.99 dramatically expands the addressable market</li>
+          <li>Whole-muscle chicken IQF is widely available from US co-mans; formulation is achievable within 6-month development timeline</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Competitive Landscape</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Healthy Choice Power Bowls</div><div class="comp-detail">Existing player in healthy frozen bowls. Lower protein claims, aging brand positioning.</div><div class="comp-price">$5.49</div></div>
+          <div class="comp-card"><div class="comp-name">Factor (meal delivery)</div><div class="comp-detail">Premium prepared meals, $12–15/serving. No frozen retail format. GLP-1 alignment marketed explicitly.</div><div class="comp-price">$12–15/meal</div></div>
+        </div>
+        <div class="gap-box"><strong>The gap:</strong> No frozen retail bowl has explicitly positioned around GLP-1 alignment with a clean orange chicken format. Price between Healthy Choice ($5.49) and Factor ($12+) is wide open.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Target</span><span class="retailer-pill primary">Walmart</span><span class="retailer-pill">Kroger</span><span class="retailer-pill">Whole Foods</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Whole-muscle chicken (IQF, single-serve)</td><td>$1.65</td></tr>
+          <tr><td>Orange sauce + rice/cauliflower</td><td>$0.72</td></tr>
+          <tr><td>Prebiotic fiber add</td><td>$0.16</td></tr>
+          <tr><td>Tray + lidding + box</td><td>$0.42</td></tr>
+          <tr><td>Co-packing (frozen)</td><td>$0.88</td></tr>
+          <tr class="total"><td>COGS</td><td>~$3.83</td></tr>
+          <tr><td>Target retail</td><td>$8.99</td></tr>
+          <tr><td>Gross margin</td><td>~40% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Frozen meal co-packing is established but requires cold-chain distribution. IQF chicken supply chain is stable. Key challenge: maintaining sauce texture through freeze-thaw cycle without degradation.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">JTBD method (#4): "Let me eat comfort food without a calorie compromise." GLP-1 consumer behavior data (KPMG, Acosta Group 2026) is the primary signal. Conagra's frozen market report validates category tailwind.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 12 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Packaging Innovation #58</span><span class="tag">Frozen / Meal</span><span class="tag green">Zero Dishes</span></div>
+      <h2 class="product-name">Serve-From-Pack<br>Frozen Tray</h2>
+      <p class="product-tagline">"Oven to table. Lid becomes the sauce cup. Zero dishes."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.1</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a12-serve-from-pack-frozen-tray-hero.png" alt="a12-serve-from-pack-frozen-tray-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val red">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Packaging tooling</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">12–18 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Target, Walmart, Amazon</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>The frozen meal tray has been essentially unchanged since TV dinners. A molded fiber or aluminum tray, a film lid, and a cardboard sleeve. The Serve-From-Pack Frozen Tray reimagines the vessel itself: an oven-safe and microwave-safe molded fiber tray that becomes the serving bowl (no transfer needed), with a snap-off lid that converts into a sauce cup for the extra orange glaze packet sealed underneath. You heat, you snap, you pour, you eat. One container, zero dishes.</p>
+        <p>The utility story is the brand story: "The last container you'll ever have to wash." It speaks directly to the convenience-first consumer who doesn't want to dirty dishes for a solo lunch. The sauce-cup lid is the hero detail that makes the whole concept feel considered, not just functional.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>EPR packaging regulations are pushing CPG toward molded fiber formats — oven-safe fiber technology exists and is commercially available</li>
+          <li>Single-person households now 28% of US households — convenience solo-serve meal format has growing addressable market</li>
+          <li>Consumer surveys consistently rank "fewer dishes" as top friction point for meal occasions; packaging that eliminates friction commands premium</li>
+          <li>Snap-off lid + integrated sauce cup is a patentable packaging innovation — creates defensible IP moat</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">No frozen meal uses the packaging as an integrated serve-from vessel with a functional sauce cup conversion. Closest analogs are airline tray meals and some premium grocery sushi trays — neither has the snap-off sauce cup feature.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Target</span><span class="retailer-pill primary">Walmart</span><span class="retailer-pill">Amazon Fresh</span><span class="retailer-pill">Kroger</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Molded fiber oven-safe tray (custom)</td><td>$0.72</td></tr>
+          <tr><td>Snap-off sauce cup lid</td><td>$0.28</td></tr>
+          <tr><td>Orange chicken contents</td><td>$2.40</td></tr>
+          <tr><td>Sauce packet + insert</td><td>$0.18</td></tr>
+          <tr><td>Co-packing (frozen)</td><td>$0.95</td></tr>
+          <tr class="total"><td>COGS</td><td>~$4.53</td></tr>
+          <tr><td>Target retail</td><td>$10.99</td></tr>
+          <tr><td>Gross margin</td><td>~38% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-complex">Complex</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Custom molded fiber tooling is the primary barrier ($60K–100K). Snap-off lid mechanism requires engineering validation. Oven-safe fiber trays exist but dual-format (oven + microwave) compliance requires testing. Frozen co-packing with custom tray adds complexity.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Packaging Innovation method (#58). Inspired by EPR push toward molded fiber formats and solo-serve meal occasion data. Snap-off sauce cup lid is the core IP concept. Highest packaging innovation score in the portfolio.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 13 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Analogous Inspiration #15</span><span class="tag">Protein Snack</span><span class="tag green">Retail-Ready</span></div>
+      <h2 class="product-name">Orange Chicken Jerky</h2>
+      <p class="product-tagline">"Whole-muscle chicken. Real orange glaze. Straight from the wok."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.1</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a13-orange-chicken-jerky-hero.png" alt="a13-orange-chicken-jerky-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val green">Low–Mod</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Co-man + 3 SKUs</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–9 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Target, Walmart, Amazon</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>The premium jerky market is $3B and growing — but the flavor innovation has stagnated around teriyaki, peppered, and BBQ. Orange chicken jerky is the obvious move nobody has made: whole-muscle chicken breast strips, marinated in NFC mandarin orange, ginger, low-sodium soy, and a touch of chili, then slow-dried to a chewy, glazed finish. 18g protein per 2oz bag. GLP-1 aligned: high protein, low carb, real ingredients.</p>
+        <p>The premium stand-up pouch with a kraft-paper finish and a window panel showing the glazed chicken strips makes the product sell itself on shelf. It sits in the better-for-you snack set next to Epic and Country Archer, but tastes like something entirely new.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Premium jerky/meat snack market $3B+ growing 6% annually; flavor innovation cited as primary growth lever by category analysts</li>
+          <li>Teriyaki chicken jerky is the #3 jerky SKU nationally — confirms Asian-flavor profile works in the format; no orange version exists at scale</li>
+          <li>Epic Provisions acquisition by General Mills ($100M+) validated the premium meat snack market; chicken jerky is the fastest-growing protein format within it</li>
+          <li>Meat snack co-packers widely available; first run achievable at 500–1000 lb batch scale</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">Teriyaki chicken jerky exists; orange chicken jerky does not. The flavor delta is significant — orange chicken is sweeter, brighter, more citrus-forward, and carries its own cultural cachet. First brand to launch this owns the association.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Target</span><span class="retailer-pill primary">Walmart</span><span class="retailer-pill">Amazon</span><span class="retailer-pill">GNC</span><span class="retailer-pill">Costco (multipack)</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Chicken breast (whole muscle, IQF)</td><td>$1.20/bag</td></tr>
+          <tr><td>Orange marinade + ginger + soy</td><td>$0.22/bag</td></tr>
+          <tr><td>Stand-up pouch + window + print</td><td>$0.35/bag</td></tr>
+          <tr><td>Drying + co-packing (meat-certified)</td><td>$0.55/bag</td></tr>
+          <tr class="total"><td>COGS</td><td>~$2.32/bag</td></tr>
+          <tr><td>Target retail</td><td>$7.99 / 2oz</td></tr>
+          <tr><td>Gross margin</td><td>~46% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple–Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Meat snack co-packing is well-established. USDA-inspected facility required. NFC orange sourcing for marinade needs qualification. Shelf-stable at ambient — no cold chain. Key challenge: achieving consistent orange glaze finish without caramelization that darkens the product unattractively.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Analogous Inspiration (#15): Epic Provisions premium meat snack format applied to orange chicken flavor. Teriyaki chicken jerky market share data confirms Asian-flavor format viability. Protein macro trend (NIQ Expo West 2026) validates the satiety/snack occasion.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 14 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">JTBD #4</span><span class="tag">Frozen / Meal</span><span class="tag green">GLP-1 Aligned</span></div>
+      <h2 class="product-name">Single-Serve<br>GLP-1 Cup</h2>
+      <p class="product-tagline">"300 calories. 20g protein. Pull the tab. That's it."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.1</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a14-single-serve-glp1-cup-hero.png" alt="a14-single-serve-glp1-cup-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Walmart pitch</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">8–12 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Walmart, Kroger, Amazon</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>The single-serve portion-controlled meal cup is the downmarket entry into the GLP-1 consumer wave. A 300-calorie orange chicken and rice cup, in a microwave-safe vessel, with a peel-back film lid. 20g protein. Pull the tab, microwave 2 minutes, eat directly from the cup. No transfer. No dishes. No decisions. Priced at $3.99 — cheaper than fast food, cleaner than a Healthy Choice, and explicitly positioned for the GLP-1 lifestyle.</p>
+        <p>The "GLP-1 friendly" label claim is the unlock. As of 2026, GLP-1 users are 1 in 8 Americans and growing — and the grocery industry hasn't built a product that speaks to them by name. This does. The cup design is clean and clinical but warm — not a medical-looking package, but one that communicates precision and intentionality.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>1 in 8 Americans now on GLP-1 (various 2026 estimates); GLP-1 drug impact on food market projected to reach $26.1B by 2034 (MarketIntelo 2026)</li>
+          <li>GLP-1 users spend 33% less on groceries on average (KPMG) — price sensitivity is real; $3.99 positions in accessible range</li>
+          <li>No major frozen brand has explicitly labeled a product "GLP-1 friendly" at Walmart — first-mover advantage in a category that will explode</li>
+          <li>Cup format is familiar from instant noodles / mac and cheese — consumer behavior already exists for microwave cup meals</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">Zero products at Walmart frozen explicitly positioned for GLP-1 consumers. The labeling claim alone differentiates on shelf before any consumer reads the ingredient list.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Walmart</span><span class="retailer-pill primary">Kroger</span><span class="retailer-pill">Amazon</span><span class="retailer-pill">Dollar General (future)</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Chicken + rice + sauce (cup fill)</td><td>$1.10</td></tr>
+          <tr><td>Microwave-safe cup + peel film</td><td>$0.32</td></tr>
+          <tr><td>Outer sleeve + print</td><td>$0.12</td></tr>
+          <tr><td>Frozen co-packing</td><td>$0.55</td></tr>
+          <tr class="total"><td>COGS</td><td>~$2.09</td></tr>
+          <tr><td>Target retail</td><td>$3.99</td></tr>
+          <tr><td>Gross margin</td><td>~38% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Cup filling for frozen meals is established but requires co-packer with cup-form capability. Microwave-safe cup sourcing at food-grade spec required. Cold chain distribution. Key challenge: sauce texture through freeze-thaw without starch breakdown.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">JTBD method (#4) + Downmarket Disruption (#57): serving the GLP-1 consumer at accessible price point via cup format. MarketIntelo 2026 GLP-1 food market data. KPMG 2026 GLP-1 consumer spending behavior. First-mover on explicit "GLP-1 friendly" label claim at mass retail.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 15 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Cultural Trend Mining #51</span><span class="tag">Meal / Refrigerated</span><span class="tag amber">Viral Format</span></div>
+      <h2 class="product-name">Cottage Cheese<br>Orange Chicken Bowl</h2>
+      <p class="product-tagline">"The viral nutrition hack meets the dish everyone loves."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.1</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a15-cottage-cheese-orange-chicken-bowl-hero.png" alt="a15-cottage-cheese-orange-chicken-bowl-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">DTC + TikTok launch</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–10 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Target, Whole Foods, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>Cottage cheese had its TikTok renaissance in 2024 — people discovered that blended cottage cheese becomes an ultra-creamy, high-protein sauce base for almost anything. The Cottage Cheese Orange Chicken Bowl takes that insight to a ready-to-heat format: orange chicken with a hidden cottage cheese base whipped into the sauce for creaminess, extra protein, and a subtle tang that makes the orange notes brighter.</p>
+        <p>The word "cottage cheese" doesn't need to lead the packaging — it's listed in the ingredients and called out in a corner badge ("28g protein"). The flavor experience is "richer orange chicken" not "health food." The viral hook is the reveal: you'd never know it's in there. That's a TikTok video, and that's a purchase driver.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Cottage cheese volume grew 22% in 2024–2025 driven by TikTok usage data; Good Culture, Daisy, and 365 all launched new SKUs in response</li>
+          <li>High-protein meal format (28g+) directly aligned with GLP-1 consumer satiety needs</li>
+          <li>Cottage cheese blended into sauces is a proven food hack with millions of documented social media uses — packaged product closes the convenience gap</li>
+          <li>Refrigerated meal market is growing faster than frozen for premium formats; cottage cheese provides a "fresh" positioning cue</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">No packaged meal has incorporated cottage cheese as a visible, called-out ingredient in a savory Asian-format bowl. The cottage cheese renaissance has been entirely dessert/breakfast-adjacent in packaged form. This is the first savory application.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Target</span><span class="retailer-pill primary">Whole Foods</span><span class="retailer-pill">DTC-one-time</span><span class="retailer-pill">Kroger</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Orange chicken + sauce</td><td>$1.85</td></tr>
+          <tr><td>Cottage cheese base (blended, 2% fat)</td><td>$0.42</td></tr>
+          <tr><td>Refrigerated bowl + lid + sleeve</td><td>$0.48</td></tr>
+          <tr><td>Co-packing (refrigerated)</td><td>$0.75</td></tr>
+          <tr class="total"><td>COGS</td><td>~$3.50</td></tr>
+          <tr><td>Target retail</td><td>$9.99</td></tr>
+          <tr><td>Gross margin</td><td>~45% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Refrigerated meal co-packing is more complex than frozen due to shorter shelf life (14–21 days). Cold chain required throughout. Key challenge: cottage cheese texture integration — must blend smoothly into sauce without graininess at serve temperature.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Cultural Trend Mining (#51): cottage cheese TikTok renaissance applied to orange chicken format. 22% cottage cheese volume growth (SPINS 2025) confirms consumer behavior shift. Savory cottage cheese application is an underexplored extension of the trend. TikTok reveal mechanic ("you can't taste it") is the organic launch strategy.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- IDEA 16 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Mashup Method #24</span><span class="tag">Supplement / Snack</span><span class="tag green">Beauty-Wellness</span></div>
+      <h2 class="product-name">Orange Collagen<br>Gummies</h2>
+      <p class="product-tagline">"All the flavor. 10g collagen. Zero sugar."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.1</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a16-orange-collagen-gummies-hero.png" alt="a16-orange-collagen-gummies-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Gummy co-man RFQ</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–9 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Ulta, Target, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>Collagen gummies are a $3B+ supplement category. They all taste like generic "citrus" or "berry." Nobody has leaned into orange chicken's specific flavor profile — mandarin orange zest + a whisper of ginger — in a gummy format. Orange Collagen Gummies deliver 10g marine collagen per serving, sweetened with monk fruit, with a subtle chili warmth in the finish that echoes orange chicken without being weird.</p>
+        <p>The chili note is the twist. It sounds unexpected but it's a proven flavor pattern — Mexican candy has used chili + citrus for decades. The gummy makes you pause, then it makes you reach for another. The amber glass jar, hexagonal, with a gold lid, is a shelf showpiece in the beauty-wellness supplement aisle. The claim: "Orange. Ginger. Chili. Collagen." Everything you need in four words.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Collagen gummy supplement market $3B+ growing 8% annually; flavor differentiation is cited as primary new-entrant growth lever</li>
+          <li>Chili + citrus gummy format proven in Mexican candy (Tajín gummies, Lucas candy) — American consumers are receptive to sweet-heat gummy format</li>
+          <li>Marine collagen sourcing is widely available; gummy co-packers abundant at accessible MOQ ($15K–25K first run)</li>
+          <li>Ulta Beauty and Target beauty-wellness aisles are actively seeking novel supplement formats — strong retail buyer appetite</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">No collagen gummy uses an orange-ginger-chili flavor profile. Tajín and Lucas prove sweet-heat gummy formats work. Combining the format with premium collagen positioning creates a beauty-supplement hybrid no competitor currently occupies.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Ulta Beauty</span><span class="retailer-pill primary">Target</span><span class="retailer-pill">Whole Foods</span><span class="retailer-pill">Amazon</span><span class="retailer-pill">DTC</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Marine collagen (10g/serving, 30 servings)</td><td>$8.50/jar</td></tr>
+          <tr><td>Orange zest + ginger + chili extract</td><td>$1.20/jar</td></tr>
+          <tr><td>Monk fruit + gummy base</td><td>$2.40/jar</td></tr>
+          <tr><td>Hexagonal glass jar + gold lid + label</td><td>$2.80/jar</td></tr>
+          <tr><td>Gummy co-packing</td><td>$3.20/jar</td></tr>
+          <tr class="total"><td>COGS</td><td>~$18.10/jar</td></tr>
+          <tr><td>Target retail</td><td>$42.99 / 30 servings</td></tr>
+          <tr><td>Gross margin</td><td>~52% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Gummy supplement manufacturing is established. Marine collagen can be tricky to incorporate at high doses without texture issues — requires gummy co-packer experienced with protein inclusion. Chili extract dosing requires precision to achieve "pleasant warmth" without burning. Shelf-stable. No cold chain.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Mashup Method (#24): orange chicken flavor profile × collagen gummy supplement format. Mexican candy market proves chili-citrus gummy consumer acceptance. Collagen market growth data + Ulta Beauty supplement aisle expansion validates retail channel fit. Glass jar packaging at $40+ is consistent with premium supplement positioning.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 17 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">SCAMPER #21</span><span class="tag">Soup / Broth</span><span class="tag amber">Gut Health</span></div>
+      <h2 class="product-name">Orange Chicken<br>Bone Broth Soup</h2>
+      <p class="product-tagline">"The collagen-rich soup that tastes like your favorite order."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.0</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a17-orange-chicken-bone-broth-soup-hero.png" alt="a17-orange-chicken-bone-broth-soup-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Broth R&D + sampling</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">8–12 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods, Target, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>Bone broth is a $700M market and still growing. Kettle &amp; Fire dominates with classic chicken and beef. Nobody has done a flavored bone broth that takes an existing beloved culinary profile and builds a soup around it. Orange Chicken Bone Broth takes the flavor backbone of orange chicken — mandarin, ginger, soy, chili — and infuses it into a 12-hour simmered chicken bone broth base. The result is a silky, collagen-rich soup with 12g protein from the broth and an orange-forward flavor that hits like a warm hug.</p>
+        <p>Drink it from a mug. Pour it over noodles. Use it as the base for a stir-fry. The tall kraft-look carton with a clean, bold label does the work on shelf. The GLP-1 positioning is natural: warm, satiating, low calorie, high protein, digestive-supportive.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Bone broth market $700M growing 6% annually; Kettle &amp; Fire at $100M+ revenue proves category viability at premium price</li>
+          <li>Gut health / collagen trend strongly aligned with bone broth format — functional claim is inherent, not manufactured</li>
+          <li>Flavored broths are an underexplored subcategory; only miso and plain chicken/beef have meaningful share</li>
+          <li>GLP-1 users report preference for warm, satiating liquids between meals — bone broth is ideally positioned for this occasion</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">Kettle &amp; Fire and Bonafide Provisions own plain bone broth. No brand has applied a full culinary flavor profile (orange chicken, ramen, pho) to bone broth as a ready-to-drink. The format transfer opportunity is large.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Whole Foods</span><span class="retailer-pill primary">Target</span><span class="retailer-pill">DTC-subscription</span><span class="retailer-pill">Kroger</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Bone broth base (chicken, 12hr simmer)</td><td>$1.40/carton</td></tr>
+          <tr><td>Orange + ginger + soy flavor infusion</td><td>$0.28/carton</td></tr>
+          <tr><td>Kraft-look carton + cap</td><td>$0.55/carton</td></tr>
+          <tr><td>Aseptic co-packing</td><td>$0.85/carton</td></tr>
+          <tr class="total"><td>COGS</td><td>~$3.08/carton</td></tr>
+          <tr><td>Target retail</td><td>$8.99 / 16oz</td></tr>
+          <tr><td>Gross margin</td><td>~48% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Aseptic carton filling for shelf-stable broth is established. Key challenge: achieving orange-ginger flavor profile in broth that survives high-heat aseptic processing without flavor degradation. 12-hour bone broth base available from broth co-packers including Kettle &amp; Fire's contract manufacturing partners.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">SCAMPER (#21) — "Combine": bone broth functional format combined with orange chicken flavor profile. Kettle &amp; Fire market data validates premium broth willingness-to-pay. GLP-1 consumer warm-liquid preference data. Culinary flavor broth subcategory is underdeveloped — first-mover opportunity.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 18 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Premiumization Lens #56</span><span class="tag">Frozen / Meal</span><span class="tag amber">Japanese-Inspired</span></div>
+      <h2 class="product-name">Super-Citrus<br>Premium Orange Chicken</h2>
+      <p class="product-tagline">"Yuzu. Blood orange. Mandarin. The orange chicken for people who know what yuzu is."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.0</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a18-super-citrus-premium-oc-hero.png" alt="a18-super-citrus-premium-oc-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Whole Foods pitch</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">9–12 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods, Target, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>The premium take: what if instead of just making orange chicken cleaner, you made it dramatically more complex and citrus-forward? Super-Citrus Premium Orange Chicken uses a triple-citrus sauce — yuzu, blood orange, and mandarin — inspired by Japanese premium citrus traditions and positioned as the "elevated" interpretation of America's favorite dish. Dark midnight blue packaging with minimalist design. Restaurant-quality ingredients. $14.99 in the Whole Foods freezer.</p>
+        <p>This isn't orange chicken for the masses. It's orange chicken for the person who knows what yuzu is and has been waiting for someone to treat the dish with the same seriousness they'd give a premium teriyaki or a restaurant ramen kit. The Japanese citrus complexity makes the familiar completely new.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Yuzu has grown 340% in US restaurant menu appearances (Datassential 2025); retailer buyers at Whole Foods are actively seeking yuzu-forward products</li>
+          <li>IFT 2026 Flavor Trends: Japanese citrus (yuzu, sudachi, kabosu) identified as "next matcha" in US premium food trajectory</li>
+          <li>Whole Foods premium frozen set ($12–18 price point) is under-served with Asian-format meals; frozen Indian and Japanese curry have presence but Chinese-American is absent</li>
+          <li>Triple-citrus sauce formulation is achievable with yuzu juice concentrate (Japan-imported, commercial availability from Pacific Organic)</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">Trader Joe's Mandarin Chicken ($4.99) and Panda Express frozen ($8.98) own commodity orange chicken. Nobody owns premium/elevated orange chicken at $14–18. The premium set at Whole Foods has Indian (Amy's, Saffron Road) and Japanese (Kahiki) but zero Chinese-American premium. Direct white space.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Whole Foods</span><span class="retailer-pill primary">Target (premium set)</span><span class="retailer-pill">DTC</span><span class="retailer-pill">Sprouts</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Yuzu juice concentrate + blood orange + mandarin</td><td>$1.10</td></tr>
+          <tr><td>Whole-muscle chicken (antibiotic-free)</td><td>$2.20</td></tr>
+          <tr><td>Premium frozen box (midnight blue, 2-color print)</td><td>$0.65</td></tr>
+          <tr><td>Molded fiber tray</td><td>$0.38</td></tr>
+          <tr><td>Co-packing</td><td>$1.10</td></tr>
+          <tr class="total"><td>COGS</td><td>~$5.43</td></tr>
+          <tr><td>Target retail</td><td>$14.99</td></tr>
+          <tr><td>Gross margin</td><td>~46% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Yuzu juice concentrate import from Japan requires qualified supplier and lead time planning. Antibiotic-free whole-muscle chicken at premium spec adds cost. Frozen distribution with cold chain standard. Key challenge: yuzu flavor survives freeze-thaw without harsh notes — requires test batches with co-man.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Premiumization Lens (#56) + Analogous Inspiration from Japanese konbini food culture. Datassential yuzu growth data + IFT 2026 Japanese citrus trend. Whole Foods premium frozen audit confirming Chinese-American absence. Triple-citrus format is a genuine product-level innovation, not just a marketing claim.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 19 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Downmarket Disruption #57</span><span class="tag">Seasoning / Pantry</span><span class="tag green">Mass Penetration</span></div>
+      <h2 class="product-name">Orange Chicken<br>Seasoning Packet</h2>
+      <p class="product-tagline">"Make any protein taste like Panda. $1.99 a packet."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.0</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a19-orange-chicken-seasoning-packet-hero.png" alt="a19-orange-chicken-seasoning-packet-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val green">Very Low</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">Very High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Amazon + Walmart</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">3–5 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Walmart, Amazon, Kroger</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>McCormick and Old El Paso built empires on the seasoning packet. Taco Tuesday exists because of a $1.49 packet. Nobody has done this for orange chicken. The Orange Chicken Seasoning Packet is exactly what it sounds like: a foil packet with the dry spice blend + a small liquid orange flavor concentrate that, when combined with any protein and a splash of water, turns whatever you're cooking into orange chicken in 5 minutes. Cook it in a skillet. Pour over rice. Done.</p>
+        <p>The mass market angle is explicit — this goes in the meal kit aisle next to McCormick's Recipe Mixes at $1.99 a packet, 5-pack for $8.99. The "orange chicken for any protein" angle expands the addressable market: chicken, tofu, cauliflower, shrimp. The recipe is on the back. This is the fastest idea in the portfolio to bring to market and the highest volume potential at mass retail.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>McCormick recipe mix category is $600M+ at US retail — taco, fajita, and stir-fry mixes dominate; no orange chicken SKU exists in the category</li>
+          <li>Orange chicken is America's most-ordered Asian dish — consumer familiarity is 90%+ and positive; "make it at home in 5 minutes" is a compelling value proposition</li>
+          <li>Dry spice + liquid concentrate sachet co-packing is widely available at very low MOQ ($8K–15K first run)</li>
+          <li>Walmart meal kit aisle is the fastest path to household penetration at any price point; buyer appetite for new stir-fry flavor profiles is documented</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">McCormick has teriyaki, sesame ginger, and general stir-fry. No orange chicken seasoning packet exists from a major brand. The gap is inexplicable given orange chicken's popularity — and the absence creates a first-mover opportunity worth taking immediately.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Walmart</span><span class="retailer-pill primary">Amazon</span><span class="retailer-pill primary">Kroger</span><span class="retailer-pill">Target</span><span class="retailer-pill">Dollar General</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Dry spice blend (orange peel, ginger, chili, garlic)</td><td>$0.12/packet</td></tr>
+          <tr><td>Liquid orange concentrate sachet</td><td>$0.08/packet</td></tr>
+          <tr><td>Foil packet + outer sleeve</td><td>$0.14/packet</td></tr>
+          <tr><td>Blending + filling co-pack</td><td>$0.18/packet</td></tr>
+          <tr class="total"><td>COGS</td><td>~$0.52/packet</td></tr>
+          <tr><td>Target retail</td><td>$1.99 / single, $8.99 / 5-pack</td></tr>
+          <tr><td>Gross margin</td><td>~58% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-simple">Simple</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Simplest manufacturing in the portfolio. Dry blending + liquid sacheting. No cold chain. Shelf-stable 18+ months. Key challenge: achieving restaurant-quality flavor from a dry-blend format — requires R&D on orange flavor concentration and chili balance. Fastest idea to market by a significant margin.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Downmarket Disruption (#57): McCormick recipe mix format applied to America's most beloved Asian-American dish. $600M+ category with an inexplicable gap. Lowest effort, fastest to market, highest household penetration potential of any idea in this portfolio. The Walmart buyer pitch practically writes itself.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 20 -->
+<div class="product-page">
+  <div class="product-header">
+    <div>
+      <div class="product-meta"><span class="tag accent">Blue Ocean Strategy #9</span><span class="tag">Plant-Based Snack</span><span class="tag green">No Meat</span></div>
+      <h2 class="product-name">Orange Chicken<br>Tempeh Bites</h2>
+      <p class="product-tagline">"The sauce. The heat. The crunch. Zero chicken required."</p>
+    </div>
+    <div class="score-badge"><div class="score-num">4.0</div><div class="score-label">Score</div></div>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <img src="images-orange-chicken-workshop/a20-orange-chicken-tempeh-bites-hero.png" alt="a20-orange-chicken-tempeh-bites-hero.png">
+      <div class="sidebar-quick">
+        <div class="sidebar-row"><span class="sidebar-key">Effort</span><span class="sidebar-val amber">Moderate</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Impact</span><span class="sidebar-val green">High</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">First Move</span><span class="sidebar-val">Whole Foods pitch</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Timeline</span><span class="sidebar-val">6–10 months</span></div>
+        <div class="sidebar-row"><span class="sidebar-key">Channel</span><span class="sidebar-val">Whole Foods, Target, DTC</span></div>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="content-section"><div class="content-section-title">The Pitch</div>
+        <div class="pitch-text"><p>Tempeh is the plant-based protein that actually tastes like something. It's fermented, it's nutty, it's chewy, and when it's glazed in orange-chili sauce and baked to a crunch, it's remarkably close to orange chicken — close enough that the comparison is the marketing. Orange Chicken Tempeh Bites are the plant-based answer to the orange chicken craving: tempeh cubes, marinated in orange-soy-ginger overnight, glazed with a sweet-chili orange finish, baked (not fried), and packaged as a refrigerated snack or meal-starter.</p>
+        <p>The "orange chicken" in the name is deliberate. It's not "tempeh in orange sauce." It's tempeh that tastes like orange chicken. The taste-test angle is the TikTok video. The Blue Ocean move is entering the plant-based protein space not by making fake meat, but by making a beloved flavor profile available to non-meat-eaters without apology.</p></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Reasons to Believe</div>
+        <ul class="rtb-list">
+          <li>Tempeh market growing 15% YoY (Circana 2025); Lightlife, Tofurky, and Trader Joe's tempeh sales all growing — consumer adoption accelerating</li>
+          <li>Plant-based "fake meat" skepticism is high but tempeh avoids it entirely — it's a whole food, not a processed analog</li>
+          <li>Whole Foods plant-based refrigerated set actively seeking new flavored tempeh formats beyond plain and smoky BBQ</li>
+          <li>Fermented soy (tempeh's base) directly aligns with gut health macro trend — functional claim is inherent</li>
+        </ul>
+      </div>
+      <div class="content-section"><div class="content-section-title">Gap</div>
+        <div class="gap-box">Lightlife and Trader Joe's tempeh are unflavored or mildly seasoned. No brand has launched a specifically orange chicken-flavored tempeh product. The flavor transfer is genuinely achievable and creates a completely new shelf position in plant-based refrigerated.</div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Retailer Fit</div>
+        <div class="retailer-list"><span class="retailer-pill primary">Whole Foods</span><span class="retailer-pill primary">Target</span><span class="retailer-pill">Sprouts</span><span class="retailer-pill">DTC</span><span class="retailer-pill">Amazon Fresh</span></div>
+      </div>
+      <div class="content-section"><div class="content-section-title">Cost Model</div>
+        <table class="cost-table">
+          <tr><td>Organic tempeh (8oz yield, single-serve)</td><td>$1.20</td></tr>
+          <tr><td>Orange-chili marinade + glaze</td><td>$0.28</td></tr>
+          <tr><td>Baking + packaging</td><td>$0.55</td></tr>
+          <tr><td>Refrigerated tray + film + label</td><td>$0.42</td></tr>
+          <tr class="total"><td>COGS</td><td>~$2.45</td></tr>
+          <tr><td>Target retail</td><td>$7.99 / 8oz</td></tr>
+          <tr><td>Gross margin</td><td>~48% assumption</td></tr>
+        </table>
+      </div>
+      <div class="content-section"><div class="content-section-title">Operational Complexity</div>
+        <div class="ops-badge ops-moderate">Moderate</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Tempeh manufacturing is specialized but available — Lightlife co-packers and independent tempeh producers. Refrigerated format requires cold chain. Key challenge: achieving orange-chili glaze uniformity on tempeh texture at scale. Short shelf life (30–45 days refrigerated) limits distribution radius.</p>
+      </div>
+      <div class="content-section"><div class="content-section-title">Research Basis</div>
+        <div class="research-basis">Blue Ocean Strategy (#9): entering plant-based protein space via flavor transfer rather than meat simulation. Tempeh 15% YoY growth (Circana) validates rising consumer adoption. Whole Foods refrigerated plant-based buyer appetite confirmed via category audit. Avoids fake-meat skepticism by using a whole-food format.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPENDIX -->
+<div class="appendix">
+  <div class="section-eyebrow">Whitepaper Appendix</div>
+  <h2 class="section-title" style="margin-bottom:40px;">Methodology, Market Analysis & Sources</h2>
+
+  <div class="appendix-section">
+    <h3 class="appendix-h2">Methodology</h3>
+    <p class="appendix-p">This workshop ran 10 ideation methods from the full-stack-ideation library against the "Functional Indulgence in Asian Comfort Format" cluster. 30 raw ideas were generated, scored on 6 criteria (Originality 20%, Market Size 20%, Margin 20%, Visual Appeal 15%, Speed to Prototype 15%, Research Backing 10%), and filtered to 20 survivors. Stage 0 research was Level 2 (Trend Convergence) — Brady identified 4 converging themes; research validated each and synthesized a sharp cluster prompt.</p>
+    <div class="method-grid">
+      <div class="method-card"><div class="method-num">#4</div><div class="method-name">Jobs to Be Done</div><div class="method-ideas">Ideas: GLP-1 Cup, Frozen Bowl</div></div>
+      <div class="method-card"><div class="method-num">#9</div><div class="method-name">Blue Ocean Strategy</div><div class="method-ideas">Ideas: Tempeh Bites, Breakfast Bowl</div></div>
+      <div class="method-card"><div class="method-num">#15</div><div class="method-name">Analogous Inspiration</div><div class="method-ideas">Ideas: Protein Shake, Jerky, Protein Bar</div></div>
+      <div class="method-card"><div class="method-num">#21</div><div class="method-name">SCAMPER</div><div class="method-ideas">Ideas: Everything Sauce, Electrolyte, Bone Broth</div></div>
+      <div class="method-card"><div class="method-num">#24</div><div class="method-name">Mashup Method</div><div class="method-ideas">Ideas: Prebiotic RTD, Shiitake Bites, Collagen Gummies, Sleep Tonic</div></div>
+      <div class="method-card"><div class="method-num">#51</div><div class="method-name">Cultural Trend Mining</div><div class="method-ideas">Ideas: Gochujang Sauce, Cottage Cheese Bowl</div></div>
+      <div class="method-card"><div class="method-num">#55</div><div class="method-name">Category Design</div><div class="method-ideas">Ideas: Brand Platform</div></div>
+      <div class="method-card"><div class="method-num">#56</div><div class="method-name">Premiumization Lens</div><div class="method-ideas">Ideas: Super-Citrus Premium OC</div></div>
+      <div class="method-card"><div class="method-num">#57</div><div class="method-name">Downmarket Disruption</div><div class="method-ideas">Ideas: Seasoning Packet, GLP-1 Cup</div></div>
+      <div class="method-card"><div class="method-num">#58</div><div class="method-name">Packaging Innovation</div><div class="method-ideas">Ideas: Dual-Chamber Bottle, Serve-From-Pack Tray</div></div>
+    </div>
+  </div>
+
+  <div class="appendix-section">
+    <h3 class="appendix-h2">Market Analysis</h3>
+    <table class="data-table">
+      <tr><th>Category</th><th>Market Size</th><th>Growth</th><th>Key Signal</th></tr>
+      <tr><td>Functional Beverages (US)</td><td>$245.78B (2026)</td><td>8.8% CAGR to 2033</td><td>GLP-1 influence + prebiotic soda explosion</td></tr>
+      <tr><td>Frozen Food (US)</td><td>$93.5B</td><td>~4% annual</td><td>Health-aligned reformulations fastest-growing subcategory</td></tr>
+      <tr><td>Premium Jerky / Meat Snacks</td><td>$3B+</td><td>6% annual</td><td>Flavor innovation cited as primary growth driver</td></tr>
+      <tr><td>Protein Bar</td><td>$7.4B</td><td>5% annual</td><td>Savory protein formats underexplored; sweet monopoly is vulnerability</td></tr>
+      <tr><td>Collagen Supplements</td><td>$3B+</td><td>8% annual</td><td>Gummy format fastest-growing; flavor differentiation is key</td></tr>
+      <tr><td>Hot Sauce / Condiments</td><td>$3.77B</td><td>4.3% annual</td><td>Swicy (sweet+spicy) is #1 NPD trend in category</td></tr>
+      <tr><td>Bone Broth</td><td>$700M</td><td>6% annual</td><td>Flavored broth subcategory underdeveloped</td></tr>
+      <tr><td>Electrolyte Powder</td><td>$1.8B</td><td>12% annual</td><td>Bold flavor innovation driving new entrant growth</td></tr>
+    </table>
+  </div>
+
+  <div class="appendix-section">
+    <h3 class="appendix-h2">Consumer Behavior Signals</h3>
+    <p class="appendix-p">GLP-1 is the defining consumer health behavior of 2026. 1 in 8 Americans is now on a GLP-1 medication (various estimates). These consumers eat 21% fewer calories on average (KPMG 2026), spend 33% less on groceries, but 48% of Gen Z/Millennial GLP-1 users are dining out MORE — not less (Acosta Group, April 2026). This is not a diet trend. It is a permanent behavioral restructuring of how Americans relate to food: smaller portions, higher protein prioritization, digestive sensitivity, and continued desire for indulgent flavors.</p>
+    <p class="appendix-p">Orange chicken specifically has been America's most-ordered Chinese-American dish for 15+ consecutive years. Panda Express alone moves over 100 million pounds of orange chicken per year. The flavor profile — mandarin citrus, ginger, chili, soy — maps perfectly onto 2026's top flavor trends (swicy, global citrus, warming botanicals). The combination of massive emotional equity and perfect macro-trend alignment is rare. This cluster captures that window.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3 class="appendix-h2">Key Sources</h3>
+    <table class="data-table">
+      <tr><th>Source</th><th>Publication</th><th>Key Finding Used</th></tr>
+      <tr><td>NIQ / NielsenIQ</td><td>Expo West 2026 Report (March 9, 2026)</td><td>Protein arms race, fiber co-star, mushrooms mainstream, GLP-1 formulation influence</td></tr>
+      <tr><td>Acosta Group</td><td>GLP-1 Consumer Behavior Study (April 14, 2026)</td><td>48% Gen Z/Millennials dining out more; GLP-1 halo effect</td></tr>
+      <tr><td>KPMG</td><td>GLP-1 Grocery Behavior (2026)</td><td>21% fewer calories; 33% lower grocery spend</td></tr>
+      <tr><td>Coherent Market Insights</td><td>Functional Beverage Market Report (2026)</td><td>$245.78B market; 8.8% CAGR to 2033</td></tr>
+      <tr><td>Conagra Brands</td><td>Future of Frozen Food 2026 (January 14, 2026)</td><td>$93.5B frozen market; health reformulations fastest-growing</td></tr>
+      <tr><td>IFT</td><td>Outlook 2026: Flavor Trends</td><td>Swicy, savory-sweet, Japanese citrus leading all innovation categories</td></tr>
+      <tr><td>MarketIntelo</td><td>GLP-1 Drug Impact on Food Market (April 9, 2026)</td><td>$26.1B market impact projected by 2034</td></tr>
+      <tr><td>Tan Do Beverage</td><td>Beverage Development 2026</td><td>System-led vs feature-led innovation shift; moment-based positioning</td></tr>
+      <tr><td>Korpack / Multiple</td><td>CPG Packaging State 2025–2026</td><td>EPR regulations, molded fiber opportunity, multi-channel packaging</td></tr>
+    </table>
+  </div>
+
+  <div style="margin-top:64px; padding-top:32px; border-top:1px solid var(--border); text-align:center;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--text-muted);">mception.ai · Innovation Workshop · April 23, 2026</div>
+    <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--text-muted); margin-top:8px;">Cluster: Functional Indulgence in Asian Comfort Format · 20 ideas · 10 methods · Full auto run</div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
