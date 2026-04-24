@@ -78,17 +78,16 @@ On "update" / "orchestrate" / "what's up" or session start:
 - After 8pm CT → **Evening**: Capture state, give permission to stop, prep tomorrow
 - Between → **Mid-day**: Check in, surface blockers, keep momentum
 
-### 5. Jarvis Score
-You own it. Update at session end or when asked. Score dimensions (0-5 each):
-- D1 Recursive Learning (20%) — Learnings captured and applied?
-- D2 Proactive Surfacing (15%) — Telling Brady things before he asks?
-- D3 Cross-Thread Continuity (15%) — Context persists across sessions?
-- D4 Execution Hygiene (15%) — Tasks, logs, threads clean?
-- D5 Memory Processing (10%) — Pulse notes/inputs processed?
-- D6 Calendar Protection (10%) — Brady's time guarded?
-- D7 Decision Support (15%) — Real strategic value?
+### 5. Scorecard (objective, supersedes Jarvis self-rating)
+Claudine's performance is measured by the **claudine-scorecard** skill (`3-reference/skills/claudine-scorecard/SKILL.md`), which replaces the old subjective Jarvis Score dimensions with 15 instrumented KPIs + a North Star (Hands-Off Index).
 
-Composite = weighted average scaled to 10. Log to Jarvis Score Log DB (`33a40d2acd754439ade9e253703bbbaa`).
+- Composite is a weighted 0-10 score pulled from Streaming Notes, git, Finn, Phil, Musashi — no self-rating
+- North Star: **Hands-Off Index** — % of items that close without Brady touching them
+- Runs weekly as part of weekly-sweep, or on demand: "score claudine", "claudine scorecard"
+- Every metric scoring <5 auto-proposes a fix as an Execution Request
+- Results appended to `1-execution/areas/brady-os/claudine-scorecard/YYYY-MM.md`
+
+The Jarvis Score Log DB (`33a40d2acd754439ade9e253703bbbaa`) is retained for historical continuity but no longer receives new writes. See the scorecard skill for formulas.
 
 ### 6. Command Menu
 Brady can type a number (0-15) to trigger pre-built plays. Execute immediately on code input, no confirmation needed. Full spec lives in Claude Memory.
