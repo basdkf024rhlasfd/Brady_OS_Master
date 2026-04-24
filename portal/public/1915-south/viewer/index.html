@@ -116,6 +116,28 @@
     h1 { font-size: 32px; }
     .grid-2 { grid-template-columns: 1fr; }
   }
+
+  /* Research Vault feed */
+  .feed-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 13px 18px; margin-bottom: 8px; transition: border-color 0.15s;
+  }
+  .feed-item:last-child { margin-bottom: 0; }
+  .feed-item:hover { border-color: var(--accent-soft); }
+  .feed-badge {
+    flex-shrink: 0; padding: 3px 8px; border-radius: 3px; margin-top: 2px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap;
+  }
+  .badge-research { background: rgba(232,165,71,0.15); color: var(--accent); }
+  .badge-market   { background: rgba(100,150,232,0.15); color: #7BA8F0; }
+  .badge-business { background: rgba(111,195,126,0.15); color: var(--client); }
+  .badge-default  { background: rgba(168,173,184,0.15); color: var(--gray); }
+  .feed-title { font-size: 14px; font-weight: 600; color: var(--white); line-height: 1.35; }
+  .feed-meta  { margin-top: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray); }
+  .feed-tag   { display: inline-block; margin-right: 8px; }
+  .feed-status { color: var(--gray); font-size: 13px; padding: 10px 0; font-style: italic; }
+  .feed-footer { font-size: 11px; color: var(--gray); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
 </style>
 </head>
 <body>
@@ -123,10 +145,10 @@
 
 <div class="eyebrow">Consulting Engagement · Internal Hub</div>
 <h1>1915 South | Ashley</h1>
-<p class="subtitle">Justin Woods (President). $182M · 14% EBITDA · 30 stores · 6 Southeast states · sole-owner Russell Turner, 4th generation.</p>
+<p class="subtitle">Justin Woods (President). $182M · 14% EBITDA · 29 stores · 6 Southeast states · sole-owner Russell Turner, 4th generation.</p>
 <div class="meta">
   <span><strong>Status</strong> active inbound</span>
-  <span><strong>Last update</strong> 2026-04-22</span>
+  <span><strong>Last update</strong> 2026-04-24</span>
   <span><strong>Classification</strong> internal</span>
 </div>
 
@@ -232,6 +254,11 @@
   <li><strong>Relationship.</strong> Walmart Bentonville 2015-2020 peer (Justin ran Pricing + Flight Deck merch analytics at Walmart). Direct operator-to-operator conversation; shared network. Russell Turner sign-off required for any material move — first conversation with him should be substantive, not a pitch.</li>
 </ul>
 
+<h2>Research Vault — Live Findings</h2>
+<p class="lede">Every 1915 South research entry from the Notion Context Vault, ordered by last update. Auto-populated as SFDRs close and new signals land.</p>
+<div id="research-feed"><p class="feed-status">Loading research…</p></div>
+<p class="feed-footer">Source: Notion Context Vault · Project = 1915 South</p>
+
 <h2>Historical context — raw research</h2>
 <ul>
   <li><strong>Claudine comprehensive analysis</strong> — 2026-04-21, covering company profile, key people, relationship timeline, back-office assessment, product/ops innovation, AI arbitrage, Zapsight competitive framing, recommended engagement model. Source document for the Innovation Workshop and M&A brief. Lives in <code>.context/attachments/pasted_text_2026-04-21_18-58-46.txt</code> in the repo.</li>
@@ -244,5 +271,56 @@
 </div>
 
 </div>
+<script>
+(function () {
+  var feed = document.getElementById('research-feed');
+  if (!feed) return;
+
+  function badgeClass(type) {
+    if (!type) return 'badge-default';
+    var t = type.toLowerCase();
+    if (t.indexOf('research') !== -1) return 'badge-research';
+    if (t.indexOf('market') !== -1)   return 'badge-market';
+    if (t.indexOf('business') !== -1) return 'badge-business';
+    return 'badge-default';
+  }
+
+  function relDate(iso) {
+    if (!iso) return '';
+    var diff = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+    if (diff === 0) return 'today';
+    if (diff === 1) return 'yesterday';
+    return diff + 'd ago';
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  fetch('/api/1915-south/research-feed')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var items = data.items || [];
+      if (items.length === 0) {
+        feed.innerHTML = '<p class="feed-status">No entries yet.</p>';
+        return;
+      }
+      feed.innerHTML = items.map(function (item) {
+        var tags = (item.tags || []).map(function (t) {
+          return '<span class="feed-tag">' + esc(t) + '</span>';
+        }).join('');
+        var meta = [relDate(item.date), tags].filter(Boolean).join(' · ');
+        return '<div class="feed-item">'
+          + '<span class="feed-badge ' + badgeClass(item.type) + '">' + esc(item.type || 'Note') + '</span>'
+          + '<div><div class="feed-title">' + esc(item.title) + '</div>'
+          + (meta ? '<div class="feed-meta">' + meta + '</div>' : '')
+          + '</div></div>';
+      }).join('');
+    })
+    .catch(function () {
+      feed.innerHTML = '<p class="feed-status">Feed unavailable.</p>';
+    });
+}());
+</script>
 </body>
 </html>
