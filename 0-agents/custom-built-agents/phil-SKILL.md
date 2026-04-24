@@ -53,9 +53,9 @@ events, and coherence flags already surfaced.
 
 ## Execution Environment
 
-**Runs on:** Conductor remote agent (scheduled via `/schedule`). CoWork
-desktop is unreliable at 4 AM (laptop asleep, overnight updates).
-GitHub Actions lacks Notion MCP — rule it out.
+**Runs on:** Claude.ai Code scheduled triggers (schedule name: `phil-pre-sweep`, daily 4:00 AM CDT). Each run opens a session at `claude.ai/code/session_XXX?trigger=trig_XXX` using Sonnet 4.6. Verified running 2026-04-24.
+
+**NOT Conductor:** Earlier docs suggested Conductor `/schedule` — that path was never wired. Claude.ai Code triggers are the actual execution surface. CoWork desktop is unreliable at 4 AM (laptop asleep). GitHub Actions lacks Notion MCP — ruled out.
 
 **Access needed:** Notion MCP, local git repo write access, file system
 
@@ -64,7 +64,7 @@ GitHub Actions lacks Notion MCP — rule it out.
 **Expected runtime:** 2–4 minutes
 
 **Notion DB IDs** (canonical from `3-reference/infrastructure-registry.yml`):
-- Streaming Notes: `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`
+- Streaming Notes: `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
 - Routing Log (markdown table on a page, not a DB): `344ed43b-89c5-816a-ab54-ca49ca239748`
 - Rules & Preferences: `344ed43b-89c5-813d-bded-f1d5689510e2`
 - Internal Projects: `2c2ed43b-89c5-80af-ac9b-ededd48b98e7`
@@ -72,8 +72,8 @@ GitHub Actions lacks Notion MCP — rule it out.
 - Life Events: `c5ce4840162c4702a629081d66492760`
 
 **Output locations:**
-- Backup (persistent, gitted): `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`
-- Notion handoff: one new Streaming Notes row per run, `Type="Pre-Sweep Primer"`
+- Backup (persistent, gitted): `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md` — **lands in whatever repo checkout the Claude.ai Code session has access to. It does NOT automatically sync to Conductor workspaces.** Other agents should read the Notion primer row, not rely on local filesystem visibility.
+- Notion handoff: one new Streaming Notes row per run. Name MUST start with `Pre-Sweep Primer — YYYY-MM-DD`. Type MUST be `Daily State` (the DB schema does not have a `Pre-Sweep Primer` Type option — Name prefix is the queryable distinction).
 - Routing Log: one row documenting the run
 
 ## Pre-Flight (Silent)
@@ -93,7 +93,7 @@ Gather raw data from every surface. No writes in this phase.
 
 ### 1.1 Streaming Notes full state
 
-Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for items where `Status NOT IN ["Complete", "Remove"]`. Bucket by Type:
+Query Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`) for items where `Status NOT IN ["Complete", "Remove"]`. Bucket by Type:
 
 - Daily State, Thread Log, Pulse Note, Build Request, System Instruction, Task, To Do, Note, Sweep Feedback, Phil Flag
 
@@ -268,6 +268,35 @@ CLEANUP PROPOSED (awaiting Brady):
 BACKUP: 1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md
 ```
 
+## Phase 4.3 — Telly Morning Push
+
+After writing the Notion primer row, push a compact morning brief to Brady via Telly's `/api/push` endpoint. This replaces the need for Brady to open a session to see what Phil found.
+
+**Endpoint:** `POST https://[telly-bot-url]/api/push`
+**Auth:** Bearer token from `TELLY_PUSH_TOKEN` secret (same location as other telly-bot secrets: `~/telly-bot/.env.production.local`)
+
+**Message format:**
+```
+🌅 Phil Pre-Sweep — {DATE}
+
+TOP 3:
+1. {item} — {why}
+2. {item} — {why}
+3. {item} — {why}
+
+HORIZON ({N} days):
+- {date} | {event} | {owner}
+
+MUSASHI: {N} pending recs — reply "approve musashi [slug]" or run morning sweep
+CARRYOVER: {N} items | CALENDAR: {next 1-2 high-signal events}
+
+Today: ignore everything not on the TOP 3.
+```
+
+**If Musashi review for today exists** in Streaming Notes, include its top recommendation in the MUSASHI line. If not, omit that line.
+
+**Failure mode:** If Telly push fails (network error, bad token), log the failure to the backup file and proceed. The push is additive — never block the rest of the run on Telly availability.
+
 ## Phase 5 — Routing Log
 
 Append ONE row to the Routing Log page (`344ed43b-89c5-816a-ab54-ca49ca239748`) per `3-reference/skills/_shared/routing-log.md`:
@@ -313,24 +342,19 @@ Phil Pre-Sweep: [STATUS]. Reconciled [N], proposed [M]. Primer: Streaming Notes 
 
 Morning sweep has a new **Phase 1.0b** (inserted immediately after Phase 1.0 Rules & Preferences load, before Phase 1.1 Gmail Scan):
 
-> Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type="Pre-Sweep Primer"` created today. If found: read the body, hold PROPOSED TOP 3 as priors for Phase 2's TOP 3 (override only with stronger signal from today's full scan), carry CARRYOVER / HORIZON / COHERENCE FLAGS forward into the relevant Phase 2 sections, and mark the primer `Status=Complete, Done=__YES__` at sweep end. If no primer: log `⚠️ No pre-sweep primer today` in the brief and proceed normally.
+> Query Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`) for `Type="Pre-Sweep Primer"` created today. If found: read the body, hold PROPOSED TOP 3 as priors for Phase 2's TOP 3 (override only with stronger signal from today's full scan), carry CARRYOVER / HORIZON / COHERENCE FLAGS forward into the relevant Phase 2 sections, and mark the primer `Status=Complete, Done=__YES__` at sweep end. If no primer: log `⚠️ No pre-sweep primer today` in the brief and proceed normally.
 
 Morning sweep's Phase 2 TOP 3 section includes the note `(seeded from Phil primer where applicable)`.
 
 The integration is one-way: Phil writes, morning sweep consumes. Morning sweep does not depend on the primer — it only benefits from it when present.
 
-## Scheduling
+## Scheduling — Claude.ai Code Triggers
 
-Wire the 4 AM trigger via Brady's `/schedule` skill:
+Already wired. Schedule name: `phil-pre-sweep`. Cadence: daily 4:00 AM CDT. Platform: Claude.ai Code scheduled sessions.
 
-```
-/schedule
-Name: Phil Pre-Sweep
-Cron: 0 4 * * *    # 4:00 AM CT daily
-Command: invoke phil-pre-sweep skill
-```
+To modify cadence or trigger: open Claude.ai → Code → Triggers → `phil-pre-sweep` → edit.
 
-First 3 days after scheduling: monitor runs manually before trusting unattended. Check the backup file, the Notion primer row, and the Routing Log row after each run.
+Verification: today's run at 4:18 AM 2026-04-24 completed successfully. Session URL saved at: `claude.ai/code/session_015mzFo1gSUgxNQBeyrYrvzK?trigger=trig_01J9FuJ34qtHjasnPJCKVm2L` (example — each run gets a new session_XXX).
 
 ## What This Skill Does NOT Do
 
