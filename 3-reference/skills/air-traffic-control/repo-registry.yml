@@ -39,7 +39,6 @@ repos:
       git_tracked:
         - "3-reference/skills/*/SKILL.md"
         - "3-reference/skills/*/references/**"
-        - "3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md"
         - "3-reference/skills/CLAUDE.md"
         - "0-agents/custom-built-agents/*.md"
         - "0-agents/CLAUDE.md"
@@ -57,10 +56,8 @@ repos:
       # Config-sync cannot hash-compare the Claude.ai side, so it compares the repo file's
       # latest commit date to `last_pasted` and flags re-paste if repo is newer.
       # Brady updates `last_pasted` manually after re-pasting.
-      claude_project_prompts:
-        - repo_source: "3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md"
-          claude_project: "All-Aware Agent"
-          last_pasted: null
+      claude_project_prompts: []
+      # (None as of 2026-04-24 — all-aware-agent retired, content folded into claudine-onboarding.)
 
   telly-bot:
     description: "Telegram-to-Notion dispatch bot — captures messages, photos, files to Streaming Notes"

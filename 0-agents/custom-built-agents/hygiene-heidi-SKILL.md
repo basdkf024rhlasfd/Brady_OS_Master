@@ -112,7 +112,7 @@ An agent does NOT satisfy Rule 3 if it just says "Musashi reviews this agent" wi
 4. Create the backup file at `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md` with `STATUS: running`. All phases write to this file before touching Notion.
 5. Check for an existing `Type="Hygiene Check"` row in Streaming Notes created today. If found, overwrite body in place rather than creating a duplicate.
 
-## Phase 1 — Agent Inventory
+## Phase 1 — Agent Inventory (Roster-State Aware)
 
 1. List all files matching `0-agents/custom-built-agents/*.md`.
 2. Exclude: `_template.md`, any `-STATUS-TEMPLATE.md`, any `-README.md`.
@@ -120,9 +120,21 @@ An agent does NOT satisfy Rule 3 if it just says "Musashi reviews this agent" wi
    - **Profile files**: `agent-name.md` (no dash-suffix)
    - **SKILL files**: `agent-name-SKILL.md`
 4. For each profile, note whether a colocated SKILL.md exists.
-5. Output: `{agent_name, profile_path, skill_path_or_null}` list.
+5. **Query the Claudine Skill Registry DB** (`e6d176601157408bbe9264a511344ed5`, data source `57962385-a005-4651-a52d-e0206dd0c4ac`) to read each agent's `Roster State`.
+6. Output: `{agent_name, profile_path, skill_path_or_null, roster_state}` list.
 
-Include Hygiene Heidi herself in the inventory — she is not exempt from her own rules.
+**Roster-State enforcement policy (canonical, per claudine-onboarding doctrine):**
+
+| Roster State | Rules 1–3 (SKILL.md structure) | Rule 4 (Streaming Notes purgatory) | Rule 5 (Research Library) |
+|---|---|---|---|
+| **Active** | Full enforcement | Full enforcement (DB-level) | Full enforcement (DB-level) |
+| **Bench** | Relaxed — profile `.md` required, but SKILL.md with full scoring/self-scoring is optional. Amber if missing, not Red. | Full enforcement | Full enforcement |
+| **Retired** | Skipped entirely | Full enforcement | Full enforcement |
+| **Missing from registry** | Treat as Active (fail-safe) | Full enforcement | Full enforcement |
+
+Rules 4 and 5 are DB-level audits that don't care about roster state — they apply regardless.
+
+Include Hygiene Heidi herself in the inventory — she is Active and not exempt from her own rules.
 
 ## Phase 2 — Rule 1: Objective Scoring Methodology
 

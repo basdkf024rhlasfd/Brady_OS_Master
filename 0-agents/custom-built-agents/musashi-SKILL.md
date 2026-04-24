@@ -99,16 +99,19 @@ Phase 2 (Scoring).
 
 ## Phase 1 — Agent Inventory
 
-Enumerate every agent to review:
+Enumerate every agent to review, filtered by Roster State:
 
 1. List files in `0-agents/custom-built-agents/*.md`, excluding `_template.md`, `references/`, and any `-README.md` / `-STATUS-TEMPLATE.md` variants.
 2. For each agent file, also note whether a colocated `-SKILL.md` exists.
 3. Parse frontmatter (name, seniority, platform, expertise, trust_tier if present).
-4. Output: a list of `{agent_name, profile_path, skill_path_or_null, trust_tier, role_summary}`.
+4. **Query the Claudine Skill Registry DB** (`e6d176601157408bbe9264a511344ed5`, data source `57962385-a005-4651-a52d-e0206dd0c4ac`) to read each agent's `Roster State`:
+   - **Active** — full scoring (all 5 dimensions, standard thresholds)
+   - **Bench** — scored but low Activation is expected, not penalized. Set dimension 1 floor at 1. Qualitative rationale should note "on bench."
+   - **Retired** — skip entirely. Do not include in scorecard.
+   - **Missing from registry** — treat as Active (fail-safe default).
+5. Output: a list of `{agent_name, profile_path, skill_path_or_null, trust_tier, role_summary, roster_state}`.
 
-Expected ~15 agents: bertha, bo, burt, claudine, content-drafter, cornelius,
-dicaprio, finn, fran, mason, musashi, oc-optimus, phil, telly, webster,
-wyatt-earp, yuki-ronin (plus anything added since).
+Expected ~15 agents across Active + Bench. Retired entries (e.g., `bertha`, `bo`, `cornelius`, `bertha` historical identities) are skipped.
 
 ## Phase 2 — Objective Scoring
 
