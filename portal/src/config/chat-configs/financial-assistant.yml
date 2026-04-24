@@ -1,0 +1,114 @@
+enabled: true
+prompt: financial-assistant.md
+model: claude-sonnet-4-5
+maxOutputTokens: 2048
+welcomeMessage: "Finn here. Try /networth, /runway, /budget, /pipeline, /open — or just ask."
+operatorMode: true
+configAware: false
+
+shortcuts:
+  - label: "Net worth"
+    command: "/networth"
+  - label: "Runway"
+    command: "/runway"
+  - label: "Budget check"
+    command: "/budget"
+  - label: "Pipeline"
+    command: "/pipeline"
+  - label: "Open items"
+    command: "/open"
+
+agentInstructions: |
+  YOU ARE ON: Financial Cockpit — mception.ai/financial-assistant
+  OWNER: Brady Smallwood (single dad, 5 kids, Bentonville AR, independent consulting practice)
+
+  ## Page Structure
+  - **Chat bar** at top: Finn chatbot with shortcut commands (/networth, /runway, /budget, /pipeline, /open)
+  - **Dashboard** below (iframe): household vs business split, category bars, account balances
+  - **Connected Data** at bottom: Monarch CSV export pipeline + reference files
+
+  ## How to Use the Chat
+  1. Click a shortcut chip or type a question
+  2. Finn knows the full balance sheet, budget targets, all accounts, consulting pipeline, and the open ask queue
+  3. Use `remember: [preference]` to teach Finn something persistent
+  4. Use `rule: [rule]` to set a hard financial constraint
+
+  ## Key Context
+  - Gross monthly target: $24,000 ($5,539/week)
+  - Four-bucket split: Fixed $8.2K / Household $5.7K / Savings $2.75K / Tax reserve 30%
+  - Active consulting: Panda Express ($20-40K/mo, research phase), 1915 South ($20-40K/mo, potentially full-time)
+  - Net worth: $1,396,839 as of 2026-04-22
+  - IVFH: 350,000 shares, $150K placeholder (recalculate with live price)
+  - Liquid runway via HELOC: ~$300K available, $101K drawn
+  - Morning-sweep / financial-assistant skill writes Monarch-derived data to `/financial-assistant/data.js`
+
+dataSources:
+  # --- Ready (green) ---
+  - label: "Finn KB Files"
+    type: "kb-directory"
+    status: "ready"
+    id: "portal/public/financial-assistant/kb"
+    description: "5 markdown files powering the chatbot — balance sheet, budget targets, accounts, consulting pipeline, open items"
+
+  # --- Partial (yellow) ---
+  - label: "Monarch Cockpit Data"
+    type: "generated-file"
+    status: "partial"
+    id: "portal/public/financial-assistant/data.js"
+    description: "window.COCKPIT_DATA object emitted by generate-data.py from Monarch CSV export. Feeds the iframe dashboard; chat can reference figures but KB is the source of truth."
+    evidence:
+      file: "portal/public/financial-assistant/data.js"
+      max_age_days: 7
+  - label: "Financial Assistant Skill"
+    type: "skill"
+    status: "partial"
+    id: "3-reference/skills/financial-assistant/SKILL.md"
+    description: "Parses Monarch CSV, enriches with Gmail/Calendar/Notion consulting pipeline. Refreshes KB reference files that this chat reads."
+  - label: "Consulting Rate Card"
+    type: "file"
+    status: "partial"
+    id: "3-reference/skills/financial-assistant/references/consulting-rate-card.md"
+    description: "Cross-referenced against Notion Client Projects DB. Update when engagements move stages."
+
+  # --- Not Started (red) ---
+  - label: "Notion Client Projects DB"
+    type: "notion-db"
+    status: "not-started"
+    id: "c8a6b2d70d9343839a16c950c95a6066"
+    description: "Chat tool not yet wired — needs NOTION_API_KEY env var + query-notion tool registration for this slug"
+  - label: "Streaming Notes DB (financial signals)"
+    type: "notion-db"
+    status: "not-started"
+    id: "2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83"
+    description: "Finn's proactive watchlist for financial/household signals not yet wired into live chat. Morning sweep handles processing."
+
+  # --- Recommended (grey) ---
+  - label: "Live IVFH Price Feed"
+    type: "api"
+    status: "recommended"
+    description: "Replace the $150K placeholder with live IVFH price × 350,000 shares. Needs a daily price fetch."
+  - label: "Bridgecrest APR Integration"
+    type: "manual-data"
+    status: "recommended"
+    description: "APR + remaining term still not captured. Blocks accurate amortization projection."
+
+kb:
+  enabled: true
+  directory: public/financial-assistant/kb
+  maxFiles: 4
+  routing: keyword
+  routes:
+    - keywords: [networth, net worth, balance sheet, assets, liabilities, equity, investments, real estate, ivfh, fidelity, 529, mortgage, heloc, liquid]
+      files: [01-balance-sheet.md, 03-accounts.md]
+    - keywords: [budget, spend, monthly, weekly, target, bucket, fixed, household, food, grocery, walmart, survive, stabilize, thrive, tax reserve]
+      files: [02-budget-targets.md, 01-balance-sheet.md]
+    - keywords: [account, bank, card, credit, debit, sofi, arvest, amex, citi, capital one, venmo, betterment, kids account]
+      files: [03-accounts.md]
+    - keywords: [consulting, pipeline, client, revenue, invoice, panda, 1915, ashley, justin, james ku, kroger, harmon, stihl, jeff, ffh, schmulen, rate]
+      files: [04-consulting-pipeline.md]
+    - keywords: [open, ask, pending, gap, question, todo, outstanding, unknown, unanswered, follow up]
+      files: [05-open-items.md]
+    - keywords: [runway, liquidity, cash, burn, months, cover, afford]
+      files: [01-balance-sheet.md, 02-budget-targets.md]
+    - keywords: [tax, estimate, quarterly, self-employed, se tax, butler, reserve, 30%, 38%]
+      files: [02-budget-targets.md, 04-consulting-pipeline.md]
