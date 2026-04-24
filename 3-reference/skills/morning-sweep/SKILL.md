@@ -11,8 +11,8 @@ description: >
   "catch me up", "full sweep", "update" (before noon CT), or any variation requesting his
   comprehensive morning briefing. Also trigger on "run the Get Ready event" or "execute Get Ready".
 
-  This skill replaces and consolidates: morning mode (AMY), family-daily-brief, email-summary,
-  and news-digest into one sequential execution. It is the canonical morning skill.
+  This skill replaces and consolidates: family-daily-brief, email-summary, and news-digest into
+  one sequential execution. It is the canonical morning skill.
 trust_tier: T1
 ---
 
@@ -54,6 +54,34 @@ Execute all scans before writing anything. Gather raw data into working memory.
 ### 1.0 Load Rules & Preferences
 Fetch the Rules & Preferences page from Reference Layer (page ID `344ed43b-89c5-813d-bded-f1d5689510e2`).
 Apply all rules to this sweep's behavior and output. This must run before any other scan or report step.
+
+### 1.0b Load Phil's Pre-Sweep Primer
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "Pre-Sweep Primer"` created today.
+
+**If found:**
+- Read the body (the Starter Block written by `phil-pre-sweep`).
+- Hold **PROPOSED TOP 3** as priors for Phase 2's TOP 3 (override only with stronger signal from today's full scan).
+- Carry **CARRYOVER**, **WITHIN-7-DAY HORIZON**, **CALENDAR HEADLINES**, and **COHERENCE FLAGS** forward into the relevant Phase 2 sections (📋 NOTION STATUS, 📅 CALENDAR, 🔑 TOP 3).
+- Note the **CLEANUP EXECUTED** count (Phil's autonomous Done/Status reconciles) in Phase 2's 📋 NOTION STATUS section as `Phil reconciled: [N] items at 4 AM`.
+- Note the **CLEANUP PROPOSED** list under 📊 STREAMING NOTES — NEEDS DIRECTION so Brady can one-shot approve.
+- At sweep end (Phase 3.6b equivalent timing), mark the primer row `Status = "Complete", Done = "__YES__", Action = "Consumed by morning sweep"`.
+
+**If no primer found:** log `⚠️ No pre-sweep primer today (Phil may not have run)` in the 📋 NOTION STATUS section of the brief and proceed normally. The primer is additive — sweep works identically without it.
+
+Backup archive (full detail, for rollback or investigation): `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`.
+
+### 1.0c Load Musashi's Agent Review
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "Musashi Review"` created in the last 24 hours.
+
+**If found:**
+- Read the body (the Compact Summary from the `musashi-review` skill).
+- Hold the **TOP 3 RECOMMENDATIONS**, **TECH SCAN (top 2)**, and **BIZ IDEAS (top 2)** for Phase 2's new `🗡️ MUSASHI REVIEW` section. Each item arrives with an approval slug like `approve musashi phil-1` or `approve musashi tech-[slug]` — preserve it verbatim.
+- Note any recommendations flagged `size: large` or `cost: token-heavy` — these go in the review section with an explicit warning, never auto-executed.
+- Do NOT execute any recommendation in this phase. All execution is approval-gated (see Phase 3.4c below).
+
+**If no review found:** log `⚠️ No Musashi review today` in the 🗡️ MUSASHI REVIEW section of the brief and proceed normally. The review is additive — sweep works identically without it.
+
+Backup archive (full scorecard + rationale): `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
 
 ### 1.1 Gmail Scan
 - Search: last 24 hours, skip `category:promotions` and `category:social`
@@ -162,7 +190,7 @@ Now write the brief. Every section is scannable. No fluff.
 ═══════════════════════════════════════════════════
 🌅 MORNING SWEEP — [Day], [Month DD, YYYY]
 ═══════════════════════════════════════════════════
-🔑 TOP 3 (what moves the needle today)
+🔑 TOP 3 (what moves the needle today) [seeded from Phil primer where applicable]
 1. [most important thing]
 2. [second most important]
 3. [third most important]
@@ -271,6 +299,33 @@ No build requests detected.
   → Set a next action, or say "archive [name]" to close it
 
 [If 0 items: "All active items have next actions set. Pipeline healthy."]
+
+───────────────────────────────────────────────────
+🗡️ MUSASHI REVIEW (last night's agent tension pass)
+───────────────────────────────────────────────────
+[If no Musashi Review row found today: "⚠️ No Musashi review today (Musashi may not have run)." Skip the rest of this section.]
+
+[If review found — surface the Compact Summary in this format:]
+
+SCORECARD: [N] agents scored, avg [X.X]/10. Top: [agent X/10]. Bottom: [agent X/10].
+
+TOP 3 AGENT RECOMMENDATIONS:
+1. [agent] [size] — [what + why] → say `approve musashi [slug]-1` to queue dev plan
+2. [agent] [size] — [...]   → `approve musashi [slug]-2`
+3. [agent] [size] — [...]   → `approve musashi [slug]-3`
+
+TECH SCAN (top 2):
+• [tool name + link] — [1-line fit] → `approve musashi tech-[slug]`
+• [...] → `approve musashi tech-[slug]`
+
+BIZ IDEAS (top 2):
+• [name] — [1-line pitch + economics] → `approve musashi biz-[slug]`
+• [...] → `approve musashi biz-[slug]`
+
+[If any recommendation is size:large OR cost:token-heavy, surface it with:]
+⚠️ LARGE / TOKEN-HEAVY — requires explicit approval; do NOT approve in a batch.
+
+Full scorecard + rationale: 1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md
 
 ═══════════════════════════════════════════════════
 👨‍👩‍👧‍👦 FAMILY BRIEF
@@ -406,6 +461,24 @@ For each Build Request classified as **execute-now (small)** in Section 1.9 Sour
 - Change Type to "To Do", add a body note explaining the blocker
 - Report under BLOCKED in Phase 2 BUILD REQUESTS output
 
+### 3.4c Musashi Review — Approval-Gated Processing
+
+If a Musashi Review row was loaded in Phase 1.0c, check Brady's response to the
+sweep brief for any `approve musashi [slug]` tokens.
+
+**For each approval slug matched:**
+1. Find the corresponding recommendation / tech item / biz idea in the review body or backup file at `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
+2. **Size gate:**
+   - **small + reversible + touches only `0-agents/` or `3-reference/skills/`** → eligible for the existing Phase 3.4b autonomous Build Request flow. Run through the same four gates (Scope / Clarity / Risk / Size). If all pass, execute directly. If any fail, fall through to the medium path.
+   - **medium** → draft a dev plan at `.context/plans/musashi-[slug].md`, set `Status = "Processing"` on the Musashi Review row, flag it in the brief as "Queued for evening sweep — [slug]".
+   - **large or token-heavy** → draft a Conductor plan at `.context/plans/musashi-[slug].md`, set `Status = "Processing"`. Do NOT auto-run even if Brady approved — large means the dev plan itself is expensive to generate. Report: `[slug] queued for Conductor — expected token cost [estimate if known].`
+3. After processing all approved items, if any unapproved items remain, leave the Musashi Review row `Status = "In Progress"` so tomorrow's sweep can continue surfacing them. If every item was approved or explicitly declined, mark `Status = "Complete"`, `Done = "__YES__"`.
+4. Append one Routing Log row per approved-and-actioned item (per `3-reference/skills/_shared/routing-log.md`): `destination` is the dev plan file or the edit target; `reason` is `Musashi recommendation approved by Brady`; `summary` is the one-line action.
+
+**If no approval slugs in Brady's reply:** do nothing. The review row stays `Not Started` for next sweep. Musashi's proposals are not debt — they compound as optionality.
+
+**Hard rule:** never auto-execute a Musashi recommendation without an approval slug. Even when the item passes every autonomy gate, the slug is required. This is the approval-gate contract Brady set when commissioning the skill.
+
 ### 3.5 Report Applied Feedback
 If any Sweep Feedback notes were applied in Pre-Flight step 4, report what changed:
 ```
@@ -441,6 +514,22 @@ If any new System Instructions were processed in step 3.6b:
 - Same check for `3-reference/skills/claudine-onboarding/SKILL.md`
 
 This step only ADDS rules. It never removes or modifies existing rules without Brady's explicit instruction.
+
+### 3.6d Run the Streaming Notes Processor
+After Rules & Preferences propagation, call the streaming-notes processor
+(`3-reference/skills/streaming-notes-processor/SKILL.md`) for the remaining non-System-Instruction
+Types (Build Request, Pulse Note, Sweep Feedback, Task, To Do, Note).
+
+- The processor back-stops any System Instruction that 3.6b missed, drafts Build Request plans
+  at `.context/plans/streaming-notes-*.md`, auto-routes clear Pulse Notes, queues Sweep Feedback
+  for next Pre-Flight, and **drafts** (never auto-sets) Next Action candidates for Task/To Do/Note items.
+- It writes one Routing Log row per actioned item and appends a daily score to
+  `1-execution/areas/brady-os/processing-scores/YYYY-MM.md`.
+- Append the processor's ≤6-line summary block to the sweep brief. Do not repeat items
+  already covered in Phase 3.6b.
+- If the processor surfaces drafts awaiting Brady's approval, include them under a
+  `Drafts awaiting approval:` sub-heading in the brief — Brady replies "apply drafts"
+  to commit them.
 
 ### 3.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
@@ -638,7 +727,7 @@ Whenever this sweep sets `Status = "Complete"` on any Streaming Note, ALSO set `
 - It DOES update the calendar — writes back to Get Ready event, creates Email Catchup block, and adds missing events from scan
 - It does NOT modify Section B of the Get Ready event — only the weekly sweep can do that (with Brady's approval)
 - It doesn't make decisions — it surfaces information and suggests, Brady decides
-- It doesn't replace the evening capture (PAM) — that's a separate workflow
+- It doesn't replace the evening capture (evening-sweep) — that's a separate workflow
 
 ## Data Dependencies
 

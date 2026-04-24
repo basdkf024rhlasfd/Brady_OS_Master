@@ -23,7 +23,7 @@ Last updated: 2026-04-22
 |---|---|---|---|---|
 | Lily Smallwood | 4/2/2009 | 17 | Senior (HS) | Fall 2027 |
 | Faith Smallwood | 8/11/2011 | 14 | Freshman (HS) | Fall 2029 |
-| Luke Smallwood | 2/3/2017 | 9 | 3rd grade | Fall 2035 |
+| Luke Smallwood | 2/3/2017 | 9 | 3rd grade | Fall 2035 | BJJ at Inferno MMA (~$377/mo) |
 | Isla Smallwood | 2/3/2017 | 9 | 3rd grade | Fall 2035 |
 | Quinn Smallwood | 2/3/2017 | 9 | 3rd grade | Fall 2035 |
 
