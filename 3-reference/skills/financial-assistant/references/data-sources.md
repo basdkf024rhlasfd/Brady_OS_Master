@@ -155,6 +155,16 @@ These require Gmail MCP searches, not browser scraping.
 
 ---
 
+## REQUIRED BUT MISSING
+
+Files the skill expects but doesn't yet have. Finn emits a warning at the top of every run for each missing REQUIRED file.
+
+| File | Status | Why required | Owner | Next action |
+|---|---|---|---|---|
+| `references/consulting-ar-ledger.md` | **Missing** | Without a living AR ledger, Finn can't answer "what's coming in" — every downstream projection (runway, month-end, tier status) degrades. Finn check 2026-04-23 exposed zero consulting deposits in last 30d with no way to distinguish AR gap from invoicing gap. | Finn (skill) | See Streaming Notes row `34ced43b-89c5-8186-8a44-ecbfb0ec2550` — schema + seed plan. Must priority. |
+
+---
+
 ## ANALYSIS PERIODS (Standard Reference)
 
 Always use these consistently across all analysis:
@@ -186,9 +196,14 @@ Run before any major analysis session:
 | Question | Status | Source |
 |----------|--------|--------|
 | Lincoln National $89/mo | **RESOLVED** — Brady's life insurance, policy T400520958 | Gmail scan |
-| Siloam Springs Clinic $1,843 | **STILL UNKNOWN** — no email trail | Need Arvest statement detail or Monarch merchant name |
+| Siloam Springs Clinic $1,856.68 | **ACTION REQUIRED** — submit to UHC as claim. Karissa likely has additional backlog. | Brady confirmed 2026-04-24 |
+| Wellness & Courage $420 | **ACTION REQUIRED** — submit to insurance in future. Not a duplicate of WELLNESSA. | Brady confirmed 2026-04-24 |
+| WELLNESSA $420 | **RESOLVED** — separate/legitimate charge from Wellness & Courage | Brady confirmed 2026-04-24 |
+| Inferno MMA $377/mo | **RESOLVED** — Luke's BJJ dues (Kids / Child Activities) | Brady confirmed 2026-04-24 |
+| WageWorks / COBRA | **RESOLVED for April** — Brady confirmed payment made 2026-04-24 | Brady confirmed |
+| HELOC balance | **UPDATED** — $107K drawn, $193K available ($300K capacity) | Brady confirmed 2026-04-24 |
 | Card ending 1842 | **UNRESOLVED** — gift card used in Orem. Need Arvest login to verify. | Need Arvest scrape |
 | Karissa's Utah address | **PARTIALLY RESOLVED** — 196 Inglewood Dr, Orem, UT 84097 (Walmart). Also Eagle Mountain + SLC from DoorDash. | Walmart scrape |
 | Zions Bancorporation | **UNRESOLVED** — $15 deposit to Faith's card Jan 20 | — |
-| HELOC balance | **UNRESOLVED** — draws accelerating ($4,700 in 4 days) | Need Arvest scrape |
 | DoorDash account access | **NEW FINDING** — suspicious new login Mar 25, 8:05 PM from different device | Gmail scan |
+| Karissa insurance claim backlog | **OPEN** — Brady suspects Karissa is behind on many out-of-pocket UHC submissions | Brady note 2026-04-24 |

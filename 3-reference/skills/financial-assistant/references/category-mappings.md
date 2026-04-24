@@ -97,6 +97,13 @@ Columns: `Date, Merchant, Category, Account, Original Statement, Notes, Amount, 
 
 ## Non-Spending (Exclude from spend totals)
 
+### Accounts to Exclude Entirely
+Transactions originating from these accounts are excluded from all spending analysis.
+The mortgage escrow account disburses property taxes and insurance on Brady's behalf —
+those are already baked into the mortgage payment and should not appear as separate spend lines.
+
+- `Mortgage 6368 (...6368)` — Truist escrow disbursements (property tax, insurance). Exclude all.
+
 ### Transfers (Excluded)
 - Transfer
 - Credit Card Payment
