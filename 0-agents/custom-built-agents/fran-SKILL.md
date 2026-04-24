@@ -505,3 +505,66 @@ Each Fran session must end with at least ONE of:
 **Integration pattern:** Context Vault is SSOT. Repo = text source. Drive = rich-doc library. Context Vault = queryable atoms feeding interactive surfaces. Portal = read surface.
 
 **Brady-approval gate:** Pick the first layer to build. Default: (4) Research Feed.
+
+---
+
+## K. End-of-Session Notion Sync (added 2026-04-24)
+
+**Standing rule:** Every Fran session that produces net-new information, decisions, or artifacts must end with a Claudine Notion sync before the conversation closes. Fran surfaces the itemized list — Brady should never have to reconstruct it.
+
+**Claudine trigger phrase:** `"Claudine — end-of-session 1915 South Notion sync. Items: [list below]"`
+
+**What goes where:**
+
+| Item type | Destination | Schema |
+|---|---|---|
+| SFDR closure | Context Vault (new row) + Data Requests page (status update) | Source=AI, Type=Research Note/Market Analysis, Tags=Research+domain, Project=1915 South Projects DB entry |
+| Research finding (non-SFDR) | Context Vault (new row) | Same schema |
+| New deliverable built | Research Index page (append row) | Name, status, file path, one-line description |
+| Brady decision or scope change | Decision Log page (append entry) | Date, decision, rationale, what it resolves |
+| Platform/infrastructure change | Decision Log page (append entry) | Date, what was built, what it requires to go live |
+| Next Bests refresh | Next Bests page (full replace) | Fran's current top 3–5 opinionated moves |
+
+**Fran's end-of-session output format** (paste to Claudine):
+
+```
+Claudine — end-of-session 1915 South Notion sync. Items:
+
+CONTEXT VAULT (new rows):
+- [title] | Type: [Research Note / Market Analysis / Business Context] | Tags: Research, [domain] | Finding: [one sentence]
+
+DATA REQUESTS (status updates):
+- SFDR-NNN: [old status] → [new status] | Finding: [one line]
+
+DECISION LOG (append):
+- [YYYY-MM-DD] Decision: [what was decided] | Rationale: [why] | Resolves: [what question]
+
+RESEARCH INDEX (append):
+- [file name] | Status: [Built/In Flight/Shipped] | Description: [one line]
+
+NEXT BESTS (replace):
+1. [highest-leverage move]
+2. [second]
+3. [third]
+```
+
+**This session's owed Notion writes (2026-04-24):**
+
+**Context Vault — new rows:**
+- "SFDR-006 provisional — Ashley/Wanek publicly silent on FRG by name" | Type: Research Note | Tags: Research, FRG, Ashley Corporate | Finding: No confirmed Ashley/Wanek public quote on FRG collapse found via training data (cutoff Aug 2025). Needs web verification via Claude.ai Chat.
+
+**Data Requests — status updates:**
+- SFDR-006: OPEN → PROVISIONAL | Finding: Wanek appears not to have named FRG publicly; Brady should frame FRG opportunity independently (operator-identified, not HQ-directed). Needs web confirmation.
+
+**Decision Log — append:**
+- 2026-04-24: Platform Dynamic Layer 4 (Research Feed) built. API route `/api/1915-south/research-feed` queries Context Vault by Project relation. Live in PR #139. Requires `NOTION_CONTEXT_VAULT_DB_ID` env var set in Vercel mception-ai project before feed populates.
+- 2026-04-24: Working Session Deck built (`1915-south-working-session-2026-04-24`, 12 slides, mception-themed). Linked in portal hub. Internal use only — do not send to Justin directly.
+
+**Research Index — append:**
+- `1915-south-working-session-2026-04-24.{md,html,pdf}` | Status: Built | Description: 12-slide Justin working session deck. Three theses, AFHSVA first-move, Innovation Workshop top 4, engagement shapes A–E, 5 Phase 2 questions, Phase 2 close.
+- `portal/src/app/api/1915-south/research-feed/route.ts` | Status: Built (awaiting env var) | Description: Notion Context Vault feed API for portal hub.
+
+**Next Bests (replace):**
+1. Merge PR #139 + wire `NOTION_CONTEXT_VAULT_DB_ID` in Vercel (`vercel env add NOTION_CONTEXT_VAULT_DB_ID production` in mception-ai project) — unlocks live Research Vault feed
+2. Confirm SFDR-006 via web pull in Claude.ai Chat — determines whether Brady can echo Ashley language or must frame FRG independently in the Apr 29 nudge
+3. Send the Apr 29 nudge using the appropriate alternate from `nudge-2026-04-29-draft.md` — pick based on SFDR-006 result and any Ashley news that day
