@@ -247,10 +247,7 @@ Unlock: Peer-franchisee precedent language for workshop + teaser
 **New SFDRs opened by M&A Deep Research + FRG context (2026-04-22):**
 
 ```
-SFDR-006: Ashley corporate public commentary on FRG collapse specifically — Wanek has reason to acknowledge a major Southeast competitor going dark.
-Source: Ashley press releases Nov 2024 – Feb 2026, HFA interviews, Furniture Today
-Effort: Low (<30min)
-Unlock: Gives Brady talk-track cover for the "FRG real-estate dividend" narrative with Justin
+SFDR-006 — CLOSED 2026-04-24: Wanek has been publicly silent on FRG by name across all major interview surfaces (HFA Part 1+2, HNN High Point Market Nov 2025, Nationwide Southwest Dec 2024). Silence is intentional: Ashley was a wholesale supplier to both American Freight and Buddy's Home Furnishings (vendor relationship confirmed HNN Jun 2025). Brady should NOT try to echo Wanek language — frame FRG independently using structural argument. Key proxy: Broad River Retail (Ashley's largest SE licensee) expanded 33→38 stores 2025-2026, absorbing former big-box space. Full dossier: `sfdr-006-ashley-frg-commentary.md`.
 
 SFDR-007: Is Buddy's Home Furnishings (surviving FRG brand) being divested, and at what multiple?
 Source: FRG bankruptcy court docket, restructuring filings, trade press
@@ -292,9 +289,21 @@ SFDR-014: Did Bassam Zeidan attend Ashley Global Retail dealer forums during Jus
 Source: Justin (low-friction direct question)
 Effort: Low (Justin question)
 Unlock: Determines whether this is a warm Justin-intro or a cold approach
+
+SFDR-015: Does Ashley corporate have an official franchisee growth program or real-estate incentive tied to the 2025 expansion push? Any formal program for taking FRG-vacated sites?
+Source: Ashley.biz press releases, HFA franchise conference coverage, Furniture Today
+Effort: Low (<30min)
+Owner: Fran-web-pull
+Unlock: If Ashley corporate is incentivizing licensees to grab FRG boxes, that materially accelerates the urgency argument Brady makes to Justin
+
+SFDR-016: Has Broad River Retail specifically absorbed any former American Freight or Badcock storefronts, or are their new sites net-new locations?
+Source: Furniture Today, Home News Now, Broad River newsroom (newsroom.broadriverretail.com), CoStar (if accessible)
+Effort: Medium (1-2hr)
+Owner: Fran-web-pull (public press) / Paid-access-required (CoStar addresses)
+Unlock: If Broad River is confirmed taking FRG boxes in SC/NC/GA, that's a concrete peer-operator comp Brady can cite to Justin: "Your largest peer licensee is already converting this real estate."
 ```
 
-**Run order priority 2026-04-23+:** SFDR-006 → SFDR-009 → SFDR-014 (Justin-direct, lowest cost) → SFDR-012 → SFDR-013.
+**Run order priority 2026-04-24+:** SFDR-009 → SFDR-015 → SFDR-016 → SFDR-014 (Justin-direct) → SFDR-012 → SFDR-013.
 
 ---
 
