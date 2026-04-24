@@ -65,6 +65,60 @@ notion:
       - skills/life-events-review
       - skills/weekly-sweep
 
+  research_library_db:
+    id: "4f87259be9a74d3586ba2148cb472d0f"  # created 2026-04-24 by Claudine — durable KB for research flowing out of Streaming Notes Type=Research
+    data_source_id: "1291782236ca4ccd9763538226844015"
+    parent_page_id: "2c7ed43b89c5801f96b6cfb872dedecc"  # 3 - Reference Layer
+    purpose: Canonical Research Library — every research artifact (Substack, podcast, report, paper, deep-research run, exec-intel-brief source) tagged by topic, client, project, credibility, with Reference Count tracking usage. Scored weekly by Hygiene Heidi Rule 5 + Claudine Scorecard K16.
+    schema_fields:
+      - Title (title)
+      - Source URL (url)
+      - Source Type (select: Substack/Report/Podcast/Web/Paper/Book/Video/Convo/Internal/Other)
+      - Topic Tags (multi-select: retail/foodservice/ai-ops/m&a/cpg/consumer/supply-chain/pricing/org-design/marketing/tech-stack/macro/energy/finance/regulatory/other)
+      - Project (relation → internal_projects_db)
+      - Client Relevance (multi-select: Panda/Kroger/Harmon's/Walmart/FFH/Stihl/Oldcastle/1915 South/Internal/Prospect)
+      - TL;DR (rich text)
+      - Key Quotes (rich text)
+      - Source Credibility (select: 1-Unverified to 5-Primary)
+      - Captured Date (created_time)
+      - Last Referenced (date — updated on every citation)
+      - Reference Count (number — incremented on every citation)
+      - Captured By (select: Brady/Claudine/DiCaprio/Finn/OC Optimus/Fran/Deep Research/Exec Intel Brief/Daily Whitepaper/Telly/Other)
+      - Status (select: Active/Archived/Superseded)
+      - Superseded By (self-relation, dual w/ Supersedes)
+      - Streaming Note Ref (url)
+    used_by:
+      - skills/streaming-notes-processor (writes Type=Research items here)
+      - skills/deep-research (writes synthesis + top sources here)
+      - skills/exec-intel-brief (pre-check + write-back)
+      - skills/claudine-scorecard (K16 composite)
+      - 0-agents/hygiene-heidi (Rule 5 weekly audit)
+      - 0-agents/oc-optimus + fran + project-agent template (Synthesis mode query + Reference Count)
+
+  claudine_skill_registry_db:
+    id: "e6d176601157408bbe9264a511344ed5"  # created 2026-04-24 by Code agent
+    data_source_id: "57962385-a005-4651-a52d-e0206dd0c4ac"
+    purpose: Live inventory of every Claudine skill and agent. Tracks last-used date/context so stale skills surface for deletion or re-activation.
+    schema:
+      - Name          # skill/agent name
+      - Type          # Skill | Agent
+      - Category      # Sweep | Build/Dev | Research | Content | Financial | Ops/Client | Meta/OS | Deprecated
+      - Description   # one-liner
+      - Location      # file path in repo
+      - Trigger       # what invokes it
+      - Last Used     # date — updated by Claudine on every skill invocation
+      - Last Used Context  # brief note on what it was used for
+      - Status        # Active | Stale | Dormant | Deprecated | Never Used
+    update_protocol: |
+      When any skill or agent is invoked, Claudine writes back to this DB:
+        1. Set "Last Used" = today's date
+        2. Set "Last Used Context" = one-line summary of the task (e.g. "morning sweep 2026-04-24", "Panda intel brief for James Ku")
+        3. Update "Status" to "Active"
+      Query by Last Used ascending to surface stale/dormant candidates.
+    used_by:
+      - skills/claudine-onboarding
+      - skills/claudine-scorecard
+
 # ─── Google Drive ───
 google_drive:
   os_recaps_folder:

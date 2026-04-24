@@ -53,6 +53,7 @@ a green item by next Saturday, or Brady made a conscious decision to change the 
 **Notion DB IDs** (canonical from `3-reference/infrastructure-registry.yml`):
 - Streaming Notes: `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
 - Routing Log: `344ed43b-89c5-816a-ab54-ca49ca239748`
+- Research Library: `4f87259b-e9a7-4d35-86ba-2148cb472d0f` (data source `12917822-36ca-4ccd-9763-538226844015`)
 
 **Output locations:**
 - Backup (persistent, gitted): `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md`
@@ -70,10 +71,28 @@ rules by updating this section and re-deploying the skill.
 | 2 | **It must score itself** | The agent's SKILL.md includes a self-scoring step that runs as part of its own output — not just external scoring by Musashi | Agent is only scored externally; no self-assessment step in the SKILL.md execution phases |
 | 3 | **Agents must naturally seek constant improvement** | SKILL.md contains at least one of: approval loops that create feedback cycles, prior-run learning references, Musashi integration (explicitly named as the improvement mechanism), or recursive self-improvement logic | SKILL.md terminates with no improvement feedback loop — runs and stops with no mechanism to get better over time |
 | 4 | **Streaming Notes purgatory: nothing sits >7 days without a state decision** | Item is in a terminal state (Done, Complete, Archived, Promoted, Published) OR has been consciously moved to a non-intake temporary state (In Progress, Processing, On Hold, Blocked) with a Next Action set | Item has been at "Not Started" for 7+ days with no Next Action, no status change, and no body update — classic purgatory |
+| 5 | **Research Library stays loaded, current, and leveraged** (Claudine Research Score ≥ 5/10) | K16 composite from `claudine-scorecard` is ≥ 5/10 AND no Active row has been unreferenced for >90 days AND every active client engagement has ≥ 10 sources tagged with its `Client Relevance` value | K16 < 5/10 OR any Active row with `Last Referenced` >90 days old (dormancy) OR any active client with <10 tagged sources (coverage gap) |
 
 ### Rule 2 — Self-Scoring Interpretation Note
 
 Musashi scores all agents externally each night. That satisfies external accountability but NOT Rule 2. Rule 2 requires the agent's own SKILL.md to execute a self-scoring phase. The rationale: an agent that can only be scored by someone else hasn't internalized the standard. Heidi scores herself (see Phase 5 of her own output — if it's missing, she's in violation too).
+
+### Rule 5 — Research Library Health
+
+Heidi treats the Research Library the same way she treats every other agent asset: it should be measurably compounding. Three sub-checks, all required:
+
+**5a. Composite score (K16) ≥ 5/10.** Pulled directly from the latest `claudine-scorecard` output (`1-execution/areas/brady-os/claudine-scorecard/YYYY-MM.md`, most recent row). If no scorecard has run this week, Heidi computes K16 inline using the same formulas. Below 5 = **Red**.
+
+**5b. Dormancy audit.** Query Research Library for `Status = "Active"` AND (`Last Referenced` IS NULL OR `Last Referenced` < today − 90 days) AND `Captured Date` < today − 90 days. Any hits = **Red** per item. Surface each as `approve heidi research-dormant-{id}` gate: Brady says `keep`, `archive`, or `supersede {new-id}`.
+
+**5c. Coverage gap.** For every active client engagement (defined as: any Client Relevance tag with ≥1 Streaming Note in last 30d OR any internal project flagged `Status=Active`), count Research Library rows tagged to it. If < 10 = **Red** per project. Surface as `approve heidi research-cover-{client-slug}` gate, with proposed action = "Schedule a deep-research run on {client} core topics to fill to ≥10."
+
+Amber conditions:
+- K16 between 5–6 (passing but thin): Amber, no action
+- Coverage gap on an internal (non-client) project: Amber, note in report
+
+Pass condition:
+- K16 ≥ 7 AND no dormant items >90d AND all active clients ≥ 10 sources → **Green**
 
 ### Rule 3 — Improvement Mechanism Minimum Bar
 
@@ -181,19 +200,53 @@ For each returned item, classify:
 
 **Borderline (Amber):** Status is "Not Started" but Next Action is set OR body was updated. Technically still in intake state but showing signs of life. Flag for Brady's awareness, not remediation.
 
+## Phase 5.2 — Rule 5: Research Library Audit
+
+Query Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`, data source `12917822-36ca-4ccd-9763-538226844015`).
+
+**Step 1 — Pull or compute K16.**
+- Preferred: read latest row from `1-execution/areas/brady-os/claudine-scorecard/YYYY-MM.md`. Extract `K16` value.
+- Fallback (if no scorecard this week):
+  - K16a = `min(3, floor(COUNT(Active rows) / 25))`
+  - K16b = `min(3, COUNT(active_clients WHERE sources_tagged >= 10))`
+  - K16c = `min(4, floor(sum(Reference Count deltas in last 30d) / 5))`
+  - K16 = K16a + K16b + K16c
+- If K16 < 5 → **Red** (Rule 5a violation)
+- If 5 ≤ K16 < 7 → **Amber** (passing but thin)
+- If K16 ≥ 7 → **Green**
+
+**Step 2 — Dormancy audit.** Query Research Library:
+```
+filter:
+  Status = "Active"
+  AND Captured Date < today - 90 days
+  AND (Last Referenced is null OR Last Referenced < today - 90 days)
+```
+Each hit = **Red** per item. Collect: page ID, Title, Captured Date, last referenced (if any), topic tags, client relevance.
+
+**Step 3 — Coverage gap.** Determine active client engagements:
+- Client Relevance tags with ≥1 Streaming Note created in last 30 days that references the client
+- OR Internal Projects DB rows with `Status=Active`
+For each active client tag: count Research Library rows where `Client Relevance` contains that tag AND `Status=Active`. Any client with <10 → **Red** per client (Rule 5c violation). Internal projects with <10 → **Amber** (not client-facing, lower urgency).
+
+**Step 4 — Assemble Rule 5 section for output.** Three sub-sections mirrored in backup + Streaming Notes row:
+- K16 composite + breakdown
+- Dormant items list (with approval gates `approve heidi research-dormant-{id}`)
+- Coverage gaps list (with approval gates `approve heidi research-cover-{client-slug}`)
+
 ### 5.1 — Heidi's Self-Score (Rule 2 compliance)
 
 At end of Phase 5, Heidi computes her own score for this run:
 
 | Dimension | 0 | 1 | 2 |
 |---|---|---|---|
-| **Coverage** — all agents inventoried? | Missed >2 agents | Missed 1 | Complete inventory |
+| **Coverage** — all agents + Research Library inventoried? | Missed >2 agents or skipped Library | Missed 1 | Complete inventory |
 | **Precision** — violations correctly classified (no false positives)? | >2 false positives | 1 false positive | All classifications accurate |
 | **Purgatory detection** — all 7+ day items surfaced? | Notion unavailable | Partial (degraded) | Full query returned |
+| **Research Library audit** — K16 pulled, dormancy + coverage computed? | Skipped | Partial (K16 only) | All 3 sub-checks complete |
 | **Routing** — all violations routed with approval gates? | Missing gates on >1 red | 1 gate missing | All reds have gates |
-| **Timeliness** — completed within 20 minutes? | >25 min | 20–25 min | <20 min |
 
-Self-score: sum of 5 dimensions = `/10`. Include in backup and Streaming Notes output. If self-score < 8, add one improvement recommendation for next run.
+Self-score: sum of 5 dimensions = `/10`. Include in backup and Streaming Notes output. If self-score < 8, add one improvement recommendation for next run. (The prior "Timeliness" dimension was replaced by "Research Library audit" when Rule 5 was added on 2026-04-24.)
 
 ## Phase 6 — Output
 
@@ -221,6 +274,27 @@ Generated: [ISO timestamp]
 | ... | | | | |
 
 Legend: 🟢 Green (pass) · 🟡 Amber (borderline/exception) · 🔴 Red (violation)
+
+---
+
+## Rule 5 — Research Library Health
+
+**Composite K16: [X]/10** [🟢/🟡/🔴]
+  ├─ Indexed Reports: [library_count] active rows → K16a [/3]
+  ├─ Project Coverage: [n_clients] active engagements with ≥10 tagged sources → K16b [/3]
+  └─ Leverage: [ref_count_30d] references in last 30d → K16c [/4]
+
+**Dormancy (items unreferenced >90d):** [N]
+| Item | Captured | Days Dormant | Tags | Gate |
+|---|---|---|---|---|
+| [title] | YYYY-MM-DD | [N] | [tags] | `approve heidi research-dormant-[id]` |
+
+**Coverage Gaps (active clients with <10 sources):** [N]
+| Client | Source Count | Suggested Action | Gate |
+|---|---|---|---|
+| [client] | [N] | Run deep-research on [topic] | `approve heidi research-cover-[slug]` |
+
+_Gates: `keep`, `archive`, `supersede {new-id}` for dormant; `approve` triggers a deep-research run for coverage._
 
 ---
 
@@ -305,6 +379,11 @@ RULE VIOLATIONS ([Y] agents):
 AMBER NOTES ([N]):
 - [agent] · Rule [N]: [1-line]
 
+RESEARCH LIBRARY (Rule 5):
+- K16: [X]/10 ([breakdown: a+b+c])
+- Dormant items: [N] → `approve heidi research-dormant-[id]`
+- Coverage gaps: [N] → `approve heidi research-cover-[slug]`
+
 PURGATORY ([Z] items):
 - [item name] · [N] days · [Type] → `approve heidi purgatory-[id]`
 - ...
@@ -323,12 +402,12 @@ per `3-reference/skills/_shared/routing-log.md`:
 | Original Title | `Hygiene Check — YYYY-MM-DD` |
 | Destination | `Streaming Notes (Hygiene Check row) + hygiene-heidi-reports/YYYY-MM-DD.md` |
 | Reason | Weekly agent compliance + Streaming Notes purgatory audit |
-| Summary | [N] agents checked; [Y] violations ([Z] red, [A] amber); [B] purgatory items. Self-score: [X]/10. |
+| Summary | [N] agents checked; [Y] violations ([Z] red, [A] amber); [B] purgatory items; Research K16 [X]/10 ([D] dormant, [E] coverage gaps). Self-score: [X]/10. |
 
 ## Phase 8 — Report Back
 
 ```
-Hygiene Check: [STATUS]. [N] agents · [Y] violations · [Z] purgatory items. Self-score: [X]/10.
+Hygiene Check: [STATUS]. [N] agents · [Y] violations · [Z] purgatory items. Research K16 [X]/10 ([D] dormant, [E] gaps). Self-score: [X]/10.
 Review: Streaming Notes / Hygiene Check — YYYY-MM-DD. Backup: 1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md
 ```
 
@@ -387,5 +466,6 @@ Command: invoke hygiene-heidi skill
 
 ## Data Dependencies
 
-- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB (open items query), Routing Log page, git history (for amber classification)
+- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB (open items query), Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`), Routing Log page, latest `claudine-scorecard/YYYY-MM.md`, git history (for amber classification)
 - **Writes:** Streaming Notes DB (one Hygiene Check row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md`
+- **Republishes:** on every automated Saturday run, Rule 5 (Research Library K16 + dormancy + coverage) is recomputed from live state — the score in the Saturday brief always reflects current Library health, not a cached value.

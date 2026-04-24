@@ -17,6 +17,7 @@ Canonical reference for per-Type SLAs, routing destinations, and completion defi
 |---|---|---|---|---|
 | System Instruction | 24h | Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`) | Morning sweep (Phase 3.6b) | Written to R&P page; Status=Complete, Done=\_\_YES\_\_ |
 | Build Request | 24h | Dev plan at `.context/plans/` OR directly built | Morning sweep (Phase 3.4b) | Status=Complete + Build Session log OR plan generated |
+| Research | 24h | Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) | streaming-notes-processor (Phase 3 — Research routing) | Enriched row written to Library; Status=Complete, Done=\_\_YES\_\_, Action=Move to Research Library |
 | Task | 72h | Next Action field must be set | Brady / morning sweep daily audit | Next Action set; eventually Status=Complete, Done=\_\_YES\_\_ |
 | To Do | 72h | Next Action required | Brady / morning sweep daily audit | Status=Complete, Done=\_\_YES\_\_ |
 | Thread Log | 7d | Active → Complete or Archive | Evening sweep | Status=Complete, Done=\_\_YES\_\_ |
@@ -38,6 +39,7 @@ For other types, use these overrides:
 |---|---|
 | System Instruction | 24h (should be gone by next morning) |
 | Build Request | 24h |
+| Research | 24h |
 | Pulse Note | 48h |
 | Task / To Do / Note | 72h |
 | Thread Log | 7d |

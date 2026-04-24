@@ -53,7 +53,8 @@ Three fields encode "dispositioned" — they must move in order:
 1. **`Status`** changes first (Not Started → In Progress → Complete / Remove)
 2. **`Done`** follows: whenever `Status=Complete`, set `Done=__YES__`. These ALWAYS move together.
 3. **`Action`** is set AFTER Complete to route the item:
-   - `Move to Context Hub` → Reference Layer page (durable knowledge)
+   - `Move to Context Hub` → Reference Layer page (durable knowledge, flat)
+   - `Move to Research Library` → Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`, tagged/searchable — Canonical for Type=Research)
    - `Move to Notes db` → Notes DB in Memory Layer (historical)
    - `Create Task` → Execution Layer
    - `Create Diary Entry` → personal journal
@@ -96,6 +97,7 @@ per-Type SLA + processing destination. Half-SLA is the action trigger:
 | System Instruction | 24h | 12h |
 | Execution Request | 24h | 12h |
 | Sweep Feedback | 24h | 12h |
+| Research | 24h | 12h |
 | Pulse Note | 48h | 24h |
 | Task / To Do / Note | 72h | 36h |
 | Thread Log | 7d | 3.5d |
@@ -187,6 +189,70 @@ These need Brady's judgment. The processor drafts, never sets.
 ### Thread Log — skip
 
 Evening-sweep owns Thread Log lifecycle. Processor does not touch these.
+
+### Research — enrich and route to Research Library
+
+`Type="Research"` items are the intake for the Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`, data source `12917822-36ca-4ccd-9763-538226844015`). The processor enriches each item once and archives it — the durable knowledge lives in the Library, not in Streaming Notes.
+
+1. **Extract source metadata** from the item body:
+   - URL → `Source URL` (first URL in body, else null)
+   - Source Type (heuristic on URL host or content): `substack.com` → Substack; `spotify.com|apple.com/podcasts|overcast` → Podcast; `youtube|vimeo` → Video; PDF/academic domain → Paper; arxiv/SSRN → Paper; conversation without URL → Convo; generic article → Web; else → Other
+   - Source Credibility default = `3 - Respected`. Primary sources (SEC filings, USDA, official company IR) → `5 - Primary`. Experts/analysts → `4 - Expert`. Blogs/tweets → `2 - Blog/Social`.
+
+2. **Auto-tag Topic Tags** via keyword match against the item body (lowercase):
+   - `retail|store|SKU|category|merchandis` → `retail`
+   - `restaurant|QSR|foodservice|chef|menu` → `foodservice`
+   - `AI|agent|LLM|automation|claude|GPT|MCP` → `ai-ops`
+   - `acquisition|merger|PE|buyout|target|deal` → `m&a`
+   - `brand|consumer|CPG|packaging|shelf` → `cpg`
+   - `household|demographic|gen-z|millennial|boomer` → `consumer`
+   - `freight|warehouse|logistics|supplier|inventory` → `supply-chain`
+   - `price|margin|markdown|promo|discount` → `pricing`
+   - `org|team|hire|role|CEO|COO|leadership` → `org-design`
+   - `campaign|ad|funnel|channel|SEO|CAC` → `marketing`
+   - `stack|framework|SaaS|platform|build` → `tech-stack`
+   - `fed|inflation|GDP|recession|rate|tariff` → `macro`
+   - `oil|gas|energy|solar|grid|utility` → `energy`
+   - `earnings|stock|IPO|valuation|multiples` → `finance`
+   - `SEC|FDA|compliance|lawsuit|ruling` → `regulatory`
+   - No match → `other`. Multiple matches allowed.
+
+3. **Auto-link Client Relevance + Project** based on project-name mentions OR if the Streaming Note already has a `Project` relation set:
+   - If Streaming Note `Project` relation is set → copy to Research Library row's `Project` relation
+   - Body contains "Panda"/"James Ku" → Client Relevance += Panda
+   - Body contains "1915 South"/"Justin Woods"/"Ashley" → Client Relevance += 1915 South
+   - Body contains "Kroger"/"Bill Bennett"/"Chad Ballard" → Client Relevance += Kroger
+   - Body contains "FFH"/"Jorge"/"Tim Krull" → Client Relevance += FFH
+   - Body contains "Oldcastle"/"Jeff Bridge"/"National Pipe" → Client Relevance += Oldcastle
+   - Body contains "Harmon" → Client Relevance += Harmon's
+   - Body contains "Walmart" → Client Relevance += Walmart
+   - Body contains "Stihl" → Client Relevance += Stihl
+   - No client mention → Client Relevance = [Internal]
+
+4. **Draft TL;DR** — 3-sentence synthesis of the body. Claude-generated at processing time. First sentence = what it is. Second = the one insight worth keeping. Third = why it matters for Brady's portfolio (consulting projects, OS bets, family, or Internal).
+
+5. **Extract Key Quotes** — up to 3 short verbatim snippets from the body (each ≤ 30 words).
+
+6. **Write new row to Research Library DB** (`12917822-36ca-4ccd-9763-538226844015`):
+   - Title = Streaming Note Name
+   - Source URL, Source Type, Source Credibility, Topic Tags, Project, Client Relevance, TL;DR, Key Quotes = as computed
+   - Captured By = inferred from Streaming Note `Source` field (Chat → "Brady"; Cowork → "Claudine"; Code → "Claudine"; Execution → agent name if resolvable else "Claudine")
+   - Status = Active
+   - Reference Count = 0
+   - Streaming Note Ref = Streaming Note page URL
+
+7. **Close the Streaming Note:**
+   - Status = Complete, Done = __YES__
+   - Action = "Move to Research Library"
+   - Next Action = "Archived to Research Library → {new_page_url}"
+
+8. **Routing Log row:** `destination="Research Library"`, `reason="Research item enriched + archived"`, `summary="Tags: {topic_tags}; Clients: {client_relevance}; Credibility: {score}"`.
+
+**If the body lacks a URL AND is shorter than 60 chars** (likely a thought-fragment, not actual research): do NOT auto-route. Leave Status="Not Started" and add Next Action="Needs expansion before archiving — too thin to catalog". Surface in Phase 5 report.
+
+**Anti-patterns:**
+- Never auto-route a Research item that has `Project` already set to a specific client project without verifying that client appears in the auto-detected Client Relevance. If mismatch → flag for Brady.
+- Never overwrite an existing Research Library row. Dedupe by Source URL — if URL already present, increment `Reference Count` on the existing row and mark the new Streaming Note complete with Action="Move to Research Library" and Next Action="Duplicate of {existing_url} → ref count incremented".
 
 ## Phase 3.7 — Cluster & Batch (scatter → one action block)
 
@@ -321,7 +387,7 @@ if missing (with header).
 ```
 📋 Streaming Notes Processor — {today}
   Queue: {open_count} open / {past_half_sla} past half-SLA / {stale_count} stale (>SLA)
-  Actioned: {n_system_instructions} System Instructions, {n_build_requests} Execution Requests, {n_pulse} Pulse Notes, {n_sweep_feedback} Sweep Feedback
+  Actioned: {n_system_instructions} System Instructions, {n_build_requests} Execution Requests, {n_pulse} Pulse Notes, {n_sweep_feedback} Sweep Feedback, {n_research} Research → Library
   Drafted (need Brady): {n_drafts} Next Action candidates for Task/To Do items
   Routing Log: +{rows_appended} rows
   Processing Score: {daily_score}/10 (7-day avg: {avg}/10, baseline was 2/10)

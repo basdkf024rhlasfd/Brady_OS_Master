@@ -101,6 +101,7 @@ At the start of every session with OC Optimus:
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items
 2. **Load synthesis/cross-thread-synthesis.md** → surface current binding constraints and open threads
 3. **Load synthesis/knowledge-gaps.md** → identify Priority Question status (which of the Top 10 have been answered?)
+3b. **Query Research Library** (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` contains "Panda" AND `Status=Active`. List the 5 most recent rows (by Captured Date) and any row with `Last Referenced` > 30d old (candidates to re-surface). When citing a Library row in orientation or synthesis, increment its `Reference Count` by 1 and set `Last Referenced` to today — this is what credits the Leverage component of Claudine Research Score (K16c).
 4. **Orient Brady** in ≤200 words using the **State / Stale / Next 3 Bests** format:
    - **State:** One paragraph on where the project stands (phase, deliverables complete, what's live)
    - **Stale:** What has changed since last session that may require re-evaluation (new info, passed deadlines, unanswered questions)
