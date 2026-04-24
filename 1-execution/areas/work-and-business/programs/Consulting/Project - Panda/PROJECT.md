@@ -79,16 +79,31 @@
 - Research viewer built (`viewer/index.html`) and published to mception.ai `/panda` route
 - **Outcome:** Call happened. Brief is obsolete as a sales tool. Research is still useful as baseline context.
 
-### Phase 2 — Research-First Problem Portfolio (ACTIVE)
-**Status:** Kicked off April 17, 2026.
+### Phase 2 — Research-First Problem Portfolio (COMPLETE)
+**Status:** Completed April 22, 2026.
 **Goal:** Produce 15-25 validated problem statements that pass the Stage-0 sharpness gate, plus an operating-model recommendation for the Ops Innovation team, before the "next week" meeting.
 
 **Approach:**
 1. Pre-research internal source pull ✅ (Notion, Gmail, Drive, baseline research files)
-2. 14 deep research threads (DR-01 to DR-14) running in waves, parallel where possible
-3. Per-thread extraction of candidate problem statements
-4. Cross-thread synthesis → 15-25 sharpened problem statements
-5. Final deliverable: `panda-problem-statements.html` + `.pdf` (mception design system) + operating-model one-pager
+2. 14 deep research threads (DR-01 to DR-14) running in waves, parallel where possible ✅
+3. Per-thread extraction of candidate problem statements ✅
+4. Cross-thread synthesis → 15-25 sharpened problem statements ✅
+5. Final deliverable: `panda-problem-statements.html` + `.pdf` (mception design system) + operating-model one-pager ✅
+
+### Phase 2a — Test Kitchen Operational Validation (ACTIVE)
+**Status:** Kicked off April 23, 2026.
+**Owner:** OC Optimus
+**Goal:** Research and scope a 6-7 month test kitchen stand-up to validate solutions for Panda's three binding constraints: (1) wok automation productivity + labor cost reduction, (2) digital order accuracy at scale (e-commerce to kitchen handoff), (3) drive-thru throughput bottleneck elimination.
+
+**Approach:**
+1. Test kitchen charter & constraint mapping ✅ (Notion page created April 23)
+2. Three ranked SFDRs (Specific Feasible Data Requests) for peer benchmarks:
+   - SFDR-101: Peer test kitchen models (Chipotle, Starbucks, McDonald's) — due April 26
+   - SFDR-102: Greenfield QSR capex/timeline/staffing benchmarks — due May 3
+   - SFDR-103: Peer learnings mapped to Panda's binding constraints — due May 10
+3. Timeline framework: 6-7 months total (4 decision gates at weeks 4, 8, 12, 16)
+4. Capex envelope: $1.65M–$4.15M depending on automation scope
+5. Success metrics: Wok automation >15% productivity lift, digital accuracy >97%, drive-thru <3 min, labor productivity 20% improvement
 
 **Thread priorities (reframed):**
 | Thread | Topic | Priority |
@@ -114,9 +129,12 @@
 - **April 11–16:** Phase 1 — reconnection research + call prep ✅
 - **April 16:** James Ku call ✅
 - **April 17:** Pre-research + reframe + kick off Phase 2 ✅
-- **April 18:** All 14 research threads complete, synthesis done, deliverable shipped ← YOU ARE HERE
-- **April 22-24 target:** Deliverable ready for "next week" meeting
-- **Post-meeting:** Scope formal engagement
+- **April 18:** All 14 research threads complete, synthesis done, initial deliverable shipped ✅
+- **April 22:** Phase 2 final deliverable (problem statements + operating model) ready for meeting ✅
+- **April 22-24:** James Ku meeting (Esmeralda-scheduled) ← IN WINDOW
+- **April 23:** Phase 2a — Test kitchen research kicked off (OC Optimus) ✅
+- **April 26 - May 10:** SFDR research execution (three ranked data requests)
+- **Post-meeting:** Scope formal engagement + integrate test kitchen research into SOW
 
 ---
 
@@ -160,5 +178,10 @@
 - [x] Phase 2 — Problem statement sharpening (5-criteria gate)
 - [x] Phase 2 — Operating-model one-pager (in cross-thread-synthesis.md)
 - [x] Phase 2 — Final deliverable (HTML + PDF)
-- [ ] Deliverable review with Brady
-- [ ] Delivery to James Ku / next meeting
+- [x] Deliverable review (April 22, 10:13 AM)
+- [x] Delivery to James Ku / April 22-24 meeting
+- [x] Phase 2a — Test kitchen charter + constraint mapping (Notion page, April 23)
+- [ ] Phase 2a — SFDR-101 research (peer test kitchen models) — due April 26
+- [ ] Phase 2a — SFDR-102 research (greenfield benchmarks) — due May 3
+- [ ] Phase 2a — SFDR-103 research (peer learnings synthesis) — due May 10
+- [ ] Phase 3 — SOW negotiation + formal engagement scope (post-meeting)
