@@ -89,16 +89,29 @@ Always call `mcp__claude-in-chrome__tabs_context_mcp` first to see what's alread
 
 ## Betterment (Retirement / Investment)
 
-**What it gives:** Investment balance — feeds into `liquid-assets.md` (Betterment cash equivalents line currently TBD).
+**What it gives:** Portfolio total, goal breakdown, account types (IRA vs. taxable), balances per goal.
 
-**Chrome MCP steps:**
-1. Navigate to `https://www.betterment.com` → log in
-2. Dashboard shows portfolio total
-3. Extract: Total balance, goal breakdown if relevant
-4. Update `references/liquid-assets.md` Betterment line and `references/balance-sheet.md` if material
+**⚠️ Chrome MCP blocked** — betterment.com is blocked by the extension's financial-site safety restrictions. Use the manual prompt pattern instead.
 
-**Frequency:** Monthly. Required to complete the liquid-assets.md "Betterment cash equivalents: TBD" line.
-**Note:** Betterment retirement funds are semi-liquid (taxable brokerage portion accessible; retirement portion has penalties). Clarify with Brady which portion is liquid.
+**Manual prompt pattern:**
+1. Ask Brady to open `https://app.betterment.com` in Chrome and log in
+2. Navigate to **Accounts** page (shows all goals with balances)
+3. Ask Brady to screenshot the Accounts page and drop it in the conversation — Finn reads the image
+4. Navigate to **Transfers → Pending transfers** to capture recurring deposit amounts
+5. Screenshot that page too if deposit amounts have changed
+6. Record extracted values in `accounts-reference.md` Betterment Goals table
+7. Update `references/balance-sheet.md` Betterment line and `references/liquid-assets.md`
+
+**What to extract:**
+- Total portfolio value
+- Per-goal breakdown: goal name, balance, account type (Roth/Traditional/Taxable)
+- Any cash buffer or Safety Net balance (these are liquid)
+- YTD return %
+
+**Liquidity note:** Taxable brokerage goals = liquid (no penalty). Roth/Traditional IRA goals = not liquid without penalty. Safety Net / Cash Reserve = liquid. Flag separately in `liquid-assets.md`.
+
+**Frequency:** Monthly. Flag if >30 days stale.
+**Last updated:** 2026-04-22 — balance TBD, awaiting Brady manual read.
 
 ---
 
@@ -263,6 +276,37 @@ Balance tracked manually in `references/balance-sheet.md` as 350,000 shares × c
 3. Update balance-sheet.md Maxim row and note the as-of date
 
 **Insider trading note:** Brady is on IVFH board until May 2026 annual meeting. Post-departure cooling period applies — do NOT suggest or facilitate any sale without confirming Brady's current board status and applicable window.
+
+---
+
+---
+
+## Family Services
+
+### CutTime (Bentonville HS Choir)
+
+**What it gives:** Permission forms, payment links, announcements, calendar, trip details for Lily's choir program at Bentonville HS. Director: Terry Hicks.
+
+**Guardian login URL:** https://app.gocuttime.com/g/p/HZiSHFxQ  
+*(This is Brady's guardian profile link — tied to Lily Smallwood)*
+
+**Login method:**
+1. Navigate to the guardian URL above
+2. Click "Send code" — delivers SMS/email verification to Brady's contact on file
+3. Enter the 6-digit code Brady provides
+4. Session persists in browser; re-auth required if session expires
+
+**What to check on each visit:**
+- **Forms** — any "Fill out form" links with outstanding assignments (signature, permission, etc.)
+- **Payments** — any assigned costs under Lily's student page (`/guardian/my-students/ee54df87-1b8a-419a-9bf6-6d795d7bead1`)
+- **Announcements** — new messages from Terry Hicks
+- **Calendar** — upcoming events, trip dates, rehearsal schedule
+
+**Pending sessions:** Check `data/pending-sessions.md` before navigating — may have a paused form in progress.
+
+**Frequency:** On-demand when Brady receives a text from +18443858463 (CutTime SMS number) or mentions choir/Terry Hicks. Not part of the regular financial sweep.
+
+**Link to activity file:** `portal/public/family/kb/09-activity-details.md` (Lily > Bentonville HS Choir section)
 
 ---
 

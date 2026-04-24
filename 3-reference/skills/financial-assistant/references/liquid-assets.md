@@ -4,14 +4,14 @@ Accessible cash + drawable liquidity for runway calculations. Runway = accessibl
 
 Brady updates this manually. Values should stay current — weekly or whenever a balance shifts > $2K.
 
-Last updated: 2026-04-21
+Last updated: 2026-04-22
 
 ## Current Balances
 
 | Source | Balance | Notes |
 |---|---|---|
 | Bank cash (from balance-sheet.md) | $1,305 | SoFi + Arvest checking/savings; excludes kids' cards |
-| Betterment cash equivalents | TBD | Brady updates manually |
+| Betterment cash equivalents | $25,841 (earmarked) | Pre-paid expenses (vacations, trips, purchases). Technically liquid but committed — excluded from runway. As of 2026-04-22. |
 | HELOC available to draw | $300,000 | From balance-sheet.md Capacity section |
 
 **Total accessible liquidity:** `$301,305`

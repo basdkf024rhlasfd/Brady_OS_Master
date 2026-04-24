@@ -370,6 +370,19 @@ Add to the Phase 6 close report:
 🔧 BUILDS: [N] completed | [N] partial (carry-forward created) | [N] blocked (→ To Do)
 ```
 
+### Phase 4.9 Apple Reminders Action Sweep
+
+Run `apple-reminders-scan` in action mode (full output, no cap). Skill spec: `3-reference/skills/apple-reminders-scan/SKILL.md`
+
+- Processes any items the morning scan flagged rather than auto-acted on (`finn_flags[]`)
+- Re-evaluates flagged items with the day's context — if Brady confirmed during the session, mark them complete now
+- Logs full scan summary to Streaming Notes (Type: Thread Log, Status: Complete, Done: __YES__)
+
+Add to Phase 6 close report:
+```
+🔔 Reminders: N processed | N remain flagged
+```
+
 ### Phase 5: REFRESH OS COCKPIT
 
 Write an updated `os-cockpit/data.js` in the Brady OS repo (`brady-os-master/muscat/os-cockpit/data.js`).
