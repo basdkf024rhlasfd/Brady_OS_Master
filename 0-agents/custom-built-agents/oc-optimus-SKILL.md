@@ -99,6 +99,7 @@ trust_tier: T1
 At the start of every session with OC Optimus:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items
+1b. **Load Panda's Company page** (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`, row where `Name="Panda Restaurant Group"`) → read the **Problem Statements** H2 section (P1-PN H3s). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict.
 2. **Load synthesis/cross-thread-synthesis.md** → surface current binding constraints and open threads
 3. **Load synthesis/knowledge-gaps.md** → identify Priority Question status (which of the Top 10 have been answered?)
 3b. **Query Research Library** (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` contains "Panda" AND `Status=Active`. List the 5 most recent rows (by Captured Date) and any row with `Last Referenced` > 30d old (candidates to re-surface). When citing a Library row in orientation or synthesis, increment its `Reference Count` by 1 and set `Last Referenced` to today — this is what credits the Leverage component of Claudine Research Score (K16c).
@@ -253,6 +254,34 @@ Decision: Deliverable format is HTML + PDF (mception design system). Not a viewe
 Rationale: Email-native delivery model (per feedback-email-not-viewer.md). Intel = email + PDF + .md dossier.
 Resolved: Whether to build a new viewer.
 ```
+
+---
+
+## I. Deliverable Log
+
+Tracks every artifact sent or shared externally. Updated by Brady or OC Optimus whenever something leaves the internal layer (email, Drive share, portal access grant).
+
+**Rule:** Every external-facing share goes here BEFORE it goes anywhere else. If it's not logged, it doesn't count as sent.
+
+| # | Deliverable | Format | Date Sent | Sent To | Channel | Acknowledged | Notes |
+|---|---|---|---|---|---|---|---|
+| 001 | Panda Problem Statements Brief | HTML + PDF | 2026-04-18 | James Ku (CDO) | Email | Pending | Delivered alongside research brief |
+| 002 | Panda Research Brief (14 threads) | PDF | 2026-04-18 | James Ku (CDO) | Email | Pending | Pre-meeting research package |
+| 003 | SOW / Engagement Description | TBD | Pending | James Ku (CDO) | Email | — | Awaiting Brady to draft after Apr 28 response |
+
+### Status definitions
+- **Y (Acknowledged):** Client replied, referenced it, or confirmed receipt
+- **Pending:** Sent, no client reply yet
+- **Holstered:** Staged but not sent — conditional on a client signal
+- **—:** Not yet created or date TBD
+
+### Update triggers
+- Brady sends email with attachment → add row, set Acknowledged = Pending
+- James references a deliverable in reply → update Acknowledged = Y, add note
+- New deliverable staged → add row with status = Holstered
+
+### Notion tracking page
+[Deliverable Log — Panda](https://www.notion.so/34ced43b89c58162ad7ed9d9d57aa81f)
 
 ---
 

@@ -16,6 +16,25 @@
 - `TRANSPARENCY.md` — System map: external services, autonomous behaviors, secrets, sensitive data policy
 - `3-reference/infrastructure-registry.yml` — Canonical source for Notion DB IDs, Google Drive folder IDs, secrets inventory
 
+## Unified Client Object (Consulting Kit Phase 1 — 2026-04-24)
+
+The **Companies DB** (`d41b6f0d-9455-4bb4-9332-ac1539473253`) is the canonical entity for every client, prospect, partner, and vendor. All consulting skills (`prospect-research-kit`, `client-engagement-kit`, project agents like OC Optimus + Fran) read and write this single object.
+
+- **Identity fields:** `Name`, `Slug` (kebab-case), `Type` (Client/Prospect/etc.), `Industry`, `Sub-vertical`, `Company Size`, `Stage`, `HQ`, `Website`
+- **Engagement fields:** `Engagement Type` (Prospect → Discovery → SOW → Retainer → Paused → Archived), `Project Folder` (filesystem path), `Agent Wiki` (Notion URL)
+- **Relations:** `Primary Contact` → People, `People` → stakeholders, `Projects` → internal Projects DB, `Research Library` → Research Library DB, `Documents`
+- **Problem Statements (P1-PN):** canonical source is the Company page body, not a field. Pattern: `## Problem Statements` H2 + `### P1: <statement>` H3s. Project agents read this in Synthesis mode; Company page wins over Agent Wiki if they conflict.
+- **Client Projects DB** (shareable, workspace-root): lightweight client-facing view. Has `Company` relation pointing back to Companies for every sharable row. Never the canonical source.
+
+## Framework Router (Consulting Kit Phase 2 — 2026-04-24)
+
+The orchestration layer above the Unified Client Object. `{client, problem}` → archetype → ordered skill stack → logged Framework Run.
+
+- **Decision table:** `3-reference/patterns/framework-router.md` — 8 archetypes (Pricing, Ops redesign, Product innovation, M&A thesis, Org design, Competitive response, Growth, Crisis) mapped to Input Minimums + skill stacks + expected elapsed time + win rate.
+- **Skill:** `3-reference/skills/engagement-router/SKILL.md` — thin orchestrator. Reads the decision table, classifies, checks Input Minimums, creates a Framework Run row, sequences skills, closes out. Trigger: "run engagement for [client] on [problem]".
+- **Framework Runs DB** (Notion, `2c5e7bd1df334cb8be8165f38081cff1`, data source `38433fe6-d586-4148-a6aa-788041701bdd`): every run = one row. Fields: Company relation, Archetype, Stack Used, Status, Start/End Date, Deliverables, Brady Rating, Client Rating, Override Reason, Notes, Streaming Note.
+- Win rates in the decision table are populated by Phase 3 (weekly pattern extractor), not hand-maintained.
+
 ## mception.ai Publishing
 
 - `mception.ai` is a curated client-facing layer, not a mirror of Brady OS.
@@ -49,6 +68,7 @@
 - **Weekly Sweep:** `3-reference/skills/weekly-sweep/SKILL.md` — Sunday planning sweep for weekly priorities, calendar coverage, projects, finances, and family logistics
 - **Daily Whitepaper:** `3-reference/skills/daily-whitepaper/SKILL.md` — Daily news-and-Substack synthesis that produces a polished two-page PDF intelligence brief
 - **Pipeline Dashboard:** `3-reference/skills/pipeline-dashboard/SKILL.md` — Live snapshot of Streaming Notes DB pipeline (In/Processing/Out). Runs at end of each sweep.
+- **Admin Status:** `3-reference/skills/admin-status/SKILL.md` — Compact OS health snapshot in under 60 seconds. Reads both engagement PROJECT.md files, Streaming Notes pipeline counts, build queue open specs, and last git commit. Read-only. Trigger: "status", "/status", "admin status", "os status", "quick status".
 - **Streaming Notes Disposition Audit:** `3-reference/skills/streaming-notes-disposition-audit/SKILL.md` — Weekly "never forget" audit. Surfaces stale items (>14 days), items missing next actions (>3 days), and blocked items for Brady's review and batch disposition. Final step of weekly-sweep. Trigger: "streaming notes audit", "disposition audit", "never forget audit".
 - **Streaming Notes Processor:** `3-reference/skills/streaming-notes-processor/SKILL.md` — Daily processing pass (complement to weekly audit). Actions items inside per-Type SLA: back-stops System Instructions, drafts Build Request plans at `.context/plans/streaming-notes-*.md`, auto-routes clear Pulse Notes, queues Sweep Feedback, drafts Next Action candidates for Task/To Do/Note items (never auto-sets). Writes Routing Log rows + daily score to `1-execution/areas/brady-os/processing-scores/YYYY-MM.md`. Wired into morning-sweep as Phase 3.6d. Trigger: "process streaming notes", "run the processor", "drain the notes", "catalog", "catalogue".
 - **Commissioner Brief:** `3-reference/skills/commissioner-brief/SKILL.md` — Weekly narrative synthesis from Routing Log + Streaming Notes + git history. Produces a single markdown brief (Headline / Wins / Signal / Blocked / 3 Bets) saved to `1-execution/areas/brady-os/commissioner-briefs/YYYY-MM-DD.md`. Final step of weekly-sweep or on demand. Trigger: "commissioner brief", "weekly commissioner brief".
@@ -76,6 +96,7 @@
 - **Presentation Engine:** `3-reference/skills/presentation-engine/SKILL.md` — Master orchestration skill for all slide decks. Template selection (VC pitch / client-generic / client-project / executive-review / innovation-results / scratch), project context loading, agent mode (OC Optimus / Fran), changelog slide lifecycle, mception publish, Telly notify. Templates in `templates/`. Primary entry point for any deck request.
 - **Deck Generator:** `3-reference/skills/deck-generator/SKILL.md` — Marp rendering sub-component called by presentation-engine. Direct use: markdown → HTML/PDF/PPTX. Custom theme: `references/mception-marp-theme.css`
 - **Marketing Templates:** `3-reference/skills/marketing-templates/SKILL.md` — Template-driven marketing assets (sell sheets, client one-pagers, capability overviews). Placeholder substitution + Playwright PDF. Templates in `references/`.
+- **Engagement Router:** `3-reference/skills/engagement-router/SKILL.md` — Consulting Kit Phase 2 orchestrator. Classifies a problem into 1 of 8 archetypes (Pricing, Ops redesign, Product innovation, M&A thesis, Org design, Competitive response, Growth, Crisis), verifies Input Minimums on the Company row, sequences the framework stack from `3-reference/patterns/framework-router.md`, logs every run to Framework Runs DB (`2c5e7bd1df334cb8be8165f38081cff1`). Trigger: "run engagement for [client] on [problem]".
 - **Claudine Onboarding:** `3-reference/skills/claudine-onboarding/SKILL.md` — Brady's AI strategic partner identity + operating system. Mandatory-load skill at session start. Loads Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`), applies behavioral defaults, owns Jarvis Score + footer protocol.
 - **Recursive Learning:** `3-reference/skills/recursive-learning/SKILL.md` — Captures working-style feedback to BOTH Streaming Notes pipeline (Type=System Instruction, picked up by morning sweep) AND Working Style Learnings table in Onboarding Brief.
 - **Telly:** `0-agents/custom-built-agents/telly.md` — Telegram-to-Notion dispatch bot. Inbound: classic intake + feedback capture (`rule:/never:/always:/remember:` → Streaming Notes as System Instruction, promoted by morning sweep). Outbound: `POST /api/push` used by sweeps for completion notifications. SKILL: `0-agents/custom-built-agents/telly-SKILL.md`

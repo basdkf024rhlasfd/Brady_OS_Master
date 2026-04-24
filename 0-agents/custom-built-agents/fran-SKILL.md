@@ -120,6 +120,7 @@ trust_tier: T1
 At the start of every session with Fran:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items. Current phase: Phase 1 — Innovation Workshop delivery in flight.
+1b. **Load 1915 South's Company page** (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`, row where `Name` matches "1915 South" / "Ashley HomeStore — 1915 South") → read the **Problem Statements** H2 section (P1-PN H3s). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict.
 2. **Load synthesis/cross-thread-synthesis.md** → surface binding constraints and current state.
 3. **Load synthesis/knowledge-gaps.md** → identify High-priority questions still open, SFDRs in flight.
 4. **Check for Innovation Workshop output** in `deliverables/` — if new artifacts have landed since last session, flag it as Stale state and re-synthesize before continuing.
@@ -443,3 +444,33 @@ Brady is the sole communication channel with Justin Woods, Russell Turner, Todd 
 21. **Panda capacity conflict is REAL as of 2026-04-23.** OC Optimus / James Ku in active scope negotiation — wants embedded program lead (1 wk/mo on-site). Brady can likely run BOTH 1915 South and Panda only if 1915 South is right-sized to advisory (Scenario C) or delayed. This is Brady's standing weekend decision. Fran must model the "Brady-at-capacity" scenario in every talk-track recommendation, not assume Brady is freely available. See `engagement-shapes.md` Option E (Delayed Start / Advisory Right-Size) added 2026-04-24.
 22. **Fran contributes to the Project Agent Standup doc** — does NOT own it. When Brady runs a cross-agent standup (see `1-execution/areas/brady-os/project-agent-standups/YYYY-MM-DD.md` pattern, first instance 2026-04-23), Fran supplies: current phase, KR on-track status, top-3 next moves for 1915 South, service dimension scores (Value / Scale / Defend), cross-agent signal (what's new since last standup). OC Optimus supplies the same for Panda. Brady synthesizes.
 23. **Monthly "Lessons Learned" entry to Consulting Practice wiki** — Fran appends one entry per calendar month to the Consulting Practice wiki under a "Lessons from 1915 South engagement" section. One paragraph: what worked, what didn't, what's reusable for the Consulting OS Platform V2. Feeds the R&D loop in the Consulting Delivery Stack workstream (`34ced43b-89c5-812d-a3c0-fb93c05fd8dd`). Not a full retrospective — one entry per month, tagged for reusability.
+
+---
+
+## I. Deliverable Log
+
+Tracks every artifact sent or shared externally. Updated by Brady or Fran whenever something leaves the internal layer (email, Drive share, portal access grant).
+
+**Rule:** Every external-facing share goes here BEFORE it goes anywhere else. If it's not logged, it doesn't count as sent.
+
+| # | Deliverable | Format | Date Sent | Sent To | Channel | Acknowledged | Notes |
+|---|---|---|---|---|---|---|---|
+| 001 | 1915 South Overview Teaser (v3) | PDF | 2026-04-22 | Justin Woods (President) | Email | Pending | Renamed from teaser-2026-04-22; sent with resume |
+| 002 | Brady Smallwood Resume (consulting cut) | PDF | 2026-04-22 | Justin Woods (President) | Email | Pending | Brady_Smallwood_Consulting_v6.pdf from Drive |
+| 003 | Innovation Workshop Results | HTML + PDF | Holstered | Justin Woods (President) | — | — | Awaiting Justin's engagement signal |
+| 004 | M&A Deep Research Brief | HTML + PDF | Holstered | Justin Woods (President) | — | — | Awaiting Brady to determine right timing |
+| 005 | Russell-Facing Teaser (Capital Allocation cut) | PDF | Holstered | Russell Turner (CEO) | — | — | Send only when Justin explicitly asks for Russell loop-in |
+
+### Status definitions
+- **Y (Acknowledged):** Client replied, referenced it, or confirmed receipt
+- **Pending:** Sent, no client reply yet
+- **Holstered:** Staged but not sent — conditional on a client signal
+- **—:** Not yet created or date TBD
+
+### Update triggers
+- Brady sends email with attachment → add row, set Acknowledged = Pending
+- Justin references a deliverable in reply → update Acknowledged = Y, add note
+- New deliverable staged → add row with status = Holstered
+
+### Notion tracking page
+[Deliverable Log — 1915 South](https://www.notion.so/34ced43b89c581a6af81d6f71629e2e4)
