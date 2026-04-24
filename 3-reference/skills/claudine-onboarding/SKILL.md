@@ -264,24 +264,61 @@ Every agent in `0-agents/custom-built-agents/`. Reference when routing, orchestr
 
 ---
 
-## Nightly Automation Cycle
+## Nightly Automation Cycle — HOW IT ACTUALLY RUNS
 
-Brady's OS runs three automated passes before morning sweep fires. Claudine creates the current for this cycle — she doesn't run any of these, she reads their output.
+Phil and Musashi execute via **Claude.ai Code scheduled triggers**, NOT Conductor remote agents. The skill docs say "Conductor" in a few places — that's stale. Actual execution path (verified 2026-04-24):
 
 ```
-Midnight CT  →  Musashi Review (scores agents, surfaces recs + tech + biz ideas)
-4:00 AM CT   →  Phil Pre-Sweep (Notion grooming, reconciles Done/Status, proposes TOP 3)
-~6:00 AM CT  →  Morning Sweep (consumes both; Brady's morning brief + Telly push)
+Midnight CT  →  Musashi Review    (Claude.ai Code schedule: "musashi-review")
+4:00 AM CT   →  Phil Pre-Sweep    (Claude.ai Code schedule: "phil-pre-sweep")
+~6:00 AM CT  →  Morning Sweep     (Brady-initiated, CoWork / Claude Desktop)
 ```
 
-**Claudine's role:** On session start, check whether Phil's Pre-Sweep Primer and Musashi Review rows exist in Streaming Notes for today. If they do, read them before forming any opinion on priorities. They've already done the scan — don't repeat it, start from their output.
+**Each scheduled run opens a Claude.ai Code session** with URL pattern `claude.ai/code/session_XXX?trigger=trig_XXX`. Session uses Sonnet 4.6 by default. Output locations: (1) backup markdown file written to Claude.ai's repo checkout (NOT synced to Conductor workspaces), (2) a Notion Streaming Notes row.
 
-**Consuming morning sweep output:**
-- `Type="Pre-Sweep Primer"` — Phil's grooming report. TOP 3 candidates, carryover, 7-day horizon.
-- `Type="Musashi Review"` — Agent scores + recommendations with approval slugs. Surface to Brady; nothing ships without `approve musashi [slug]`.
-- Dev plans at `.context/plans/sweep-YYYY-MM-DD-[slug].md` — Brady may have already scoped a build before the session started.
+### Critical: Where to find today's Phil/Musashi output
 
-**T1 auto-approval (in progress):** Items that Musashi tags T1 (internal, reversible, no client impact, score ≥7/10) may auto-approve after 24h with no Brady objection. Brady gets a Telly notification with veto window. This is being wired — Claudine will be notified when it goes live.
+**Don't look at local `1-execution/areas/brady-os/phil-morning-audits/` or `musashi-reviews/` from a Conductor workspace.** Those land in Claude.ai Code's repo checkout, which is a different filesystem. If the folders look empty locally, the automation likely still ran — check Notion.
+
+**Canonical query (use this at session start):**
+```
+Streaming Notes DB (2e9ed43b-89c5-80f4-8c21-000b4cfe812e)
+WHERE Created Date = today
+  AND Name starts with "Pre-Sweep Primer"    # for Phil
+      OR Name starts with "Musashi Review"   # for Musashi
+```
+
+**Why Name-prefix and not Type:** Phil and Musashi both write `Type="Daily State"` (existing schema option) because `Pre-Sweep Primer` and `Musashi Review` Type options don't exist in the DB. The name prefix is the queryable distinction.
+
+### Consuming Phil's output
+
+Phil's primer body contains:
+- **Proposed TOP 3** — ranked with one-line why each
+- **Carryover** — stale In Progress items
+- **7-Day Horizon** — upcoming Life Events
+- **Calendar Headlines** — today + tomorrow high-signal
+- **Coherence Flags** — prose in Phil's voice (rule-promise-not-kept, stalled projects, etc.)
+- **Cleanup Executed** — Done/Status reconciles Phil performed autonomously
+
+Claudine's rule: **Read Phil's primer before forming any opinion on today's priorities.** Don't repeat his scan. If the primer is missing, THEN do a fresh scan.
+
+### Consuming Musashi's output
+
+Musashi's review body contains:
+- **Agent Scorecard** — every custom agent 0-10
+- **TOP 3 Recommendations** — with approval slugs
+- **Tech Scan** — new tools/MCPs/platforms worth integrating
+- **Biz Ideation** — monetizable low-lift ideas
+
+Nothing ships without Brady's `approve musashi [slug]` reply.
+
+### T1 auto-approval (wired, awaiting first trigger)
+
+Items Musashi tags T1 (internal, reversible, no client impact, score ≥7/10) auto-approve after 24h with no Brady objection. Streaming Notes Processor Phase 3.5 handles this. Brady gets a Telly notification with a `veto [slug]` window.
+
+### Symptom: "automations didn't run today"
+
+If Claudine ever thinks Phil/Musashi didn't run because local files are empty, that's a CATEGORY ERROR. Check Notion. The Claude.ai Code session + Notion row is the source of truth, not the local filesystem in a Conductor workspace.
 
 ---
 

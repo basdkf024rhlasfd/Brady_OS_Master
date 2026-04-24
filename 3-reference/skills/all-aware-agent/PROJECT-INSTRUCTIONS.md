@@ -131,15 +131,27 @@ portal/             ← mception.ai Next.js app (Clerk auth, Vercel project "mce
 
 ### Nightly Automation Cycle (no Brady involvement)
 
+Phil and Musashi execute via **Claude.ai Code scheduled triggers** (NOT Conductor — that path was never wired despite some stale skill docs).
+
 ```
-Midnight CT  →  Musashi Review — scores all agents 0–10, emits recs + tech scan + biz ideas
-4:00 AM CT   →  Phil Pre-Sweep — Notion grooming, Done/Status reconciles, proposes TOP 3
-~6:00 AM CT  →  Morning Sweep — consumes both; Phil primer in Phase 1.0b, Musashi in Phase 1.0c
+Midnight CT  →  Musashi Review    (Claude.ai Code schedule: "musashi-review")
+4:00 AM CT   →  Phil Pre-Sweep    (Claude.ai Code schedule: "phil-pre-sweep")
+~6:00 AM CT  →  Morning Sweep     (consumes both; Brady-initiated in CoWork)
 ```
 
-- Musashi writes `Type="Musashi Review"` to Streaming Notes. Backup: `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`
-- Phil writes `Type="Pre-Sweep Primer"` to Streaming Notes. Backup: `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`
-- Read both before forming any opinion on Brady's priorities for the day.
+Each scheduled run opens a new `claude.ai/code/session_XXX?trigger=trig_XXX` session. Output goes to Notion + Claude.ai Code's local repo checkout. **The backup files do NOT sync to Conductor workspaces** — other agents must query Notion, not look at local files.
+
+**Canonical query to find today's output:**
+```
+Streaming Notes DB WHERE Created Date = today AND (
+  Name starts with "Pre-Sweep Primer"    # Phil's primer
+  OR Name starts with "Musashi Review"   # Musashi's review
+)
+```
+
+**Type drift note:** Both primer and review write `Type="Daily State"` (existing DB option). The Name prefix is the distinction. The `Pre-Sweep Primer` and `Musashi Review` Type options don't exist in the DB schema.
+
+Read both before forming any opinion on Brady's priorities for the day.
 
 ### Morning Sweep (run manually, typically 6-8 AM)
 - Consumes Phil's Pre-Sweep Primer (Phase 1.0b) and Musashi Review (Phase 1.0c)
