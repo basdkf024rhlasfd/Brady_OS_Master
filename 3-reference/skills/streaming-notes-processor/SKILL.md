@@ -3,7 +3,7 @@ name: streaming-notes-processor
 description: >
   Daily processing pass over Streaming Notes. Where the weekly disposition audit surfaces
   items that have already gone stale, the processor actions items inside their SLA —
-  routes System Instructions, drafts Build Request plans, draft-sets Next Actions on Tasks,
+  routes System Instructions, drafts Execution Request plans, draft-sets Next Actions on Tasks,
   and logs every action to the Routing Log. Measures the daily processing score to
   track movement from 2/10 baseline toward 9/10 target.
 
@@ -46,6 +46,27 @@ Every action writes a Routing Log row. Every run emits a processing-score number
 - **Score log directory:** `1-execution/areas/brady-os/processing-scores/`
 - **Expected runtime:** 5–10 minutes
 
+## Canonical Disposition Rules (read before acting)
+
+Three fields encode "dispositioned" — they must move in order:
+
+1. **`Status`** changes first (Not Started → In Progress → Complete / Remove)
+2. **`Done`** follows: whenever `Status=Complete`, set `Done=__YES__`. These ALWAYS move together.
+3. **`Action`** is set AFTER Complete to route the item:
+   - `Move to Context Hub` → Reference Layer page (durable knowledge)
+   - `Move to Notes db` → Notes DB in Memory Layer (historical)
+   - `Create Task` → Execution Layer
+   - `Create Diary Entry` → personal journal
+   - `Assign to Someone` → use `Assigned Agent` relation
+
+**Never:** set `Status=Complete` without `Done=__YES__`. Never write to the `Target` field (AMY/PAM/Pulse/Overnight — deprecated 2026-04-23).
+
+**Type aliases (schema drift):** `Build Request` doesn't exist — use `Execution Request`. `Pre-Sweep Primer`, `Musashi Review`, `Sweep Feedback`, `Phil Flag` are referenced in docs but auto-created on write. Don't treat their absence from the DB schema as a blocker.
+
+**Telly source:** Telly captures write `Source="Chat"`. No "Telegram" option exists.
+
+---
+
 ## Phase 1 — Query Open Items
 
 Query Streaming Notes DB for items where:
@@ -73,7 +94,7 @@ per-Type SLA + processing destination. Half-SLA is the action trigger:
 | Type | SLA | Half-SLA (action trigger) |
 |---|---|---|
 | System Instruction | 24h | 12h |
-| Build Request | 24h | 12h |
+| Execution Request | 24h | 12h |
 | Sweep Feedback | 24h | 12h |
 | Pulse Note | 48h | 24h |
 | Task / To Do / Note | 72h | 36h |
@@ -97,7 +118,7 @@ handled this item (check Status still "Not Started"), run the same logic:
 4. Set Status=Complete, Done=__YES__, Action="Move to Context Hub" on the note.
 5. Append Routing Log row: `date`, `original_title`, `destination="Rules & Preferences"`, `reason="System Instruction processed"`, `summary=[rule text]`.
 
-### Build Request — draft a dev plan stub
+### Execution Request — draft a dev plan stub
 
 1. Slugify the note title: `streaming-notes-{short-id}-{slug}.md` where `short-id` is
    the last 6 chars of the Notion page ID.
@@ -125,7 +146,7 @@ handled this item (check Status still "Not Started"), run the same logic:
 
 4. Set `Next Action = "Dev plan drafted at .context/plans/streaming-notes-{short-id}-{slug}.md — scope + verify"`.
 5. Leave Status as "Not Started" (build is queued, not done).
-6. Append Routing Log row: `destination="Dev plan"`, `reason="Build Request queued"`,
+6. Append Routing Log row: `destination="Dev plan"`, `reason="Execution Request queued"`,
    `summary="Stub at .context/plans/streaming-notes-{short-id}-{slug}.md"`.
 
 ### Sweep Feedback — queue for next Pre-Flight
@@ -215,16 +236,23 @@ Before actioning items individually, scan open items for thematic clusters. N sm
 - Never collapse a client-touching item (any Next Action containing client name, "email client", "send draft") into a household/admin batch.
 - Never batch items < 2 hours old (they haven't had a chance to be standalone-processed yet).
 - Never cluster `Type` in {Daily State, Keep Handy, Pin to Top, Pre-Sweep Primer, Musashi Review} — these have their own lifecycle.
+- Never touch items where `Action` is already set (pre-existing disposition). Respect prior routing decisions.
+- Never cluster items where `Project` relation is set to a specific client project (Panda/1915 South/etc.) without that project agent's concurrence. Use `Project` relation as a firewall.
+- The legacy `Target` field (AMY/PAM/Pulse/Overnight) is deprecated. Leave null on new writes. Ignore for clustering decisions.
 
 ## Phase 3.8 — Orphan Detection (build-shaped items sitting loose)
 
 Surface items that LOOK like builds/features but aren't parked as Execution Requests. Brady dispositions them one pass per morning.
 
-**Orphan shape test:**
+**Orphan shape test (ALL must be true):**
 - `Type` in {Pulse Note, Note, Thread Log} AND
 - Name or body contains build-shape keywords: "build", "feature", "wire", "deploy", "scaffold", "app", "platform", "agent", "integrate", "API", "MCP", "pipeline" AND
 - `Status NOT IN ["Complete", "Remove"]` AND
+- `Done != "__YES__"` AND (explicit check — `Done=__YES__` with `Status=Not Started` happens; both conditions required)
+- `Action is null` AND (if Action is already set, item was already dispositioned — skip)
 - `age_hours > 48` (gave standalone processing a chance)
+
+**Live query implementation:** When querying Streaming Notes for orphan candidates, the Notion query MUST explicitly filter on Status, Done, and Action fields. A naive keyword search over the DB will surface false positives (items already dispositioned via `Action=Move to Context Hub` but with older Status). Do not rely on semantic search alone.
 
 **For each orphan detected:**
 1. Do NOT modify the item. Only surface it.
@@ -293,7 +321,7 @@ if missing (with header).
 ```
 📋 Streaming Notes Processor — {today}
   Queue: {open_count} open / {past_half_sla} past half-SLA / {stale_count} stale (>SLA)
-  Actioned: {n_system_instructions} System Instructions, {n_build_requests} Build Requests, {n_pulse} Pulse Notes, {n_sweep_feedback} Sweep Feedback
+  Actioned: {n_system_instructions} System Instructions, {n_build_requests} Execution Requests, {n_pulse} Pulse Notes, {n_sweep_feedback} Sweep Feedback
   Drafted (need Brady): {n_drafts} Next Action candidates for Task/To Do items
   Routing Log: +{rows_appended} rows
   Processing Score: {daily_score}/10 (7-day avg: {avg}/10, baseline was 2/10)
@@ -318,7 +346,7 @@ summary block to the sweep brief. Standalone runs output the full report.
 After a run:
 1. Spot-check Routing Log — new rows should be attributable, schema-valid (8 cols).
 2. Spot-check one System Instruction processed → R&P page shows new row in correct section.
-3. Spot-check one Build Request processed → `.context/plans/streaming-notes-*.md` exists, Next Action set.
+3. Spot-check one Execution Request processed → `.context/plans/streaming-notes-*.md` exists, Next Action set.
 4. Confirm score file appended with today's date.
 5. No Task/To Do Next Actions were auto-set — only drafted in report.
 

@@ -11,8 +11,8 @@ description: >
   "catch me up", "full sweep", "update" (before noon CT), or any variation requesting his
   comprehensive morning briefing. Also trigger on "run the Get Ready event" or "execute Get Ready".
 
-  This skill replaces and consolidates: morning mode (AMY), family-daily-brief, email-summary,
-  and news-digest into one sequential execution. It is the canonical morning skill.
+  This skill replaces and consolidates: family-daily-brief, email-summary, and news-digest into
+  one sequential execution. It is the canonical morning skill.
 trust_tier: T1
 ---
 
@@ -727,7 +727,7 @@ Whenever this sweep sets `Status = "Complete"` on any Streaming Note, ALSO set `
 - It DOES update the calendar — writes back to Get Ready event, creates Email Catchup block, and adds missing events from scan
 - It does NOT modify Section B of the Get Ready event — only the weekly sweep can do that (with Brady's approval)
 - It doesn't make decisions — it surfaces information and suggests, Brady decides
-- It doesn't replace the evening capture (PAM) — that's a separate workflow
+- It doesn't replace the evening capture (evening-sweep) — that's a separate workflow
 
 ## Data Dependencies
 
