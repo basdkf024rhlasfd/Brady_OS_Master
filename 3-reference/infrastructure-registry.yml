@@ -58,6 +58,15 @@ notion:
     used_by:
       - CLAUDE.md (agent reference)
 
+  context_vault_db:
+    id: "NEEDS_CONFIGURATION"  # get from Notion: open Context Vault DB → copy UUID from URL
+    env_var: NOTION_CONTEXT_VAULT_DB_ID
+    purpose: Atomic research findings across all engagements (1915 South, Panda, etc.)
+    used_by:
+      - portal/src/app/api/1915-south/research-feed/route.ts
+      - agents/fran (Research Autonomy Mode)
+    note: Add via `vercel env add NOTION_CONTEXT_VAULT_DB_ID` in the mception-ai project
+
   life_events_db:
     id: "c5ce4840162c4702a629081d66492760"  # created 2026-04-22 by Code agent
     purpose: Brady's major life events (travel, milestones, financial meetings, school, medical) with prep checklist, countdown, and owner

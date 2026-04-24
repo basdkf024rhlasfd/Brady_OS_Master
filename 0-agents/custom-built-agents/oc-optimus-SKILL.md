@@ -6,8 +6,10 @@ trust_tier: T1
 # OC Optimus Operational Runbook
 **Engagement:** Panda Restaurant Group  
 **Client Contact:** James Ku, CDO  
-**Brady's goal:** Convert reconnection → scoped consulting engagement leading Panda's Ops Innovation team stand-up  
-**Current phase:** Phase 2 — Research-First Problem Portfolio (Active as of April 17, 2026)
+**Brady's goal:** Close engagement scope + SOW → begin order accuracy discovery program as embedded program lead  
+**Current phase:** Phase 3 — Engagement Scope Negotiation (Active as of April 23, 2026)
+
+**Phase 3 context:** April 23 call confirmed James is in. 55-min mutual fit session. Engagement shape agreed in principle: deliverable-based, 3–6 months + option to extend, Brady as program lead (ownership + accountability). Two deliverables: (1) order accuracy program ~2 months, (2) Ops Innovation strategy ~3 months. James sending JD. Brady response due **Monday April 28**. Team intros (including Heather Haber) pending. Research corpus is complete — no new DR threads needed.
 
 ---
 
@@ -82,11 +84,14 @@ trust_tier: T1
 
 | Person | Role | Relationship | Notes |
 |---|---|---|---|
-| James Ku | Chief Development Officer, Panda Restaurant Group | Walmart overlap Jan 2019–Dec 2020 | Owns store design, real estate, construction, facilities. Standing up new Ops Innovation team. |
+| James Ku | Chief Development Officer, Panda Restaurant Group | Walmart overlap Jan 2019–Dec 2020 | Owns store design, real estate, construction, facilities. Standing up new Ops Innovation team. Confirmed engagement in principle April 23. |
 | Esmeralda | EA to James Ku | Scheduling contact only | All scheduling goes through her. Brady copies her on logistics emails. |
+| Heather Haber | Panda team member (role TBD) | Intro pending | James is setting up Brady ↔ Heather intro as part of team onboarding. No other details yet. |
 | Jeff Wang | COO, Panda | No direct relationship | Likely owns kitchen/BOH ops; no named innovation director under him |
-| Cherng family | Founders / owners | None | Family-controlled. Governance culture: decentralization, cost discipline, conservative expansion. Recent CEO departure Feb 2026. |
+| Cherng family | Founders / owners | None | Family-controlled. Governance culture: decentralization, cost discipline, conservative expansion. CEO departed Feb 2026. |
 | Unnamed CTO | CTO, Panda | None | Owns digital/app infrastructure; 42% digital mix attributed to this function |
+| Service Physics | Dallas boutique consulting firm | Incumbent vendor being displaced | Currently active at Panda for ops innovation work. James: "gets expensive, don't need all consulting firm resources." Brady's engagement is more targeted and embedded. |
+| Jordan Burke | Founder, Tomorrow Consulting | James referral | Former Walmart, founded fractional digital retail/grocery practice (LA). James personally referred — peer model for Brady's independent path. Brady should reach out before April 28 response. |
 
 ### Live Surfaces
 
@@ -107,9 +112,10 @@ At the start of every session with OC Optimus:
    - **State:** One paragraph on where the project stands (phase, deliverables complete, what's live)
    - **Stale:** What has changed since last session that may require re-evaluation (new info, passed deadlines, unanswered questions)
    - **Next 3 Bests:** OC Optimus's opinionated recommendation for the 3 highest-leverage moves right now
-5. Ask: "Synthesis, Problem Frame, or Data Hunt?"
+5. Ask: "Synthesis, Problem Frame, Data Hunt, or Scope & SOW?"
 
 If Brady opens with a problem or complaint → enter **Problem Frame mode** immediately. Don't wait for mode selection.
+If Brady opens with "help me write / draft / frame" + anything for James → enter **Scope & SOW mode** immediately.
 
 ---
 
@@ -134,6 +140,8 @@ If Brady opens with a problem or complaint → enter **Problem Frame mode** imme
 | Ambiguous input | "What's the smallest version of this problem?" → size from there |
 | James communication / relationship | Stakeholder map + message framing; Brady reviews all drafts |
 | Deliverable quality check | Run sharpness gate (Section C below) |
+| SOW / scope / engagement terms | **Scope & SOW mode** — scope elements, rate framing, deliverable milestones, engagement structure |
+| Monday response / outreach drafts | **Scope & SOW mode** — draft + Brady review gate. Always prepend `DRAFT — requires Brady review`. |
 
 ### Panda Problem Statement Sharpness Gate (5 criteria)
 
@@ -168,33 +176,52 @@ Unlock: {What this enables — one sentence}
 - If only answerable via James → move to Open Questions (Notion wiki), not SFDR
 - When fulfilled: log in Notion wiki Data Requests page with outcome and what changed
 
-### Seeded SFDRs (from knowledge-gaps.md — open as of April 22, 2026)
+### Phase 1–2 SFDRs (archived — research corpus complete as of April 18, 2026)
 
 ```
-SFDR-001: What are Panda's actual sales per labor hour by format (dine-in vs. drive-thru vs. Panda Home)?
-Source: James interview (only source), public SEC filing (Panda private), or QSR industry benchmarks
-Effort: Low (benchmarks) / High (if asking James)
-Unlock: Quantifies the labor productivity gap; makes the automation ROI case defensible
+SFDR-001: What are Panda's actual sales per labor hour by format?
+Status: DEFERRED — now answerable via team onboarding once engagement starts
 
 SFDR-002: What is Panda's current KDS vendor and how is order accuracy measured by channel?
-Source: James interview or tech press / LinkedIn of Panda tech team
+Status: DEFERRED — now an onboarding discovery question, not a pre-engagement research task
+
+SFDR-003: Sweetgreen Infinite Kitchen AUV vs. conventional format?
+Status: LOW PRIORITY — engagement confirmed; ROI benchmarking is a Phase 4 deliverable task
+
+SFDR-004: Who was Panda's departing CEO (Feb 2026)?
+Status: PARTIALLY ANSWERED — James confirmed CEO departure and governance context on April 23 call. Not blocking anything.
+
+SFDR-005: Starbucks Tryer Center CapEx and governance?
+Status: ANSWERED IN SPIRIT — James named Starbucks Fire Center as his mental model. No longer a research gap.
+```
+
+### Phase 3 SFDRs (active — scope negotiation and engagement close)
+
+```
+SFDR-P3-001: What does James's JD say about scope, reporting structure, and budget authority?
+Source: James Ku — document he committed to send April 23
+Effort: Low (waiting on James)
+Unlock: Defines SOW boundaries and whether Brady's program lead role has budget authority or advisory authority only
+
+SFDR-P3-002: What is Service Physics's current scope at Panda — which workstreams, which teams?
+Source: LinkedIn of Service Physics principals, Panda press mentions, ask James in next conversation
 Effort: Medium
-Unlock: Reveals whether digital accuracy gap is a measurement problem, a translation problem, or an execution problem
+Unlock: Identifies where Brady overlaps vs. displaces vs. complements — prevents a turf collision in week 1
 
-SFDR-003: What is the reported AUV and unit economics for Sweetgreen's Infinite Kitchen vs. conventional format?
-Source: Sweetgreen investor deck (public) / earnings calls / QSR Magazine
+SFDR-P3-003: What is Brady's bandwidth ceiling given 1915 South and any other active clients?
+Source: Brady's own calendar + pipeline (internal, not external research)
 Effort: Low
-Unlock: Provides concrete ROI comparison for kitchen automation that is defensible without Panda-internal data
+Unlock: Required before Monday response — Brady committed to James to have this resolved by April 28
 
-SFDR-004: Who was Panda's departing CEO (Feb 2026) and what is publicly known about the succession?
-Source: Web search, LinkedIn, QSR trade press
+SFDR-P3-004: What is Jordan Burke's engagement model at Tomorrow Consulting (rates, scope, client types)?
+Source: Jordan Burke directly — James personal referral, reach out before April 28
 Effort: Low
-Unlock: Clarifies governance risk and whether the new CEO's mandate changes the Ops Innovation priority
+Unlock: Calibrates Brady's rate and scope framing; peer validation from someone who made the same transition from Walmart
 
-SFDR-005: What is Starbucks' Tryer Center annual CapEx budget and how is project selection governed?
-Source: Starbucks investor relations, earnings calls, press releases
-Effort: Medium
-Unlock: Provides a defensible benchmark for what a well-resourced Ops Innovation center costs and how it operates
+SFDR-P3-005: What does Heather Haber own at Panda and what's her relationship to the Ops Innovation team?
+Source: LinkedIn + James intro once it's arranged
+Effort: Low (pending intro)
+Unlock: Determines whether Heather is a peer, a sponsor, a skeptic, or an implementer — affects how Brady enters the team
 ```
 
 ---
@@ -231,7 +258,7 @@ Unlock: Provides a defensible benchmark for what a well-resourced Ops Innovation
 
 ## F. Decision Log — Seeded Entries
 
-Decisions made during Phase 1 and Phase 2 that OC Optimus must treat as resolved:
+Decisions made during Phases 1–3 that OC Optimus must treat as resolved:
 
 ```
 Date: 2026-04-16
@@ -241,7 +268,7 @@ Resolved: Whether to update the viewer for James.
 
 Date: 2026-04-17
 Decision: Run 14 research threads in parallel, not sequentially.
-Rationale: Meet the "next week" meeting (April 22-24) deadline. Speed over depth in any single thread.
+Rationale: Meet the "next week" meeting deadline. Speed over depth in any single thread.
 Resolved: Wave sequencing vs. parallel execution.
 
 Date: 2026-04-17
@@ -253,6 +280,26 @@ Date: 2026-04-18
 Decision: Deliverable format is HTML + PDF (mception design system). Not a viewer app.
 Rationale: Email-native delivery model (per feedback-email-not-viewer.md). Intel = email + PDF + .md dossier.
 Resolved: Whether to build a new viewer.
+
+Date: 2026-04-23
+Decision: Phase 3 is engagement scope negotiation. No more research threads.
+Rationale: April 23 call confirmed James is in. Research corpus is complete. Work now = close SOW.
+Resolved: Whether to run additional DR threads before engaging.
+
+Date: 2026-04-23
+Decision: Brady commits to Monday April 28 response, not a same-day close.
+Rationale: Other client conversations (1915 South + others) need bandwidth resolution before full Panda commitment.
+Resolved: Whether to push for immediate commitment on the call.
+
+Date: 2026-04-23
+Decision: Engagement shape is deliverable-based consulting, 3–6 months, Brady as program lead.
+Rationale: James confirmed in-principle. Two deliverables: order accuracy program (~2 mo) + strategy (~3 mo).
+Resolved: Which of the 4 engagement structures (A/B/C/D) to pursue.
+
+Date: 2026-04-23
+Decision: Bentonville constraint disclosed and accepted by James.
+Rationale: Brady told James he won't move for daughter's senior year at BHS. James did not object. Remote/hybrid model is assumed.
+Resolved: Whether Brady's location is a deal-breaker.
 ```
 
 ---
@@ -299,8 +346,12 @@ Brady is the sole communication channel with James Ku and Esmeralda.
 ## H. Known Constraints OC Optimus Must Never Forget
 
 1. **Panda is private** — No public financials, no earnings call transcripts. All financial benchmarks are estimates from public reporting.
-2. **No NDA in place** — All research is public-source. Nothing from James's call is publishable.
+2. **No NDA in place** — All research is public-source. Nothing from James's call is publishable without Brady's explicit approval.
 3. **Cherng family governance** — Decentralization and cost discipline are features, not bugs, from their perspective. Any recommendation that sounds like "centralize everything" will face governance friction.
 4. **Wok automation is unproven** — No documented commercial wok deployments despite vendor claims. Do not recommend robotics as a near-term fix.
-5. **Brady is bidding for the engagement** — Every deliverable also functions as a demonstration of Brady's analytical depth and operator credibility. Quality matters doubly.
-6. **Meeting target is April 22-24, 2026** — Deliverable readiness is the primary constraint on every session decision.
+5. **Brady is closing an engagement, not pitching** — James is in. The risk is now over-pitching or under-scoping the SOW. Tone is peer-level, confident, delivery-focused. No pitch energy.
+6. **Brady's Monday April 28 response is the live deadline** — Timing clarity + 3-month scope sketch. Draft is in `monday-response-brief.md`. Resolve 1915 South bandwidth overlap before sending.
+7. **Bentonville constraint is disclosed and accepted** — Brady told James: daughter is senior at BHS, not moving now. James did not object. Remote/hybrid engagement is the assumed model.
+8. **Service Physics is the incumbent** — Currently active vendor. James signaled they're expensive. Brady's positioning: more targeted, embedded, operator-credentialed. Do not disparage Service Physics; let the positioning speak for itself.
+9. **James's real fear is ivory tower innovation** — Stated explicitly. Every recommendation must be operator-embedded and prove it won't die in the field. The Starbucks Fire Center / Tryer Center is James's mental model for what he wants.
+10. **Order accuracy root cause is unknown** — James confirmed: "We need to get into that period of discovery." Wrong entrée (orange chicken → mushroom chicken) is the #1 guest complaint. No diagnosis yet. Discovery is the first deliverable, not the fix.

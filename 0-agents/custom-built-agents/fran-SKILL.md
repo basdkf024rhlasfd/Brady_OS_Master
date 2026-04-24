@@ -249,10 +249,7 @@ Unlock: Peer-franchisee precedent language for workshop + teaser
 **New SFDRs opened by M&A Deep Research + FRG context (2026-04-22):**
 
 ```
-SFDR-006: Ashley corporate public commentary on FRG collapse specifically — Wanek has reason to acknowledge a major Southeast competitor going dark.
-Source: Ashley press releases Nov 2024 – Feb 2026, HFA interviews, Furniture Today
-Effort: Low (<30min)
-Unlock: Gives Brady talk-track cover for the "FRG real-estate dividend" narrative with Justin
+SFDR-006 — CLOSED 2026-04-24: Wanek has been publicly silent on FRG by name across all major interview surfaces (HFA Part 1+2, HNN High Point Market Nov 2025, Nationwide Southwest Dec 2024). Silence is intentional: Ashley was a wholesale supplier to both American Freight and Buddy's Home Furnishings (vendor relationship confirmed HNN Jun 2025). Brady should NOT try to echo Wanek language — frame FRG independently using structural argument. Key proxy: Broad River Retail (Ashley's largest SE licensee) expanded 33→38 stores 2025-2026, absorbing former big-box space. Full dossier: `sfdr-006-ashley-frg-commentary.md`.
 
 SFDR-007: Is Buddy's Home Furnishings (surviving FRG brand) being divested, and at what multiple?
 Source: FRG bankruptcy court docket, restructuring filings, trade press
@@ -294,9 +291,21 @@ SFDR-014: Did Bassam Zeidan attend Ashley Global Retail dealer forums during Jus
 Source: Justin (low-friction direct question)
 Effort: Low (Justin question)
 Unlock: Determines whether this is a warm Justin-intro or a cold approach
+
+SFDR-015: Does Ashley corporate have an official franchisee growth program or real-estate incentive tied to the 2025 expansion push? Any formal program for taking FRG-vacated sites?
+Source: Ashley.biz press releases, HFA franchise conference coverage, Furniture Today
+Effort: Low (<30min)
+Owner: Fran-web-pull
+Unlock: If Ashley corporate is incentivizing licensees to grab FRG boxes, that materially accelerates the urgency argument Brady makes to Justin
+
+SFDR-016: Has Broad River Retail specifically absorbed any former American Freight or Badcock storefronts, or are their new sites net-new locations?
+Source: Furniture Today, Home News Now, Broad River newsroom (newsroom.broadriverretail.com), CoStar (if accessible)
+Effort: Medium (1-2hr)
+Owner: Fran-web-pull (public press) / Paid-access-required (CoStar addresses)
+Unlock: If Broad River is confirmed taking FRG boxes in SC/NC/GA, that's a concrete peer-operator comp Brady can cite to Justin: "Your largest peer licensee is already converting this real estate."
 ```
 
-**Run order priority 2026-04-23+:** SFDR-006 → SFDR-009 → SFDR-014 (Justin-direct, lowest cost) → SFDR-012 → SFDR-013.
+**Run order priority 2026-04-24+:** SFDR-009 → SFDR-015 → SFDR-016 → SFDR-014 (Justin-direct) → SFDR-012 → SFDR-013.
 
 ---
 
@@ -447,7 +456,61 @@ Brady is the sole communication channel with Justin Woods, Russell Turner, Todd 
 
 ---
 
-## I. Deliverable Log
+## I. Daily Research Heartbeat (added 2026-04-24)
+
+**Standing rule: every invocation of Fran produces NET NEW information — never a summary-only session.**
+
+Each Fran session must end with at least ONE of:
+- New Context Vault row (fills a gap / adds a data point)
+- Closed SFDR with finding logged
+- Refreshed existing row (new datapoint, corrected fact, source verification)
+- New SFDR opened with specific source + owner + effort
+
+**Breadth — rotate through:**
+- People (named individuals with role/context)
+- Deals (M&A transactions, comps, signals)
+- Operators (licensees, competitors, suppliers, adjacency players)
+- Market (regulatory, financing, consumer-behavior signals)
+- Ashley corporate (Wanek statements, franchisee programs, GMROI data)
+- Targets (45-mile-radius opportunities)
+- Brady's network (warm-intro paths)
+- **Family** (Turner family, Garland as 5th gen, civic/philanthropy, transition context)
+
+**Depth — rotate through:**
+- Upgrade claim from "probably" to "confirmed" (2+ independent sources)
+- Extract direct quote from Wanek / Russell / Justin for talk-track arsenal
+- Trace precedent transaction to actual outcome
+- Fill named-entity gap ("we know X exists; who runs it exactly")
+
+**No artifact bloat rule:** If it won't land in an artifact Brady reads within 30 days, skip it.
+
+---
+
+## J. Platform Dynamic — mception.ai/1915-south (added 2026-04-24)
+
+**Current state:** static HTML hub with file cards. Clerk-gated. Brady-only.
+
+**Directive:** Make the hub interactive — dynamic, not a document.
+
+**Four layers, priority order:**
+
+1. **Page Chatbot on the hub** — Wire existing `3-reference/skills/page-chatbot/SKILL.md` to Fran's knowledge base (M&A brief + Innovation Workshop + Context Vault). Visitor asks: *"What's the sleep vertical case?"* / *"Who's our first tuck-in and why?"* / *"What did you learn about Sam Zeidan?"* — gets grounded answers. 25-page PDF → 5-minute conversation. **Size:** medium (1-2 days).
+
+2. **Live M&A Target Map** — Southeast map: 1915 South's 29 stores + named acquisition targets (dossier-on-click) + FRG vacant-box inventory. **Size:** medium (2 days).
+
+3. **Scenario Planner** — Interactive what-if: engagement shape (A-E), roll-up cadence, capital timing → revenue/EV/Brady-capacity trajectory. **Size:** medium (2-3 days).
+
+4. **Daily Research Feed** — Auto-pull Ashley corporate / FRG / furniture M&A news tagged to 1915 South thesis. Writes to Context Vault + publishes to hub. **Size:** small (0.5-1 day) on `daily-whitepaper` pattern.
+
+**First-move recommendation:** (4) Research Feed before Apr 29 nudge — tells Justin the hub is alive, not shelfware. Then (1) Page Chatbot once Justin/Russell get portal access.
+
+**Integration pattern:** Context Vault is SSOT. Repo = text source. Drive = rich-doc library. Context Vault = queryable atoms feeding interactive surfaces. Portal = read surface.
+
+**Brady-approval gate:** Pick the first layer to build. Default: (4) Research Feed.
+
+---
+
+## K. Deliverable Log
 
 Tracks every artifact sent or shared externally. Updated by Brady or Fran whenever something leaves the internal layer (email, Drive share, portal access grant).
 
