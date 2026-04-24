@@ -120,9 +120,11 @@ trust_tier: T1
 At the start of every session with Fran:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items. Current phase: Phase 1 — Innovation Workshop delivery in flight.
+1b. **Load 1915 South's Company page** (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`, row where `Name` matches "1915 South" / "Ashley HomeStore — 1915 South") → read the **Problem Statements** H2 section (P1-PN H3s). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict.
 2. **Load synthesis/cross-thread-synthesis.md** → surface binding constraints and current state.
 3. **Load synthesis/knowledge-gaps.md** → identify High-priority questions still open, SFDRs in flight.
 4. **Check for Innovation Workshop output** in `deliverables/` — if new artifacts have landed since last session, flag it as Stale state and re-synthesize before continuing.
+4b. **Query Research Library** (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` contains "1915 South" AND `Status=Active`. List the 5 most recent rows and any row >30d since `Last Referenced` (re-surface candidates). When citing a Library row in synthesis, increment `Reference Count` by 1 and set `Last Referenced` to today — this credits K16c Leverage.
 5. **Orient Brady** in ≤200 words using the **State / Stale / Next 3 Bests** format:
    - **State:** One paragraph — phase, what's shippable, what's live, current relationship posture with Justin
    - **Stale:** What has changed / passed / not answered since last session
@@ -505,3 +507,33 @@ Each Fran session must end with at least ONE of:
 **Integration pattern:** Context Vault is SSOT. Repo = text source. Drive = rich-doc library. Context Vault = queryable atoms feeding interactive surfaces. Portal = read surface.
 
 **Brady-approval gate:** Pick the first layer to build. Default: (4) Research Feed.
+
+---
+
+## K. Deliverable Log
+
+Tracks every artifact sent or shared externally. Updated by Brady or Fran whenever something leaves the internal layer (email, Drive share, portal access grant).
+
+**Rule:** Every external-facing share goes here BEFORE it goes anywhere else. If it's not logged, it doesn't count as sent.
+
+| # | Deliverable | Format | Date Sent | Sent To | Channel | Acknowledged | Notes |
+|---|---|---|---|---|---|---|---|
+| 001 | 1915 South Overview Teaser (v3) | PDF | 2026-04-22 | Justin Woods (President) | Email | Pending | Renamed from teaser-2026-04-22; sent with resume |
+| 002 | Brady Smallwood Resume (consulting cut) | PDF | 2026-04-22 | Justin Woods (President) | Email | Pending | Brady_Smallwood_Consulting_v6.pdf from Drive |
+| 003 | Innovation Workshop Results | HTML + PDF | Holstered | Justin Woods (President) | — | — | Awaiting Justin's engagement signal |
+| 004 | M&A Deep Research Brief | HTML + PDF | Holstered | Justin Woods (President) | — | — | Awaiting Brady to determine right timing |
+| 005 | Russell-Facing Teaser (Capital Allocation cut) | PDF | Holstered | Russell Turner (CEO) | — | — | Send only when Justin explicitly asks for Russell loop-in |
+
+### Status definitions
+- **Y (Acknowledged):** Client replied, referenced it, or confirmed receipt
+- **Pending:** Sent, no client reply yet
+- **Holstered:** Staged but not sent — conditional on a client signal
+- **—:** Not yet created or date TBD
+
+### Update triggers
+- Brady sends email with attachment → add row, set Acknowledged = Pending
+- Justin references a deliverable in reply → update Acknowledged = Y, add note
+- New deliverable staged → add row with status = Holstered
+
+### Notion tracking page
+[Deliverable Log — 1915 South](https://www.notion.so/34ced43b89c581a6af81d6f71629e2e4)

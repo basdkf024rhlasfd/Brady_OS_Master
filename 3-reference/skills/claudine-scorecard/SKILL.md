@@ -297,6 +297,63 @@ Caveat: doesn't require PR correlation; just uses item closure as proxy. Improve
 
 ---
 
+### Tier 5 — Knowledge Accumulation (the ever-growing KB)
+
+**K16. Research Score (composite, 0–10)** — is the Research Library becoming an asset, or a graveyard?
+
+Composed of three pressures that must all be active:
+
+**K16a. Indexed Reports (0–3)** — keep capturing.
+```
+library_count = COUNT(rows in Research Library DB 4f87259b-e9a7-4d35-86ba-2148cb472d0f
+                     WHERE Status = "Active")
+K16a = min(3, floor(library_count / 25))
+```
+| library_count | K16a |
+|---|---|
+| ≥75 | 3 |
+| 50-74 | 2 |
+| 25-49 | 1 |
+| <25 | 0 |
+
+**K16b. Project Coverage (0–3)** — every active engagement has a real research spine.
+```
+active_projects = {Panda, 1915 South, + any Client Relevance tag with ≥1 Streaming Note
+                   written in last 30d for that project}
+for each active project p:
+  coverage[p] = COUNT(Research Library rows WHERE Client Relevance CONTAINS p
+                     AND Status = "Active")
+K16b = min(3, COUNT(p WHERE coverage[p] >= 10))
+```
+| projects_with_≥10_sources | K16b |
+|---|---|
+| ≥3 | 3 |
+| 2 | 2 |
+| 1 | 1 |
+| 0 | 0 |
+
+**K16c. Leverage (0–4)** — the anti-graveyard metric. Research must get used.
+```
+K16c = sum(Reference Count increments on Research Library rows in last 30 days)
+     / 5  (cap at 4)
+```
+| references_30d | K16c |
+|---|---|
+| ≥20 | 4 |
+| 15-19 | 3 |
+| 10-14 | 2 |
+| 5-9 | 1 |
+| <5 | 0 |
+
+**K16 composite = K16a + K16b + K16c** (max 10, no averaging — sum of three forces).
+
+**Interpretation:** A 10 means you're stocking the library, every client has ≥10 sources, and the library is being retrieved into deliverables. Scoring <5 surfaces specific proposed fixes:
+- K16a low → run `deep-research` on the weakest-covered topic tag
+- K16b low → identify the bare project and schedule a research sprint for it
+- K16c low → library is write-only; wire more retrieval into `exec-intel-brief` / project agents
+
+---
+
 ### The Single Meta-Question
 
 **K15. Ship-to-Signal Ratio** — are we shipping faster than we're surfacing?
@@ -336,7 +393,8 @@ Claudine Score = ROUND(
   + (K13 × 1.0)
   + (K14 × 1.0)
   + (K15 × 1.5)        # 1.5x weight on the meta ratio
-) / 17.5                # sum of weights
+  + (K16 × 1.5)        # 1.5x weight on the KB (compounding asset)
+) / 19.0                # sum of weights
 ```
 Result: 0–10 scale. Reported weekly.
 
@@ -374,6 +432,12 @@ Tier 4 — Commercial Output
   K13 New skills/week: {value} → {score}/10
   K14 Execution Request → close median: {value}d → {score}/10
 
+Tier 5 — Knowledge Accumulation
+  K16 Research Score: {a}+{b}+{c}={total}/10
+       ├─ Indexed Reports: {library_count} → {K16a}/3
+       ├─ Project Coverage: {n_projects_covered}/3 projects w/ ≥10 sources → {K16b}/3
+       └─ Leverage (30d refs): {ref_count} → {K16c}/4
+
 Meta
   K15 Ship-to-Signal Ratio: {value} → {score}/10
 
@@ -407,6 +471,9 @@ A dropping metric is a signal, not a scold. The skill auto-proposes a fix for an
 | K10 rising | Skills rotting | Run doctrine-sync + identify deprecation candidates |
 | K13 dropping | Ship velocity collapsing | Check if too much time in maintenance vs new capability |
 | K15 < 1.0 | Swimming, not steering | This is the loud alarm. Stop everything. Commissioner review. |
+| K16a dropping | Capture rate falling | Wire more Research intake — add topic tags, prompt Telly capture |
+| K16b dropping | Client coverage bare | Run deep-research on the specific under-covered project |
+| K16c dropping | Library is write-only (graveyard risk) | Audit retrieval paths in exec-intel-brief, project agents, deep-research |
 
 The scorecard auto-parks each proposed fix as a Streaming Note `Type="Execution Request"` with Priority matching the severity of the drop.
 
@@ -431,6 +498,7 @@ The scorecard auto-parks each proposed fix as a Streaming Note `Type="Execution 
 ## Data Dependencies
 
 - Streaming Notes DB `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
+- Research Library DB `4f87259b-e9a7-4d35-86ba-2148cb472d0f` (data source `12917822-36ca-4ccd-9763-538226844015`)
 - Processing score log `1-execution/areas/brady-os/processing-scores/`
 - Phil audits `1-execution/areas/brady-os/phil-morning-audits/`
 - Musashi reviews `1-execution/areas/brady-os/musashi-reviews/`

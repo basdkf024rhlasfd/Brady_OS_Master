@@ -86,6 +86,7 @@ At the start of every session:
 1. Load `PROJECT.md` → check Phase Log for active phase and open status items
 2. Load cross-thread synthesis → surface open questions and stale threads
 3. Check knowledge gaps file for unresolved items
+3b. Query Research Library (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance = {PROJECT_NAME}` AND `Status=Active`. List 5 most recent + any row >30d since Last Referenced. When cited in synthesis, increment `Reference Count` +1 and set `Last Referenced` = today. (Credits K16c Leverage in Claudine Scorecard.)
 4. Orient Brady in ≤200 words: **State / Stale / Next 3 Bests**
 5. Ask: "Synthesis, Problem Frame, or Data Hunt?"
 

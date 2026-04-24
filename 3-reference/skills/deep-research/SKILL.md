@@ -231,6 +231,30 @@ Rate every source on a 3-tier system:
 Generate a structured markdown report. This is NOT a link dump — connect dots, identify patterns,
 surface what matters. Every factual claim gets a numbered source citation.
 
+### Step 3.1b: Write to Research Library (always)
+
+Every deep-research run writes its output AND its top sources to the Research Library DB
+(`4f87259b-e9a7-4d35-86ba-2148cb472d0f`, data source `12917822-36ca-4ccd-9763-538226844015`).
+This is non-optional — the Library is the canonical place research lives. Without this step,
+Claudine Research Score (K16) cannot credit the run.
+
+1. **Write the synthesized report itself as one Research Library row:**
+   - Title = Research title
+   - Source URL = `.context/research/[slug].md` path (or final PDF URL if published)
+   - Source Type = Internal
+   - Source Credibility = 4 - Expert (synthesized by deep-research)
+   - Topic Tags = auto-inferred from research question (same keyword map the processor uses)
+   - Project = link to any project the request came from (calling skill should pass through)
+   - Client Relevance = if research was client-scoped, tag the client; else Internal
+   - TL;DR = the Executive Summary (3-5 sentences)
+   - Key Quotes = top 3 findings verbatim
+   - Captured By = "Deep Research"
+   - Status = Active
+
+2. **Write each top-tier source (credibility ≥ 3) as its own Research Library row** — dedupe on Source URL. If a URL already exists, increment `Reference Count` on the existing row and set `Last Referenced` to today rather than creating a duplicate. Cap at 15 source rows per run to avoid flooding.
+
+3. If the calling skill (innovation-workshop, exec-intel-brief, daily-whitepaper) passes a `client_slug` or `project_id`, propagate that to both the synthesis row and all source rows.
+
 ### Step 3.2: Report Template
 
 ```markdown

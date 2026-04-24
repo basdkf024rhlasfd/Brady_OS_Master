@@ -73,7 +73,7 @@ file has a newer git commit than the `last_pasted` date recorded in the registry
 Brady to re-paste into the named Claude.ai Project if so.
 Configured in `repo-registry.yml` under `brady-os.sync_paths.claude_project_prompts`.
 
-- `3-reference/skills/all-aware-agent/PROJECT-INSTRUCTIONS.md` → Claude.ai Project "All-Aware Agent"
+_(None currently — all-aware-agent was retired 2026-04-24, its content is now in claudine-onboarding.)_
 
 ## Execution Steps
 
@@ -184,9 +184,6 @@ FILE DRIFT
   CoWork Prompts:
     morning-sweep (Documents) .......... [CURRENT | COWORK STALE | MISSING]
     morning-sweep (Downloads) .......... [CURRENT | COWORK STALE | MISSING]
-
-  Claude.ai Projects:
-    all-aware-agent .................... [CURRENT | CLAUDE.AI STALE | NEVER PASTED]
 
 -----------------------------------------------
 SUMMARY
