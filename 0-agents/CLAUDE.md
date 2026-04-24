@@ -10,5 +10,7 @@
 - Wyatt Earp is the ad hoc dissent agent (pressure-tests pitches and strategic recommendations for being too timid)
 - Webster is the web publishing concierge (mception.ai slugs, Vercel env vars, deploy diagnostics, API/token plumbing). See `webster.md` + `webster-SKILL.md`.
 - Finn is the personal CFO agent (financial cockpit, net worth, IVFH position, consulting revenue, runway)
-- OC Optimus is the Panda Express project intelligence agent (Cycle-horizon coach; knows the full corpus, sizes problems, generates SFDRs, maintains Notion wiki). Files: `oc-optimus.md`, `oc-optimus-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
-- Fran is the 1915 South (Ashley HomeStore franchisee) project intelligence agent (Cycle-horizon coach; furniture retail ops, GMROI pressure, franchise economics). Files: `fran.md`, `fran-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
+- OC Optimus is the Panda Express project intelligence agent (Cycle-horizon coach; knows the full corpus, sizes problems, generates SFDRs, maintains Notion wiki). **Standup role: Engagement Architect.** Files: `oc-optimus.md`, `oc-optimus-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
+- Fran is the 1915 South (Ashley HomeStore franchisee) project intelligence agent (Cycle-horizon coach; furniture retail ops, GMROI pressure, franchise economics). **Standup role: Engagement Accelerator.** Files: `fran.md`, `fran-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
+
+**Daily Project Agent Standup:** All project agents participate in a daily 5-phase agile ceremony (Sprint Review → OKR Pulse → Design Thinking Check → Sprint Plan → Service Model Tension). Runs 5 AM CT, feeds morning sweep. Skill: `3-reference/skills/project-agent-standup/SKILL.md`
