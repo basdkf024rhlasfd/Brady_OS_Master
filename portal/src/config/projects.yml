@@ -133,6 +133,19 @@ projects:
       baseUrl: "/financial-assistant"
       path: "/index.html"
 
+  # --- Brady OS ---
+  - slug: agent-map
+    label: "Agent Ecosystem"
+    short: "A"
+    href: "/agent-map"
+    description: "Brady OS agent ecosystem map. All 18 agents, tiers, triggers, outputs, and handoffs. Click any node for detail."
+    approved: 2026-04-24
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: ""
+      path: "/os/agent-ecosystem.html"
+
   # --- Personal / Holdings ---
   - slug: sycamore-lane
     label: "Sycamore Lane"

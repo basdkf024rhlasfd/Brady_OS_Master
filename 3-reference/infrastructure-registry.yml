@@ -6,7 +6,7 @@
 # ─── Notion Databases ───
 notion:
   streaming_notes_db:
-    id: "2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83"
+    id: "2e9ed43b-89c5-80f4-8c21-000b4cfe812e"  # corrected 2026-04-23; registry had typo (800d-acc7), all other files use 80f4-8c21
     purpose: Telly captures, sweep notes, pipeline intake
     used_by:
       - 3-reference/scripts/telly-archive.mjs

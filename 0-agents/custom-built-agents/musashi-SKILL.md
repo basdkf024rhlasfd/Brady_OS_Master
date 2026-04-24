@@ -63,10 +63,11 @@ improvement, zero auto-shipping.
 
 ## Execution Environment
 
-**Runs on:** Conductor remote agent (scheduled via `/schedule`).
+**Runs on:** Claude.ai Code scheduled triggers (schedule name: `musashi-review`, daily midnight CT / 05:00 UTC in CDT). Each run opens a session at `claude.ai/code/session_XXX?trigger=trig_XXX` using Sonnet 4.6.
 
-**Scheduled:** Daily at `0 5 * * *` UTC = **midnight (00:00) CT** (CDT / 11 PM
-CST — always before the 4 AM Phil Pre-Sweep and the 6 AM morning sweep).
+**NOT Conductor:** Earlier docs suggested Conductor `/schedule` — that path was never wired. Claude.ai Code triggers are the actual execution surface.
+
+**Scheduled:** Daily midnight (00:00) CT — always before the 4 AM Phil Pre-Sweep and the 6 AM morning sweep.
 
 **Access needed:**
 - Notion MCP (read agents' activity, write review row + routing log)
@@ -81,12 +82,12 @@ budget mid-run, degrade gracefully — skip Phase 4 (Tech Scan) before skipping
 Phase 2 (Scoring).
 
 **Notion DB IDs** (canonical from `3-reference/infrastructure-registry.yml`):
-- Streaming Notes: `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`
+- Streaming Notes: `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
 - Routing Log (page with markdown table): `344ed43b-89c5-816a-ab54-ca49ca239748`
 
 **Output locations:**
-- Backup (persistent, gitted): `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`
-- Notion handoff: one Streaming Notes row per run, `Type="Musashi Review"`
+- Backup (persistent, gitted): `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md` — **lands in Claude.ai Code's repo checkout, NOT automatically synced to Conductor workspaces.** Other agents must read the Notion handoff row, not rely on local filesystem.
+- Notion handoff: one Streaming Notes row per run. Name MUST start with `Musashi Review — YYYY-MM-DD`. Type MUST be `Daily State` (DB schema does not have a `Musashi Review` Type option — Name prefix is the queryable distinction).
 - Routing Log: one summary row per run
 
 ## Pre-Flight (Silent)
@@ -143,6 +144,7 @@ For each agent scoring < 8/10, emit 1–3 specific recommendations.
 - **What**: concrete edit (add X query, wire Y MCP, split into two agents, merge with Z, write a missing SKILL).
 - **Why**: which dimension it lifts and by how much. "Bumps Activation 0→2 if we wire this to the weekly sweep."
 - **Size**: small (<30 min), medium (30–90 min), large (>90 min). Morning sweep applies existing Build Request autonomy gates.
+- **Trust Tier tag**: classify every recommendation as `T1` (internal, reversible, no client-facing surface) or `T2+` (client-facing, outbound, or irreversible). T1 items are eligible for auto-approval after 24h with no Brady objection.
 - **Cost note** (if large): flag if the dev plan is likely token-heavy. Brady approves anything medium/large before execution.
 - **Approval gate**: `Say "approve musashi [agent]-[n]" to queue for build.`
 
@@ -356,19 +358,13 @@ Phase 1.0b, before Phase 1.1 Gmail Scan):
 
 The daily tension cycle: **Musashi proposes → morning sweep sizes → Brady approves → builder executes → next night Musashi re-scores.**
 
-## Scheduling
+## Scheduling — Claude.ai Code Triggers
 
-Wire the midnight trigger via `/schedule`:
+Already wired. Schedule name: `musashi-review`. Cadence: daily midnight (00:00) CT. Platform: Claude.ai Code scheduled sessions.
 
-```
-Name: Musashi Review
-Cron: 0 5 * * *     # midnight (00:00) CT daily (UTC)
-Command: invoke musashi-review skill
-```
+To modify cadence or trigger: open Claude.ai → Code → Triggers → `musashi-review` → edit.
 
-Monitor first 3 days of automated runs before trusting unattended. Verify the
-backup lands, the Notion row is compact and scannable, and morning sweep's new
-1.0c section reads it cleanly.
+Verification: Claudine queries Notion Streaming Notes for `Name starts with "Musashi Review" AND Created Date = today` at morning sweep start.
 
 ## What This Skill Does NOT Do
 
