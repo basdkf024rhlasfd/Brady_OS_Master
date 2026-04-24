@@ -14,6 +14,13 @@ description: >
 
   This skill runs standalone or feeds into morning-sweep (compact mode) and
   weekly-sweep (detailed mode). Also publishes an HTML dashboard to mception.ai.
+
+  BOUNDARY vs financial-anomaly-review: This skill = positive picture (balances,
+  runway, pipeline, budget). financial-anomaly-review = adversarial cross-source
+  detection on household/shared activity (T0, private-only, never touches the
+  portal chat surface). If Brady says "anomaly check" / "anything weird on the
+  cards" / "spouse review" → route to financial-anomaly-review. If he says
+  "snapshot" / "cockpit" / "how are we doing" → this skill.
 ---
 
 # Financial Assistant
@@ -76,6 +83,16 @@ Calendar, and Notion consulting pipeline.
 `burnRate`, `forecast`, `runway`, `business` — computed by `scripts/generate-data.py`.
 `consulting` — written by this skill at runtime (Phase 1.2 Gmail + Phase 1.4 Notion).
 `runway.liquidAssets` — reads from `references/liquid-assets.md` (Brady maintains manually).
+
+## Must-Alert Escalation Protocol
+
+Before creating any new `Priority=Must` Streaming Notes row from this skill (Finn Alerts, material anomalies, missed payments), apply the Escalation Protocol defined in `0-agents/custom-built-agents/finn.md` (section "Escalation Protocol (Must-priority Finn Alerts)"):
+
+1. **De-dup against open rows on the same topic.** Do not create parallel rows — append escalation stamps to the existing open row.
+2. **Telly push gate.** If any prior Must Finn Alert is `Status=Not Started` >24h, send one `POST /api/push` with a consolidated count + top title before creating more rows.
+3. **Topic keys:** `COBRA`, `Truist mortgage`, `SoFi cash`, `UHC claims`, `Aflac claims`, `AR ledger`, `tax reserve`, `HELOC draw rate`, `Bridgecrest`, `Gmail token`.
+
+Finn KB Notion Section 0 Phase 4.2 is the canonical implementation surface — any future change must update Notion first, then propagate here.
 
 ## What This Skill Does NOT Do
 
