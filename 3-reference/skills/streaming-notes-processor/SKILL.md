@@ -167,6 +167,26 @@ These need Brady's judgment. The processor drafts, never sets.
 
 Evening-sweep owns Thread Log lifecycle. Processor does not touch these.
 
+## Phase 3.5 — T1 Auto-Approval Pass (Musashi recs only)
+
+After processing standard item types, check for Musashi Review recommendations that are eligible for auto-approval.
+
+**Auto-approval criteria (ALL must be true):**
+1. Item `Type="Musashi Review"` with `Status="Not Started"`
+2. Recommendation is tagged `T1` in the body (internal, reversible, no client-facing surface)
+3. Item age ≥ 24 hours (Brady has had a full day to object)
+4. No `veto` keyword appears in any Streaming Notes item created in the last 24h referencing this item's slug
+
+**If all criteria met:**
+1. Set `Status="Approved (T1 auto)"` on the recommendation's line item (update body annotation)
+2. Create a build plan stub at `.context/plans/musashi-auto-[slug].md` with the recommendation text, trust tier, and source
+3. Send Brady a Telly push: `"Auto-approved T1: [slug] — [what]. Reply 'veto [slug]' within 24h to reverse."`
+4. Append Routing Log row: `destination="Dev plan (T1 auto)"`, `reason="T1 autonomous approval — Musashi rec, 24h elapsed, no veto"`, `summary="[what]"`
+
+**If any criterion fails:** Leave the item untouched. Surface it in Phase 5 report as "Pending Brady approval."
+
+**Safety note:** This phase only runs if Musashi's SKILL.md has been updated with Trust Tier tagging (confirmed 2026-04-23). The tier tag must be explicit in the body — no inference.
+
 ## Phase 4 — Routing Log & Processing Score
 
 ### 4.1 Batch-append Routing Log rows
@@ -236,10 +256,7 @@ After a run:
 - Routing Log table schema drift → fail fast and warn; do not append malformed rows.
 - Score file corrupted → rebuild from the last clean monthly file; never lose
   a score day — if in doubt, write to a `.recovery.md` file and surface the conflict.
-- Streaming Notes DB naming mismatch (some skills refer to
-  `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`, others to `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`)
-  — processor uses the one in `_shared/streaming-notes-processing-paths.md`. If
-  both return results, consolidate and flag the drift.
+- Streaming Notes DB ID: canonical is `2e9ed43b-89c5-80f4-8c21-000b4cfe812e` (corrected 2026-04-23 — infrastructure-registry.yml had a typo, all skills now use this ID). The old `800d-acc7` variant is retired.
 
 ## Relationship to other skills
 

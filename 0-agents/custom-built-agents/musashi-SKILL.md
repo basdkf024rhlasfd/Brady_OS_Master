@@ -81,7 +81,7 @@ budget mid-run, degrade gracefully — skip Phase 4 (Tech Scan) before skipping
 Phase 2 (Scoring).
 
 **Notion DB IDs** (canonical from `3-reference/infrastructure-registry.yml`):
-- Streaming Notes: `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`
+- Streaming Notes: `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
 - Routing Log (page with markdown table): `344ed43b-89c5-816a-ab54-ca49ca239748`
 
 **Output locations:**
@@ -143,6 +143,7 @@ For each agent scoring < 8/10, emit 1–3 specific recommendations.
 - **What**: concrete edit (add X query, wire Y MCP, split into two agents, merge with Z, write a missing SKILL).
 - **Why**: which dimension it lifts and by how much. "Bumps Activation 0→2 if we wire this to the weekly sweep."
 - **Size**: small (<30 min), medium (30–90 min), large (>90 min). Morning sweep applies existing Build Request autonomy gates.
+- **Trust Tier tag**: classify every recommendation as `T1` (internal, reversible, no client-facing surface) or `T2+` (client-facing, outbound, or irreversible). T1 items are eligible for auto-approval after 24h with no Brady objection.
 - **Cost note** (if large): flag if the dev plan is likely token-heavy. Brady approves anything medium/large before execution.
 - **Approval gate**: `Say "approve musashi [agent]-[n]" to queue for build.`
 

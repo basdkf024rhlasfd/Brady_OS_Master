@@ -30,12 +30,13 @@ Check if today's sweep has run by looking for today's date folder. If it's there
 
 | What | Notion ID | Read for |
 |------|-----------|----------|
-| Streaming Notes DB | `2e9ed43b-89c5-80f4-8c21-000b4cfe812e` | All recent captures: Telly notes, pulse notes, thread logs, system instructions |
+| Streaming Notes DB | `2e9ed43b-89c5-80f4-8c21-000b4cfe812e` | All recent captures: Telly notes, pulse notes, thread logs, system instructions, Phil primers, Musashi reviews |
 | Rules & Preferences | `344ed43b-89c5-813d-bded-f1d5689510e2` | Hard rules, behavioral defaults, working style — load at session start |
 | Internal Projects DB | `2c2ed43b-89c5-80af-ac9b-ededd48b98e7` | Active projects, consulting work, status |
 | Client Projects DB | `c8a6b2d70d9343839a16c950c95a6066` | Shareable client-facing work |
 | Reference Layer | `2c7ed43b89c5801f96b6cfb872dedecc` | Agent specs, governance |
 | Jarvis Score Log | `33a40d2acd754439ade9e253703bbbaa` | Session quality history |
+| Life Events DB | `c5ce4840162c4702a629081d66492760` | Brady's major life events (travel, milestones, financial meetings, school, medical) |
 
 **Always query Streaming Notes for unprocessed items** (Type = "System Instruction", Status = "Not Started") before concluding that you know Brady's current rules.
 
@@ -83,14 +84,14 @@ Use the right tool for the job. Don't narrate tool selection — just use them.
 
 ## OS Architecture
 
-Brady's OS lives at `brady_os_master/missoula-v1/`. Five layers:
+Brady's OS lives in the `brady_os_master` repository. Active workspace branch is `belgrade`. Five layers:
 
 ```
 0-agents/           ← Agent profiles + operational files (SKILL.md, STATUS-TEMPLATE.md)
 1-execution/        ← Areas > Programs > Projects > Tasks (all active work)
 2-memory/           ← Unstructured intake (Notion Streaming Notes, not repo)
 3-reference/        ← Rules, governance, skills, publishing
-portal/             ← mception.ai Next.js app (Clerk auth, Vercel project "munich")
+portal/             ← mception.ai Next.js app (Clerk auth, Vercel project "mception-ai")
 ```
 
 **Key reference files:**
@@ -106,18 +107,49 @@ portal/             ← mception.ai Next.js app (Clerk auth, Vercel project "mun
 - `recursive-learning` — how working-style feedback enters the system
 - `page-chatbot` — AI chat on mception.ai portal pages
 - `exec-intel-brief`, `deep-research`, `full-stack-ideation` — consulting deliverables
+- `streaming-notes-processor` — daily per-Type SLA actioning (runs as morning sweep Phase 3.6d)
+- `broker-platform`, `consulting-os-platform` — the two innovation platforms (in development)
+
+**Active agents** (all profiles in `0-agents/custom-built-agents/`):
+- **Phil** — 4 AM Notion grooming + Pre-Sweep Primer; SKILL: `phil-SKILL.md`
+- **Musashi** — midnight agent tension pass + tech/biz ideation; SKILL: `musashi-SKILL.md`
+- **Finn** — personal CFO, Monarch CSV, net worth, runway; profile: `finn.md`
+- **OC Optimus** — Panda Express project agent (James Ku); SKILL: `oc-optimus-SKILL.md`
+- **Fran** — 1915 South project agent (Justin Woods); SKILL: `fran-SKILL.md`
+- **Webster** — mception.ai publishing, Vercel ops; SKILL: `webster-SKILL.md`
+- **Telly** — Telegram intake + push notifications; SKILL: `telly-SKILL.md`
+- **DiCaprio** — 20K-foot recon, reports to Claudine; SKILL: `dicaprio-SKILL.md`
+- **Wyatt Earp** — dissent agent, Dissent Protocol
+- **Yuki Ronin** — spec executor under Musashi
+- **Content Drafter** — voice-matched writing for Brady's content
+
+**Active consulting clients:** Panda Express (OC Optimus) and 1915 South (Fran). Kroger/Harmon's/Walmart on hold.
 
 ---
 
 ## Sweep Outputs — What Gets Produced and Where
 
+### Nightly Automation Cycle (no Brady involvement)
+
+```
+Midnight CT  →  Musashi Review — scores all agents 0–10, emits recs + tech scan + biz ideas
+4:00 AM CT   →  Phil Pre-Sweep — Notion grooming, Done/Status reconciles, proposes TOP 3
+~6:00 AM CT  →  Morning Sweep — consumes both; Phil primer in Phase 1.0b, Musashi in Phase 1.0c
+```
+
+- Musashi writes `Type="Musashi Review"` to Streaming Notes. Backup: `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`
+- Phil writes `Type="Pre-Sweep Primer"` to Streaming Notes. Backup: `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`
+- Read both before forming any opinion on Brady's priorities for the day.
+
 ### Morning Sweep (run manually, typically 6-8 AM)
+- Consumes Phil's Pre-Sweep Primer (Phase 1.0b) and Musashi Review (Phase 1.0c)
 - Rewrites 🌅 Get Ready calendar event with 30-min brief (7 major sections)
 - Creates Email Catchup event at first open slot
 - Writes dev plans to `.context/plans/sweep-YYYY-MM-DD-[slug].md`
 - Refreshes `os-cockpit/data.js` with health scores
 - Syncs `portal/public/family/kb/10-sweep-state.md` for family chat bot
-- Processes any unprocessed System Instructions from Streaming Notes → Rules & Preferences
+- Processes any unprocessed System Instructions from Streaming Notes → Rules & Preferences (Phase 3.6b)
+- Runs Streaming Notes Processor as Phase 3.6d (per-Type SLA actioning)
 
 ### Evening Sweep (run manually, end of day)
 - Archives full day to `~/Documents/Daily-Journal/YYYY/MM/DD/`:
@@ -225,7 +257,7 @@ Brady's Agent Council (Phil, Cornelius, Musashi San, Claudine) governs new agent
 
 When starting a new session where fresh context matters:
 
-1. Check `~/Documents/Daily-Journal/2026/04/20/` — has today's or yesterday's sweep run?
+1. Check `~/Documents/Daily-Journal/YYYY/MM/DD/` (use today's actual date) — has today's or yesterday's sweep run?
 2. Query Streaming Notes for unprocessed items (Type="System Instruction", Status="Not Started")
 3. Load Rules & Preferences page (`344ed43b-89c5-813d-bded-f1d5689510e2`)
 4. Scan Google Calendar for today's schedule
