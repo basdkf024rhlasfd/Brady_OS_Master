@@ -8,8 +8,9 @@ description: >
   track movement from 2/10 baseline toward 9/10 target.
 
   Trigger this skill whenever Brady says "process streaming notes", "run the processor",
-  "drain the notes", "clear streaming notes", "process the queue", or any variation
-  requesting a processing pass.
+  "drain the notes", "clear streaming notes", "process the queue", "catalog", "catalogue",
+  "catalog [item]", "catalogue [item]", or any variation requesting a processing pass
+  or proper Notion categorization/storage.
 
   Also wired into morning-sweep as Phase 3.6d (runs daily after Rules & Preferences
   propagation in 3.6b/3.6c). Companion to, not replacement for, the weekly
@@ -186,9 +187,26 @@ These need Brady's judgment. The processor drafts, never sets.
 2. If `Next Action` already exists but `stale_hours > 72`:
    - Flag for the disposition audit. Do not touch.
 
-### Thread Log — skip
+### Thread Log — escalate Must-priority strategic asks, otherwise skip
 
-Evening-sweep owns Thread Log lifecycle. Processor does not touch these.
+Evening-sweep owns routine Thread Log lifecycle. The processor stays hands-off **except** for the "Must-priority strategic ask" failure mode (surfaced 2026-04-24 — a consulting-kit architecture ask sat 3 days because Thread Log had no daily routing).
+
+**Escalation trigger (ALL must be true):**
+- `Type = "Thread Log"` AND
+- `Priority = "Must"` AND
+- `age_hours > 24` AND
+- `Next Action` is empty AND
+- `Status = "Not Started"`
+
+**When triggered:**
+1. Slugify note title → `.context/plans/streaming-notes-{short-id}-{slug}.md`.
+2. If no plan already exists, generate a plan stub with the same schema as Execution Request (Context / Scope / Files to touch / Verification) — body copied from the Thread Log content.
+3. Set `Next Action = "Thread Log escalated to dev plan at .context/plans/streaming-notes-{short-id}-{slug}.md — Brady to confirm Type change to Execution Request"`.
+4. Do NOT change Type automatically — surface in Phase 5 report as a "Promotion candidate" and let Brady confirm. (Changing Type alters downstream routing; too destructive to auto.)
+5. Leave Status="Not Started".
+6. Append Routing Log row: `destination="Dev plan (Thread Log escalation)"`, `reason="Must-priority Thread Log aged >24h with no Next Action"`, `summary="Stub at .context/plans/streaming-notes-{short-id}-{slug}.md"`.
+
+**Non-Must Thread Logs:** skip (evening-sweep owns).
 
 ### Research — enrich and route to Research Library
 
