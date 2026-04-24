@@ -167,6 +167,78 @@ These need Brady's judgment. The processor drafts, never sets.
 
 Evening-sweep owns Thread Log lifecycle. Processor does not touch these.
 
+## Phase 3.7 — Cluster & Batch (scatter → one action block)
+
+Before actioning items individually, scan open items for thematic clusters. N small items of the same theme = one 30-min catch-up block + one Claude-in-Chrome prompt, not N context switches.
+
+**Cluster themes (seed list, extensible):**
+- **Household / Groceries** — grocery lists, Walmart/Target orders, pantry notes, chore assignments, shopping cart adjustments
+- **Admin** — subscriptions, renewals, passwords, bill reviews, licenses, forms to sign
+- **Family logistics** — school forms, activity signups, permission slips, kid schedules, sports registrations
+- **Physical chores** — home repairs, yard, car maintenance, errands
+- **Content drafting** — LinkedIn posts, Substack drafts, quick replies, captions
+- **Contact follow-ups** — "email X", "text Y", "schedule call with Z" — non-client, quick-touch
+
+**Clustering rules:**
+1. Scan all open items (same filter as Phase 1) for keyword hits against cluster theme dictionaries.
+2. A cluster fires when it has ≥3 members OR one "anchor" item (`Priority="Must"` + theme match) with ≥1 companion.
+3. Items in multiple clusters go to the higher-confidence cluster (keyword density).
+4. Clusters are proposed — NEVER auto-batched unless the cluster has ≥5 members and all items are `Priority` in {Should, Could}. Must-priority items require Brady's explicit OK before batching.
+
+**When a cluster fires:**
+
+1. **Generate batch prompt.** Create a single Claude-in-Chrome-ready prompt that covers all cluster members. Include each item's Name + Content body + link. Format:
+
+   ```
+   # Catch Up: {Theme} — {YYYY-MM-DD}
+
+   Work through these {N} items in one session. For each, either act, delegate, or note why not.
+
+   1. [{Name}]({URL}) — {short context}
+   2. ...
+
+   End state: each item gets a Next Action or moves to Complete.
+   ```
+
+2. **Book calendar slot.** Call Google Calendar MCP to create a 30-min event titled `Catch Up: {Theme}` on the next open slot on Brady's Primary calendar. Default windows: weekdays 3:00-5:00 PM CT, or the first free 30-min block tomorrow. Event description = the batch prompt. Event location = the Notion URL of the batch note (see step 4).
+
+3. **Mark cluster members.** For each member, update `Status="In Progress"` and `Next Action="Batched into [{Theme} — {date/time}] — see {batch note URL}"`.
+
+4. **Write batch note to Streaming Notes.** Create one new row: `Type="Note"`, `Name="Batch: {Theme} — {YYYY-MM-DD}"`, `Status="In Progress"`, `Priority` = max of cluster members, body = the batch prompt + list of linked member IDs.
+
+5. **Routing Log.** Append one row per cluster: `destination="Calendar event + batch note"`, `reason="N items clustered under {Theme}"`, `summary="{N} items → 30-min catch-up slot {date/time}"`.
+
+6. **Report line.** Include in Phase 5 report: `📦 Clustered {N} items into {K} batches → calendar: [batch1, batch2]`
+
+**Anti-patterns to avoid:**
+- Never cluster across Must-priority without Brady approval.
+- Never collapse a client-touching item (any Next Action containing client name, "email client", "send draft") into a household/admin batch.
+- Never batch items < 2 hours old (they haven't had a chance to be standalone-processed yet).
+- Never cluster `Type` in {Daily State, Keep Handy, Pin to Top, Pre-Sweep Primer, Musashi Review} — these have their own lifecycle.
+
+## Phase 3.8 — Orphan Detection (build-shaped items sitting loose)
+
+Surface items that LOOK like builds/features but aren't parked as Execution Requests. Brady dispositions them one pass per morning.
+
+**Orphan shape test:**
+- `Type` in {Pulse Note, Note, Thread Log} AND
+- Name or body contains build-shape keywords: "build", "feature", "wire", "deploy", "scaffold", "app", "platform", "agent", "integrate", "API", "MCP", "pipeline" AND
+- `Status NOT IN ["Complete", "Remove"]` AND
+- `age_hours > 48` (gave standalone processing a chance)
+
+**For each orphan detected:**
+1. Do NOT modify the item. Only surface it.
+2. Collect into a "Build Orphans" section of the Phase 5 report with: item ID, Name, age, one-line body excerpt, suggested disposition (promote / merge-with-parent / kill / park).
+3. Brady replies with one of:
+   - `promote [n]` → processor creates a new Execution Request Streaming Note with the orphan's body, links back, and sets the orphan to `Status="Complete"` + Action="Move to Context Hub"
+   - `merge [n] into [parent-id]` → processor appends orphan body to parent Execution Request, sets orphan to `Status="Complete"`
+   - `kill [n]` → processor sets orphan to `Status="Remove"`
+   - `park [n]` → processor tags orphan with `Tags+=Product Backlog` and sets `Next Action="Parked — revisit during weekly sweep"`
+
+**Anti-patterns:**
+- Never auto-promote. Brady always dispositions — the orphan pile IS Brady's idea library.
+- Never flag orphans younger than 48h. Fresh captures might still be doing work standalone.
+
 ## Phase 3.5 — T1 Auto-Approval Pass (Musashi recs only)
 
 After processing standard item types, check for Musashi Review recommendations that are eligible for auto-approval.
