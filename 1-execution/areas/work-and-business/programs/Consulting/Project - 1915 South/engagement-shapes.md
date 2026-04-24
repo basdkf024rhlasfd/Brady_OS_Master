@@ -60,6 +60,30 @@
 
 ---
 
+## Option E — Advisory Right-Size / Delayed Start (added 2026-04-24)
+
+**Added because Panda scope negotiation firmed on Apr 23 — Brady's bandwidth for 1915 South is materially reduced in near term.** If Justin engages but Brady cannot commit to a full 4-week intensive, this is the honest shape.
+
+**Two sub-options:**
+
+**E1. Advisory Right-Size (Scenario C from the original scenario-matrix):**
+- Shape: Monthly advisory retainer (not project-based). 4-8 hours/month. Brady stays at mception + other clients; 1915 South gets strategic voice, not full delivery.
+- Price range: $3-5K/month retainer.
+- Positioning: "Given what's on my plate right now, I can be a strategic sounding-board for the next 60-90 days and we can revisit a deeper engagement when my calendar opens."
+- Best if: Brady's Panda engagement absorbs 60-80% of his consulting bandwidth.
+
+**E2. Delayed Start (pick-it-up-later):**
+- Shape: Confirm engagement intent + scope now; kick off in 6-8 weeks when Brady's schedule clears.
+- Price range: Scoped at engagement shape (A/B/C) but dated forward.
+- Positioning: "This conversation is genuinely interesting to me. The honest answer is my Panda conversation firmed the same week we were talking — I'd rather give 1915 South my full attention than half-commit now."
+- Best if: 1915 South isn't time-sensitive; Russell / Justin prefer a thoughtful partner on delay over a stretched partner on demand.
+
+**When to offer E vs A-D:** If Panda scope negotiation closes (expected by ~2026-05-05), Option E becomes primary. If Panda goes to advisory-only, Options A-D come back in play.
+
+**Transparency language for the email / call:** "My Panda conversation firmed meaningfully this week. I'm not capacity-blocked yet, but I want to be honest about the pipeline ahead of our conversation instead of learning it from me later."
+
+---
+
 ## Option D — "Paid Listening Tour" (2 weeks, low-risk lead-in)
 
 If Justin is warm but non-committal, this is the softer entry:

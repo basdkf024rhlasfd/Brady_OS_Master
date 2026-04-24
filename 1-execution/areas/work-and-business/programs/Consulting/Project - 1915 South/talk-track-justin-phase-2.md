@@ -88,7 +88,8 @@ Once Justin has activated on one of the three priorities:
 | Justin says "I need to think about it" or "not sure yet" | Option D (Listening Tour) — lower commitment entry | Offer 2-week paid discovery, no hard deliverable |
 | Justin mentions Zapsight scope concerns unprompted | Signal he's already frustrated — Brady is the unlock | Don't pitch displacement; offer RACI-level clarification |
 | Justin mentions other consultants / advisors already involved | Brady has competition | Differentiate on operator-grade M&A + AI + Walmart pedigree — not AI alone |
-| Justin asks "what are your rates" or "what's this cost" | Scope-defining moment; don't quote until scope is named | "Depends on shape — $25–50K for a 4-week scope, varies" |
+| Justin asks "what are your rates" or "what's this cost" | Scope-defining moment; don't quote until scope is named | "Depends on shape — $25–50K for a 4-week scope, varies. With Panda scope firming, I may recommend a right-sized version ($3-5K/mo advisory) or a delayed start." |
+| **Scenario (d): Brady-at-capacity (added 2026-04-24)** — Justin responds warm, but Brady's Panda conversation has firmed up (active scope negotiation as of 2026-04-23). | Don't take the full engagement then under-deliver. | Offer **Option E (Advisory Right-Size or Delayed Start)** from engagement-shapes.md. Say it directly: *"My Panda conversation firmed meaningfully this week. I'm not capacity-blocked yet, but I want to be honest about the pipeline ahead of our conversation instead of learning it from me later. Two options that preserve our momentum: advisory retainer, or a delayed start when my calendar opens. Which one feels better for where 1915 South sits?"* |
 | Justin goes silent or distracted when Russell comes up | Russell intro not ready yet | Back off; ask again in 2-3 weeks |
 | Justin volunteers Russell information without prompt | Russell is close to the decision and Justin wants you ready | Sharpen Russell-facing teaser NOW |
 
