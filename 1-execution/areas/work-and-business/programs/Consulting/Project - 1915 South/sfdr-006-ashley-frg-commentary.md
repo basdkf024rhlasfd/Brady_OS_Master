@@ -2,107 +2,103 @@
 
 ## The answer
 
-**Todd Wanek has been publicly silent on FRG by name.** Zero confirmed quotes across all major interview surfaces through April 2026.
+**No public statements from Todd Wanek or Ashley corporate specifically addressing FRG, Franchise Group, American Freight, or Badcock by name** were found across any interview surface through April 2026.
 
-This silence is almost certainly intentional: **Ashley was a wholesale supplier to both American Freight and Buddy's Home Furnishings.** Publicly crowing about a former customer's collapse is poor optics and legally risky given potential cure-claim exposure in the bankruptcy proceedings.
+Sources searched: HFA webinar series (Parts 1 & 2, April–May 2025), Home News Now High Point Market interview (November 2025), Nationwide Southwest "Last Word" interview (December 2024), Ashley.biz press releases (full archive), Furniture Today, Interior Daily.
 
 ---
 
-## What Wanek HAS said (closest available proxies)
+## Confirmed Wanek public statements — closest relevant quotes
 
-### HFA Trailblazer Interview — Part 2 (May 2025)
+**HFA Trailblazer Interview Part 2 (May 1, 2025)**
 > "He reflected on the failures of many leading retailers from 2001 to today — over half vanished from the Top 100 list. The survivors invested in teams, stayed market-aware, reinvested, and adapted."
-> — *Winning in Tough Times*, myhfa.org, May 1, 2025
 
-This is the closest Wanek comes to acknowledging competitor attrition without naming names. He frames survivor behavior, not competitor failure.
+Refers to industry consolidation broadly; no specific operators named.
 
-### High Point Market Interview (November 2025)
-> "I think the industry overall is feeling a little more stability... overall there is a lot of optimism about next year."
-> — *Home News Now*, November 7, 2025
-
-Wanek's macro framing is "flatness, not crisis" — consistent with an operator who benefits from consolidation but won't say so directly.
-
-### HFA Part 1 — April 2025
+**HFA Trailblazer Interview Part 1 (April 25, 2025)**
 > "It's every leader's responsibility to see things before others see them and make the necessary changes."
 
-Directional without referencing FRG. Implicitly positions Ashley as the prudent operator vs. overleveraged competitors.
+General leadership framing; no competitor reference.
+
+**Home News Now — High Point Market (November 7, 2025)**
+> "I think the industry overall is feeling a little more stability... overall there is a lot of optimism about next year."
+
+Macro commentary only.
+
+**Nationwide Southwest "Last Word" (December 11, 2024)**
+> "We have worked hard on having a blended strategy and a domestic footprint, so we feel really good about how we are positioned as an organization."
+
+Supply chain / tariff context; no competitor reference.
 
 ---
 
-## The structural story Wanek WON'T tell but Ashley is living
+## Confirmed: Ashley was a vendor to FRG brands
 
-**Ashley was FRG's vendor.** Confirmed: HNN reported in June 2025 that "Ashley supplies both Buddy's Home Furnishings and American Freight." This vendor relationship is why Wanek goes silent — not because the FRG opportunity doesn't exist for his licensees.
+Home News Now reported in June 2025 (re: FRG bankruptcy completion):
+> "Ashley supplies both Buddy's Home Furnishings and American Freight."
 
-**The operator behavior tells the real story:**
+Source: [HNN — Ashley expansion + FRG vendor confirmation, June 10, 2025](https://homenewsnow.com/blog/2025/06/10/ashley-expansion-continues-with-new-west-florida-distribution-center-las-vegas-store/)
 
-| Signal | Evidence | Source |
+---
+
+## Ashley licensee expansion activity (2025–2026)
+
+Separately from Wanek statements, Ashley licensees have been in aggressive expansion mode:
+
+**Broad River Retail** (one of the largest independent Ashley licensees, headquartered Fort Mill SC):
+
+| Event | Details | Source |
 |---|---|---|
-| Broad River Retail (Ashley's largest SE licensee) — 33 → 38 stores 2025-2026 | Easley SC (former Bargain Hunt box), Statesville NC (infill), Spokane WA (former Macy's 101K sqft) | Furniture Today, HNN, April 2026 |
-| New Ashley licensee in Tifton GA (Nov 2025) | Third-gen family furniture operator converting to Ashley license in South Georgia | Tifton Gazette, Nov 2025 |
-| Ashley corporate acquires west FL distribution center 2025 | Infrastructure build-out ahead of Southeast footprint growth | HNN, June 2025 |
-| Ashley Las Vegas flagship 275K sqft (2025 open, acquired 2020) | Corporate-side expansion on former Walker Furniture site | HNN, June 2025 |
+| Spokane WA — former Macy's, 101,250 sqft | Announced Feb 2025, opening 2026. Broad River's first expansion outside SE. | HNN Feb 21, 2025 |
+| Easley SC — 41,479 sqft, former Bargain Hunt box | Announced Aug 2025, opened Dec 2025. 35th location, 10th in SC. | HNN Aug 18, 2025 |
+| Statesville NC — new infill store | Ashley 7.0 showroom concept. 38th total location. | Furniture Today Apr 21, 2026 |
 
-Broad River's CEO Charlie Malouf said (re: real estate search): *"This happened to be a market that was coming available."* That "coming available" language is the FRG narrative in operator-speak.
+Broad River CEO Charlie Malouf on the Spokane expansion: *"This happened to be a market that we discovered that was coming available."*
 
----
+**New licensee activity in Southeast:**
+- **Tifton GA** — Third-generation family furniture operator (owner of Lott's Furniture in Waycross GA and Fernandina Beach FL) signed new Ashley license. Store opened November 7, 2025 at 612 Virginia Ave. Source: Tifton Gazette, November 13, 2025.
 
-## What this means for Brady's talk track
-
-**Don't try to echo Wanek language on FRG — there is no Wanek language on FRG.**
-
-The correct framing is structural, not corporate-endorsed:
-
-1. **Frame FRG as category vindication, not market distress.** "880 storefronts vacated by fraud — not by consumers abandoning furniture. The category is healthy; the operator got caught in a Ponzi scheme. That's a rare, temporary displacement."
-
-2. **Point to Broad River as peer behavior.** "The largest Ashley licensees are moving fast on this — Broad River went from 33 to 38 stores in 18 months. Justin should know that market is moving."
-
-3. **Wanek's silence is actually a signal.** Ashley won't publicly endorse FRG as opportunity because they were vendors. But their licensees are acting. The smarter framing is operator-to-operator: "You and I can see what Wanek can't say publicly."
-
-4. **Don't expect Ashley corporate to greenlight this narrative.** The GMROI directive and growth push are the right Ashley corporate hooks — use those. The FRG real-estate angle is a franchisee-level opportunity, not a corporate mandate.
+**Ashley corporate infrastructure:**
+- Acquired new west Florida distribution center (size not disclosed), announced June 2025.
+- Opened 275,000 sqft Las Vegas flagship store (2025), on 20-acre parcel acquired 2020 for $27M.
 
 ---
 
-## Key sourced facts on FRG collapse (for talk-track calibration)
+## FRG collapse — confirmed facts for context
 
-- **American Freight:** 357 stores (344 corporate + 13 franchise). Filed Chapter 11 November 3, 2024. All stores closed by December 31, 2024.
-- **Badcock Home Furniture & More:** Filed Chapter 11 July 2024 alongside Conn's. Subsequently went out of business.
-- **FRG completed Chapter 11 process:** June 6, 2025. Emerged as Fusion Parent LLC (Buddy's + Pet Supplies Plus only).
-- **Brian Kahn (FRG CEO):** Pleaded guilty to defrauding investors. Sentencing April 2, 2026. Estimated fraud $294–300M.
-- **Southeast vacancy count:** ~880 storefronts (American Freight 357 + Badcock/Conn's ~500+). Concentrated in FL, GA, AL, MS, NC, SC, TN, VA — exactly 1915 South's geography.
-- **AF Newco (reborn American Freight):** Acquired 28-30 stores and 1 DC for $1.12M in January 2025. Now operating ~60 locations — a fraction of original footprint.
-
----
-
-## Framing test: does this hold for Brady's April 29 nudge?
-
-**Draft B (FRG aftermath)** in `nudge-2026-04-29-draft.md` should NOT lean on Wanek quotes. It should lean on:
-- The structural vacancy count (880 storefronts, SE concentration)
-- Broad River's expansion pattern as peer evidence
-- "Ashley's largest franchisees are already moving — want to walk through the map?"
-
-That's stronger than any Wanek quote because it's action, not rhetoric.
+| Item | Detail | Source |
+|---|---|---|
+| American Freight Chapter 11 filed | November 3, 2024 | Furniture Today Nov 4, 2024 |
+| American Freight store count at closure | 357 locations (344 corporate + 13 franchise) | CoStar Nov 4, 2024 |
+| All American Freight stores closed | By December 31, 2024 | Multiple sources |
+| Badcock + Conn's Chapter 11 | Filed July 2024; both went out of business | Furniture Today |
+| FRG Chapter 11 completed | June 6, 2025. Emerged as Fusion Parent LLC (Buddy's + Pet Supplies Plus only) | Furniture Today Jun 13, 2025 |
+| AF Newco acquisition | Bought ~30 American Freight stores + 1 DC for $1.12M in Jan 2025. As of Sep 2025: ~60 stores across 2 entities | Furniture Today Jan 22 + Sep 17, 2025 |
+| Brian Kahn guilty plea | Pleaded guilty to defrauding investors. Fraud estimated $294–300M. Sentencing April 2, 2026 | Furniture Today |
 
 ---
 
 ## Open questions from this SFDR
 
-| Question | SFDR # | Owner | Effort |
+| Question | Proposed SFDR | Owner | Effort |
 |---|---|---|---|
-| What is Ashley corporate's official franchisee growth program for 2025-2026? (Any incentive for taking FRG-vacated sites?) | New SFDR | Fran-web-pull | Low |
-| Has Broad River Retail taken any former American Freight or Badcock boxes specifically? | New SFDR | Fran-web-pull | Medium |
+| Does Ashley corporate have a formal growth incentive program for licensees taking FRG-vacated sites? | SFDR-015 | Fran-web-pull | Low |
+| Has Broad River specifically absorbed any former American Freight or Badcock storefronts, or are expansions net-new sites? | SFDR-016 | Fran-web-pull (press) / Paid-access-required (CoStar) | Medium |
 
 ---
 
-## Sources (live-verified 2026-04-24)
+## Sources
 
-- [HFA Trailblazer Interview Part 1 (Apr 25, 2025)](https://myhfa.org/todd-wanek-tackles-tariffs-supply-chains-us-manufacturing/)
-- [HFA Trailblazer Interview Part 2 (May 1, 2025)](https://myhfa.org/blog/winning-in-tough-times-todd-waneks-top-strategies-for-retailers/)
-- [Home News Now — High Point Market (Nov 7, 2025)](https://homenewsnow.com/blog/2025/11/07/a-high-point-market-conversation-with-todd-wanek-president-and-ceo-of-ashley-furniture/)
-- [Nationwide Southwest — Last Word with Todd Wanek (Dec 11, 2024)](https://nationwidesouthwest.com/2024/12/11/tw/)
-- [Furniture Today — American Freight Chapter 11 (Nov 4, 2024)](https://www.furnituretoday.com/financial/american-freight-to-close-as-parent-company-files-chapter-11/)
-- [Furniture Today — FRG Completes Chapter 11 (Jun 13, 2025)](https://www.furnituretoday.com/financial/franchise-group-completes-chapter-11-process/)
-- [HNN — Ashley FRG vendor confirmation + DC acquisition (Jun 10, 2025)](https://homenewsnow.com/blog/2025/06/10/ashley-expansion-continues-with-new-west-florida-distribution-center-las-vegas-store/)
-- [Furniture Today — Broad River Statesville NC (Apr 21, 2026)](https://www.furnituretoday.com/furniture-retailer/broad-river-aims-for-key-n-c-corridor-market/)
-- [Broad River Easley SC (Aug 18, 2025)](https://homenewsnow.com/blog/2025/08/18/broad-river-retail-to-open-35th-location-in-easley-south-carolina-in-december-2025/)
-- [HNN — Broad River Spokane WA (Feb 21, 2025)](https://homenewsnow.com/blog/2025/02/21/broad-river-plans-westward-expansion-with-new-ashley-store-in-washington-state/)
-- [Tifton Gazette — New Ashley Tifton GA (Nov 13, 2025)](https://tiftongazette.com/2025/11/13/ashley-homestore-opens-new-location-in-tifton/)
+- [HFA Part 1 — Todd Wanek, April 25, 2025](https://myhfa.org/todd-wanek-tackles-tariffs-supply-chains-us-manufacturing/)
+- [HFA Part 2 — Todd Wanek, May 1, 2025](https://myhfa.org/blog/winning-in-tough-times-todd-waneks-top-strategies-for-retailers/)
+- [Home News Now — High Point Market, November 7, 2025](https://homenewsnow.com/blog/2025/11/07/a-high-point-market-conversation-with-todd-wanek-president-and-ceo-of-ashley-furniture/)
+- [Nationwide Southwest — Last Word with Todd Wanek, December 11, 2024](https://nationwidesouthwest.com/2024/12/11/tw/)
+- [HNN — Ashley DC + FRG vendor note, June 10, 2025](https://homenewsnow.com/blog/2025/06/10/ashley-expansion-continues-with-new-west-florida-distribution-center-las-vegas-store/)
+- [Furniture Today — American Freight Chapter 11, November 4, 2024](https://www.furnituretoday.com/financial/american-freight-to-close-as-parent-company-files-chapter-11/)
+- [Furniture Today — FRG completes Chapter 11, June 13, 2025](https://www.furnituretoday.com/financial/franchise-group-completes-chapter-11-process/)
+- [Furniture Today — American Freight reborn, July 14, 2025](https://www.furnituretoday.com/furniture-retailer/reborn-american-freight-sees-opportunities-aplenty/)
+- [Furniture Today — Broad River Statesville NC, April 21, 2026](https://www.furnituretoday.com/furniture-retailer/broad-river-aims-for-key-n-c-corridor-market/)
+- [HNN — Broad River Easley SC, August 18, 2025](https://homenewsnow.com/blog/2025/08/18/broad-river-retail-to-open-35th-location-in-easley-south-carolina-in-december-2025/)
+- [HNN — Broad River Spokane WA, February 21, 2025](https://homenewsnow.com/blog/2025/02/21/broad-river-plans-westward-expansion-with-new-ashley-store-in-washington-state/)
+- [Tifton Gazette — New Ashley licensee Tifton GA, November 13, 2025](https://tiftongazette.com/2025/11/13/ashley-homestore-opens-new-location-in-tifton/)
+- [Ashley.biz press releases archive](https://ashley.biz/news/category/press-releases/)
