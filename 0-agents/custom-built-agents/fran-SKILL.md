@@ -4,10 +4,10 @@ trust_tier: T1
 ---
 
 # Fran Operational Runbook
-**Engagement:** 1915 South (Ashley HomeStore franchisee, 30 stores, FL/GA/AL/NC/MS/VA + 3 DCs)
+**Engagement:** 1915 South (Ashley HomeStore franchisee, **29 stores** per company website, FL/GA/AL/NC/MS/VA + 3 DCs)
 **Client Contacts:** Justin Woods (President, primary) — Russell Turner (CEO / sole owner, on escalation only via Justin)
-**Brady's goal:** Convert Justin's April 20, 2026 CFO-shaped AI-strategy pitch into a scoped engagement. Brady's pitch shape has evolved — not fractional CFO, but **M&A-and-capital operating partner with AI decision layer**.
-**Current phase:** **Phase 2 — Teaser + Resume sent to Justin 2026-04-22. Awaiting response.** Phase 1 (Innovation Workshop) + M&A Deep Research both shipped; mception.ai/1915-south hub live.
+**Brady's goal:** Convert Justin's April 20, 2026 CFO-shaped AI-strategy pitch into a scoped engagement. Brady's pitch shape: **M&A-and-capital operating partner with AI decision layer** — NOT fractional CFO.
+**Current phase:** **Phase 2 — Email sent + 8 prep artifacts loaded. Awaiting Justin's response.** Email to Justin 2026-04-22 included resume + overview teaser + 4-week-max commitment posture (with two competing client conversations disclosed). Next natural nudge: 2026-04-29. All Phase 2 prep artifacts (Russell-facing teaser, Phase 2 talk-track, 4 engagement shapes, nudge drafts, 4-week framework, AFHSVA target dossier, FRG real-estate map) shipped + on main as of PR #133 (squash `bd57a8f`).
 
 ---
 
@@ -41,11 +41,21 @@ trust_tier: T1
 | `innovation-workshop-1915-south-2026-04-22.{html,pdf}` | Rendered Innovation Workshop deliverable (dark HTML + light PDF, Tabloid) |
 | `m-and-a-deep-research-2026-04-22.md` | **M&A Deep Research** — 10 sections, 60+ sources, $140-180M EV anchor, Appendices A-E (source library, 15 named targets, 20+ capital partners, warm-intro map, next-phase research) |
 | `m-and-a-deep-research-2026-04-22.{html,pdf}` | Rendered M&A brief (mception design system) |
-| `1915-south-teaser-2026-04-22.{html,pdf}` | **Teaser infographic** — single-page landscape, "Depth of Thinking Already Done", 3 priority cards (P9 M&A, P1 GMROI, P6 Sleep), hero images, M&A Takeaways panel. **Sent to Justin via email 2026-04-22 with resume.** |
-| `../../../Career/Project - Brady Job Search 2026/resume-1915-south-justin-woods.md` | **Resume tailored for CFO-plus-AI operating-partner role.** Sent to Justin 2026-04-22. |
+| `1915-south-teaser-2026-04-22.{html,pdf}` | **Teaser infographic v3** — single-page landscape, "Depth of Thinking Already Done", 3 priority cards (P9 M&A, P1 GMROI, P6 Sleep), hero images, M&A Takeaways panel. Renamed to `1915-south-overview-2026-04-22.pdf` for the Justin email. |
+| `1915-south-overview-2026-04-22.pdf` | **Sent to Justin via email 2026-04-22** along with the resume. |
+| `../../../Career/Project - Brady Job Search 2026/resume-1915-south-justin-woods.md` | **Resume tailored for CFO-plus-AI operating-partner role.** Sent to Justin 2026-04-22 (PDF version `Brady_Smallwood_Consulting_v6.pdf` from Drive). |
+| `1915-south-teaser-russell-2026-04-22.{html,pdf}` | **Russell-facing cut** of teaser — Capital Allocation View + Continuity & Legacy panels (replacing Research Foundation + M&A Takeaways), "For Russell" framing per card (Thorndike discipline / Ashley showcase / narrow sleep window), Choose/Align/Execute phase language. **Holstered, not sent.** Send only when Justin asks for it. |
+| `talk-track-justin-phase-2.md` | **Refreshed playbook** for the post-email conversation: 5 Phase-2-calibrated questions, 9 signal→engagement-shape mappings, close with Russell-teaser offer + decision-criteria question. Use this, not the original Phase 1 talk-track. |
+| `engagement-shapes.md` | **4 pocket pricing options** ready when Justin asks "what would 4 weeks look like": M&A Playbook Intensive ($35-50K), GMROI Diagnostic ($25-40K), Decision-Layer Sprint ($30-45K), Paid Listening Tour ($10-15K). Decision table matched to Justin's activation signals. |
+| `nudge-2026-04-29-draft.md` | **Holstered nudge** for if Justin silent past Apr 29. 3 alternate drafts (Ashley news / FRG aftermath / direct-transparency), selection criteria, fallback if silence past May 6. Don't fire before Apr 29. |
+| `brady-4-week-framework.md` | **Brady's personal rubric** for tomorrow's 2 client calls — 5 dimensions, scoring thresholds, blank worksheets. Auto-fail rule: any opportunity scoring <3 on optionality-preservation = decline unless 5+5 on cash+urgency. |
+| `sfdr-010-sw-virginia-findings.md` | **SFDR-010 CLOSED** — AFHSVA dossier. Run by **Bassam "Sam" Zeidan**, also owns 3 Home-Makers Furniture stores in Mechanicsville (independent since 1988). Dual-brand operator. 8-9 Ashley stores Roanoke through Bluefield. Adjacent to 1915 South's Danville store. **Highest-probability first tuck-in target.** Reverse carve-out precedent (took over a failed Ashley licensee). |
+| `frg-real-estate-opportunities.md` | **Southeast vacant-box map v1** — 200-280 storefronts across FL/GA/AL/MS/NC/SC/TN/VA from FRG collapse. Named addresses where known (Badcock Mulberry HQ + DC). Tactical next-steps table to convert to box-by-box pipeline. Badcock-of-South-Florida carve-out documented as reusable precedent. |
 | `render.py`, `render-ma-brief.py`, `render-teaser.py`, `generate-pdf.py` | Rendering pipelines (Playwright + mception design tokens) |
 
 ### Notion Pages
+
+**Original Fran Agent Wiki structure:**
 
 | Page | Notion ID |
 |---|---|
@@ -64,6 +74,23 @@ trust_tier: T1
 | — Next Bests | `34aed43b-89c5-8147-a72b-e6c1607ef163` |
 | — KPI Scoreboard | `34aed43b-89c5-81be-80a2-c4a3e47880d0` |
 
+**Reference Layer integration (added 2026-04-23):**
+
+| Page | Notion ID |
+|---|---|
+| **1915 South — Internal Projects DB entry** (Status: In Progress · Priority: High) | `34bed43b-89c5-8109-b0e3-d15f9f1601f6` |
+| Context Vault — Canonical Deliverable Index (the navigation hub) | `34bed43b-89c5-8156-99cd-f4437e2ab4e2` |
+| Context Vault — Brian Kahn Prophecy fraud | `34bed43b-89c5-81cb-b5c5-f117bddced8c` |
+| Context Vault — Tempur Sealy / MFRM closed Feb 2025 | `34bed43b-89c5-81e6-bc45-d739d879565c` |
+| Context Vault — FRG 880 storefronts | `34bed43b-89c5-8193-befd-d109931106cd` |
+| Context Vault — Ashley / Resident $1B | `34bed43b-89c5-813d-9ebd-ffbc6d80d9ad` |
+| Context Vault — AFHSVA / Zeidan SFDR-010 | `34bed43b-89c5-81b2-811c-c07635d1be2f` |
+| Context Vault — Dufresne Spencer Group | `34bed43b-89c5-81a5-acef-eb52aad299b3` |
+| Context Vault — 1915 South 29 store addresses | `34bed43b-89c5-81b2-a4dc-ef4595a518eb` |
+| Context Vault — Zeidan / Home-Makers detail | `34bed43b-89c5-81e2-85b6-d8db93b3e2c6` |
+
+**Workflow rule:** Every new non-trivial research finding goes to Context Vault as a row (Source=AI, Type=Research Note / Market Analysis / Business Context, Tags=Research + topic, Project = 1915 South Projects DB entry). Briefs cite Context Vault rows, not buried URLs.
+
 ### People DB
 
 | Person | Role | Relationship | Notes |
@@ -73,12 +100,18 @@ trust_tier: T1
 | Todd Wanek | CEO, Ashley Furniture Industries | None (but his mandates explain 1915 South's urgency) | $2B innovation commitment; 500+ robots; AI AP + forecasting. **GMROI franchisee directive Dec 2024.** Ceased China sourcing April 2025. *"3–5 years to figure out AI or get left behind."* |
 | Scott Turner | Co-founder with Russell, opened first Ashley HomeStore 2002 | None | Father of Russell. Context matters for family governance framing — not an active operating contact. |
 | Zapsight (vendor) | Engaged AI/data vendor for 1915 South (active Apr 2026) | None | Scope is SFDR-001. Brady's positioning is always on-top-of / alongside, not replacement. |
+| **Bassam "Sam" Zeidan** | Director, Ashley HomeStores of Southwest VA (AFHSVA) — also owner of Home-Makers Furniture Mechanicsville (3 indep stores since 1988) | Cold; Justin likely knows him from Ashley Global Retail era. Justin intro path. | **Highest-priority M&A target operator.** Dual-brand (independent + Ashley-licensed). 8-9 Ashley stores Roanoke through Bluefield, directly adjacent to 1915 South's Danville. Acquisition angle: AFHSVA-only while he keeps Home-Makers. Reverse carve-out precedent (took over a failed Ashley licensee). 37+ year tenure → likely succession-age profile. |
 
-### Live Surfaces
+### Live Surfaces (four-tier architecture, all private)
 
-- mception.ai — Brady's public AI consulting presence
-- **`mception.ai/1915-south` is LIVE** (Clerk-gated owner-only via `MCEPTION_1915_SOUTH_EMAILS` env var; currently brady.smallwood@gmail.com only). Hub page links to all deliverable files (M&A brief MD/HTML/PDF, Innovation Workshop HTML/PDF, summary.md) with Internal vs Client-safe chips. Slug in `portal/src/config/projects.yml`. Production deploy: commit `fefcbc1` (PR #127, merged 2026-04-22).
-- Justin and Russell do NOT have portal access yet. Adding them is a separate Brady decision — do not propose without explicit ask.
+| Tier | Status | Location |
+|---|---|---|
+| **Git repo** (text + code source of truth) | Live | `Brady_OS_Master/1-execution/.../Project - 1915 South/` |
+| **Google Drive** (rich-doc library) | Folder structure created 2026-04-23 | `My Drive/Consulting/1915 South - Ashley/` (4 subfolders: Sent / Internal / Source Docs / Drafts). Root folder ID `1OOt_cIQhlL3Euak_mvqAMDBW5xIzLpVd`. PDFs to drag-drop in (24MB Innovation Workshop is too big for API base64 upload). |
+| **Notion Context Vault** (queryable findings DB) | 9 rows live, all linked to Projects DB | Reference Layer → Context Vault. Index row at `34bed43b-89c5-8156-99cd-f4437e2ab4e2` is the navigation hub. |
+| **mception.ai portal** (Clerk-gated client-facing hub) | Live commit `fefcbc1` | `mception.ai/1915-south`. Allowlist: brady.smallwood@gmail.com only via `MCEPTION_1915_SOUTH_EMAILS`. Slug in `portal/src/config/projects.yml`. |
+
+**Key rule:** Justin and Russell do NOT have portal access yet. Adding them is a separate Brady decision — do not propose without explicit ask. The Drive deliverables-sent folder is the record of what's been externally shared (currently: overview teaser + resume v6, sent 2026-04-22 via email).
 
 ---
 
@@ -209,10 +242,7 @@ Source: Home News Now, Furniture Today, Ashley licensee announcements, state fra
 Effort: Medium
 Unlock: Directly tests whether the roll-up thesis has competitive urgency — if operators are already re-taking Badcock territory, the window is closing fast
 
-SFDR-010: Named SW Virginia Ashley licensee (Roanoke / Lynchburg / Harrisonburg / Staunton / Blacksburg / Bluefield) — who owns, succession signals, store count, revenue estimate.
-Source: state business registrations, LinkedIn, D&B, local business press
-Effort: Medium-High
-Unlock: Directly identifies 1915 South's highest-priority tuck-in target (adjacent to Danville VA store)
+SFDR-010 — CLOSED 2026-04-23: AFHSVA = Ashley HomeStores of Southwest VA, run by Bassam "Sam" Zeidan (also owner of Home-Makers Furniture Mechanicsville, 3 indep stores since 1988). 8-9 Ashley stores Roanoke-Bluefield. Reverse carve-out precedent. Highest-priority adjacent tuck-in. Full dossier: `sfdr-010-sw-virginia-findings.md` and Context Vault rows `34bed43b-89c5-81b2-811c-c07635d1be2f` + `34bed43b-89c5-81e2-85b6-d8db93b3e2c6`.
 
 SFDR-011: Dufresne Spencer Group — current revenue, acquisition pipeline, posture as potential buyer of 1915 South vs consolidation partner.
 Source: DSG press releases, LinkedIn, Home News Now, trade show coverage
@@ -220,7 +250,26 @@ Effort: Medium
 Unlock: Clarifies whether DSG is a competitive buyer threat or a neighbor
 ```
 
-**Run order priority 2026-04-22+:** SFDR-006 → SFDR-009 → SFDR-010 (highest unlock; FRG-adjacent, roll-up-critical).
+**New SFDRs opened by SFDR-010 closure (2026-04-23):**
+
+```
+SFDR-012: Bassam Zeidan ownership entity structure for AFHSVA — sole owner, partner, or salaried director? Age / succession profile?
+Source: VA SCC business entity search; LinkedIn; Roanoke Chamber of Commerce; local business press
+Effort: Low-Medium
+Unlock: Sharpens approach to acquisition conversation — owner-operator vs salaried-director require different opening moves
+
+SFDR-013: AFHSVA + Home-Makers revenue triangulation — D&B, commercial credit, UCC-1 filings.
+Source: D&B Hoovers, VA SoS UCC search, Roanoke Business Journal
+Effort: Medium
+Unlock: Sets pricing range expectations for the AFHSVA acquisition conversation
+
+SFDR-014: Did Bassam Zeidan attend Ashley Global Retail dealer forums during Justin's 2021-2025 tenure? Direct overlap?
+Source: Justin (low-friction direct question)
+Effort: Low (Justin question)
+Unlock: Determines whether this is a warm Justin-intro or a cold approach
+```
+
+**Run order priority 2026-04-23+:** SFDR-006 → SFDR-009 → SFDR-014 (Justin-direct, lowest cost) → SFDR-012 → SFDR-013.
 
 ---
 
@@ -304,6 +353,26 @@ Date: 2026-04-22
 Decision: No CFO-specific framing in client-facing documents going forward. Org/people problems framed as "Role Redefinitions" broadly.
 Rationale: Leading with "Incoherent CFO Role" in a top-3 priority signals Brady is angling for that specific job and undercuts advisory frame. The CFO-plus-AI conversation is a separate private one-to-one with Justin, not a teaser headline.
 Resolved: Permanent feedback for all Fran-drafted client materials.
+
+Date: 2026-04-23
+Decision: Adopt four-tier storage architecture. Git repo = text source of truth. Google Drive = rich-doc library. Notion Context Vault = atomic queryable findings DB. mception.ai portal = Clerk-gated client-facing hub. All four private.
+Rationale: Brady asked for trustworthy way to save research details that don't end up in summaries. Notion's existing Context Vault DB (Reference Layer) is the right place for atoms; Drive is the right place for rich PDFs/images; repo for versioned source; portal for curated client-facing.
+Resolved: Going-forward workflow — every research finding becomes a Context Vault row with Project relation; every rich deliverable goes to Drive folder appropriate to status.
+
+Date: 2026-04-23
+Decision: SFDR-010 closed. Ashley HomeStores of Southwest VA (AFHSVA) confirmed as highest-probability first M&A target. Run by Bassam "Sam" Zeidan, who also owns 3-location Home-Makers Furniture Mechanicsville (independent since 1988) — dual-brand operator. Acquisition angle is AFHSVA-only (8-9 Ashley stores Roanoke-Bluefield) while he keeps Home-Makers. Reverse carve-out precedent.
+Rationale: Adjacent to 1915 South's Danville store. Justin likely knows Zeidan from Ashley Global Retail era. Cleaner transaction than all-or-nothing.
+Resolved: When Justin engages on M&A in next conversation, lead with this specific target by name.
+
+Date: 2026-04-23
+Decision: 1915 South store count is 29, not 30. Per company website (1915south.com/?page_id=492). FL 12 (incl Pensacola outlet), GA 7, NC 4, AL 5, MS 1, VA 1.
+Rationale: Earlier Claudine analysis cited 30; web scrape confirms 29.
+Resolved: Use 29 in all client-facing language going forward. Old 30 references in older docs are inherited drift.
+
+Date: 2026-04-23
+Decision: Phase 2 prep package (8 artifacts) shipped + merged to main as PR #133 (squash bd57a8f). Russell-facing teaser, Phase 2 talk-track, 4 engagement shapes, Apr 29 nudge drafts, Brady's 4-week framework, AFHSVA dossier, FRG real-estate map.
+Rationale: Justin response window is open. Ammunition needs to be loaded before he replies, not after.
+Resolved: All scenarios (warm response / lukewarm / silent / Russell loop-in / scope question / pricing question) are pre-thought.
 ```
 
 ---
@@ -315,8 +384,10 @@ Brady is the sole communication channel with Justin Woods, Russell Turner, Todd 
 - Fran does not draft emails, messages, or documents for Justin or Russell without explicit request
 - When drafting: prepend `DRAFT — requires Brady review before sending`
 - When Brady asks "should I reach out?" → size the communication as Small/Medium/Large problem, recommend timing and framing, do not draft unless asked
-- **Last outbound from Brady: 2026-04-22 email to Justin** — resume + teaser infographic attached. Email signaled 4-week-max commitment posture, two other active client conversations (one angling for longer-term), willingness to postpone those for 1915 South. Thread is live and awaiting Justin's response.
-- **Follow-up cadence:** Give Justin 5-7 business days to respond before Fran recommends a nudge. Next natural check-in is ~2026-04-29. If silence by then, recommend a short acknowledgment referencing the other-clients-timeline context Brady already surfaced — not a fresh pitch.
+- **Last outbound from Brady: 2026-04-22 email to Justin** — resume + overview teaser attached. Email signaled 4-week-max commitment posture, two other active client conversations (one angling for longer-term), willingness to postpone those for 1915 South. Thread is live and awaiting Justin's response.
+- **Follow-up cadence:** Give Justin 5-7 business days to respond before Fran recommends a nudge. Next natural check-in is ~2026-04-29. **Pre-drafted nudge in `nudge-2026-04-29-draft.md`** with 3 alternates (Ashley news / FRG / direct-transparency). Pick based on what's actually in the news on Apr 29.
+- **Russell-facing teaser is built and holstered** at `1915-south-teaser-russell-2026-04-22.{html,pdf}`. Send only if Justin asks for it. Do not push Russell intro before that signal.
+- **Tomorrow's two client calls (2026-04-23):** Brady has the personal 4-week framework loaded in `brady-4-week-framework.md`. He fills in scoring before each call. Any opportunity scoring <3 on optionality-preservation auto-fails unless 5+5 on cash+urgency. Outcomes there directly affect 1915 South availability — Brady should send Justin a short transparency note via the Apr 29 nudge if either commits him to >4 weeks.
 - The 3-way-with-Russell ask is a milestone, not an early move. Don't recommend asking for it until Justin has meaningfully engaged with the M&A brief or teaser (quoted, asked a specific question, or asked for a deeper conversation).
 
 ---
@@ -339,3 +410,7 @@ Brady is the sole communication channel with Justin Woods, Russell Turner, Todd 
 14. **Brady's current commitment posture (stated to Justin 2026-04-22):** Not committing to anything beyond four weeks while two other client conversations play out. Willing to postpone those commitments if 1915 South needs more time. Competitive tension is real and honest — don't coach Brady to soften it, but also don't escalate it.
 15. **FRG context is a talk-track asset** — ~880 Southeast storefronts vacated 2024-2025 is real; Kahn's Prophecy fraud (pleaded guilty Dec 2025, $294-300M, sentencing April 2 2026) is the root cause, NOT a market collapse. Frame FRG opportunity as "cheap boxes in a stable category whose largest regional competitor imploded from unrelated fraud," never as "furniture retail is dying."
 16. **B. Riley Financial was FRG's $2.8B take-private sponsor** and is now under SEC investigation — watch for spillover risk to any B. Riley-sponsored consumer-retail portfolio co. Material if a related transaction lands on Justin's desk.
+17. **All research findings flow to Notion Context Vault.** No exception. Source=AI, Type=Research Note/Market Analysis/Business Context, Tags=Research+topic, Project=1915 South Projects DB entry. Briefs cite Context Vault rows; URLs don't disappear into appendices.
+18. **All rich-format deliverables flow to Google Drive folders** under `Consulting/1915 South - Ashley/`. "Sent to Client" subfolder is the externally-shared archive (currently: overview teaser + resume v6, sent 2026-04-22). "Internal Only" for working deliverables. Don't proliferate scratch folders elsewhere.
+19. **Bassam Zeidan is the named first-tuck-in target.** When Justin engages on M&A, lead with this name + the AFHSVA-only acquisition angle (Zeidan keeps Home-Makers Mechanicsville). Don't waste the moment on abstract pipeline talk.
+20. **Brady's competitive-tension posture stated to Justin on 2026-04-22 is now load-bearing** — if any of tomorrow's two other client conversations firms beyond 4 weeks, that materially changes 1915 South availability. Surface to Justin via the Apr 29 nudge (Draft C) rather than leaving it as silent context.
