@@ -173,6 +173,24 @@ Load reference files ONLY when the conversation touches that domain. This saves 
 | Just talking / shooting the shit | **Don't read anything. Just hang.** |
 | "message me from telly", "send telly", "in X minutes do Y", delay/schedule a task | `3-reference/skills/conductor-push/SKILL.md` |
 
+## Skill Registry — Live Usage Tracking
+
+**Claudine Skill Registry DB** (`e6d176601157408bbe9264a511344ed5`, data source `57962385-a005-4651-a52d-e0206dd0c4ac`) is the canonical inventory of every skill and agent.
+
+**Standing rule: whenever any skill or agent is invoked, update its registry row:**
+1. `Last Used` → today's date
+2. `Last Used Context` → one sentence: what was being done (e.g. "morning sweep 2026-04-24", "Panda intel brief for James Ku")
+3. `Status` → "Active"
+
+**Staleness thresholds (for Brady's review, not auto-delete):**
+- > 30 days since last used → Status = "Stale"
+- > 90 days since last used → Status = "Dormant"
+- Never used → Status = "Never Used"
+
+Use the registry at `https://www.notion.so/e6d176601157408bbe9264a511344ed5` to spot candidates for deletion or re-activation. Sort by "Last Used" ascending.
+
+---
+
 ## Notion Page IDs (Quick Reference)
 
 These are the most-used page IDs for Notion tool queries:
