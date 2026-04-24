@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brady OS — Agent Ecosystem</title>
+<title>Brady OS — Agent Ecosystem (Flow Chart · System Map · Org Chart)</title>
+<meta name="description" content="Brady OS agent ecosystem — hierarchical flow chart / system map of every agent, tier, schedule, and handoff. Also: org chart, process diagram, topology, architecture, roster, workflow.">
+<meta name="keywords" content="flow chart, flowchart, process flow, process diagram, org chart, organization chart, system map, ecosystem, ecosystem diagram, topology, architecture diagram, agent hierarchy, agent map, workflow, roster, team structure, Brady OS, Claudine, Nemuro, agent tree, hierarchy diagram">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#0b0d12;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;min-height:100vh;padding:32px 24px 60px}
@@ -79,6 +81,17 @@ h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spaci
 .li{display:flex;align-items:center;gap:6px;font-size:.67rem;color:#4b5563}
 .ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
+/* ── SIDEBAR SECTIONS (ad hoc + dormant) ── */
+.sidebar{margin-top:28px;padding:16px 20px;border:1px dashed #1f2535;border-radius:10px;max-width:1100px;margin-left:auto;margin-right:auto}
+.sidebar-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:#4b5563;margin-bottom:10px;text-align:center;font-weight:600}
+.sidebar.dormant{border-color:#2a1f1f;background:rgba(251,113,133,.03)}
+.sidebar.dormant .sidebar-label{color:#6b4b52}
+.sidebar .tier{gap:10px}
+
+/* ── KEYWORD FOOTNOTE ── */
+.keywords{max-width:1100px;margin:24px auto 0;padding:14px 20px;font-size:.6rem;color:#2d3748;text-align:center;line-height:1.7;letter-spacing:.04em}
+.keywords strong{color:#4b5563;font-weight:600}
+
 /* arrow helper */
 .arr{color:#1a2535;font-size:1.1rem;line-height:1;text-align:center;margin:4px 0;user-select:none}
 </style>
@@ -86,7 +99,7 @@ h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spaci
 <body>
 
 <h1>Brady OS — Agent Ecosystem</h1>
-<p class="subtitle">18 agents · 5 tiers · Click any node to expand · Updated 2026-04-24</p>
+<p class="subtitle">Flow chart · System map · Org chart — 18 agents · 5 tiers + 2 sidebars · Click any node to expand · Updated 2026-04-24</p>
 
 <div class="map">
 
@@ -105,21 +118,6 @@ h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spaci
   <!-- T2: ADVISORY RING -->
   <div class="tier-label">Advisory Ring</div>
   <div class="tier">
-    <div class="node sky sm" onclick="open_('dicaprio')">
-      <div class="n">DICAPRIO</div>
-      <div class="r">20K-Foot Recon<br>Project drift detection</div>
-      <div class="t">Ad Hoc → Claudine</div>
-    </div>
-    <div class="node slate sm" onclick="open_('bo')">
-      <div class="n">BO</div>
-      <div class="r">Chief of Staff<br>Front door · Gatekeeper</div>
-      <div class="t">Decision routing</div>
-    </div>
-    <div class="node rose sm" onclick="open_('burt')">
-      <div class="n">BURT</div>
-      <div class="r">Consigliere<br>Sharp judgment</div>
-      <div class="t">On-demand</div>
-    </div>
     <div class="node orange sm" onclick="open_('wyatt')">
       <div class="n">WYATT EARP</div>
       <div class="r">Dissent Agent<br>Pressure-tests pitches</div>
@@ -215,6 +213,35 @@ h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spaci
 
 </div><!-- /map -->
 
+<!-- AD HOC SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-label">Ad Hoc Utilities · Invoked On Demand</div>
+  <div class="tier">
+    <div class="node sky sm" onclick="open_('dicaprio')">
+      <div class="n">DICAPRIO</div>
+      <div class="r">20K-Foot Recon<br>Cross-project status · Drift detection</div>
+      <div class="t">Ad Hoc → Claudine</div>
+    </div>
+  </div>
+</div>
+
+<!-- DORMANT SIDEBAR -->
+<div class="sidebar dormant">
+  <div class="sidebar-label">Dormant · 30-Day Retirement Watch (retire 2026-05-24 if unused)</div>
+  <div class="tier">
+    <div class="node slate sm" onclick="open_('bo')">
+      <div class="n">BO</div>
+      <div class="r">Chief of Staff<br>Front door · Gatekeeper</div>
+      <div class="t">Dormant · Role absorbed by Claudine</div>
+    </div>
+    <div class="node rose sm" onclick="open_('burt')">
+      <div class="n">BURT</div>
+      <div class="r">Consigliere<br>Sharp judgment · Pattern memory</div>
+      <div class="t">Dormant · Overlaps Claudine + Wyatt</div>
+    </div>
+  </div>
+</div>
+
 <!-- LEGEND -->
 <div class="legend">
   <div class="li"><div class="ld" style="background:#f5c842"></div>Command</div>
@@ -226,6 +253,11 @@ h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spaci
   <div class="li"><div class="ld" style="background:#fbbf24"></div>Execution</div>
   <div class="li"><div class="ld" style="background:#2dd4bf"></div>Web/Deploy</div>
   <div class="li"><div class="ld" style="background:#94a3b8"></div>Support/Advisory</div>
+</div>
+
+<!-- KEYWORD FOOTNOTE (search hints for future-me) -->
+<div class="keywords">
+  <strong>Also known as:</strong> flow chart · flowchart · process diagram · process flow · org chart · organization chart · system map · ecosystem diagram · topology · architecture diagram · agent hierarchy · agent map · hierarchy diagram · workflow · roster · team structure · agent tree
 </div>
 
 <!-- MODAL -->
@@ -242,8 +274,8 @@ h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spaci
 const A = {
   claudine:{accent:'#f5c842',role:'Country President of Nemuro OS · Non-Executing Judgment Agent · All-Aware Strategic Hub',detail:`<strong>Trigger:</strong> Chat, Cowork, or Code session activation<br><br><strong>Outputs:</strong> Decisions, approvals, direction vectors, behavioral defaults<br><br><strong>Handoffs:</strong> Distributes direction to all operational agents; receives status from DiCaprio<br><br><strong>Key rule:</strong> Claudine judges and directs — she never executes. All autonomous action routes through scheduled agents or builder tiers.`},
   dicaprio:{accent:'#38bdf8',role:'20K-Foot Reconnaissance · Project Drift Detection · Status Synthesis',detail:`<strong>Trigger:</strong> Scheduled or ad hoc<br><br><strong>Outputs:</strong> STATUS-TEMPLATE reports, drift flags, stale work alerts<br><br><strong>Template:</strong> <code>0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md</code><br><br><strong>Handoff:</strong> Reports directly to Claudine`},
-  bo:{accent:'#94a3b8',role:'Chief of Staff · Front Door · Decision Gatekeeper',detail:`<strong>Trigger:</strong> Incoming decisions, calendar requests, or ambiguous asks<br><br><strong>Outputs:</strong> Decision compression (In / Out / Park / Delegate), boundary defense<br><br><strong>Handoff:</strong> Protects Brady's execution focus; routes to correct agent or Brady directly`},
-  burt:{accent:'#fb7185',role:'Consigliere · Sharp Decision Support · Pattern Memory',detail:`<strong>Trigger:</strong> Strategy or high-stakes decision queries<br><br><strong>Outputs:</strong> Pattern-matched history, bullshit detection, direct recommendations<br><br><strong>Handoff:</strong> Feeds Brady's judgment model; often runs alongside Wyatt Earp dissent`},
+  bo:{accent:'#94a3b8',role:'Chief of Staff · Front Door · Decision Gatekeeper',detail:`<strong>Status:</strong> Dormant — 30-day retirement watch (retire 2026-05-24 if unused)<br><br><strong>Trigger:</strong> Incoming decisions, calendar requests, or ambiguous asks<br><br><strong>Outputs:</strong> Decision compression (In / Out / Park / Delegate), boundary defense<br><br><strong>Handoff:</strong> Protects Brady's execution focus; routes to correct agent or Brady directly<br><br><strong>Why dormant:</strong> Role overlaps with Claudine's "all-aware" judgment + Telly's Telegram intake. No activations in recent git history.`},
+  burt:{accent:'#fb7185',role:'Consigliere · Sharp Decision Support · Pattern Memory',detail:`<strong>Status:</strong> Dormant — 30-day retirement watch (retire 2026-05-24 if unused)<br><br><strong>Trigger:</strong> Strategy or high-stakes decision queries<br><br><strong>Outputs:</strong> Pattern-matched history, bullshit detection, direct recommendations<br><br><strong>Handoff:</strong> Feeds Brady's judgment model; often runs alongside Wyatt Earp dissent<br><br><strong>Why dormant:</strong> "Sharp judgment + pattern memory" overlaps with Claudine; counter-voice lane is owned by Wyatt. Never activated in git history.`},
   wyatt:{accent:'#f97316',role:'Ad Hoc Dissent Agent · Pitch Pressure-Tester',detail:`<strong>Trigger:</strong> Dissent Protocol activation (Brady invokes)<br><br><strong>Outputs:</strong> Structured dissent memo highlighting blind spots and escalations<br><br><strong>Handoff:</strong> Delivered to Brady for strategic recalibration before client delivery`},
   bertha:{accent:'#94a3b8',role:'Performance Coach · 4-Layer Tracking (State · Story · Standards · Systems)',detail:`<strong>Trigger:</strong> Check-ins or misalignment detection<br><br><strong>Outputs:</strong> Thinking-partner insights, behavioral pattern recognition<br><br><strong>Handoff:</strong> Feeds Brady's self-awareness loop; surfaces patterns to Claudine`},
   phil:{accent:'#818cf8',role:'Daily 4 AM CT · Notion Grooming · Pre-Sweep Primer',detail:`<strong>Trigger:</strong> 4:00 AM CT daily (scheduled)<br><br><strong>Outputs:</strong><br>• TOP 3 daily candidates<br>• Carryover / 7-day horizon flags<br>• Coherence flags (Done/Status mismatches, capped 20/run)<br>• Gitted backup: <code>brady-os/phil-morning-audits/YYYY-MM-DD.md</code><br>• Streaming Notes row: Type="Pre-Sweep Primer"<br><br><strong>Handoff:</strong> Morning Sweep Phase 1.0b consumes Phil's primer`},
