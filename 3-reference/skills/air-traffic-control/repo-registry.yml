@@ -181,3 +181,29 @@ repos:
       - orlando
       - moving
       - mark-schmulen
+      - shellprint
+
+  shellprint-web:
+    description: "ShellPrint — turtle species ID + personal registry web MVP (Track A)"
+    github: basdkf024rhlasfd/shellprint-web
+    local_path: /Users/bs/shellprint-web
+    deploy: Vercel — shellprint-web.vercel.app
+    branch_convention: feature branches off main
+    owns:
+      - Capture interface (camera + upload)
+      - AI species identification (Claude Haiku via /api/identify)
+      - Personal turtle registry (IndexedDB, local-only)
+      - Turtle profile pages with re-name support
+    does_not_own:
+      - Portal auth or sidebar (not wired into mception.ai — standalone app)
+      - Scute fingerprinting (stubbed, ships in V1.1)
+    env_vars:
+      required:
+        - ANTHROPIC_API_KEY
+    key_files:
+      - app/page.tsx              # Capture + identify flow
+      - app/api/identify/route.ts # Claude Haiku vision endpoint
+      - app/registry/page.tsx     # Registry grid
+      - app/turtle/[id]/page.tsx  # Turtle profile
+      - lib/registry.ts           # IndexedDB CRUD
+      - lib/types.ts
