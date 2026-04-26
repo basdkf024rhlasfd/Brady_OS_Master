@@ -57,7 +57,7 @@ export function EngagementHub({
   const hot = isHot(nextTouch.isoDate);
 
   return (
-    <div className="h-full overflow-auto bg-gray-950 px-6 py-8 text-gray-100">
+    <div className="bg-gray-950 px-6 py-8 text-gray-100">
       <div className="mx-auto max-w-3xl space-y-8">
 
         {/* Header */}
