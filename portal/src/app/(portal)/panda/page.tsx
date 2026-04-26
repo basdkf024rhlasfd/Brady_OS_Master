@@ -1,6 +1,6 @@
 import { requireProjectAccess } from "@/lib/portal-access";
-import { EngagementHub } from "@/components/engagement/EngagementHub";
 import type { EngagementHubConfig } from "@/components/engagement/EngagementHub";
+import { PandaPageClient } from "./PandaPageClient";
 
 const config: EngagementHubConfig = {
   clientName: "Panda Restaurant Group",
@@ -43,5 +43,5 @@ const config: EngagementHubConfig = {
 
 export default async function PandaPage() {
   await requireProjectAccess("panda");
-  return <EngagementHub {...config} />;
+  return <PandaPageClient config={config} />;
 }
