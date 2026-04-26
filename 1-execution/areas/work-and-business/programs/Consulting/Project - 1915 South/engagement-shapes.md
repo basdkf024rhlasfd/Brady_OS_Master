@@ -118,9 +118,41 @@ Listen for the activation signal in his reply:
 
 None of these exceed $50K for 4 weeks. That's inside the "scoped project" budget any $182M retailer can approve at the Justin level without board drag. Above $50K, Russell has to sign — which is a different conversation with different timing.
 
+---
+
+## Option F — Full-Time Executive Role (added 2026-04-24)
+
+**This option is now on the table.** Justin's Apr 24 email is a CFO replacement proposal in formation. This is no longer a 4-week consulting pitch.
+
+**Proposed scope (per Justin):**
+- Accounting and controllership (including inventory)
+- Deal support and modeling
+- Entity design and structure (operating company, trust, real estate, new ventures, aviation)
+- Management/operating framework
+- Applied AI roadmap
+- Technology/IT
+
+**Title being discussed:** CFO, CFO + Chief AI Officer, or Chief Strategy Officer (Justin explicitly said "CFO is probably the wrong title here").
+
+**Timeline:** Existing CFO removed within 3 months (max). New finance director starting as bridge. Brady starts either aligned with CFO removal or on a negotiated date.
+
+**Key questions Brady must answer before the weekend call:**
+1. **Full-time vs. structured path?** Is Brady willing to go full-time at 1915 South? Or does he prefer an advisory-to-hire path (e.g., 90-day paid evaluation that converts to full-time)? Panda Kang engagement status affects this answer.
+2. **Comp expectations?** 29-store Ashley franchisee, private family business. Market-validated CFO comp at comparable scale: $280–380K base (Raw Selection 2025, private consumer >$150M median). Full CFO + CAIO + entity/structure scope justifies $310–420K base. Brady's floor: $280K. Target: $310–350K. Ceiling: $380–420K with meaningful bonus (50%+ target). See SFDR-016 for full benchmark data.
+3. **The GE woman?** If Justin hires both, Brady and she need complementary scopes. Brady's value is the AI + management operating system + M&A capital layer. Her value is integration/transformation execution. These don't overlap much if scoped right — Brady should be comfortable with the two-hire model if the scope is clean.
+4. **Other clients?** Panda Kang + mception practice vs. full-time role at 1915 South is a real trade-off. Brady should arrive at the weekend call knowing his answer.
+
+**What NOT to do in Option F:**
+- Don't negotiate against yourself — don't pre-emptively lower comp expectations to "help Justin justify both hires"
+- Don't conflate a consulting project with a hire — if Justin is offering a role, treat it like a senior executive offer, not a gig
+- Don't accept title downgrade as tradeoff — if the scope is CFO + CAIO + CSO, the comp and title should reflect it
+- Don't lose the Panda posture — if Brady accepts full-time at 1915 South, the Panda Kang conversation ends
+
+---
+
 ## What NOT to say
 
 - Don't quote retainer rates (monthly) — that signals fractional CFO framing Brady's explicitly moved away from
-- Don't quote equity / ownership — that's a Russell conversation, not a Justin one
+- Don't quote equity / ownership — that's a Russell conversation, not a Justin one — **unless Russell brings it up after being briefed**
 - Don't open pricing first — let Justin's scope signal drive it
 - Don't negotiate downward from the top of the range in the first conversation — the number is a placeholder until scope is locked

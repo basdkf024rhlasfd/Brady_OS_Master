@@ -120,7 +120,7 @@ trust_tier: T1
 At the start of every session with Fran:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items. Current phase: Phase 1 — Innovation Workshop delivery in flight.
-1b. **Load 1915 South's Company page** (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`, row where `Name` matches "1915 South" / "Ashley HomeStore — 1915 South") → read the **Problem Statements** H2 section (P1-PN H3s). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict.
+1b. **Load 1915 South's Company page** directly at `34ced43b-89c5-81c1-992a-cf4fe5f2eb2b` (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`) → read the **Problem Statements** H2 section. **As of 2026-04-24 this section is a draft scaffold** (P1: Franchise Format Differentiation, P2: Franchise Economics, P3: Succession/Ownership Continuity). Your job on next session: sharpen P1-P3 from `synthesis/cross-thread-synthesis.md` + `synthesis/knowledge-gaps.md` and append P4-PN as needed. Company page wins over Agent Wiki on conflict — you write canonical to the Company page, mirror to Wiki.
 2. **Load synthesis/cross-thread-synthesis.md** → surface binding constraints and current state.
 3. **Load synthesis/knowledge-gaps.md** → identify High-priority questions still open, SFDRs in flight.
 4. **Check for Innovation Workshop output** in `deliverables/` — if new artifacts have landed since last session, flag it as Stale state and re-synthesize before continuing.
@@ -510,7 +510,70 @@ Each Fran session must end with at least ONE of:
 
 ---
 
-## K. Deliverable Log
+## K. End-of-Session Notion Sync (added 2026-04-24)
+
+**Standing rule:** Every Fran session that produces net-new information, decisions, or artifacts must end with a Claudine Notion sync before the conversation closes. Fran surfaces the itemized list — Brady should never have to reconstruct it.
+
+**Claudine trigger phrase:** `"Claudine — end-of-session 1915 South Notion sync. Items: [list below]"`
+
+**What goes where:**
+
+| Item type | Destination | Schema |
+|---|---|---|
+| SFDR closure | Context Vault (new row) + Data Requests page (status update) | Source=AI, Type=Research Note/Market Analysis, Tags=Research+domain, Project=1915 South Projects DB entry |
+| Research finding (non-SFDR) | Context Vault (new row) | Same schema |
+| New deliverable built | Research Index page (append row) | Name, status, file path, one-line description |
+| Brady decision or scope change | Decision Log page (append entry) | Date, decision, rationale, what it resolves |
+| Platform/infrastructure change | Decision Log page (append entry) | Date, what was built, what it requires to go live |
+| Next Bests refresh | Next Bests page (full replace) | Fran's current top 3–5 opinionated moves |
+
+**Fran's end-of-session output format** (paste to Claudine):
+
+```
+Claudine — end-of-session 1915 South Notion sync. Items:
+
+CONTEXT VAULT (new rows):
+- [title] | Type: [Research Note / Market Analysis / Business Context] | Tags: Research, [domain] | Finding: [one sentence]
+
+DATA REQUESTS (status updates):
+- SFDR-NNN: [old status] → [new status] | Finding: [one line]
+
+DECISION LOG (append):
+- [YYYY-MM-DD] Decision: [what was decided] | Rationale: [why] | Resolves: [what question]
+
+RESEARCH INDEX (append):
+- [file name] | Status: [Built/In Flight/Shipped] | Description: [one line]
+
+NEXT BESTS (replace):
+1. [highest-leverage move]
+2. [second]
+3. [third]
+```
+
+**This session's owed Notion writes (2026-04-24):**
+
+**Context Vault — new rows:**
+- "SFDR-006 provisional — Ashley/Wanek publicly silent on FRG by name" | Type: Research Note | Tags: Research, FRG, Ashley Corporate | Finding: No confirmed Ashley/Wanek public quote on FRG collapse found via training data (cutoff Aug 2025). Needs web verification via Claude.ai Chat.
+
+**Data Requests — status updates:**
+- SFDR-006: OPEN → PROVISIONAL | Finding: Wanek appears not to have named FRG publicly; Brady should frame FRG opportunity independently (operator-identified, not HQ-directed). Needs web confirmation.
+
+**Decision Log — append:**
+- 2026-04-24: Platform Dynamic Layer 4 (Research Feed) built. API route `/api/1915-south/research-feed` queries Context Vault by Project relation. Live in PR #139. Requires `NOTION_CONTEXT_VAULT_DB_ID` env var set in Vercel mception-ai project before feed populates.
+- 2026-04-24: Working Session Deck built (`1915-south-working-session-2026-04-24`, 12 slides, mception-themed). Linked in portal hub. Internal use only — do not send to Justin directly.
+
+**Research Index — append:**
+- `1915-south-working-session-2026-04-24.{md,html,pdf}` | Status: Built | Description: 12-slide Justin working session deck. Three theses, AFHSVA first-move, Innovation Workshop top 4, engagement shapes A–E, 5 Phase 2 questions, Phase 2 close.
+- `portal/src/app/api/1915-south/research-feed/route.ts` | Status: Built (awaiting env var) | Description: Notion Context Vault feed API for portal hub.
+
+**Next Bests (replace):**
+1. Merge PR #139 + wire `NOTION_CONTEXT_VAULT_DB_ID` in Vercel (`vercel env add NOTION_CONTEXT_VAULT_DB_ID production` in mception-ai project) — unlocks live Research Vault feed
+2. Confirm SFDR-006 via web pull in Claude.ai Chat — determines whether Brady can echo Ashley language or must frame FRG independently in the Apr 29 nudge
+3. Send the Apr 29 nudge using the appropriate alternate from `nudge-2026-04-29-draft.md` — pick based on SFDR-006 result and any Ashley news that day
+
+---
+
+## L. Deliverable Log
 
 Tracks every artifact sent or shared externally. Updated by Brady or Fran whenever something leaves the internal layer (email, Drive share, portal access grant).
 

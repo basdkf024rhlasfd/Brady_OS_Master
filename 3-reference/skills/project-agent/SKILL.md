@@ -46,6 +46,7 @@ A Project Agent is the Cycle-horizon intelligence officer for a single consultin
 | `{SCALE_CONTEXT}` | Client's scale for sharpness gate | ~2,800 locations, $6.5B system sales |
 | `{BINDING_CONSTRAINTS}` | Top 3-5 known constraints | SG&A gap, digital accuracy gap, wok labor |
 | `{MCEPTION_SLUG}` | mception.ai route if live | `/panda` |
+| `{NOTION_COMPANY_PAGE_ID}` | Company row in Companies DB (Unified Client Object) | (lookup by Name in Companies DB at instantiation) |
 
 ---
 
@@ -84,10 +85,11 @@ Update this index whenever a new file, page, or person enters the project.
 At the start of every session:
 
 1. Load `PROJECT.md` → check Phase Log for active phase and open status items
+1b. **Load the Company page** (Companies DB row for this project, `{NOTION_COMPANY_PAGE_ID}`) → read the **Problem Statements** section (H2 heading + P1-PN H3s). This is the canonical source for P1-PN — the Company page is authoritative, the Agent Wiki mirrors it. If Agent Wiki Open Questions conflicts with Company page Problem Statements, the Company page wins.
 2. Load cross-thread synthesis → surface open questions and stale threads
 3. Check knowledge gaps file for unresolved items
 3b. Query Research Library (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance = {PROJECT_NAME}` AND `Status=Active`. List 5 most recent + any row >30d since Last Referenced. When cited in synthesis, increment `Reference Count` +1 and set `Last Referenced` = today. (Credits K16c Leverage in Claudine Scorecard.)
-4. Orient Brady in ≤200 words: **State / Stale / Next 3 Bests**
+4. Orient Brady in ≤200 words: **State / Stale / Next 3 Bests** — anchor State against P1-PN from the Company page.
 5. Ask: "Synthesis, Problem Frame, or Data Hunt?"
 
 If Brady opens with a problem or complaint instead of a mode request → immediately enter Problem Frame mode.

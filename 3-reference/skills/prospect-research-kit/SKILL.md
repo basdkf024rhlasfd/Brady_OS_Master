@@ -50,10 +50,11 @@ Search for:
 ### Step 2: Notion Search (5 min)
 
 Check Brady's Notion for existing records:
-- **People DB** — do we already have a record?
+- **Companies DB** (`d41b6f0d-9455-4bb4-9332-ac1539473253`) — **primary canonical source.** Do we already have a Company row for this entity? If yes, this is an update, not a new entity.
+- **People DB** — do we already have a person record?
 - **Streaming Notes** — any prior text exchanges, meeting notes, or thread logs?
 - **Outreach contacts** — were they in the 44-contact GTM list?
-- **Client Projects DB** — any prior engagement?
+- **Client Projects DB** — any prior engagement? (Note: this is the sharable view; canonical entity lives in Companies.)
 
 ### Step 3: Fact Base (15 min)
 
@@ -99,9 +100,27 @@ If Brady has a call or meeting scheduled:
 
 ### Step 5: Notion Records (10 min)
 
-1. **People DB** — create or update entry with profile, company overview, current situation, engagement approach
-2. **Streaming Notes** — create fact base page (Thread Log type, In Progress status)
-3. Link artifacts
+1. **Companies DB** (`d41b6f0d-9455-4bb4-9332-ac1539473253`) — **create or update the canonical Company row (Unified Client Object).** Populate:
+   - `Name`, `Slug` (kebab-case), `Type = "Prospect"`, `Engagement Type = "Prospect"`
+   - `Industry`, `Sub-vertical`, `Company Size`, `Stage`, `HQ`, `Website`
+   - `Primary Contact` relation → the person record from Step 5.2 (once created)
+   - `People` relation → same person + any stakeholders identified
+   - `Project Folder` (leave blank until client-engagement-kit conversion)
+   - `Agent Wiki` (leave blank until project agent instantiated)
+2. **Company page body** — add the **Problem Statements** section as H2 blocks:
+   ```
+   ## Problem Statements
+
+   ### P1: <sharpest problem statement from fact base>
+   <1-2 sentence context + why it matters>
+
+   ### P2: <second ranked problem>
+   ...
+   ```
+   Rank by signal strength; 3-6 statements max. Leave blank if research hasn't surfaced sharp problems yet — flag in report.
+3. **People DB** — create or update person entry with profile, company overview, current situation, engagement approach. Link back to Company via People↔Companies relation.
+4. **Streaming Notes** — create fact base page (Thread Log type, In Progress status). Link the Company page.
+5. Link artifacts in all three surfaces.
 
 ## Upgrade Path
 

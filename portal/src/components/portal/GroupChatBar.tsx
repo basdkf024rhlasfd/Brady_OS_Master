@@ -39,11 +39,15 @@ export const GroupChatBar = forwardRef<GroupChatBarHandle, {
   groupLabel: string;
   shortcuts?: { label: string; command: string }[];
   welcomeMessage?: string;
+  agentName?: string;
+  agentAvatar?: string;
 }>(function GroupChatBar({
   groupId,
   groupLabel,
   shortcuts: configShortcuts = [],
   welcomeMessage = "",
+  agentName,
+  agentAvatar,
 }, ref) {
   const { isAdmin, chatMode, toggleChatMode, configData, projectConfigs } = useWorkspace();
   const router = useRouter();
@@ -265,6 +269,24 @@ export const GroupChatBar = forwardRef<GroupChatBarHandle, {
       <div className="max-h-72 overflow-y-auto overflow-x-hidden px-4 py-2 space-y-2">
         {isEmpty && (
           <div className="py-2 space-y-3">
+            {(agentAvatar || agentName) && (
+              <div className="flex items-center gap-3">
+                {agentAvatar && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={agentAvatar}
+                    alt={agentName ?? "Agent avatar"}
+                    className="h-12 w-12 rounded-full object-cover ring-2 ring-border shrink-0"
+                  />
+                )}
+                {agentName && (
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-foreground">{agentName}</p>
+                    <p className="text-[10px] text-text-hint">Engagement intelligence agent</p>
+                  </div>
+                )}
+              </div>
+            )}
             {welcomeMessage && (
               <p className="text-xs text-text-secondary leading-relaxed">
                 {welcomeMessage}

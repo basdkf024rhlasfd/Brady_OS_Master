@@ -1,0 +1,10 @@
+enabled: true
+agent: fran
+agentName: Fran
+agentAvatar: /personas/fran.png
+prompt: 1915-south.md  # fallback only — `agent` takes precedence
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "I'm Fran — intelligence officer for the 1915 South engagement. Ask me about the research corpus, the talk track for Justin, the M&A thesis, the Innovation Workshop output, the AFHSVA target dossier, or where the next move is."
+operatorMode: true
+configAware: false
