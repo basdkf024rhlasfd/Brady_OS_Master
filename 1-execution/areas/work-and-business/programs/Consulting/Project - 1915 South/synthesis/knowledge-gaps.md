@@ -2,85 +2,75 @@
 
 *Ranked by value of unlock. Tag each as SFDR-eligible (answerable from public sources) or Open Question (needs Justin/Russell interview).*
 
+*Last updated: 2026-04-26 (Phase 4 — post-offer). Closed gaps preserved at bottom.*
+
 ---
 
-## High priority
+## High priority (open — pre-call Apr 26 evening)
 
 | # | Question | Tag | Unlock |
 |---|---|---|---|
-| 1 | ~~What is Zapsight's actual scope at 1915 South — data infrastructure only, or also strategy/analytics/operating recommendations?~~ **CLOSED 2026-04-24** — Justin confirmed: data foundation "largely complete," agentic AI capabilities being developed on top. Brady's proposed scope explicitly includes "Applied AI Roadmap" — strategy/direction layer above Zapsight's implementation. Brady = decision layer; Zapsight = implementation vendor. | ~~SFDR~~ **RESOLVED** | ~~Clarifies where Brady fits~~ |
-| 2 | Does Justin have equity/ownership at 1915 South, or is he a hired operator? | **Open Question** | Changes internal politics on adding another senior outside operator |
-| 3 | What is Russell Turner's actual appetite for outside senior hires vs. organic promotion? **PARTIALLY ANSWERED 2026-04-24** — Justin stated he would discuss with Russell "later today" before proposing the Brady hire. Justin's confidence in laying out a full org redesign + two new exec hires suggests Russell is either already aligned or Justin has meaningful authority here. | **Open Question** → **Watch** | Full answer comes after the Russell conversation. If Russell is on board, moves to Phase 4. |
-| 4 | What's the Innovation Workshop output going to recommend — product, ops, AI, or all three? | **Internal** | Depends on workshop-in-flight output. Fran must absorb on arrival. |
-| 5 | What does a "win" look like for 1915 South over the next 18 months in Russell's framing? | **Open Question** (Q5 in talk-track) | Anchors Brady's positioning and any engagement scope to Russell's priorities |
+| 21 | **Is Russell still personally guaranteeing senior debt?** | **Open Question — ask Justin tonight** | Brady's "lender and bank syndicate relationships" scope is meaningless if Russell PGs the debt — banks negotiate with the guarantor, not the CFO. Test of whether the scope is real or theatrical. |
+| 22 | **Has Alyson Nohelty signed yet, and on what start date?** | **Open Question — ask tonight** | Determines Brady's leverage. If Alyson signed first, Brady's leverage is moderate. If Alyson is still negotiating, Brady's leverage is high — Justin can't afford signs of doubt before Alyson closes. |
+| 23 | **What is the EBITDA definition in the bonus formula?** Stated vs. adjusted, what add-backs (owner comp, aviation, real estate, M&A diligence costs), capped vs. uncapped, OpCo only vs. consolidated. | **Open Question — ask tonight** | Determines whether the 1.25% number is real cash or theoretical. SFDR-018 §4 has the framework. |
+| 24 | **What's the Director of Strategy and Finance's name + GT MBA cohort + reporting expectation post-Brady-arrival?** | **Open Question — ask tonight; cross-reference offline** | Political risk. Justin hired him, he reports to Justin until Brady arrives, runs ERP migration solo. Brady needs interview pre-Day-1 + 90-day veto + no dotted line clause. |
+| 25 | **Who is the existing CFO being replaced — Josh Beaupre confirmed?** | **Open Question — ask tonight if delicate** | SFDR-019 indicates Josh Beaupre (ex-AGR VP Finance, ~13 months in). Brady should know name + tenure pattern; "5 jobs in 5 years" question for Justin maps to whether his ex-AGR team has high churn. |
+| 26 | **AGR closing conditions — what could push the Aug 1 close to Q4?** | **Open Question — ask tonight** | If AGR slips, Brady's first-90-days deliverables shift. Bonus pool also shifts ($35M annualized vs. $25M run-rate). |
+| 27 | **What does Justin's "intent to drive profitable top line growth so $600K should be seen as the baseline" mean specifically?** | **Open Question — ask tonight** | Reveals whether Justin sees $600K as floor (good for Brady) or as already-stretched midpoint (bad). Frames the no-cap conversation. |
 
-## Medium priority
+## High priority (open — post-acceptance / first 30 days)
 
 | # | Question | Tag | Unlock |
 |---|---|---|---|
-| 6 | What is 1915 South's revenue, EBITDA, and comp structure for senior leadership? | **SFDR** (bounded — limited public data for private retailer) | Sizes FTE economics vs. advisory economics |
-| 7 | ~~How is Ashley corporate enforcing GMROI at the franchisee level?~~ **PARTIALLY CLOSED 2026-04-25 (SFDR-003).** No contractual mandate or published numeric target. Enforcement is commercial (product access, co-op eligibility, stocking programs) not contractual. The Dec 2024 directive is a public positioning document, not a compliance mandate. Peer GMROI: Havertys 4.95 (outlier, 60%+ gross margin); Arhaus 1.82 (custom-order model); furniture retail satisfactory range = $2-3 per dollar invested. `research/sfdr-003-gmroi-directive-peer-benchmarks.md` | **CLOSED** | |
-| 8 | ~~Any current open roles posted by 1915 South?~~ **CLOSED 2026-04-24** — Justin confirmed CFO removal within 3 months, bridge via new director. Role is being created, not posted externally. This is a direct hire conversation. | ~~SFDR~~ **RESOLVED** | N/A |
-| 9 | What is 1915 South's omnichannel/digital mix and what's the delta vs. Ashley corporate's target? | **SFDR** | Gives concrete problem surface for the Innovation Workshop |
-| 10 | ~~Does Ashley Global Retail run a franchisee AI advisory program?~~ **CLOSED 2026-04-25 (SFDR-004).** No Ashley-owned licensee analytics or AI platform exists. What licensees get: Theo (free floor coaching), AshleyDirect (order/delivery/assets), GMROI framework docs. The operating/strategy layer between Theo and Zapsight is completely unoccupied. Brady is NOT competing with a corporate-provided program — he's filling a gap Ashley has no plans to fill. `research/sfdr-004-ashley-ai-deployments.md` | **CLOSED** | |
-
-## Low priority (monitor)
-
-| # | Question | Tag |
-|---|---|---|
-| 11 | How warm is Brady's direct history with Justin — any prior project work together at Walmart, or just era-overlap? | **Open Question** (Brady knows) |
-| 12 | ~~What's the state of 1915 South's distribution/logistics?~~ **CLOSED 2026-04-24 (SFDR-015).** 1915 South owns a fully vertically integrated last-mile operation: 4 DCs in 4 states, own truck fleet, 280-340 DC/delivery employees, $30-50M+ in infrastructure. Annual distribution cost: ~$23-25M (14-15% of revenue). Thomasville DC (June 2023, $15-16M): 105K sq ft + 40K mezzanine, 85-100 jobs. Jacksonville DC (65K sq ft, acquired 2022 from Fineman). Justin's JB Hunt comment = proposal to outsource last-mile = $8-10M/year savings + $10-15M freed capital. Full research: `research/sfdr-015-distribution-model.md` | **CLOSED** |
-| 13 | Who else has Justin hired onto the new leadership team (if anyone)? | **SFDR** |
-| 14 | Are there family succession tensions (younger Turners, future exit, etc.)? | **Speculative** — park unless surfaced by Justin |
+| 28 | **What is the trust structure and entity map** across operating co, real estate (Russell-owned LLCs), aviation, family offices? | **Day 1+ work — Brady's first deliverable** | This is the core "Strategy" content of CFSO. Until Brady can map it, his title is finance-with-a-prefix. |
+| 29 | **What's the full target list for M&A beyond Beaumont/Tupelo/Lake City?** Zeidan AFHSVA still in scope? FRG real-estate plays? | **Day 1+ work** | Drives the deal pipeline, which drives Brady's M&A bonus ammunition. Cross-reference Phase 0 research + frg-real-estate-opportunities.md. |
+| 30 | **Is mception preserved as Brady's outside ownership?** What's the IP firewall language in the offer letter? | **Open Question — confirm in offer letter** | Brady's mception agent platform must remain his outside ownership. Standard non-compete language could capture mception accidentally. |
 
 ---
 
-## Seeded SFDRs (initial batch for Fran to run or sequence)
+## Closed gaps (Phase 0-3) — preserved for archive
 
-```
-SFDR-001: What is Zapsight's scope of work at 1915 South — data infra only, or also strategy/analytics/operating?
-Source: Zapsight website, case studies, LinkedIn posts from 1915 South or Zapsight team, press releases
-Effort: Low (<30min)
-Unlock: Shapes the operating-layer pitch — tells Brady whether he's on top of Zapsight or alongside it
-
-SFDR-002: Is 1915 South running any AI/analytics capability internal to their team, or entirely vendor-dependent?
-Source: LinkedIn searches for 1915 South employees with analytics/data/AI titles; job board posts; company news
-Effort: Low-Medium
-Unlock: Identifies whether internal talent layer exists, and what gap the Innovation Workshop closes
-
-~~SFDR-003: How are Ashley HomeStore franchisees publicly responding to the GMROI directive?~~
-**CLOSED 2026-04-25.** No published numeric target from Ashley; no peer franchisee public commentary found. Enforcement is commercial not contractual. GMROI benchmarks: Havertys 4.95 (outlier), Arhaus 1.82 (custom model), furniture retail satisfactory = $2-3 per dollar. Improvement levers: 80/20 SKU audit, higher order frequency/lower depth (Ashley enables MOQ-of-1), structured clearance cadence. `research/sfdr-003-gmroi-directive-peer-benchmarks.md`
-
-~~SFDR-004: What is the publicly reported scope of Ashley's AP/forecasting AI deployments?~~
-**CLOSED 2026-04-25.** AP and demand forecasting confirmed AI-driven (no vendor named publicly; likely rides on Microsoft Dynamics 365 F&O). 500+ robots across manufacturing. Perplexity + Copilot Checkout are DTC e-commerce, not licensee tools. FrontlineIQ Theo is free for all licensees but floor-coaching only. No Ashley-owned licensee analytics platform. The strategic AI layer between Theo and Zapsight is unoccupied. `research/sfdr-004-ashley-ai-deployments.md`
-
-SFDR-005: What's the range of 1915 South's revenue estimate? Triangulate from Ashley franchisee benchmarks, store count, AUV ranges.
-Source: HFA financial benchmarks, Furniture Today top-100 list, ECDB, industry analyst reports
-Effort: Medium
-Unlock: Sizes what a retainer or FTE engagement could defensibly price at
-```
-
-Rank for first run: ~~SFDR-001 → SFDR-003 → SFDR-004~~ **SFDR-001 CLOSED.** ~~Updated priority: **SFDR-011 → SFDR-012 → SFDR-003 → SFDR-004**~~ **ALL PRE-SATURDAY SFDRs CLOSED.** SFDR-003, SFDR-004, SFDR-011, SFDR-012, SFDR-013, SFDR-014, SFDR-015, SFDR-016, SFDR-017 all CLOSED 2026-04-24/25. SFDR-005 anchored at $182M (Justin-confirmed). Remaining open/monitor: SFDR-002 (internal AI talent), SFDR-007 (Ashley GMROI numeric target, if any), SFDR-009 (digital mix). None are Saturday-critical.
+| # | Question | Status | Source |
+|---|---|---|---|
+| 1 | Zapsight scope at 1915 South | **CLOSED 2026-04-24** — Justin confirmed: data foundation "largely complete," agentic AI capabilities developing on top. Brady's scope explicitly includes Applied AI Roadmap. | Direct from Justin |
+| 2 | Does Justin have equity at 1915 South? | **PARTIALLY CLOSED 2026-04-26 (SFDR-019)** — No public evidence of equity stake. Profile reads as hired operator. Confirm in offer letter context. | SFDR-019 |
+| 3 | Russell's appetite for outside hires | **CLOSED 2026-04-25** — Russell aligned per Justin's text. Reorg + 2 outside senior hires (Brady + Alyson) approved. Russell stepped to Chairman. | Justin Apr 25 text |
+| 4 | Innovation Workshop output | **CLOSED 2026-04-22** — Delivered. 39 tiered ideas (Product + Ops + Back-Office). Published at mception.ai/1915-south. | Workshop deliverable |
+| 5 | Russell's "win" definition over 18 months | **PARTIALLY CLOSED 2026-04-25** — Implicit in Justin's plan: 30→48 stores, $185M→$285M revenue, $25M→$38M EBITDA. Russell's personal win = succession + continuity. | Inferred from Apr 25 plan |
+| 6 | 1915 South revenue / EBITDA / comp structure | **CLOSED 2026-04-25/26** — $185.5M / $25M EBITDA / 13.5% margin per Justin's email. Comp structure: low-base + EBITDA bonus + 5-yr LTI. | Direct from Justin |
+| 7 | Ashley GMROI directive enforcement mechanics | **CLOSED 2026-04-25 (SFDR-003)** — No contractual mandate; commercial enforcement only. Peer GMROI: Havertys 4.95, Arhaus 1.82, satisfactory range $2-3. | SFDR-003 |
+| 8 | Open roles at 1915 South | **CLOSED 2026-04-24** — CFO direct hire conversation. Not posted externally. | Direct from Justin |
+| 9 | Digital / omnichannel mix vs. Ashley target | **OPEN — Day 1+ work** | Will surface once Brady has Zapsight access. |
+| 10 | Ashley's franchisee AI advisory program | **CLOSED 2026-04-25 (SFDR-004)** — None exists. Operating layer between Theo and Zapsight is unoccupied. | SFDR-004 |
+| 11 | Brady's direct history with Justin (prior project work?) | **CLOSED 2026-04-26 (SFDR-019)** — Same Walmart Bentonville Pricing org 2017-2020. Era + org overlap, not direct project work. | SFDR-019 |
+| 12 | 1915 South distribution model | **CLOSED 2026-04-24 (SFDR-015)** — 4 owned DCs, own fleet, ~$23-25M/yr distribution cost (~13% of revenue). | SFDR-015 |
+| 13 | Who else has Justin hired? | **CLOSED 2026-04-25/26 (SFDR-019)** — Org chart published Apr 25. AGR diaspora pattern: Justin, Josh Beaupre, Frank Pina, Amanda Hall ex-AGR. Alyson incoming (GE/Marquette tie). Leah Odom internal long-tenure. | SFDR-019 |
+| 14 | Family succession tensions | **PARTIALLY CLOSED 2026-04-26 (SFDR-019)** — Russell's father (Scott Russell Turner Sr.) died Feb 2025. Russell ~58. No surfaced tensions among younger generation. | SFDR-019 |
+| 15 | High Point Market 2026 / Ashley AI directives | **CLOSED 2026-04-24 (SFDR-011)** — Ashley Intelligence + Theo + Ashley AI Advantage launched. | SFDR-011 |
+| 16 | CFO/CAIO comp benchmarks | **CLOSED 2026-04-24 (SFDR-012)** — Floor $280K / target $310-350K / ceiling $380-420K. | SFDR-012 |
+| 17 | JB Hunt FMS pricing | **CLOSED 2026-04-24 (SFDR-016)** — $210/stop blended; furniture $225-275; capital liberation $5-8M is the value, not unit cost. | SFDR-016 |
+| 18 | DC locations (incl. SW Virginia coverage) | **CLOSED 2026-04-24 (SFDR-017)** — 4 DCs: Thomasville GA, Jacksonville FL, Loxley AL, Kernersville NC. SW VA gap confirmed. | SFDR-015 |
+| 19 | VP Corp Dev / Strategy comp benchmarks | **CLOSED 2026-04-25 (SFDR-014)** — Median $195-230K base for $150-300M private consumer; with GE M&A pedigree $215-265K. | SFDR-014 |
+| 20 | What is AGR? | **CLOSED 2026-04-26 (SFDR-019)** — Ashley Global Retail LLC, Ashley Inc's company-owned retail arm. Mirrors 2022 Howard Fineman divestment pattern. | SFDR-019 |
 
 ---
 
-## New SFDRs (added 2026-04-24 — Phase 3 executive hire context)
+## Phase 4 SFDRs (closed 2026-04-26)
 
 ```
-~~SFDR-011: High Point Market 2026 — AI coverage and Ashley corporate directives~~
-**CLOSED 2026-04-24.** Ashley unveiled "Ashley Intelligence" innovation lab at High Point showroom (humanoid robot, interactive AI displays, John Mask hosting). Ashley HomeStore Licensee Summit was April 23 — Ashley launched "Ashley AI Advantage" + "Theo" AI sales coach (FrontlineIQ), free for all licensees. Up to $2K/week sales increase per rep. Justin was almost certainly in that room. Full research: `research/sfdr-011-high-point-market-2026.md`.
+SFDR-018: Justin's email financials validation — sanity-check 13.5% EBITDA, 2024→2025 +43% jump,
+14% AGR target, bonus pool implications. Recommendations: $400-450K base, 0.85-1.10% EBITDA,
+$200-250K LTI 5-yr vest. Y1 floor non-negotiable.
+File: research/sfdr-018-justin-financials-validation.md
 
-~~SFDR-012: CFO/CAIO hybrid comp benchmarking~~
-**CLOSED 2026-04-24.** Floor $280K (never below), Target $310-350K, Ceiling $380-420K. Havertys CFO $465K at $723M; Ethan Allen ~$380K at $740M; Raw Selection private consumer >$150M: median $380K. Family-owned adds +10-20% over PE-backed. Full negotiating toolkit: `research/sfdr-012-cfo-caio-comp-benchmarks.md`.
+SFDR-019: People + LinkedIn network + background-check pass on all 6 named execs (Russell, Justin,
+Frank, Alyson, Amanda, Leah) + AGR backstory + 1915 South Glassdoor/Indeed signals.
+Headline: Alyson is Justin's GE/Marquette buddy; new C-suite is AGR diaspora; Russell owns RE
+personally via LLCs; clean litigation/regulatory record; one yellow flag (Justin's 5-jobs-5-years).
+File: research/sfdr-019-1915-south-people-and-network.md
 
-~~SFDR-013: JB Hunt / third-party final-mile partnership structures~~ **MERGED INTO SFDR-016. CLOSED 2026-04-24.**
-
-~~SFDR-016: JB Hunt FMS furniture delivery pricing~~
-**CLOSED 2026-04-24.** $210/stop blended (from JBHT SEC filings); $225-275 for white-glove furniture. At 1915 South volumes = roughly a wash vs. owned fleet on unit cost. Outsourcing value = capital liberation ($5-8M freed) + HR simplicity. Named furniture client: Joybird. Badcock (same SE geography) runs fully owned fleet. RXO credible alternative/foil. Best negotiating window in 5 years (JBHT stops down 12-15%). Full research: `research/sfdr-016-jbhunt-fms-pricing-intelligence.md`.
-
-~~SFDR-017: 1915 South DC locations~~
-**CLOSED 2026-04-24.** All 4 DCs confirmed: Thomasville GA (110 Red Hills Blvd) · Jacksonville FL (Flagler Center, not on current website) · **Loxley AL (30555 County Rd 49 N, ~80K sq ft — AL/MS/FL panhandle)** · **Kernersville NC (1328 Bridgeport Dr — NC/VA Danville)**. SW Virginia coverage gap confirmed — Kernersville NC is the nearest DC to Roanoke (~170 miles). Zeidan/AFHSVA acquisition still requires 5th DC or JB Hunt as default. Full research: `research/sfdr-015-distribution-model.md`.
-
-~~SFDR-014: "VP Corporate Development & Strategy" comp benchmarks~~
-**CLOSED 2026-04-25.** Market median for $150-300M private consumer company: $195-230K base. With GE M&A pedigree + "& Strategy" scope: $215-265K. Brady's anchor for Justin: $210-240K base + 35-40% bonus + deal fee structure = ~$290-345K TDC. Combined two-hire (Brady + VP Corp Dev): $520-645K combined base, $755-870K TDC. Replaces $1.3-2.0M in traditional CFO + Corp Dev Director + strategy retainer + AI consultant stack. Net savings $430K-$1.2M/year. `research/sfdr-014-vp-corp-dev-comp-benchmarks.md`
+SFDR-020: Org structure analysis — scope overlap heat map, Alyson question deep-dive,
+Russell-as-Chairman governance read, the GT MBA Director political risk, 12-ask negotiation list
+sequenced by leverage and cost.
+File: research/sfdr-020-org-structure-analysis.md
 ```

@@ -69,8 +69,50 @@
 | JB Hunt transition potential | **~$2-3M/yr net savings + $5-8M freed capital if last-mile outsourced.** JB Hunt implied $210/stop blended; white-glove furniture est. $225-275/stop. At current volumes roughly a wash on unit cost — value is capital liberation + HR simplicity | JB Hunt FMS named client: Joybird. Badcock (same SE geography) runs fully owned fleet — most instructive peer comp against outsourcing. RXO/XPO is viable alternative/foil. |
 | SW Virginia coverage gap | **NONE** — no DC serving the Roanoke-Bluefield market | Zeidan/AFHSVA acquisition would require 5th DC build OR JB Hunt as default model for new territory |
 
-## SFDRs directly derived from this table
+## Financials & Forward Plan (SFDR-018 CLOSED 2026-04-26)
 
-- **SFDR-001 (also in knowledge-gaps):** Zapsight scope + 1915 South internal AI capability depth
-- **SFDR-006:** 1915 South digital mix % — triangulate from store count, Ashley franchisee benchmarks, any published Furniture Today coverage
-- **SFDR-007:** Ashley's specific GMROI target number (if any public)
+*Justin disclosed numbers in Apr 25 email + Apr 26 follow-up. Stress-tested in SFDR-018.*
+
+### Confirmed financials
+
+| Metric | 2024 Actual | 2025 Actual | 2026 (likely) | Aug 2026 (post-AGR run-rate) | March 2027 (45 stores) | June 2027 (48 stores) |
+|---|---|---|---|---|---|---|
+| Stores | ~30 | 30 | 30→42 | 42 | 45 | 48 |
+| Revenue | n/a | $185.5M | $192M ann. | $254-275M | $275.5M | $283.5M |
+| EBITDA ($) | $17.5M | $25.04M | $25-28M | $34.4M | $37.2M | $38.3M |
+| EBITDA (%) | n/a | 13.5% | 13.5% | 13.5% | 13.5% | 13.5% |
+
+### SFDR-018 stress-tested scenarios (combined 42-store P&L, Justin's table)
+
+| Scenario | Revenue | EBITDA | EBITDA % |
+|---|---|---|---|
+| Combined as-reported (Yulee/StAug adj) | $255.4M | $35.3M | 13.8% |
+| Combined annualized (+$6.5M Yulee/StAug full-year) | $261.9M | $36.1M | 13.8% |
+| Conservative (+0% AGR traffic, 23.5% close) | $271.2M | $37.3M | 13.8% |
+| Base (+15% AGR traffic, 23.5% close) | $281.7M | $40.4M | 14.3% |
+| Aggressive (+25% AGR traffic, 27% close) | $299.3M | $45.5M | 15.2% |
+
+### SFDR-018 sanity-check headlines
+
+- **13.5% EBITDA is at the industry ceiling.** Above Havertys (~10%), Ethan Allen, La-Z-Boy. Defensible because of (a) no public-co overhead, (b) owned-DC absorbed in COGS, (c) Ashley SSB/mattress vertical.
+- **2024→2025 +43% jump is mostly 2024 noise** (Thomasville DC ramp + ERP pre-spend + Yulee diligence depressed 2024 by $5-7M), not 2025 inflation.
+- **14% on AGR is a 24-month target**, not Year 1. AGR (Ashley Global Retail) is being acquired from Ashley corporate — structurally a worse retailer; realistic Y1 AGR EBITDA 9-11%.
+- **The 4.9% Total Store Operating constant is a model artifact** — real store payroll has 30-100 bps of operating leverage above $4.5M/store revenue density.
+- **2026 EBITDA likely lands at the LOW end of $25-28M** because Iran-war Q2/Q3 + ERP go-live + AGR integration drag all hit Brady's first 90 days.
+
+### Bonus pool implications (Justin's offer: 1.25% EBITDA quarterly)
+
+| Year | Stores | EBITDA | Bonus | LTI | Base | Total |
+|---|---|---|---|---|---|---|
+| Y1 (2026 partial) | 30→42 | $26M | $325K | $50K | $150K | $525K |
+| Y2 (2027) | 45-48 | $35M | $437K | $50K | $150K | $637K |
+| Y3 (2028) | 48+ | $40M | $500K | $50K | $150K | $700K |
+| Y5 (organic + tuck-ins) | 50+ | $45-50M | $560-625K | $50K | $150K | $760-825K |
+
+*Brady's $400K floor cash-certain test: at $25M EBITDA Y1, $150K + $325K = $475K. Passes. But Y1 floor protection (e.g., 80% of target bonus regardless of actual EBITDA) is non-negotiable per SFDR-018 §4.*
+
+## Open SFDRs (Day 1+)
+
+- **SFDR-006:** 1915 South digital mix % — triangulate once Brady has Zapsight access
+- **SFDR-007:** Ashley's specific GMROI target number (if published anywhere in Theo / Ashley AI Advantage materials)
+- **SFDR-002:** 1915 South internal AI talent depth (vendor-dependent vs. internal capability)
