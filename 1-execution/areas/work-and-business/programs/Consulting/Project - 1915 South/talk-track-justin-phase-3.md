@@ -344,3 +344,131 @@ Convert variable to guaranteed minimum bonus.
 ## The IVFH comp question (likely from Justin)
 
 > "IVFH was $325-400K cash depending on the year, plus equity I never realized. So my floor on cash is the high end of that range — I'm not stepping back. I'm stepping up to a bigger scope, smaller company, family-controlled — different shape, but the cash certainty needs to clear what IVFH did at peak."
+
+---
+
+# COMP FRAMEWORK v2 — 2026-04-25 evening (EBITDA-bonus structure clarified)
+
+**New intel:** Brady clarified that Justin's "$700K post acquisition" reference came with a specific construct: bonus is a **% of EBITDA**, and "post acquisition" means after a tuck-in (Zeidan-class) increases the EBITDA pool. Brady's read is that $700K is NOT the top of Justin's range — Justin floated it unprompted, which means real ceiling is plausibly $800K-$1M+.
+
+This changes the framework meaningfully. EBITDA-based bonus is fundamentally different from equity — it's annual cash, tied to a number Brady can move, not paper subject to a liquidity event. Brady's IVFH equity skepticism does NOT fully apply to EBITDA bonus structures.
+
+## Reverse-engineered EBITDA math
+
+1915 South EBITDA estimates:
+- Pre-acquisition: $182M revenue × ~14% margin ≈ **$25M EBITDA**
+- Post-Zeidan tuck-in (+$60-80M revenue) ≈ **$33-37M EBITDA**
+
+Plausible Justin structures all landing near $700K post-acquisition:
+
+| Base | EBITDA % | Pre-acq all-in | Post-acq all-in |
+|---|---|---|---|
+| $350K | 1.0% | $600K | $700K |
+| $400K | 0.85% | $615K | $700K |
+| $450K | 0.7% | $625K | $695K |
+| $500K | 0.6% | $650K | $710K |
+
+Base could plausibly land $350-500K. % could be 0.6-1.0% depending on weighting.
+
+## Re-anchored tiers (replaces v1)
+
+| Tier | Base | EBITDA % | All-in pre-acq | All-in post-acq |
+|---|---|---|---|---|
+| Walk-away | $400K | 0.5%+ | ~$525K | ~$575K |
+| Right "yes" | $450K | 1.0%+ | ~$700K | ~$800K |
+| Stretch | $500K | 1.0%+ | ~$750K | ~$850K |
+
+## The 4 formula questions Brady MUST ask
+
+EBITDA-based bonus is real cash IF the formula is real. Otherwise it's hand-wave.
+
+**1. Stated EBITDA, adjusted EBITDA, or owner's discretionary earnings?**
+Family-owned businesses often have aggressive add-backs (owner salary, family rent, aviation, perks) that reduce the bonus pool. Push for adjusted EBITDA with defined add-back schedule, OR stated EBITDA with no manipulation.
+
+**2. Is the % capped or uncapped?**
+A cap turns the bonus into a fixed bonus dressed up as a share. Push for uncapped. If they insist on a cap, fight for a high number that lets post-acquisition bonus run.
+
+**3. Is there a floor in down years?**
+Bridge the IVFH lesson — guaranteed minimum bonus (50-75% of target) for years 1-2.
+
+**4. Does the % survive acquisitions, divestitures, restructuring?**
+Brady is going to help architect M&A. Formula must follow consolidated EBITDA, not get diluted by entity-shuffling. Specifically: "If we acquire a business, % applies to consolidated EBITDA. If we spin out RE or aviation, % continues against operating EBITDA."
+
+These four questions also signal credibility — they tell Justin Brady has negotiated owner-style comp before.
+
+## Revised "what to say" when asked
+
+> "I'm comfortable with base + EBITDA-share. Base I'm thinking $450K. EBITDA share — depends on how you calculate, what the cap looks like, and whether there's a floor in down years. If the formula is clean — adjusted EBITDA with defined add-backs, uncapped, with a guaranteed floor years 1-2 — I'd land in the 0.8-1.0% zone. All-in lands where it lands based on EBITDA performance."
+
+Anchors base above floor ($400K), below Justin's probable mid-range ($500K), surfaces all four formula questions, doesn't acknowledge knowing the $700K number.
+
+## Updated hard rules
+
+- Never below $400K cash certainty (base $400K + guaranteed floor on EBITDA bonus year 1)
+- Never react live to a number — take it overnight
+- Never count equity in cash math
+- **NEW:** Never accept "% of EBITDA" without the 4 formula questions answered
+- **NEW:** EBITDA bonus is closer to base than equity if formula is clean; it counts
+- **NEW:** Don't acknowledge knowing the $700K number — it's internal anchor only
+
+---
+
+# COMP FRAMEWORK v3 — 2026-04-25 evening (Brady correction: don't anchor % without data)
+
+**Brady correction:** I anchored 1% of EBITDA in v2 without basis — that was reverse-engineering Justin's $700K, not negotiation discipline. Retracted. The actual order is **get data first, then design the share**.
+
+## Four questions Brady must ask BEFORE accepting any % on EBITDA
+
+These are PRE-conditions to the % conversation. No % is meaningful without them.
+
+**Q1. Current EBITDA run rate (TTM or current fiscal year).** Without this number, the % is undefined. 1% of $20M ≠ 1% of $40M.
+
+**Q2. Remaining bonus period in current fiscal year.** Mid-year start handling. Pro-rated for year 1? When does EBITDA pool clock reset?
+
+**Q3. % of 3-year EBITDA growth plan that's M&A-dependent vs. organic.** If 70% is M&A, bonus is hostage to deals. If mostly organic (JB Hunt outsourcing, AI margin lift, GMROI fix), bonus is more reliable.
+
+**Q4. EBITDA growth expectations Y1, Y2, Y3.** Justin clearly has a number in his head when he said $700K post-acquisition. Make him show his work.
+
+## Brady's two negotiating moves to lock in
+
+### Move 1: Year 1 floor at 80% of target bonus
+
+Brady's number, sharper than v2's 50-75% suggestion. **80% is the right anchor.**
+
+Protects against:
+- Mid-year start with reduced earning window
+- EBITDA dip due to housing cycle or one-time costs
+- Justin's enthusiasm exceeding actual Y1 results
+
+Fallback if Justin balks: drop to 70% on Y1 only. Y2+ is performance-tied so this isn't a long-term ask.
+
+### Move 2: The no-cap argument (Brady's framing)
+
+> "Capping the top wouldn't protect anyone — it would actually disincentivize further growth. We'll both be happy if we make way too much money."
+
+Why it works:
+- It's true (caps are pure misalignment at the top of the curve)
+- Signals Brady understands owner-style comp (caps are a PE artifact)
+- Frames alignment positively ("we'll both be happy")
+- Hard to argue against without revealing distrust
+
+Fallback if Justin insists on a cap: 200% of target bonus. Gives him a comfort number while letting upside run.
+
+## What I retracted from v2
+
+- ~~"EBITDA share in the 0.8-1.0% zone"~~ — too specific without the EBITDA denominator confirmed
+- ~~Reverse-engineered EBITDA math table~~ — kept as informational, but not as a negotiating anchor
+- The "what to say" line in v2 anchored 0.8-1.0% — replace with v3 version below
+
+## Revised "what to say" when asked
+
+> "Base around $450K. On the EBITDA share, I want to understand a few things first — current run rate, what % of the 3-year plan is M&A-dependent vs. organic, and how the formula handles add-backs. Once we're aligned on those, the % falls out cleanly. What I'd want either way: a guaranteed floor at 80% of target year 1, no cap on the top end. The cap argument I'd make is that we'll both be happy if we make way too much money."
+
+## Updated hard rules (v3)
+
+- Never below $400K cash certainty
+- Never react live to a number — take it overnight
+- Never count equity in cash math
+- Never accept "% of EBITDA" without the 4 formula questions answered (capped/uncapped, floor, add-backs, M&A survival)
+- **NEW v3:** Never accept any % without knowing current EBITDA run rate, remaining period, M&A vs organic split, and growth expectations
+- **NEW v3:** Year 1 floor at 80% of target bonus, no cap at the top
