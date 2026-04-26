@@ -61,12 +61,12 @@
 | Metric | 1915 South | Peer Context |
 |---|---|---|
 | Last-mile model | **Fully owned** — 4 DCs, own trucks, own crews | Havertys: fully owned; Bob's Discount: partially owned; JB Hunt FMS: outsourced model used by comparable retailers |
-| DC count | 4 confirmed: Thomasville GA · Jacksonville FL · **Loxley AL** · **Kernersville NC** | Havertys: 10+ DCs for 129 stores (~1 DC / 13 stores); 1915 South: ~1 DC / 7.25 stores (more intensive) |
+| DC count | 4 in 4 states (Thomasville GA, Jacksonville FL, + 2 unknown) | Havertys: 10+ DCs for 129 stores (~1 DC / 13 stores); 1915 South: ~1 DC / 7.25 stores (more intensive) |
 | DC headcount | ~280-340 delivery/DC staff total | Thomasville DC: 85-100 employees per 105K sq ft = ~1 employee / 1,050-1,200 sq ft |
 | Distribution cost | ~$23-25M/yr = **~13% of $182M revenue** | Havertys: delivery included in SG&A variable (~6-7% variable); 1915 South higher because fully owned fleet |
 | Capital in infrastructure | $30-50M+ (DCs + truck fleet) | Truck fleet alone: est. $12M; Thomasville DC: $15-16M investment |
 | Ashley inbound supply DCs | Brandon FL (→ FL stores), Advance NC (→ NC/VA), Ecru/Ripley/Verona MS (→ AL/MS) | Lead time: 2-3 weeks domestic |
-| JB Hunt transition potential | **~$2-3M/yr net savings + $5-8M freed capital if last-mile outsourced.** JB Hunt implied $210/stop blended; white-glove furniture est. $225-275/stop. At current volumes roughly a wash on unit cost — value is capital liberation + HR simplicity | JB Hunt FMS named client: Joybird. Badcock (same SE geography) runs fully owned fleet — most instructive peer comp against outsourcing. RXO/XPO is viable alternative/foil. |
+| JB Hunt transition potential | **~$2-3M/yr net savings + $5-8M freed capital if last-mile outsourced** (capital/complexity liberation — primary value is freeing truck fleet capital and simplifying ops) | JB Hunt FMS covers SE US, white-glove furniture delivery, used by comparable retailers |
 | SW Virginia coverage gap | **NONE** — no DC serving the Roanoke-Bluefield market | Zeidan/AFHSVA acquisition would require 5th DC build OR JB Hunt as default model for new territory |
 
 ## SFDRs directly derived from this table

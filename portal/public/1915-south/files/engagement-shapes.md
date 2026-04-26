@@ -138,7 +138,7 @@ None of these exceed $50K for 4 weeks. That's inside the "scoped project" budget
 
 **Key questions Brady must answer before the weekend call:**
 1. **Full-time vs. structured path?** Is Brady willing to go full-time at 1915 South? Or does he prefer an advisory-to-hire path (e.g., 90-day paid evaluation that converts to full-time)? Panda Kang engagement status affects this answer.
-2. **Comp expectations?** 29-store Ashley franchisee, private family business. Market-validated CFO comp at comparable scale: $280–380K base (Raw Selection 2025, private consumer >$150M median). Full CFO + CAIO + entity/structure scope justifies $310–420K base. Brady's floor: $280K. Target: $310–350K. Ceiling: $380–420K with meaningful bonus (50%+ target). See SFDR-016 for full benchmark data.
+2. **Comp expectations?** 29-store Ashley franchisee, private family business. Rough CFO comp at comparable scale: $200–350K base + bonus. But this role is CFO + CAIO + possible COO — may command higher. Brady needs a number range before the call.
 3. **The GE woman?** If Justin hires both, Brady and she need complementary scopes. Brady's value is the AI + management operating system + M&A capital layer. Her value is integration/transformation execution. These don't overlap much if scoped right — Brady should be comfortable with the two-hire model if the scope is clean.
 4. **Other clients?** Panda Kang + mception practice vs. full-time role at 1915 South is a real trade-off. Brady should arrive at the weekend call knowing his answer.
 
