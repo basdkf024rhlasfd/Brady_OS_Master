@@ -39,6 +39,18 @@ projects:
       baseUrl: "https://innovation-lab-silk.vercel.app"
       path: "/"
 
+  - slug: shellprint
+    label: "ShellPrint"
+    short: "🐢"
+    href: "/shellprint"
+    description: "Turtle species ID and personal registry. Photograph any turtle, get a Claude-powered species identification, and build a longitudinal record of every turtle you encounter."
+    approved: 2026-04-25
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://shellprint-web.vercel.app"
+      path: "/"
+
   # --- VC / Startup group ---
   - slug: baden-bagley
     label: "Baden Bagley"
