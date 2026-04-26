@@ -120,7 +120,7 @@ trust_tier: T1
 At the start of every session with Fran:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items. Current phase: Phase 1 — Innovation Workshop delivery in flight.
-1b. **Load 1915 South's Company page** (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`, row where `Name` matches "1915 South" / "Ashley HomeStore — 1915 South") → read the **Problem Statements** H2 section (P1-PN H3s). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict.
+1b. **Load 1915 South's Company page** directly at `34ced43b-89c5-81c1-992a-cf4fe5f2eb2b` (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`) → read the **Problem Statements** H2 section. **As of 2026-04-24 this section is a draft scaffold** (P1: Franchise Format Differentiation, P2: Franchise Economics, P3: Succession/Ownership Continuity). Your job on next session: sharpen P1-P3 from `synthesis/cross-thread-synthesis.md` + `synthesis/knowledge-gaps.md` and append P4-PN as needed. Company page wins over Agent Wiki on conflict — you write canonical to the Company page, mirror to Wiki.
 2. **Load synthesis/cross-thread-synthesis.md** → surface binding constraints and current state.
 3. **Load synthesis/knowledge-gaps.md** → identify High-priority questions still open, SFDRs in flight.
 4. **Check for Innovation Workshop output** in `deliverables/` — if new artifacts have landed since last session, flag it as Stale state and re-synthesize before continuing.

@@ -47,6 +47,31 @@ Before generating any output, silently execute ALL of these in parallel where po
      the weekly sweep to bake into Section B permanently
    - Mark each processed feedback note Status="Complete" after applying
 
+## Phase 0 — Decision Queue (FIRST THING BRADY SEES)
+
+Run the `daily-decision-queue` skill (`3-reference/skills/daily-decision-queue/SKILL.md`).
+
+Aggregates every pending `approve [agent] [slug]` from Musashi, Heidi, Phil, project-agent standups, and `Type=System Instruction` Streaming Notes into ONE numbered list. Render this BEFORE the TOP 3 / Email / Calendar sections — it's the highest-leverage 30 seconds of Brady's day.
+
+Behavior:
+- If queue has 0 items → render `🎯 Decision queue: clear ✅` and continue silently
+- If queue has items → render queue at top of sweep output. Brady can reply `approve 1,2,5 | reject 3` before the rest of the sweep, or say `continue` to defer dispositioning to end of sweep.
+- Approvals get routed by Phase 0's reply handler — they don't block sweep continuation.
+
+The decision queue is the spine of the dream-state surface — Brady's "open the day with one approve/reject list" requirement. Do NOT skip Phase 0 even if the queue is empty (the explicit "clear ✅" line is the signal that the system checked).
+
+## Phase 0.5 — Daily Money Check (Lightweight, Replaces Old Finn Daily Block)
+
+Claudine runs a 30-second financial sanity check (NOT full Finn). Three things only:
+1. Latest Arvest Family Spend balance from Gmail alerts (last 24h)
+2. Any single transaction > $500 in last 24h across Gmail order/refund emails
+3. Any bill due in next 48h from Calendar + known recurring (SoFi, Truist, COBRA, etc.)
+
+If any of the three fires → surface as one-line alert in TOP 3 candidate list.
+If all three are clean → render `💰 Money: stable, no anomalies` and move on.
+
+**Full Finn block (cash flow, runway, consulting AR, IVFH, net worth, deep account analysis) runs WEEKLY only — see weekly-sweep Phase X.** Daily Finn was overkill; cash position doesn't change materially day-to-day, and daily heavy financial output crowded the sweep surface.
+
 ## Phase 1: SCAN (Gather Everything — No Output Yet)
 
 Execute all scans before writing anything. Gather raw data into working memory.

@@ -90,6 +90,14 @@ Phase 2 (Scoring).
 - Notion handoff: one Streaming Notes row per run. Name MUST start with `Musashi Review — YYYY-MM-DD`. Type MUST be `Daily State` (DB schema does not have a `Musashi Review` Type option — Name prefix is the queryable distinction).
 - Routing Log: one summary row per run
 
+## Pre-Flight — Chunked Persistence (CRITICAL — added 2026-04-25)
+
+**Why:** Musashi's 2026-04-25 12:00 AM remote run hit `Request timed out` mid-Phase-4 (Tech Scan parallel calls); same pattern killed Heidi at 12:00 AM. Root cause: all phases stream as one long response. When Conductor kills the stream, **everything in working memory is lost.**
+
+**Rule:** After each `## Phase N` block completes, IMMEDIATELY `Edit` the backup file at `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md` to append the section just computed BEFORE starting Phase N+1. Update STATUS line to `running — last persisted: Phase N at HH:MM`. If a future run finds a today-dated backup with `STATUS: running`, resume from Phase N+1.
+
+This is the canonical "Tier 3 Reliability Standard" — every long-running scheduled agent must follow it. See `3-reference/governance/tier-3-reliability.md` (TODO if missing).
+
 ## Pre-Flight (Silent)
 
 1. Confirm Notion MCP, Exa, Bright Data, git are all reachable. Log any unreachable — the run proceeds with that section marked `(unavailable this run)`, doesn't crash.

@@ -45,9 +45,12 @@ Calendar, and Notion consulting pipeline.
 
 | Mode | Trigger | Output |
 |------|---------|--------|
-| `morning-summary` | Called by morning-sweep | Compact 6-line block for the `FINANCES` section |
-| `weekly-summary` | Called by weekly-sweep | Detailed multi-section block for `FINANCIAL WEEK` |
-| `full` (default) | Standalone trigger | Complete financial snapshot with all sections + HTML dashboard |
+| ~~`morning-summary`~~ | **DEPRECATED 2026-04-25** | Daily morning Finn block was overkill. Replaced by Claudine's `Phase 0.5 — Daily Money Check` in morning-sweep (Arvest balance + >$500 transactions + 48h bill horizon). Cash position doesn't change materially day-to-day; daily heavy financial output crowded the sweep surface. |
+| `weekly-summary` | Called by weekly-sweep | **Now the primary Finn cadence.** Detailed multi-section block: cash flow, runway, consulting AR, IVFH position, net worth, account-level analysis, anomaly review |
+| `full` (default) | Standalone trigger / on-demand | Complete financial snapshot with all sections + HTML dashboard |
+| `anomaly` | Triggered when Phase 0.5 fires an alert | Deep dive on the specific anomaly only — not full snapshot |
+
+**Cadence rule (canonical, 2026-04-25):** Finn runs WEEKLY (Sundays via weekly-sweep) + ON-DEMAND. Claudine handles the daily lightweight check. This is the tier-2/tier-3 separation: Claudine = conductor (daily surface), Finn = specialist (weekly deep work).
 
 ## Finn Knowledge Base
 
