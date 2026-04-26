@@ -1,0 +1,8 @@
+enabled: true
+agent: oc-optimus
+prompt: panda-engagement.md  # fallback only — `agent` takes precedence
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "I'm OC Optimus — intelligence officer for the Panda engagement. Ask me about the research corpus (DR-01 through DR-14), problem statements, ops innovation strategy, KPI benchmarks vs. peers, or how to frame the next move with James."
+operatorMode: true
+configAware: false

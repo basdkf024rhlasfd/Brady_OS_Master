@@ -112,6 +112,22 @@ An agent does NOT satisfy Rule 3 if it just says "Musashi reviews this agent" wi
 4. Create the backup file at `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md` with `STATUS: running`. All phases write to this file before touching Notion.
 5. Check for an existing `Type="Hygiene Check"` row in Streaming Notes created today. If found, overwrite body in place rather than creating a duplicate.
 
+### Pre-Flight 6 — Chunked Persistence (CRITICAL — added 2026-04-25)
+
+**Why:** Heidi's 2026-04-25 12:00 AM remote run hit `Stream idle timeout — partial response received` mid-Phase-5; the 12:13 AM retry hit the same wall. Root cause: all phases stream as one long response. When Conductor kills the stream, **everything in working memory is lost.**
+
+**Rule:** After each `## Phase N` block completes, IMMEDIATELY `Edit` the backup file to append the section just computed BEFORE starting Phase N+1. Failure mode changes from "lose everything" to "resume from last persisted phase."
+
+Pattern at end of every Phase block:
+```
+[Phase N work complete — section computed in memory]
+→ Edit backup file: append Phase N section under STATUS: running
+→ Update STATUS line: "running — last persisted: Phase N at HH:MM"
+→ Begin Phase N+1
+```
+
+If a future run starts and finds an existing today-dated backup with `STATUS: running` and `last persisted: Phase N`, **resume from Phase N+1** rather than starting over. This is the canonical "Tier 3 Reliability Standard" — every long-running scheduled agent must follow it. See `3-reference/governance/tier-3-reliability.md` (TODO if missing).
+
 ## Phase 1 — Agent Inventory (Roster-State Aware)
 
 1. List all files matching `0-agents/custom-built-agents/*.md`.

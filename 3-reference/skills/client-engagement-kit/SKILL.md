@@ -51,7 +51,7 @@ Everything else is researched.
 **Time:** 30-45 min
 
 1. Search web for company profile, financials, leadership, strategy, recent news
-2. Search Notion for existing relationship history (People DB, Streaming Notes, outreach contacts)
+2. Search Notion for existing relationship history. **Check Companies DB (`d41b6f0d-9455-4bb4-9332-ac1539473253`) first** — if a Company row exists (likely via prior prospect-research-kit run), load it and upgrade rather than create. Also check People DB, Streaming Notes, outreach contacts.
 3. Search for competitors, supply chain, key customers, industry dynamics
 4. Produce a sourced fact base with:
    - Company overview (size, revenue, HQ, structure)
@@ -60,6 +60,7 @@ Everything else is researched.
    - Stakeholder map (who cares about what, tensions between them)
    - Competitive landscape
    - Where Brady could help (mapped to Brady's capabilities)
+   - **Sharpened Problem Statements (P1-PN)** — 3-6 ranked statements that will drive the engagement. These populate the Company page's Problem Statements section in Step 7.
    - Unverified items flagged with ⚠️
 
 **Output:** Fact base in Notion (Streaming Notes) + local markdown copy
@@ -139,17 +140,37 @@ Everything else is researched.
 **Owner:** Agent (no sub-skill — direct Notion tools)
 **Time:** 10 min
 
-1. Create or update **People DB** entry:
+1. **Companies DB** (`d41b6f0d-9455-4bb4-9332-ac1539473253`) — **update or create the canonical Company row (Unified Client Object):**
+   - Flip `Type = "Client"` (from "Prospect" if converting)
+   - Flip `Engagement Type` → `"Discovery"`, `"SOW"`, or `"Retainer"` depending on stage
+   - Ensure all identity fields populated: `Name`, `Slug`, `Industry`, `Sub-vertical`, `Company Size`, `Stage`, `HQ`, `Website`
+   - `Primary Contact` relation → the exec's People record
+   - `Project Folder` → filesystem path, e.g. `1-execution/areas/work-and-business/programs/Consulting/Project - {Name}/`
+   - `Agent Wiki` → Notion URL of the project agent wiki (if a project-agent has been instantiated)
+   - `Research Library` relation → any Research Library rows already tagged for this client
+2. **Company page body** — write the **Problem Statements** section as H2/H3 blocks:
+   ```
+   ## Problem Statements
+
+   ### P1: <sharpest problem statement from Step 1 fact base>
+   <1-2 sentence context + why it matters>
+
+   ### P2: <second ranked problem>
+   ...
+   ```
+   Rank by signal strength; 3-6 statements. This section is the canonical source that project agents read in Synthesis mode — do not duplicate into Agent Wiki.
+3. **Client Projects DB** (shareable workspace-root) — create a row, set `Company` relation → the Companies row above. Populate Phase, Project Type, Status, Start Date, Deliverables, Next Milestone for the client-facing view.
+4. **People DB** entry:
    - Profile table, company overview, current situation, stakeholder map
    - Innovation opportunities (if applicable)
    - Full upstream cost stack or equivalent analysis
    - Where Brady could help
    - Engagement timeline
    - Artifacts section linking all deliverables
-2. Create or update **Streaming Notes** fact base page
-3. Link everything
+5. **Streaming Notes** fact base page — link back to Company row.
+6. Link everything bidirectionally.
 
-**Output:** Complete Notion record
+**Output:** Complete Notion record, Company row serves as canonical anchor for all future skill invocations.
 
 ---
 

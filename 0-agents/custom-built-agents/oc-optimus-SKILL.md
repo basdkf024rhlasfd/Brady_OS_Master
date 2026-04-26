@@ -104,7 +104,7 @@ trust_tier: T1
 At the start of every session with OC Optimus:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items
-1b. **Load Panda's Company page** (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`, row where `Name="Panda Restaurant Group"`) → read the **Problem Statements** H2 section (P1-PN H3s). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict.
+1b. **Load Panda's Company page** directly at `34ced43b-89c5-81bb-9753-c295b9a943d7` (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`) → read the **Problem Statements** H2 section (P1-P5 H3s: SG&A Efficiency Gap, Restaurant-Level Margin Gap, Wok Labor Intensity, Digital Order Accuracy, Governance & Succession Clarity). This is the canonical source for the engagement's P1-PN — Company page wins over Agent Wiki Open Questions if they conflict. Backfilled 2026-04-24.
 2. **Load synthesis/cross-thread-synthesis.md** → surface current binding constraints and open threads
 3. **Load synthesis/knowledge-gaps.md** → identify Priority Question status (which of the Top 10 have been answered?)
 3b. **Query Research Library** (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` contains "Panda" AND `Status=Active`. List the 5 most recent rows (by Captured Date) and any row with `Last Referenced` > 30d old (candidates to re-surface). When citing a Library row in orientation or synthesis, increment its `Reference Count` by 1 and set `Last Referenced` to today — this is what credits the Leverage component of Claudine Research Score (K16c).

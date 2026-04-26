@@ -2,7 +2,7 @@
 
 Used by Finn to contextualize college timelines, 529 urgency, and household cost structure.
 
-Last updated: 2026-04-22
+Last updated: 2026-04-24
 
 ---
 
@@ -29,6 +29,13 @@ Last updated: 2026-04-22
 
 **Lily is 17 — college is ~18 months out. 529 draw window is imminent.**
 
+### Recent family context (Apr 24, 2026)
+- **Lily** — on BHS Choir Dallas/Fort Worth trip (Apr 24–26). Six Flags Sat, Stockyards Sun. Back ~8pm Sun Apr 26.
+- **Faith** — sleepover tonight (Apr 24) with Whitley. Care package ordered: face masks, snacks, toothbrush kit (~$15 from Walmart+ ad hoc order).
+- **Isla** — Olivia Gray's 9th birthday pool party Sat Apr 25, noon–1:30pm at Bentonville Community Center Pool (1101 SW Citizens Cir). Pool float + mermaid towel + balloons arriving today as gift.
+- **Luke** — BJJ at Inferno MMA ongoing (~$377/mo). Tue/Thu schedule.
+- **Quinn** — no current flags.
+
 ---
 
 ## College Savings — my529.org
@@ -37,6 +44,21 @@ See `529-accounts.md` for full detail. Summary:
 - **Grand total:** $94,492.78 (as of 2026-04-21)
 - **Monthly contributions:** ~$1,260/mo total (funded twice-monthly)
 - Lily's account is largest ($31,951) and closest to draw — Target Enrollment 2030/2031
+
+---
+
+## Grocery & Household Supply System
+
+Brady uses a 73-item Walmart+ subscription system as the primary household supply channel. Full item list in `references/grocery-subscriptions.md` and raw data in `data/walmart-scrape-2026-04-24.md`.
+
+- **Delivery:** Tuesdays, 10am–12pm to 4505 NE Birchgrove Pl, Bentonville
+- **Payment:** Brady's Amex ending 2007 (NOT Karissa's card — this is Brady's subscription)
+- **Cadence:** Items cycle every 1–8 weeks by category. Biggest delivery waves: May 5 (17 items), May 12 (28 items), May 19 (25 items), May 26 (9 items)
+- **Estimated monthly spend:** ~$400–500 on subscriptions alone + ad hoc orders on top
+- **Ad hoc orders** (like Apr 24's $96.87) cover one-time needs, weekend cookouts, and care packages — classify as grocery/household in Monarch, not subscriptions
+- **Key insight:** Cheese and tortillas are already on bi-weekly cadence — running-short issues are likely demand spikes, not a cadence gap
+
+**When Finn sees large Walmart charges:** Cross-reference subscription delivery dates (Tuesdays) vs. ad hoc orders. Tuesday charges = subscription delivery. Other days = ad hoc.
 
 ---
 
