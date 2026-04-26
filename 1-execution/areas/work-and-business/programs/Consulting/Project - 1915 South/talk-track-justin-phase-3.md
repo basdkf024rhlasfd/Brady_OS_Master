@@ -472,3 +472,298 @@ Fallback if Justin insists on a cap: 200% of target bonus. Gives him a comfort n
 - Never accept "% of EBITDA" without the 4 formula questions answered (capped/uncapped, floor, add-backs, M&A survival)
 - **NEW v3:** Never accept any % without knowing current EBITDA run rate, remaining period, M&A vs organic split, and growth expectations
 - **NEW v3:** Year 1 floor at 80% of target bonus, no cap at the top
+
+---
+
+# JUSTIN'S PLAN LANDED — 2026-04-25 21:17 CDT
+
+Email subject: "Proposed Position and Plan." Four embedded images (org chart, titles map, financial timeline, signature) not parsed. Text gives us almost everything.
+
+## Confirmed financial intel (answers Q1, Q3, Q4 of pre-questions)
+
+- **2025 EBITDA: $25M** (matches our $25.5M research estimate exactly)
+- **2024 EBITDA: $17.5M** (+43% YoY growth — strong)
+- **2026 YTD: flat topline; Q1 EBITDA expanded; Q2 may decline due to Iran war supply chain**
+- **2026 EBITDA estimate: $25-28M**
+- **First acquisition (AGR): +$70M revenue at ~14% EBITDA = +$9.8M EBITDA**
+- **Post-AGR annualized EBITDA: ~$35M**
+- **2 additional Ashley LOI stores: +$15M revenue (LOI signed)**
+- **Beaumont TX 3-store + Columbus MS 1-store: 2028 (possibly sooner)**
+- **Florida new store: Q1 2028**
+- **One Jacksonville store closes EOY**
+- **Total stores in ~18 months: 48** (currently 29)
+- **"Real top line is likely to exceed $300M fairly quickly"**
+
+## Comp structure proposed by Justin
+
+Three components:
+
+1. **Low base** — "the lower this is set, the more flexibility exists on bonus comp"
+2. **Bonus = % of EBITDA, paid QUARTERLY**
+3. **LTI issued annually, vested over 5 years**
+
+Critical line: *"I have an idea in mind on what these numbers could look like but want to give some more thought to it and also understand how you are thinking you'd want it structured."*
+
+**He is asking Brady to anchor first.** This is rare and meaningful — anchor with discipline.
+
+## Timing options HE proposed
+
+**Option A:** Brady starts ~June 1 just after CFO removed.
+
+**Option B (Justin's framing):** *"Get through the deal with AGR and when that closes on 8/1, we remove the current CFO and announce you coming into the organization. This story is stronger to banking partners and others and I think organizationally we can get by until then. It potentially also allows you to do a good bit more on what you have going now before jumping fully into this."*
+
+**Option B is the gift.** Justin himself framed it as better for the company narrative AND better for Brady's other commitments. The phrase "announce you coming into the organization" implies announcement could precede start. **Brady should ask: if Aug 1 is the announcement, what's the latest realistic start — Sept/Oct?** This buys 6-10 more weeks of Panda runway without negotiating against Justin.
+
+## Alyson Nohelty — the GE woman has a name
+
+Profile: GE alum + other places, M&A, company integration, transformation. Justin's framing: *"I see some overlap here with your role but I also think there's enough work coming that you can justify two minds on this tackling slightly different aspects of the work. For discussion."*
+
+Collaborative, not competitive. Brady should:
+- Not veto, not endorse
+- Ask scope-clarifying questions: how do you see the seams? Where does she own end-to-end vs. where do I? Is the M&A pipeline big enough for both?
+
+## Director of Strategy & Finance
+
+- Starts in ~1 week
+- Georgia Tech MBA
+- Reports to Justin during Panda window, then to Brady on start
+- Will be ramped on ERP launch (June 1) and AGR close (Aug 1) before Brady arrives
+- Brady inherits a director who's been in the building 12+ weeks, knows the ERP and the deal
+
+## Math at right-yes target structures
+
+**$400K base + 1.0% EBITDA + 80% Y1 floor:**
+- Y1 ($25-28M EBITDA): $250-280K bonus → $650-680K all-in (floor protected at ~$600K)
+- Y2 ($40M post-AGR): $400K bonus → $800K all-in
+- Y3 ($48-50M): $480-500K bonus → $880-900K all-in
+- Plus 5yr-vesting LTI
+
+**$350K base + 1.25% EBITDA + 80% Y1 floor:**
+- Y1: $313-350K bonus → $663-700K all-in (matches Justin's $700K reference at Y1)
+- Y2: $500K bonus → $850K all-in
+- Y3: $600-625K bonus → $950-975K all-in
+- Plus 5yr-vesting LTI
+
+The $350K-base path maps Justin's casual $700K reference to Y1 and runs to ~$1M by Y3 — implying Justin's actual ceiling is north of $1M annual all-in.
+
+## Recommended anchor for tomorrow's call
+
+> "Base $400K. Bonus 1.0% of adjusted EBITDA paid quarterly, with a Y1 floor at 80% of target to bridge the partial year. No cap on the upside. LTI annual grants vesting over 5 — I'd want to understand the formula and what triggers vesting before naming a target there. The shape of this works because everything I'd influence — M&A, GMROI, JB Hunt, AI margin — flows into the bonus pool."
+
+Why this works:
+- Anchors at floor on base ($400K), not above (respects "low base" framing)
+- Picks 1.0% (room to negotiate up to 1.25% if he pushes)
+- Accepts quarterly payout (he proposed it, smart)
+- Locks 80% Y1 floor + no-cap discipline
+- Defers LTI specifics until formula visible
+- Closes with alignment line — earn through what you can move
+
+## Brady's priority order on tomorrow's call
+
+1. **Confirm timing.** Lock Option B announcement Aug 1. Ask: latest realistic start (Sept/Oct?)
+2. **Surface comp anchor.** Use the line above; let Justin react
+3. **Probe LTI.** Vesting triggers, share count or dollar grant, liquidity vs exit-dependent
+4. **Ask Alyson scope-clarification questions.** Make him design the seams
+5. **Confirm Director reporting line.** Your Director on Day 1
+
+## Acknowledgment to send tonight
+
+Three sentences. Don't tip your hand:
+
+> Got it — appreciate the detail. I'll work through it tonight and tomorrow morning and be ready to talk through it. What time tomorrow works for you?
+
+---
+
+# STRUCTURE-FIRST ANCHOR (Brady's structural framework, 2026-04-25 late evening)
+
+Brady noted: Justin asked for structure, not numbers. Brady's four structural instincts:
+
+1. Strong emphasis on comp tied to baseline performance + reasonable vs stretch goals
+2. Push toward higher base + run-rate bonus before too much in M&A bucket
+3. Floor on bonus tied to company hitting baseline EBITDA
+4. Uncertain about LTI given normal-range career timelines
+
+## Sharpened structure to anchor the conversation
+
+### Tiered % of EBITDA (replaces flat 1% framing)
+
+- Lower % on EBITDA up to plan (target performance)
+- Higher % on EBITDA above plan (accelerator)
+- Higher still above stretch
+- This IS the no-cap mechanism — cleaner than "no cap" + flat % because each $ above plan has defined payout
+
+Example structure (illustrative, not anchor): 1.0% to $28M plan / 1.5% from $28-35M / 2.0% above $35M.
+
+### Two-bucket bonus (run-rate weighted higher than M&A)
+
+- Bucket A — Operating EBITDA bonus on baseline + organic improvement (higher %)
+- Bucket B — Deal-attributable EBITDA bonus on M&A contribution year of close (lower %)
+- Protects Brady against deal slippage; rewards run-rate execution
+
+OR for the call (simpler): ask Justin "how do you think about run-rate vs M&A in the bonus pool?" Make him show his work.
+
+### Two protective floors (both should be in the ask)
+
+- **Plan-achievement sliding scale** (ongoing): 100% bonus at 100% plan → 80% at 90% plan → 50% at 80% plan → 0 below 75%
+- **Y1 transition floor** (one-time): 80% of target bonus regardless, to bridge the partial-year ramp
+
+These coexist — different mechanisms, different protections.
+
+### LTI vehicle questions (vehicle > vesting schedule)
+
+Vehicle ranking best→worst for Brady:
+- **A. Cash deferred bonus** (earn in Y1, paid over 5) — best
+- **B. Phantom equity with annual cash distributions** — strong
+- **C. Real equity with defined liquidity events** — okay
+- **D. Pure exit-dependent phantom equity** — IVFH trap, avoid
+
+Brady's question: *"What does the LTI vest into — cash, phantom equity, real equity with liquidity triggers, or M&A deal participation? Annual cash or only at a defined event?"*
+
+### Deal participation / M&A carry (Brady's structural addition)
+
+Justin's casual "$700K post-acquisition" reference suggests M&A-tied comp beyond just EBITDA share. Brady can plant the structural idea:
+
+> "Open to thinking about a deal-participation component for M&A I architect, paid on realization rather than tenure."
+
+Example: 1-2% of EV created on acquisitions where Brady owns diligence + integration, paid in cash on subsequent recap or realization year.
+
+Reframes LTI from "long-term loyalty payout" to "skin in the deal game" — appropriate for an operating partner architecting M&A.
+
+## Recommended verbatim anchor for tomorrow's call
+
+> On structure, here's how I'd want to think about it:
+>
+> - Base + EBITDA bonus paid quarterly + LTI — your framework works
+> - Bonus tiered on EBITDA: lower % up to plan, accelerator above plan, no cap
+> - Bonus protected by plan-achievement floor: 90% of plan = full target bonus, sliding scale below
+> - First-year transition floor at 80% to bridge the partial year
+> - LTI — depends on the vehicle. Cash deferred is one thing, paper equity is another. I'd want to understand what it vests into before committing on a target
+> - On the LTI piece — open to thinking about a deal-participation component for M&A I architect, paid out on realization rather than tenure
+>
+> Once we're aligned on structure, the numbers fall out. What does the picture look like in your head?
+
+Why it works:
+- Accepts Justin's framework (base + bonus + LTI) — collaborative, not adversarial
+- Adds three structural protections (tiered, plan-floor, transition-floor)
+- Surfaces LTI vehicle question without committing
+- Plants deal-participation idea without anchoring %
+- Closes by inviting Justin to name numbers first
+
+## What this replaces / supersedes
+
+- The earlier "Base $400K. Bonus 1.0% of adjusted EBITDA..." anchor (from JUSTIN'S PLAN LANDED section) — supersedes for the structural conversation. Numbers come AFTER Justin reacts to structure.
+- Hold the $400K base as your floor for when numbers come up; don't anchor it tonight in the structural conversation.
+
+---
+
+# STRUCTURE-FIRST ANCHOR v2 — 2026-04-25 final (Brady refinements)
+
+Brady refinements applied:
+- Floor mechanism: not a sliding scale. Flat 80% floor that stays in place across normal range; only catastrophic miss (one that puts strategy/financials into question) reopens it
+- Deal participation: pulled from tonight's anchor. Small company without these structures yet; Brady becomes the CFO who recommends these things. Logged for next-sweep research.
+- Tone: explicitly iterative — leave room for Justin's picture
+
+## Verbatim proposal for the call
+
+> On structure, here's how I'd want to think about it. Curious where this maps to what you have in your head.
+>
+> - Base + EBITDA bonus paid quarterly + LTI — your framework works
+> - Bonus as % of EBITDA, tiered: a base % up to plan, accelerator above plan, no cap
+> - Year-1 transition floor at 80% of target to bridge the partial year
+> - Ongoing protection: 80% of target bonus stays in place unless we miss plan by enough that strategy and financials come into question — then it's a different conversation. The point is to set the floor low enough that any normal range of performance keeps the bonus protected
+> - LTI — depends on the vehicle. Cash deferred is one thing, paper equity tied to exits is another. I'd want to understand what it vests into before naming a target there
+>
+> Curious how that compares to what you've been thinking. Plenty more to work through.
+
+## What this replaces / supersedes
+
+- Earlier "Base $400K. Bonus 1.0% of adjusted EBITDA..." anchor — specific %s deferred
+- Earlier sliding-scale floor (100→80→50→0) — replaced by flat 80% floor with catastrophic-miss reopening
+- Earlier deal participation language — pulled from tonight's anchor; logged as research item
+
+---
+
+# WHAT BRADY ACTUALLY SENT — 2026-04-26 (supersedes prior anchors)
+
+**State change:** Justin sent specific numbers in a 7 AM email April 26 that wasn't seen during the Saturday-night talk-track work. Brady worked the strategy with ChatGPT, then sent a counter that meaningfully diverges from the Fran-anchored structure.
+
+## Justin's offer (April 26 ~7 AM CT email)
+
+| Element | Number |
+|---|---|
+| Base | **$150K** |
+| EBITDA bonus | **1.25% operating EBITDA, quarterly** |
+| LTIP | **$50K/yr, 5-yr vest** (100% at plan, min 25%) |
+| Total target comp post-AGR | **~$600K** |
+| At 48 stores (~end 2027) | **~$700K** (no top-line growth assumed) |
+
+**Justin's comp philosophy:** "Strong EBITDA = secure quarterly payouts. Only volume decline or mismanagement can impact bonus comp. EBITDA of operating company — separated from real estate. $600K should be seen as the baseline that you can further improve."
+
+## Brady's counter (April 26 afternoon — sent)
+
+- **Base: $240K** (vs. $150K offered; vs. $280-400K Fran-anchored floor — substantial concession)
+- **EBITDA Participation: keep at 1.25%** (preserve goodwill, save the % fight for 24-month review)
+- **2-year formal review point** on LTI / overall comp
+- **Execution focus:** team bench, ERP / finance transition risk, lean leadership
+- **Alyson scope:** soft pushback, asked for clarity on collaboration + decision rights
+- **C-suite parity + succession:** kept the "5-way battle" question (Brady's edge intact)
+
+## Why Brady's counter diverges from the Fran-anchored framework
+
+The Fran/Phase 3 work last night targeted a $280-400K base floor + tiered % structure + plan-achievement floor + no cap. Brady's actual sent counter is simpler and more conservative on base ($240K). Drivers:
+
+1. **Financial pressure** — SoFi $14, ~$8,852 fixed monthly, $0 consulting deposits last 30 days. Risk insulation matters more than maximum extraction.
+2. **ChatGPT strategy framing** — "stability enables performance," not greed. $240K base with 1.25% of growing EBITDA pool lands at $700K-$1M+ within 24 months. Not a low ask in total terms.
+3. **Goodwill preservation** — Justin's $150K base reflects his honest "low base + flexible bonus" philosophy. Pushing to $400K base would have been a cultural mismatch on day 1.
+4. **The real fight is downstream** — EBITDA definition, severance, 24-month review, scope clarity. Pre-fighting base would have burned political capital.
+
+## Strategic frame Brady is operating from
+
+From the ChatGPT log, the line that's now load-bearing:
+
+> "The real negotiation is not comp. It's Control, Scope, Time allocation (strategy vs firefighting), Access to upside over time."
+
+Tonight's call (8 PM ET / 7 PM CT) is about validating that frame is shared.
+
+## Open items for tonight's call + downstream agreement
+
+| Item | Surface tonight | Lock in employment agreement |
+|---|---|---|
+| Base $240K | Yes — get reaction | Final number |
+| EBITDA % at 1.25% | Confirm intact | Yes |
+| EBITDA definition (operating, add-back schedule) | Probe verbally | Written formula required |
+| 24-month review point | Asked in email — get reaction | Yes |
+| LTI vehicle (cash deferred vs phantom equity vs real) | Probe verbally | Yes |
+| Severance / Good Reason | Don't surface tonight (premature) | Yes — non-negotiable |
+| Alyson scope split | Yes — design seams | Document responsibilities + decision rights |
+| Title / decision rights | Probe | Yes |
+| Start date June 1 vs Aug 1 | Yes — get Justin's preference | Yes |
+| ERP migration risk | Probe verbally | Document scope of accountability |
+| Team bench depth | Yes — request real assessment | n/a |
+| Non-compete + COBRA + accelerated vesting on LTI | Don't surface tonight | Yes |
+
+## Risks Brady has identified (from ChatGPT log)
+
+1. **EBITDA definition risk** — they move EBITDA, Brady's comp moves with it. Need written formula.
+2. **LTI weakness** — $50K/yr is small relative to total comp; 5-year vest; performance-gated. Negotiation chip, not focus.
+3. **Title / power ambiguity** — exec team role TBD. Decision rights unclear.
+4. **CFO transition risk** — Brady becomes firefighter instead of strategist.
+5. **Execution bench risk** — strategy isn't the bottleneck; execution talent is.
+
+## What "winning" looks like tonight
+
+- Justin agrees in principle to $240K base (or counters at $200-220K — workable)
+- Justin confirms 1.25% intact and 24-month review point reasonable
+- Justin clarifies LTI vehicle direction
+- Justin commits to a real assessment of team / ERP / finance state before Brady locks start
+- Justin clarifies Alyson scope intent
+- Start date direction confirmed (Aug 1 still on the table)
+
+What is NOT a tonight win: a signed offer letter. This call is alignment, not finalization. Employment agreement is a separate workstream.
+
+## Reference artifacts (all in project folder)
+
+- `email-justin-counter-2026-04-26.md` — what Brady actually sent
+- `chatgpt-strategy-log-2026-04-26.md` — full ChatGPT strategy session
+- `negotiation-kb-2026-04-26.md` — comprehensive negotiation knowledge base
+- `3-reference/skills/financial-assistant/references/1915-south-employment-opportunity.md` — Finn's runway / cash-flow / tax tracking
