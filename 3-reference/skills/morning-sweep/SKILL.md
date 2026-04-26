@@ -60,6 +60,26 @@ Behavior:
 
 The decision queue is the spine of the dream-state surface — Brady's "open the day with one approve/reject list" requirement. Do NOT skip Phase 0 even if the queue is empty (the explicit "clear ✅" line is the signal that the system checked).
 
+## Phase 0.4 — Monarch CSV Refresh (Auto-Sync to Drive)
+
+Before the Daily Money Check, refresh the Monarch transaction CSV so Finn (here AND in Claude.ai Live Artifact mode) always has fresh data.
+
+**Steps (silent — only output if it fails):**
+
+1. Use `claude-in-chrome` MCP. If a Monarch tab isn't already open, create one at `https://app.monarchmoney.com/transactions`. Brady's Chrome session is persistently authenticated — no login flow.
+2. Navigate to Settings > Data > Download transactions. Trigger the download via JS click (Monarch's button doesn't accept a plain `.click()` — use the existing pattern from `0-agents/custom-built-agents/finn.md` → `account-scraping-sop.md`).
+3. Wait up to 30s for a file matching `~/Downloads/Transactions_*.csv` (newest by mtime).
+4. Copy the file to BOTH locations:
+   - `~/Library/CloudStorage/GoogleDrive-brady.smallwood@gmail.com/My Drive/Finn-Exports/monarch-YYYY-MM-DD.csv` (canonical — Claude.ai pulls from here via Google Drive MCP)
+   - `3-reference/skills/financial-assistant/data/monarch-YYYY-MM-DD.csv` (local repo copy for Finn-in-Conductor)
+5. Prune `Finn-Exports/` to last 14 days (keep weekly snapshots beyond that — every Monday's file).
+
+**Failure handling (do NOT block the sweep):**
+- If Chrome MCP is unavailable, Monarch is logged out, or the download times out → write one Streaming Notes row (`Type=Sweep Feedback`, `Priority=Should`, title `"Monarch CSV refresh failed — [reason]"`) and continue. Do NOT surface as a TOP 3 alert; this is plumbing, not a money signal.
+- If the most recent file in Drive is <12 hours old, skip the refresh entirely (already fresh).
+
+Render only on failure: `⚠️ Monarch CSV stale ([N] days) — auto-refresh failed, see Streaming Notes`. On success, no output (silent plumbing).
+
 ## Phase 0.5 — Daily Money Check (Lightweight, Replaces Old Finn Daily Block)
 
 Claudine runs a 30-second financial sanity check (NOT full Finn). Three things only:
@@ -701,6 +721,23 @@ fi
 ```
 
 Fill the variables from the sweep output: `N_PRIORITIES` = count from TOP priorities section, `N_VIP_EMAILS` = VIP emails needing reply, `N_THREADS` = active Notion threads. Omit `LINK` if there's no canonical URL.
+
+### 3.13b Refresh Telly's Knowledge Base
+
+Immediately after the completion push, trigger a Telly KB context refresh so she starts the day with current Rules & Preferences and recent Streaming Notes. Non-critical — never block the sweep if it fails.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  REFRESH_URL="${TELLY_PUSH_URL/\/api\/push/\/api\/context-refresh}"
+  curl -sS -X POST "$REFRESH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    > /dev/null || echo "[telly context refresh failed — non-critical]"
+fi
+```
+
+This primes Telly's 12-hour cache. If the refresh fails, Telly self-refreshes on her first query of the day.
 
 ## Mid-Day Feedback (Anytime)
 
