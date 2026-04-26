@@ -49,7 +49,8 @@ export interface DataSourceConfig {
 
 export interface ChatConfig {
   enabled: boolean;
-  prompt: string; // filename in project-prompts/ (e.g. "orlando.md")
+  prompt: string; // filename in project-prompts/ (e.g. "orlando.md") — fallback when `agent` is unset
+  agent?: string; // slug in src/lib/chat/agents/ (e.g. "oc-optimus") — when set, takes precedence over `prompt`
   model: string;
   maxOutputTokens: number;
   streaming: boolean;
@@ -118,6 +119,10 @@ function mergeWithDefaults(raw: Record<string, unknown>): ChatConfig {
 
   if (typeof raw.agentInstructions === "string") {
     config.agentInstructions = raw.agentInstructions;
+  }
+
+  if (typeof raw.agent === "string") {
+    config.agent = raw.agent;
   }
 
   return config;
