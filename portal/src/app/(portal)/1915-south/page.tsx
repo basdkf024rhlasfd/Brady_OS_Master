@@ -1,7 +1,6 @@
 import { requireProjectAccess } from "@/lib/portal-access";
-import { EngagementHub } from "@/components/engagement/EngagementHub";
 import type { EngagementHubConfig } from "@/components/engagement/EngagementHub";
-import { ProjectFrame } from "@/components/portal/ProjectFrame";
+import { NineteenFifteenSouthPageClient } from "./NineteenFifteenSouthPageClient";
 
 const config: EngagementHubConfig = {
   clientName: "1915 South — Ashley HomeStore",
@@ -44,26 +43,5 @@ const config: EngagementHubConfig = {
 
 export default async function NineteenFifteenSouthPage() {
   await requireProjectAccess("1915-south");
-  return (
-    <div className="h-full overflow-y-auto bg-gray-950">
-      <EngagementHub {...config} />
-      <div className="border-t border-gray-800 px-6 pt-8 pb-2">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-            Research Dashboard
-          </h2>
-          <p className="mt-1 text-sm text-gray-400">
-            Full 1915 South research corpus — Innovation Workshop, M&A thesis, scenario matrix, talk track.
-          </p>
-        </div>
-      </div>
-      <div className="h-screen bg-gray-950 p-4">
-        <ProjectFrame
-          baseUrl="/1915-south/viewer"
-          path="/index.html"
-          title="1915 South Research Dashboard"
-        />
-      </div>
-    </div>
-  );
+  return <NineteenFifteenSouthPageClient config={config} />;
 }
