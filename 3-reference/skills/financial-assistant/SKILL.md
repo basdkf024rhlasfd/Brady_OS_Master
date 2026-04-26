@@ -94,6 +94,15 @@ Before creating any new `Priority=Must` Streaming Notes row from this skill (Fin
 
 Finn KB Notion Section 0 Phase 4.2 is the canonical implementation surface — any future change must update Notion first, then propagate here.
 
+## Karissa Follow-Up Queue
+
+Maintained at `3-reference/skills/financial-assistant/karissa-followup.md`.
+
+On every run (any mode), Finn reads this file and surfaces the **top pending item** in the output as:
+> "Karissa follow-up today: [item]"
+
+Brady gets one answer from Karissa per day max — never push more than one item. When Brady marks an item asked or resolved (via "karissa update" or "karissa status"), update the table and commit.
+
 ## What This Skill Does NOT Do
 
 - **Not a budgeting app.** No enforcement, no guilt trips. Reports facts and forecasts.
