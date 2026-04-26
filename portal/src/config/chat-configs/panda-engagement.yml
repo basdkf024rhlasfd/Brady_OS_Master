@@ -1,5 +1,7 @@
 enabled: true
 agent: oc-optimus
+agentName: OC Optimus
+agentAvatar: /personas/oc-optimus.png
 prompt: panda-engagement.md  # fallback only — `agent` takes precedence
 model: claude-sonnet-4-5
 maxOutputTokens: 1024

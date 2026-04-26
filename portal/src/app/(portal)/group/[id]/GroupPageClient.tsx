@@ -150,6 +150,8 @@ export function GroupPageClient({
   welcomeMessage = "",
   dataSources = [],
   agentInstructions = "",
+  agentName,
+  agentAvatar,
 }: {
   id: string;
   groupLabel: string;
@@ -158,6 +160,8 @@ export function GroupPageClient({
   welcomeMessage?: string;
   dataSources?: DataSource[];
   agentInstructions?: string;
+  agentName?: string;
+  agentAvatar?: string;
 }) {
   const { chatOpen, toggleChat } = useWorkspace();
   const [layout, setLayout] = useState<"bar" | "panel">("bar");
@@ -388,7 +392,7 @@ export function GroupPageClient({
 
       {/* ── Chat bar ── */}
       {layout === "bar" && (
-        <GroupChatBar ref={chatBarRef} groupId={id} groupLabel={groupLabel} shortcuts={shortcuts} welcomeMessage={welcomeMessage} />
+        <GroupChatBar ref={chatBarRef} groupId={id} groupLabel={groupLabel} shortcuts={shortcuts} welcomeMessage={welcomeMessage} agentName={agentName} agentAvatar={agentAvatar} />
       )}
 
       {/* ── Tab content ── */}
