@@ -83,6 +83,8 @@ Total: 15-25 web searches per brief. Scale up for complex clients, down for simp
 - If a search returns nothing useful, note "no significant signals" — don't fabricate.
 - Always check Walmart.com / retailer PDPs when retail watch is a section.
 - Pull actual ingredient lists when comparing products (this is where the value lives).
+- **Research Library pre-check:** before web searching, query Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` matching the client AND `Captured Date` >= today - 7 days. Any hits go into the brief with citations AND get their `Reference Count` incremented + `Last Referenced` set to today. This closes the Leverage loop for K16c.
+- **Library write-back:** after publishing, write each non-duplicate web source used in the brief back to the Research Library as a new row with Captured By = "Exec Intel Brief", Client Relevance = current client tag, Source URL + TL;DR + topic tags. Skip if URL already exists in Library (dedupe on URL).
 
 ### Step 3: Build the Brief
 

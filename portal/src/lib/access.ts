@@ -103,6 +103,27 @@ export function resolvePortalAccess(user: UserLike | null | undefined) {
 
   const projects = resolveProjects(emailAddresses, isAdmin);
 
+  // ─── User tier ───
+  // owner  = Brady (full access, all features, debug surfaces)
+  // test   = reserved test account or explicit metadata.tier="test" (pre-prod
+  //          client experience validation; scoped to assigned projects only)
+  // client = everyone else (read-only, no debug, client-facing personas)
+  const explicitTier =
+    typeof user?.publicMetadata?.tier === "string"
+      ? user.publicMetadata.tier
+      : typeof user?.privateMetadata?.tier === "string"
+        ? user.privateMetadata.tier
+        : undefined;
+
+  let tier: "owner" | "test" | "client";
+  if (isOwner || isAdmin) {
+    tier = "owner";
+  } else if (isReservedTestAccount || explicitTier === "test") {
+    tier = "test";
+  } else {
+    tier = "client";
+  }
+
   return {
     ownerEmail,
     reservedTestEmail,
@@ -113,6 +134,7 @@ export function resolvePortalAccess(user: UserLike | null | undefined) {
     isOwner,
     isReservedTestAccount,
     isAdmin,
+    tier,
     projects,
   };
 }

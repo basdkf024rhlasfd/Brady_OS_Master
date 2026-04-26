@@ -90,6 +90,14 @@ Phase 2 (Scoring).
 - Notion handoff: one Streaming Notes row per run. Name MUST start with `Musashi Review — YYYY-MM-DD`. Type MUST be `Daily State` (DB schema does not have a `Musashi Review` Type option — Name prefix is the queryable distinction).
 - Routing Log: one summary row per run
 
+## Pre-Flight — Chunked Persistence (CRITICAL — added 2026-04-25)
+
+**Why:** Musashi's 2026-04-25 12:00 AM remote run hit `Request timed out` mid-Phase-4 (Tech Scan parallel calls); same pattern killed Heidi at 12:00 AM. Root cause: all phases stream as one long response. When Conductor kills the stream, **everything in working memory is lost.**
+
+**Rule:** After each `## Phase N` block completes, IMMEDIATELY `Edit` the backup file at `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md` to append the section just computed BEFORE starting Phase N+1. Update STATUS line to `running — last persisted: Phase N at HH:MM`. If a future run finds a today-dated backup with `STATUS: running`, resume from Phase N+1.
+
+This is the canonical "Tier 3 Reliability Standard" — every long-running scheduled agent must follow it. See `3-reference/governance/tier-3-reliability.md` (TODO if missing).
+
 ## Pre-Flight (Silent)
 
 1. Confirm Notion MCP, Exa, Bright Data, git are all reachable. Log any unreachable — the run proceeds with that section marked `(unavailable this run)`, doesn't crash.
@@ -99,16 +107,19 @@ Phase 2 (Scoring).
 
 ## Phase 1 — Agent Inventory
 
-Enumerate every agent to review:
+Enumerate every agent to review, filtered by Roster State:
 
 1. List files in `0-agents/custom-built-agents/*.md`, excluding `_template.md`, `references/`, and any `-README.md` / `-STATUS-TEMPLATE.md` variants.
 2. For each agent file, also note whether a colocated `-SKILL.md` exists.
 3. Parse frontmatter (name, seniority, platform, expertise, trust_tier if present).
-4. Output: a list of `{agent_name, profile_path, skill_path_or_null, trust_tier, role_summary}`.
+4. **Query the Claudine Skill Registry DB** (`e6d176601157408bbe9264a511344ed5`, data source `57962385-a005-4651-a52d-e0206dd0c4ac`) to read each agent's `Roster State`:
+   - **Active** — full scoring (all 5 dimensions, standard thresholds)
+   - **Bench** — scored but low Activation is expected, not penalized. Set dimension 1 floor at 1. Qualitative rationale should note "on bench."
+   - **Retired** — skip entirely. Do not include in scorecard.
+   - **Missing from registry** — treat as Active (fail-safe default).
+5. Output: a list of `{agent_name, profile_path, skill_path_or_null, trust_tier, role_summary, roster_state}`.
 
-Expected ~15 agents: bertha, bo, burt, claudine, content-drafter, cornelius,
-dicaprio, finn, fran, mason, musashi, oc-optimus, phil, telly, webster,
-wyatt-earp, yuki-ronin (plus anything added since).
+Expected ~15 agents across Active + Bench. Retired entries (e.g., `bertha`, `bo`, `cornelius`, `bertha` historical identities) are skipped.
 
 ## Phase 2 — Objective Scoring
 

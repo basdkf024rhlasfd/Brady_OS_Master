@@ -56,15 +56,22 @@ These data sources require Chrome browser scraping (via `claude-in-chrome` MCP t
 
 ### 1. Walmart.com Order History
 - **URL:** https://www.walmart.com/account/orders
-- **Status:** PARTIAL (2 pages scraped Apr 17, 2026 — see `data/walmart-scrape-2026-04-17.md`)
-- **Account:** Logged in as Karissa S (Member since 2021)
-- **Key findings so far:**
+- **Status:** SUBSCRIPTIONS COMPLETE (scraped Apr 24, 2026). Order history still PARTIAL (2 pages from Apr 17).
+- **Data files:** `data/walmart-scrape-2026-04-17.md` (order history), `data/walmart-scrape-2026-04-24.md` (full subscription list + today's order)
+- **Account (Apr 17 scrape):** Karissa S (Member since 2021) — order history account
+- **Account (Apr 24 scrape):** Brady Smallwood, 4505 NE Birchgrove Pl, Bentonville. Payment card ending 2007 (Brady's Amex). Delivery Tuesdays 10am–12pm.
+- **Key findings (Apr 17):**
   - Utah delivery confirmed: **196 Inglewood Dr, Orem, UT 84097** (necklace order Apr 17)
   - Brady's groceries ($353.11, 82 items) paid with Karissa's card (2021) to Bentonville
-  - Subscription grocery delivery active (next: Apr 21)
   - Karissa's Walmart list (40 items) still maintained
-- **Remaining:** Paginate past page 2 to capture Mar 20 – Apr 9 orders. Check all "Delivery" (shipped) orders for Utah addresses. Look for card 1842 as payment method.
-- **Priority:** HIGH — continue scrape
+- **Key findings (Apr 24):**
+  - **73 active subscriptions** fully documented — see `data/walmart-scrape-2026-04-24.md` and `references/grocery-subscriptions.md`
+  - Cheese and tortillas already on bi-weekly cadence — no cadence gap
+  - Subscription payment on Brady's Amex (...2007), not Karissa's card
+  - Today's ad hoc order: $96.87 (Order #2000149-54375074) — buns, cheese, pizza, care package items, pool party items
+  - Subscription changes confirmed by Karissa today (Apr 24) — routine management, not flagged
+- **Remaining:** Paginate order history past page 2 to capture Mar 20 – Apr 9. Check Utah addresses and card 1842 usage.
+- **Priority:** LOW (subscriptions done) / MEDIUM (order history pagination)
 - **Date range:** Mar 20 – present (post-separation)
 
 ### 2. Amazon Order History
@@ -114,8 +121,13 @@ These require Gmail MCP searches, not browser scraping.
 
 ### 6. Invoice / Payment Emails
 - **Gmail queries:** `subject:(invoice OR receipt OR payment) after:2026/03/01` + vendor-specific
-- **Status:** COMPLETE (scanned Apr 17, 2026 — see `data/gmail-scan-2026-04-17.md`)
-- **Key findings:** 50 threads captured. Recurring bills mapped. Business subscriptions identified. Karissa forwarding medical payment links.
+- **Status:** COMPLETE (scanned Apr 17, 2026). Subscription-specific re-scan Apr 24, 2026.
+- **Key findings (Apr 17):** 50 threads captured. Recurring bills mapped. Business subscriptions identified. Karissa forwarding medical payment links.
+- **Key findings (Apr 24 subscription scan):** Active subscriptions confirmed — Apple (Screens 5 VNC, Monarch), Amazon Subscribe & Save (Celsius Pink Lemonade, disposable cups). No new pricing alerts on Netflix/Spotify/Disney+/Apple One.
+- **Finn scan behavior rules (set 2026-04-24):**
+  - M365 subscription change emails → do NOT flag. Brady is aware, not concerned.
+  - Walmart+ subscription change/confirmation emails → not urgent. Do not surface as alerts.
+  - Platform data usage policy emails (GitHub Copilot, etc.) → not a financial flag. Skip.
 - **Priority:** Done — refresh monthly
 
 ### 7. HELOC / Loan Notifications
@@ -185,7 +197,8 @@ Run before any major analysis session:
 - [x] Fresh Monarch CSV export — **DONE Apr 19** (13,788 rows, through Apr 19)
 - [ ] Fresh Venmo statement (venmo.com → Download April) — current through ~Apr 9
 - [x] Gmail financial email scan (Gmail MCP) — **DONE Apr 17** (see gmail-scan file)
-- [~] Walmart.com order scrape (Chrome agent) — **PARTIAL Apr 17** (2 pages, key Utah address found)
+- [x] Walmart.com subscription scrape — **COMPLETE Apr 24** (73 items, full cadence + cost data — see `grocery-subscriptions.md`)
+- [~] Walmart.com order history scrape — **PARTIAL Apr 17** (2 pages, key Utah address found — order history pagination still needed)
 - [x] Amazon order scrape (Chrome agent) — **DONE Apr 17** (42 orders, all Brady, no Utah)
 - [x] DoorDash order + payment scrape (Chrome agent) — **DONE Apr 17** (orders + payment methods + address)
 - [ ] Arvest HELOC balance check (Chrome agent) — NOT STARTED
