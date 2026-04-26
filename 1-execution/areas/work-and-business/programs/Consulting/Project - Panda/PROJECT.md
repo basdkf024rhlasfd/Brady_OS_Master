@@ -92,26 +92,27 @@
 
 **Outcome:** Deliverable complete. April 23 session served as engagement-scope interview — James had already seen the brief framing (via prior call) and was focused on fit, scope, and cadence. Phase 3 now active.
 
-### Phase 3 — Engagement Scope Negotiation (ACTIVE)
-**Status:** Started April 23, 2026.
-**Goal:** Secure a signed statement of work for a 3–6 month consulting engagement leading Panda's Ops Innovation team stand-up.
+### Phase 3 — Engagement Scope Negotiation (PIVOTED — 2026-04-26)
+**Status:** Full engagement off the table. Pivoting to whitepaper-only offer.
 
-**What was confirmed in April 23 session:**
-- 3–6 month deliverable-based engagement; Brady as program lead (not just advisor)
-- James's deliverable framing: "strategy in 3 months, order accuracy program in 2 months"
-- Success = 4-person team at steady state, successor identified
-- Brady committed to Monday (April 28) update on timing and other client clarity
-- James committed to sending JD and setting up team + HR intros
+**What changed (April 26):**
+Brady accepted a full-time executive role (CFO/CAIO, separate engagement, not logged here). Before starting (~Aug 1), Brady needs a deliberate buffer month — kids through end of school, personal projects (treehouse), vibe-code management system, hand off mception.ai to a contractor while retaining owner/chairman role. No bandwidth for a 3–6 month Panda program lead.
 
-**Key context:** Service Physics (Dallas boutique) is the current active vendor — expensive, Brady's positioning is more targeted. Jordan Burke (Tomorrow Consulting) surfaced as peer reference for Brady's independent model.
+**Pivot: Innovation Research Whitepaper (~$10K)**
+Brady will offer James a standalone deliverable: an in-depth innovation research whitepaper synthesizing the 14 DR threads + 3 SFDRs (101-103) already completed. This monetizes the research corpus without committing to ongoing engagement. Clean, honest, peer-level offer.
 
-**Next actions:**
-1. Brady resolves 1915 South bandwidth overlap → confirms availability to James by April 28
-2. James sends JD; Brady turns it into a scoped consulting engagement description
-3. Team + Heather Haber (CPO) intros
-4. Statement of work drafted and signed
+**What the whitepaper covers (existing research):**
+- Binding constraints: wok automation (PAW field validation framing), digital order accuracy, drive-thru throughput
+- Peer test kitchen landscape (Starbucks Tryer, Chipotle, McDonald's, CFA)
+- Capex benchmarks + Phase 0 charter framework
+- Kill-gate criteria (already drafted at `test-kitchen-kill-gate-criteria.md`)
+- Operating model recommendation for the Ops Innovation team
 
-See: `call-notes-2026-04-23.md`, `monday-response-brief.md`, `jordan-burke.md`
+**Monday message direction:** Brady will draft. Whitepaper pitch — not a scope confirmation. No forward commitment to deeper engagement. Leave the door open or closed at Brady's discretion.
+
+**`monday-response-brief-v2.md` is superseded.** Archived for context.
+
+See: `call-notes-2026-04-23.md`, `monday-response-brief-v2.md` (archived), `jordan-burke.md`
 
 **Thread priorities (reframed):**
 | Thread | Topic | Priority |
@@ -139,8 +140,8 @@ See: `call-notes-2026-04-23.md`, `monday-response-brief.md`, `jordan-burke.md`
 - **April 17:** Pre-research + reframe + kick off Phase 2 ✅
 - **April 18:** All 14 research threads complete, synthesis done, deliverable shipped ✅
 - **April 23:** Engagement-scope interview with James Ku ✅ — see `call-notes-2026-04-23.md`
-- **April 28:** Brady sends Monday response (timing clarity + scope sketch) ← YOU ARE HERE
-- **TBD:** Receive JD from James; team intros; finalize scope
+- **April 28:** Brady sends Monday whitepaper pitch to James ← YOU ARE HERE (full engagement pivoted; see Phase 3 section)
+- ~~TBD: Receive JD, team intros, SOW~~ — full engagement off table
 - **TBD:** Statement of work signed, engagement begins
 
 ---
@@ -187,10 +188,10 @@ See: `call-notes-2026-04-23.md`, `monday-response-brief.md`, `jordan-burke.md`
 - [x] Phase 2 — Final deliverable (HTML + PDF)
 - [x] Deliverable review with Brady
 - [x] Delivery to James Ku / next meeting (April 23 session)
-- **Phase 3 — Engagement Scope Negotiation (ACTIVE)**
+- **Phase 3 — Engagement Scope Negotiation (PIVOTED 2026-04-26)**
 - [x] April 23 engagement-scope interview — `call-notes-2026-04-23.md`
 - [x] People records updated (James Ku, Jordan Burke added)
-- [ ] Brady sends Monday response to James (by April 28) — see `monday-response-brief.md`
-- [ ] Receive JD from James
-- [ ] Team + HR intros (Heather Haber)
-- [ ] Finalize scope + statement of work
+- [ ] Brady sends Monday whitepaper pitch to James (by April 28) — Brady drafting; `monday-response-brief-v2.md` superseded
+- ~~Receive JD from James~~ — full engagement off table
+- ~~Team + HR intros (Heather Haber)~~ — full engagement off table
+- ~~Finalize scope + statement of work~~ — full engagement off table

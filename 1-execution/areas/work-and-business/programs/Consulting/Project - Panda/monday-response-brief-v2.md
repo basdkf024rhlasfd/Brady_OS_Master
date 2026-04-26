@@ -1,5 +1,7 @@
 # Monday Response Brief v2 — James Ku | Due April 28, 2026
 
+> **SUPERSEDED — 2026-04-26.** Brady's capacity picture changed. Full 3–6 month engagement is off the table. Phase 3 pivot logged in PROJECT.md. Monday message is a whitepaper pitch, not a scope-confirmation email — Brady will draft it. v2 draft below is archived for context only.
+
 **Changes from v1:** Test kitchen context folded in. Jordan Burke intro request integrated. Scope sketch tightened from "discover → program → institutionalize" to align with the three binding constraints (wok automation, digital accuracy, drive-thru throughput) that the test kitchen stand-up is designed to validate. Kill-gate language added. Rollout sponsor ask made explicit.
 
 **Format:** Email or text. Warm, direct, peer-level. No deck, no proposal language.
