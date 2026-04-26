@@ -46,6 +46,8 @@ export default async function GroupPage({ params }: { params: Promise<{ id: stri
   const welcomeMessage = chatConfig.enabled ? chatConfig.welcomeMessage : "";
   const dataSources = await applyProbes(chatConfig.dataSources ?? []);
   const agentInstructions = chatConfig.agentInstructions ?? "";
+  const agentName = chatConfig.agentName;
+  const agentAvatar = chatConfig.agentAvatar;
 
   return (
     <GroupPageClient
@@ -56,6 +58,8 @@ export default async function GroupPage({ params }: { params: Promise<{ id: stri
       welcomeMessage={welcomeMessage}
       dataSources={dataSources}
       agentInstructions={agentInstructions}
+      agentName={agentName}
+      agentAvatar={agentAvatar}
     />
   );
 }

@@ -1,5 +1,7 @@
 enabled: true
 agent: fran
+agentName: Fran
+agentAvatar: /personas/fran.png
 prompt: 1915-south.md  # fallback only — `agent` takes precedence
 model: claude-sonnet-4-5
 maxOutputTokens: 1024

@@ -51,6 +51,8 @@ export interface ChatConfig {
   enabled: boolean;
   prompt: string; // filename in project-prompts/ (e.g. "orlando.md") — fallback when `agent` is unset
   agent?: string; // slug in src/lib/chat/agents/ (e.g. "oc-optimus") — when set, takes precedence over `prompt`
+  agentName?: string; // display name for the agent in chat UI (e.g. "OC Optimus")
+  agentAvatar?: string; // public asset path for avatar (e.g. "/personas/oc-optimus.png")
   model: string;
   maxOutputTokens: number;
   streaming: boolean;
@@ -123,6 +125,14 @@ function mergeWithDefaults(raw: Record<string, unknown>): ChatConfig {
 
   if (typeof raw.agent === "string") {
     config.agent = raw.agent;
+  }
+
+  if (typeof raw.agentName === "string") {
+    config.agentName = raw.agentName;
+  }
+
+  if (typeof raw.agentAvatar === "string") {
+    config.agentAvatar = raw.agentAvatar;
   }
 
   return config;

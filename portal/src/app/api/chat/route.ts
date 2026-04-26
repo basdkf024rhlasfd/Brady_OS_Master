@@ -1,4 +1,5 @@
 import { streamText, convertToModelMessages, stepCountIs, type UIMessage } from "ai";
+import { anthropic } from "@ai-sdk/anthropic";
 import {
   buildUnifiedSystemPrompt,
   getChatConfig,
@@ -11,6 +12,13 @@ import { SIDEBAR_GROUPS } from "@/lib/sidebar-groups";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return new Response(JSON.stringify({ error: "ANTHROPIC_API_KEY not configured" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   const { messages, projectContext } = (await req.json()) as {
     messages: UIMessage[];
     projectContext?: ProjectContext;
@@ -80,15 +88,13 @@ export async function POST(req: Request) {
   const userEmail = access.emailAddresses[0] ?? "unknown";
   const isGroupRequest = !!groupMembers;
 
-  // Route via AI Gateway using the `provider/model` string format. In Vercel
-  // production this auths via OIDC automatically; in local dev set
-  // AI_GATEWAY_API_KEY (or run `vercel env pull`). Replaces the prior direct
-  // `anthropic()` provider call so we get unified observability, model
-  // failover, and per-call cost tracking via Gateway.
-  const gatewayModel = `anthropic/${model}`;
-
+  // Direct anthropic provider — AI Gateway swap reverted because the prod
+  // Vercel project doesn't have OIDC enabled and AI_GATEWAY_API_KEY isn't
+  // set. Future Phase 4.1: enable Gateway in Vercel project settings + set
+  // AI_GATEWAY_API_KEY for local dev, then swap to `anthropic/${model}` to
+  // get failover + per-call cost tracking.
   const result = streamText({
-    model: gatewayModel,
+    model: anthropic(model),
     system: systemPrompt,
     messages: await convertToModelMessages(messages),
     maxOutputTokens: activeConfig.maxOutputTokens,
