@@ -1,7 +1,6 @@
 import { requireProjectAccess } from "@/lib/portal-access";
-import { EngagementHub } from "@/components/engagement/EngagementHub";
 import type { EngagementHubConfig } from "@/components/engagement/EngagementHub";
-import { ProjectFrame } from "@/components/portal/ProjectFrame";
+import { PandaPageClient } from "./PandaPageClient";
 
 const config: EngagementHubConfig = {
   clientName: "Panda Restaurant Group",
@@ -44,26 +43,5 @@ const config: EngagementHubConfig = {
 
 export default async function PandaPage() {
   await requireProjectAccess("panda");
-  return (
-    <div className="h-full overflow-y-auto bg-gray-950">
-      <EngagementHub {...config} />
-      <div className="border-t border-gray-800 px-6 pt-8 pb-2">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-            Research Dashboard
-          </h2>
-          <p className="mt-1 text-sm text-gray-400">
-            Full Panda research corpus — 14 DR threads, KPI benchmarks, problem statements, knowledge gaps.
-          </p>
-        </div>
-      </div>
-      <div className="h-screen bg-gray-950 p-4">
-        <ProjectFrame
-          baseUrl="/panda/viewer"
-          path="/index.html"
-          title="Panda Research Dashboard"
-        />
-      </div>
-    </div>
-  );
+  return <PandaPageClient config={config} />;
 }
