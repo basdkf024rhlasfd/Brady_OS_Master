@@ -181,6 +181,18 @@ projects:
       baseUrl: "/financial-assistant"
       path: "/index.html"
 
+  - slug: bucket-system
+    label: "Bucket System"
+    short: "B"
+    href: "/bucket-system"
+    description: "Quarterly cash management on cruise control. Buckets refill on bonus day, score themselves, and feed flex into Big Things (the pool, the car, the trip). Brady-only."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: ""
+      path: "/bucket-system/viewer/index.html"
+
   # --- Brady OS ---
   - slug: agent-map
     label: "Agent Ecosystem"

@@ -1,6 +1,6 @@
 export const SIDEBAR_GROUPS: Array<{ id: string; label: string; slugs: string[] }> = [
   { id: "brady-os", label: "Brady OS", slugs: ["agent-map"] },
-  { id: "family", label: "Family", slugs: ["grocery-assistant", "school-hub", "financial-assistant"] },
+  { id: "family", label: "Family", slugs: ["grocery-assistant", "school-hub", "financial-assistant", "bucket-system"] },
   { id: "vc-startup", label: "VC / Startup", slugs: ["baden-bagley", "mark-schmulen"] },
   { id: "panda-engagement", label: "Panda Engagement", slugs: ["panda", "ops-lab"] },
   { id: "1915-south-engagement", label: "1915 South Engagement", slugs: ["1915-south", "1915-south-execs", "1915-south-ma", "1915-south-cfo"] },
