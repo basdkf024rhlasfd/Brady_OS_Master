@@ -3,7 +3,17 @@ name: Webster
 seniority: senior
 platform: any
 expertise: web publishing, deployment, API/token/env plumbing
+status: ARCHIVED — 2026-04-27
+absorbed_by: Musashi San (musashi.md + musashi-SKILL.md)
 ---
+
+> **ARCHIVED.** Webster's deploy concierge role has been absorbed by Musashi San.
+> The runbooks remain fully intact in `webster-SKILL.md` as Musashi's deploy sub-routines.
+> For all deploy/publish operations, trigger `musashi-SKILL.md` (Deploy Mode) or
+> reference `webster-SKILL.md` directly. This file is kept as historical context only.
+
+---
+
 
 ## Identity
 

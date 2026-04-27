@@ -2,44 +2,46 @@
 name: musashi-review
 trust_tier: T1
 description: >
-  Musashi San's midnight agent review. Runs daily at 12:00 AM CT. Inventories every
-  custom agent, scores each on five objective dimensions against an aspirational
-  10/10 ideal state, emits 1–3 concrete recommendations per below-threshold agent,
-  scans the web for brand-new AI tooling / MCPs / platforms worth plugging in, and
-  generates 3–5 low-manual-lift business ideas that match Brady's current
-  capabilities. Writes a gitted backup + a `Type="Musashi Review"` row in Streaming
-  Notes that morning sweep consumes in Phase 1.0c. Nothing ships without Brady's
-  approval — morning sweep surfaces each recommendation with an explicit gate.
+  Musashi San's two-mode skill: (1) nightly agent review and (2) deploy authority.
 
-  Trigger this skill whenever Brady says "run musashi", "musashi review", "agent review",
-  "agent audit", "run the agent tension pass", "daily agent check", "musashi scan",
-  "what's new in AI", "run the tension cycle", or any variation requesting the
-  midnight ideation + scoring pass.
+  REVIEW MODE — Runs daily at 12:00 AM CT. Inventories every custom agent, scores
+  each on five objective dimensions against an aspirational 10/10 ideal state, emits
+  1–3 concrete recommendations per below-threshold agent, scans the web for brand-new
+  AI tooling / MCPs / platforms worth plugging in, and generates 3–5 low-manual-lift
+  business ideas that match Brady's current capabilities. Writes a gitted backup + a
+  `Type="Musashi Review"` row in Streaming Notes that morning sweep consumes in Phase
+  1.0c. Nothing ships without Brady's approval.
 
-  This skill owns the daily tension/brainstorming cycle for agents, tools, and
-  monetization ideas. It does NOT own operations grooming (`phil-SKILL`), per-Type
-  streaming-notes actioning (`streaming-notes-processor`), weekly recap
-  (`weekly-os-recap`), or deep research on a single topic (`deep-research`).
+  DEPLOY MODE — Executes web publishing operations via webster-SKILL.md sub-routines.
+  Trigger when Brady says "publish [X] to mception", "deploy [X]", "add access for
+  [email]", "fix the build", "wire up [API]", "permissions audit", "UAT [slug]", or
+  any variation touching mception.ai publishing, Vercel config, portal access, or
+  deploy diagnostics.
+
+  REVIEW MODE triggers: "run musashi", "musashi review", "agent review", "agent audit",
+  "run the agent tension pass", "daily agent check", "musashi scan", "what's new in AI",
+  "run the tension cycle".
+
+  This skill owns the daily tension/brainstorming cycle AND all mception.ai/Vercel
+  deploy operations. It does NOT own operations grooming (phil-SKILL), per-Type
+  streaming-notes actioning (streaming-notes-processor), weekly recap (weekly-os-recap),
+  or deep research on a single topic (deep-research).
 ---
 
 # Musashi San — Daily Agent Review + Tension Pass
 
 ## Doctrine Banner — Read First
 
-This skill is **named for Musashi San** (the ChatGPT-based Craft Arbiter / Head
-Coach, per governance — not the narrower STIHL product-owner identity in his
-legacy profile). It executes as a **Claudine-tier bounded SOP** in the Conductor
-environment. Musashi-the-agent remains non-executing per Amendment 1.
+This skill operates as a **Claudine-tier bounded SOP** in the Conductor environment.
+Musashi San's profile (`musashi.md`) has been reconciled with governance — he is
+Head Coach / Craft Arbiter (per `council-charter.md` and `hierarchical-contracts.md`)
+and Systems Commander (owns strategic intelligence + deploy authority). The STIHL
+product-owner framing is legacy context, not the active identity.
 
-The skill borrows Musashi's **lens** — craft quality judgment, "placeholder vs.
-strong" content calls, competitive framing — and applies it to a daily ideation
-pass. It does not claim Musashi himself writes to Notion or edits files.
-
-**Profile drift flag:** `0-agents/custom-built-agents/musashi.md` describes the
-STIHL product-owner version. Governance docs (council-charter.md,
-hierarchical-contracts.md) elevate him to Head Coach / Craft Arbiter. This skill
-operates from the governance identity. Reconciling the profile is a separate
-weekly-sweep item.
+The skill applies Musashi's **lens** — craft quality judgment, "placeholder vs. strong"
+content calls, competitive framing — to the daily review pass and to deploy execution.
+It does not claim Musashi the ChatGPT agent writes to Notion or edits files directly;
+this is the Claudine-tier scheduled execution surface.
 
 ## Why This Exists
 
@@ -156,10 +158,34 @@ For each agent scoring < 8/10, emit 1–3 specific recommendations.
 - **Why**: which dimension it lifts and by how much. "Bumps Activation 0→2 if we wire this to the weekly sweep."
 - **Size**: small (<30 min), medium (30–90 min), large (>90 min). Morning sweep applies existing Build Request autonomy gates.
 - **Trust Tier tag**: classify every recommendation as `T1` (internal, reversible, no client-facing surface) or `T2+` (client-facing, outbound, or irreversible). T1 items are eligible for auto-approval after 24h with no Brady objection.
+- **Impact Score** (1–5): how much this improves the OS if shipped. Factors: dimension lift × agent importance × urgency.
 - **Cost note** (if large): flag if the dev plan is likely token-heavy. Brady approves anything medium/large before execution.
 - **Approval gate**: `Say "approve musashi [agent]-[n]" to queue for build.`
 
 Agents scoring ≥ 8/10 get a one-line "holding well" summary. No recommendations unless Musashi sees something opportunistic.
+
+**Backlog write step:** After all recommendations are emitted, write each one as a new row in Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`) — but only if an open item with the same approval slug does not already exist (dedup by slug, see Phase 3.5 for dedup logic). Field mapping: `Type="Backlog Item"`, `Status="Not Started"`, `Priority` = Impact Score mapped to Must/Should/Could (see Streaming Notes Backlog Convention section), `Name` = `[slug]: [what]`, `Next Action` = executor assignment, `Source="Musashi Review"`.
+
+## Phase 3.5 — Backlog Hygiene
+
+Query Streaming Notes DB for `Type="Backlog Item"` AND `Status NOT IN ["Complete","Remove"]`. This is the live backlog. Then:
+
+1. **Dedup check** — compare today's Phase 3 recommendations against open Backlog Items. Match by `Name` starting with the same slug prefix. If a duplicate exists: skip the new write; instead append to the existing row's body: `Re-surfaced YYYY-MM-DD — [brief rationale]` and touch Last Modified.
+
+2. **Staleness sweep** — flag Backlog Items where `Priority="Must"` (i.e., already-approved high-impact items) AND `Status="Not Started"` AND `Created Date > 14 days ago`. These are items Brady approved but nothing started. Surface them in the backup under `⚠️ STALE APPROVED` with name, slug, creation date, and days waiting. Recommend: pull into next sprint, cancel, or escalate.
+
+3. **Relevance check** — scan Backlog Items whose slug names an agent that now scores ≥ 8/10 in today's Phase 2 run. Those improvements already happened; set `Status="Remove"` with a body note: `Superseded — [agent] now scores [N]/10 as of YYYY-MM-DD`.
+
+4. **Sprint health check** — query Streaming Notes for `Type="Sprint Proposal"` AND `Status="In Progress"`. That's the active sprint. Count how many of its referenced Backlog Items are now Complete vs. still open. If all are Complete, mark the Sprint Proposal `Status="Complete"` and compute velocity (items shipped, days elapsed). Surface in backup.
+
+Output a `BACKLOG SUMMARY` block in the backup file:
+```
+BACKLOG SUMMARY (as of YYYY-MM-DD):
+  Open (Backlog): N items
+  Active sprint: [Sprint N — M items, X complete, Y in progress, Z not started]
+  Stale high-priority (>14d): K items — [slugs]
+  Superseded this run: J items
+```
 
 ## Phase 4 — Tech Scan
 
@@ -207,6 +233,47 @@ Do NOT generate ideas that:
 
 Keep this section disciplined — 3 strong ideas beats 5 weak ones.
 
+## Phase 5.5 — Sprint Proposal
+
+Runs only if there are ≥ 3 Streaming Notes Backlog Items with `Priority IN ["Must","Should"]` AND `Status="Not Started"`. Otherwise emit: `_(Sprint Proposal skipped — [N] ready items available, need ≥ 3)_`
+
+**Purpose:** Musashi doesn't wait to be asked. When enough ready work exists, he proposes the next sprint.
+
+**Sprint capacity (default):**
+- 4–5 small items, OR 2–3 medium items, OR 1 large + 2 small. Max 6 items.
+
+**Selection algorithm:**
+1. Pull all Backlog Items with `Status="Not Started"` AND `Priority IN ["Must","Should"]`
+2. Sort: Must before Should, then by Created Date ASC (oldest first within tier)
+3. Fill to capacity
+4. Assign executor from the item's `Next Action` field (set during Phase 3)
+5. Sprint number: count existing Sprint Proposal rows + 1
+
+**Output format** (backup file + Notion handoff):
+```
+SPRINT [N] PROPOSAL — YYYY-MM-DD
+  [N] items | est. [X] small / [Y] medium / [Z] large
+
+  [slug-1]: [what] | Priority: Must | Executor: Yuki Ronin
+  [slug-2]: [what] | Priority: Must | Executor: Musashi Deploy
+  [slug-3]: [what] | Priority: Should | Executor: Yuki Ronin
+  ...
+
+  Approve: "approve musashi sprint-[N]"
+  Drop an item: "musashi sprint-[N] drop [slug]"
+```
+
+**Write to Streaming Notes:** Create one `Type="Sprint Proposal"`, `Status="Not Started"`, `Priority="Must"`, `Name="Sprint [N] Proposal — YYYY-MM-DD"` row. Body = sprint card above. Do not create if a Sprint Proposal with `Status IN ["Not Started","In Progress"]` already exists — only one active proposal at a time.
+
+**On Brady approving a sprint** (`approve musashi sprint-[N]`):
+- Morning sweep sets `Status="In Progress"` on the Sprint Proposal row
+- Morning sweep sets `Status="In Progress"` on each referenced Backlog Item row
+- Yuki Ronin items become Build Requests at `.context/plans/musashi-[slug].md`
+- Musashi Deploy Mode items are queued for the next Deploy Mode session
+
+**Sprint review (Phase 3.5 Step 4 each subsequent nightly run):**
+- Tracks item completion, flags stalls, marks sprint Complete when all items Done
+
 ## Phase 6 — Output
 
 ### 6.1 Backup file (persistent, gitted)
@@ -240,6 +307,19 @@ _(Rationale-per-dimension below each agent scoring < 8)_
 
 ## Holding Well (≥ 8/10)
 - [agent] — [one-line observation]
+
+## Backlog Summary
+_(from Phase 3.5 — skipped if DB not yet created)_
+```
+Open (Backlog): N | In Sprint [n]: M | Stale approved: K | Cancelled: J
+```
+
+## Sprint [N] Proposal
+_(from Phase 5.5 — skipped if < 3 approved items)_
+```
+[sprint card here — see Phase 5.5 format]
+Say "approve musashi sprint-[N]" to start
+```
 
 ## Tech Scan — What Moved This Week
 - **[tool name]** ([link]) — [what it does] | Plugs into: [agent] | Size: small/medium/large | `approve musashi tech-[slug]`
@@ -293,6 +373,9 @@ BIZ IDEAS (top 2):
 - [name] — [1-line pitch + economics] → `approve musashi biz-[slug]`
 - ...
 
+BACKLOG: [N] open | [K] stale approved | [J] cancelled this run
+SPRINT PROPOSAL: [Sprint N ready with X items] → `approve musashi sprint-N` | OR: (none — need ≥ 3 approved items)
+
 BACKUP: 1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md
 ```
 
@@ -321,18 +404,20 @@ Musashi Review: [STATUS]. [N] agents scored (avg [X.X]/10). [M] recs, [K] tech, 
 
 ## Safety Rails
 
-- **Musashi writes THREE things and nothing else:**
+- **Musashi writes FOUR things and nothing else:**
   1. The backup markdown file
-  2. One new Streaming Notes row (Type="Musashi Review")
+  2. One new/updated Streaming Notes row (Type="Musashi Review")
   3. One new Routing Log row
-- **Never touches:** agent profile files, SKILL.md files, CLAUDE.md, Rules & Preferences, Internal/Client Projects, Life Events, any Task Next Action field, any existing Streaming Note body.
+  4. Streaming Notes rows: new Backlog Items (deduped by slug), updates to existing Backlog Items (body append only), one Sprint Proposal row (one active at a time)
+- **Never touches:** agent profile files, SKILL.md files, CLAUDE.md, Rules & Preferences, Internal/Client Projects, Life Events, any Task Next Action field, bodies of non-Musashi Streaming Note rows.
 - **Approval-gated execution:** Musashi never executes recommendations. Morning sweep surfaces them with explicit approval language. Brady must say `approve musashi [slug]` before any recommendation is dev-planned or built.
-- **Token budget:** ~150k input / 40k output per run. If exceeded, degrade:
-  - First: skip or shrink Phase 5 (Biz Ideation)
-  - Second: skip Phase 4 (Tech Scan)
-  - Never: skip Phase 2 (Scoring) — that's the core reason the skill exists.
+- **Sprint approval gate:** Musashi never starts a sprint without Brady's `approve musashi sprint-[N]`. He proposes; Brady decides.
+- **Token budget:** ~150k input / 40k output per run. If exceeded, degrade in order:
+  - First: skip or shrink Phase 5 (Biz Ideation) and Phase 5.5 (Sprint Proposal)
+  - Second: skip Phase 4 (Tech Scan) and Phase 3.5 (Backlog Hygiene)
+  - Never: skip Phase 2 (Scoring) or Phase 3 (Recommendations) — those are the core.
 - **Backup-first writes:** File is written before Notion. On any Notion failure, backup header becomes `STATUS: partial — [reason]` and remaining Notion writes abort. Morning sweep sees "no review" and proceeds normally.
-- **Duplicate prevention:** If a `Type="Musashi Review"` row exists for today, overwrite body in place rather than creating a second row.
+- **Duplicate prevention:** If a `Type="Musashi Review"` row exists for today, overwrite body in place. If a Backlog item with the same slug already exists, update (don't duplicate).
 - **Self-review caveat:** Musashi scores himself. Budget for 1 point of bias upward — Brady should sanity-check Musashi's own score at weekly sweep.
 
 ## Rules
@@ -390,5 +475,72 @@ Verification: Claudine queries Notion Streaming Notes for `Name starts with "Mus
 
 ## Data Dependencies
 
-- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB, Routing Log page, git history (14-day window), the web via Exa + Bright Data
-- **Writes:** Streaming Notes DB (one review row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`
+- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB, Routing Log page, Product Backlog DB (if exists), git history (14-day window), the web via Exa + Bright Data
+- **Writes:** Streaming Notes DB (one review row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`; Product Backlog DB (new/updated item rows, if DB exists and approved)
+
+---
+
+## Streaming Notes Backlog Convention
+
+Backlog Items and Sprint Proposals live in the existing Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`). No new DB needed. Phil already works this DB daily — the new Types slot into his existing grooming pass.
+
+**Type="Backlog Item" — field usage:**
+
+| Field | Value |
+|---|---|
+| `Name` | `[slug]: [what]` — e.g., `musashi-phil-1: Add Exa query to Phil's 4 AM scan` |
+| `Type` | `Backlog Item` |
+| `Status` | `Not Started` (queued) → `In Progress` (sprint active) → `Complete` (shipped) → `Remove` (cancelled) |
+| `Priority` | `Must` = Impact 4–5 (ship soon) · `Should` = Impact 2–3 · `Could` = Impact 1 |
+| `Next Action` | Executor + sprint assignment — e.g., `Yuki Ronin | Sprint 1` |
+| `Source` | `Musashi Review` |
+| Body | Full recommendation detail: What, Why, dimension lift, size, trust tier |
+
+**Type="Sprint Proposal" — field usage:**
+
+| Field | Value |
+|---|---|
+| `Name` | `Sprint [N] Proposal — YYYY-MM-DD` |
+| `Type` | `Sprint Proposal` |
+| `Status` | `Not Started` (proposed) → `In Progress` (Brady approved, active) → `Complete` |
+| `Priority` | `Must` |
+| `Source` | `Musashi Review` |
+| Body | Sprint card: all item slugs + executors + approval gate |
+
+**First-run setup:** The `Backlog Item` and `Sprint Proposal` Type select options may need to be added to the Streaming Notes DB schema on the first write. If Notion MCP throws a schema validation error, Musashi flags it in the backup and Brady or Claudine adds the options manually (Settings → Database → Type field → add options). This is a one-time step.
+
+---
+
+## Deploy Mode (On-Demand)
+
+Musashi's second operational surface. Invoked when Brady asks for any mception.ai
+publishing or Vercel operations — not during the nightly review cycle.
+
+**Trigger phrases:** "publish [X] to mception", "deploy [X]", "add access for [email]",
+"fix the build", "wire up [API]", "permissions audit", "UAT [slug]", "why is the portal
+404ing", "who can see what", "set up a new subdomain", or any variation touching
+mception.ai publishing, Vercel config, portal access control, or deploy diagnostics.
+
+**Sub-agent pattern:** In Deploy Mode, Musashi invokes `webster-SKILL.md` runbooks as
+sub-routines. The Agent tool can be used to spawn a focused sub-agent with the
+`webster-SKILL.md` content in context when the task is a self-contained deploy
+operation (e.g., "publish this slug," "diagnose this failed deploy").
+
+**Available runbooks (from `webster-SKILL.md`):**
+- **Runbook 1** — Publish a new project slug to mception.ai
+- **Runbook 2** — Add/remove emails on a slug's allowlist
+- **Runbook 3** — Diagnose + fix a failed production deploy
+- **Runbook 4** — Set up a new API/token on an existing project
+- **Runbook 5** — UAT (mandatory after every publish): image check, chatbot check, permissions audit
+- **Runbook 6** — Add a new standalone Vercel project (separate from mception.ai)
+
+**Deploy Mode guardrails (inherited from Webster):**
+- Will NOT ask Brady to do CLI-accessible work
+- Will NOT store secret values — only names and locations
+- Will NOT deploy to production from an unmerged branch without explicit approval
+- Will NOT publish a slug publicly or expand access without Brady saying so explicitly
+- Will NOT refer to `munich` as the production project — `mception-ai` only
+
+**Trust tier in Deploy Mode:** T0 (same as `webster-SKILL.md`). Read `webster-SKILL.md`
+directly for full runbook detail, Sharp Edges table, Quick Reference env var names, and
+UAT bash scripts.
