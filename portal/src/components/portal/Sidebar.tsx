@@ -41,6 +41,10 @@ const externalLinks = [
   { href: "http://localhost:3000", label: "BradyOS", short: "O" },
 ];
 
+const adminLinks = [
+  { href: "/admin/access", label: "Access Control", short: "A" },
+];
+
 const bottomLinks = [
   { href: "/user-profile", label: "My Profile", short: "U" },
   { href: "/about", label: "About", short: "?" },
@@ -490,6 +494,9 @@ export function Sidebar({
 
             {openGroups.misc && !collapsed && (
               <div className="ml-1 space-y-0.5">
+                {/* Admin links */}
+                {adminLinks.map((link) => navLink(link))}
+
                 {/* Dev Tools sub-group */}
                 <button
                   onClick={() => toggleGroup("dev-tools")}

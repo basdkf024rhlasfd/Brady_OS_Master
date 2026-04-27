@@ -51,7 +51,8 @@ export function getAdminEmails(): string[] {
 
 function resolveProjects(
   emailAddresses: string[],
-  isAdmin: boolean
+  isAdmin: boolean,
+  publicMetadata?: Record<string, unknown>
 ): string[] {
   if (isAdmin) return [...ALL_PROJECTS];
 
@@ -60,14 +61,26 @@ function resolveProjects(
     return [...ALL_PROJECTS];
   }
 
-  const projects: string[] = [];
+  const projects = new Set<string>();
+
   for (const slug of ALL_PROJECTS) {
     const allowed = readCsvEnv(getEnvVarName(slug));
     if (emailAddresses.some((email) => allowed.includes(email))) {
-      projects.push(slug);
+      projects.add(slug);
     }
   }
-  return projects;
+
+  // Clerk metadata grants — managed via /admin/access UI, no redeploy needed
+  const metadataProjects = publicMetadata?.allowedProjects;
+  if (Array.isArray(metadataProjects)) {
+    for (const slug of metadataProjects) {
+      if (typeof slug === "string" && ALL_PROJECTS.includes(slug)) {
+        projects.add(slug);
+      }
+    }
+  }
+
+  return [...projects];
 }
 
 export function resolvePortalAccess(user: UserLike | null | undefined) {
@@ -101,7 +114,7 @@ export function resolvePortalAccess(user: UserLike | null | undefined) {
   const isAdmin =
     !isReservedTestAccount && (isOwner || hasAdminRole || isEmailAdmin);
 
-  const projects = resolveProjects(emailAddresses, isAdmin);
+  const projects = resolveProjects(emailAddresses, isAdmin, user?.publicMetadata ?? undefined);
 
   // ─── User tier ───
   // owner  = Brady (full access, all features, debug surfaces)
