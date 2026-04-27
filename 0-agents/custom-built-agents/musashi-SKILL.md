@@ -2,44 +2,46 @@
 name: musashi-review
 trust_tier: T1
 description: >
-  Musashi San's midnight agent review. Runs daily at 12:00 AM CT. Inventories every
-  custom agent, scores each on five objective dimensions against an aspirational
-  10/10 ideal state, emits 1–3 concrete recommendations per below-threshold agent,
-  scans the web for brand-new AI tooling / MCPs / platforms worth plugging in, and
-  generates 3–5 low-manual-lift business ideas that match Brady's current
-  capabilities. Writes a gitted backup + a `Type="Musashi Review"` row in Streaming
-  Notes that morning sweep consumes in Phase 1.0c. Nothing ships without Brady's
-  approval — morning sweep surfaces each recommendation with an explicit gate.
+  Musashi San's two-mode skill: (1) nightly agent review and (2) deploy authority.
 
-  Trigger this skill whenever Brady says "run musashi", "musashi review", "agent review",
-  "agent audit", "run the agent tension pass", "daily agent check", "musashi scan",
-  "what's new in AI", "run the tension cycle", or any variation requesting the
-  midnight ideation + scoring pass.
+  REVIEW MODE — Runs daily at 12:00 AM CT. Inventories every custom agent, scores
+  each on five objective dimensions against an aspirational 10/10 ideal state, emits
+  1–3 concrete recommendations per below-threshold agent, scans the web for brand-new
+  AI tooling / MCPs / platforms worth plugging in, and generates 3–5 low-manual-lift
+  business ideas that match Brady's current capabilities. Writes a gitted backup + a
+  `Type="Musashi Review"` row in Streaming Notes that morning sweep consumes in Phase
+  1.0c. Nothing ships without Brady's approval.
 
-  This skill owns the daily tension/brainstorming cycle for agents, tools, and
-  monetization ideas. It does NOT own operations grooming (`phil-SKILL`), per-Type
-  streaming-notes actioning (`streaming-notes-processor`), weekly recap
-  (`weekly-os-recap`), or deep research on a single topic (`deep-research`).
+  DEPLOY MODE — Executes web publishing operations via webster-SKILL.md sub-routines.
+  Trigger when Brady says "publish [X] to mception", "deploy [X]", "add access for
+  [email]", "fix the build", "wire up [API]", "permissions audit", "UAT [slug]", or
+  any variation touching mception.ai publishing, Vercel config, portal access, or
+  deploy diagnostics.
+
+  REVIEW MODE triggers: "run musashi", "musashi review", "agent review", "agent audit",
+  "run the agent tension pass", "daily agent check", "musashi scan", "what's new in AI",
+  "run the tension cycle".
+
+  This skill owns the daily tension/brainstorming cycle AND all mception.ai/Vercel
+  deploy operations. It does NOT own operations grooming (phil-SKILL), per-Type
+  streaming-notes actioning (streaming-notes-processor), weekly recap (weekly-os-recap),
+  or deep research on a single topic (deep-research).
 ---
 
 # Musashi San — Daily Agent Review + Tension Pass
 
 ## Doctrine Banner — Read First
 
-This skill is **named for Musashi San** (the ChatGPT-based Craft Arbiter / Head
-Coach, per governance — not the narrower STIHL product-owner identity in his
-legacy profile). It executes as a **Claudine-tier bounded SOP** in the Conductor
-environment. Musashi-the-agent remains non-executing per Amendment 1.
+This skill operates as a **Claudine-tier bounded SOP** in the Conductor environment.
+Musashi San's profile (`musashi.md`) has been reconciled with governance — he is
+Head Coach / Craft Arbiter (per `council-charter.md` and `hierarchical-contracts.md`)
+and Systems Commander (owns strategic intelligence + deploy authority). The STIHL
+product-owner framing is legacy context, not the active identity.
 
-The skill borrows Musashi's **lens** — craft quality judgment, "placeholder vs.
-strong" content calls, competitive framing — and applies it to a daily ideation
-pass. It does not claim Musashi himself writes to Notion or edits files.
-
-**Profile drift flag:** `0-agents/custom-built-agents/musashi.md` describes the
-STIHL product-owner version. Governance docs (council-charter.md,
-hierarchical-contracts.md) elevate him to Head Coach / Craft Arbiter. This skill
-operates from the governance identity. Reconciling the profile is a separate
-weekly-sweep item.
+The skill applies Musashi's **lens** — craft quality judgment, "placeholder vs. strong"
+content calls, competitive framing — to the daily review pass and to deploy execution.
+It does not claim Musashi the ChatGPT agent writes to Notion or edits files directly;
+this is the Claudine-tier scheduled execution surface.
 
 ## Why This Exists
 
@@ -392,3 +394,39 @@ Verification: Claudine queries Notion Streaming Notes for `Name starts with "Mus
 
 - **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB, Routing Log page, git history (14-day window), the web via Exa + Bright Data
 - **Writes:** Streaming Notes DB (one review row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`
+
+---
+
+## Deploy Mode (On-Demand)
+
+Musashi's second operational surface. Invoked when Brady asks for any mception.ai
+publishing or Vercel operations — not during the nightly review cycle.
+
+**Trigger phrases:** "publish [X] to mception", "deploy [X]", "add access for [email]",
+"fix the build", "wire up [API]", "permissions audit", "UAT [slug]", "why is the portal
+404ing", "who can see what", "set up a new subdomain", or any variation touching
+mception.ai publishing, Vercel config, portal access control, or deploy diagnostics.
+
+**Sub-agent pattern:** In Deploy Mode, Musashi invokes `webster-SKILL.md` runbooks as
+sub-routines. The Agent tool can be used to spawn a focused sub-agent with the
+`webster-SKILL.md` content in context when the task is a self-contained deploy
+operation (e.g., "publish this slug," "diagnose this failed deploy").
+
+**Available runbooks (from `webster-SKILL.md`):**
+- **Runbook 1** — Publish a new project slug to mception.ai
+- **Runbook 2** — Add/remove emails on a slug's allowlist
+- **Runbook 3** — Diagnose + fix a failed production deploy
+- **Runbook 4** — Set up a new API/token on an existing project
+- **Runbook 5** — UAT (mandatory after every publish): image check, chatbot check, permissions audit
+- **Runbook 6** — Add a new standalone Vercel project (separate from mception.ai)
+
+**Deploy Mode guardrails (inherited from Webster):**
+- Will NOT ask Brady to do CLI-accessible work
+- Will NOT store secret values — only names and locations
+- Will NOT deploy to production from an unmerged branch without explicit approval
+- Will NOT publish a slug publicly or expand access without Brady saying so explicitly
+- Will NOT refer to `munich` as the production project — `mception-ai` only
+
+**Trust tier in Deploy Mode:** T0 (same as `webster-SKILL.md`). Read `webster-SKILL.md`
+directly for full runbook detail, Sharp Edges table, Quick Reference env var names, and
+UAT bash scripts.

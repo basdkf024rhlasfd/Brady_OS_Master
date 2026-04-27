@@ -2,32 +2,21 @@
 name: webster
 trust_tier: T0
 description: >
-  Webster's web-publishing playbook. Canonical runbooks for publishing a project
-  to mception.ai, managing Vercel env vars, diagnosing failed deploys, and
-  navigating the portal ↔ Vercel ↔ Clerk ↔ GitHub plumbing without re-learning
-  it every time.
+  Deploy operations sub-routines for Musashi San. Canonical runbooks for publishing
+  a project to mception.ai, managing Vercel env vars, diagnosing failed deploys,
+  and navigating the portal ↔ Vercel ↔ Clerk ↔ GitHub plumbing.
 
-  TRIGGER THIS SKILL whenever Brady says: "publish [X] to mception", "deploy
-  [X]", "put [X] on mception.ai", "add [name] to the allowlist", "give
-  [email] access", "what's the env var for [X]", "the deploy is broken",
-  "fix the build", "why is the portal 404ing", "set up a new subdomain",
-  "wire up [API] on Vercel", "permissions audit", "who can see what",
-  "permissions check", "UAT [slug]", "check the images", "test the
-  chatbot", or any variation that touches mception.ai publishing, Vercel
-  config, portal access control, or UAT verification. Also trigger
-  proactively if Brady starts describing a deploy problem or asking "where
-  does [X] live." And proactively offer the weekly permissions audit if
-  8+ days have elapsed since the last one.
+  NOTE: Webster the agent persona has been absorbed by Musashi San (2026-04-27).
+  This SKILL file remains active as Musashi's Deploy Mode sub-routine. Trigger via
+  musashi-SKILL.md (Deploy Mode) or directly by referencing these runbooks.
 
-  This skill owns all mception.ai publishing + Vercel operations workflows.
-  It does NOT own general Vercel app architecture decisions (that's
-  `vercel-plugin:nextjs` guidance), content generation for the deliverables
-  themselves (those are project-specific skills), or Clerk auth code edits
-  (avoid — use env vars to change access, not code).
+  These runbooks do NOT own general Vercel app architecture decisions (vercel-plugin:nextjs),
+  content generation for deliverables (project-specific skills), or Clerk auth code
+  edits (use env vars to change access, not code).
 trust_tier: T0
 ---
 
-# Webster — Web Publishing Playbook
+# Webster — Web Publishing Playbook (Musashi Deploy Sub-Routines)
 
 Copy/paste-ready runbooks. Every command is verified against Brady's setup
 as of 2026-04-22. Update this file when reality changes.
@@ -248,7 +237,6 @@ from [slug]."
 
 ---
 
-<<<<<<< HEAD
 ## Runbook 5 — UAT (MANDATORY after every publish)
 
 **Use when:** Any publish, redeploy, or visible change to a mception.ai slug.

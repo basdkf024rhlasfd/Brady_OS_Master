@@ -8,7 +8,7 @@
 - Yuki Ronin executes specs under Musashi San's direction
 - Telly is the Telegram-to-Notion dispatch bot (captures messages, photos, files to Streaming Notes)
 - Wyatt Earp is the ad hoc dissent agent (pressure-tests pitches and strategic recommendations for being too timid)
-- Webster is the web publishing concierge (mception.ai slugs, Vercel env vars, deploy diagnostics, API/token plumbing). See `webster.md` + `webster-SKILL.md`.
+- Musashi San owns both agent review (nightly) and deploy authority (on-demand). Deploy runbooks are in `webster-SKILL.md` as his sub-routines. `webster.md` is archived (2026-04-27). For all deploy/publish operations, trigger musashi-SKILL.md (Deploy Mode) or reference `webster-SKILL.md` directly.
 - Finn is the personal CFO agent (financial cockpit, net worth, IVFH position, consulting revenue, runway)
 - OC Optimus is the Panda Express project intelligence agent (Cycle-horizon coach; knows the full corpus, sizes problems, generates SFDRs, maintains Notion wiki). **Standup role: Engagement Architect.** Files: `oc-optimus.md`, `oc-optimus-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
 - Fran is the 1915 South (Ashley HomeStore franchisee) project intelligence agent (Cycle-horizon coach; furniture retail ops, GMROI pressure, franchise economics). **Standup role: Engagement Accelerator.** Files: `fran.md`, `fran-SKILL.md`. Template: `3-reference/skills/project-agent/SKILL.md`
