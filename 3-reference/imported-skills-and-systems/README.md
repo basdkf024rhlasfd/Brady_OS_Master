@@ -16,3 +16,4 @@ External frameworks, skill packs, and systems imported into Brady OS as standalo
 | marketingskills | coreyhaines31/marketingskills | 2026-04-14 | Standalone |
 | pitch-deck-framework | VC Corner Newsletter (Ruben) | 2026-04-14 | Standalone |
 | infographic-builder | Charlie Hills (@charlie_hills) | 2026-04-14 | Standalone |
+| claude-skill-libraries | anthropics/skills + 3 community lists | 2026-04-27 | Standalone — see `claude-skill-libraries/ABSORPTION-SHORTLIST.md` |
