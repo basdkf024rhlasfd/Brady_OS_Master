@@ -36,6 +36,19 @@ export async function POST(req: Request) {
   projectContext.tier = access.tier;
   projectContext.isAdmin = access.isAdmin;
 
+  // Preview tier: chat is suppressed on slugs whose configs reference internal
+  // engagement context (agent personas, named clients, KB routing on names).
+  // The page is sanitized but the chat config is not — fail closed.
+  const PREVIEW_CHAT_BLOCKED: ReadonlySet<string> = new Set(["panda"]);
+  if (access.tier === "preview" && PREVIEW_CHAT_BLOCKED.has(projectContext.project)) {
+    return new Response(
+      JSON.stringify({
+        error: "Chat unavailable on this page. Try the Agent Ecosystem overview for context.",
+      }),
+      { status: 403, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   // Group-scope enforcement: when the active project is a group id, restrict
   // authorized projects to the intersection of (user's access) ∩ (group members).
   // This prevents the chat from leaking cross-group context (e.g., the

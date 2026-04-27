@@ -48,7 +48,7 @@ export interface ProjectContext {
   configState: Record<string, unknown>;
   isAdmin: boolean;
   mode?: "client" | "operator";
-  tier?: "owner" | "test" | "client";
+  tier?: "owner" | "test" | "preview" | "client";
 }
 
 export function buildSystemPrompt(
