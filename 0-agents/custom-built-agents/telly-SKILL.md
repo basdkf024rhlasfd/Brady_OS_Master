@@ -3,9 +3,9 @@ name: telly
 trust_tier: T1
 ---
 
-# Telly — Telegram-to-Notion Dispatch
+# Telly — Telegram-to-Notion Dispatch + OS Query
 
-Capture messages, photos, and files from Telegram and route them to Notion Streaming Notes.
+Capture messages, photos, and files from Telegram and route them to Notion Streaming Notes. Answer questions about Brady's OS using live KB context.
 
 ## Instructions
 
@@ -266,7 +266,74 @@ fallback work.
 
 ---
 
-## J. Future Roadmap (Not Started)
+## J. Knowledge Base System
+
+Telly loads Brady's OS context on every Claude-routed message and uses it to answer questions.
+
+### Context sources
+
+| Layer | What | How loaded |
+|-------|------|------------|
+| Rules & Preferences | Notion page `344ed43b-89c5-813d-bded-f1d5689510e2` — all behavioral rules | Fetched from Notion, cached in Blob |
+| Recent captures | Last 15 Streaming Notes (title + type + status) | Fetched from Notion, cached in Blob |
+| Static facts | Active clients, family context | Hardcoded in `lib/context.js` `buildContextString()` |
+
+### Cache behavior
+
+- Cache key: `telly/daily-context.json` in Vercel Blob
+- TTL: 12 hours
+- On cache hit (fresh): inject cached string into system prompt
+- On cache miss (stale or missing): fetch from Notion, write new blob, inject
+- On Notion failure: degrade gracefully — inject empty string, Telly still routes/answers with static facts
+
+### Context refresh endpoint
+
+Morning sweep triggers a force-refresh at ~6 AM CT so Telly starts each day with fresh context.
+
+```
+POST /api/context-refresh
+X-Telly-Secret: <TELLY_PUSH_SECRET>
+Content-Type: application/json
+```
+
+Response: `{ ok: true, length: <chars>, generatedAt: "ISO timestamp" }`
+
+Auth: same `TELLY_PUSH_SECRET` used by outbound `/api/push`. 401 on mismatch.
+
+**Morning sweep call (step 3.13b):**
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  REFRESH_URL="${TELLY_PUSH_URL/\/api\/push/\/api\/context-refresh}"
+  curl -sS -X POST "$REFRESH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    > /dev/null || echo "[telly context refresh failed — non-critical]"
+fi
+```
+
+### Thread memory
+
+- Thread window: last 10 turns, stored in Vercel Blob at `thread/{chatId}.json`
+- TTL: 6 hours (extended from 1h)
+- `/reset` clears the thread immediately
+
+### What Telly can answer
+
+- "What did I capture about [topic] recently?" — searches recent notes in context
+- "What's the rule around [behavior]?" — looks up Rules & Preferences
+- "What are my active clients?" — answers from static context
+- "What's on my plate?" — summarizes recent To Do items from Streaming Notes
+- Any follow-up in the same thread without re-stating context
+
+### What Telly still dispatches (no LLM)
+
+Prefixed messages bypass Claude entirely and write directly to Notion:
+`rule:`, `never:`, `always:`, `remember:` → System Instruction (Must/Should priority)
+
+---
+
+## K. Future Roadmap (Not Started)
 
 - Two-way sync: Notion status changes trigger Telegram notifications
 - Scheduled digest: Daily summary of open Streaming Notes
