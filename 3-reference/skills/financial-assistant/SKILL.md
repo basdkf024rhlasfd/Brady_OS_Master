@@ -35,11 +35,11 @@ Calendar, and Notion consulting pipeline.
 
 ## Execution Environment
 
-**Runs on:** CoWork (Claude Desktop) on Brady's Mac
+**Runs on:** CoWork (Claude Desktop) on Brady's Mac, OR Claude.ai (Live Artifact mode)
 **Local access:** Gmail MCP, Google Calendar MCP, Notion MCP, local file system
-**Data source:** Monarch CSV exports in `3-reference/skills/financial-assistant/data/`
+**Data source (canonical):** Drive folder `My Drive/Finn-Exports/monarch-YYYY-MM-DD.csv` — auto-refreshed daily by `morning-sweep` Phase 0.4 via `claude-in-chrome` MCP. Local mirror lives at `3-reference/skills/financial-assistant/data/`.
 **Scheduled:** On-demand, or called by morning-sweep / weekly-sweep
-**Also:** Publishes HTML dashboard to mception.ai (`/financial-assistant`)
+**Also:** Publishes HTML dashboard to mception.ai (`/financial-assistant`). **Live Artifact mode:** Claude.ai pulls the latest CSV from `Finn-Exports/` via Google Drive MCP — no manual upload needed.
 
 ## Output Modes
 
@@ -67,7 +67,8 @@ Calendar, and Notion consulting pipeline.
 
 | File | Location | Required? |
 |------|----------|-----------|
-| Monarch CSVs | `data/*.csv` | No — degrades gracefully |
+| Monarch CSVs (canonical) | `~/Library/CloudStorage/GoogleDrive-brady.smallwood@gmail.com/My Drive/Finn-Exports/monarch-YYYY-MM-DD.csv` | No — degrades gracefully. Auto-refreshed daily by morning-sweep Phase 0.4. Pulled by Claude.ai Live Artifact via Google Drive MCP. |
+| Monarch CSVs (local mirror) | `data/*.csv` | No — local repo copy for Finn-in-Conductor runs |
 | Venmo CSVs | `data/VenmoStatement_*.csv` | No — supplementary |
 | Arvest CSV | `data/Arvest*.csv` | No — cross-reference only |
 | Data source registry | `references/data-sources.md` | Yes — dedup rules, coverage dates, scrape targets |
