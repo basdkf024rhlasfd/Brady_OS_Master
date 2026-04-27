@@ -1,0 +1,17 @@
+enabled: true
+agent: fran
+agentName: Fran
+agentAvatar: /personas/fran.png
+prompt: 1915-south.md  # fallback only — `agent` takes precedence
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "I'm Fran — intelligence officer for the 1915 South engagement. Four workspaces underneath: Brady Private (internal), Execs (overview), M&A (capital + roll-up), CFO (role design). Ask me anything about the engagement."
+operatorMode: false
+configAware: false
+shortcuts:
+  - label: "M&A thesis in 60 sec"
+    command: "Give me the M&A thesis for 1915 South in 60 seconds."
+  - label: "Top Innovation Workshop ideas"
+    command: "What are the top 5 ideas from the Innovation Workshop and why?"
+  - label: "Where's the engagement now?"
+    command: "What's the current state of the engagement and what's the next move?"

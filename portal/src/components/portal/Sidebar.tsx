@@ -242,6 +242,7 @@ export function Sidebar({
     family: true,
     "vc-startup": true,
     "panda-engagement": true,
+    "1915-south-engagement": true,
     incubator: false,
   });
 
