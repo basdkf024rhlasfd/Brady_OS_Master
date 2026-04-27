@@ -11,9 +11,12 @@ Capture messages, photos, and files from Telegram and route them to Notion Strea
 
 | Command | What it does |
 |---------|-------------|
-| `/help` | Full command reference including Q&A capability |
+| `/help` | Full command reference |
 | `/reset` | Clear conversation thread |
-| `/status` | KB freshness, thread turn count, model in use |
+| `/status` | KB cache age, thread turn count, model in use |
+| `/digest` | Everything captured today (CT timezone) |
+| `search: [topic]` | Notion full-text search, returns top 5 matches |
+| `find: [topic]` | Alias for `search:` |
 
 ## Instructions
 
