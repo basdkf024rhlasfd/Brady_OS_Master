@@ -5,17 +5,24 @@ import { EngagementHub } from "@/components/engagement/EngagementHub";
 import { ProjectFrame } from "@/components/portal/ProjectFrame";
 import type { EngagementHubConfig } from "@/components/engagement/EngagementHub";
 
-const TABS = ["Overview", "Research Brief"] as const;
-type Tab = (typeof TABS)[number];
+const ALL_TABS = ["Overview", "Research Brief"] as const;
+type Tab = (typeof ALL_TABS)[number];
 
-export function PandaPageClient({ config }: { config: EngagementHubConfig }) {
+export function PandaPageClient({
+  config,
+  showResearchBrief = true,
+}: {
+  config: EngagementHubConfig;
+  showResearchBrief?: boolean;
+}) {
+  const tabs = showResearchBrief ? ALL_TABS : (["Overview"] as const);
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
 
   return (
     <div className="flex h-full flex-col">
       {/* Tab bar */}
       <div className="flex shrink-0 gap-1 border-b border-gray-800 bg-gray-950 px-4 pt-3">
-        {TABS.map((tab) => (
+        {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -33,11 +40,11 @@ export function PandaPageClient({ config }: { config: EngagementHubConfig }) {
       {/* Content */}
       <div className="min-h-0 flex-1">
         {activeTab === "Overview" && <EngagementHub {...config} />}
-        {activeTab === "Research Brief" && (
+        {activeTab === "Research Brief" && showResearchBrief && (
           <ProjectFrame
             baseUrl="/panda/viewer"
             path="/index.html"
-            title="Panda Research Brief"
+            title="Research Brief"
           />
         )}
       </div>

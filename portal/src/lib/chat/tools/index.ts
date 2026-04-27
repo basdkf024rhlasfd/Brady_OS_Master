@@ -6,7 +6,7 @@ import { createNotionTool } from "./query-notion";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ToolFactory = (params?: Record<string, string>) => Tool<any, any> | null;
 
-export type UserTier = "owner" | "test" | "client";
+export type UserTier = "owner" | "test" | "preview" | "client";
 
 /**
  * Each tool declares the minimum tier required to invoke it. Server-side
@@ -27,7 +27,7 @@ interface ToolEntry {
   category: "query" | "structured" | "agentic";
 }
 
-const TIER_RANK: Record<UserTier, number> = { owner: 3, test: 2, client: 1 };
+const TIER_RANK: Record<UserTier, number> = { owner: 3, test: 2, preview: 1, client: 1 };
 
 const toolRegistry: Record<string, ToolEntry> = {
   queryCalendar: {

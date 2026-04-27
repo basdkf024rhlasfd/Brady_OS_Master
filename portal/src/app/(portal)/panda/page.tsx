@@ -1,9 +1,9 @@
-import { requireProjectAccess } from "@/lib/portal-access";
+import { getPortalAccess, requireProjectAccess } from "@/lib/portal-access";
 import type { EngagementHubConfig } from "@/components/engagement/EngagementHub";
 import { PandaPageClient } from "./PandaPageClient";
 
 const config: EngagementHubConfig = {
-  clientName: "Panda Restaurant Group",
+  clientName: "QSR / Multi-Unit Foodservice Strategy Engagement",
   bradyRole: "Advisor — Ops Innovation Team Stand-Up",
   phase: "Phase 3 — Scope Negotiation",
   phaseSteps: ["Research", "Problem Frame", "Scope Negotiation", "SOW", "Engagement"],
@@ -11,18 +11,18 @@ const config: EngagementHubConfig = {
   deliverables: [
     {
       id: "001",
-      name: "Panda Problem Statements Brief",
+      name: "Problem Statements Brief",
       format: "HTML + PDF",
       dateSent: "2026-04-18",
-      sentTo: "James Ku (CDO)",
+      sentTo: "Client lead",
       acknowledged: "Pending",
     },
     {
       id: "002",
-      name: "Panda Research Brief (14 threads)",
+      name: "Research Brief (14 threads)",
       format: "PDF",
       dateSent: "2026-04-18",
-      sentTo: "James Ku (CDO)",
+      sentTo: "Client lead",
       acknowledged: "Pending",
     },
     {
@@ -30,12 +30,12 @@ const config: EngagementHubConfig = {
       name: "SOW / Engagement Description",
       format: "TBD",
       dateSent: undefined,
-      sentTo: "James Ku (CDO)",
+      sentTo: "Client lead",
       acknowledged: "—",
     },
   ],
   nextTouch: {
-    label: "Await James Ku reply — Apr 28",
+    label: "Awaiting client reply",
     isoDate: "2026-04-28",
   },
   projectSlug: "panda",
@@ -43,5 +43,7 @@ const config: EngagementHubConfig = {
 
 export default async function PandaPage() {
   await requireProjectAccess("panda");
-  return <PandaPageClient config={config} />;
+  const { tier } = await getPortalAccess();
+  const showResearchBrief = tier !== "preview";
+  return <PandaPageClient config={config} showResearchBrief={showResearchBrief} />;
 }
