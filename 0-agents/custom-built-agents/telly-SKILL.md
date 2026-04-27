@@ -14,7 +14,7 @@ Capture messages, photos, and files from Telegram and route them to Notion Strea
 | `/help` | Full command reference |
 | `/reset` | Clear conversation thread |
 | `/status` | KB cache age, thread turn count, model in use |
-| `/digest` | Everything captured today (CT timezone) |
+| `/digest` | Everything captured today (CT timezone); also auto-pushed at 8 PM CT |
 | `search: [topic]` | Notion full-text search, returns top 5 matches |
 | `find: [topic]` | Alias for `search:` |
 
