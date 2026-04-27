@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>1915 South — CFO + Applied AI Workspace</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-card: #161A23;
+    --bg-card-alt: #1E2330;
+    --white: #F5F1E8;
+    --gray: #A8ADB8;
+    --gray-light: #D4D7DD;
+    --accent: #E8A547;
+    --accent-soft: #C97E2A;
+    --line: #2A2F3D;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--bg); color: var(--white);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); background: var(--bg-card); padding: 2px 6px; border-radius: 3px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 48px 80px; }
+  .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 0.18em; font-size: 11px; text-transform: uppercase; }
+  h1 { font-size: 40px; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; margin: 12px 0 8px; }
+  .subtitle { font-size: 17px; color: var(--gray-light); margin-bottom: 12px; max-width: 720px; }
+  .meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); margin-bottom: 36px; letter-spacing: 0.04em; }
+  .meta span { margin-right: 24px; }
+  .meta strong { color: var(--white); font-weight: 500; }
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 14px; padding-top: 16px; border-top: 1px solid var(--line); letter-spacing: -0.005em; }
+  h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 32px; }
+  p { margin: 0 0 14px; }
+  p.lede { font-size: 16px; color: var(--gray-light); max-width: 780px; }
+  .files { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 14px 0 12px; }
+  .file-card {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 18px; transition: all 0.15s ease;
+  }
+  .file-card:hover { background: var(--bg-card-alt); border-color: var(--accent-soft); text-decoration: none; }
+  .file-icon {
+    flex-shrink: 0; width: 36px; height: 36px; background: var(--bg-card-alt);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    color: var(--accent); border-radius: 4px;
+  }
+  .file-title { font-weight: 600; color: var(--white); font-size: 14px; }
+  .file-desc { font-size: 13px; color: var(--gray); margin-top: 2px; }
+  .file-body { flex: 1; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fact-card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .fact-card h3 { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 8px; }
+  .fact-card p { margin: 0; font-size: 14px; color: var(--gray-light); }
+  ul { margin: 0 0 14px 20px; }
+  li { margin-bottom: 6px; color: var(--gray-light); }
+  li strong { color: var(--white); }
+  .note {
+    font-size: 13px; color: var(--gray); padding: 14px 18px;
+    background: var(--bg-card); border-left: 3px solid var(--accent);
+    border-radius: 4px; margin: 18px 0;
+  }
+  .layer-stack { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 14px 0; }
+  .layer { background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+  .layer h4 { font-size: 13px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 6px; }
+  .layer p { margin: 0; font-size: 14px; color: var(--gray-light); }
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 24px; }
+    h1 { font-size: 32px; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">1915 South Engagement · CFO + Applied AI</div>
+<h1>CFO + Applied AI Workspace</h1>
+<p class="subtitle">Role design, scope of accountability, AI decision layer above existing data infrastructure, GMROI improvement levers, and finance modernization.</p>
+<div class="meta">
+  <span><strong>Status</strong> active</span>
+  <span><strong>Phase</strong> Problem Frame</span>
+  <span><strong>Last update</strong> 2026-04-26</span>
+</div>
+
+<p class="lede">This workspace covers the role-design lane of the engagement: a CFO-shaped role with technology and applied AI in scope, sitting <em>above</em> the existing data infrastructure rather than displacing it. The aim is a small set of crisp accountability statements, an applied-AI roadmap that compounds on existing investments, and a finance-modernization plan that liberates leadership from operating-cadence firefighting.</p>
+
+<h2>Role anchors</h2>
+<div class="grid-2">
+  <div class="fact-card"><h3>Scope of accountability</h3><p>Accounting and controllership (incl. inventory). Deal support and modeling. Entity design and structure. Management and operating framework. Applied AI roadmap. Technology and IT.</p></div>
+  <div class="fact-card"><h3>AI decision layer</h3><p>Existing data foundation (Zapsight) is implementation. The decision layer that turns data into operating choices and margin actions is the seat the role owns.</p></div>
+  <div class="fact-card"><h3>Manufacturer context</h3><p>Ashley corporate (Theo / FrontlineIQ for floor coaching, AshleyDirect for ordering and assets) is operating at the floor and pipes layer. The 29-store decision layer remains an open seat.</p></div>
+  <div class="fact-card"><h3>GMROI directive</h3><p>Ashley's Dec 2024 Excellence Framework is a positioning document with commercial enforcement (product access, co-op eligibility) — not a contractual numeric target.</p></div>
+</div>
+
+<h2>The three operating layers</h2>
+<p class="lede">A useful way to read the AI landscape inside an Ashley licensee operation: floor, pipes, and decisions.</p>
+<div class="layer-stack">
+  <div class="layer">
+    <h4>Floor layer · already shipping</h4>
+    <p>Sales-rep coaching at the showroom (e.g., Theo / FrontlineIQ via Ashley AI Advantage). Lands inside store sessions, free at the licensee level. Useful and underutilized — but bounded.</p>
+  </div>
+  <div class="layer">
+    <h4>Pipes layer · in build</h4>
+    <p>Data foundation, ingestion, model and dashboard infrastructure. Largely owned by the existing data vendor. Fast progress recently; agentic capabilities being built on top.</p>
+  </div>
+  <div class="layer">
+    <h4>Decision layer · open seat</h4>
+    <p>The translation of data into operating choices that move GMROI, gross margin, sell-through, and labor productivity. Connects pipes to specific weekly and quarterly merchandising, pricing, inventory, and ops decisions. This is where the CFO + Applied AI role sits.</p>
+  </div>
+</div>
+
+<h2>Year-1 outline</h2>
+<ul>
+  <li><strong>Inventory and GMROI lever map.</strong> 80/20 SKU audit, order frequency / depth tuning (Ashley's MOQ-of-1 enables this), structured promotional clearance design.</li>
+  <li><strong>Pricing and assortment cadence.</strong> Weekly pricing rhythm with explicit decision rights and a single source of margin truth tied back to the data foundation.</li>
+  <li><strong>Last-mile economics.</strong> Independent assessment of the in-house delivery operation against 3PL alternatives at current and post-acquisition footprint scale, focused on capital and complexity not just unit cost.</li>
+  <li><strong>Finance modernization.</strong> Faster close, cleaner inventory accounting, and a forecasting cadence that holds up post-AGR integration.</li>
+  <li><strong>Applied-AI roadmap.</strong> Sequenced capabilities (call-center triage, demand forecasting layer above corporate, agentic decision support for merchants, etc.) with explicit coordination with the existing data vendor.</li>
+</ul>
+
+<h2>Why this role exists now</h2>
+<ul>
+  <li><strong>Two-side mandate from Ashley corporate.</strong> Both the AI commitment and the GMROI directive create a multi-year window where modernization and franchise economics are explicitly on Wanek's stage.</li>
+  <li><strong>Roll-up scale.</strong> A path to ~48 stores in 18 months changes the finance, IT, and decision-cadence requirements faster than incremental hiring can absorb. The role exists to absorb that complexity.</li>
+  <li><strong>Vendor seam.</strong> The pipes layer is well underway; the decision layer is not yet built. The role exists to turn pipes into outcomes, not to rebuild pipes.</li>
+</ul>
+
+<h2>Related</h2>
+<div class="files">
+  <a class="file-card" href="/1915-south-execs">
+    <div class="file-icon">→</div>
+    <div class="file-body">
+      <div class="file-title">1915 South Execs — Engagement Overview</div>
+      <div class="file-desc">High-level summary across all workstreams.</div>
+    </div>
+  </a>
+  <a class="file-card" href="/1915-south-ma">
+    <div class="file-icon">→</div>
+    <div class="file-body">
+      <div class="file-title">1915 M&amp;A — Roll-up and Capital</div>
+      <div class="file-desc">Roll-up thesis and capital workspace.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22.pdf" target="_blank">
+    <div class="file-icon">PDF</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — Track C (Back-Office / CFO Transition)</div>
+      <div class="file-desc">CFO-track ideas live inside the broader 39-idea workshop PDF.</div>
+    </div>
+  </a>
+</div>
+
+</div>
+</body>
+</html>

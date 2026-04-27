@@ -122,7 +122,9 @@
     display: flex; gap: 14px; align-items: flex-start;
     background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
     padding: 13px 18px; margin-bottom: 8px; transition: border-color 0.15s;
+    color: inherit; text-decoration: none;
   }
+  a.feed-item:hover { text-decoration: none; }
   .feed-item:last-child { margin-bottom: 0; }
   .feed-item:hover { border-color: var(--accent-soft); }
   .feed-badge {
@@ -437,11 +439,12 @@
           return '<span class="feed-tag">' + esc(t) + '</span>';
         }).join('');
         var meta = [relDate(item.date), tags].filter(Boolean).join(' · ');
-        return '<div class="feed-item">'
+        var href = item.url || ('https://www.notion.so/' + String(item.id || '').replace(/-/g, ''));
+        return '<a class="feed-item" href="' + esc(href) + '" target="_blank" rel="noopener">'
           + '<span class="feed-badge ' + badgeClass(item.type) + '">' + esc(item.type || 'Note') + '</span>'
           + '<div><div class="feed-title">' + esc(item.title) + '</div>'
           + (meta ? '<div class="feed-meta">' + meta + '</div>' : '')
-          + '</div></div>';
+          + '</div></a>';
       }).join('');
     })
     .catch(function () {

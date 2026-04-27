@@ -11,24 +11,25 @@ export async function GET() {
   if (!dbId) return NextResponse.json({ items: [] });
 
   try {
-    const rows = await queryDataSource(dbId, {
+    const rows = await queryDataSource(dbId.trim(), {
       filter: {
         property: "Project",
         relation: { contains: PROJECT_ID },
       },
       sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
       pageSize: 20,
-      titleProp: "Name",
+      titleProp: "Title",
       statusProp: "Type",
       tagsProp: "Tags",
     });
 
     const items = rows.map((r) => ({
       id: r.id,
-      title: r.title,
+      title: r.title || "(untitled)",
       type: r.status,
       tags: r.tags.filter((t) => t !== "Research"),
       date: r.lastEdited,
+      url: `https://www.notion.so/${r.id.replace(/-/g, "")}`,
     }));
 
     return NextResponse.json({ items });

@@ -101,18 +101,54 @@ projects:
       baseUrl: "https://ops-lab-tau.vercel.app"
       path: "/"
 
-  # --- 1915 South engagement ---
+  # --- 1915 South Engagement group ---
   - slug: 1915-south
-    label: "1915 South"
+    label: "Brady Private | 1915 South"
     short: "T"
     href: "/1915-south"
-    description: "Consulting hub for 1915 South | Ashley (Justin Woods). Innovation Workshop + M&A / Investment / Partnership Deep Research with direct links to every detailed artifact."
+    description: "Internal hub for the 1915 South / Ashley engagement (Justin Woods). Includes negotiation prep, comp models, ChatGPT strategy logs, internal SFDRs. Brady-only."
     approved: 2026-04-22
     type: iframe-local
     magic_link: true
     frame:
       baseUrl: ""
       path: "/1915-south/viewer/index.html"
+
+  - slug: 1915-south-execs
+    label: "1915 South Execs"
+    short: "E"
+    href: "/1915-south-execs"
+    description: "Client-safe engagement overview for 1915 South leadership. Engagement context, M&A and Innovation Workshop summaries, and portfolio of working artifacts."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south-execs/viewer/index.html"
+
+  - slug: 1915-south-ma
+    label: "1915 M&A"
+    short: "M"
+    href: "/1915-south-ma"
+    description: "Client-safe M&A and capital workspace. Roll-up thesis, valuation anchors, named target operators (public sources only), capital partner universe."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south-ma/viewer/index.html"
+
+  - slug: 1915-south-cfo
+    label: "1915 CFO"
+    short: "C"
+    href: "/1915-south-cfo"
+    description: "Client-safe view of the CFO + Applied AI role design. Scope of accountability, technology layer, finance modernization, GMROI and applied-AI roadmap."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south-cfo/viewer/index.html"
 
   # --- Family group ---
   - slug: grocery-assistant
@@ -144,6 +180,18 @@ projects:
     frame:
       baseUrl: "/financial-assistant"
       path: "/index.html"
+
+  - slug: bucket-system
+    label: "Bucket System"
+    short: "B"
+    href: "/bucket-system"
+    description: "Quarterly cash management on cruise control. Buckets refill on bonus day, score themselves, and feed flex into Big Things (the pool, the car, the trip). Brady-only."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: ""
+      path: "/bucket-system/viewer/index.html"
 
   # --- Brady OS ---
   - slug: agent-map

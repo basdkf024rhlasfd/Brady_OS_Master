@@ -37,6 +37,7 @@ const groupAccents: Record<string, { banner: string; badge: string }> = {
   family:             { banner: "from-sky-500/10 border-sky-200",       badge: "bg-sky-50 text-sky-700 border-sky-200" },
   "vc-startup":       { banner: "from-violet-500/10 border-violet-200", badge: "bg-violet-50 text-violet-700 border-violet-200" },
   "panda-engagement": { banner: "from-amber-500/10 border-amber-200",   badge: "bg-amber-50 text-amber-700 border-amber-200" },
+  "1915-south-engagement": { banner: "from-stone-500/10 border-stone-200", badge: "bg-stone-50 text-stone-700 border-stone-200" },
   incubator:          { banner: "from-slate-500/10 border-slate-200",   badge: "bg-slate-50 text-slate-600 border-slate-200" },
 };
 

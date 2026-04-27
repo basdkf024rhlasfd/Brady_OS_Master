@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bucket System</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #7CB97A;
+  --green-dim: #4F7A4D;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 52px 60px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--gold-dim);
+  margin-bottom: 32px;
+}
+.header-left .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.header-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+.header-left h1 .accent { color: var(--gold); }
+.header-left .subtitle {
+  font-size: 13px;
+  color: var(--gray-light);
+  margin-top: 6px;
+}
+.header-right {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+}
+.header-right .quarter-tag {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.header-right .quarter-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 4px;
+}
+
+/* Section Header */
+.section-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 32px 0 16px;
+}
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(212,168,67,0.25);
+}
+
+/* Big Things Hero */
+.big-things {
+  background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+  border: 1px solid rgba(212,168,67,0.3);
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.big-things .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.big-things .amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  letter-spacing: -2px;
+  color: var(--gold);
+  line-height: 1;
+}
+.big-things .blurb {
+  font-size: 13px;
+  color: var(--gray-light);
+  margin-top: 10px;
+  max-width: 480px;
+}
+.big-things .meta {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+}
+.big-things .meta .meta-item { margin-bottom: 8px; }
+.big-things .meta .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--white);
+}
+
+/* Bucket Grid */
+.bucket-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.bucket-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 18px 20px;
+  border-top: 3px solid var(--gold);
+  position: relative;
+}
+.bucket-card.warning { border-top-color: var(--gold-dim); }
+.bucket-card.alarm { border-top-color: var(--red); }
+.bucket-card.empty { border-top-color: var(--red-dim); opacity: 0.85; }
+.bucket-card .name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.bucket-card .name .pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray);
+}
+.bucket-card .gauge {
+  height: 10px;
+  background: var(--bg-card-alt);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.bucket-card .gauge-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+.bucket-card.warning .gauge-fill { background: var(--gold-dim); }
+.bucket-card.alarm .gauge-fill { background: var(--red); }
+.bucket-card.empty .gauge-fill { background: var(--red-dim); }
+.bucket-card .balance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.bucket-card .balance {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--white);
+}
+.bucket-card .of-fill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+}
+.bucket-card .input-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.bucket-card .input-row input {
+  flex: 1;
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--white);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  width: 100%;
+  -moz-appearance: textfield;
+}
+.bucket-card .input-row input::-webkit-outer-spin-button,
+.bucket-card .input-row input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bucket-card .input-row button {
+  background: rgba(212,168,67,0.15);
+  border: 1px solid rgba(212,168,67,0.4);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.bucket-card .input-row button:hover {
+  background: rgba(212,168,67,0.25);
+}
+
+/* Buffer Card (full-width) */
+.buffer-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 18px 24px;
+  border-top: 3px solid var(--blue);
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.buffer-card.tapped { border-top-color: var(--red); }
+.buffer-card .name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--white);
+}
+.buffer-card .desc {
+  font-size: 11px;
+  color: var(--gray);
+  margin-top: 2px;
+}
+.buffer-card .gauge { height: 10px; background: var(--bg-card-alt); border-radius: 5px; overflow: hidden; }
+.buffer-card .gauge-fill { height: 100%; background: var(--blue); border-radius: 5px; transition: width 0.4s ease; }
+.buffer-card.tapped .gauge-fill { background: var(--red); }
+.buffer-card .balance {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--white);
+  text-align: right;
+}
+.buffer-card .of-target {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gray);
+}
+
+/* Close Quarter Button + Panel */
+.close-quarter {
+  margin-top: 32px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px 28px;
+}
+.close-quarter h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.close-quarter .helper {
+  font-size: 12px;
+  color: var(--gray-light);
+  margin-bottom: 16px;
+}
+.close-quarter .preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 16px 0 20px;
+  padding: 16px 18px;
+  background: var(--bg-card-alt);
+  border-radius: 6px;
+}
+.close-quarter .preview .item {
+  display: flex;
+  flex-direction: column;
+}
+.close-quarter .preview .item .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.close-quarter .preview .item .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.close-quarter .preview .item .num.gold { color: var(--gold); }
+.close-quarter .preview .item .grade {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  margin-top: 2px;
+}
+.grade-A { color: var(--green); }
+.grade-B { color: var(--gold); }
+.grade-C { color: var(--gold-dim); }
+.grade-D { color: var(--red); }
+.close-quarter .actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+.close-quarter button {
+  background: var(--gold);
+  color: #0C0F14;
+  border: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.close-quarter button:hover { background: #E0B854; }
+.close-quarter button.secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gray-light);
+}
+.close-quarter button.secondary:hover {
+  border-color: var(--gold-dim);
+  color: var(--white);
+}
+
+/* History Table */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.history-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(212,168,67,0.25);
+}
+.history-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray-light);
+}
+.history-table td.grade {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.history-table td.amount {
+  font-family: 'JetBrains Mono', monospace;
+  text-align: right;
+  color: var(--white);
+}
+.history-table tbody tr:hover { background: var(--bg-card-alt); }
+.empty-state {
+  padding: 32px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 13px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+}
+
+/* Settings */
+.settings-toggle {
+  background: transparent;
+  border: 1px dashed rgba(255,255,255,0.15);
+  color: var(--gray);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.settings-toggle:hover { color: var(--gold); border-color: var(--gold-dim); }
+.settings-panel {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 16px;
+  display: none;
+}
+.settings-panel.visible { display: block; }
+.settings-panel h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 24px;
+}
+.settings-grid label {
+  display: flex;
+  flex-direction: column;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.settings-grid input {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--white);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 6px;
+  width: 100%;
+}
+.settings-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.settings-actions button {
+  background: rgba(212,168,67,0.15);
+  border: 1px solid rgba(212,168,67,0.4);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.settings-actions button.danger {
+  background: transparent;
+  border-color: rgba(196,92,92,0.4);
+  color: var(--red);
+}
+
+/* Scenario Picker */
+.scenario-picker {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.scenario-picker button {
+  background: var(--bg-card-alt);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--gray-light);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.scenario-picker button.active {
+  background: rgba(212,168,67,0.18);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Footer */
+.footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--gray);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Notes */
+.cruise-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+.cruise-status.on { background: rgba(124,185,122,0.12); color: var(--green); border: 1px solid rgba(124,185,122,0.3); }
+.cruise-status.off { background: rgba(138,141,148,0.08); color: var(--gray); border: 1px solid rgba(138,141,148,0.15); }
+
+@media (max-width: 880px) {
+  .container { padding: 24px 24px 60px; }
+  .bucket-grid { grid-template-columns: repeat(2, 1fr); }
+  .big-things { grid-template-columns: 1fr; }
+  .big-things .meta { text-align: left; }
+  .header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .close-quarter .preview { grid-template-columns: repeat(2, 1fr); }
+  .buffer-card { grid-template-columns: 1fr; gap: 12px; }
+  .buffer-card .balance { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="tag">Bucket System / Cash on Cruise Control</div>
+      <h1>Live within base. <span class="accent">Save aggressively.</span></h1>
+      <div class="subtitle">Quarterly bonus → buckets refill → flex flows to Big Things. The pool builds itself.</div>
+    </div>
+    <div class="header-right">
+      <div class="quarter-tag">Current Quarter</div>
+      <div class="quarter-num" id="quarter-num">—</div>
+      <div id="cruise-pill"></div>
+    </div>
+  </div>
+
+  <!-- Big Things Hero -->
+  <div class="big-things">
+    <div>
+      <div class="label">Big Things Fund</div>
+      <div class="amount" id="big-things-amount">$0</div>
+      <div class="blurb">Pool. New car. Family beach trip. Kitchen remodel. Whatever <em>matters</em> at scale. Funded only by the flex left after every bucket is full and Long-Term Savings is funded.</div>
+    </div>
+    <div class="meta">
+      <div class="meta-item">
+        <div>Quarterly bonus (net)</div>
+        <div class="num" id="meta-bonus">$51,200</div>
+      </div>
+      <div class="meta-item">
+        <div>Long-Term Savings / Q</div>
+        <div class="num" id="meta-lts">$8,780</div>
+      </div>
+      <div class="meta-item">
+        <div>Bucket fills / Q</div>
+        <div class="num" id="meta-fills">$15,825</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bucket Dashboard -->
+  <div class="section-header">In/Out Buckets — Current Balances</div>
+  <div class="bucket-grid" id="bucket-grid"></div>
+  <div class="buffer-card" id="buffer-card">
+    <div>
+      <div class="name">Buffer</div>
+      <div class="desc">Absorbs overshoots. Refilled to target every bonus day.</div>
+    </div>
+    <div class="gauge"><div class="gauge-fill" id="buffer-fill"></div></div>
+    <div>
+      <div class="balance" id="buffer-balance">$20,000</div>
+      <div class="of-target" id="buffer-target-label">of $20,000 target</div>
+    </div>
+  </div>
+
+  <!-- Close Quarter -->
+  <div class="close-quarter">
+    <h3>Close the Quarter</h3>
+    <div class="helper">Update each bucket's current balance above (what's left at quarter end). When the bonus is about to deposit, click Close to score the quarter, snapshot history, and fund Big Things.</div>
+    <div class="preview">
+      <div class="item">
+        <div class="label">Total Refill Needed</div>
+        <div class="num" id="preview-refill">$0</div>
+      </div>
+      <div class="item">
+        <div class="label">Buffer Tap</div>
+        <div class="num" id="preview-buffer">$0</div>
+      </div>
+      <div class="item">
+        <div class="label">Big Things Deposit</div>
+        <div class="num gold" id="preview-bigthings">$0</div>
+      </div>
+      <div class="item">
+        <div class="label">Composite Grade</div>
+        <div class="grade" id="preview-grade">—</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="close-quarter-btn">Close Quarter & Refill</button>
+      <button class="secondary" id="reset-balances-btn">Reset to Full (no close)</button>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="section-header">Quarter History</div>
+  <div id="history-container"></div>
+
+  <!-- Settings -->
+  <button class="settings-toggle" id="settings-toggle">⚙ Settings · Bucket sizes, scenario, reset</button>
+  <div class="settings-panel" id="settings-panel">
+    <h3>Bonus Scenario</h3>
+    <div class="scenario-picker" id="scenario-picker">
+      <button data-bonus="43700">Low — $43,700/Q</button>
+      <button data-bonus="51200">Mid — $51,200/Q</button>
+      <button data-bonus="58100">High — $58,100/Q</button>
+    </div>
+    <div style="font-size:11px;color:var(--gray);margin-top:6px;font-family:'JetBrains Mono',monospace;">After-tax. Pick the scenario you're underwriting against — Low is conservative, Mid is target.</div>
+
+    <h3 style="margin-top:24px">Bucket Sizes</h3>
+    <div class="settings-grid" id="settings-grid"></div>
+
+    <h3 style="margin-top:24px">Other</h3>
+    <div class="settings-grid">
+      <label>Buffer Target ($)
+        <input type="number" id="setting-buffer-target" />
+      </label>
+      <label>Long-Term Savings / Q ($)
+        <input type="number" id="setting-lts" />
+      </label>
+      <label>Quarterly Bonus Net ($)
+        <input type="number" id="setting-bonus" />
+      </label>
+    </div>
+
+    <div class="settings-actions">
+      <button id="save-settings-btn">Save Settings</button>
+      <button class="danger" id="reset-all-btn">Reset Everything</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    Local storage only. Nothing leaves this browser. · mception.ai · Bucket System v1
+  </div>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'bucket-system-v1';
+
+const DEFAULT_BUCKETS = [
+  { id: 'clothing',        name: 'Clothing',          fill:  975 },
+  { id: 'fun',             name: 'Fun',               fill: 2500 },
+  { id: 'travel',          name: 'Travel',            fill: 3750 },
+  { id: 'extracurriculars',name: 'Extracurriculars',  fill: 1000 },
+  { id: 'allowance',       name: 'Allowance',         fill: 2600 },
+  { id: 'home',            name: 'Home Improvements', fill: 5000 },
+];
+
+const DEFAULT_STATE = {
+  bonusNet: 51200,
+  ltsPerQuarter: 8780,
+  bufferTarget: 20000,
+  bufferCurrent: 20000,
+  bigThings: 0,
+  buckets: DEFAULT_BUCKETS.map(b => ({ ...b, current: b.fill })),
+  quarters: [],
+};
+
+let state = loadState();
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Ensure all default buckets exist (forward compat)
+      const ids = new Set(parsed.buckets.map(b => b.id));
+      DEFAULT_BUCKETS.forEach(d => {
+        if (!ids.has(d.id)) parsed.buckets.push({ ...d, current: d.fill });
+      });
+      return { ...DEFAULT_STATE, ...parsed };
+    }
+  } catch (e) { console.warn('loadState failed', e); }
+  return JSON.parse(JSON.stringify(DEFAULT_STATE));
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function fmt(n) {
+  if (n === null || n === undefined || isNaN(n)) return '$0';
+  const sign = n < 0 ? '-' : '';
+  const abs = Math.abs(Math.round(n));
+  return sign + '$' + abs.toLocaleString('en-US');
+}
+
+function bucketStatus(b) {
+  if (b.current < 0) return 'alarm';
+  const pct = b.current / b.fill;
+  if (pct <= 0.05) return 'empty';
+  if (pct >= 0.75) return 'warning';
+  return 'ok';
+}
+
+function computeQuarterScore() {
+  let totalRefillNeeded = 0;
+  let oversizedCount = 0;
+  let overshootCount = 0;
+  let bufferTap = 0;
+
+  state.buckets.forEach(b => {
+    const refill = Math.max(0, b.fill - b.current);
+    totalRefillNeeded += refill;
+    if (b.current < 0) {
+      bufferTap += Math.abs(b.current);
+      overshootCount += 1;
+    }
+    if (b.current > b.fill * 0.25) oversizedCount += 1;
+  });
+
+  const bufferShortfall = Math.max(0, state.bufferTarget - state.bufferCurrent);
+
+  let grade;
+  if (bufferTap > 5000) grade = 'D';
+  else if (bufferTap > 2000 || overshootCount >= 2) grade = 'C';
+  else if (bufferTap > 0 || oversizedCount >= 2) grade = 'B';
+  else grade = 'A';
+
+  const bigThingsDeposit = Math.max(
+    0,
+    state.bonusNet - totalRefillNeeded - bufferShortfall - state.ltsPerQuarter
+  );
+
+  return { totalRefillNeeded, bufferTap, bufferShortfall, grade, bigThingsDeposit };
+}
+
+function quarterLabel(offset = 0) {
+  const now = new Date();
+  const month = now.getMonth() + offset;
+  const year = now.getFullYear() + Math.floor(month / 12);
+  const q = Math.floor(((month % 12) + 12) % 12 / 3) + 1;
+  return 'Q' + q + ' ' + year;
+}
+
+function cruiseStatus() {
+  const recent = state.quarters.slice(-4);
+  if (recent.length < 4) return { on: false, label: recent.length + '/4 Quarters' };
+  const allGood = recent.every(q => (q.grade === 'A' || q.grade === 'B') && q.bufferTap === 0);
+  return { on: allGood, label: allGood ? 'Cruise Control On' : 'Tuning' };
+}
+
+function renderHeader() {
+  document.getElementById('quarter-num').textContent = quarterLabel();
+  const cruise = cruiseStatus();
+  const pill = document.getElementById('cruise-pill');
+  pill.innerHTML = '<span class="cruise-status ' + (cruise.on ? 'on' : 'off') + '">' + cruise.label + '</span>';
+}
+
+function renderHero() {
+  document.getElementById('big-things-amount').textContent = fmt(state.bigThings);
+  document.getElementById('meta-bonus').textContent = fmt(state.bonusNet);
+  document.getElementById('meta-lts').textContent = fmt(state.ltsPerQuarter);
+  const totalFills = state.buckets.reduce((s, b) => s + b.fill, 0);
+  document.getElementById('meta-fills').textContent = fmt(totalFills);
+}
+
+function renderBuckets() {
+  const grid = document.getElementById('bucket-grid');
+  grid.innerHTML = '';
+  state.buckets.forEach(b => {
+    const status = bucketStatus(b);
+    const pct = Math.max(0, Math.min(100, (b.current / b.fill) * 100));
+    const card = document.createElement('div');
+    card.className = 'bucket-card ' + (status === 'ok' ? '' : status);
+    card.innerHTML =
+      '<div class="name"><span>' + b.name + '</span><span class="pct">' + Math.round(pct) + '%</span></div>' +
+      '<div class="gauge"><div class="gauge-fill" style="width:' + pct + '%"></div></div>' +
+      '<div class="balance-row">' +
+        '<span class="balance">' + fmt(b.current) + '</span>' +
+        '<span class="of-fill">of ' + fmt(b.fill) + '</span>' +
+      '</div>' +
+      '<div class="input-row">' +
+        '<input type="number" placeholder="Update balance" id="bal-' + b.id + '" />' +
+        '<button data-bucket="' + b.id + '" data-action="set">Set</button>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  // Attach handlers
+  grid.querySelectorAll('button[data-action="set"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-bucket');
+      const input = document.getElementById('bal-' + id);
+      const val = parseFloat(input.value);
+      if (isNaN(val)) return;
+      const bucket = state.buckets.find(b => b.id === id);
+      bucket.current = val;
+      input.value = '';
+      saveState();
+      renderAll();
+    });
+  });
+  grid.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const btn = input.parentElement.querySelector('button');
+        if (btn) btn.click();
+      }
+    });
+  });
+}
+
+function renderBuffer() {
+  const card = document.getElementById('buffer-card');
+  const tapped = state.bufferCurrent < state.bufferTarget * 0.95;
+  card.className = 'buffer-card' + (tapped ? ' tapped' : '');
+  const pct = Math.max(0, Math.min(100, (state.bufferCurrent / state.bufferTarget) * 100));
+  document.getElementById('buffer-fill').style.width = pct + '%';
+  document.getElementById('buffer-balance').textContent = fmt(state.bufferCurrent);
+  document.getElementById('buffer-target-label').textContent = 'of ' + fmt(state.bufferTarget) + ' target';
+}
+
+function renderClosePreview() {
+  const score = computeQuarterScore();
+  document.getElementById('preview-refill').textContent = fmt(score.totalRefillNeeded);
+  document.getElementById('preview-buffer').textContent = fmt(score.bufferTap);
+  document.getElementById('preview-bigthings').textContent = fmt(score.bigThingsDeposit);
+  const gradeEl = document.getElementById('preview-grade');
+  gradeEl.textContent = score.grade;
+  gradeEl.className = 'grade grade-' + score.grade;
+}
+
+function renderHistory() {
+  const container = document.getElementById('history-container');
+  if (state.quarters.length === 0) {
+    container.innerHTML = '<div class="empty-state">No quarters closed yet. Close your first quarter to start tracking the trend.</div>';
+    return;
+  }
+  let html = '<table class="history-table"><thead><tr>' +
+    '<th>Quarter</th><th>Refill</th><th>Buffer Tap</th><th>Big Things</th><th>Cumulative</th><th>Grade</th>' +
+    '</tr></thead><tbody>';
+  let cum = 0;
+  state.quarters.forEach(q => {
+    cum += q.bigThingsDeposit;
+    html += '<tr>' +
+      '<td>' + q.label + '</td>' +
+      '<td class="amount">' + fmt(q.totalRefillNeeded) + '</td>' +
+      '<td class="amount">' + (q.bufferTap > 0 ? '<span style="color:var(--red)">' + fmt(q.bufferTap) + '</span>' : '$0') + '</td>' +
+      '<td class="amount" style="color:var(--gold)">' + fmt(q.bigThingsDeposit) + '</td>' +
+      '<td class="amount">' + fmt(cum) + '</td>' +
+      '<td class="grade grade-' + q.grade + '">' + q.grade + '</td>' +
+    '</tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+function renderSettings() {
+  document.getElementById('setting-buffer-target').value = state.bufferTarget;
+  document.getElementById('setting-lts').value = state.ltsPerQuarter;
+  document.getElementById('setting-bonus').value = state.bonusNet;
+  const grid = document.getElementById('settings-grid');
+  grid.innerHTML = '';
+  state.buckets.forEach(b => {
+    const label = document.createElement('label');
+    label.innerHTML = b.name + ' Fill ($)<input type="number" data-bucket="' + b.id + '" value="' + b.fill + '" />';
+    grid.appendChild(label);
+  });
+  // scenario picker active state
+  document.querySelectorAll('#scenario-picker button').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.getAttribute('data-bonus')) === state.bonusNet);
+  });
+}
+
+function renderAll() {
+  renderHeader();
+  renderHero();
+  renderBuckets();
+  renderBuffer();
+  renderClosePreview();
+  renderHistory();
+  renderSettings();
+}
+
+// Close quarter
+document.getElementById('close-quarter-btn').addEventListener('click', () => {
+  const score = computeQuarterScore();
+  if (!confirm('Close ' + quarterLabel() + '? This will:\n\n' +
+    '• Refill all buckets to full\n' +
+    '• Top up Buffer to target\n' +
+    '• Deposit ' + fmt(score.bigThingsDeposit) + ' to Big Things\n' +
+    '• Snapshot grade ' + score.grade + ' to history')) return;
+
+  state.quarters.push({
+    label: quarterLabel(),
+    closedAt: new Date().toISOString(),
+    totalRefillNeeded: score.totalRefillNeeded,
+    bufferTap: score.bufferTap,
+    bigThingsDeposit: score.bigThingsDeposit,
+    grade: score.grade,
+    snapshot: state.buckets.map(b => ({ id: b.id, current: b.current, fill: b.fill })),
+  });
+  state.bigThings += score.bigThingsDeposit;
+  state.buckets.forEach(b => { b.current = b.fill; });
+  state.bufferCurrent = state.bufferTarget;
+  saveState();
+  renderAll();
+});
+
+document.getElementById('reset-balances-btn').addEventListener('click', () => {
+  if (!confirm('Reset all bucket balances to full without closing the quarter? Use this for setup, not closing.')) return;
+  state.buckets.forEach(b => { b.current = b.fill; });
+  state.bufferCurrent = state.bufferTarget;
+  saveState();
+  renderAll();
+});
+
+// Settings
+document.getElementById('settings-toggle').addEventListener('click', () => {
+  document.getElementById('settings-panel').classList.toggle('visible');
+});
+
+document.getElementById('save-settings-btn').addEventListener('click', () => {
+  const newBufferTarget = parseFloat(document.getElementById('setting-buffer-target').value);
+  const newLts = parseFloat(document.getElementById('setting-lts').value);
+  const newBonus = parseFloat(document.getElementById('setting-bonus').value);
+  if (!isNaN(newBufferTarget)) state.bufferTarget = newBufferTarget;
+  if (!isNaN(newLts)) state.ltsPerQuarter = newLts;
+  if (!isNaN(newBonus)) state.bonusNet = newBonus;
+  document.querySelectorAll('#settings-grid input[data-bucket]').forEach(inp => {
+    const id = inp.getAttribute('data-bucket');
+    const val = parseFloat(inp.value);
+    const b = state.buckets.find(x => x.id === id);
+    if (b && !isNaN(val)) b.fill = val;
+  });
+  saveState();
+  renderAll();
+});
+
+document.getElementById('reset-all-btn').addEventListener('click', () => {
+  if (!confirm('Reset everything — buckets, Big Things, history? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  renderAll();
+});
+
+document.querySelectorAll('#scenario-picker button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const v = parseInt(btn.getAttribute('data-bonus'));
+    state.bonusNet = v;
+    document.getElementById('setting-bonus').value = v;
+    saveState();
+    renderAll();
+  });
+});
+
+renderAll();
+</script>
+
+</body>
+</html>
