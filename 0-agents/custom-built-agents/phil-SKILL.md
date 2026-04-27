@@ -95,9 +95,11 @@ Gather raw data from every surface. No writes in this phase.
 
 Query Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`) for items where `Status NOT IN ["Complete", "Remove"]`. Bucket by Type:
 
-- Daily State, Thread Log, Pulse Note, Build Request, System Instruction, Task, To Do, Note, Sweep Feedback, Phil Flag
+- Daily State, Thread Log, Pulse Note, Build Request, System Instruction, Task, To Do, Note, Sweep Feedback, Phil Flag, **Backlog Item**, **Sprint Proposal**
 
 For each item capture: id, name, Type, Status, Priority, Next Action, Last Modified, Done, Created, Source.
+
+**Backlog Item and Sprint Proposal are persistent queue types — not pipeline items.** Backlog Items at Status="Not Started" are intentionally parked and should NOT be treated as carryover or flagged as stale by Phil. Sprint Proposals at Status="In Progress" represent an active sprint in progress — surface them under Sprint Status (Phase 1.8), not as carryover.
 
 ### 1.2 Done / Status reconcile candidates
 
@@ -117,7 +119,9 @@ Capture proposed defaults:
 
 ### 1.4 Carryover candidates
 
-From 1.1, identify items where `Status = "In Progress"` AND `Last Modified < yesterday end-of-day`. These are loops that opened and didn't move. Cap at 10 items, oldest first.
+From 1.1, identify items where `Status = "In Progress"` AND `Last Modified < yesterday end-of-day` AND `Type NOT IN ["Backlog Item","Sprint Proposal"]`. These are loops that opened and didn't move. Cap at 10 items, oldest first.
+
+Backlog Items and Sprint Proposals have their own Phase 1.8 treatment — exclude them here.
 
 ### 1.5 Life Events — 7-day horizon
 
@@ -131,6 +135,22 @@ Apply Phil's lens. Flag (not fix):
 - Routing Log rows from the last 7 days with `destination="Rules & Preferences"` but no corresponding row on the R&P page (possible routing gap)
 
 Cap each category at 5 items. These are PROPOSED flags — Brady dispositions them in morning sweep or weekly sweep.
+
+### 1.8 Backlog + Sprint Snapshot
+
+From 1.1, pull all `Type="Backlog Item"` and `Type="Sprint Proposal"` items.
+
+**Backlog summary:**
+- Count by Status: Not Started (queued), In Progress (in sprint), Complete (shipped)
+- Flag: any `Priority="Must"` items at `Status="Not Started"` created more than 14 days ago (stale high-priority backlog — Musashi should have caught these, but Phil surfaces as a cross-check)
+
+**Sprint summary:**
+- Is there an active sprint? (`Type="Sprint Proposal"` AND `Status="In Progress"`)
+  - If yes: list the sprint name, how many Backlog Items reference it, how many are Complete vs. open. Flag if the sprint has had no activity (no Backlog Item Status changes) in the last 3 days.
+  - If no: note how many approved items are waiting — if ≥ 3 items at Priority="Must"/"Should", nudge: "Musashi has enough approved work to propose a sprint tonight."
+- Is there a pending sprint proposal? (`Type="Sprint Proposal"` AND `Status="Not Started"`) — surface the approval gate to Brady.
+
+Cap output to 5 lines in the primer — this is a snapshot, not a full audit (Musashi owns the full audit).
 
 ### 1.7 Proposed TOP 3 candidates
 
@@ -212,6 +232,12 @@ Generated: [ISO timestamp]
 ## Coherence Flags (Phil's Lens)
 [prose paragraphs, not lists]
 
+## Backlog + Sprint Status
+- Backlog: [N queued / M in sprint / K complete]
+- Active sprint: [name | X/N items done] OR "(none)"
+- Pending proposal: [Sprint N Proposal — "approve musashi sprint-N"] OR "(none)"
+- Stale high-priority items (>14d): [list or "(none)"]
+
 ## Field Normalization Proposed (needs Brady approval)
 - [item] — missing [field], propose [default]
 
@@ -259,6 +285,9 @@ CALENDAR HEADLINES:
 COHERENCE FLAGS:
 [1–3 short framings in Phil's voice]
 
+SPRINT: [active sprint status or pending proposal approval gate]
+BACKLOG: [N queued | M in sprint | stale: K]
+
 CLEANUP EXECUTED:
 - Done/Status reconciled on [N] items
 
@@ -287,6 +316,7 @@ TOP 3:
 HORIZON ({N} days):
 - {date} | {event} | {owner}
 
+SPRINT: {active sprint name + X/N items done} | OR: {N} items ready — Musashi proposes tonight
 MUSASHI: {N} pending recs — reply "approve musashi [slug]" or run morning sweep
 CARRYOVER: {N} items | CALENDAR: {next 1-2 high-signal events}
 
