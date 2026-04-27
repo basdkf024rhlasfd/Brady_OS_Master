@@ -164,37 +164,27 @@ For each agent scoring < 8/10, emit 1–3 specific recommendations.
 
 Agents scoring ≥ 8/10 get a one-line "holding well" summary. No recommendations unless Musashi sees something opportunistic.
 
-**Backlog write step:** After all recommendations are emitted, check whether the Product Backlog DB exists (see "Notion Backlog DB" section below for ID and schema). If the DB exists, write each recommendation as a new row — but only if an open item with the same approval slug does not already exist (dedup by slug). If the DB does not exist, emit a one-line note in the backup: `⚠️ Backlog DB not yet created — say "approve musashi notion-backlog-db" to authorize creation.`
+**Backlog write step:** After all recommendations are emitted, write each one as a new row in Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`) — but only if an open item with the same approval slug does not already exist (dedup by slug, see Phase 3.5 for dedup logic). Field mapping: `Type="Backlog Item"`, `Status="Not Started"`, `Priority` = Impact Score mapped to Must/Should/Could (see Streaming Notes Backlog Convention section), `Name` = `[slug]: [what]`, `Next Action` = executor assignment, `Source="Musashi Review"`.
 
 ## Phase 3.5 — Backlog Hygiene
 
-Runs only if the Product Backlog DB exists. Skipped with a one-liner if DB is absent.
+Query Streaming Notes DB for `Type="Backlog Item"` AND `Status NOT IN ["Complete","Remove"]`. This is the live backlog. Then:
 
-**Purpose:** Keep the backlog honest. Dead items rot signal. Stale approvals block sprints.
+1. **Dedup check** — compare today's Phase 3 recommendations against open Backlog Items. Match by `Name` starting with the same slug prefix. If a duplicate exists: skip the new write; instead append to the existing row's body: `Re-surfaced YYYY-MM-DD — [brief rationale]` and touch Last Modified.
 
-**Steps:**
+2. **Staleness sweep** — flag Backlog Items where `Priority="Must"` (i.e., already-approved high-impact items) AND `Status="Not Started"` AND `Created Date > 14 days ago`. These are items Brady approved but nothing started. Surface them in the backup under `⚠️ STALE APPROVED` with name, slug, creation date, and days waiting. Recommend: pull into next sprint, cancel, or escalate.
 
-1. **Query all open items** — Status IN (Backlog, In Sprint). Pull: Name, Approval Slug, Approval Status, Size, Impact Score, Review Date, Sprint.
+3. **Relevance check** — scan Backlog Items whose slug names an agent that now scores ≥ 8/10 in today's Phase 2 run. Those improvements already happened; set `Status="Remove"` with a body note: `Superseded — [agent] now scores [N]/10 as of YYYY-MM-DD`.
 
-2. **Dedup check** — compare against today's Phase 3 recommendations. If a new recommendation matches an existing open item (same slug OR same agent + same dimension targeted), do NOT create a duplicate row. Instead, update the existing row's `Review Date` to today and append a note: "Re-surfaced YYYY-MM-DD — [brief rationale]."
-
-3. **Staleness sweep** — flag items where Approval_Status=Approved AND Status=Backlog AND Review Date is > 14 days ago. These are approved items nobody has started. For each:
-   - Mark the backup file under a `⚠️ STALE APPROVED` heading
-   - Include the item name, slug, approval date, and days waiting
-   - Include a recommended action: re-prioritize into next sprint, cancel, or escalate to Brady
-
-4. **Relevance check** — scan for items whose parent agent has since been scored ≥ 8/10 (was improved since the rec was written), or whose target agent was retired. Mark those as Cancelled in the DB with reason "Superseded — [agent] now scores [N]/10" or "Agent retired."
-
-5. **Sprint health check** — if any Sprint exists with Status=In Sprint, report how many items are in it and their current Status distribution. If all items are Done, mark the sprint complete and compute velocity (items shipped / sprint duration days).
+4. **Sprint health check** — query Streaming Notes for `Type="Sprint Proposal"` AND `Status="In Progress"`. That's the active sprint. Count how many of its referenced Backlog Items are now Complete vs. still open. If all are Complete, mark the Sprint Proposal `Status="Complete"` and compute velocity (items shipped, days elapsed). Surface in backup.
 
 Output a `BACKLOG SUMMARY` block in the backup file:
 ```
 BACKLOG SUMMARY (as of YYYY-MM-DD):
   Open (Backlog): N items
-  In Sprint [n]: M items ([x] Done, [y] In Progress, [z] Backlog)
-  Stale approved (>14d): K items — [list slugs]
-  Cancelled this run: J items
-  DB: [Product Backlog DB ID or "not yet created"]
+  Active sprint: [Sprint N — M items, X complete, Y in progress, Z not started]
+  Stale high-priority (>14d): K items — [slugs]
+  Superseded this run: J items
 ```
 
 ## Phase 4 — Tech Scan
@@ -245,51 +235,44 @@ Keep this section disciplined — 3 strong ideas beats 5 weak ones.
 
 ## Phase 5.5 — Sprint Proposal
 
-Runs only if the Product Backlog DB exists AND there are ≥ 3 items with Approval_Status=Approved AND Status=Backlog. Otherwise emit: `_(Sprint Proposal skipped — insufficient approved backlog items: [N] available, need ≥ 3)_`
+Runs only if there are ≥ 3 Streaming Notes Backlog Items with `Priority IN ["Must","Should"]` AND `Status="Not Started"`. Otherwise emit: `_(Sprint Proposal skipped — [N] ready items available, need ≥ 3)_`
 
-**Purpose:** Musashi doesn't wait to be asked. When enough approved work exists, he proposes the next sprint without Brady having to manually curate it.
+**Purpose:** Musashi doesn't wait to be asked. When enough ready work exists, he proposes the next sprint.
 
 **Sprint capacity (default):**
-- 4–5 small items OR
-- 2–3 medium items OR
-- 1 large + 2 small items
-- Maximum 6 items per sprint. Quality over throughput.
+- 4–5 small items, OR 2–3 medium items, OR 1 large + 2 small. Max 6 items.
 
 **Selection algorithm:**
-1. Pull all items where Approval_Status=Approved AND Status=Backlog
-2. Sort by: Impact Score DESC, then Size ASC (small first for momentum)
-3. Fill to sprint capacity — stop when capacity hit or backlog exhausted
-4. Assign an executor to each item:
-   - SKILL.md edits, agent profile changes → **Yuki Ronin** (build)
-   - mception.ai publish, Vercel env, deploy ops → **Musashi Deploy Mode** (self)
-   - Notion DB creation/schema → **Claudine approval required first**
-5. Compute sprint number: last sprint in DB + 1 (or Sprint 1 if none)
+1. Pull all Backlog Items with `Status="Not Started"` AND `Priority IN ["Must","Should"]`
+2. Sort: Must before Should, then by Created Date ASC (oldest first within tier)
+3. Fill to capacity
+4. Assign executor from the item's `Next Action` field (set during Phase 3)
+5. Sprint number: count existing Sprint Proposal rows + 1
 
-**Output format** (in backup file and Notion handoff):
+**Output format** (backup file + Notion handoff):
 ```
 SPRINT [N] PROPOSAL — YYYY-MM-DD
-  Capacity: [X small / Y medium / Z large]
-  Velocity target: [N] items
+  [N] items | est. [X] small / [Y] medium / [Z] large
 
-  Item 1: [Name] | [slug] | Size: small | Impact: 4/5 | Executor: Yuki Ronin
-  Item 2: [Name] | [slug] | Size: small | Impact: 4/5 | Executor: Musashi Deploy
-  Item 3: [Name] | [slug] | Size: medium | Impact: 3/5 | Executor: Yuki Ronin
+  [slug-1]: [what] | Priority: Must | Executor: Yuki Ronin
+  [slug-2]: [what] | Priority: Must | Executor: Musashi Deploy
+  [slug-3]: [what] | Priority: Should | Executor: Yuki Ronin
   ...
 
-  Approve this sprint: say "approve musashi sprint-[N]"
-  Modify before approving: say "musashi sprint-[N] drop [slug]" or "add [slug]"
+  Approve: "approve musashi sprint-[N]"
+  Drop an item: "musashi sprint-[N] drop [slug]"
 ```
 
+**Write to Streaming Notes:** Create one `Type="Sprint Proposal"`, `Status="Not Started"`, `Priority="Must"`, `Name="Sprint [N] Proposal — YYYY-MM-DD"` row. Body = sprint card above. Do not create if a Sprint Proposal with `Status IN ["Not Started","In Progress"]` already exists — only one active proposal at a time.
+
 **On Brady approving a sprint** (`approve musashi sprint-[N]`):
-- Morning sweep sets Status="In Sprint" on each item in the DB
-- Morning sweep adds sprint items to the daily agenda section with executor assignments
+- Morning sweep sets `Status="In Progress"` on the Sprint Proposal row
+- Morning sweep sets `Status="In Progress"` on each referenced Backlog Item row
 - Yuki Ronin items become Build Requests at `.context/plans/musashi-[slug].md`
 - Musashi Deploy Mode items are queued for the next Deploy Mode session
 
-**Sprint review (next nightly run after a sprint is approved):**
-- Phase 3.5 Step 5 runs the sprint health check
-- If items moved to Done: log velocity, celebrate in Musashi's Lens section
-- If items are stalled: surface in recommendations as blockers
+**Sprint review (Phase 3.5 Step 4 each subsequent nightly run):**
+- Tracks item completion, flags stalls, marks sprint Complete when all items Done
 
 ## Phase 6 — Output
 
@@ -421,15 +404,12 @@ Musashi Review: [STATUS]. [N] agents scored (avg [X.X]/10). [M] recs, [K] tech, 
 
 ## Safety Rails
 
-- **Musashi writes FIVE things and nothing else (when Backlog DB exists):**
+- **Musashi writes FOUR things and nothing else:**
   1. The backup markdown file
-  2. One new Streaming Notes row (Type="Musashi Review")
+  2. One new/updated Streaming Notes row (Type="Musashi Review")
   3. One new Routing Log row
-  4. New/updated rows in the Product Backlog DB (one per recommendation, deduped by slug)
-  5. Sprint rows if a sprint is proposed and approved
-  Without Backlog DB: writes 1–3 only (existing behavior).
-- **Never touches:** agent profile files, SKILL.md files, CLAUDE.md, Rules & Preferences, Internal/Client Projects, Life Events, any Task Next Action field, any existing Streaming Note body.
-- **Backlog DB creation is gated:** Musashi NEVER creates the Backlog DB autonomously. Brady must say `approve musashi notion-backlog-db` first. Claudine coordinates creation via Notion MCP. Until then, Phases 3.5 and 5.5 are skipped.
+  4. Streaming Notes rows: new Backlog Items (deduped by slug), updates to existing Backlog Items (body append only), one Sprint Proposal row (one active at a time)
+- **Never touches:** agent profile files, SKILL.md files, CLAUDE.md, Rules & Preferences, Internal/Client Projects, Life Events, any Task Next Action field, bodies of non-Musashi Streaming Note rows.
 - **Approval-gated execution:** Musashi never executes recommendations. Morning sweep surfaces them with explicit approval language. Brady must say `approve musashi [slug]` before any recommendation is dev-planned or built.
 - **Sprint approval gate:** Musashi never starts a sprint without Brady's `approve musashi sprint-[N]`. He proposes; Brady decides.
 - **Token budget:** ~150k input / 40k output per run. If exceeded, degrade in order:
@@ -500,36 +480,34 @@ Verification: Claudine queries Notion Streaming Notes for `Name starts with "Mus
 
 ---
 
-## Notion Backlog DB — Schema & Approval Gate
+## Streaming Notes Backlog Convention
 
-**Status:** Not yet created. Requires Brady's explicit `approve musashi notion-backlog-db` before Claudine creates it.
+Backlog Items and Sprint Proposals live in the existing Streaming Notes DB (`2e9ed43b-89c5-80f4-8c21-000b4cfe812e`). No new DB needed. Phil already works this DB daily — the new Types slot into his existing grooming pass.
 
-**Why this needs Claudine vetting:** Creating a new Notion DB changes the OS information architecture. Claudine confirms the DB fits the existing layer structure (Reference Layer or Execution Layer), picks the right parent page, and registers the ID in `3-reference/infrastructure-registry.yml`.
+**Type="Backlog Item" — field usage:**
 
-**Proposed DB name:** `Product Backlog` (Musashi's OS build queue)
+| Field | Value |
+|---|---|
+| `Name` | `[slug]: [what]` — e.g., `musashi-phil-1: Add Exa query to Phil's 4 AM scan` |
+| `Type` | `Backlog Item` |
+| `Status` | `Not Started` (queued) → `In Progress` (sprint active) → `Complete` (shipped) → `Remove` (cancelled) |
+| `Priority` | `Must` = Impact 4–5 (ship soon) · `Should` = Impact 2–3 · `Could` = Impact 1 |
+| `Next Action` | Executor + sprint assignment — e.g., `Yuki Ronin | Sprint 1` |
+| `Source` | `Musashi Review` |
+| Body | Full recommendation detail: What, Why, dimension lift, size, trust tier |
 
-**Proposed parent:** Brady OS workspace root (same level as Streaming Notes, Internal Projects)
+**Type="Sprint Proposal" — field usage:**
 
-**Proposed fields:**
+| Field | Value |
+|---|---|
+| `Name` | `Sprint [N] Proposal — YYYY-MM-DD` |
+| `Type` | `Sprint Proposal` |
+| `Status` | `Not Started` (proposed) → `In Progress` (Brady approved, active) → `Complete` |
+| `Priority` | `Must` |
+| `Source` | `Musashi Review` |
+| Body | Sprint card: all item slugs + executors + approval gate |
 
-| Field | Type | Notes |
-|---|---|---|
-| `Name` | Title | Item description (the recommendation "What") |
-| `Approval Slug` | Text | `musashi-[agent]-[n]` or `musashi-tech-[slug]` or `musashi-biz-[slug]` |
-| `Source` | Select | Agent Rec / Tech Scan / Biz Idea / Manual |
-| `Agent` | Text | Which agent this improves (or "OS" for system-level) |
-| `Size` | Select | small / medium / large |
-| `Impact Score` | Number (1–5) | Estimated OS improvement if shipped |
-| `Status` | Select | Backlog / In Sprint / In Progress / Done / Cancelled / Rejected |
-| `Approval Status` | Select | Pending / Approved / Rejected |
-| `Sprint` | Number | Sprint number (blank until assigned) |
-| `Executor` | Select | Yuki Ronin / Musashi Deploy / Claudine / Brady |
-| `Review Date` | Date | Which nightly run created or last updated this item |
-| `Notes` | Text | Rationale + dimension lift from Phase 3 |
-
-**ID placeholder:** `TBD — update `3-reference/infrastructure-registry.yml` after creation`
-
-**To authorize:** say `approve musashi notion-backlog-db` — morning sweep will route this to Claudine for creation, registration, and first-run verification.
+**First-run setup:** The `Backlog Item` and `Sprint Proposal` Type select options may need to be added to the Streaming Notes DB schema on the first write. If Notion MCP throws a schema validation error, Musashi flags it in the backup and Brady or Claudine adds the options manually (Settings → Database → Type field → add options). This is a one-time step.
 
 ---
 
