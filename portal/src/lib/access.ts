@@ -63,7 +63,8 @@ export function getAdminEmails(): string[] {
 function resolveProjects(
   emailAddresses: string[],
   isAdmin: boolean,
-  isPreview: boolean
+  isPreview: boolean,
+  publicMetadata?: Record<string, unknown>
 ): string[] {
   if (isAdmin) return [...ALL_PROJECTS];
 
@@ -72,24 +73,34 @@ function resolveProjects(
     return [...ALL_PROJECTS];
   }
 
-  const projects: string[] = [];
+  const projects = new Set<string>();
 
   // Preview tier: seed with the curated tour list (only slugs that exist)
   if (isPreview) {
     for (const slug of PREVIEW_PROJECTS) {
-      if (ALL_PROJECTS.includes(slug)) projects.push(slug);
+      if (ALL_PROJECTS.includes(slug)) projects.add(slug);
     }
   }
 
-  // Layer per-project allowlists on top
+  // Per-project env-var allowlists
   for (const slug of ALL_PROJECTS) {
-    if (projects.includes(slug)) continue;
     const allowed = readCsvEnv(getEnvVarName(slug));
     if (emailAddresses.some((email) => allowed.includes(email))) {
-      projects.push(slug);
+      projects.add(slug);
     }
   }
-  return projects;
+
+  // Clerk metadata grants — managed via /admin/access UI, no redeploy needed
+  const metadataProjects = publicMetadata?.allowedProjects;
+  if (Array.isArray(metadataProjects)) {
+    for (const slug of metadataProjects) {
+      if (typeof slug === "string" && ALL_PROJECTS.includes(slug)) {
+        projects.add(slug);
+      }
+    }
+  }
+
+  return [...projects];
 }
 
 export function resolvePortalAccess(user: UserLike | null | undefined) {
@@ -129,7 +140,12 @@ export function resolvePortalAccess(user: UserLike | null | undefined) {
   );
   const isPreview = !isAdmin && !isReservedTestAccount && isPreviewEmail;
 
-  const projects = resolveProjects(emailAddresses, isAdmin, isPreview);
+  const projects = resolveProjects(
+    emailAddresses,
+    isAdmin,
+    isPreview,
+    user?.publicMetadata ?? undefined
+  );
 
   // ─── User tier ───
   // owner   = Brady (full access, all features, debug surfaces)
