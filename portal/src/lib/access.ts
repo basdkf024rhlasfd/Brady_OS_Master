@@ -7,6 +7,17 @@ const projectConfigs = loadProjects();
 const ALL_PROJECTS = projectConfigs.map((p) => p.slug);
 export type ProjectId = string;
 
+// Curated set of slugs that the `preview` tier can see. Adding an email to
+// MCEPTION_PREVIEW_EMAILS grants access to exactly this list, no more.
+// Keep this list tight — preview is the externally-shared tour surface.
+const PREVIEW_PROJECTS: readonly string[] = [
+  "agent-ecosystem",
+  "1915-south-execs",
+  "panda",
+  "shellprint",
+  "innovation-lab",
+];
+
 interface UserLike {
   publicMetadata?: Record<string, unknown>;
   privateMetadata?: Record<string, unknown>;
@@ -52,6 +63,7 @@ export function getAdminEmails(): string[] {
 function resolveProjects(
   emailAddresses: string[],
   isAdmin: boolean,
+  isPreview: boolean,
   publicMetadata?: Record<string, unknown>
 ): string[] {
   if (isAdmin) return [...ALL_PROJECTS];
@@ -63,6 +75,14 @@ function resolveProjects(
 
   const projects = new Set<string>();
 
+  // Preview tier: seed with the curated tour list (only slugs that exist)
+  if (isPreview) {
+    for (const slug of PREVIEW_PROJECTS) {
+      if (ALL_PROJECTS.includes(slug)) projects.add(slug);
+    }
+  }
+
+  // Per-project env-var allowlists
   for (const slug of ALL_PROJECTS) {
     const allowed = readCsvEnv(getEnvVarName(slug));
     if (emailAddresses.some((email) => allowed.includes(email))) {
@@ -114,13 +134,26 @@ export function resolvePortalAccess(user: UserLike | null | undefined) {
   const isAdmin =
     !isReservedTestAccount && (isOwner || hasAdminRole || isEmailAdmin);
 
-  const projects = resolveProjects(emailAddresses, isAdmin, user?.publicMetadata ?? undefined);
+  const previewEmails = readCsvEnv("MCEPTION_PREVIEW_EMAILS");
+  const isPreviewEmail = emailAddresses.some((email) =>
+    previewEmails.includes(email)
+  );
+  const isPreview = !isAdmin && !isReservedTestAccount && isPreviewEmail;
+
+  const projects = resolveProjects(
+    emailAddresses,
+    isAdmin,
+    isPreview,
+    user?.publicMetadata ?? undefined
+  );
 
   // ─── User tier ───
-  // owner  = Brady (full access, all features, debug surfaces)
-  // test   = reserved test account or explicit metadata.tier="test" (pre-prod
-  //          client experience validation; scoped to assigned projects only)
-  // client = everyone else (read-only, no debug, client-facing personas)
+  // owner   = Brady (full access, all features, debug surfaces)
+  // test    = reserved test account or explicit metadata.tier="test" (pre-prod
+  //           client experience validation; scoped to assigned projects only)
+  // preview = email in MCEPTION_PREVIEW_EMAILS (curated tour surface; AppShell
+  //           renders a "Working preview" banner; access scoped to PREVIEW_PROJECTS)
+  // client  = everyone else (read-only, no debug, client-facing personas)
   const explicitTier =
     typeof user?.publicMetadata?.tier === "string"
       ? user.publicMetadata.tier
@@ -128,11 +161,13 @@ export function resolvePortalAccess(user: UserLike | null | undefined) {
         ? user.privateMetadata.tier
         : undefined;
 
-  let tier: "owner" | "test" | "client";
+  let tier: "owner" | "test" | "preview" | "client";
   if (isOwner || isAdmin) {
     tier = "owner";
   } else if (isReservedTestAccount || explicitTier === "test") {
     tier = "test";
+  } else if (isPreview) {
+    tier = "preview";
   } else {
     tier = "client";
   }

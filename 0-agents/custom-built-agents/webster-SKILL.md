@@ -383,6 +383,185 @@ ops-lab) instead of a mception.ai iframe slug.
      baseUrl: "https://<app>.vercel.app"
      path: "/"
    ```
+   **Important — see Runbook 7** if the app has API routes or any server
+   work that needs auth. *.vercel.app cannot be a Clerk satellite, so
+   iframe-in-portal won't share session.
+
+---
+
+## Runbook 7 — Standalone Next.js app with Clerk + Blob (the ShellPrint pattern)
+
+**Use when:** Spinning up a new standalone Next.js micro-app (like
+shellprint-web). This is the canonical pattern that handles the four
+gotchas hit during ShellPrint v1: vercel.app must NOT be public, Clerk
+middleware default isn't enforcing, *.vercel.app isn't satellite-eligible,
+Blob store needs a one-time dashboard click.
+
+### 7a — Required packages
+
+```bash
+cd <app-dir>
+npm install @clerk/nextjs @vercel/blob
+```
+
+### 7b — Middleware (MUST enforce auth, not just attach context)
+
+```typescript
+// middleware.ts (note: Next.js 16 deprecates this filename in favor of
+// proxy.ts but middleware.ts still works; rename later)
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)'])
+
+export default clerkMiddleware(async (auth, req) => {
+  if (!isPublicRoute(req)) {
+    await auth.protect()
+  }
+})
+
+export const config = {
+  matcher: [
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jte?|tpl?|txt|xml|ico|ttf|woff2?|png|jpg|jpeg|gif|webp|svg|mp4|mp3|pdf|csv|zip)).*)',
+    '/(api|trpc)(.*)',
+  ],
+}
+```
+
+**The trap:** `clerkMiddleware()` alone is permissive — it makes the auth
+context available but does NOT enforce auth on routes. Pages render for
+anonymous users; API routes that call `auth()` get `userId: null` and
+return 401. Symptom: "saving isn't working" / inconsistent 401s when
+the user appears signed in. Fix: the `auth.protect()` call inside the
+callback above.
+
+### 7c — Wire Clerk env vars (cross-project copy from mception-ai)
+
+Brady's Clerk dev keys live on `mception-ai`. Copy them to the new
+project via Vercel REST API (not vercel env pull — those keys are
+`sensitive` type, so the value comes back as ""):
+
+```bash
+TOKEN=$(python3 -c "import json; print(list(json.load(open('$HOME/Library/Application Support/com.vercel.cli/auth.json'))['tokens'].values())[0]['token'])")
+TEAM="team_Ijh6EC5B5J5eOAC4F1EA3Ivo"
+DST_PROJECT="<new-project-id>"  # from .vercel/project.json after `vercel link`
+
+# Read keys from a portal worktree's .env.local (mception keys live there)
+PK=$(grep '^NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=' \
+  /Users/bs/conductor/workspaces/brady_os_master/rabat/portal/.env.local | cut -d= -f2)
+SK=$(grep '^CLERK_SECRET_KEY=' \
+  /Users/bs/conductor/workspaces/brady_os_master/rabat/portal/.env.local | cut -d= -f2)
+
+# Set as ENCRYPTED (not sensitive) so the next app can copy from this one
+for k in "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:$PK" "CLERK_SECRET_KEY:$SK"; do
+  KEY="${k%%:*}"; VAL="${k#*:}"
+  curl -s -X POST "https://api.vercel.com/v10/projects/$DST_PROJECT/env?teamId=$TEAM" \
+    -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+    -d "{\"key\":\"$KEY\",\"value\":\"$VAL\",\"type\":\"encrypted\",\"target\":[\"production\",\"preview\",\"development\"]}"
+done
+```
+
+### 7d — Vercel Blob store (the one manual dashboard step)
+
+There's no CLI command to create a Blob store. Brady has to click through
+once per project:
+
+1. Vercel dashboard → the new project → **Storage** tab
+2. **Create** → Blob → name it `<project>-blob` → defaults are fine
+3. **Connect Project** → select the project → leave all 3 envs checked,
+   prefix `BLOB` → **Connect**
+
+This auto-injects `BLOB_READ_WRITE_TOKEN` into the project. The
+`@vercel/blob` SDK picks it up automatically.
+
+### 7e — Wrap layout in ClerkProvider
+
+```typescript
+// app/layout.tsx
+import { ClerkProvider, UserButton } from '@clerk/nextjs'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <ClerkProvider>
+      <html><body>
+        {/* nav with <UserButton /> */}
+        {children}
+      </body></html>
+    </ClerkProvider>
+  )
+}
+```
+
+### 7f — Deploy + verify
+
+```bash
+cd <app-dir> && vercel deploy --prod --yes
+# Sanity:
+curl -sI https://<app>.vercel.app/  # expect 307 → Clerk hosted sign-in
+curl -sI https://<app>.vercel.app/api/<some-route>  # expect 401 (correct: protected)
+```
+
+### 7g — Embed in mception.ai portal — TWO PATHS
+
+**Path A: launcher card (default, always works).** *.vercel.app cannot
+be a Clerk satellite (Clerk blocks shared subdomain hosts for security),
+so iframe + auth doesn't work cleanly without a custom subdomain. Use
+this pattern unless/until Brady sets up a subdomain:
+
+```typescript
+// portal/src/app/(portal)/<slug>/page.tsx
+import { requireProjectAccess } from "@/lib/portal-access";
+const APP_URL = "https://<app>.vercel.app";
+
+export default async function <Slug>Page() {
+  await requireProjectAccess("<slug>");
+  return (
+    <div className="min-h-[70vh] flex items-center justify-center px-6">
+      <div className="max-w-md w-full bg-gray-900 border border-gray-800 rounded-2xl p-8 space-y-5 text-center">
+        <div className="text-6xl">🐢</div>
+        <h1 className="text-2xl font-bold">App Name</h1>
+        <p className="text-sm text-gray-400">Short description.</p>
+        <a href={APP_URL} target="_blank" rel="noopener noreferrer"
+           className="inline-flex items-center justify-center w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl">
+          Launch →
+        </a>
+      </div>
+    </div>
+  );
+}
+```
+
+**Path B: iframe with Clerk satellite domain (custom subdomain required).**
+Requires a one-time DNS + Clerk setup so the portal session passes through:
+
+1. **DNS** (Brady, manual): add CNAME `<slug>.mception.ai` →
+   `cname.vercel-dns.com`
+2. **Vercel domain**: add `<slug>.mception.ai` to the standalone project
+   ```bash
+   vercel domains add <slug>.mception.ai --project <project-name>
+   ```
+3. **Clerk satellite registration** (custom subdomain only — *.vercel.app
+   is rejected with `provider_domain_operation_not_allowed`):
+   ```bash
+   curl -X POST "https://api.clerk.com/v1/domains" \
+     -H "Authorization: Bearer $CLERK_SECRET_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"name":"<slug>.mception.ai","is_satellite":true}'
+   ```
+4. **Env vars** on the standalone project:
+   ```
+   NEXT_PUBLIC_CLERK_IS_SATELLITE=true
+   NEXT_PUBLIC_CLERK_DOMAIN=<slug>.mception.ai
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=https://mception.ai/sign-in
+   ```
+5. **ClerkProvider** props in `app/layout.tsx`:
+   ```tsx
+   <ClerkProvider isSatellite domain="<slug>.mception.ai"
+                  signInUrl="https://mception.ai/sign-in">
+   ```
+6. **Portal page** swaps from launcher back to `<ProjectFrame>`:
+   ```tsx
+   <ProjectFrame baseUrl="https://<slug>.mception.ai" path="/" title="..." />
+   ```
 
 ---
 
@@ -429,3 +608,7 @@ Verify the canonical list: `grep '^\s*- slug:' portal/src/config/projects.yml`
 | Allowlist set but user blocked | Email not lowercase in csv | Re-set lowercased |
 | Portal shows slug in sidebar but iframe blank | `portal/public/<slug>/viewer/index.html` not committed | `git ls-files portal/public/<slug>` |
 | Clerk loop on a new slug | Middleware runs on `(portal)/` but page not using `requireProjectAccess` | Add the helper call |
+| Standalone vercel.app POST returns 401 when signed in | `clerkMiddleware()` is permissive by default — auth context attached but not enforced | Use `clerkMiddleware(async (auth, req) => { await auth.protect() })` per Runbook 7b |
+| Iframed standalone app shows `*.accounts.dev refused to connect` | Clerk's hosted sign-in blocks iframe embedding; satellite domain not configured | Use launcher card (Runbook 7g Path A) or set up custom subdomain + satellite (Path B). *.vercel.app cannot be a satellite. |
+| `provider_domain_operation_not_allowed` from Clerk API when adding satellite | Clerk blocks shared subdomain hosts (*.vercel.app) | Custom subdomain only (e.g., `<slug>.mception.ai`) |
+| Blob upload fails with no token | Forgot the dashboard step — there's no CLI to create a Blob store | Vercel dashboard → Storage → Create → Connect Project (Runbook 7d) |

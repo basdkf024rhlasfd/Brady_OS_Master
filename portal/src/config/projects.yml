@@ -76,12 +76,12 @@ projects:
       baseUrl: "https://basdkf024rhlasfd.github.io/mark-schmulen-ai-os"
       path: "/viewer/"
 
-  # --- Panda Engagement group ---
+  # --- Foodservice Engagement group ---
   - slug: panda
-    label: "Panda"
+    label: "Foodservice"
     short: "A"
     href: "/panda"
-    description: "Strategic intelligence platform for Panda Restaurant Group. AI-driven ops analysis, market positioning, and innovation pipeline for James Ku."
+    description: "QSR / multi-unit foodservice strategy engagement. AI-driven ops analysis, market positioning, and innovation pipeline."
     approved: 2026-04-15
     type: iframe-local
     magic_link: false
@@ -194,17 +194,14 @@ projects:
       path: "/bucket-system/viewer/index.html"
 
   # --- Brady OS ---
-  - slug: agent-map
+  - slug: agent-ecosystem
     label: "Agent Ecosystem"
     short: "A"
-    href: "/agent-map"
-    description: "Brady OS agent ecosystem map. All 18 agents, tiers, triggers, outputs, and handoffs. Click any node for detail."
-    approved: 2026-04-24
-    type: iframe-local
+    href: "/agent-ecosystem"
+    description: "The platform overview — agents, the recursive learning arc, and how the system compounds across engagements."
+    approved: 2026-04-27
+    type: native
     magic_link: false
-    frame:
-      baseUrl: ""
-      path: "/os/agent-ecosystem.html"
 
   # --- Personal / Holdings ---
   - slug: sycamore-lane

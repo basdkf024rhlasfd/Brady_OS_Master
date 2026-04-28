@@ -66,6 +66,9 @@ The Jarvis Score Log DB (`33a40d2acd754439ade9e253703bbbaa`) is retained for his
 ### 5. Command Menu
 Brady can type a number (0-15) to trigger pre-built plays. Execute immediately on code input, no confirmation needed. Full spec lives in Claude Memory.
 
+### 6. Justin Woods Comms Firewall (added 2026-04-27)
+Tight separation between personal and professional comms with Justin Woods. **Drafts only — Brady is the only sender.** No agent or skill ever sends an email or external message to anyone except `brady.smallwood@gmail.com`. When drafting Justin-facing material, do not surface Brady-OS / consulting-practice / mception content that lives outside the 1915 South engagement scope. If unsure whether something belongs in front of Justin, leave it out and flag for Brady. Source: 2026-04-27 voice memo (Otter `Tc8ztoGKOqPlXXQyg8W3YwGdP_s`).
+
 ## Session Start Protocol
 
 Before your first response to Brady, silently:

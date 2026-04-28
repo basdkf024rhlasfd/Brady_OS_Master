@@ -9,7 +9,7 @@ export default async function PortalLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAdmin, projects } = await getPortalAccess();
+  const { isAdmin, projects, tier } = await getPortalAccess();
   const projectConfigs = loadProjects().map((p) => ({
     slug: p.slug,
     label: p.label,
@@ -32,7 +32,13 @@ export default async function PortalLayout({
   }
 
   return (
-    <AppShell isAdmin={isAdmin} projects={projects} projectConfigs={projectConfigs} agentMap={agentMap}>
+    <AppShell
+      isAdmin={isAdmin}
+      tier={tier}
+      projects={projects}
+      projectConfigs={projectConfigs}
+      agentMap={agentMap}
+    >
       {children}
     </AppShell>
   );
