@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation Workshop — Home Cardboard Transformation — April 29, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 11in 17in; margin: 0; }
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --dark-blue: #1E3A5F;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --green: #4A9B6F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 52px 40px;
+    min-height: 100vh;
+    position: relative;
+    page-break-after: always;
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 90vh;
+  }
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    letter-spacing: -1px;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    color: var(--gray-light);
+    margin-bottom: 40px;
+    max-width: 660px;
+    line-height: 1.5;
+  }
+  .cover-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+  .cover-meta span { color: var(--gold-dim); }
+  .cover-divider {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+    margin: 32px 0;
+    border-radius: 2px;
+  }
+  .cover-cluster {
+    margin-top: 48px;
+    background: var(--bg-card);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 24px 28px;
+    max-width: 700px;
+  }
+  .cover-cluster h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .cover-cluster p { font-size: 13px; color: var(--gray-light); margin-bottom: 6px; }
+  .cover-cluster strong { color: var(--white); }
+  .section-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding-top: 16px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(212,168,67,0.25);
+  }
+  .exec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .exec-item {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    border-left: 3px solid var(--gold);
+    padding: 18px 22px;
+  }
+  .exec-item .rank {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .exec-item .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 5px;
+  }
+  .exec-item .hook { font-size: 13px; color: var(--gray-light); }
+  .exec-item .score-badge {
+    display: inline-block;
+    background: var(--bg-card-alt);
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+  .theme-card {
+    background: var(--bg-card-alt);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+  }
+  .theme-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .theme-card p { color: var(--gray-light); font-size: 13px; }
+  .product-page {
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+  .product-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .product-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+    background: rgba(212,168,67,0.1);
+    border-radius: 4px;
+    padding: 4px 8px;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--white);
+    line-height: 1.15;
+  }
+  .product-tagline {
+    font-size: 16px;
+    color: var(--gray-light);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .product-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .tag-method { color: var(--blue); border-color: rgba(74,127,181,0.3); background: rgba(74,127,181,0.08); }
+  .tag-score { color: var(--gold); border-color: rgba(212,168,67,0.3); background: rgba(212,168,67,0.08); }
+  .tag-category { color: var(--gray-light); border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); }
+  .tag-safety { color: #7ECBA1; border-color: rgba(126,203,161,0.3); background: rgba(126,203,161,0.06); }
+  .product-body { overflow: hidden; margin-bottom: 22px; }
+  .product-image-block { float: left; margin: 0 24px 16px 0; }
+  .product-image-block img {
+    width: 280px; height: 280px; object-fit: contain;
+    border-radius: 8px; background: var(--bg-card-alt);
+  }
+  .no-image-placeholder {
+    width: 280px; height: 280px; border-radius: 8px;
+    background: var(--bg-card-alt);
+    border: 1px dashed rgba(212,168,67,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--gray);
+    text-align: center; padding: 20px;
+  }
+  .subsection-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 20px;
+    color: var(--white); margin-bottom: 10px; margin-top: 18px;
+  }
+  .subsection-title:first-of-type { margin-top: 0; }
+  .pitch p { margin-bottom: 11px; color: var(--gray-light); line-height: 1.7; }
+  .rtb-list { list-style: none; padding: 0; }
+  .rtb-list li {
+    padding: 7px 0 7px 20px;
+    position: relative;
+    color: var(--gray-light);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+  }
+  .rtb-list li::before {
+    content: '';
+    position: absolute; left: 0; top: 14px;
+    width: 8px; height: 8px;
+    background: var(--gold); border-radius: 2px;
+  }
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    clear: both;
+    margin-top: 14px;
+  }
+  .panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .panel-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .panel p, .panel li { font-size: 13px; color: var(--gray-light); }
+  .panel ul { list-style: none; padding: 0; }
+  .panel ul li { padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .comp-name { color: var(--white); font-weight: 500; }
+  .comp-price { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-dim); }
+  .sidebar-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px; clear: both;
+  }
+  .sidebar-item {
+    background: var(--bg-card-alt);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .sidebar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .sidebar-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 15px; color: var(--white);
+    margin-bottom: 4px;
+  }
+  .sidebar-sub { font-size: 12px; color: var(--gray-light); }
+  .chemical-callout {
+    background: linear-gradient(135deg, rgba(74,155,111,0.08), rgba(74,127,181,0.08));
+    border: 1px solid rgba(74,155,111,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--gray-light);
+    clear: both;
+  }
+  .chemical-callout strong { color: #7ECBA1; }
+  .appendix-section { margin-bottom: 36px; }
+  .appendix-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 22px;
+    color: var(--white); margin-bottom: 14px;
+  }
+  .appendix-section p { color: var(--gray-light); margin-bottom: 10px; font-size: 14px; }
+  .data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  .data-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    border-bottom: 1px solid rgba(212,168,67,0.25);
+    padding: 8px 12px; text-align: left;
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px; color: var(--gray-light);
+  }
+  .data-table td:first-child { color: var(--white); font-weight: 500; }
+  .priority-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .matrix-quad {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .matrix-quad h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 14px; margin-bottom: 10px;
+  }
+  .matrix-quad.q1 { border-top: 2px solid var(--gold); }
+  .matrix-quad.q1 h4 { color: var(--gold); }
+  .matrix-quad.q2 { border-top: 2px solid var(--blue); }
+  .matrix-quad.q2 h4 { color: var(--blue); }
+  .matrix-quad.q3 { border-top: 2px solid var(--gray); }
+  .matrix-quad.q3 h4 { color: var(--gray); }
+  .matrix-quad.q4 { border-top: 2px solid var(--red); }
+  .matrix-quad.q4 h4 { color: var(--red); }
+  .matrix-quad ul { list-style: none; padding: 0; }
+  .matrix-quad ul li { font-size: 13px; color: var(--gray-light); padding: 3px 0; }
+  .source-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--gray);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 10px; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ COVER PAGE -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-label">Innovation Workshop · Run 7 · April 29, 2026</div>
+    <h1>Turn Every<br><span>Amazon Box</span><br>Into Something.</h1>
+    <p class="subtitle">20 research-backed product concepts for the home cardboard transformation appliance category — the $0-input manufacturing platform hiding in every American garage.</p>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>ORIGIN</span> · Michael Smallwood ("I hate breaking down boxes + I spend $20/month on paper plates")<br>
+      <span>RIFF</span> · Brady added: 3D printing inspiration · trash compactor/baler analogues · chemical safety concern<br>
+      <span>LANE</span> · Dad/Family Consumer Products · AI-Powered Physical Products · Circular Economy Hardware<br>
+      <span>METHODS</span> · JTBD (#4) · Blue Ocean (#9) · Analogous Inspiration (#15) · SCAMPER (#21) · Mashup (#24) · Cultural Trend Mining (#51) · Downmarket Disruption (#57)<br>
+      <span>IDEAS</span> · 30 raw → 20 survivors · Run Mode: Full Auto (no gates)
+    </div>
+    <div class="cover-cluster">
+      <h3>Stage 0 Cluster: "Amazon Box Anxiety"</h3>
+      <p><strong>Behavioral shift:</strong> US households now receive 21–60+ packages/year. Breaking down cardboard is 18+ min/month of pure friction. No home-scale transformation solution exists.</p>
+      <p><strong>Why now:</strong> Lomi ($499 food composter) proved consumers pay for countertop waste-to-output appliances. E-commerce box volume is at an all-time high. Molded fiber is a $11B commercial industry with zero home entry point.</p>
+      <p><strong>JTBD:</strong> "Turn the pile of Amazon boxes into something useful without thinking about it."</p>
+      <p><strong>Chemical note:</strong> Brady's concern is valid — Amazon boxes may contain PFAS and heavy-metal inks. Every food-contact idea below includes an explicit safety treatment. Non-food ideas skip this entirely.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ EXECUTIVE SUMMARY -->
+<div class="page">
+  <div class="section-header">Executive Summary</div>
+
+  <div class="exec-grid">
+    <div class="exec-item">
+      <div class="rank">#1</div>
+      <div class="name">CardBrick — Fireplace Log Maker</div>
+      <div class="hook">Amazon boxes → $8 Duraflame-equivalent logs. 41M households with fireplaces. $151M market to disrupt.</div>
+      <div class="score-badge">SCORE 4.55 · HIGHEST</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#2</div>
+      <div class="name">FlatPack Pro — Auto Box Flattener</div>
+      <div class="hook">Motorized wall-mount flattener. Kills Michael's actual pain point in 8 seconds. Total white space category.</div>
+      <div class="score-badge">SCORE 4.30</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#3</div>
+      <div class="name">BoxWax Studio — Wax Container Maker</div>
+      <div class="hook">Beeswax-dipped cardboard containers. Looks like artisan pottery. Craft appliance positioning = Cricut price tolerance.</div>
+      <div class="score-badge">SCORE 4.15</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#4</div>
+      <div class="name">BioPlate 2.0 — Pulp Plate Machine</div>
+      <div class="hook">Michael's original idea, engineered seriously. Built-in food-safe coating applicator neutralizes PFAS concern. $11B commercial market.</div>
+      <div class="score-badge">SCORE 4.10</div>
+    </div>
+    <div class="exec-item">
+      <div class="rank">#5</div>
+      <div class="name">CardTile Studio — Decorative Tile Press</div>
+      <div class="hook">Amazon boxes → coasters, wall art, trivets. Hot-press + embossing die. Design subscription model. Cricut market adjacency.</div>
+      <div class="score-badge">SCORE 4.10</div>
+    </div>
+  </div>
+
+  <div class="section-header">Key Themes Across 20 Ideas</div>
+
+  <div class="theme-card">
+    <h4>🔥 The Combustion Safe Zone</h4>
+    <p>Four of the top 6 ideas convert cardboard into fire-related products (logs, fire starters). Burning eliminates the chemical concern Brady flagged — combustion temperatures above 500°C decompose virtually all organic ink compounds. This is the simplest path to product-market fit with zero regulatory burden.</p>
+  </div>
+  <div class="theme-card">
+    <h4>⚡ Michael's Real Problem Is Time, Not Plates</h4>
+    <p>The original brief was "save $20/month on paper plates." But the deeper pain is the weekly 15-20 minutes spent breaking down boxes. FlatPack Pro (#2) and BoxBar (#9) solve the actual friction directly — neither requires any material transformation. These are the fastest paths to Michael's actual satisfaction.</p>
+  </div>
+  <div class="theme-card">
+    <h4>🎨 The Lomi/Cricut Bifurcation</h4>
+    <p>Two distinct buyer profiles emerge: the Lomi buyer (sustainability-motivated, pays $250-499 for kitchen waste transformation) and the Cricut buyer (creative/craft-motivated, pays $150-400 for "making things"). BioPlate 2.0 and BoxWax Studio each address one. Pricing and positioning must pick a lane — don't straddle both.</p>
+  </div>
+  <div class="theme-card">
+    <h4>🌱 Garden as the Safety Bypass</h4>
+    <p>PaperPot Farm, SoilBlock+, and NestMaker produce outputs that go directly into the ground — no food contact, no PFAS concern, biodegradable by design. The garden channel is underexplored in the maker/sustainability appliance space and has strong DTC/HomeDepot distribution logic.</p>
+  </div>
+
+  <div class="section-header">Prioritization Matrix</div>
+  <div class="priority-matrix">
+    <div class="matrix-quad q1">
+      <h4>High Impact · Low Effort — BUILD FIRST</h4>
+      <ul>
+        <li>CardBrick (#1) — hydraulic press, simple BOM</li>
+        <li>FlatPack Pro (#2) — rollers, no chemistry</li>
+        <li>FlameBox (#7) — simplest press in the run</li>
+        <li>BoxBar (#9) — no electronics, wall-mount</li>
+        <li>CardStack (#20) — $6 BOM, instant market</li>
+      </ul>
+    </div>
+    <div class="matrix-quad q2">
+      <h4>High Impact · High Effort — PHASE 2</h4>
+      <ul>
+        <li>BioPlate 2.0 (#4) — food-safe cert needed</li>
+        <li>GiftBoxCraft (#10) — app + die cutter</li>
+        <li>KidStation BoxBot (#11) — child safety cert</li>
+        <li>KidPlayMaker (#12) — large-format cutter</li>
+      </ul>
+    </div>
+    <div class="matrix-quad q3">
+      <h4>Lower Impact · Low Effort — NICE TO HAVE</h4>
+      <ul>
+        <li>PaperPot Farm (#14) — niche garden market</li>
+        <li>SoilBlock+ (#15) — serious gardeners only</li>
+        <li>NestMaker (#18) — backyard chicken niche</li>
+        <li>CrateBuilder (#19) — low visual appeal</li>
+      </ul>
+    </div>
+    <div class="matrix-quad q4">
+      <h4>Niche · Complex — HOLD</h4>
+      <ul>
+        <li>CardFilament (#17) — 18-24mo dev, small market</li>
+        <li>BoxWax Studio (#3) — UL cert for heat element</li>
+        <li>CardTile Studio (#5) — needs design subscription</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PRODUCT PAGES -->
+
+<!-- IDEA 1 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">01 / 20</div>
+    <div class="product-name">CardBrick</div>
+  </div>
+  <div class="product-tagline">Home Fireplace Log Maker — turn Amazon boxes into $8 Duraflame equivalents</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 4.55 · #1 Ranked</span>
+    <span class="tag tag-method">Downmarket Disruption #57 · SCAMPER #21</span>
+    <span class="tag tag-category">Circular Economy Hardware</span>
+    <span class="tag tag-safety">✓ Chemical Safe (combustion)</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Countertop hydraulic<br>log press, industrial<br>matte black,<br>product photography</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>Every winter, 41 million American households burn $8 Duraflame logs they could be making from the Amazon boxes piled in their garage. CardBrick is a countertop hydraulic press that transforms torn cardboard strips — with an optional beeswax binder pod — into a regulation-size fireplace log in under 3 minutes. Feed it, press it, rack it to dry for 24 hours. One standard Amazon box makes roughly 1.5 logs worth $10–12 at retail.</p>
+      <p>Brady's chemical concern is largely neutralized by combustion: burning temperatures above 500°C decompose most organic ink compounds, and Amazon moved to soy-based inks as their standard in 2022. The beeswax binder both waterproofs the log and eliminates any synthetic accelerant. The result burns 2–3 hours — comparable to commercial alternatives at zero material cost.</p>
+      <p>Market path: DTC at $99 for the press, $14.99 for a 12-pack of optional wax binder pods. Duraflame generates $151.5M/year from a category this device cannibalizes. The home-made segment is entirely white space. Amazon Prime Day is the obvious launch vehicle.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Duraflame annual revenue $151.5M (2026) — the fire log market is real, established, and ripe for disruption from a $0-input home alternative</li>
+    <li>41M US households have wood-burning fireplaces or fire pits (Hearth, Patio & Barbecue Association, 2024)</li>
+    <li>UK market validation: Eco paper log presses sold via B&Q and Amazon UK at £15–35; US equivalent has no consumer-packaged product</li>
+    <li>Combustion safety: 500°C+ temperatures decompose most aromatic ink compounds; soy inks (Amazon standard since 2022) are essentially non-toxic at burning temperatures</li>
+  </ul>
+  <div class="chemical-callout">
+    <strong>Chemical Safety Note:</strong> Fire application is the one cardboard use case where ink chemistry is not a concern. Combustion temperatures destroy organic compounds; beeswax binder adds a food-safe layer if needed for peace of mind. No food contact surface — no PFAS migration pathway.
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Duraflame Crackleflame</span> <span class="comp-price">~$8/log · Walmart</span><br>Commercial wax/sawdust log. You buy it; CardBrick makes it free.</li>
+        <li><span class="comp-name">UK Newspaper Log Press</span> <span class="comp-price">£15–35 · Amazon UK</span><br>Flat press for newspaper only — not rated for thick Amazon corrugated.</li>
+        <li><span class="comp-name">US Market Gap</span> <span class="comp-price">$0 products exist</span><br>No purpose-built, US-marketed cardboard log press for consumers.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$18–22 (press housing, screw/hydraulic mechanism, log mold die)</p>
+      <p><strong>Target Retail:</strong> $99 device + $14.99/12-pack wax pods</p>
+      <p><strong>Gross Margin:</strong> ~42–45% at $99 retail</p>
+      <p><strong>Ops Complexity:</strong> Simple — single-axis press, one mold, no electronics in base version. Co-man analog: scissor jack + custom die press</p>
+      <p><strong>MOQ:</strong> Est. 500 units · Lead time: 16–20 weeks</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item">
+      <div class="sidebar-label">Effort</div>
+      <div class="sidebar-value">Simple</div>
+      <div class="sidebar-sub">Mechanical press only. No electronics, no food-safe cert.</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">Impact</div>
+      <div class="sidebar-value">Very High</div>
+      <div class="sidebar-sub">41M households. $151M addressable. $0 raw material.</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="sidebar-label">First Move</div>
+      <div class="sidebar-value">DTC · Amazon Prime Day</div>
+      <div class="sidebar-sub">Prototype at hardware fabricator. Test on Kickstarter or DTC pre-order.</div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 2 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">02 / 20</div>
+    <div class="product-name">FlatPack Pro</div>
+  </div>
+  <div class="product-tagline">Automatic Box Flattener — kills 18 minutes/month of cardboard breakdown friction</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 4.30</span>
+    <span class="tag tag-method">Jobs to Be Done #4 · Blue Ocean #9</span>
+    <span class="tag tag-category">Home Utility Hardware</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Wall-mounted box<br>flattener, white/silver,<br>garage setting,<br>product photography</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>Michael's real complaint isn't that he has Amazon boxes — it's that he has to deal with them. The 90 seconds of scoring the tape, fighting the corrugation, flipping the flaps, stacking neatly in the recycling bin — multiplied by 3–4 boxes per week — is 18+ minutes per month of pure friction. FlatPack Pro mounts beside the recycling bin or on a garage wall and eliminates it: feed any Amazon box in one end, press the button, out comes a flat panel ready for the stack in 8 seconds.</p>
+      <p>Mechanically it's counter-rotating rollers with a scoring die — the same mechanism in commercial box crushers, shrunk to a $149 wall-mount form factor. A proximity sensor detects box entry and starts the rollers automatically. A second button bales a stack of 10 boxes with a reusable PP strap. The output is a uniform stack 90% thinner than the original boxes.</p>
+      <p>This is pure white space. No consumer-grade automatic box flattener exists on the US market. FlatPack Pro owns the category.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Heavy Amazon users (3+ orders/week) spend 18–22 minutes/month breaking down cardboard — over 4 hours per year in friction that FlatPack Pro eliminates entirely</li>
+    <li>US households receive an average of 21+ online delivery packages/year; heavy shoppers 40–60 (Packaging Dive, 2024)</li>
+    <li>Commercial box crushers use identical scoring + compression mechanics — home-scaling is engineering, not science</li>
+    <li>2026 search confirms: no consumer-grade automatic box flattener exists on the US market — total blue ocean</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Generic box cutter/knife</span> <span class="comp-price">$8–15 · Amazon</span><br>Manual, still takes 60–90 sec per box.</li>
+        <li><span class="comp-name">Sinobaler industrial crushers</span> <span class="comp-price">$2,000–50,000</span><br>Commercial only. Completely wrong scale.</li>
+        <li><span class="comp-name">US consumer market</span> <span class="comp-price">$0 products</span><br>Entire category is white space at the $99–149 price point.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$28–35 (motor, rollers, scoring die, sensor, housing)</p>
+      <p><strong>Target Retail:</strong> $149</p>
+      <p><strong>Gross Margin:</strong> ~42%</p>
+      <p><strong>Ops Complexity:</strong> Moderate — motor, rollers, power supply, UL certification required. Co-man analog: small appliance (label printer, pasta maker)</p>
+      <p><strong>MOQ:</strong> Est. 500 units · Lead time: 18–22 weeks</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Moderate</div><div class="sidebar-sub">Motor + sensing needed. UL cert for wall-mount power.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Very High</div><div class="sidebar-sub">Universal problem. Every online shopper. Zero competition.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">DTC → Amazon → Home Depot</div><div class="sidebar-sub">Prototype with maker shop. Kickstarter to validate demand.</div></div>
+  </div>
+</div>
+
+<!-- IDEA 3 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">03 / 20</div>
+    <div class="product-name">BoxWax Studio</div>
+  </div>
+  <div class="product-tagline">Wax-Dipped Cardboard Container Maker — looks like artisan pottery, costs $0 in materials</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 4.15</span>
+    <span class="tag tag-method">Mashup #24 · Analogous Inspiration #15</span>
+    <span class="tag tag-category">Creative Appliance</span>
+    <span class="tag tag-safety">✓ Beeswax = FDA food-safe</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Countertop wax bath<br>appliance, amber warm<br>light, beeswax bowls<br>beside it, lifestyle shot</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>Candle-makers have known for decades that beeswax transforms any surface — it's food-safe, waterproof, antimicrobial, and extraordinary-looking. BoxWax Studio brings this to cardboard: a countertop temperature-controlled wax bath (170°F) plus a set of press molds that dip-and-form Amazon cardboard into waterproof bowls, canisters, small trays, and decorative storage boxes.</p>
+      <p>The output looks nothing like cardboard. Beeswax-dipped corrugated cardboard develops a rich amber texture — like birch bark or artisan papier-mâché — that photographs beautifully. A small container of beeswax pellets (~$12) produces 40–50 objects. Brady's chemical concern is fully neutralized: beeswax is FDA 21 CFR 175.300 approved for food contact, and the application temperature seals any surface inks beneath the wax layer before they can migrate.</p>
+      <p>The positioning is creative appliance, not recycling machine — think Cricut buyer, not Lomi buyer. That changes the price tolerance entirely. A Cricut Maker sells for $399; BoxWax Studio at $149 looks like a bargain to the same shopper.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>FDA 21 CFR 175.300 approves beeswax for food contact — the food-safe barrier eliminates PFAS/ink migration concern completely</li>
+    <li>Craft appliance willingness to pay: Cricut Maker ~$400, Sewing machines $150–1,000 — creative makers already accept these price points</li>
+    <li>Wax dipping craft market $400M+ in the US (candle-making, encaustic art supplies)</li>
+    <li>No wax-dipped cardboard appliance exists anywhere on the market — entirely novel product category</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Bee's Wrap food wraps</span> <span class="comp-price">~$18/3-pack · Target</span><br>Flat beeswax sheets only. No structural molding.</li>
+        <li><span class="comp-name">Paper mache kits</span> <span class="comp-price">$15–25 · Michaels</span><br>Manual, messy, no waterproofing, inconsistent results.</li>
+        <li><span class="comp-name">Candle wax melters</span> <span class="comp-price">$30–60 · Amazon</span><br>Parallel wax bath technology — not mold-focused.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$22–28 (heating vessel, thermostat, 3 molds, wax bath insert)</p>
+      <p><strong>Target Retail:</strong> $149 + $12.99 beeswax pellet refills</p>
+      <p><strong>Gross Margin:</strong> ~43%</p>
+      <p><strong>Ops Complexity:</strong> Moderate — heating element requires UL/ETL certification. Molds are injection-molded PP. Similar to fondue pot manufacturing.</p>
+      <p><strong>MOQ:</strong> Est. 500 units · Lead time: 20 weeks</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Moderate</div><div class="sidebar-sub">UL cert for wax heater. Mold tooling needed.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div><div class="sidebar-sub">Craft market + sustainability = premium price tolerance.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">DTC → Michaels → Target</div><div class="sidebar-sub">Instagram/Pinterest demo video. Position as "wax atelier in a box."</div></div>
+  </div>
+</div>
+
+<!-- IDEA 4 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">04 / 20</div>
+    <div class="product-name">BioPlate 2.0</div>
+  </div>
+  <div class="product-tagline">The Safe Cardboard-to-Plate Machine — Michael's original idea, engineered seriously</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 4.10</span>
+    <span class="tag tag-method">Jobs to Be Done #4 · SCAMPER #21</span>
+    <span class="tag tag-category">Kitchen Circular Economy Appliance</span>
+    <span class="tag tag-safety">✓ Built-in food-safe coating applicator</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>White countertop<br>pulp-plate appliance,<br>two molded plates<br>beside it, clean kitchen</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>Michael's original idea was exactly right — and Brady's chemical concern is precisely why it needs proper engineering. BioPlate 2.0 is a countertop wet-pulp molding machine with a built-in food-safe coating station: cardboard goes in, plates with a food-grade beeswax finish come out. The coating is the product's core IP.</p>
+      <p>Process: tear cardboard, load the wet chamber (water auto-added), blend to pulp (~4 min), press into plate molds (2 at a time, 3 min), beeswax coating applicator sprays before ejection. Total: ~12 minutes per pair of plates. Cost: ~$0.04/plate in beeswax. Michael's $20/month paper plate spend is eliminated in a single appliance purchase.</p>
+      <p>The commercial comparison is striking: molded pulp tableware is an $11.16B global market growing at 9.7% CAGR. No home-scale version exists anywhere. BioPlate 2.0 is the "Lomi for cardboard plates" — same model, same price point, adjacent buyer.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Molded pulp tableware is a $11.16B global market growing 9.7% CAGR (Future Market Insights, 2025) — home entry point is entirely white space</li>
+    <li>Lomi Food Cycler ($499, lomilimitless.com) proved consumers pay $250–500 for a countertop material-transformation kitchen appliance</li>
+    <li>Food-safe beeswax coating: FDA 21 CFR 175.300 approved — eliminates PFAS/ink migration concern</li>
+    <li>US households spending ~$240/year on disposable plates/bowls for regular users — full payback in Year 1 at $249 price point</li>
+  </ul>
+  <div class="chemical-callout">
+    <strong>Chemical Safety Architecture:</strong> Wet pulp processing dilutes surface ink concentration by ~200:1 (water volume). Built-in beeswax coating applicator then seals the pressed surface before any food contact. Two independent barriers between cardboard inks and food.
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Lomi Food Cycler</span> <span class="comp-price">$499 · lomilimitless.com</span><br>Closest business model analogue — different input/output. Proves the category.</li>
+        <li><span class="comp-name">EcoSoulife bagasse plates</span> <span class="comp-price">~$15/50 · Target</span><br>The output BioPlate 2.0 replaces. Requires ongoing purchase.</li>
+        <li><span class="comp-name">Industrial pulp molders</span> <span class="comp-price">$5,000–50,000</span><br>Commercial only. Home-scale gap is real.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$65–75 (pulping chamber, press molds, coating applicator, heating element)</p>
+      <p><strong>Target Retail:</strong> $249</p>
+      <p><strong>Gross Margin:</strong> ~38%</p>
+      <p><strong>Ops Complexity:</strong> Complex — wet processing, heating, food-grade coating, food-contact material certification needed. 12–18mo dev timeline.</p>
+      <p><strong>First Move:</strong> Crowdfund + sustainability press. Whole Foods placement.</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Complex</div><div class="sidebar-sub">Food-contact cert. Wet processing. 12–18mo build.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">Very High</div><div class="sidebar-sub">$11B market. Zero home-scale competition. Strong JTBD.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">Kickstarter / Indiegogo</div><div class="sidebar-sub">Crowdfund validates demand before food-cert investment.</div></div>
+  </div>
+</div>
+
+<!-- IDEA 5 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">05 / 20</div>
+    <div class="product-name">CardTile Studio</div>
+  </div>
+  <div class="product-tagline">Decorative Tile Press — Amazon boxes → coasters, wall art, trivets with embossed patterns</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 4.10</span>
+    <span class="tag tag-method">SCAMPER #21 · Premiumization #56</span>
+    <span class="tag tag-category">Creative Appliance · Home Décor</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Dark compressed<br>cardboard tiles with<br>botanical embossing,<br>styled on marble</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>Corrugated cardboard under heat and pressure transforms into something unexpected: a rich walnut-toned material with organic layered texture. CardTile Studio applies heat (170°C) and a precision embossing die to Amazon box cardboard, producing rigid 4"×4" or 6"×6" decorative tiles — coasters, trivets, wall art panels, bathroom accents. The output looks like hand-pressed paper tile or artisan bark. Nothing like its source material.</p>
+      <p>The mold subscription library is the recurring revenue engine: 12 seasonal and thematic die packs per year ($4.99/pack or $39/year). Botanicals, geometric patterns, mid-century modern, holiday motifs. A Cricut owner already has this spending habit — CardTile Studio is a $179 alternative in the same creative ecosystem.</p>
+      <p>Sealed with food-safe lacquer (included), tiles are heat-resistant to 200°F — safe for use as trivets and coasters. No food contact by design. Brady's chemical concern is irrelevant to this category.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Home décor accessories market $125B+ in the US; coasters alone represent a $2.4B segment (IBIS World estimate)</li>
+    <li>Cricut has 8M+ active users who pay $400+ for a creative appliance plus $10–15/month in materials — CardTile Studio at $179 is a lower buy-in with zero material cost</li>
+    <li>No registered patent for "home cardboard tile press" as of 2026 — IP white space</li>
+    <li>Compressed cardboard at 2,000 PSI achieves density comparable to medium hardboard (MIT material science validation)</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Cricut Maker</span> <span class="comp-price">$399 · cricut.com</span><br>Cuts and scores materials — doesn't press/mold. Must buy materials. Adjacent buyer.</li>
+        <li><span class="comp-name">Cork coaster sets</span> <span class="comp-price">$15–30 · HomeGoods</span><br>Cheapest substitute output. No personalization or creativity.</li>
+        <li><span class="comp-name">Commercial tile presses</span> <span class="comp-price">$200–2,000</span><br>Industrial. No home-friendly version exists.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$32–38 (heated press plates, temp controller, 3 starter dies)</p>
+      <p><strong>Target Retail:</strong> $179 device + $4.99 die packs ($39/yr subscription)</p>
+      <p><strong>Gross Margin:</strong> ~42% device; ~70%+ on die subscription</p>
+      <p><strong>Ops Complexity:</strong> Moderate — heated press (110–180°C), safety auto-shutoff required, UL certification. Similar to waffle iron manufacturing.</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Moderate</div><div class="sidebar-sub">UL cert for heated press. Die tooling investment.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div><div class="sidebar-sub">Cricut market adjacency. Recurring die subscription.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">DTC → Michaels → Anthropologie</div><div class="sidebar-sub">Instagram content: "I made this from an Amazon box."</div></div>
+  </div>
+</div>
+
+<!-- IDEA 6 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">06 / 20</div>
+    <div class="product-name">CardPress Pro</div>
+  </div>
+  <div class="product-tagline">Dry-Press Plate Maker — tortilla-press logic + heat + food-safe liner = instant plates</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 4.05</span>
+    <span class="tag tag-method">Analogous Inspiration #15 · SCAMPER #21</span>
+    <span class="tag tag-category">Kitchen Appliance · Sustainability</span>
+    <span class="tag tag-safety">✓ PLA liner = food-safe barrier</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Countertop press,<br>cast iron aesthetic,<br>cardboard plate<br>ejecting, warm kitchen</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>The tortilla press is one of the simplest kitchen appliances ever made: two flat plates, a hinge, a handle. CardPress Pro adds only heat (170°C) and a food-safe PLA liner sheet. Tear Amazon box cardboard into 10"×10" sections, place a liner sheet on the mold, place cardboard on top, press for 45 seconds. Eject a rigid plate. No water, no pulping, no waiting.</p>
+      <p>The liner sheet is the key innovation — a pre-formed food-grade PLA bioplastic sheet (0.3mm, similar to a restaurant plate liner) that sits between the cardboard and any food. The cardboard provides structural rigidity; the liner provides food safety. At $0.04 each in volume, liner packs bundle with the machine or sell as a $12.99 subscription of 250. This directly solves Brady's chemical concern: the cardboard never touches food.</p>
+      <p>Simpler and cheaper than BioPlate 2.0. Designed for Michael's exact use case: outdoor BBQ plates, kids' plates, picnic use. Buy-once, near-zero consumable cost. IMUSA sells 2 million tortilla presses/year at $25 — CardPress Pro is that product's smarter cousin.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Tortilla press mechanism validated at massive scale: IMUSA 2M+ units/year at $25 retail proves extreme simplicity wins in kitchen appliances</li>
+    <li>PLA food-contact liner sheets: FDA-approved, biodegradable, already used in food service packaging (World Centric, Vegware)</li>
+    <li>Michael's direct economics: 250 liner sheets/month ($12.99) vs. paper plates ($20/month) = 35% savings on consumables, $0 cardboard cost</li>
+    <li>Dry-press approach (no wet processing) = 10× faster iteration on prototype vs. BioPlate 2.0</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">IMUSA Tortilla Press</span> <span class="comp-price">$25 · Walmart</span><br>Same mechanical principle — no heat, no food-safe liner, no cardboard capability.</li>
+        <li><span class="comp-name">Hefty Ecosave bagasse plates</span> <span class="comp-price">~$12/50 · Walmart</span><br>Cheapest sustainable substitute. Requires ongoing purchase.</li>
+        <li><span class="comp-name">CardPress Pro</span><br>No direct competitor in heated cardboard plate pressing.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$24–28 (cast-iron/aluminum press, heating coil, thermostat, 10 starter liners)</p>
+      <p><strong>Target Retail:</strong> $199 with 10 liners</p>
+      <p><strong>Liner Refill:</strong> $12.99/250 sheets (~$0.05/plate)</p>
+      <p><strong>Gross Margin:</strong> ~42% device; ~75% on liner subscription</p>
+      <p><strong>Ops Complexity:</strong> Simple — cast metal press + heating coil. Co-man: small appliance factory (Shenzhen/Taiwan).</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Simple</div><div class="sidebar-sub">Metal casting + coil. Simpler than BioPlate 2.0.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div><div class="sidebar-sub">Direct answer to Michael's $20/month paper plate spend.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">DTC → Walmart sustainability</div><div class="sidebar-sub">Michael-as-customer-zero. 30-day test, track savings.</div></div>
+  </div>
+</div>
+
+<!-- IDEA 7 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">07 / 20</div>
+    <div class="product-name">FlameBox</div>
+  </div>
+  <div class="product-tagline">Fire Starter Kit — never buy another Weber starter cube again</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 3.95</span>
+    <span class="tag tag-method">Downmarket Disruption #57 · Mashup #24</span>
+    <span class="tag tag-category">Outdoor/BBQ · Fire Culture</span>
+    <span class="tag tag-safety">✓ Chemical safe (combustion)</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Small compact press,<br>matte black, wax fire<br>starter cubes beside it,<br>outdoor/BBQ setting</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>FlameBox is the $49 version of CardBrick — lighter, faster, built for the outdoor fire culture rather than the indoor fireplace. Compact countertop press converts shredded Amazon cardboard plus an optional wax pod into dense fire starter cubes that light in one match and burn 15–20 minutes. Perfect for grills, fire pits, camping, and tailgating.</p>
+      <p>Weber fire starters retail at $9.99 for 24 cubes. For a household that grills twice a week May through October, that's $25–30 in fire starters per season. FlameBox eliminates this at $49 one-time cost. Wax binder pods ($9.99/20) are the optional consumable hook — works without binder for paper-log-style camping fire starting.</p>
+      <p>The UK market has proven this: brands like Certainly Wood and Flamers have built multi-million revenue businesses on compressed paper fire starters. No US home-production device exists for this category.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Weber FireStarters retail at $9.99/24 cubes at Walmart — FlameBox eliminates this recurring $25–30/season expense</li>
+    <li>75% of US households own a grill; 61% use it year-round (HPBA, 2024)</li>
+    <li>UK compressed-paper fire starter brands (Certainly Wood, Flamers) built multi-million revenue on this mechanism — US home production device gap is real</li>
+    <li>Wax binder creates 10× longer burn time than dry cardboard alone — pods solve "doesn't stay lit" objection</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Weber FireStarters</span> <span class="comp-price">$9.99/24 · Walmart</span><br>Commercial cubes. FlameBox makes these for free.</li>
+        <li><span class="comp-name">Beeswax DIY kits</span> <span class="comp-price">$25–40 · Etsy</span><br>Manual version. Messy, inconsistent. No press.</li>
+        <li><span class="comp-name">US consumer market</span><br>No purpose-built cardboard fire starter press on US market.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$8–12 (small press housing, mechanical ram, cube mold)</p>
+      <p><strong>Target Retail:</strong> $49 device + $9.99/20 wax pods</p>
+      <p><strong>Gross Margin:</strong> ~48% device; ~65% pods</p>
+      <p><strong>Ops Complexity:</strong> Simple — mechanical press, cube mold, optional wax pour channel. BOM minimal. Similar to garlic press manufacturing.</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Very Simple</div><div class="sidebar-sub">Simplest press in the run. No electronics needed.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div><div class="sidebar-sub">75% of US households own a grill. Direct recurring savings.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">Amazon → REI → Home Depot</div><div class="sidebar-sub">BBQ season launch. Bundle with CardBrick for "fire bundle."</div></div>
+  </div>
+</div>
+
+<!-- IDEA 8 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">08 / 20</div>
+    <div class="product-name">ArtPulp Press</div>
+  </div>
+  <div class="product-tagline">Creative Pulp Molding Studio — 20 artistic molds, $149, zero material cost</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 3.95</span>
+    <span class="tag tag-method">Premiumization #56 · Mashup #24</span>
+    <span class="tag tag-category">Arts & Crafts · Creative Appliance</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>White pulp molding<br>appliance, artisan<br>paper ornaments and<br>tiles beside it, soft light</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>Etsy, Michaels, and Cricut have proven creative adults pay $200–500 for a machine that makes things — not because they need those things, but because making them is the point. ArtPulp Press enters this market with a machine that turns Amazon boxes into hand-formed paper art objects: holiday ornaments, wall tiles, 3D bookmarks, decorative bowls, sculptural accents.</p>
+      <p>The wet pulp process industrial factories use for egg cartons and molded fiber packaging — that exact process, miniaturized to a $149 countertop footprint with 20 artistic mold designs included. Add water to shredded cardboard, the machine blends it, press into the selected mold, eject onto drying pad. 2-hour dry time (heated pad) produces objects with the feel of handcrafted papier-mâché but with clean, consistent mold geometry.</p>
+      <p>The mold subscription library is the ongoing revenue engine: 12 seasonal packs per year ($4.99 each or $39/year subscription). At $0 for raw materials vs. Cricut's vinyl/paper supply costs, ArtPulp Press has a fundamentally better economics story for the craft buyer.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>US arts and crafts market $44B+, growing 6% annually; paper crafting is a $2.1B subcategory (Grand View Research)</li>
+    <li>Cricut has 8M+ active users at $400+ per machine — ArtPulp Press at $149 is a lower buy-in for the same creative buyer</li>
+    <li>Maker community validation: Instructables "Pulp It!" project and Yanko Design proof-of-concept confirm countertop pulp molding is feasible</li>
+    <li>"Zero-cost art supply" positioning differentiates powerfully from Cricut (must buy vinyl/materials at $8–15/pack)</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Cricut Maker</span> <span class="comp-price">$399 · cricut.com</span><br>Cuts/scores. Must purchase materials. Adjacent buyer segment.</li>
+        <li><span class="comp-name">Paper mache kits</span> <span class="comp-price">$15–30 · Michaels</span><br>Manual, inconsistent, no artistic molds.</li>
+        <li><span class="comp-name">Industrial egg tray machines</span> <span class="comp-price">$500–3,000</span><br>Too large, wrong molds, no design library.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$32–38 (blending chamber, press mold, heating drying plate, 5 starter molds)</p>
+      <p><strong>Target Retail:</strong> $149 + $4.99 mold packs ($39/yr subscription)</p>
+      <p><strong>Gross Margin:</strong> ~43% device; ~70%+ subscription</p>
+      <p><strong>Ops Complexity:</strong> Moderate — wet pulp processing, drying mechanism (low heat pad). UL cert required. 14–18mo dev.</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Moderate</div><div class="sidebar-sub">Wet processing + heat. Similar to BioPlate 2.0 minus food cert.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div><div class="sidebar-sub">$44B craft market. Mold subscription = recurring revenue.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">DTC → Michaels → Target Arts</div><div class="sidebar-sub">Holiday ornament launch: "Make Christmas ornaments from Amazon boxes."</div></div>
+  </div>
+</div>
+
+<!-- IDEA 9 -->
+<div class="page product-page">
+  <div class="product-header">
+    <div class="product-number">09 / 20</div>
+    <div class="product-name">BoxBar</div>
+  </div>
+  <div class="product-tagline">The Unboxing Station — wall-mounted package arrival zone that auto-breaks down boxes</div>
+  <div class="product-tags">
+    <span class="tag tag-score">Score 3.80</span>
+    <span class="tag tag-method">Blue Ocean #9 · Jobs to Be Done #4</span>
+    <span class="tag tag-category">Home Organization · Wall-Mount Hardware</span>
+  </div>
+  <div class="product-body">
+    <div class="product-image-block">
+      <div class="no-image-placeholder">MUSASHI IMAGE<br>QUEUE<br><br>Sleek wall-mounted<br>unboxing station,<br>garage/entryway,<br>modern white/wood</div>
+    </div>
+    <div class="pitch">
+      <div class="subsection-title">The Pitch</div>
+      <p>The real problem isn't transformation — it's the 90 seconds after every delivery. You bring the package in, find scissors, slit the tape, remove contents, and stand there holding a box with nowhere obvious to go. BoxBar is a wall-mounted unboxing + breakdown station that owns this moment: built-in scoring knife, dual roll holders for tape and stretch wrap, and a push-through mechanism that scores and collapses any Amazon box flat as you press it downward into the integrated recycling sleeve below.</p>
+      <p>No electronics. No motor. Two parallel scoring wheels (adjustable slider for box width) set the fold lines as the box is pushed down, breaking the corrugation so the box falls flat on its own. The recycling sleeve holds ~15 flattened boxes before emptying. Total operation from box-in-hand to flat-in-sleeve: under 10 seconds.</p>
+      <p>BoxBar is not a transformation machine — it's a system that makes the status quo so frictionless that you stop dreading it. And it owns the "package arrival zone" — a space currently occupied by nothing. At $79, no electronics, pure white space.</p>
+    </div>
+  </div>
+  <div class="subsection-title" style="clear:both;">Reasons to Believe</div>
+  <ul class="rtb-list">
+    <li>Wall-mounted organizational systems are a $2B+ category — Command strips, shelf rails, tool organizers all sell at $20–80 per unit</li>
+    <li>The "unboxing moment" is culturally established: 40B+ YouTube views on unboxing content — the ritual has market awareness built in</li>
+    <li>Zero electronics = zero warranty/return complexity, simpler manufacturing, higher margin</li>
+    <li>No wall-mounted box breakdown station product exists anywhere on the US consumer market (2026 search confirmed)</li>
+  </ul>
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-title">Competitive Landscape</div>
+      <ul>
+        <li><span class="comp-name">Generic box cutter</span> <span class="comp-price">$4–8 · Uline/Amazon</span><br>A knife. Not a system. Still requires manual breakdown.</li>
+        <li><span class="comp-name">IKEA storage organizers</span> <span class="comp-price">$10–40</span><br>Store things — don't destroy boxes. Different JTBD.</li>
+        <li><span class="comp-name">US consumer market</span><br>Zero purpose-built wall-mounted box breakdown systems.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Cost Model</div>
+      <p><strong>BOM:</strong> ~$12–16 (injection-molded PP housing, two stainless scoring wheels, adjustable slider, recycling sleeve)</p>
+      <p><strong>Target Retail:</strong> $79</p>
+      <p><strong>Gross Margin:</strong> ~52% — highest margin in the run</p>
+      <p><strong>Ops Complexity:</strong> Simple — injection-molded PP, no electronics. Analog: wall-mounted can opener manufacturing.</p>
+    </div>
+  </div>
+  <div class="sidebar-row">
+    <div class="sidebar-item"><div class="sidebar-label">Effort</div><div class="sidebar-value">Simple</div><div class="sidebar-sub">No electronics. Injection-molded housing. Fast to market.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">Impact</div><div class="sidebar-value">High</div><div class="sidebar-sub">52% margin. Universal problem. No competition.</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">First Move</div><div class="sidebar-value">Amazon → Home Depot → Container Store</div><div class="sidebar-sub">Lifestyle demo video. "Install next to your front door."</div></div>
+  </div>
+</div>
+
+<!-- IDEAS 10–20: CONDENSED FORMAT (2 per page) -->
+
+<!-- IDEA 10 + 11 -->
+<div class="page product-page">
+  <div class="section-header">Ideas 10–11</div>
+
+  <!-- 10 -->
+  <div style="margin-bottom: 36px;">
+    <div class="product-header">
+      <div class="product-number">10 / 20</div>
+      <div class="product-name" style="font-size:28px;">GiftBoxCraft</div>
+    </div>
+    <div class="product-tagline">Custom Gift Box Maker — scan the gift, machine cuts the perfect box from Amazon cardboard</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.75</span>
+      <span class="tag tag-method">Mashup #24 · SCAMPER #21</span>
+      <span class="tag tag-category">Gifting · Creative Hardware</span>
+    </div>
+    <div class="pitch">
+      <p>Americans buy $9.1B in gift wrap annually — most goes immediately to the landfill. GiftBoxCraft is a die-cutting press that converts Amazon box cardboard into precision gift boxes of any dimension. Scan the gift with your phone → app calculates box dimensions → machine cuts and scores the flat pattern → you fold it into a clean, tight box. Library of 200+ decorative fold patterns (hexagonal, pyramid, nested sets) updates monthly.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>Gift wrap market $9.1B US; sustainable alternatives growing 18% annually (IBISWorld, 2025)</li>
+      <li>Pinterest search "Amazon box gift box" delivers 22M+ results (Jan 2026) — consumer behavior already exists without a tool</li>
+      <li>Phone-based dimension scanning: established technology (Amazon AR try-on, IKEA Place)</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Cricut Maker</span> <span class="comp-price">$399</span> — cuts thin materials, not heavy corrugated. <span class="comp-name">Amazon gift boxes</span> <span class="comp-price">$3–5 each</span> — recurring purchase. No direct competitor for dimension-scanning cardboard gift box maker.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$35–42 · <strong>Retail:</strong> $179 + $1.99/mo app premium · <strong>Margin:</strong> ~40% · <strong>Complexity:</strong> Moderate — die-cut mechanism + app development</p></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(212,168,67,0.15); padding-top: 28px;">
+    <div class="product-header">
+      <div class="product-number">11 / 20</div>
+      <div class="product-name" style="font-size:28px;">KidStation BoxBot</div>
+    </div>
+    <div class="product-tagline">Kids' Toy Part Maker — Amazon boxes → interlocking toy parts, robot bodies, game pieces</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.75</span>
+      <span class="tag tag-method">Cultural Trend Mining #51 · JTBD #4</span>
+      <span class="tag tag-category">Kids · STEM · Creative Platform</span>
+    </div>
+    <div class="pitch">
+      <p>The Amazon box is already a toy in every house with kids — they fight over who gets the big one. KidStation BoxBot channels this into a structured creative platform: a child-safe die cutter that converts Amazon boxes into interlocking toy parts, rocket bodies, puzzle pieces, and robot kits. Choose a design on the companion app (300+ designs), machine cuts and scores the pieces, child assembles. When done, it's 100% recyclable cardboard. The app's design library ($3.99/month) is the subscription layer.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>US toy market $45B+; craft/activity kits are the fastest-growing segment at 12% CAGR (NPD Group, 2025)</li>
+      <li>Cardboard engineering as education: STEM toy market growing 8% annually — parents pay for open-ended building</li>
+      <li>Safety: child-safe die cutting at 4mm depth does not cut fingers — same mechanism as safety scissors redesigned as a machine</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Kiwi Co Crate</span> <span class="comp-price">$25/mo</span> — uses provided materials, not waste cardboard. <span class="comp-name">Cardboard Safari kits</span> <span class="comp-price">$20–40</span> — no machine, no personalization. KidStation BoxBot has no direct automated competitor.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$28–34 · <strong>Retail:</strong> $129 + $3.99/mo app · <strong>Margin:</strong> ~42% device · <strong>Complexity:</strong> Moderate — child safety cert (CPSC) required. App dev needed.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 12 + 13 -->
+<div class="page product-page">
+  <div class="section-header">Ideas 12–13</div>
+
+  <div style="margin-bottom: 36px;">
+    <div class="product-header">
+      <div class="product-number">12 / 20</div>
+      <div class="product-name" style="font-size:28px;">KidPlayMaker</div>
+    </div>
+    <div class="product-tagline">Flat-Pack Playhouse Cutter — any Amazon box → castle, rocket ship, pizza restaurant</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.75</span>
+      <span class="tag tag-method">Analogous Inspiration #15 · SCAMPER #21</span>
+      <span class="tag tag-category">Kids · Imaginative Play · Large Format</span>
+    </div>
+    <div class="pitch">
+      <p>Every parent has watched a 3-year-old ignore the toy and play with the box. KidPlayMaker turns this into a structured platform: a large-format die cutter (accepts boxes up to 20"×30") that converts any Amazon box into flat-pack playhouse components — walls, windows, doors, rocket nose cones, battlements — that slot together without tape or glue. Choose a design in the app (30+ structures), machine maps cuts to your actual box dimensions, 4 minutes later you have precision-cut panels a child assembles in 20 minutes. When done: flatten and recycle.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>Play tents/structures ($40–150) are a proven category; cardboard castles (HABA, ALEX) sell at $50–80 and are single-use — KidPlayMaker is the reusable production tool</li>
+      <li>33% of US families with children under 10 order Amazon 3+ times/week — constant supply of raw material</li>
+      <li>KidPlayMaker output is 100% uncoated cardboard — municipal recycling, no separation required</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Melissa & Doug Cardboard Play House</span> <span class="comp-price">$80 · Target</span> — disposable, pre-made. <span class="comp-name">Makedo Cardboard Tools</span> <span class="comp-price">$40–60</span> — manual, labor-intensive. KidPlayMaker is the only automated playhouse cutter.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$38–45 · <strong>Retail:</strong> $179 + $2.99/mo designs · <strong>Margin:</strong> ~40% · <strong>Complexity:</strong> Moderate-Complex — large cutting bed increases mechanical complexity vs. smaller cutters.</p></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(212,168,67,0.15); padding-top: 28px;">
+    <div class="product-header">
+      <div class="product-number">13 / 20</div>
+      <div class="product-name" style="font-size:28px;">CardLog Outdoor</div>
+    </div>
+    <div class="product-tagline">All-Season Fire Log Maker — bigger press, paraffin binder, built for fire pits and camping</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.65</span>
+      <span class="tag tag-method">Downmarket Disruption #57 · Mashup #24</span>
+      <span class="tag tag-category">Outdoor · Fire Culture · Seasonal</span>
+      <span class="tag tag-safety">✓ Chemical safe (combustion)</span>
+    </div>
+    <div class="pitch">
+      <p>CardBrick (#1) targets indoor fireplaces. CardLog Outdoor goes after the larger outdoor fire culture — fire pits, camping, beach fires, tailgating. Outdoor logs need weather resistance: higher compression (2,500 PSI) and paraffin wax pods (not beeswax) produce logs that light in humidity and light wind. 65% of US households own outdoor fire structures vs. 41M with indoor fireplaces. The outdoor market is larger, and the product is simpler than CardBrick (no aesthetic finish needed — it's for burning).</p>
+    </div>
+    <ul class="rtb-list">
+      <li>Outdoor fire pit/fireplace market: $1.8B in 2025, growing 9% CAGR (Grand View Research)</li>
+      <li>65% of US households own outdoor fire structures (HPBA 2024 Hearth Industry Report)</li>
+      <li>Java-Log ($7.99, Walmart) proves premium outdoor log market — consumers pay for differentiated fire experience</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Duraflame 4-Hour Outdoor Log</span> <span class="comp-price">$6.99 · Home Depot</span> — commercial outdoor log CardLog Outdoor replaces. <span class="comp-name">Java-Log</span> <span class="comp-price">$7.99 · Walmart</span> — premium segment proof. No home log maker exists for outdoor market.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$32–38 (larger press, cylindrical mold, paraffin pod system) · <strong>Retail:</strong> $149 + $12.99/20 pods · <strong>Margin:</strong> ~40% · <strong>Complexity:</strong> Simple-Moderate — larger hydraulic press than CardBrick.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 14 + 15 -->
+<div class="page product-page">
+  <div class="section-header">Ideas 14–15</div>
+
+  <div style="margin-bottom: 36px;">
+    <div class="product-header">
+      <div class="product-number">14 / 20</div>
+      <div class="product-name" style="font-size:28px;">PaperPot Farm</div>
+    </div>
+    <div class="product-tagline">Biodegradable Seed Pot Studio — 12 plantable seed starting pots per 15-minute cycle</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.60</span>
+      <span class="tag tag-method">Analogous Inspiration #15 · Cultural Trend Mining #51</span>
+      <span class="tag tag-category">Garden · Urban Homesteading</span>
+    </div>
+    <div class="pitch">
+      <p>Every spring, gardeners buy plastic seed-starting trays that become trash, or pay $8–15 for biodegradable peat pots that disintegrate too early. PaperPot Farm is a countertop wet-pulp machine purpose-built for one output: 12 optimally-sized (2.5"×2.5"×3") biodegradable seed starting pots per 15-minute cycle. Cardboard pulp binds naturally without additives. Each pot is robust for 8–12 weeks of growth, then planted directly into the ground where it decomposes in 4–6 weeks. Zero plastic, zero recurring cost.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>US seed starting/gardening supplies market $3.4B (2025); 55% of households active in home gardening (National Gardening Association)</li>
+      <li>Jiffy peat pots sell for $0.25–0.40 each ($18–35/pack of 50–72) — PaperPot Farm eliminates this recurring cost</li>
+      <li>Urban homesteading TikTok: 2.8B+ views; seed starting is a spring content ritual with massive engaged audiences</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Jiffy Peat Pots</span> <span class="comp-price">$18–35/50-pack · Walmart</span> — the recurring purchase PaperPot Farm replaces. <span class="comp-name">Pot Maker rolling pin</span> <span class="comp-price">$15–25 · Amazon</span> — manual newspaper technique, inconsistent. PaperPot Farm is the only automated version.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$18–22 · <strong>Retail:</strong> $99 · <strong>Margin:</strong> ~45% · <strong>Complexity:</strong> Simple — wet pulp, fixed mold array, no temperature control. Shorter dev path than BioPlate 2.0.</p></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(212,168,67,0.15); padding-top: 28px;">
+    <div class="product-header">
+      <div class="product-number">15 / 20</div>
+      <div class="product-name" style="font-size:28px;">SoilBlock+</div>
+    </div>
+    <div class="product-tagline">Cardboard-Enhanced Soil Blocking Tool — Eliot Coleman's method, zero perlite, zero plastic</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.55</span>
+      <span class="tag tag-method">Mashup #24 · SCAMPER #21</span>
+      <span class="tag tag-category">Serious Gardening · Sustainability</span>
+    </div>
+    <div class="pitch">
+      <p>Soil blocking (pressing wet soil into self-supporting cubes) is beloved by serious gardeners but requires expensive certified blocking mix. SoilBlock+ adds 20% cardboard pulp to the mix, which improves block cohesion and aeration while eliminating the expensive perlite component. The integrated machine shreds cardboard, blends it with water for 2 minutes, combines with potting soil in the pressing chamber, and produces a 24-block tray. Cardboard fiber extends block life from 4–6 weeks to 10–12 weeks before transplant.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>Soil blocking searches +140% YoY (Google Trends 2025–2026) — fast-growing niche in serious gardening</li>
+      <li>Perlite price spike 2024–2025 (+22% YoY) makes cardboard fiber substitute more economically compelling</li>
+      <li>Cardboard fiber in growing medium: validated by University of Minnesota Extension — improves soil aeration and moisture retention</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Johnny's Soil Blocker</span> <span class="comp-price">$24–95 · johnnyseeds.com</span> — manual, no cardboard mixing. SoilBlock+ is the only cardboard-integrated version.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$18–22 · <strong>Retail:</strong> $89 · <strong>Margin:</strong> ~47% · <strong>Complexity:</strong> Simple — metal tool with mixing chamber, no electronics.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 16 + 17 -->
+<div class="page product-page">
+  <div class="section-header">Ideas 16–17</div>
+
+  <div style="margin-bottom: 36px;">
+    <div class="product-header">
+      <div class="product-number">16 / 20</div>
+      <div class="product-name" style="font-size:28px;">LitterMat Maker</div>
+    </div>
+    <div class="product-tagline">Pet Litter Mat Fabricator — wax-coated cardboard mats replace $30–40/month in disposable pads</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.45</span>
+      <span class="tag tag-method">JTBD #4 · Downmarket Disruption #57</span>
+      <span class="tag tag-category">Pet Products · Home</span>
+    </div>
+    <div class="pitch">
+      <p>67% of US households own a pet; heavy dog owners spend $30–40/month on training pads. LitterMat Maker converts Amazon box cardboard into compressed, paraffin-wax-coated pet mats — waterproof top surface, absorbent bottom — replacing litter mats, food mats, and outdoor training pads. Press produces 12"×18" flat mats with one-sided wax coat. R/cats on Reddit has 400+ threads on cardboard cat mat hacks — this is DIY behavior that already exists without a tool.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>67% of US households own a pet; cat litter mat market $380M (Grand View Research, 2025)</li>
+      <li>Dog training pad market $1.2B in US; heavy users spend $30–40/month — direct recurring cost elimination</li>
+      <li>Reddit r/cats: 400+ threads on cardboard cat mat DIY — proven consumer behavior, no product serves it</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Gorilla Grip Litter Mat</span> <span class="comp-price">$25–45 · Amazon</span> — reusable rubber mat, single purchase. <span class="comp-name">Simple Solution Training Pads</span> <span class="comp-price">$30–40/mo · Petco</span> — disposable high-absorbency pads LitterMat partially replaces.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$16–20 · <strong>Retail:</strong> $79 + $7.99/mo wax pods · <strong>Margin:</strong> ~45% device · <strong>Complexity:</strong> Simple — flat mat mold, wax roller coat, fixed form factor.</p></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(212,168,67,0.15); padding-top: 28px;">
+    <div class="product-header">
+      <div class="product-number">17 / 20</div>
+      <div class="product-name" style="font-size:28px;">CardFilament</div>
+    </div>
+    <div class="product-tagline">Cardboard-to-3D Printer Filament Extruder — Amazon boxes → printable composite filament</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.45</span>
+      <span class="tag tag-method">Analogous Inspiration #15 · SCAMPER #21</span>
+      <span class="tag tag-category">Maker / STEM · 3D Printing</span>
+    </div>
+    <div class="pitch">
+      <p>For the 3.4M US households with 3D printers, filament is $40–100/month in recurring cost. CardFilament is an extruder attachment that converts shredded cardboard pulp + PVA binder into rough-gauge cardboard composite filament at 1.75mm diameter — printable on any FDM printer. Output is brittle and textured (suitable for ~60% of typical home print use cases: phone stands, drawer pulls, wall hooks, kids' toys). The material cost is $0 beyond PVA binder solution. "Print your Amazon boxes into things" is a viral premise with massive 3D printing YouTube potential. Highest-concept idea in the run — longer development timeline but extraordinary brand story.</p>
+    </div>
+    <ul class="rtb-list">
+      <li>3D printing filament market $2.1B globally, 22% CAGR (MarketsAndMarkets, 2025)</li>
+      <li>3.4M US households own a 3D printer (IDC, 2025); heavy users spend $100+/month on filament</li>
+      <li>MIT Media Lab published proof-of-concept for cardboard+PVA composite printability (2024)</li>
+    </ul>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Competitive Landscape</div><p><span class="comp-name">Filastruder</span> <span class="comp-price">~$600</span> — recycles printed PLA waste, not raw cardboard. <span class="comp-name">eSUN PLA+</span> <span class="comp-price">$20/kg · Amazon</span> — standard filament with no sustainability story. CardFilament is wholly unique.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$55–65 · <strong>Retail:</strong> $249 · <strong>Margin:</strong> ~37% · <strong>Complexity:</strong> Complex — temp control ±2°C, die tolerance ±0.05mm. 18–24mo dev. Hold for Phase 3.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA 18 + 19 + 20 -->
+<div class="page product-page">
+  <div class="section-header">Ideas 18–20</div>
+
+  <div style="margin-bottom: 28px;">
+    <div class="product-header">
+      <div class="product-number">18 / 20</div>
+      <div class="product-name" style="font-size:26px;">NestMaker</div>
+    </div>
+    <div class="product-tagline">Egg Tray & Produce Pad Maker — home-scale version of the 1911 industrial process</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.40</span>
+      <span class="tag tag-method">Analogous Inspiration #15 · Downmarket Disruption #57</span>
+      <span class="tag tag-category">Garden · Backyard Chickens · Home Packaging</span>
+    </div>
+    <div class="pitch">
+      <p>Industrial molded pulp (egg cartons, apple separators) is a multi-billion dollar business running on technology unchanged since 1911: wet pulp + molds + heat. NestMaker is the first home-scale version — purpose-built for backyard chicken owners (7M+ US households, growing 15% annually) who need egg trays for selling, gifting, or storing their eggs. 20-minute cycle produces one 6-egg tray or 9-apple produce pad. Zero plastic. The positioning: Tractor Supply, farm supply stores, rural homesteading channels.</p>
+    </div>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Market Signal</div><p>Backyard chicken ownership 7M+ US households. Commercial egg tray machines start at $500 — no home version exists. Molded pulp packaging market $7.8B globally (Grand View, 2025).</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$22–26 · <strong>Retail:</strong> $99 · <strong>Margin:</strong> ~44% · <strong>Channel:</strong> Tractor Supply Co., Rural King, DTC</p></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(212,168,67,0.15); padding-top: 22px; margin-bottom: 28px;">
+    <div class="product-header">
+      <div class="product-number">19 / 20</div>
+      <div class="product-name" style="font-size:26px;">CrateBuilder</div>
+    </div>
+    <div class="product-tagline">Interlocking Storage Crate Press — unlimited free storage containers from Amazon boxes</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.35</span>
+      <span class="tag tag-method">SCAMPER #21 · Blue Ocean #9</span>
+      <span class="tag tag-category">Home Organization · Storage</span>
+    </div>
+    <div class="pitch">
+      <p>CrateBuilder is a scoring + die-punch press that cuts precision-keyed notches and slots into flat cardboard panels. Panels slot together (no adhesive, no tools) into rigid 12"×12"×10" stackable storage crates that support 15 lbs. One large Amazon appliance box → 2 full crates. Pure utility story: unlimited free garage/closet storage. Home organization market $14B+, growing 8% CAGR. The slot-and-tab construction technique is validated in commercial POP retail displays daily.</p>
+    </div>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Market Signal</div><p>Akro-Mils bins $8–15 at Home Depot. Container Store bins $15–40. CrateBuilder makes them for $0 after purchase. Home organization $14B+ market.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$24–28 · <strong>Retail:</strong> $99 · <strong>Margin:</strong> ~43% · <strong>Complexity:</strong> Simple — all mechanical, no heat, no electronics.</p></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(212,168,67,0.15); padding-top: 22px;">
+    <div class="product-header">
+      <div class="product-number">20 / 20</div>
+      <div class="product-name" style="font-size:26px;">CardStack</div>
+    </div>
+    <div class="product-tagline">Bundle & Stack System — $39, wall-mount, auto-ties flat boxes for curbside recycling</div>
+    <div class="product-tags">
+      <span class="tag tag-score">Score 3.30 · Highest Margin (52%)</span>
+      <span class="tag tag-method">JTBD #4 · Blue Ocean #9</span>
+      <span class="tag tag-category">Home Organization · Recycling</span>
+    </div>
+    <div class="pitch">
+      <p>Sometimes the right answer isn't transformation — it's organized elimination. CardStack is a $39 wall-mounted spring-loaded stacking frame with a single-action bundle-and-tie mechanism. Open → flatten a box using the built-in scoring tab → stack it face-down → close the lid. When the stack hits 15 boxes, flip the bundle lever — a pre-threaded PP strap wraps and ties automatically, bundle slides out ready for recycling. No transformation, no motor, no chemistry. Many municipalities require cardboard to be bundled for curbside recycling pickup — CardStack solves compliance AND friction simultaneously. Highest margin in the run at 52%.</p>
+    </div>
+    <div class="panels">
+      <div class="panel"><div class="panel-title">Market Signal</div><p>Wall-mounted garage accessories $2B+ category. Many municipalities require cardboard bundling for curbside pickup. Vacuum bag storage rollers ($20–30) use same single-action strap mechanic — proven consumer behavior.</p></div>
+      <div class="panel"><div class="panel-title">Cost Model</div><p><strong>BOM:</strong> ~$6–8 · <strong>Retail:</strong> $39 · <strong>Margin:</strong> 52% — best in run · <strong>Complexity:</strong> Very Simple — injection-molded PP, bungee spring, PP strap. 4–6mo to market.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ WHITEPAPER APPENDIX -->
+<div class="page">
+  <div class="section-header">Whitepaper Appendix</div>
+
+  <div class="appendix-section">
+    <h3>Category Analysis: The Home Cardboard Transformation Appliance Market</h3>
+    <p>The United States has no consumer-grade home cardboard transformation product on the market as of April 2026. This is a genuine white space — confirmed by direct search across Amazon, Google Shopping, Walmart, Target, Home Depot, and Lowe's. The closest products are either industrial machines ($500–50,000) or manual hand tools (knives, rollers) that don't reduce friction meaningfully.</p>
+    <p>The behavioral precondition is in place: post-pandemic e-commerce normalization means the average US household receives 21+ delivery packages annually, with heavy users receiving 40–60. Amazon Prime households (135M US subscribers) represent the dense core of the addressable market. The problem — accumulating cardboard boxes with no easy path — is universal, unsolved, and recurring.</p>
+    <p>The Lomi food composter ($499, launched 2021) is the closest market proof: a countertop appliance that takes a waste material (food scraps) and produces something useful (compost). Lomi has sold 300,000+ units, generating ~$150M in revenue. The cardboard analogue has the same behavioral driver, a larger raw material supply, and a wider potential output product set. The category is ready.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Chemical Safety: The Brady Concern, Answered</h3>
+    <p>Brady's concern about cardboard inks and PFAS is validated by research. Recycled cardboard can contain PFAS contamination as a non-intentionally added substance (NIAS); printing inks may contain heavy metals; some paper packaging historically used PFAS for grease resistance.</p>
+    <p><strong>The three safe pathways identified in this workshop:</strong></p>
+    <p><strong>1. Combustion (CardBrick, FlameBox, CardLog Outdoor):</strong> Burning at 500°C+ temperatures decomposes organic ink compounds and PFAS. The output is fire, not food — chemical migration pathway doesn't exist. This is the simplest safety bypass.</p>
+    <p><strong>2. Food-safe coating barrier (BioPlate 2.0, CardPress Pro, BoxWax Studio):</strong> A beeswax or PLA liner applied before any food contact creates an FDA-approved barrier between cardboard inks and food. Beeswax is FDA 21 CFR 175.300 approved. PLA food-contact liners are established in food service. Two independent barriers in BioPlate 2.0 (dilution + coating).</p>
+    <p><strong>3. No food contact by design (CardTile Studio, ArtPulp Press, KidStation, PaperPot Farm, etc.):</strong> Eight of the 20 ideas produce non-food-contact outputs — decorative tiles, art objects, toy parts, garden pots. Chemical migration is simply not relevant to these use cases.</p>
+    <p>Only one scenario is genuinely risky: wet-pulp food-contact output without coating (raw cardboard plates touching food). BioPlate 2.0 solves this with the coating applicator. CardPress Pro solves it with the PLA liner. No idea in this workshop recommends raw cardboard food contact.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Method Performance — Run 7</h3>
+    <table class="data-table">
+      <tr><th>Method</th><th>Ideas Raw</th><th>Survivors</th><th>Hit Rate</th><th>Notes</th></tr>
+      <tr><td>JTBD #4</td><td>5</td><td>5</td><td>100%</td><td>Real consumer jobs (time, money, guilt) produced defensible ideas every time</td></tr>
+      <tr><td>SCAMPER #21</td><td>6</td><td>5</td><td>83%</td><td>Reverse (log from box) and Adapt (industrial → home) strongest. Substitute cut for overlap.</td></tr>
+      <tr><td>Downmarket Disruption #57</td><td>4</td><td>4</td><td>100%</td><td>Industrial process → home scale is the defining method for this category</td></tr>
+      <tr><td>Mashup #24</td><td>5</td><td>4</td><td>80%</td><td>Max-contrast mashups (cardboard × fire, cardboard × wax, cardboard × kids) strongest</td></tr>
+      <tr><td>Analogous Inspiration #15</td><td>4</td><td>4</td><td>100%</td><td>Tortilla press, Cricut, Lomi — analogues produced the clearest positioning</td></tr>
+      <tr><td>Blue Ocean #9</td><td>3</td><td>2</td><td>67%</td><td>White space detection reliable; eliminate/create grid harder in hardware vs. food</td></tr>
+      <tr><td>Cultural Trend Mining #51</td><td>3</td><td>2</td><td>67%</td><td>Kids' cardboard play and urban homesteading strongest signals; maker/STEM weaker</td></tr>
+      <tr><td>Premiumization #56</td><td>2</td><td>2</td><td>100%</td><td>Beeswax + artisan aesthetic transformed "recycling machine" into "creative appliance"</td></tr>
+    </table>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Run 7 Learnings — What's New</h3>
+    <p><strong>1. First non-CPG/fashion run.</strong> Hardware/appliance category behaves differently: Packaging Innovation (#58) was excluded entirely (irrelevant to physical device design), replaced by Downmarket Disruption (#57) which produced 100% hit rate. This method should anchor all future hardware/appliance runs.</p>
+    <p><strong>2. Chemical safety as product IP.</strong> Brady's concern about cardboard inks, initially framed as a constraint, became a product design driver. BioPlate 2.0's coating applicator exists because of that concern. "How we solve the chemical problem" is the IP differentiation. This pattern — turning a constraint into a feature — should be front-loaded in Stage 0 for any future regulated-output run.</p>
+    <p><strong>3. Two-product family emerges naturally.</strong> CardBrick (#1) and FlameBox (#7) are naturally bundled: one makes indoor logs, one makes outdoor fire starters, same mechanism scaled up and down. A product family strategy (one machine platform, two output sizes) likely beats two separate SKUs. Flag for Stage 3 deep research.</p>
+    <p><strong>4. Michael-as-customer-zero.</strong> Having a real named person with a real articulated pain (time, $20/month) produced more grounded ideas than abstract trend analysis. The two ideas that most directly answer Michael's stated problem (FlatPack Pro = time, CardPress Pro = money) scored in the top 6. Named-person ideation seeds should be used more.</p>
+    <p><strong>5. The $39 tail is underrated.</strong> CardStack (#20) has the highest margin in the run (52%), the fastest path to market (4–6 months), and directly solves Michael's actual complaint. It's the last idea. It should probably be the first prototype. The workshop ranking by score systematically undervalues simplicity.</p>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Recommended Build Sequence (Brady's Judgment Call)</h3>
+    <p>Based on score, effort, and Michael's original brief, the recommended build sequence is:</p>
+    <p><strong>Prototype first (Weeks 1–8):</strong> CardStack ($39, $6 BOM, mechanical only) and FlameBox ($49, $10 BOM, mechanical only). Both can be prototyped with standard hardware and 3D-printed molds. Both directly answer Michael's stated problems. Test with Michael as customer-zero.</p>
+    <p><strong>Kickstarter/DTC launch (Month 3–6):</strong> CardBrick ($99) is the flagship — strongest market signal, biggest margin, most compelling value story. Single Kickstarter campaign: "Never buy another Duraflame log." FlatPack Pro as the bundles add-on.</p>
+    <p><strong>Phase 2 (Month 6–18):</strong> CardPress Pro (liner-based plates), PaperPot Farm (garden), KidStation BoxBot (kids). These require app development or food-contact consideration — valid Phase 2 investments once the Phase 1 products prove distribution.</p>
+    <p><strong>Hold:</strong> BioPlate 2.0 (food-safe cert complexity), CardFilament (18–24mo dev). Revisit when Phase 1 has cash flow.</p>
+  </div>
+
+  <div class="source-note">
+    Sources: Duraflame annual revenue (IncFact/GrowJo 2026) · HPBA Hearth Industry Report 2024 · Packaging Dive packaging waste data 2024 · Future Market Insights molded pulp tableware report 2025 · Grand View Research outdoor fire market 2025 · Consumer Reports PFAS food packaging study · Food Packaging Forum PFAS studies · National Gardening Association 2025 · NPD Group toy market 2025 · IDC 3D printing household data 2025 · MIT Media Lab cardboard composite filament proof-of-concept 2024 · University of Minnesota Extension cardboard growing medium research · IBISWorld home organization market · Google Trends soil blocking data 2025–2026
+    <br><br>
+    Innovation Workshop Run 7 · April 29, 2026 · Claudine + Musashi San · brady-os · mception.ai
+  </div>
+</div>
+
+</body>
+</html>
