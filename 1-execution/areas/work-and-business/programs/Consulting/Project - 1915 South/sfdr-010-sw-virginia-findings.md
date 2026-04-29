@@ -1,5 +1,13 @@
 # SFDR-010 — Southwest Virginia Ashley Licensee (CLOSED 2026-04-22)
 
+> **SUPERSEDED & EXPANDED 2026-04-29:** The full deep dossier on the Virginia Ashley operator universe — including AFHSVA / Bassam Zeidan, Providence Enterprises / Bob Young, Trivett's Furniture, Broad River Retail, the Corrie Teague Bobe / Danville Regional Foundation angle, criminal-record clearance check, corporate-entity map, and full approach-path analysis — lives at:
+>
+> - **Markdown:** [`research/virginia-furniture-targets-deep-dossier-2026-04-29.md`](research/virginia-furniture-targets-deep-dossier-2026-04-29.md)
+> - **PDF (clean, no 1915 branding, suitable for outbound):** [`virginia-furniture-targets-deep-dossier-2026-04-29.pdf`](virginia-furniture-targets-deep-dossier-2026-04-29.pdf)
+> - **Notion Research Library row:** [Virginia Ashley Operators — Deep Target Dossier (2026-04-29)](https://app.notion.com/p/351ed43b89c581d78348d7087b728255)
+>
+> Treat the section below as the original quick-find. Use the dossier above for any current question.
+
 ## The answer
 
 **Ashley HomeStores of Southwest VA** ("AFHSVA")

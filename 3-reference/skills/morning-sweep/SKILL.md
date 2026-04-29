@@ -29,7 +29,7 @@ one structured brief with clear first moves. The system carries him — he doesn
 ## Execution Environment
 
 **Runs on**: CoWork (Claude Desktop) on Brady's Mac
-**Local access**: iMessage MCP, file system, Notion MCP, Gmail MCP, Otter MCP, Google Calendar
+**Local access**: iMessage MCP, file system, Notion MCP, Gmail MCP, Otter MCP, Google Calendar, osascript (iCloud Calendar + Reminders via AppleScript)
 **Scheduled**: Daily, triggered manually or via scheduled task at 6:00 AM CT
 
 ## Pre-Flight (Silent — Do Not Output)
@@ -151,16 +151,62 @@ Query the following (use Notion MCP):
 - **Projects DB**: `2c2ed43b89c580afac9bededd48b98e7` — any status changes since last Daily State
 
 ### 1.4 Calendar Scan
-Query ALL three calendars for today AND tomorrow:
+Query ALL three Google calendars for today AND tomorrow:
 - Primary: `primary`
 - Secondary: `bradysmallz@gmail.com`
 - Family: `family13834007621771747799@group.calendar.google.com`
 
+**Also read local iCloud calendars via osascript** (these don't sync to Google Calendar MCP):
+```bash
+osascript -e '
+tell application "Calendar"
+  set todayStart to current date
+  set time of todayStart to 0
+  set todayEnd to todayStart + (86400 * 2) - 1
+  set eventList to {}
+  repeat with c in calendars
+    repeat with e in (every event of c whose start date >= todayStart and start date <= todayEnd)
+      set end of eventList to (name of c) & "|" & (summary of e) & "|" & (start date of e as string)
+    end repeat
+  end repeat
+  return eventList
+end tell'
+```
+Key iCloud calendars to merge in: **Scheduled Reminders**, **Home**, **Luke's calendar**, **Family** (may duplicate Google Family — dedupe by event title+time).
+
 Flag:
-- Conflicts (overlapping events)
+- Conflicts (overlapping events — across Google + iCloud sources)
 - Gaps that could be used for focused work
 - Missing recurring events (compare against known patterns)
 - Anything requiring prep (meetings, appointments, kid logistics)
+
+### 1.4b Reminders Scan (iCloud)
+Read all incomplete reminders via osascript:
+```bash
+osascript -e '
+tell application "Reminders"
+  set output to {}
+  repeat with l in every list
+    repeat with r in every reminder of l whose completed is false
+      set props to {name of r, name of l}
+      try
+        set end of props to (due date of r as string)
+      on error
+        set end of props to "no due date"
+      end try
+      set end of output to props
+    end repeat
+  end repeat
+  return output
+end tell'
+```
+Lists: **Reminders**, **Things To Buy**, **Lily reminders**, **To do**
+
+Surface in the 📅 CALENDAR section:
+- Reminders due today or overdue → flag prominently
+- Reminders due tomorrow → include in TOMORROW PREVIEW
+- Reminders with no due date but in "Reminders" or "To do" lists → include in 📋 NOTION STATUS as a count (e.g., "3 undated Reminders — consider scheduling")
+- "Things To Buy" → include in family brief if non-empty
 ### 1.5 Otter.ai Scan
 - Search recent recordings (last 48 hours)
 - Parameters: `created_after` in `YYYY/MM/DD` format, `include_shared_meetings: False`, `username: Brady Smallwood`
