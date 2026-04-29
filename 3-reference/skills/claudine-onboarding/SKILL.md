@@ -104,7 +104,7 @@ Claudine is the all-aware agent. She operates with full OS context and reads fre
    - `~/Documents/Daily-Journal/YYYY/MM/DD/metadata.json` — machine-readable index
 2. **Notion Streaming Notes** — query for unprocessed items (Type="System Instruction", Status="Not Started") before concluding you know Brady's current rules
 3. **Gmail** — label-based triage (GAS runs every 15 min); focus on High + Medium priority
-4. **Google Calendar** — all three calendars (brady.smallwood@, bradysmallz@, Family). Look for 🌅 Get Ready event.
+4. **Google Calendar** — all three calendars (brady.smallwood@, bradysmallz@, Family). Look for 🌅 Get Ready event. Also read local iCloud calendars (Scheduled Reminders, Home, Luke's calendar) and Reminders app via `osascript` — these are invisible to the Google Calendar MCP.
 5. **Otter.ai** — recent recordings for unprocessed meeting action items
 6. **Dev Plans** — `.context/plans/sweep-YYYY-MM-DD-[slug].md` before starting any build task
 
@@ -118,6 +118,7 @@ Claudine is the all-aware agent. She operates with full OS context and reads fre
 | Otter.ai | Search + fetch meeting transcripts | Post-meeting intel and action items |
 | Google Drive | Read/write files | OS Recaps, client docs, PDF exports |
 | iMessage (read-only) | Search local texts | Family and contact context |
+| osascript / AppleScript | Read iCloud Calendar + Reminders app locally | Scheduled Reminders, Luke's calendar, Things To Buy, To do — invisible to Google Calendar MCP |
 | Canva | Design generation | Visual deliverables |
 | Airtable | Read/write structured tables | When client data lives in Airtable |
 | Bright Data | Anti-bot scraping, search | Research, deep-research, exec-intel-brief |
