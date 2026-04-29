@@ -9,4 +9,4 @@ export interface ExtractedData {
   flexibility?: 'locked' | 'flexible'
 }
 
-export type PanelView = 'calculator' | 'companies' | 'checklist' | 'tipping' | 'storage' | 'vehicles'
+export type PanelView = 'orlando' | 'calculator' | 'companies' | 'checklist' | 'tipping' | 'storage' | 'vehicles'

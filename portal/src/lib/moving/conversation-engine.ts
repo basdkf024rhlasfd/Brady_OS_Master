@@ -1,5 +1,10 @@
 import Anthropic from '@anthropic-ai/sdk'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 import { calculateEstimate, NATIONAL_COMPANIES, SEASONAL_MULTIPLIERS } from './national-data'
+import { isOrlandoMetro } from './orlando-detector'
+import { loadKBFiles } from '@/lib/chat/kb-loader'
+import { getChatConfig } from '@/lib/chat/chat-config'
 
 const client = new Anthropic()
 
@@ -240,6 +245,28 @@ export async function processMessage(
     dataContext += panelUpdateContext
   }
 
+  // ============ ORLANDO MODE ============
+  // When destination is Orlando metro, layer in KB content + Orlando-specific system prompt addendum
+  let orlandoAddendum = ''
+  const destinationForDetection = ed.destinationCity || (panelState?.destinationCity ?? '')
+  const isOrlando = isOrlandoMetro(destinationForDetection)
+  if (isOrlando) {
+    try {
+      const promptPath = join(process.cwd(), 'src/lib/chat/project-prompts/moving-orlando.md')
+      const orlandoPrompt = readFileSync(promptPath, 'utf-8')
+      const kbConfig = getChatConfig('moving-orlando').kb
+      const kbContent = kbConfig?.enabled
+        ? loadKBFiles(userMessage, kbConfig, knownParts.join(' '))
+        : ''
+      orlandoAddendum = `\n\n=== ORLANDO MODE ===\n${orlandoPrompt}`
+      if (kbContent) {
+        orlandoAddendum += `\n\n=== KNOWLEDGE_BASE (Orlando RE — verified Feb 2026) ===\n${kbContent}\n=== END KNOWLEDGE_BASE ===`
+      }
+    } catch (err) {
+      console.warn('[ORLANDO_MODE] Failed to load Orlando prompt or KB:', err)
+    }
+  }
+
   // Add formula-based estimate context if we have route info
   if (origin && destination) {
     const est = calculateEstimate({
@@ -262,7 +289,7 @@ export async function processMessage(
   const conversationHistory = buildMessages(session.messages, session.runningSummary)
 
   try {
-    const fullSystemPrompt = SYSTEM_PROMPT + dataContext
+    const fullSystemPrompt = SYSTEM_PROMPT + dataContext + orlandoAddendum
     const turnNumber = Math.ceil(session.messages.length / 2)
     const startTime = Date.now()
 
@@ -418,7 +445,7 @@ export async function processMessage(
 
     sessions.set(sessionId, session)
 
-    const validPanelViews = ['calculator', 'companies', 'checklist', 'tipping', 'storage', 'vehicles']
+    const validPanelViews = ['orlando', 'calculator', 'companies', 'checklist', 'tipping', 'storage', 'vehicles']
     const panelView = validPanelViews.includes(parsed.panelView) ? parsed.panelView : undefined
 
     return {
