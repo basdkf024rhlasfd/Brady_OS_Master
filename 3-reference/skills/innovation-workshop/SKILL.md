@@ -304,11 +304,26 @@ multi-shot treatments for truly buyer-ready CPG runs.
 **Image Embedding Protocol:**
 1. Save downloaded MJ PNGs to `images-<project-slug>/` with
    `<id>-<slug>-hero.png` naming so render.py picks them up automatically.
-2. The renderer floats the hero image left at 280px with text wrapping to the
+2. The renderer floats the hero image left at 420px with text wrapping to the
    right — do NOT use a 60/40 stacked layout unless doing a buyer-ready
    multi-shot page.
-3. CSS for images: `object-fit: contain` (NOT `cover`) so the full image
-   displays without cropping. No max-height constraint.
+3. CSS for images: use `width: 420px; height: auto; display: block` so the
+   image renders at its natural aspect ratio. Do NOT force a square box with
+   `width:280px; height:280px; object-fit:contain` — for panoramic MJ outputs
+   (1680×720) that produces a tiny strip in the PDF that looks like a missing
+   image. Verified 2026-04-29: square box → image bbox of only 210×90 pts
+   (≈3×1.25") on a Tabloid page; auto height → 315×135 pts and fully visible.
+   Also write the canonical CDN URL (`https://cdn.midjourney.com/<jobId>/0_2_2048_N.webp`)
+   to the Notion `Image URL` field on each idea page so the live mception
+   viewer renders the same hero. The viewer reads from Notion live; the
+   HTML/PDF reads from local files.
+
+**Mandatory image UAT (do NOT skip):**
+After the HTML/PDF/live-page work is done, run the `mception-uat` skill on
+each surface that should show images. The run is NOT complete until every
+hero image is visually verified in Chrome MCP. File size + git commit +
+"download succeeded" are not proof of visible images. See
+`0-agents/custom-built-agents/musashi-uat-SKILL.md`.
 
 **Handoff to Canva for polish (optional per idea):**
 When the MJ hero has a text or branding requirement MJ couldn't hit (e.g.,
@@ -411,7 +426,7 @@ the image from consuming a full page by itself.
 - Text (pitch, RTBs, etc.) wraps to the right and below
 - Clear the float after `.product-body` so panels below render correctly
 - CSS: `.product-image-block { float: left; margin: 0 24px 16px 0; }`
-- CSS: `.product-image-block img { width: 280px; height: 280px; object-fit: contain; }`
+- CSS: `.product-image-block img { width: 420px; height: auto; display: block; }` (panoramic MJ output: square box clips to a thin strip in PDF; let height auto-size)
 
 **Font Hierarchy — CRITICAL:**
 Maintain clear visual hierarchy between content levels:
