@@ -78,6 +78,21 @@ Calendar, and Notion consulting pipeline.
 | Consulting rate card | `references/consulting-rate-card.md` | No — consulting sections skipped if absent |
 | Insurance claims tracker | `references/insurance-claims.md` | No — surfaces open UHC/Aflac claims when present |
 | **Aflac coverage details** | `references/aflac-coverage.md` | **Authoritative answer source for Aflac/medical Qs. Full Accident High + Critical Illness $40K benefit schedules. Cert # CER0002539005. Source PDFs in `references/insurance-docs/aflac/`.** |
+| **Rolling KPIs** | `references/kpi-rolling.md` | **Append-only Finn KPI tracker. K1 = % Food Subscription L30D (goal: ↑). Updated every `weekly-summary` run. Surface latest reading + delta in weekly-sweep block.** |
+
+## Rolling KPI Pattern
+
+On every `weekly-summary` run, Finn must:
+
+1. Read `references/kpi-rolling.md`.
+2. For each KPI in the catalog, compute the latest reading from the most recent `monarch-YYYY-MM-DD.csv` and any other declared sources.
+3. **Append** a new row to the Readings table — never overwrite prior rows.
+4. Surface in the weekly-sweep block: "K1 % Food Subscription L30D: NN% (↑/↓/= vs last week)."
+5. If a KPI slips two consecutive reads or drops >10pp in one read, surface as a flag in the weekly block, not just a number.
+
+K1 (`% Food Subscription L30D`) is the inaugural metric. Methodology is documented in the file itself — Finn does not invent new methodology mid-stream. If the formula needs to change, retire the current K-number and start a new one with a fresh Readings table.
+
+---
 
 ## Insurance / Medical Q&A Pattern
 
