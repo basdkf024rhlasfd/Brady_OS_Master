@@ -194,14 +194,14 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 | Chobani Flip Peanut Butter S'mores, 4.5 oz | every 2 wks | $1.58 |
 | GV All-Purpose Flour, 5 lb | every 4 wks | $2.38 |
 | Chobani Flip Key Lime Crumble, 4.5 oz | every 4 wks | $1.58 |
-| Fresh Banana, each | weekly | $0.20 |
+| Fresh Banana, each (qty 8) | weekly | $0.20 ea (~$1.40/wk weight-adj) |
 | Fresh Strawberries, 1 lb | weekly | $2.48 |
 | GV Sweet Cream Salted Butter, 16 oz | weekly | $3.06 |
 | GV 1% Chocolate Milk, ½ gal | weekly | $2.10 |
 | GV Disposable Paper Bowls, 50 ct | weekly | $4.97 |
 | GV Paper Plates 10", 50 ct | weekly | $5.16 |
 | GV 2% Milk, ½ gal | weekly | $1.94 |
-| Monster Energy Zero Ultra, 4-pk | weekly | $7.98 |
+| Monster Energy Zero Ultra, 4-pk (qty 2) | weekly | $7.98 ea = $15.96/wk |
 | Dawn Ultra Dish Soap, 18 fl oz | every 4 wks | $2.94 |
 | Freshness Guaranteed Garlic Bread, 16 oz | every 4 wks | $2.46 |
 | Glad ForceFlex Trash Bags 13 gal, 120 ct | every 4 wks | $20.58 |
@@ -225,7 +225,7 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 | Marketside Gluten-Free Hummus, 10 oz | every 2 wks | $2.72 |
 | GV Sourdough Bread, 24 oz | every 2 wks | $2.74 |
 | Thomas' Sourdough English Muffins, 6 ct | every 2 wks | $3.77 |
-| Fresh Hass Avocados, each | every 2 wks | $0.60 |
+| Fresh Hass Avocados, each (qty 2) | every 2 wks | $0.60 ea = $1.20/delivery |
 | Slicing Tomato, Bulk | every 2 wks | $1.42 |
 | Petite Romaine Lettuce, 2 ct | every 2 wks | $2.27 |
 | GV White Corn Tortilla Chips, 13 oz | every 2 wks | $2.17 |
@@ -285,6 +285,24 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 | Herdez Carnitas, 15 oz | Jun 9 | every 6 wks | $8.48 |
 | GV 75 sq ft Aluminum Foil | Jun 16 | every 2 mo | $4.72 |
 | Equate One Daily Men's Multivitamin, 200 ct | Aug 4 | every 6 mo | $9.82 |
+
+---
+
+## SUBSCRIPTION QUANTITY NOTES
+
+The Walmart subscription table only shows **unit price**, not configured quantity. Quantities below were inferred from the Apr 28 delivery line items:
+
+| Item | Configured qty | Source of inference |
+|------|---------------|---------------------|
+| Fresh Banana, each | **8/week** (3.3 lb weight-adjusted) | Apr 28 delivery: "Fresh Bananas (qty 8) — $1.12" |
+| Fresh Hass Avocados, each | **2/every 2 wks** | Apr 28 delivery: "Fresh Hass Avocados (qty 2) — $1.20" |
+| Monster Energy Zero Ultra 4-pk | **2/week** | Apr 28 delivery: "Monster Energy 4-pk (qty 2) — $15.96" |
+
+All other subscription items presumed qty 1 unless future delivery data reveals otherwise. Items not yet validated (no Apr 28 delivery data):
+- Russet Baking Potato, each (every 6 wks) — qty unknown, possibly multiple
+- Slicing Tomato, Bulk (every 2 wks) — weight-priced, qty unknown
+
+**Verify in Walmart UI on next scrape.** Subscription qty page is at My Items > Subscriptions > [item] > Quantity.
 
 ---
 

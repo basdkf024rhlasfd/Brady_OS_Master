@@ -19,23 +19,30 @@ Brady manages an **84-item** Walmart+ subscription system covering most househol
 
 ---
 
-## Cost Estimate (updated Apr 30)
+## Cost Estimate (updated Apr 30 — corrected for implicit qty)
 
-Monthly run rate based on frequency × price:
+Monthly run rate based on frequency × price × **configured quantity**:
 
 | Cadence | Items | Approx Monthly Cost |
 |---------|-------|---------------------|
-| Weekly | 10 items (bananas, berries, butter, milk ×2, paper goods ×2, chicken, mild cheddar, Monster Energy) | ~$173 |
-| Every 2 weeks | ~22 items (cheese ×3, tortillas, buns ×2, eggs, bread, produce, canned goods, chips ×3, rice ×3, croutons, oatmeal, yogurt ×2, peanuts, hummus) | ~$118 |
-| Every 3 weeks | ~11 items (ice cream, pretzels, broccoli, hot dog buns, apple juice, PB crunchy, club crackers, cooking spray, bacon bits, stevia, yogurt) | ~$82 |
-| Every 4 weeks | ~14 items (Larabar, mac & cheese, pasta, hot dogs, trash bags 120ct, melatonin, dishwasher pods, birria tacos, ketchup, salsa, PB large, bisque, flour, garlic bread) | ~$100 |
-| Less frequent | 9 items (fiber supplement, tissues, carnitas, foil, multivitamin, soy sauce, dairy drink, ranch, cleaner) | ~$20 |
-| **Total est.** | | **~$493/mo on subscriptions** |
+| Weekly | 10 items — incl. **Bananas qty 8** ($6.93/mo) and **Monster Energy qty 2** ($69/mo) | ~$212 |
+| Every 2 weeks | ~22 items — incl. **Avocados qty 2** ($2.60/mo) | ~$135 |
+| Every 3 weeks | ~11 items | ~$67 |
+| Every 4 weeks | ~14 items (Glad 120ct $20.58, Larabar $18.94, Cascade $9.94, hot dogs $10.48) | ~$125 |
+| Every 6 weeks | 6 items (chunk chicken, ranch, potato, curry, lime juice, carnitas) | ~$18 |
+| Every 2 months | 5 items (fiber, tissues, foil, soy sauce, dairy drink, cleaner) | ~$17 |
+| Every 6 months | 1 item (multivitamin) | ~$2 |
+| **Total est.** | | **~$567/mo on subscriptions** |
 
-Ad hoc orders add $50–200/month depending on weekend events, care packages, etc.
-**Combined Walmart+ grocery spend estimate: $543–693/month.**
+**Important:** The corrected number reflects three subscription items that ship at qty > 1 (revealed by Apr 28 delivery, not by the subscription unit-price column):
+- Fresh Banana × 8/week → $6.93/mo (was estimated $0.87)
+- Fresh Hass Avocados × 2/every 2 wks → $2.60/mo (was $1.30)
+- Monster Energy 4-pk × 2/week → **$69.13/mo** (was $34.55) — this is the biggest correction
 
-Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = ~13–18% of that bucket.
+Ad hoc orders add $150–200/month based on this week's pattern (Apr 24 delivery $96 + Karissa's NM run $44 + small grabs).
+**Combined Walmart+ grocery spend estimate: $715–765/month.**
+
+Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = ~14.5% of bucket. Combined Walmart spend = ~18–20%.
 
 ---
 
@@ -171,6 +178,7 @@ Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = 
 - **Card ending in 2021 at Walmart** = Karissa's Walmart Visa. Her in-store grocery purchases; tracked separately.
 - **"Walmart Balance" payment method** = Karissa's account balance used in-store.
 - **Subscription change emails addressed to Karissa** = routine management. Do not surface.
-- **Monster Energy ×2 in one week** = both subscription delivery AND a prior ad hoc order. Not a double-billing error.
+- **Monster Energy ×2 in one week** = subscription is configured at qty 2 (not 1). $15.96/week is normal, not anomalous.
+- **Subscription qty > 1 items** (banana × 8, avocados × 2, Monster Energy × 2) — Walmart's subscription table only shows unit price; verify qty in My Items > Subscriptions > [item] > Quantity if uncertain.
 - **Full historical order record** in `data/walmart-scrape-2026-04-30.md`.
 - **Prior scrape** (73-item baseline): `data/walmart-scrape-2026-04-24.md`.
