@@ -576,7 +576,7 @@ export default function LiveEstimatePanel({ extractedData, estimate, onDataChang
   )
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-[500px]">
+    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
       {/* Estimate display at top */}
       <div className="bg-slate-800 text-white p-5">
         {estimate ? (

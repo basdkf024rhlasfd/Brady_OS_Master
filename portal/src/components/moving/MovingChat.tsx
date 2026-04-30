@@ -275,20 +275,25 @@ export default function MovingChat() {
         </div>
 
         {/* Estimate Panel - 2 cols */}
-        <div className="lg:col-span-2">
+        <div
+          className="lg:col-span-2 flex flex-col gap-3"
+          style={{ height: 'calc(100vh - 200px)', minHeight: '500px' }}
+        >
           {isOrlando && <ThurmanCard onConnect={() => setThurmanFormOpen(true)} />}
-          <LiveEstimatePanel
-            extractedData={extractedData}
-            estimate={estimate}
-            panelView={panelView}
-            isOrlando={isOrlando}
-            onDataChange={(update) => {
-              setExtractedData(prev => ({ ...prev, ...update }))
-              pendingPanelChanges.current = { ...pendingPanelChanges.current, ...update }
-            }}
-            onSendToChat={handleSendToChat}
-            lastAIMessage={lastAIMessage}
-          />
+          <div className="flex-1 min-h-0">
+            <LiveEstimatePanel
+              extractedData={extractedData}
+              estimate={estimate}
+              panelView={panelView}
+              isOrlando={isOrlando}
+              onDataChange={(update) => {
+                setExtractedData(prev => ({ ...prev, ...update }))
+                pendingPanelChanges.current = { ...pendingPanelChanges.current, ...update }
+              }}
+              onSendToChat={handleSendToChat}
+              lastAIMessage={lastAIMessage}
+            />
+          </div>
         </div>
       </div>
 
