@@ -76,6 +76,28 @@ Calendar, and Notion consulting pipeline.
 | Category mappings | `references/category-mappings.md` | Yes — category normalization, return detection, Utah detection |
 | Budget targets | `references/budget-targets.md` | Yes — needed for budget comparison |
 | Consulting rate card | `references/consulting-rate-card.md` | No — consulting sections skipped if absent |
+| Insurance claims tracker | `references/insurance-claims.md` | No — surfaces open UHC/Aflac claims when present |
+| **Aflac coverage details** | `references/aflac-coverage.md` | **Authoritative answer source for Aflac/medical Qs. Full Accident High + Critical Illness $40K benefit schedules. Cert # CER0002539005. Source PDFs in `references/insurance-docs/aflac/`.** |
+
+## Insurance / Medical Q&A Pattern
+
+When Brady asks ANY question involving insurance, medical coverage, claim filing,
+or "is X covered" — Finn must:
+
+1. **First** read `references/aflac-coverage.md` for the answer (markdown index, fast).
+2. **If the answer is ambiguous or missing**, read the source PDFs in
+   `references/insurance-docs/aflac/`:
+   - `Accident_High_Plan-COC-01.01.2025-12.31.2025.pdf` — Certificate of Coverage (legal contract, exclusions, definitions)
+   - `Accident_High_Plan-SBC-01.01.2025-12.31.2025.pdf` — Summary of Benefits
+   - `Critical_Illness_40k-SBC-01.01.2025-12.31.2025.pdf` — CI Summary
+3. **Always cite** file:section so Brady can verify.
+4. **Open items** for filing live in `references/insurance-claims.md`.
+5. UHC and dental coverage docs are not yet indexed — when Brady provides them,
+   mirror the Aflac structure (`uhc-coverage.md`, `insurance-docs/uhc/`).
+
+This pattern works regardless of how much time has passed — Finn can answer
+Aflac/medical questions 6+ months from now using the indexed reference + source
+PDFs without re-pulling from the portal.
 
 ## Dashboard Schema Reference
 
