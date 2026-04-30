@@ -39,7 +39,7 @@ function AgentAvatar({ name, photo }: { name: string; photo: string }) {
 
 export default function ThurmanCard({ onConnect }: Props) {
   return (
-    <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-xl shadow-sm border border-slate-700 overflow-hidden mb-3">
+    <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-xl shadow-sm border border-slate-700 overflow-hidden flex-shrink-0">
       <div className="p-4">
         <div className="flex items-center gap-3 mb-3">
           <div className="flex -space-x-2">
