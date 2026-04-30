@@ -11,7 +11,24 @@ Read by `weekly-summary` and surfaced in the weekly-sweep block. Updated each we
 
 **Definition:** Percentage of Brady's total **Arkansas Walmart spend** in the last 30 calendar days that flowed through the **Tuesday Walmart+ subscription delivery system**.
 
-**Goal direction:** **UP** ↑ — Brady wants more household food spend on auto-pilot (planned, recurring, delivery-fee-free) and less ad hoc / in-store impulse spend.
+**Goal direction:** **UP** ↑ (confirmed by Brady 2026-04-30). Push as high as possible, accepting natural seasonal dips.
+
+**Why it matters — Brady's hypothesis:**
+A higher subscription % is hypothesized to correlate with:
+1. **Lower total Walmart/food spend** — auto-pilot purchases are planned, fewer impulse-driven trips, no rush-delivery fees.
+2. **Higher nutritional value** — subscriptions are pre-decided staples (produce, eggs, milk, lean protein) rather than reactive cravings (Ben & Jerry's, Little Debbie, etc. as ad hoc adds).
+3. **More family time** — fewer in-store grocery runs (each Bentonville Supercenter or Neighborhood Market trip is ~30–60 min of Brady's or Karissa's time).
+
+This hypothesis is currently **untested** — companion KPIs (candidates K2–K5 below) will be promoted over time to validate or falsify it. The point of K1 isn't to prove the hypothesis; it's to make the lever visible so Brady can act on it and watch what else moves.
+
+**Seasonality caveat:**
+Expect natural dips during:
+- **Holidays / hosting weeks** (Thanksgiving, Christmas, July 4th, Easter) — large ad hoc shops shift the denominator
+- **Birthday party weeks** (5 kids, several per year)
+- **Travel weeks** when household consumption pauses but in-store stops continue
+- **Sleepover / care package weeks** (rush deliveries with one-off items)
+
+Read trend over **rolling 4-week / 8-week windows**, not single readings.
 
 **Formula:**
 ```
@@ -38,9 +55,9 @@ Read by `weekly-summary` and surfaced in the weekly-sweep block. Updated each we
 
 ## Readings
 
-| Read date | L30D window | Total AR Walmart | Subscription $ | % Sub | # Tue deliveries identified | Notes |
-|-----------|-------------|------------------|----------------|-------|----------------------------|-------|
-| 2026-04-30 | Apr 1–30 | $2,498 | ~$985 (est.) | **~39%** | 3 confirmed (Apr 7 $246, Apr 21 $191, Apr 28 $303) + 1 estimated Apr 14 (~$245) | Inaugural reading. Apr 14 cluster ambiguous — re-verify on next run. |
+| Read date | Window | Total AR Walmart | Subscription $ | % Sub | # Tue deliveries identified | Notes |
+|-----------|--------|------------------|----------------|-------|----------------------------|-------|
+| 2026-04-30 | **L14D proxy** (Apr 16–29) | $987 | $494 | **50.1%** | 2 confirmed: Apr 21 $191, Apr 28 $303 | **Inaugural baseline.** Used L14D instead of L30D because the Apr 14 Tuesday delivery in the L30D window is ambiguous from charge-data alone. From the next read forward, methodology returns to standard L30D. |
 
 ---
 
@@ -71,12 +88,22 @@ Read by `weekly-summary` and surfaced in the weekly-sweep block. Updated each we
 
 ## Future KPIs (placeholder — add when needed)
 
-Candidates Brady can promote into K2+ when ready:
+Candidates organized by which leg of Brady's K1 hypothesis they validate:
 
-- **K2 — Subscription items only %:** Pure subscription items / total AR Walmart. Excludes ad hoc Tuesday add-ons.
-- **K3 — Walmart $/wk run rate L30D:** trailing 4-week average AR Walmart spend.
-- **K4 — Food & consumables % of $3,900 budget:** Walmart + DoorDash + restaurants / $3,900.
-- **K5 — Ad hoc grocery count L30D:** number of non-subscription Walmart trips. Lower = more disciplined.
+**Validates "lower total spend":**
+- **K2 — Walmart $/wk run rate L30D:** trailing 4-week average AR Walmart spend. If K1 ↑ and K2 ↓ together, hypothesis leg 1 confirmed.
+- **K3 — Food & consumables % of $3,900 budget:** Walmart + DoorDash + restaurants / $3,900. Captures total food bucket, not just Walmart.
+- **K4 — Ad hoc grocery trip count L30D:** number of non-subscription Walmart trips. Lower = more disciplined.
+
+**Validates "higher nutritional value":**
+- **K5 — Subscription nutritional ratio:** $ spent on produce + protein + dairy + grains / total subscription $. Anchors against meal-preferences KB.
+- **K6 — Ad hoc junk-food $:** ad hoc spend on snacks/desserts/candy/ice cream as % of ad hoc total. Lower = better.
+
+**Validates "more family time":**
+- **K7 — Brady/Karissa in-store hours L30D:** estimated time in Walmart stores (count of in-store transactions × 45-min average). Lower = better.
+- **K8 — Rush delivery count L30D:** $5+ delivery-fee orders. These signal "we ran out of X and need it now" — operational misses that the subscription was supposed to prevent.
+
+Promote K2 first when there's enough data (≥6 K1 readings — about 6 weeks). Don't add 8 KPIs upfront; let K1 drive the question and add companions as they earn their seat.
 
 ---
 
