@@ -187,13 +187,13 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 | GV Queso Quesadilla Shredded Cheese, 16 oz | every 2 wks | $3.48 |
 | GV Hot Dog Buns, White, 8 ct | every 2 wks | $1.48 |
 | Wonder Bread Hamburger Buns, 8 ct | every 2 wks | $2.50 |
-| GV Soft Taco Flour Tortillas, 10 ct | every 2 wks | $1.98 |
+| GV Soft Taco Flour Tortillas, 10 ct (qty 2) | every 2 wks | $1.98 ea = $3.96/delivery |
 | GV Roasted & Salted Cocktail Peanuts, 16 oz | every 2 wks | $2.58 |
 | Better Oats Maple & Brown Sugar Steel Cut, 15.1 oz | every 2 wks | $3.78 |
-| Chobani Flip Cookies and Cream, 4.5 oz | every 2 wks | $1.58 |
-| Chobani Flip Peanut Butter S'mores, 4.5 oz | every 2 wks | $1.58 |
+| Chobani Flip Cookies and Cream, 4.5 oz (qty 3) | every 2 wks | $1.58 ea = $4.74/delivery |
+| Chobani Flip Peanut Butter S'mores, 4.5 oz (qty 3) | every 2 wks | $1.58 ea = $4.74/delivery |
 | GV All-Purpose Flour, 5 lb | every 4 wks | $2.38 |
-| Chobani Flip Key Lime Crumble, 4.5 oz | every 4 wks | $1.58 |
+| Chobani Flip Key Lime Crumble, 4.5 oz (qty 2) | every 4 wks | $1.58 ea = $3.16/delivery |
 | Fresh Banana, each (qty 8) | weekly | $0.20 ea (~$1.40/wk weight-adj) |
 | Fresh Strawberries, 1 lb | weekly | $2.48 |
 | GV Sweet Cream Salted Butter, 16 oz | weekly | $3.06 |
@@ -221,7 +221,7 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 | Equate Multi-Health Daily Fiber Powder, 48.2 oz | every 2 mo | $15.88 |
 | GV Less Sodium Soy Sauce, 15 fl oz | every 2 mo | $1.68 |
 | Larabar Chocolate Lovers Variety, 18 ct | every 4 wks | $18.94 |
-| Pillsbury Bacon Toaster Scrambles, 8 ct | every 2 wks | $5.72 |
+| Pillsbury Bacon Toaster Scrambles, 8 ct (qty 2) | every 2 wks | $5.72 ea = $11.44/delivery |
 | Marketside Gluten-Free Hummus, 10 oz | every 2 wks | $2.72 |
 | GV Sourdough Bread, 24 oz | every 2 wks | $2.74 |
 | Thomas' Sourdough English Muffins, 6 ct | every 2 wks | $3.77 |
@@ -242,7 +242,7 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 | GV Original Cooking Spray, 8 oz | every 3 wks | $2.52 |
 | GV Real Bacon Pieces, 2.5 oz | every 3 wks | $1.97 |
 | GV Liquid Stevia Sweetener, 1.68 fl oz | every 3 wks | $3.46 |
-| Chobani Flip S'mores, 4.5 oz | every 3 wks | $1.58 |
+| Chobani Flip S'mores, 4.5 oz (qty 3) | every 3 wks | $1.58 ea = $4.74/delivery |
 | GV Mild Cheddar Shredded, 8 oz | weekly | $1.97 |
 | Pillsbury Bacon & Sausage Toaster Scrambles | every 4 wks | $5.72 |
 
@@ -290,19 +290,21 @@ Out of stock: Minute Jasmine Rice Cups — substitution prompt active
 
 ## SUBSCRIPTION QUANTITY NOTES
 
-The Walmart subscription table only shows **unit price**, not configured quantity. Quantities below were inferred from the Apr 28 delivery line items:
+The Walmart subscription table only shows **unit price**, not configured quantity. The following items ship at qty > 1 (confirmed by Brady from the Walmart UI subscription panel, 2026-04-30):
 
-| Item | Configured qty | Source of inference |
-|------|---------------|---------------------|
-| Fresh Banana, each | **8/week** (3.3 lb weight-adjusted) | Apr 28 delivery: "Fresh Bananas (qty 8) — $1.12" |
-| Fresh Hass Avocados, each | **2/every 2 wks** | Apr 28 delivery: "Fresh Hass Avocados (qty 2) — $1.20" |
-| Monster Energy Zero Ultra 4-pk | **2/week** | Apr 28 delivery: "Monster Energy 4-pk (qty 2) — $15.96" |
+| Item | Qty | Frequency | Per-delivery cost |
+|------|-----|-----------|-------------------|
+| Fresh Banana, each | **8** | weekly | ~$1.40 (weight-adj) |
+| Fresh Hass Avocados, each | **2** | every 2 wks | $1.20 |
+| Monster Energy Zero Ultra 4-pk | **2** | weekly | $15.96 |
+| GV Medium Soft Taco Flour Tortillas, 10 ct | **2** | every 2 wks | $3.96 |
+| Chobani Flip Cookies and Cream, 4.5 oz | **3** | every 2 wks | $4.74 |
+| Chobani Flip Peanut Butter S'mores, 4.5 oz | **3** | every 2 wks | $4.74 |
+| Chobani Flip Key Lime Crumble, 4.5 oz | **2** | every 4 wks | $3.16 |
+| Pillsbury Bacon Toaster Scrambles, 8 ct | **2** | every 2 wks | $11.44 |
+| Chobani Flip S'mores, 4.5 oz | **3** | every 3 wks | $4.74 |
 
-All other subscription items presumed qty 1 unless future delivery data reveals otherwise. Items not yet validated (no Apr 28 delivery data):
-- Russet Baking Potato, each (every 6 wks) — qty unknown, possibly multiple
-- Slicing Tomato, Bulk (every 2 wks) — weight-priced, qty unknown
-
-**Verify in Walmart UI on next scrape.** Subscription qty page is at My Items > Subscriptions > [item] > Quantity.
+All other subscription items default to qty 1. Source of truth for qty going forward: ask Brady or check My Items > Subscriptions > [item] > Quantity in Walmart UI directly — the printable subscription list does not surface this column.
 
 ---
 

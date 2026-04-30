@@ -19,30 +19,44 @@ Brady manages an **84-item** Walmart+ subscription system covering most househol
 
 ---
 
-## Cost Estimate (updated Apr 30 — corrected for implicit qty)
+## Cost Estimate (updated Apr 30 — final, with confirmed qty)
 
-Monthly run rate based on frequency × price × **configured quantity**:
+Monthly run rate, frequency × price × **configured quantity**:
+
+### Items shipping at qty > 1 (confirmed)
+
+| Item | Qty | Cadence | Monthly cost |
+|------|-----|---------|--------------|
+| Fresh Banana, each | 8 | weekly | $6.93 |
+| Monster Energy Zero Ultra 4-pk | 2 | weekly | $69.13 |
+| Fresh Hass Avocados, each | 2 | every 2 wks | $2.60 |
+| GV Soft Taco Tortillas | 2 | every 2 wks | $8.59 |
+| Chobani Flip Cookies & Cream | 3 | every 2 wks | $10.28 |
+| Chobani Flip PB S'mores | 3 | every 2 wks | $10.28 |
+| Pillsbury Bacon Toaster Scrambles | 2 | every 2 wks | $24.83 |
+| Chobani Flip S'mores | 3 | every 3 wks | $6.84 |
+| Chobani Flip Key Lime Crumble | 2 | every 4 wks | $3.42 |
+| **Multi-unit subtotal** | | | **$142.90** |
+
+### All-in monthly by cadence
 
 | Cadence | Items | Approx Monthly Cost |
 |---------|-------|---------------------|
-| Weekly | 10 items — incl. **Bananas qty 8** ($6.93/mo) and **Monster Energy qty 2** ($69/mo) | ~$212 |
-| Every 2 weeks | ~22 items — incl. **Avocados qty 2** ($2.60/mo) | ~$135 |
-| Every 3 weeks | ~11 items | ~$67 |
-| Every 4 weeks | ~14 items (Glad 120ct $20.58, Larabar $18.94, Cascade $9.94, hot dogs $10.48) | ~$125 |
-| Every 6 weeks | 6 items (chunk chicken, ranch, potato, curry, lime juice, carnitas) | ~$18 |
-| Every 2 months | 5 items (fiber, tissues, foil, soy sauce, dairy drink, cleaner) | ~$17 |
-| Every 6 months | 1 item (multivitamin) | ~$2 |
-| **Total est.** | | **~$567/mo on subscriptions** |
+| Weekly | 10 items (incl. Bananas ×8, Monster ×2) | ~$212 |
+| Every 2 weeks | ~22 items (incl. tortillas ×2, Chobani C&C ×3, Chobani PB S'mores ×3, scrambles ×2, avocados ×2) | ~$172 |
+| Every 3 weeks | ~11 items (incl. Chobani S'mores ×3) | ~$72 |
+| Every 4 weeks | ~14 items (incl. Chobani Key Lime ×2) | ~$127 |
+| Every 6 weeks | 6 items | ~$18 |
+| Every 2 months | 5 items | ~$17 |
+| Every 6 months | 1 item | ~$2 |
+| **Total est.** | | **~$620/mo on subscriptions** |
 
-**Important:** The corrected number reflects three subscription items that ship at qty > 1 (revealed by Apr 28 delivery, not by the subscription unit-price column):
-- Fresh Banana × 8/week → $6.93/mo (was estimated $0.87)
-- Fresh Hass Avocados × 2/every 2 wks → $2.60/mo (was $1.30)
-- Monster Energy 4-pk × 2/week → **$69.13/mo** (was $34.55) — this is the biggest correction
+The largest single subscription line is **Monster Energy at $69/mo** (qty 2/week). The next biggest are **Pillsbury Bacon Toaster Scrambles at $25/mo** (qty 2 every 2 wks) and **Glad ForceFlex 120ct trash bags at $22/mo** (every 4 wks).
 
 Ad hoc orders add $150–200/month based on this week's pattern (Apr 24 delivery $96 + Karissa's NM run $44 + small grabs).
-**Combined Walmart+ grocery spend estimate: $715–765/month.**
+**Combined Walmart+ grocery spend estimate: $770–820/month.**
 
-Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = ~14.5% of bucket. Combined Walmart spend = ~18–20%.
+Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = ~16% of bucket. Combined Walmart grocery spend = **~20–21%**.
 
 ---
 
