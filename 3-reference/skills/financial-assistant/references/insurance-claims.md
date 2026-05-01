@@ -3,7 +3,14 @@
 Consolidated log of out-of-pocket medical/wellness expenses that need insurance reimbursement.
 Finn surfaces any Open items during every financial review.
 
-Last updated: 2026-04-24
+Last updated: 2026-04-29
+
+> **Coverage details for any insurance Q lives in dedicated reference files:**
+> - **Aflac:** `aflac-coverage.md` (full benefit schedules, exclusions, claim filing). Source PDFs in `insurance-docs/aflac/`.
+> - **UHC:** _(not yet indexed — when Brady provides plan docs, mirror Aflac structure)_
+> - **Dental:** _(not yet indexed)_
+>
+> When Brady asks "is X covered?" or "how do I file?" — check the coverage file first, then the source PDF if more depth is needed.
 
 ---
 

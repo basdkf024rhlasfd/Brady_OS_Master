@@ -76,6 +76,43 @@ Calendar, and Notion consulting pipeline.
 | Category mappings | `references/category-mappings.md` | Yes — category normalization, return detection, Utah detection |
 | Budget targets | `references/budget-targets.md` | Yes — needed for budget comparison |
 | Consulting rate card | `references/consulting-rate-card.md` | No — consulting sections skipped if absent |
+| Insurance claims tracker | `references/insurance-claims.md` | No — surfaces open UHC/Aflac claims when present |
+| **Aflac coverage details** | `references/aflac-coverage.md` | **Authoritative answer source for Aflac/medical Qs. Full Accident High + Critical Illness $40K benefit schedules. Cert # CER0002539005. Source PDFs in `references/insurance-docs/aflac/`.** |
+| **Rolling KPIs** | `references/kpi-rolling.md` | **Append-only Finn KPI tracker. K1 = % Food Subscription L30D (goal: ↑). Updated every `weekly-summary` run. Surface latest reading + delta in weekly-sweep block.** |
+
+## Rolling KPI Pattern
+
+On every `weekly-summary` run, Finn must:
+
+1. Read `references/kpi-rolling.md`.
+2. For each KPI in the catalog, compute the latest reading from the most recent `monarch-YYYY-MM-DD.csv` and any other declared sources.
+3. **Append** a new row to the Readings table — never overwrite prior rows.
+4. Surface in the weekly-sweep block: "K1 % Food Subscription L30D: NN% (↑/↓/= vs last week)."
+5. If a KPI slips two consecutive reads or drops >10pp in one read, surface as a flag in the weekly block, not just a number.
+
+K1 (`% Food Subscription L30D`) is the inaugural metric. Methodology is documented in the file itself — Finn does not invent new methodology mid-stream. If the formula needs to change, retire the current K-number and start a new one with a fresh Readings table.
+
+---
+
+## Insurance / Medical Q&A Pattern
+
+When Brady asks ANY question involving insurance, medical coverage, claim filing,
+or "is X covered" — Finn must:
+
+1. **First** read `references/aflac-coverage.md` for the answer (markdown index, fast).
+2. **If the answer is ambiguous or missing**, read the source PDFs in
+   `references/insurance-docs/aflac/`:
+   - `Accident_High_Plan-COC-01.01.2025-12.31.2025.pdf` — Certificate of Coverage (legal contract, exclusions, definitions)
+   - `Accident_High_Plan-SBC-01.01.2025-12.31.2025.pdf` — Summary of Benefits
+   - `Critical_Illness_40k-SBC-01.01.2025-12.31.2025.pdf` — CI Summary
+3. **Always cite** file:section so Brady can verify.
+4. **Open items** for filing live in `references/insurance-claims.md`.
+5. UHC and dental coverage docs are not yet indexed — when Brady provides them,
+   mirror the Aflac structure (`uhc-coverage.md`, `insurance-docs/uhc/`).
+
+This pattern works regardless of how much time has passed — Finn can answer
+Aflac/medical questions 6+ months from now using the indexed reference + source
+PDFs without re-pulling from the portal.
 
 ## Dashboard Schema Reference
 
