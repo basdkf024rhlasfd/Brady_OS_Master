@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Panda Operations Innovation — Research Synthesis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --dark-blue: #1E3A5F;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-dim: #8B3A3A;
+  --green: #7CB97A;
+  --rule: rgba(255,255,255,0.08);
+  --rule-strong: rgba(255,255,255,0.14);
+  --grid-tint: rgba(212,168,67,0.03);
+}
+@page {
+  size: Letter;
+  margin: 0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 11.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-tint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-tint) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  z-index: 0;
+}
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 64px 72px 56px;
+  position: relative;
+  z-index: 1;
+}
+.cover {
+  min-height: calc(100vh - 0px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  page-break-after: always;
+}
+.cover-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.cover h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.04;
+  color: var(--white);
+  margin-top: 28px;
+}
+.cover .subhead {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+  margin-top: 18px;
+  line-height: 1.3;
+  max-width: 640px;
+}
+.cover .gold-rule {
+  height: 2px;
+  background: var(--gold-dim);
+  margin: 36px 0 28px;
+}
+.cover .meta-table {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 10px 24px;
+  font-size: 12.5px;
+  color: var(--gray-light);
+}
+.cover .meta-table dt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 3px;
+}
+.cover .meta-table dd {
+  color: var(--white);
+}
+.cover-footer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+
+/* BODY TYPOGRAPHY */
+.body h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--white);
+  line-height: 1.15;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 2px solid var(--gold-dim);
+  position: relative;
+}
+.body h1::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 24px;
+  right: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.body h1:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+.body h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.body h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.body p {
+  margin-bottom: 14px;
+  color: var(--white);
+  font-weight: 400;
+  hyphens: auto;
+  text-align: left;
+}
+.body p strong {
+  color: var(--white);
+  font-weight: 600;
+}
+.body em {
+  font-style: italic;
+  color: var(--gray-light);
+}
+.body ul, .body ol {
+  margin: 0 0 14px 0;
+  padding-left: 22px;
+}
+.body ul li, .body ol li {
+  margin-bottom: 8px;
+  color: var(--white);
+}
+.body ul li::marker {
+  color: var(--gold);
+}
+.body ol li::marker {
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+.body code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  background: var(--bg-card);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--gold);
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 36px 0;
+}
+.body blockquote {
+  border-left: 3px solid var(--gold-dim);
+  padding: 4px 18px;
+  margin: 18px 0;
+  color: var(--gray-light);
+  font-style: italic;
+}
+
+/* TABLES */
+.body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 10.5px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+}
+.body table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--bg-card-alt);
+  border-bottom: 2px solid var(--gold-dim);
+  font-weight: 500;
+}
+.body table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--white);
+  vertical-align: top;
+}
+.body table tr:last-child td {
+  border-bottom: none;
+}
+
+/* HEADER ON PAGES AFTER COVER */
+.running-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 12px;
+  margin-bottom: 36px;
+}
+.running-header .left { color: var(--gold); }
+
+/* HOW TO READ + EXEC SUMMARY block */
+.howto-block {
+  background: var(--bg-card);
+  border-left: 3px solid var(--gold-dim);
+  padding: 22px 26px;
+  margin: 28px 0 0;
+  font-size: 11.5px;
+  color: var(--gray-light);
+}
+.howto-block strong { color: var(--white); }
+
+/* ANCHOR FIVE NUMBERS callout if used */
+.anchor-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 18px 0;
+  padding: 18px 22px;
+  background: var(--bg-card);
+  border-top: 2px solid var(--gold);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* === VISUAL BLOCKS === */
+
+/* STAT GRID (Exec Summary) */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 18px 0 22px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold);
+  padding: 12px 14px 14px;
+  break-inside: avoid;
+}
+.stat-card .stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.8px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-card .stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.stat-card .stat-detail {
+  font-size: 10px;
+  line-height: 1.45;
+  color: var(--white);
+}
+
+/* DEPENDENCY GRID (Section 1) */
+.dep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+.dep-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  padding: 12px 14px;
+  break-inside: avoid;
+}
+.dep-card .dep-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.dep-card .dep-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin: 3px 0 4px;
+  line-height: 1.2;
+}
+.dep-card .dep-spans {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  margin-bottom: 6px;
+}
+.dep-card .dep-detail {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+/* CALLOUT GRID (Section 2) */
+.callout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 16px 0 18px;
+}
+.callout {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  background: var(--bg-card);
+  border-left: 3px solid var(--gold-dim);
+  padding: 10px 14px;
+  break-inside: avoid;
+}
+.callout .callout-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  align-self: start;
+  padding-top: 1px;
+}
+.callout .callout-text {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--white);
+}
+.callout .callout-text strong { color: var(--white); font-weight: 600; }
+
+/* FOOTPRINT GRID (Section 3) */
+.footprint-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+.fp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold-dim);
+  padding: 10px 12px 12px;
+  break-inside: avoid;
+}
+.fp-card .fp-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.fp-card .fp-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.2px;
+  margin-bottom: 3px;
+  line-height: 1.2;
+}
+.fp-card .fp-loc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: var(--gray-light);
+  margin-bottom: 6px;
+}
+.fp-card .fp-detail {
+  font-size: 9.5px;
+  line-height: 1.45;
+  color: var(--white);
+}
+
+/* GAP BARS (Section 4) */
+.gap-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 14px 0 22px;
+}
+.gap-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 80px;
+  gap: 10px;
+  align-items: center;
+  background: var(--bg-card);
+  padding: 8px 12px;
+  border-left: 2px solid var(--gold-dim);
+  break-inside: avoid;
+}
+.gap-row .gap-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.gap-row .gap-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.gap-row .gap-panda, .gap-row .gap-bic {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 9.5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  color: var(--white);
+}
+.gap-row .gap-panda {
+  background: rgba(212,168,67,0.45);
+  border-left: 2px solid var(--gold);
+}
+.gap-row .gap-panda.red {
+  background: rgba(196,92,92,0.45);
+  border-left: 2px solid var(--red);
+}
+.gap-row .gap-bic {
+  background: rgba(124,185,122,0.30);
+  border-left: 2px solid var(--green);
+}
+.gap-row .gap-pp {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  text-align: right;
+}
+
+/* DOLLAR GRID (Section 4) */
+.dollar-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  margin: 14px 0 18px;
+}
+.dollar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 11px 12px;
+  break-inside: avoid;
+}
+.dollar-card.primary {
+  border: 1px solid var(--gold);
+  background: linear-gradient(180deg, rgba(212,168,67,0.10), rgba(212,168,67,0.02));
+}
+.dollar-card .dollar-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.dollar-card .dollar-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.dollar-card .dollar-detail {
+  font-size: 8.5px;
+  line-height: 1.4;
+  color: var(--gray-light);
+}
+
+/* CONSTRAINT CARDS (Section 5) */
+.constraint-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+  margin: 14px 0 18px;
+}
+.constraint-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold-dim);
+  padding: 11px 14px 13px;
+  position: relative;
+  break-inside: avoid;
+}
+.constraint-card.primary { border-top-color: var(--gold); border-top-width: 3px; }
+.constraint-card.structural { border-top-color: var(--gray); }
+.constraint-card .constraint-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.constraint-card .constraint-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  display: inline-block;
+  border: 1px solid var(--rule-strong);
+  padding: 1px 6px;
+  margin: 4px 0 6px;
+}
+.constraint-card .constraint-tag.primary { color: var(--gold); border-color: var(--gold-dim); }
+.constraint-card .constraint-tag.structural { color: var(--gray-light); }
+.constraint-card .constraint-tag.warn { color: var(--red); border-color: var(--red-dim); }
+.constraint-card .constraint-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.constraint-card .constraint-text {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+/* MECH TABLE (Section 6) */
+.mech-table {
+  margin: 14px 0 18px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.mech-row {
+  display: grid;
+  grid-template-columns: 2.4fr 1.4fr 1fr 1fr;
+  gap: 14px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 10px;
+  color: var(--white);
+  align-items: center;
+  break-inside: avoid;
+}
+.mech-row.mech-head {
+  background: var(--bg-card-alt);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.mech-row.mech-best {
+  background: linear-gradient(90deg, rgba(212,168,67,0.10), transparent);
+  border-left: 3px solid var(--gold);
+}
+.mech-row:last-child { border-bottom: none; }
+
+/* VECTOR CARDS (Section 6) */
+.vector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0 22px;
+}
+.vector-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 12px 14px 14px;
+  break-inside: avoid;
+}
+.vector-card.v1 { border-top: 3px solid var(--red); }
+.vector-card.v2 { border-top: 3px solid var(--gold); }
+.vector-card.v3 { border-top: 3px solid var(--green); }
+.vector-card .vector-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+.vector-card .vector-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.vector-card .vector-meta {
+  font-size: 9.5px;
+  color: var(--gray-light);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.vector-card .vector-target, .vector-card .vector-risk {
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: var(--white);
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px dashed var(--rule);
+}
+.vector-card strong { color: var(--gold); font-weight: 600; }
+
+/* CAPEX GRID (Section 6) */
+.capex-grid {
+  margin: 14px 0 18px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.capex-line {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 2fr;
+  gap: 14px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 10px;
+  color: var(--white);
+  align-items: center;
+}
+.capex-line:last-child { border-bottom: none; }
+.capex-line .capex-cat { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); }
+.capex-line .capex-val { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--white); }
+.capex-line .capex-note { font-size: 9px; color: var(--gray-light); }
+.capex-line.capex-total { background: var(--bg-card-alt); border-top: 1px solid var(--gold-dim); }
+.capex-line.capex-total .capex-val { color: var(--gold); font-size: 13px; }
+
+/* GATES FLOW (Section 7) */
+.gates-flow {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 16px 0 20px;
+  break-inside: avoid;
+}
+.gate-block {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 10px 12px;
+  border-top: 2px solid var(--gold-dim);
+}
+.gate-block.kill { border-top: 3px solid var(--red); background: linear-gradient(180deg, rgba(196,92,92,0.06), transparent); }
+.gate-block .gate-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.4px;
+  line-height: 1;
+}
+.gate-block.kill .gate-num { color: var(--red); }
+.gate-block .gate-week {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 4px 0 2px;
+}
+.gate-block .gate-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.gate-block .gate-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  margin-bottom: 6px;
+}
+.gate-block .gate-criteria {
+  font-size: 9px;
+  line-height: 1.4;
+  color: var(--white);
+}
+.gate-arrow {
+  align-self: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 700;
+  padding: 0 1px;
+}
+
+/* CAPABILITY GRID (Section 8) */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+  margin: 14px 0 18px;
+}
+.cap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  padding: 11px 14px;
+  break-inside: avoid;
+}
+.cap-card .cap-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.cap-card .cap-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin: 3px 0 5px;
+  line-height: 1.2;
+}
+.cap-card .cap-detail {
+  font-size: 10px;
+  line-height: 1.45;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.cap-card .cap-form {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 5px;
+  border-top: 1px dashed var(--rule);
+}
+
+/* STAFF TABLE (Section 8) */
+.staff-table {
+  margin: 14px 0 18px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.staff-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1.2fr 1.5fr;
+  gap: 14px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 10px;
+  color: var(--white);
+  align-items: center;
+}
+.staff-row:last-child { border-bottom: none; }
+.staff-row.staff-head {
+  background: var(--bg-card-alt);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.staff-row .form-perm {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid rgba(124,185,122,0.40);
+  padding: 1px 6px;
+  background: rgba(124,185,122,0.08);
+}
+.staff-row .form-frac {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 1px 6px;
+  background: rgba(212,168,67,0.08);
+}
+
+/* MECHANISM CARDS (Section 8) */
+.mech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin: 14px 0 18px;
+}
+.mech-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold-dim);
+  padding: 11px 13px 13px;
+  break-inside: avoid;
+}
+.mech-card .mech-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.mech-card .mech-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.mech-card .mech-text {
+  font-size: 9.5px;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+/* SEQUENCE FLOW (Section 8) */
+.seq-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+.seq-block {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold);
+  padding: 11px 14px 13px;
+  break-inside: avoid;
+}
+.seq-block .seq-month {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 3px;
+}
+.seq-block .seq-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.seq-block ul {
+  margin: 0;
+  padding-left: 14px;
+  list-style: none;
+}
+.seq-block ul li {
+  font-size: 9.5px;
+  line-height: 1.45;
+  color: var(--white);
+  margin-bottom: 5px;
+  position: relative;
+}
+.seq-block ul li::before {
+  content: '·';
+  color: var(--gold);
+  position: absolute;
+  left: -10px;
+  top: -1px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* NINETY-DAY GRID (Section 9) */
+.ninety-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+.ninety-block {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  padding: 11px 13px 13px;
+  break-inside: avoid;
+}
+.ninety-block .ninety-week {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+.ninety-block .ninety-theme {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.ninety-item {
+  font-size: 9.5px;
+  line-height: 1.5;
+  color: var(--white);
+  margin-bottom: 8px;
+  padding-left: 12px;
+  position: relative;
+}
+.ninety-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.ninety-item strong { color: var(--white); font-weight: 600; }
+
+/* ANTI-PATTERN GRID (Section 10) */
+.anti-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+.anti-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1fr;
+  gap: 14px;
+  background: var(--bg-card);
+  border-left: 3px solid var(--red);
+  padding: 11px 14px;
+  break-inside: avoid;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.anti-card .anti-rule {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  line-height: 1.2;
+}
+.anti-card .anti-evidence { color: var(--gray-light); }
+.anti-card .anti-action { color: var(--white); }
+.anti-card strong { color: var(--white); font-weight: 600; }
+
+/* DECISION GRID (Section 11) */
+.decision-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+.decision-card {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  padding: 11px 14px;
+  break-inside: avoid;
+  align-items: start;
+}
+.decision-card .decision-num {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -1px;
+  line-height: 1;
+  padding-top: 2px;
+}
+.decision-card .decision-q {
+  grid-row: 1;
+  grid-column: 2;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 5px;
+  line-height: 1.25;
+}
+.decision-card .decision-text {
+  grid-row: 2;
+  grid-column: 2;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--gray-light);
+}
+
+/* LAB CONCEPT CARDS (Innovation Lab section) */
+.lab-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  padding: 0;
+  margin: 18px 0 24px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.lab-card .lab-image {
+  width: 100%;
+  display: block;
+  background: var(--bg-card-alt);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 2px solid var(--gold-dim);
+}
+.lab-card .lab-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--bg-card-alt), var(--bg-card));
+  border-bottom: 2px solid var(--gold-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.lab-card .lab-body { padding: 16px 20px 18px; }
+.lab-card .lab-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.lab-card .lab-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+.lab-card .lab-row {
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+.lab-card .lab-row strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+/* PRINT TWEAKS */
+@media print {
+  body { font-size: 10.5px; }
+  .page { padding: 56px 64px 48px; }
+  .cover { min-height: auto; padding-top: 96px; padding-bottom: 80px; }
+  .body h1 {
+    page-break-before: always;
+    page-break-after: avoid;
+  }
+  .body h1:first-child { page-break-before: auto; }
+  .body h2, .body h3 {
+    page-break-after: avoid;
+  }
+  .body table, .stat-card, .dep-card, .callout, .fp-card, .gap-row,
+  .dollar-card, .constraint-card, .vector-card, .gate-block, .cap-card,
+  .mech-card, .seq-block, .ninety-block, .anti-card, .decision-card {
+    page-break-inside: avoid;
+  }
+  .gates-flow, .vector-grid, .seq-flow, .ninety-grid {
+    page-break-inside: avoid;
+  }
+  .body p { orphans: 3; widows: 3; }
+}
+
+</style>
+</head>
+<body>
+<div class="page cover">
+  <div>
+    <div class="cover-meta">mception · Research Synthesis</div>
+    <h1>Panda Operations
+Innovation</h1>
+    <div class="subhead">A peer-benchmarked view of where the next operating margin lives — and what to build first.</div>
+    <div class="gold-rule"></div>
+    <dl class="meta-table">
+      <dt>Prepared for</dt><dd>James Ku · Chief Development Officer · Panda Restaurant Group</dd>
+      <dt>Prepared by</dt><dd>Brady Smallwood</dd>
+      <dt>Date</dt><dd>April 30, 2026</dd>
+      <dt>Source corpus</dt><dd>14 deep research threads + 3 supplementary focus dossiers · 480+ cited sources · ~600 pages of internal working notes</dd>
+      <dt>Status</dt><dd>Standalone synthesis — not a proposal</dd>
+    </dl>
+  </div>
+  <div class="cover-footer">
+    <span>mception · Research Synthesis</span>
+    <span>Confidential — for the named recipient</span>
+  </div>
+</div>
+<div class="page body">
+<div class="running-header"><span class="left">Panda Operations Innovation · Research Synthesis</span><span>April 30, 2026</span></div>
+<h2>How To Read This</h2>
+<p>This document is a synthesis. The full corpus behind it is large enough that a verbatim read is the wrong way to use it. I would skim the executive summary, jump to whichever of the seven binding constraints is most contested, and come back to team architecture at the end. The pages on the test kitchen — vectors, capex envelope, kill gates — are written to be useful inside a charter conversation if you decide to commission one.</p>
+<p>Numbers cited in the body are pulled from public filings, peer earnings calls, vendor disclosures, and trade-press reporting from 2022–2026. Where Panda data is inferred from public proxies, I have flagged the inference. Where the source thread goes deeper than the page allows, I have pointed to it (DR-XX, SFDR-XXX) so you can ask for the underlying material at any depth you want.</p>
+<p>The corpus is alive. If a single paragraph here is doing more work than you want to verify, that paragraph has somewhere between five and forty pages of underlying research that produced it.</p>
+<hr />
+<h1 data-num="§ 01">Executive Summary</h1>
+<p>The function you are standing up is the right venue, at the right moment, for a portfolio of operational gaps that are individually solvable and collectively worth high hundreds of millions of dollars annually. The work is real. The peer playbook on parts of it is mature; on the wok side, no peer has solved it yet, which is why the program matters.</p>
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-num">$80–135M</div>
+    <div class="stat-label">Annual cost hidden in digital order accuracy</div>
+    <div class="stat-detail">$2.7B digital revenue × an estimated 3–5 pp gap to peer best-in-class. The largest fixable opportunity in the portfolio. Single-fiscal-year deliverable.</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">$200M</div>
+    <div class="stat-label">PAW investment scale, peer-validated at zero scale</div>
+    <div class="stat-detail">No peer — Chipotle, Sweetgreen, Miso, McDonald's, Chinese vendor ecosystem — has validated wok automation commercially. PAW is original R&D, not a capex purchase.</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">$795M–$1.34B</div>
+    <div class="stat-label">Combined addressable margin pool, 20-statement portfolio</div>
+    <div class="stat-detail">Half is concentrated in five problems: labor productivity, digital accuracy, wok standardization, digital economics, format capital efficiency.</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">3.6x</div>
+    <div class="stat-label">SG&A ratio gap to Chipotle (structural, not solvable here)</div>
+    <div class="stat-detail">8–10% vs. 4.2%. Mostly the cost of the 100% company-operated model. Innovation moves restaurant-level margin instead, unlocking $65–130M of absolute profit pool.</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">3 / 4 / 1+3</div>
+    <div class="stat-label">Test kitchen architecture: vectors / gates / sites</div>
+    <div class="stat-detail">3 validation vectors (wok, digital accuracy, drive-thru). 4 gates with pre-registered kill criteria. 1 controlled test kitchen + 3 instrumented control stores. Sections 6–7.</div>
+  </div>
+</div>
+
+<p>The single substantive recommendation in this document — the rest is observation, benchmark, and option-mapping — is on team architecture. Staff for execution and for portfolio coordination, not just one. A small permanent core (program lead, test kitchen GM and Kitchen Director, data lead) paired with fractional or part-time strategy capacity through the first 6–12 months. Make permanent the parts that prove themselves; do not pre-commit to a permanent shape until the data is in. Section 8 details the capability mix, the sequence, and the cross-functional mechanisms that give the team traction on dependencies that sit outside the CDO mandate.</p>
+<hr />
+<h1 data-num="§ 02">The Operating Premise</h1>
+<h2>Why a coordinated portfolio, and why now</h2>
+<p>Panda's existing innovation model is not an accident. It mirrors what every QSR at $1B–$3B in system sales runs — local autonomy, ops-led optimization, function-by-function tech investment. Below ~$3B, this scales. The decision velocity of a competent functional executive is faster than any committee, and the dollar value of the missed dependencies is smaller than the cost of governance overhead.</p>
+<p>The threshold at which this starts to break is empirically visible across the QSR set. Chipotle elevated cross-functional technology authority around $5B in revenue (Curt Garner promoted to CTO/CDO in 2015). Starbucks built the Tryer Center at ~$24B in revenue (announced 2018), but the predecessor structure predated it by a decade. McDonald's Speedee Labs has been the equipment-and-format R&amp;D function since 2005 and was rebuilt in 2018. CFA's Innovation Center opened in 2019. Domino's centralized digital under the CEO around 2010 at ~$1.5B in revenue.</p>
+<p>The pattern: every large-scale QSR that compounded over a decade put a coordinating function in seat by the time it reached Panda's current scale. Several put it in seat well before. The exceptions are not in the comp set anymore. Boston Market is the most often cited; the cautionary detail is that the strategic problems Boston Market failed to coordinate on (digital, format, kitchen ops) are exactly the surface area where Panda's portfolio currently sits.</p>
+<p>This is not a claim that Panda is at structural risk. It is a claim that the marginal cost of an uncoordinated portfolio at this scale is real and quantifiable. Per the Phase 2 problem portfolio, the cumulative concept-to-pilot delay caused by ambiguous ownership is conservatively 12–18 months on initiatives that should be moving in 6–9. At a portfolio addressable value of ~$800M, that delay carries an opportunity cost in the $30–80M range annually (DR-03, DR-18).</p>
+<h2>The four largest unowned dependencies</h2>
+<p>The cleanest restatement of the diagnosis is this: four dependencies in Panda's current innovation footprint do not have a single owner, and the operating leverage on each requires multiple functions cooperating.</p>
+<div class="dep-grid">
+  <div class="dep-card">
+    <div class="dep-num">01</div>
+    <div class="dep-name">Wok automation</div>
+    <div class="dep-spans">Capital planning · Operations · Store design</div>
+    <div class="dep-detail">PAW investment ($200M signal) sits between operations and capital planning. The labor productivity story it unlocks lives in operations. The cook-line workflow redesign it implies lives in store design.</div>
+  </div>
+  <div class="dep-card">
+    <div class="dep-num">02</div>
+    <div class="dep-name">Digital order accuracy</div>
+    <div class="dep-spans">IT / digital · Operations · Store design</div>
+    <div class="dep-detail">The technology problem (KDS, POS, makeline routing) lives in digital. The operational problem (order data → cook → bag → guest) lives in operations. The format problem (dedicated digital makelines) lives in store design.</div>
+  </div>
+  <div class="dep-card">
+    <div class="dep-num">03</div>
+    <div class="dep-name">GridPoint smart building</div>
+    <div class="dep-spans">Facilities · Operations · Capital planning</div>
+    <div class="dep-detail">Energy management is supply-chain-led today. Predictive maintenance is operations-led. Franchisee-facing dashboards are an open question. Capex prioritization against new-unit construction is finance-led.</div>
+  </div>
+  <div class="dep-card">
+    <div class="dep-num">04</div>
+    <div class="dep-name">Drive-thru throughput</div>
+    <div class="dep-spans">Format · Labor · Technology · SOP</div>
+    <div class="dep-detail">No single function can move the cars-per-hour number without three other functions cooperating on format, training, technology integration, and standard operating procedure.</div>
+  </div>
+</div>
+
+<p>Whatever the form factor, the function being created is portfolio coordination — not innovation invention. Someone has to own the calendar, set the quarterly portfolio, and have authority to call where the next dollar of capex goes. The team you are standing up is the natural home for that work. Format and store design already sit with you; the construction pipeline already sits with you; smart building deployment already runs through your facilities organization. Adding kitchen-side ops innovation, digital accuracy, and drive-thru throughput to the same coordinated portfolio extends the existing reach by adjacency rather than by building a new structure.</p>
+<hr />
+<h1 data-num="§ 03">Peer Innovation Operating Models</h1>
+<p>The shape of an innovation function is determined by what it is being asked to do. The peers prove this isn't tautological. Eight benchmarks, the structures they chose, and what they shipped:</p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Function shape</th>
+<th>Reports to</th>
+<th>Cycle time</th>
+<th>Flagship output</th>
+<th>What it failed at</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Walmart</td>
+<td>Store No. 8 (incubator), 2017–2024</td>
+<td>CEO</td>
+<td>Multi-year</td>
+<td>Drone delivery, shelf robots</td>
+<td>Dismantled Jan 2024; venture model didn't scale</td>
+</tr>
+<tr>
+<td>Starbucks</td>
+<td>Tryer Center (Seattle, ~20 staff + rotation)</td>
+<td>COO → CEO</td>
+<td>100-day fast track / 6–18mo equipment</td>
+<td>Siren Craft System (1,160 stores)</td>
+<td>No food-equipment validation</td>
+</tr>
+<tr>
+<td>McDonald's</td>
+<td>Speedee Labs (Chicago, ~50 staff, 21K sqft)</td>
+<td>EVP Global CIO → CEO</td>
+<td>12–24mo food / 18–36mo equipment</td>
+<td>Voice AI (twice; Apprente then Google Cloud)</td>
+<td>Internal digital builds; multiple resets</td>
+</tr>
+<tr>
+<td>Chipotle</td>
+<td>Innovation &amp; Technology + Cultivate Center</td>
+<td>CTO → CEO</td>
+<td>4–12 week pilot waves</td>
+<td>Hyphen makeline, Autocado, Chipotlane (700+ stores)</td>
+<td>Robotics rollout slower than promised</td>
+</tr>
+<tr>
+<td>Chick-fil-A</td>
+<td>Embedded across ops + Innovation Center</td>
+<td>COO/CEO</td>
+<td>Continuous</td>
+<td>Drive-thru excellence; franchise alignment</td>
+<td>No standalone breakthrough innovation</td>
+</tr>
+<tr>
+<td>Sweetgreen</td>
+<td>Acquisition-driven (Spyce → Infinite Kitchen)</td>
+<td>Chief Ops/CEO</td>
+<td>Acquisition cycles</td>
+<td>Infinite Kitchen (~7 stores, $60K+/day)</td>
+<td>Margin still negative at parent level</td>
+</tr>
+<tr>
+<td>Taco Bell</td>
+<td>Live Más Ventures + Defy team</td>
+<td>Chief Product &amp; Growth</td>
+<td>Variable</td>
+<td>Defy autonomous ghost kitchen</td>
+<td>Capex per unit very high; small footprint</td>
+</tr>
+<tr>
+<td>Domino's</td>
+<td>Embedded under CEO</td>
+<td>CEO direct</td>
+<td>Continuous</td>
+<td>Pizza Tracker; AI order prediction; autonomous delivery</td>
+<td>International digital lag</td>
+</tr>
+</tbody>
+</table>
+<div class="callout-grid">
+  <div class="callout">
+    <div class="callout-tag">Lesson 01</div>
+    <div class="callout-text">The successful long-cycle innovations are <strong>infrastructure, not robotics</strong>. Chipotle's biggest move in a decade was the second makeline — entirely human-staffed, drove peak throughput from ~80 to 120+ orders/hour. Starbucks' biggest move was Siren Craft, an espresso-workflow redesign with no robot. Robotics is a longer-cycle bet that may pay off but should not anchor the operating-margin story.</div>
+  </div>
+  <div class="callout">
+    <div class="callout-tag">Lesson 02</div>
+    <div class="callout-text">The <strong>venture-incubator model has lost</strong>. Walmart Store No. 8 was the most ambitious centralized retail innovation org ever built and was wound down January 2024. The work it produced couldn't be transferred into the operating business at the velocity the operating business needed. Starbucks Tryer never set up that way — partner rotation pulls the operating business through Tryer, instead of pushing innovation out.</div>
+  </div>
+  <div class="callout">
+    <div class="callout-tag">Lesson 03</div>
+    <div class="callout-text">Innovation that <strong>reports two layers down slows; that reports CEO-adjacent accelerates</strong>. The mechanism is mundane — capital allocation conflicts get resolved in the room rather than over email — but the velocity differential is consistent across the comp set.</div>
+  </div>
+</div>
+
+<h2>What is not in the comp set: a wok-cooking peer</h2>
+<p>Worth stating bluntly because it shapes everything downstream. There is no peer in the comp set that has solved Panda's specific kitchen problem. Starbucks does not validate hot food equipment. Chipotle's makeline robotics are laminar-flow assembly (bowls, salads). Sweetgreen's Spyce automation is bowl-class. McDonald's Speedee Labs has done extensive flat-top grill and fry work — no wok work. The Chinese vendor ecosystem that does claim wok automation has zero verified commercial QSR deployments outside of restricted Chinese-market deployments that cannot be independently validated.</p>
+<p>The implication is structural. On wok, Panda is at the front of the curve, not the back. PAW is not a "buy and deploy" problem. It is original applied R&amp;D, with all the timing, capital risk, and outcome uncertainty that implies. SFDR-103 covers this in detail; the executive summary version is in Section 6.</p>
+<hr />
+<h1 data-num="§ 04">Panda's Innovation Footprint Today</h1>
+<p>Panda's pipeline in 2023–2026 is more substantive than its public profile suggests. Visible artifacts:</p>
+<div class="footprint-grid">
+  <div class="fp-card">
+    <div class="fp-tag">2023 · Format</div>
+    <div class="fp-name">Panda Home prototype</div>
+    <div class="fp-loc">Dripping Springs, TX · May 2023</div>
+    <div class="fp-detail">Cultural-heritage interior, ~15% smaller dining room, expanded BOH, immersive drive-thru pictograms, enhanced digital pickup zone. Three years post-launch, no public expansion narrative.</div>
+  </div>
+  <div class="fp-card">
+    <div class="fp-tag">2026 · Format</div>
+    <div class="fp-name">North Platte new format</div>
+    <div class="fp-loc">North Platte, NE · March 2026</div>
+    <div class="fp-detail">Freestanding, drive-thru + dine-in hybrid, expanded kitchen footprint. Outcome data not yet disclosed.</div>
+  </div>
+  <div class="fp-card">
+    <div class="fp-tag">2024 · Smart Building</div>
+    <div class="fp-name">GridPoint deployment</div>
+    <div class="fp-loc">~2,500 US locations · 18-month rollout</div>
+    <div class="fp-detail">IoT energy management based on a 200-store pilot. 15–25% energy reduction, 3–5 year payback per industry-standard assumptions.</div>
+  </div>
+  <div class="fp-card">
+    <div class="fp-tag">Active · Voice AI</div>
+    <div class="fp-name">SoundHound voice ordering</div>
+    <div class="fp-loc">Drive-thru · 10K+ locations</div>
+    <div class="fp-detail">~85% standalone accuracy; ~95% on human + AI hybrid in industry benchmarks.</div>
+  </div>
+  <div class="fp-card">
+    <div class="fp-tag">R&D · Wok</div>
+    <div class="fp-name">Panda Auto Wok (PAW)</div>
+    <div class="fp-loc">Internal program · $200M+ signal</div>
+    <div class="fp-detail">Specific deployment configuration not public. The test kitchen is the validation venue.</div>
+  </div>
+  <div class="fp-card">
+    <div class="fp-tag">Active · Beverage</div>
+    <div class="fp-name">Tea Bar integration</div>
+    <div class="fp-loc">39+ locations and growing</div>
+    <div class="fp-detail">Beverage-led footprint extension. Standalone unit economics not yet disclosed.</div>
+  </div>
+</div>
+
+<p>A reasonable read is that ~$500M–$1B of value creation is in flight across these initiatives. None of them are nothing. None of them are coordinated against each other on a stated cadence. That last sentence is what the team you are building solves.</p>
+<h2>Ownership map (from public evidence + DR-03)</h2>
+<p>Three of these domains have clear owners. Three have ambiguous or implicit ownership. Two are cross-functional with no governance home. The unowned cells are the dependencies the team is being asked to coordinate.</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Apparent owner</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Store format &amp; design</td>
+<td>James Ku (CDO)</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Real estate / pipeline</td>
+<td>James Ku (CDO)</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Smart building / facilities</td>
+<td>Supply Chain VP</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Kitchen / BOH ops</td>
+<td>COO Jeff Wang (likely)</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Digital ordering / app</td>
+<td>Unnamed CTO or EVP Digital</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Voice AI (drive-thru)</td>
+<td>Vendor-led with ops partner</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Menu innovation</td>
+<td>Scattered, no clear owner</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Wok automation / PAW</td>
+<td>Internal R&amp;D, leadership unclear</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 data-num="§ 05">The KPI Gap Map</h1>
+<p>The full KPI table is reproduced in Appendix A. The summary view, isolated to gaps that materially shape the innovation portfolio:</p>
+<div class="gap-grid">
+  <div class="gap-row">
+    <div class="gap-name">Restaurant op margin</div>
+    <div class="gap-bar">
+      <div class="gap-panda" style="width: 50%"><span>Panda 9–11%</span></div>
+      <div class="gap-bic" style="width: 90%"><span>Chipotle 15–18%</span></div>
+    </div>
+    <div class="gap-pp">4–7 pp</div>
+  </div>
+  <div class="gap-row">
+    <div class="gap-name">SG&A as % of revenue</div>
+    <div class="gap-bar">
+      <div class="gap-panda red" style="width: 90%"><span>Panda 8–10%</span></div>
+      <div class="gap-bic" style="width: 38%"><span>Chipotle 4.2%</span></div>
+    </div>
+    <div class="gap-pp">380–580 bps</div>
+  </div>
+  <div class="gap-row">
+    <div class="gap-name">Labor % of sales</div>
+    <div class="gap-bar">
+      <div class="gap-panda" style="width: 87%"><span>Panda 27–29%</span></div>
+      <div class="gap-bic" style="width: 75%"><span>CFA 24–26%</span></div>
+    </div>
+    <div class="gap-pp">100–500 bps</div>
+  </div>
+  <div class="gap-row">
+    <div class="gap-name">Digital order accuracy</div>
+    <div class="gap-bar">
+      <div class="gap-panda red" style="width: 88%"><span>Panda 88–91%</span></div>
+      <div class="gap-bic" style="width: 95%"><span>Chipotle 95%+</span></div>
+    </div>
+    <div class="gap-pp">4–7 pp</div>
+  </div>
+  <div class="gap-row">
+    <div class="gap-name">Drive-thru orders/hour</div>
+    <div class="gap-bar">
+      <div class="gap-panda" style="width: 50%"><span>Panda 140–160</span></div>
+      <div class="gap-bic" style="width: 65%"><span>CFA 180–200</span></div>
+    </div>
+    <div class="gap-pp">25–40 OPH</div>
+  </div>
+  <div class="gap-row">
+    <div class="gap-name">Digital mix</div>
+    <div class="gap-bar">
+      <div class="gap-panda" style="width: 38%"><span>Panda 35–40%</span></div>
+      <div class="gap-bic" style="width: 65%"><span>Sweetgreen 60–65%</span></div>
+    </div>
+    <div class="gap-pp">8–25 pp</div>
+  </div>
+  <div class="gap-row">
+    <div class="gap-name">Time-to-open (TTO)</div>
+    <div class="gap-bar">
+      <div class="gap-panda red" style="width: 80%"><span>Panda 12–18mo</span></div>
+      <div class="gap-bic" style="width: 50%"><span>CFA 8–10mo</span></div>
+    </div>
+    <div class="gap-pp">4–8 months</div>
+  </div>
+</div>
+
+<p>The pattern is consistent: Panda is competitive on absolute scale and digital penetration, lagging on cost structure and operational fidelity, conservative on growth velocity. None of the gaps individually are catastrophic. Several together define the addressable margin pool the team is being asked to capture.</p>
+<p>A useful disaggregation: structural (very hard to close) vs. operational (closable). Structural is most of SG&amp;A — the 100% company-operated model is a deliberate brand-control choice; that is not innovation's problem to solve. Operational is everything else, and it is large.</p>
+<h2>Where the dollars concentrate</h2>
+<p>Five gaps explain ~$200–300M of annual addressable margin in pilot-realistic windows, with longer-horizon stretches reaching $500M+ on growth velocity.</p>
+<div class="dollar-grid">
+  <div class="dollar-card">
+    <div class="dollar-num">$30–40M</div>
+    <div class="dollar-name">Labor productivity</div>
+    <div class="dollar-detail">~$100M if fully closed, $30–40M realistic in 24-month pilot-to-scale. Source-of-gap is workflow + role design + peak-hour play-calling — not headcount. Validated peer playbook: Starbucks Siren Craft + Chipotle digital makeline. (DR-01, DR-05)</div>
+  </div>
+  <div class="dollar-card primary">
+    <div class="dollar-num">$80–135M</div>
+    <div class="dollar-name">Digital order accuracy</div>
+    <div class="dollar-detail">Largest fixable opportunity. Cause is the kitchen translation layer — POS → KDS → makeline → bag — not technology. Peer playbook: Chipotle dedicated digital makeline; Taco Bell Defy ghost kitchen format isolation. (DR-04)</div>
+  </div>
+  <div class="dollar-card">
+    <div class="dollar-num">$5–15M</div>
+    <div class="dollar-name">Drive-thru throughput</div>
+    <div class="dollar-detail">Per hundred high-volume units. CFA dual-lane + handheld order-takers + pull-forward zones (~150 cars/hr peak). Mobile channel segregation drops mobile wait times ~30%. (DR-08, DR-09)</div>
+  </div>
+  <div class="dollar-card">
+    <div class="dollar-num">$50–100M</div>
+    <div class="dollar-name">Digital mix expansion</div>
+    <div class="dollar-detail">If mix moves 42% → 50%+ over 36 months. Two constraints: digital fulfillment infrastructure and loyalty platform leverage. (DR-02, DR-03, DR-04, DR-07)</div>
+  </div>
+  <div class="dollar-card">
+    <div class="dollar-num">$5–7M</div>
+    <div class="dollar-name">Construction velocity</div>
+    <div class="dollar-detail">Per year at the current 123-unit cadence. Modular + AI scheduling compresses 30–40% of TTO at +2% per unit capex. (DR-12)</div>
+  </div>
+</div>
+
+<p>The remainder of the $795M–$1.34B portfolio sits in second-tier problems: kitchen automation roadmap, format innovation, GridPoint extension into predictive maintenance, franchisee transparency model, governance tightening.</p>
+<hr />
+<h1 data-num="§ 06">The Seven Binding Constraints, Ranked</h1>
+<p>The constraint ranking organizes the same evidence as the gap map but answers a different question — not "where is the dollar value" but "what stops the dollar value from being captured." The two views are complementary; the constraint view is more useful for charter design.</p>
+<div class="constraint-grid">
+  <div class="constraint-card structural">
+    <div class="constraint-rank">01</div>
+    <div class="constraint-tag structural">Structural · Park</div>
+    <div class="constraint-name">SG&A cost structure</div>
+    <div class="constraint-text">Innovation cannot solve this. 100% company-operated model + family governance overhead. The right escalation is to CFO conversation; restaurant-level margin is the lever this function moves.</div>
+  </div>
+  <div class="constraint-card primary">
+    <div class="constraint-rank">02</div>
+    <div class="constraint-tag primary">Operational · Highest priority</div>
+    <div class="constraint-name">Digital order accuracy</div>
+    <div class="constraint-text">Single-fiscal-year achievable. Capex envelope: $200K–$400K per high-volume unit for a dedicated digital makeline; $3–5M total at top 10–15 stores. Path: SOP redesign at zero capex first, capex deployment second.</div>
+  </div>
+  <div class="constraint-card">
+    <div class="constraint-rank">03</div>
+    <div class="constraint-tag">Operational</div>
+    <div class="constraint-name">Labor productivity</div>
+    <div class="constraint-text">Wok cooking is intrinsically labor-intensive. Workflow redesign reclaims the first 1.5 pp; automation reclaims the next. ~140% wok-chef turnover compounds the cost ($27–39M/yr replacement). Pre-prep batching, ergonomic deck redesign, sauce-prep protocols reclaim 100–140 bps with zero capex.</div>
+  </div>
+  <div class="constraint-card">
+    <div class="constraint-rank">04</div>
+    <div class="constraint-tag warn">R&D · Unsolved</div>
+    <div class="constraint-name">Kitchen automation (wok)</div>
+    <div class="constraint-text">Honest target for any near-term pilot: 5–12% sustained, 15% stretch. Vendor claims above this number are unverified at commercial scale. PAW investment signals the choice has effectively been made; the test kitchen converts that choice from a procurement bet to a measurement program.</div>
+  </div>
+  <div class="constraint-card">
+    <div class="constraint-rank">05</div>
+    <div class="constraint-tag">Operational</div>
+    <div class="constraint-name">Construction velocity</div>
+    <div class="constraint-text">Solvable inside the team's scope. CFA at 8–10mo TTO is the right benchmark. A "compressed open" protocol piloted in 3–5 high-velocity markets (TX, CA, CO) with measurement against baseline cohort is the clean path. (DR-12)</div>
+  </div>
+  <div class="constraint-card">
+    <div class="constraint-rank">06</div>
+    <div class="constraint-tag">Format</div>
+    <div class="constraint-name">Format conservatism</div>
+    <div class="constraint-text">Panda Home and North Platte are good incremental designs. Neither is a frontier format. Dual-lane drive-thru (+16% throughput at CFA), vertical kitchen stacking (CFA Elevated, 2–3x throughput at compressed footprint), ghost-kitchen-adjacency (Taco Bell Defy) are the frontier moves.</div>
+  </div>
+  <div class="constraint-card">
+    <div class="constraint-rank">07</div>
+    <div class="constraint-tag">Operational</div>
+    <div class="constraint-name">Kitchen execution fidelity</div>
+    <div class="constraint-text">Connects directly to constraint 02. The translation problem (digital order data → KDS → makeline → bag) sits at the intersection of digital, operations, and store design. Two patterns: dedicated digital makelines (Chipotle, Taco Bell Defy); shared makelines + KDS + computer vision (McDonald's, Agot AI, Vistry). Test kitchen running both side by side is the cleanest comparative study.</div>
+  </div>
+</div>
+
+<hr />
+<h1 data-num="§ 07">The Test Kitchen as Operating Mechanism</h1>
+<p>A test kitchen is not the only way to validate operational change. The peer set offers four credible mechanisms, each with a specific failure mode:</p>
+<div class="mech-table">
+  <div class="mech-row mech-head">
+    <div>Mechanism</div>
+    <div>Cost shape</div>
+    <div>Cycle</div>
+    <div>Cleanest causation?</div>
+  </div>
+  <div class="mech-row">
+    <div>Embedded pilot stores (Chipotle pre-Hyphen, Sweetgreen Infinite Kitchen)</div>
+    <div>Lower capex, higher live-P&L risk</div>
+    <div>Slower</div>
+    <div>No</div>
+  </div>
+  <div class="mech-row">
+    <div>Acquisition-driven validation (McDonald's Apprente / Dynamic Yield)</div>
+    <div>Capital-heavy</div>
+    <div>Fastest if target exists</div>
+    <div>Mixed</div>
+  </div>
+  <div class="mech-row mech-best">
+    <div>Centralized R&D facility (Tryer, Cultivate, Speedee)</div>
+    <div>Higher capex, decoupled from live P&L</div>
+    <div>Faster iteration</div>
+    <div>Yes</div>
+  </div>
+  <div class="mech-row">
+    <div>Vendor-led on-site pilots (the path PAW partly sits on)</div>
+    <div>Low Panda capex, high vendor dependence</div>
+    <div>Mixed track record</div>
+    <div>Mixed</div>
+  </div>
+</div>
+
+<p>For Panda's specific portfolio of three unsolved questions — wok automation, &gt;97% digital accuracy, drive-thru throughput at wok-menu complexity — the centralized R&amp;D facility is the only architecture that produces clean comparative data on all three simultaneously. The reason: two of the three (wok and drive-thru) have no validated peer model, and the third (accuracy) requires controlled instrumentation across the full order lifecycle.</p>
+<p>The mechanism choice has knock-on effects. A test kitchen produces an operating asset (the facility), an organizational asset (the rotation pool of GMs cycled through), and a knowledge asset (kill-gate data and benchmark framework). All three transfer back into the operating business. The other three mechanisms produce one or two but not all three.</p>
+<h2>The three validation vectors</h2>
+<div class="vector-grid">
+  <div class="vector-card v1">
+    <div class="vector-tag">Vector 01 · R&D-grade</div>
+    <div class="vector-name">Wok automation</div>
+    <div class="vector-meta">No peer validation. Original applied R&D.</div>
+    <div class="vector-target"><strong>Honest target:</strong> 5–12% productivity lift. <strong>Stretch:</strong> 15%.</div>
+    <div class="vector-risk"><strong>Sunk cost if killed at Gate 3:</strong> $500–800K</div>
+  </div>
+  <div class="vector-card v2">
+    <div class="vector-tag">Vector 02 · Partial peer validation</div>
+    <div class="vector-name">Digital order accuracy at high volume</div>
+    <div class="vector-meta">No peer sustains >97% at scale. Best-in-class CFA at ~96–97%.</div>
+    <div class="vector-target"><strong>Honest target:</strong> 95% at 40+ orders/hr. <strong>Stretch:</strong> >97%.</div>
+    <div class="vector-risk"><strong>Sunk cost if killed at Gate 3:</strong> $300–500K</div>
+  </div>
+  <div class="vector-card v3">
+    <div class="vector-tag">Vector 03 · Strong peer validation</div>
+    <div class="vector-name">Drive-thru throughput</div>
+    <div class="vector-meta">CFA, Cane's, In-N-Out have proven the architecture.</div>
+    <div class="vector-target"><strong>Honest target:</strong> 3:10 avg / 96% accuracy. <strong>Stretch:</strong> &lt;3:00 / 97%.</div>
+    <div class="vector-risk"><strong>Sunk cost if killed at Gate 3:</strong> $400–700K</div>
+  </div>
+</div>
+
+<p>Aggregate worst case if all three vectors are killed: $1.2–2.0M. Within the PAW R&amp;D envelope; not catastrophic at enterprise scale, but to be named in the ROI conversation rather than discovered after the fact.</p>
+<h2>Capex envelope, staffing, timeline</h2>
+<p>From SFDR-101 (peer test kitchen models) and SFDR-102 (greenfield QSR test kitchen capex/staffing/timeline benchmarks):</p>
+<div class="capex-grid">
+  <div class="capex-line">
+    <div class="capex-cat">Footprint</div>
+    <div class="capex-val">3,500–5,500 sqft</div>
+    <div class="capex-note">Consistent with Chipotle Cultivate scope</div>
+  </div>
+  <div class="capex-line">
+    <div class="capex-cat">Build-out cost</div>
+    <div class="capex-val">$1.65M–$4.15M</div>
+    <div class="capex-note">Hybrid (Scope C, recommended): $2.25–2.85M</div>
+  </div>
+  <div class="capex-line">
+    <div class="capex-cat">Permanent FTE</div>
+    <div class="capex-val">2.5–3 (lean) to 6 (peer norm)</div>
+    <div class="capex-note">Lean target consistent with single-shot validation budget</div>
+  </div>
+  <div class="capex-line">
+    <div class="capex-cat">Operator rotation</div>
+    <div class="capex-val">$60–90K / 6mo cycle</div>
+    <div class="capex-note">2–3 store GMs on 2-month secondments</div>
+  </div>
+  <div class="capex-line">
+    <div class="capex-cat">Vendor on-site support</div>
+    <div class="capex-val">$150–300K</div>
+    <div class="capex-note">Wok automation + KDS vendors; not in main capex envelope</div>
+  </div>
+  <div class="capex-line">
+    <div class="capex-cat">Control-store instrumentation</div>
+    <div class="capex-val">$150–250K</div>
+    <div class="capex-note">3 comparison stores, instrumentation only</div>
+  </div>
+  <div class="capex-line capex-total">
+    <div class="capex-cat">Total all-in (Scope C)</div>
+    <div class="capex-val">$2.61M–$3.49M</div>
+    <div class="capex-note">Including rotation, vendor support, controls</div>
+  </div>
+  <div class="capex-line">
+    <div class="capex-cat">Timeline</div>
+    <div class="capex-val">6–7 months</div>
+    <div class="capex-note">Aggressive vs. peer norm of 8–14 months</div>
+  </div>
+</div>
+
+<p>The largest capex line item, by SFDR-102 line-item benchmarking, is not equipment — it is drive-thru civil work (paving, canopy, menu boards, site egress), which can absorb $400–800K. Equipment is the second-largest, with custom wok robotics (12–26 week lead time) on the critical path. A Phase 0 Gate 1 at Week 4 implies long-lead equipment orders by Week 2 at the latest.</p>
+<p>Permitting is the silent variable. California is the slowest state for ground-up commercial restaurant permits (14–20 weeks); Texas and Arizona are fastest (8–12 weeks). A test kitchen near Rosemead is logistically ideal but permit-costly; a Las Vegas / Phoenix / Austin location accelerates permitting by 4–8 weeks at the cost of HQ proximity.</p>
+<hr />
+<h1 data-num="§ 08">Kill Gates: Pre-Registered Failure Criteria</h1>
+<p>The single most important architectural choice in a test kitchen is whether the gates are advance gates or kill gates. Advance gates ask "is the project ready to move forward." Kill gates ask "has the project failed clearly enough that we should stop." The peer evidence — Starbucks Tryer's 60%+ kill rate at the regional pilot gate; Chipotle's pilot waves that kill more concepts than advance — is unambiguous: kill gates produce velocity, advance gates produce drift.</p>
+<div class="gates-flow">
+  <div class="gate-block">
+    <div class="gate-num">G1</div>
+    <div class="gate-week">Week 4</div>
+    <div class="gate-name">Charter & site selection</div>
+    <div class="gate-type">Pause-or-rescope</div>
+    <div class="gate-criteria">Site lease signed · Capex approved · Long-lead POs placed · Permanent FTE recruitment active</div>
+  </div>
+  <div class="gate-arrow">→</div>
+  <div class="gate-block">
+    <div class="gate-num">G2</div>
+    <div class="gate-week">Week 8</div>
+    <div class="gate-name">Design & permitting</div>
+    <div class="gate-type">Pause-or-extend</div>
+    <div class="gate-criteria">Permits on clear path · Design scope drift &lt;20% · Permanent FTE offers accepted</div>
+  </div>
+  <div class="gate-arrow">→</div>
+  <div class="gate-block kill">
+    <div class="gate-num">G3</div>
+    <div class="gate-week">Week 12</div>
+    <div class="gate-name">Construction & install</div>
+    <div class="gate-type">First real kill gate</div>
+    <div class="gate-criteria">Per-vector kill criteria pre-registered (see below)</div>
+  </div>
+  <div class="gate-arrow">→</div>
+  <div class="gate-block kill">
+    <div class="gate-num">G4</div>
+    <div class="gate-week">Week 16</div>
+    <div class="gate-name">Operational validation</div>
+    <div class="gate-type">Second real kill gate</div>
+    <div class="gate-criteria">Stretch criteria for enterprise rollout</div>
+  </div>
+</div>
+
+<h2>Per-vector kill criteria (G3 / G4)</h2>
+<table>
+<thead>
+<tr>
+<th>Vector</th>
+<th>G3 kill (Week 12)</th>
+<th>G4 kill (Week 16)</th>
+<th>If killed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wok</td>
+<td>&lt;5% lift OR &gt;10% downtime OR safety incidents &gt;2</td>
+<td>&lt;5% sustained, &gt;10% downtime</td>
+<td>Disable PAW bay; continue with commercial wok range; capture learnings for internal R&amp;D</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Sustained &lt;93% at 40+ orders/hr</td>
+<td>&lt;93% at any peak</td>
+<td>Pause integration; revert to baseline KDS; separate effort on translation layer</td>
+</tr>
+<tr>
+<td>Drive-thru</td>
+<td>Avg order time &gt;3:15 at peak</td>
+<td>&gt;3:15 sustained at peak</td>
+<td>Review architecture assumptions; rescope before next phase</td>
+</tr>
+</tbody>
+</table>
+<p>If all three vectors clear stretch criteria, recommend full enterprise rollout program (Phase 5, separate scope). If one fails but two succeed, phase rollout of successes; kill or R&amp;D-pivot the failure. If two or three fail, the test kitchen has done its job — the wrong investments are not made at scale, the learnings are captured, and the next round of bets is better-informed.</p>
+<p>The governance that makes pre-registered kill criteria credible is not technical — it is political. Pre-registered criteria are visibly posted at the test kitchen site office. Gate decisions are made on data, not anecdote. The room making the call includes the program lead, the rollout sponsor (a designated peer in the operating function whose stores will receive the rollout), you, and a CFO representative. Quarterly board visibility on gate decisions ties the test kitchen back into the enterprise capital plan.</p>
+<hr />
+<h1 data-num="§ 09">Team Architecture</h1>
+<p>The team you are standing up has three jobs: run the test kitchen, coordinate the portfolio of innovation initiatives across digital / kitchen / construction / smart building, and produce data clean enough that capital allocation decisions get made on evidence rather than instinct. The structural questions are what the team contains, in what order it gets staffed, and how it gets traction on dependencies that sit outside the CDO mandate.</p>
+<h2>The capability mix</h2>
+<p>Five capabilities, ranked by hire sequence. Each is named for what it does — not for whom it reports to.</p>
+<div class="cap-grid">
+  <div class="cap-card">
+    <div class="cap-num">01</div>
+    <div class="cap-name">Program leadership</div>
+    <div class="cap-detail">Owns the portfolio cadence, the gate decisions, the kill criteria, the quarterly readout. The central role; every other capability serves the program.</div>
+    <div class="cap-form">Permanent — hired first</div>
+  </div>
+  <div class="cap-card">
+    <div class="cap-num">02</div>
+    <div class="cap-name">Kitchen / ops embed</div>
+    <div class="cap-detail">Owns wok-side validation; partners with the operating function on the data path from cook line to bag handoff. Field operator background required.</div>
+    <div class="cap-form">Permanent — test kitchen GM + Kitchen Director</div>
+  </div>
+  <div class="cap-card">
+    <div class="cap-num">03</div>
+    <div class="cap-name">Digital fluency</div>
+    <div class="cap-detail">Owns the accuracy program, KDS / POS / makeline integration, order-lifecycle instrumentation. Partners with the digital function rather than duplicating it.</div>
+    <div class="cap-form">Fractional or contract through 2026</div>
+  </div>
+  <div class="cap-card">
+    <div class="cap-num">04</div>
+    <div class="cap-name">Construction / format extension</div>
+    <div class="cap-detail">Already inside your team. The question is whether to add capacity or rebalance the existing roster against the test kitchen build-out plus the dual-lane drive-thru retrofit pilot.</div>
+    <div class="cap-form">Existing — re-allocate or augment</div>
+  </div>
+  <div class="cap-card">
+    <div class="cap-num">05</div>
+    <div class="cap-name">Data and measurement</div>
+    <div class="cap-detail">Owns instrumentation across the test kitchen and three control sites. Statistical rigor matters here; this is the role most often underspecified at peer functions.</div>
+    <div class="cap-form">Fractional or contract through 2026</div>
+  </div>
+</div>
+
+<h2>Permanent versus fractional staffing</h2>
+<p>Some of these capabilities are permanent hires from day one. Others can be fractional through 2026 with a 6 to 12-month re-evaluation.</p>
+<div class="staff-table">
+  <div class="staff-row staff-head">
+    <div>Role</div>
+    <div>Form factor</div>
+    <div>Compensation envelope</div>
+  </div>
+  <div class="staff-row">
+    <div>VP / Head of Ops Innovation</div>
+    <div class="form-perm">Permanent</div>
+    <div>$200–300K base + bonus</div>
+  </div>
+  <div class="staff-row">
+    <div>Test Kitchen GM</div>
+    <div class="form-perm">Permanent</div>
+    <div>$130–180K + bonus</div>
+  </div>
+  <div class="staff-row">
+    <div>Test Kitchen Kitchen Director</div>
+    <div class="form-perm">Permanent</div>
+    <div>$110–150K + bonus</div>
+  </div>
+  <div class="staff-row">
+    <div>Data lead</div>
+    <div class="form-frac">Fractional / contract through 2026</div>
+    <div>$15–20K monthly fractional, or $140–180K permanent</div>
+  </div>
+  <div class="staff-row">
+    <div>Strategy / portfolio chair</div>
+    <div class="form-frac">Fractional 6–12 months</div>
+    <div>$50–75K monthly</div>
+  </div>
+</div>
+
+<p>The fractional pattern matters for two reasons. First, it preserves optionality on roles whose long-term scope is genuinely uncertain — the strategy chair role can be auditioned for two quarters before committing to a permanent shape. Second, it accelerates time-to-value: a fractional senior brings the playbook and the network on day one, where a permanent search would put the role in seat 4–6 months later.</p>
+<h2>Cross-functional traction without owning every function</h2>
+<p>A team inside the CDO mandate drives change on dependencies in digital, kitchen ops, and supply chain through three mechanisms — none of which require those functions to report into yours.</p>
+<div class="mech-grid">
+  <div class="mech-card">
+    <div class="mech-tag">Mechanism 01</div>
+    <div class="mech-title">Steering rhythm</div>
+    <div class="mech-text">Quarterly portfolio review attended by the digital lead, the COO's office, the supply chain VP, and a CFO representative. You chair because the team is yours; the agenda is jointly authored so each function commits to its piece of the portfolio in the room.</div>
+  </div>
+  <div class="mech-card">
+    <div class="mech-tag">Mechanism 02</div>
+    <div class="mech-title">Shared instrumentation</div>
+    <div class="mech-text">When the test kitchen ships data on accuracy, throughput, or labor productivity, that data lives in the operating functions' KPI dashboards — not in a CDO silo. Your team produces the measurement; the operating function takes the credit when the number moves. The single most important norm to set early.</div>
+  </div>
+  <div class="mech-card">
+    <div class="mech-tag">Mechanism 03</div>
+    <div class="mech-title">Sponsor pairs</div>
+    <div class="mech-text">For each major initiative (digital makeline pilot, drive-thru retrofit, GridPoint predictive maintenance extension), pair a member of your team with a named sponsor in the operating function. They co-own the rollout — your team brings the validation, the sponsor brings the operational authority to scale.</div>
+  </div>
+</div>
+
+<h2>Build-out sequence</h2>
+<div class="seq-flow">
+  <div class="seq-block">
+    <div class="seq-month">Months 1–3</div>
+    <div class="seq-name">Stand-up</div>
+    <ul>
+      <li>Program lead in seat (fractional bridge if permanent search is still running)</li>
+      <li>Test kitchen GM and Kitchen Director identified, offers extended</li>
+      <li>Data lead retained on contract</li>
+      <li>Sponsor pairs named for each major initiative</li>
+    </ul>
+  </div>
+  <div class="seq-block">
+    <div class="seq-month">Months 4–6</div>
+    <div class="seq-name">Operate</div>
+    <ul>
+      <li>Test kitchen permanent staff onboarded</li>
+      <li>First quarterly portfolio review completed</li>
+      <li>First three control sites instrumented</li>
+    </ul>
+  </div>
+  <div class="seq-block">
+    <div class="seq-month">Months 7–12</div>
+    <div class="seq-name">Decide</div>
+    <ul>
+      <li>First kill-gate decisions made on test kitchen vectors</li>
+      <li>Second quarterly portfolio review</li>
+      <li>Decision on fractional-to-permanent transition for the strategy chair role</li>
+    </ul>
+  </div>
+</div>
+
+<p>What this team looks like at month 12: a permanent core of 4–5 staff plus a fractional or contract layer, a quarterly steering rhythm with three other function heads, three vectors of test kitchen data with pre-registered kill criteria, and a portfolio of named-sponsor initiatives where each rollout has a co-owner inside the operating function that will absorb it.</p>
+<hr />
+<h1 data-num="§ 10">A 90-Day Action Map</h1>
+<p>These items do not require a search firm, a SOW, or an external advisor. They are the things that, executed cleanly inside Panda's existing org, produce the data needed to commit on the test kitchen and on the team build-out.</p>
+<div class="ninety-grid">
+  <div class="ninety-block">
+    <div class="ninety-week">Weeks 1–4</div>
+    <div class="ninety-theme">Visibility</div>
+    <div class="ninety-items">
+      <div class="ninety-item"><strong>Stand up an internal cross-functional readout</strong>, weekly, with you, the COO's office, the CTO/digital owner, the supply chain owner, and a CFO delegate. Standing agenda: portfolio status across the four largest dependencies. Goal is mapping, not deciding.</div>
+      <div class="ninety-item"><strong>Commission a digital order accuracy baseline by channel</strong> (1P app, DoorDash, Uber Eats, Grubhub) at 50 representative units. Two-week measurement window. No capex. Input for the constraint-2 capex decision.</div>
+      <div class="ninety-item"><strong>Audit the wok-chef turnover number</strong> system-wide and at the top 200 high-volume units. Compare to industry benchmark. Input for constraint-3 economics.</div>
+      <div class="ninety-item"><strong>Name a single owner</strong> for each of the four unowned dependencies. The owner does not have to be a new hire; it can be an existing executive with the dependency added to scope.</div>
+    </div>
+  </div>
+  <div class="ninety-block">
+    <div class="ninety-week">Weeks 5–8</div>
+    <div class="ninety-theme">Calibration</div>
+    <div class="ninety-items">
+      <div class="ninety-item"><strong>First Innovation Portfolio review</strong> with the four dependency owners. Use the Section 4 KPI gap map as the dashboard. Single deliverable: ranked initiative list with owner, scope, measurable target.</div>
+      <div class="ninety-item"><strong>Pilot the Starbucks Siren Craft "Peak Play Caller" role</strong> at 3–5 high-volume Panda units. Zero capex. Measure peak-hour OPH delta over four weeks. Cleanest fast-validation of the Constraint-3 workflow lever.</div>
+      <div class="ninety-item"><strong>Decide on test kitchen scope</strong> (Scope A semi-automated, Scope B full robotics, Scope C hybrid). Recommended: Scope C. If proceeding, place long-lead equipment contingent POs.</div>
+      <div class="ninety-item"><strong>Make the team architecture decision</strong> on permanent vs. fractional roles, or commit to running the recommended pattern for two quarters and re-evaluating.</div>
+    </div>
+  </div>
+  <div class="ninety-block">
+    <div class="ninety-week">Weeks 9–12</div>
+    <div class="ninety-theme">Commitment</div>
+    <div class="ninety-items">
+      <div class="ninety-item"><strong>If test kitchen confirmed:</strong> file site permits (CA timing dictates Week 9 file date for a Rosemead-area site), sign site lease, finalize Phase 0 charter with kill gates pre-registered.</div>
+      <div class="ninety-item"><strong>If team architecture confirmed:</strong> identify and onboard the fractional strategy chair (or stand up the equivalent through your existing executive network). Permanent search for the program lead can run in parallel.</div>
+      <div class="ninety-item"><strong>Publish the Panda Innovation Portfolio internally</strong> — quarterly cadence, named owners, kill criteria, expected investment, expected return. The act of publication is half the value; it converts ambiguous ownership into accountable ownership.</div>
+    </div>
+  </div>
+</div>
+
+<p>What this does not require: a new external advisor. The ninety-day map is mostly internal calibration. The decisions get made by Panda. The data needed is mostly already inside the company; the visibility cadence is the new artifact.</p>
+<hr />
+<h1 data-num="§ 11">Anti-Patterns: What Peer Failures Should Stop You From Building</h1>
+<p>Five things the comp set proves are wrong. Drawn from DR-01 through DR-14 and the SFDR-101–103 deep dives.</p>
+<div class="anti-grid">
+  <div class="anti-card">
+    <div class="anti-rule">Do not build a venture-arm</div>
+    <div class="anti-evidence"><strong>Evidence:</strong> Walmart Store No. 8 (dismantled 2024). McDonald's IBM partnership (divested 2022).</div>
+    <div class="anti-action"><strong>Action:</strong> Embed innovation in the operating model; do not silo it. The test kitchen is decoupled from a live P&L for measurement reasons, but the rollout pathway is integrated into operations from day one.</div>
+  </div>
+  <div class="anti-card">
+    <div class="anti-rule">Do not promise wok productivity lift above 15%</div>
+    <div class="anti-evidence"><strong>Evidence:</strong> Every peer that has tried makeline robotics has captured 5–15% sustainable productivity gain at scale. Chinese vendor claims of 25–40% wok productivity lift have zero verified commercial QSR deployments.</div>
+    <div class="anti-action"><strong>Action:</strong> A pilot targeting 5–12% lift with a 15% stretch is on-precedent. A pilot targeting >15% sells a number no peer has demonstrated.</div>
+  </div>
+  <div class="anti-card">
+    <div class="anti-rule">Do not bundle automation capex with the accuracy program</div>
+    <div class="anti-evidence"><strong>Evidence:</strong> Chipotle's combined Autocado + Hyphen pilot (2023) had unclear attribution — which lever drove which metric.</div>
+    <div class="anti-action"><strong>Action:</strong> Three vectors at the test kitchen must be instrumented separately so causation is observable. Bundling makes the data unfalsifiable, which makes future capital allocation a faith argument rather than an evidence argument.</div>
+  </div>
+  <div class="anti-card">
+    <div class="anti-rule">Do not run validation with fewer than three control sites</div>
+    <div class="anti-evidence"><strong>Evidence:</strong> McDonald's Siren validations and Chipotle's earliest Chipotlane prototypes both stumbled — single-unit results couldn't be cleanly attributed without a control cohort.</div>
+    <div class="anti-action"><strong>Action:</strong> One test kitchen + three instrumented Panda stores producing baseline data is the minimum credible architecture. $150–250K instrumentation; no capex changes at the controls.</div>
+  </div>
+  <div class="anti-card">
+    <div class="anti-rule">Do not run voice AI as a Phase 1 experiment at the menu board</div>
+    <div class="anti-evidence"><strong>Evidence:</strong> McDonald's voice AI (2019 Apprente, then 2022 Google Cloud reset) and Starbucks personalized recommendation (2019, deprioritized) are both cautionary.</div>
+    <div class="anti-action"><strong>Action:</strong> Panda already has SoundHound at scale; that is the level of deployment to maintain. Adding a wok-menu-complexity voice AI experiment burns budget on a problem the comp set has not solved.</div>
+  </div>
+</div>
+
+<hr />
+<h1 data-num="§ 12">The Decisions Only You Can Make</h1>
+<p>Five questions whose answers shape the entire subsequent program. Each has a default if unanswered, and the default in each case is the lower-velocity path.</p>
+<div class="decision-grid">
+  <div class="decision-card">
+    <div class="decision-num">01</div>
+    <div class="decision-q">What is the CEO's appetite for the team you are building?</div>
+    <div class="decision-text">Every internal innovation function eventually needs CEO awareness — capital, cross-functional alignment, board visibility. The 100-day window after a CEO transition is when you can propose the team's mandate as a clear, time-boxed hypothesis rather than a vague capability addition. The more specific the propose-it-and-measure-it framing, the easier it is for the CEO to back without committing to a permanent restructure.</div>
+  </div>
+  <div class="decision-card">
+    <div class="decision-num">02</div>
+    <div class="decision-q">Corporate-only innovation, or franchisee-inclusive?</div>
+    <div class="decision-text">Panda is largely company-operated, which removes the franchise capital co-funding gates that constrain McDonald's (DR-13). The implication is velocity advantage. The implication for franchisee adoption — to the extent franchisees exist in the model — is that transparency and incentive alignment (PS-17 in the problem portfolio) become prerequisites. The default if unanswered is corporate-only — faster but smaller.</div>
+  </div>
+  <div class="decision-card">
+    <div class="decision-num">03</div>
+    <div class="decision-q">How aggressive is the automation appetite?</div>
+    <div class="decision-text">A Scope A semi-automated test kitchen ($1.65–2.15M) and a Scope B full-robotics test kitchen ($3.15–4.15M) signal different things to vendors, recruits, and the board. Scope C ($2.25–2.85M hybrid) preserves optionality on PAW while still capturing the digital accuracy and drive-thru learnings cleanly. If the strategic intent is to lead the industry on wok automation, Scope C is correct. If the intent is to be a fast follower, embedded pilot stores are sufficient.</div>
+  </div>
+  <div class="decision-card">
+    <div class="decision-num">04</div>
+    <div class="decision-q">Will Panda close underperforming units, or commit to turnaround at all locations?</div>
+    <div class="decision-text">This question shapes the rollout architecture for any successful pilot. If willingness to close exists, innovation can target high-potential units only. If not, innovation must work at all maturity levels — harder, slower, less margin-accretive but produces a more resilient brand. Default is "no closures," the more conservative path.</div>
+  </div>
+  <div class="decision-card">
+    <div class="decision-num">05</div>
+    <div class="decision-q">How much capital can the team deploy in 2026–2027?</div>
+    <div class="decision-text">The portfolio of 20 problem statements ranges from zero-capex (workflow redesign, gate governance) to $5–10M (test kitchen, dedicated digital makelines, dual-lane drive-thru retrofits) to $50M+ (vertical-stack format pilot, ghost kitchen network, Tea Bar standalone economics). A $5M annual envelope vs. $20M vs. $50M changes realistic 24-month scope by 4x.</div>
+  </div>
+</div>
+
+<p>These five answers are the inputs to program design. Three of them (#2, #3, #4) sit cleanly inside the CDO mandate as you have publicly framed it. Sequencing the five questions deliberately — answering the three you own first, then bringing the two CEO-dependent questions to the new CEO with a position rather than a question — is the lowest-friction path.</p>
+<hr />
+<h1 data-num="§ 13">Innovation Lab — Top 5 Concepts</h1>
+<p>The five concepts below are drawn from a parallel innovation-workshop pass — roughly 30 candidate ideas, scored across labor impact, capex, throughput multiplier, and brand differentiation. The five featured here are the high-conviction physical and format moves where a CDO mandate maps directly to construction, kitchen design, and site decisions. Each is paired with a representative concept rendering — illustrative, not architectural. The full ranked workshop output (with second-tier concepts on inventory automation, predictive maintenance, ghost kitchens, voice AI, and others) is available on request.</p>
+<div class="lab-card">
+  <img class="lab-image" src="lab-images/01-robotic-wok-kitchen.png" alt="Robotic Wok Kitchen concept rendering" />
+  <div class="lab-body">
+    <div class="lab-tag">Tier 1 · Score 4.1 · Wok automation</div>
+    <div class="lab-name">Wok Automation 2.0 — Botinkit Integration</div>
+    <div class="lab-row"><strong>Problem</strong>Kitchen labor is the binding constraint on growth. Wok-chef turnover is ~140% annually; wages have moved 30% in three years.</div>
+    <div class="lab-row"><strong>What</strong>Next-gen Botinkit Omni-class wok robots execute entire recipes autonomously — measured ingredient dispensing, AI-optimized heat curves, consistent wok hei. Target: reduce kitchen staff from 8 to 3 per location with no compromise on the wok-fired brand promise.</div>
+    <div class="lab-row"><strong>Why now</strong>Production-deployed in Asia. 30% ingredient loss reduction, 40% energy reduction, 2x throughput vs. manual. Panda's menu — Orange Chicken, Beijing Beef, Chow Mein — is structurally ideal: high-volume, repeatable recipes.</div>
+    <div class="lab-row"><strong>First move</strong>Visit Botinkit factory in Shenzhen; run a 5-store pilot with Omni systems instrumented against control sites.</div>
+  </div>
+</div>
+
+<div class="lab-card">
+  <img class="lab-image" src="lab-images/02-modular-restaurant-kit.png" alt="Modular Restaurant Kit concept rendering" />
+  <div class="lab-body">
+    <div class="lab-tag">Tier 1 · Score 4.2 · Construction velocity</div>
+    <div class="lab-name">Modular Restaurant Kit</div>
+    <div class="lab-row"><strong>Problem</strong>Construction is too slow and too expensive for the growth target. Traditional builds take 6 months; at 123 stores per year, weeks compound into millions.</div>
+    <div class="lab-row"><strong>What</strong>Prefab restaurant modules (kitchen pod, dining pod, drive-thru pod) manufactured off-site and assembled in 60 days. Kitchen module arrives with all equipment pre-installed and tested. Site work runs in parallel with module fabrication, not in series.</div>
+    <div class="lab-row"><strong>Why now</strong>Modular construction is 30–50% faster and 20–30% cheaper at scale. CFA, Starbucks, and Marriott have proven the architecture; no major QSR chain has standardized it. CFA's 8–10 month TTO benchmark is achievable inside this approach.</div>
+    <div class="lab-row"><strong>First move</strong>Partner with a modular construction firm (Falcon, Guerdon, or RAD). Design the kitchen-pod prototype. Test full assembly on one greenfield site.</div>
+  </div>
+</div>
+
+<div class="lab-card">
+  <img class="lab-image" src="lab-images/03-digital-lane-splitter.png" alt="Digital Lane Splitter concept rendering" />
+  <div class="lab-body">
+    <div class="lab-tag">Tier 1 · Score 4.4 · Format retrofit</div>
+    <div class="lab-name">Digital Lane Splitter</div>
+    <div class="lab-row"><strong>Problem</strong>The box was designed for dine-in, but 42% of revenue is digital. Mobile orders queue against walk-in customers on the same line; both channels lose.</div>
+    <div class="lab-row"><strong>What</strong>A second drive-thru lane dedicated to mobile-app pickup only. Pre-paid orders, sub-60-second handoff, no menu-board interaction. Retrofit into existing high-volume locations; engineered into all new builds.</div>
+    <div class="lab-row"><strong>Why now</strong>Chipotle Chipotlane proved the architecture (700+ stores, 10–15% sales lift). No Asian QSR chain has done this. First-mover in the category.</div>
+    <div class="lab-row"><strong>First move</strong>Identify 20 locations with the highest digital-order share. Design the retrofit package. Pilot at 5; measure throughput, accuracy, and incremental sales.</div>
+  </div>
+</div>
+
+<div class="lab-card">
+  <img class="lab-image" src="lab-images/04-panda-counter.png" alt="Panda Counter concept rendering" />
+  <div class="lab-body">
+    <div class="lab-tag">Tier 2 · Score 3.9 · New format</div>
+    <div class="lab-name">Panda Counter — Japanese-Inspired Small Format</div>
+    <div class="lab-row"><strong>Problem</strong>No format exists between "full Panda Express" and "food-court kiosk." Urban rents are prohibitive for full-format stores; dense markets are under-served.</div>
+    <div class="lab-row"><strong>What</strong>800 SF counter-only Panda. U-shaped counter seating (12–16 stools). Ticket-machine ordering at entry. Visible wok station behind the counter as kitchen theater. Self-serve water and tea. No tables. Twelve-minute average visit.</div>
+    <div class="lab-row"><strong>Why now</strong>Yoshinoya, Matsuya, Sukiya, and CoCo Ichibanya have run this model at scale across 5,000+ Japanese locations. Build cost lands at ~40% of full-format. No US QSR chain has adopted the architecture; first-mover advantage in dense urban cores, transit hubs, food halls.</div>
+    <div class="lab-row"><strong>First move</strong>Visit Tokyo for an operations study (Yoshinoya, CoCo Ichibanya). Design a Panda Counter prototype. Test in one dense urban market.</div>
+  </div>
+</div>
+
+<div class="lab-card">
+  <img class="lab-image" src="lab-images/05-vertical-kitchen.png" alt="Vertical Kitchen Concept rendering" />
+  <div class="lab-body">
+    <div class="lab-tag">Tier 2 · Score 3.7 · Frontier format</div>
+    <div class="lab-name">Vertical Kitchen Concept</div>
+    <div class="lab-row"><strong>Problem</strong>In high-AUV urban markets, real-estate availability is the binding constraint on expansion. Conventional footprints don't fit; vertical is the only path.</div>
+    <div class="lab-row"><strong>What</strong>Kitchen stacked above ground level with dual drive-thru lanes passing underneath. 2–3x throughput on the same land footprint. Modeled on CFA Elevated (first units 2023–2024) and Yum China RGM 3.0.</div>
+    <div class="lab-row"><strong>Why now</strong>CFA proved the architecture (10–15 vertical units/year by 2025). No Asian QSR chain has followed. In high-land-cost markets (CA, NY, TX urban cores), vertical compresses per-unit land cost 30–40% while multiplying throughput.</div>
+    <div class="lab-row"><strong>First move</strong>Identify 5 highest-performing urban Panda locations where lot size constrains throughput. Commission an architecture study for vertical adaptation.</div>
+  </div>
+</div>
+
+<p>The remaining workshop output covers the second-tier concepts: ghost-kitchen insertion, demand-responsive labor scheduling, drive-thru voice AI, vertical kitchen variants, predictive equipment maintenance, trade-area cannibalization modeling, sustainable build standard, central commissary model, recipe intelligence platform, an international export kit, order-ahead lockers, and the Walmart-outparcel + DoorDash co-branded virtual-kitchen partnership angles. All are documented with scoring, evidence, and first-move detail; available on request.</p>
+<hr />
+<h1 data-num="§ 14">What Was Examined, What Wasn't</h1>
+<p>This synthesis represents 14 deep research threads (DR-01 through DR-14) and 3 supplementary focus dossiers (SFDR-101 on peer test kitchen models, SFDR-102 on greenfield QSR test kitchen capex/staffing/timeline benchmarks, SFDR-103 on peer learnings mapped to Panda's binding constraints). Combined source corpus: 480+ cited public sources, ~600 pages of internal working notes.</p>
+<h2>Source corpus map</h2>
+<table>
+<thead>
+<tr>
+<th>Thread</th>
+<th>Topic</th>
+<th>Sources</th>
+<th>Primary contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DR-01</td>
+<td>Ops innovation at Walmart, Starbucks, McDonald's</td>
+<td>43</td>
+<td>Big Three operating models; Store No. 8 failure mode</td>
+</tr>
+<tr>
+<td>DR-02</td>
+<td>Ops innovation at Chick-fil-A, Chipotle, Taco Bell, Sweetgreen, Domino's</td>
+<td>40</td>
+<td>Peer comp set; franchise innovation adoption patterns</td>
+</tr>
+<tr>
+<td>DR-03</td>
+<td>Panda's current decentralized footprint</td>
+<td>35+</td>
+<td>Ownership map; absence of unified cadence</td>
+</tr>
+<tr>
+<td>DR-04</td>
+<td>Digital order accuracy root causes</td>
+<td>35+</td>
+<td>Channel-by-channel error decomposition; peer solution patterns</td>
+</tr>
+<tr>
+<td>DR-05</td>
+<td>Labor productivity, automation, process redesign</td>
+<td>42</td>
+<td>Workflow lever evidence; turnover cost economics</td>
+</tr>
+<tr>
+<td>DR-06</td>
+<td>Kitchen automation state-of-the-art (wok, makeline)</td>
+<td>35+</td>
+<td>Wok unsolved finding; viable vs. vaporware vendor map</td>
+</tr>
+<tr>
+<td>DR-07</td>
+<td>Panda financials and KPI benchmarks</td>
+<td>30+</td>
+<td>Gap quantification; addressable margin pool math</td>
+</tr>
+<tr>
+<td>DR-08</td>
+<td>Format innovation 2025–2026 frontier</td>
+<td>38</td>
+<td>Dual-lane, vertical stacking, ghost kitchen evidence</td>
+</tr>
+<tr>
+<td>DR-09</td>
+<td>Drive-thru innovation at scale</td>
+<td>32</td>
+<td>CFA, Cane's, McDonald's benchmarks; SoundHound performance</td>
+</tr>
+<tr>
+<td>DR-10</td>
+<td>Smart building, facilities tech</td>
+<td>114</td>
+<td>GridPoint extension into predictive maintenance + waste tracking</td>
+</tr>
+<tr>
+<td>DR-11</td>
+<td>Site selection, AI trade area analysis</td>
+<td>30+</td>
+<td>Format capital efficiency support</td>
+</tr>
+<tr>
+<td>DR-12</td>
+<td>QSR construction pipeline, modular, speed-to-open</td>
+<td>25+</td>
+<td>TTO compression math; CFA control benchmark</td>
+</tr>
+<tr>
+<td>DR-13</td>
+<td>Cherng family governance; recent CEO transition</td>
+<td>30+</td>
+<td>Governance constraint analysis; lite franchising appetite</td>
+</tr>
+<tr>
+<td>DR-14</td>
+<td>Ops innovation hiring market</td>
+<td>30+</td>
+<td>Fractional-to-permanent leadership patterns</td>
+</tr>
+<tr>
+<td>SFDR-101</td>
+<td>Peer test kitchen models</td>
+<td>25+</td>
+<td>Tryer / Cultivate / Speedee benchmarks</td>
+</tr>
+<tr>
+<td>SFDR-102</td>
+<td>Greenfield QSR test kitchen capex/staffing/timeline</td>
+<td>15+</td>
+<td>Cost-per-sqft, FTE ratios, equipment lead times</td>
+</tr>
+<tr>
+<td>SFDR-103</td>
+<td>Peer learnings mapped to Panda's binding constraints</td>
+<td>15+</td>
+<td>What-not-to-do list; per-vector kill criteria</td>
+</tr>
+</tbody>
+</table>
+<h2>What was not examined</h2>
+<p>The corpus is public-source. Material that is non-public, non-discoverable, or operationally specific to Panda was not within scope of this research cycle:</p>
+<ul>
+<li>PAW current capability and roadmap. Internal Panda program; status, capex deployment to date, and validation milestones are non-public.</li>
+<li>Panda labor cost detail by station and by geography. Inferred from public proxies (DR-05, DR-07).</li>
+<li>Panda Home + North Platte unit economics. No public expansion narrative; North Platte too recent for outcome data.</li>
+<li>Cherng family-level decision velocity on innovation governance. Inferred from DR-13 and 2026 CEO-transition reporting.</li>
+<li>Franchisee-side data on innovation adoption appetite. Not public; covered as a knowledge gap in the synthesis library.</li>
+<li>Specifics of any active vendor relationships beyond what is publicly disclosed (SoundHound, GridPoint).</li>
+</ul>
+<h2>Open questions only Panda can answer</h2>
+<p>Sixty-two open questions are catalogued in the knowledge-gap synthesis. The ten that most materially shape the analysis above:</p>
+<ol>
+<li>Panda's baseline crew turnover rate by role cohort, and its correlation with order accuracy and customer satisfaction.</li>
+<li>Panda's unit economics by format, and the cash-on-cash ROI threshold for innovation investments.</li>
+<li>Whether there is a centralized technology roadmap, or if digital infrastructure is fragmented; current KDS vendor and deployment status.</li>
+<li>Panda Home unit economics — strategically viable format or pilot dead-end.</li>
+<li>Board risk tolerance for ops innovation pilots; prior failed innovation mandates that shape current constraints.</li>
+<li>Permanent ops innovation role architecture; appetite for a fractional bridge.</li>
+<li>Franchisee visibility into unit economics; appetite for operational changes requiring training or process redesign.</li>
+<li>Capital constraints (annual capex for tech, equipment replacement cycle, franchisee capex appetite) and how these limit kitchen automation, drive-thru dualing, GridPoint extensions.</li>
+<li>SG&amp;A breakdown by function; whether there are corporate efficiency opportunities that could fund innovation.</li>
+<li>How order accuracy is currently measured (by channel, location, menu item); executive visibility into the gap between digital placement and delivered accuracy.</li>
+</ol>
+<p>The open questions are worth their own conversation. None of the recommendations in this synthesis change materially based on the answers — but the timeline and the capex envelope of any committed program will.</p>
+<hr />
+<h1 data-num="§ 15">Appendix A — KPI Benchmark Table</h1>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Panda</th>
+<th>Chipotle</th>
+<th>CFA</th>
+<th>Taco Bell</th>
+<th>Sweetgreen</th>
+<th>McDonald's</th>
+<th>Starbucks</th>
+<th>Domino's</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUV (TTM 2024)</td>
+<td>$1.6M</td>
+<td>$2.6M</td>
+<td>$2.2M</td>
+<td>$1.2M</td>
+<td>$1.5M</td>
+<td>$2.3M</td>
+<td>$2.0M</td>
+<td>$2.4M</td>
+</tr>
+<tr>
+<td>Restaurant op margin</td>
+<td>9–11%</td>
+<td>15–18%</td>
+<td>14–16%</td>
+<td>10–12%</td>
+<td>2–4%</td>
+<td>12–14%</td>
+<td>18–20%</td>
+<td>16–18%</td>
+</tr>
+<tr>
+<td>Labor % of sales</td>
+<td>27–29%</td>
+<td>26–28%</td>
+<td>24–26%</td>
+<td>26–28%</td>
+<td>32–35%</td>
+<td>25–27%</td>
+<td>23–25%</td>
+<td>14–16%</td>
+</tr>
+<tr>
+<td>Capex per unit</td>
+<td>$450–550K</td>
+<td>$600–700K</td>
+<td>$400–450K</td>
+<td>$320–380K</td>
+<td>$800K–1M</td>
+<td>$1.5–2M</td>
+<td>$700–800K</td>
+<td>$1.2–1.5M</td>
+</tr>
+<tr>
+<td>Payback period</td>
+<td>3.5–4.5y</td>
+<td>3–4y</td>
+<td>2.5–3.5y</td>
+<td>4–5y</td>
+<td>5+y</td>
+<td>6–8y</td>
+<td>4–5y</td>
+<td>3–3.5y</td>
+</tr>
+<tr>
+<td>Digital mix</td>
+<td>35–40%</td>
+<td>50–55%</td>
+<td>45–50%</td>
+<td>42–48%</td>
+<td>60–65%</td>
+<td>48–52%</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Order accuracy (median)</td>
+<td>91–93%</td>
+<td>94–96%</td>
+<td>94–96%</td>
+<td>92–94%</td>
+<td>93–95%</td>
+<td>91–93%</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Digital order accuracy</td>
+<td>88–91%</td>
+<td>95%+</td>
+<td>94%+</td>
+<td>92–94%</td>
+<td>94–96%</td>
+<td>90–92%</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Drive-thru OPH</td>
+<td>140–160</td>
+<td>120–140</td>
+<td>180–200</td>
+<td>150–170</td>
+<td>n/a</td>
+<td>160–180</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Unit growth (3y CAGR)</td>
+<td>3–4%</td>
+<td>7–9%</td>
+<td>5–6%</td>
+<td>4–5%</td>
+<td>8–10%</td>
+<td>1–2%</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Same-store sales</td>
+<td>4–6%</td>
+<td>8–12%</td>
+<td>5–7%</td>
+<td>3–5%</td>
+<td>10–15%</td>
+<td>2–4%</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Innovation maturity (1–5)</td>
+<td>2–3</td>
+<td>4–5</td>
+<td>4</td>
+<td>4</td>
+<td>3–4</td>
+<td>5</td>
+<td>4–5</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: DR-04, DR-05, DR-07, DR-08, DR-09. Maturity rating is a qualitative composite of breadth-of-formats × tech-integration × innovation-cadence. Estimates use industry medians where Panda data is non-public.</p>
+<hr />
+<h1 data-num="§ 16">Appendix B — About This Research</h1>
+<p>The corpus underlying this whitepaper was built between April 11 and April 24, 2026, in two phases. Phase 1 (April 11–16) produced the company-and-people baseline that preceded the April 16 introductory call. Phase 2 (April 17–24) produced the 14 deep research threads and 3 SFDR focus dossiers this synthesis draws from.</p>
+<p>Each deep research thread was scoped to a specific operational question, executed against public sources (SEC filings, earnings calls, investor presentations, trade-press reporting, vendor disclosures, academic publications, regulatory filings), and validated against at least two independent sources per material claim. Every paragraph in this whitepaper has a source thread it can be traced back to.</p>
+<p>The 480+ source count understates the actual research volume. It counts cited sources only, not background reading, vendor interviews, or peer-company artifact analysis. The internal working corpus is approximately 600 pages of structured notes, problem-statement writeups, KPI benchmarks, and synthesis documents.</p>
+<p>If any specific section above produces a question that the synthesis does not address, the underlying material almost certainly does. The path to it is the source-thread map in Section 12.</p>
+<hr />
+<p><em>End of synthesis. April 30, 2026.</em></p>
+</div>
+</body>
+</html>
