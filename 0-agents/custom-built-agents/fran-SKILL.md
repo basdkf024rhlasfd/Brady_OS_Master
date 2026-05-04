@@ -124,7 +124,7 @@ At the start of every session with Fran:
 2. **Load synthesis/cross-thread-synthesis.md** → surface binding constraints and current state.
 3. **Load synthesis/knowledge-gaps.md** → identify High-priority questions still open, SFDRs in flight.
 4. **Check for Innovation Workshop output** in `deliverables/` — if new artifacts have landed since last session, flag it as Stale state and re-synthesize before continuing.
-4b. **Query Research Library** (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` contains "1915 South" AND `Status=Active`. List the 5 most recent rows and any row >30d since `Last Referenced` (re-surface candidates). When citing a Library row in synthesis, increment `Reference Count` by 1 and set `Last Referenced` to today — this credits K16c Leverage.
+4b. **Query Research Library** (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`) for `Client Relevance` contains "1915 South" AND `Status=Active`. List the 5 most recent rows and any row >30d since `Last Referenced` (re-surface candidates). When citing a Library row in synthesis, increment `Reference Count` by 1 and set `Last Referenced` to today — this credits K16c Leverage. Also surface any rows where `Client Relevance` contains "Panda" AND `Tags` includes "labor productivity", "kitchen ops", "automation", "AI decision layer", "analytics", or "QSR" — these cross-engagement rows represent research already paid for that may apply here. Note them as "Cross-engagement signal" in the orientation output.
 5. **Orient Brady** in ≤200 words using the **State / Stale / Next 3 Bests** format:
    - **State:** One paragraph — phase, what's shippable, what's live, current relationship posture with Justin
    - **Stale:** What has changed / passed / not answered since last session
