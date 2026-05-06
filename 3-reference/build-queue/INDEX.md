@@ -46,10 +46,10 @@ Statuses:
 
 | Spec | Slug | Size | Tier | Status |
 |---|---|---|---|---|
-| SPEC-001 | oc-phase-sync | Small | T1 | open |
-| SPEC-002 | oc-research-autonomy | Small | T1 | open |
-| SPEC-003 | oc-parity-constraints | Small | T1 | open |
-| SPEC-004 | platform-capacity-view | Medium | T1 | open |
-| SPEC-005 | platform-sow-template | Medium | T1 | open |
-| SPEC-006 | platform-library-query | Small | T1 | open |
-| SPEC-007 | recon-dicaprio-retool | Medium | T1 | open |
+| SPEC-001 | oc-phase-sync | Small | T1 | needs-review |
+| SPEC-002 | oc-research-autonomy | Small | T1 | needs-review |
+| SPEC-003 | oc-parity-constraints | Small | T1 | needs-review |
+| SPEC-004 | platform-capacity-view | Medium | T1 | needs-review |
+| SPEC-005 | platform-sow-template | Medium | T1 | needs-review |
+| SPEC-006 | platform-library-query | Small | T1 | needs-review |
+| SPEC-007 | recon-dicaprio-retool | Medium | T1 | needs-review |

@@ -128,6 +128,38 @@ Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "M
 
 Backup archive (full scorecard + rationale): `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
 
+### 1.0d Dual-Engagement Capacity Snapshot
+
+Read both active engagement PROJECT.md files and the build queue. Generates a compact capacity table held in working memory for Phase 2 output — Brady sees the full picture before Gmail.
+
+1. Read `1-execution/areas/work-and-business/programs/Consulting/Project - Panda/PROJECT.md` — extract: current phase, next open action item with date
+2. Read `1-execution/areas/work-and-business/programs/Consulting/Project - 1915 South/PROJECT.md` — extract: current phase, next open action item with date
+3. Read `3-reference/build-queue/INDEX.md` — count open specs
+
+Brady hours estimates (hardcoded per phase label):
+- Pre-engagement: 5-10h/wk
+- Scope negotiation / Whitepaper offer: 5-15h/wk
+- Active / embedded: 35-50h/wk
+- Advisory / Delayed Start: 8-12h/wk
+- Delivery: 20-30h/wk
+
+Output block for Phase 2 (insert in the REPORT section after TOP 3):
+
+```
+ENGAGEMENT CAPACITY SNAPSHOT
+─────────────────────────────────────────────────────────────
+Client         Phase                   Next Touch    Brady Hrs/Wk
+─────────────────────────────────────────────────────────────
+Panda          [phase]                 [date]        [hours]
+1915 South     [phase]                 [date]        [hours]
+─────────────────────────────────────────────────────────────
+BUILD QUEUE: N open specs
+─────────────────────────────────────────────────────────────
+```
+
+- If any Next Touch date is today or tomorrow, append `←HOT` to that row.
+- If both engagements are in scope-negotiation or active simultaneously, add: `⚠️ Both engagements active — confirm capacity scenario before new commitments.`
+
 ### 1.1 Gmail Scan
 - Search: last 24 hours, skip `category:promotions` and `category:social`
 - For each message: read full body (subject lines aren't enough)

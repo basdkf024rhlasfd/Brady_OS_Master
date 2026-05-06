@@ -102,6 +102,18 @@ projects:
       path: "/"
 
   # --- 1915 South Engagement group ---
+  - slug: 1915-south-map
+    label: "1915 Operator Map"
+    short: "M"
+    href: "/1915-south-map"
+    description: "Interactive Southeast US map — one dot per state:franchisee combination. Click to surface research, succession signals, and acquisition context. Brady-only."
+    approved: 2026-05-04
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: ""
+      path: "/1915-south-map/viewer/index.html"
+
   - slug: 1915-south
     label: "Brady Private | 1915 South"
     short: "T"

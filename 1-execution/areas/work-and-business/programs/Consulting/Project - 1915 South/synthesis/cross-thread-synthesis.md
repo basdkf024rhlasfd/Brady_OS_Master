@@ -1,99 +1,131 @@
 # Cross-Thread Synthesis — 1915 South Engagement
 
-*Last updated: 2026-04-26 (Phase 4 — Justin's offer landed; comp negotiation in flight)*
+*Last updated: 2026-05-04 (Fran — Phase 4 + Virginia M&A research integrated)*
 
 ---
 
 ## Executive Summary (current)
 
-The engagement has converted from a CFO-shaped advisory pitch into a **named exec offer**. Justin Woods sent a "Proposed Position and Plan" email Apr 25 with org chart, scope, and a financial timeline; specific comp numbers landed Apr 26 morning ($150K base / 1.25% of EBITDA quarterly bonus / $50K LTI on 5-yr vest = ~$600K post-AGR target). Russell aligned. Brady has an evening call Apr 26 to negotiate structure. Three new SFDRs (018/019/020) stress-tested the financials, the people, and the org structure.
+The engagement converted from a CFO-shaped advisory pitch into a **named executive offer**. Justin Woods sent a "Proposed Position and Plan" email Apr 25 with org chart, scope, and financial timeline; specific comp numbers landed Apr 26 morning ($150K base / 1.25% EBITDA quarterly / $50K LTI 5-yr vest). Russell aligned. Brady had an Apr 26 evening call to negotiate structure. Three Phase 4 SFDRs (018/019/020) stress-tested the financials, people, and org structure ahead of that call.
 
-The path from here: negotiate the offer in-flight, anchor base higher than $150K, lock structural protections (bonus floor, M&A RACI vs. Alyson, Director-of-Strategy reporting line, Russell PG status), accept a structured offer, and time start to honor Panda's 6-month engagement (target: Aug 1 announcement / later start).
+Post-Apr 26 call status: **not confirmed in repo as of 2026-05-04.** Preserve this synthesis against the Apr 26 evening state. Update when outcome lands.
 
-**Pre-Apr 26 framing (workshop-first, scenario matrix A/B/C/D) is now obsolete.** It served Phase 0-1 well but has been superseded by the named-offer path. Preserved for archive in scenario-matrix.md and engagement-shapes.md.
+The Virginia operator dossier (Apr 29) added a second intelligence layer: the M&A landscape is sharply defined with AFHSVA/Sam Zeidan as the Tier 1 acquisition target and Corrie Bobe (Danville Regional Foundation) as the most valuable relationship in the region.
 
----
-
-## Binding Constraints (revised)
-
-1. **The offer is a low-base, high-variable structure.** $150K base is well below market; total package only works if EBITDA bonus % and LTI structure deliver. Structural protections (floor, no cap, formula transparency) matter more than headline comp numbers.
-2. **Justin owns this hire.** Confirmed Apr 25 via text — Russell aligned, not gatekeeper. The Phase 3 Russell-as-handshake framing is obsolete.
-3. **Alyson Nohelty is Justin's GE/Marquette buddy.** She's a known commodity to Justin, not a stranger. Three of her CTrO scope bullets (M&A integration playbook, org design / operating model, new lines of business including SSB) overlap directly with Brady's CFSO scope. **For-discussion in Justin's email = he hasn't decided which seat carries the strategic load.** Severity-5 collisions on M&A playbook + operating-model territory.
-4. **The exec team is an AGR diaspora.** Justin (ex-AGR), Josh Beaupre (ex-AGR VP Finance — the "current CFO problem"), Frank Pina (likely ex-AGR Tampa), Amanda Hall (2025 hire from WVU/Tampa). Only Leah Odom is true long-tenure 1915 South internal (~18 yrs, started in payroll). Justin is importing his Ashley Global Retail team into Russell's company.
-5. **AGR = Ashley Global Retail LLC** (Ashley Inc's company-owned retail arm). Aug 1 deal = Ashley divesting DTC stores to its strongest licensees. Mirrors 2022 Howard Fineman pattern. Justin is bringing the deal in with him from his AGR relationships.
-6. **2026 EBITDA likely lands at the low end of $25-28M or below.** Iran-war Q2/Q3 supply chain + ERP go-live (June 1) + AGR integration drag all hit Brady's first 90 days. **Y1 bonus floor is non-negotiable** — Brady must not be punished for events he didn't cause.
-7. **Russell's PG status on senior debt is the unanswered governance question.** Russell owns store real estate personally via LLCs. If he still PGs senior debt, Brady's "lender and bank syndicate relationships" scope is constrained — banks negotiate with the guarantor, not the CFO. Must ask.
-8. **The Director of Strategy and Finance (GT MBA, starts ~May 3) was hired by Justin, not Brady.** He runs the ERP launch June 1 alone. He becomes the institutional memory of the CFO transition. Political risk if he becomes Justin's guy more than Brady's. Must interview pre-Day-1 + reserve veto rights at 90 days + no dotted line to Justin.
+**Pre-Apr 26 workshop-first framing is now obsolete.** Preserved in scenario-matrix.md and engagement-shapes.md.
 
 ---
 
-## The negotiation posture (Apr 26 evening call)
+## Research Corpus — Full Index
 
-**Numbers Justin proposed:**
-- Base: $150K
-- Bonus: 1.25% of EBITDA, paid quarterly
-- LTI: $50K/yr, vest in equal increments over 5 yrs (issuance starts Day 1, annual issuance based on EBITDA vs budget; floor 25%)
-- Post-AGR target ~$600K; 48-store target ~$700K
+### Phase 0: Baseline (Closed)
+- **phase-0-ashley-furniture-baseline.md** — Executive context, Justin/Russell/Todd Wanek, 1915 South gaps, engagement premise. Starting point for all subsequent research.
 
-**Brady's pre-set anchors (from SFDR-012 + Streaming Notes Apr 25):**
-- Base floor: $280K
-- Base target: $310-350K
-- Base ceiling: $380-420K
-- Recommendation from SFDR-018: $400-450K base + 0.85-1.10% of EBITDA + $200-250K LTI on 5-yr vest
+### Phase 1–3: Strategic Intelligence (Closed)
+- **SFDR-003 — GMROI Directive & Peer Benchmarks** — Ashley Dec 2024 directive, industry $2-3 standard, Havertys/Arhaus calcs. Ashley leverage is commercial, not contractual.
+- **SFDR-004 — Ashley Corporate AI Deployments** — 170+ projects, 500+ robots, Theo free to licensees. Critical gap: no licensee analytics platform. Brady's seat = operating layer between Theo and Zapsight.
+- **SFDR-010 — SW Virginia Findings** — Initial AFHSVA/Zeidan scan that seeded the VA deep dossier.
+- **SFDR-011 — High Point Market 2026** — Ashley Intelligence lab, Theo live results ($2K/wk/rep, 86% WAU), Cameron Wanek supply chain AI quotes.
+- **SFDR-012 — CFO/CAIO Comp Benchmarks** — Brady floor $280K, target $310-350K, ceiling $380-420K. Scope premium matrix.
+- **SFDR-014 — VP Corp Dev Comp Benchmarks** — Comparables for the Director of Strategy hire Justin made independently (GT MBA, ~May 3 start).
+- **SFDR-015 — Distribution Model** — 4 DCs, 280-340 staff, $23-25M annual cost (~13% of revenue). JB Hunt outsourcing signal = #1 strategic P&L lever. $2-3M net annual savings + $5-8M capital freed.
+- **SFDR-016 — JB Hunt FMS Pricing Intelligence** — Final-mile delivery economics confirmed. Zeidan AFHSVA acquisition = natural JB Hunt pilot market (no 5th DC build needed).
 
-**Gap:** Justin's $150K base is $130K below Brady's floor. Total package at $600K is in range, but the base shortfall is real — the 1.25% EBITDA % is doing all the work. Negotiating pivot: pull base to $200-250K minimum while preserving 1% EBITDA, OR keep low base but lock formula transparency + floor + no cap + accelerator above plan.
+### Phase 4: Deal-Room Intelligence (Closed)
+- **SFDR-018 — Justin's Financials Validation** — 13.5% EBITDA at top of public comp range but defensible. 2024→2025 jump explained by 2024 noise (DC ramp + ERP pre-spend), not 2025 inflation. AGR 14% target = 18 months, not Day 1. Bonus floor critical for 2026 macro risk.
+- **SFDR-019 — 1915 South People & Network** — AGR diaspora pattern (Justin, Josh Beaupre, Frank Pina, Amanda Hall). Alyson Nohelty = Justin's GE/Marquette buddy. Russell PG status = unanswered governance question.
+- **SFDR-020 — Org Structure Analysis** — 12-ask negotiation list, scope overlap heat map, M&A RACI, Director interview pre-veto, Alyson scope collision severity-5.
 
-**Top 3 structural asks (cost Justin almost nothing — see SFDR-020 §8 for full 12):**
-1. M&A RACI in writing before Day 1 — Brady accountable on deal economics, Alyson on integration sequencing, Brady chairs Deal Committee
-2. Director (GT MBA) interview pre-start + 90-day veto + no dotted line to Justin
-3. EBITDA bonus formula committed in writing — uncapped, 80% Y1 floor, 80% protection on normal-range performance
+### M&A Intelligence
+- **m-and-a-deep-research-2026-04-22.md** — Full chessboard. Roll-up thesis, FRG dividend, sell-side optionality, named target pool (15+), capital partner universe (20+), warm-intro map.
+- **virginia-furniture-targets-deep-dossier-2026-04-29.md** — 45+ sources. Deep files on AFHSVA/Zeidan, Providence, Trivett's, Broad River. Succession signals, entity maps, approach surfaces, Corrie Bobe economic development angle.
 
----
-
-## Operating Model Recommendation (revised — post-offer)
-
-**Brady's natural moat in this org:** Capital structure + entity strategy + lender relationships + applied AI architecture. Frank can't do those. Alyson partially can (her transformation scope touches operating model + M&A integration) but the **financial architecture seat is uncontested**.
-
-**Day-1 deliverable to lock the strategic seat:** A 3-year capital + entity plan, board-quality, due Day 60. Owned by Brady, not delegated. This is the visible work product that earns the "Strategy" half of CFSO. Anything less and the title becomes finance-with-a-prefix.
-
-**Where to cede ground (and where not to):**
-- **Cede:** Customer data infrastructure (Zapsight) → Amanda Hall over time. Standard CDO-vs-CTO tension. Brady claims AI architecture + governance + data infrastructure plumbing; Amanda owns use cases.
-- **Cede:** Operational store integration → Frank. M&A close-and-integrate split: Brady owns deal economics + IC modeling + lender story; Frank owns the playbook execution.
-- **Hold:** Entity design (operating co, RE, aviation, new ventures) — this is where the trust-structure work lives, and it's bullet 3 of Brady's stated scope. Don't let "new lines of business including SSB" creep into Alyson's territory before the wiring is set.
-
----
-
-## Current State (as of 2026-04-26)
-
-- **Research:** SFDRs 003, 004, 011, 012, 014, 015, 016, 017, **018, 019, 020** all closed. Phase 0 complete plus three Phase 4 deep dives (financial validation, people + background, org structure analysis).
-- **Relationship:** Apr 24 CFO email → Apr 25 text exchange (Russell aligned, "hobble 6 months OK") → Apr 25 9:17 PM "Proposed Position and Plan" email → Apr 26 7 AM specific comp numbers. **Apr 26 evening call scheduled.**
-- **Russell access:** Not direct yet. Justin closed the gatekeeper question — Russell is aligned but Brady has not met him. Likely to happen post-acceptance.
-- **Contractual state:** Verbal offer with structure in writing. No paper yet.
-- **Brady's parallel commitment:** 6-month Panda engagement (OC Optimus). Honored. Aug 1 announcement / later start preferred to allow Panda completion + 4-week home seam.
+### Pending Research Threads (Dispatch stubs — await content)
+- `ashley-market-ga-fl-2026-05-04.md` — GA + FL Ashley operator landscape
+- `ashley-market-sc-ms-al-2026-05-04.md` — SC + MS + AL operators
+- `ashley-market-tn-ky-wv-2026-05-04.md` — TN + KY + WV (Providence territory)
+- `ashley-market-ok-ar-la-2026-05-04.md` — OK + AR + LA (AGR acquisition adjacent)
+- `ashley-market-tx-2026-05-04.md` — Texas (Beaumont June 2027 pipeline)
+- `ashley-market-va-nc-corridor-2026-05-04.md` — VA + NC market depth
+- `furniture-recession-elasticity-2026-05-04.md` — Macro + demand cycle
+- `hormuz-impact-1915-south-2026-05-04.md` — Supply chain / tariff impact model
+- `justin-woods-deep-analysis-2026-05-04.md` — Justin background, motivations, risk tolerance
 
 ---
 
-## What's Stale / Needs Re-Evaluation
+## M&A Landscape — Fran's Current Read
 
-- **Comp anchors will move during the call.** Floor/target/ceiling were pre-set vs. an unknown structure; now that Justin has shown his hand ($150K base + 1.25% EBITDA), the math changes. SFDR-018 §4 has the recalibrated structure recommendations.
-- **The "$700K post-acquisition" reference Justin made in passing.** It maps to the named offer ($150K + 1.25% × $35M EBITDA + $50K LTI = ~$637K + LTI = ~$687K). So the $700K wasn't a stretch — it was the plan. Brady should not anchor on $700K as the ceiling; it's the midpoint.
-- **The Innovation Workshop (Phase 1 deliverable) is no longer the lead artifact.** It was delivered Apr 22 and remains a credibility anchor, but the engagement is now an offer negotiation, not a workshop sale.
-- **Russell's hiring philosophy (knowledge-gaps Q3) is largely closed.** He aligned on Brady + Alyson + reorg per Justin's Apr 25 text. The 4th-gen-family tension that loomed in Phase 0 has not materialized.
+### Virginia Operator Map (the most developed M&A intelligence)
+
+| Operator | Geography | Stores | Revenue | Priority | Signal |
+|---|---|---|---|---|---|
+| **AFHSVA / Sam Zeidan** | SW VA (Roanoke/Lynchburg corridor) | 8-9 | $60-80M | **Tier 1 Target** | Zeidan Group LLC formed 9/25/2025 — holdco succession signal |
+| **Trivett's Furniture** | Central/Eastern VA | 13 | $106.7M | Monitor | Growing counter-cycle; no succession signals yet |
+| **Broad River Retail** | Northern VA / NoVA | 4-5 VA (+27 total) | Private | Structural comp | 2025 Ashley Licensee of the Year; aggressive expansion |
+| **Providence Enterprises** | SW VA tip (Bristol/Wise) + WV/TN | 2 VA (+20 total) | $77.1M total | Context only | Not competitive in Roanoke corridor |
+
+**The Zeidan thesis in one paragraph.** Sam Zeidan is mid-60s, 37+ years in furniture, just formed a holding company (The Zeidan Group LLC, Sept 25, 2025) — the exact entity structure that precedes a sale or recapitalization for a closely-held operator. His civic anchor is Hanover County (personal community, not Roanoke). His $50K AED donation signals $5-10M+ personal income and a relationship-driven outreach style. The Roanoke-Lynchburg-Danville corridor is uncontested if his portfolio moves — cleanly adjacent to 1915 South's Danville store. Timeline: 18-36 months. Entry: Hanover Supervisor Sean Davis (his stated friend) or Compton Biddle Esq (lawyer on all Zeidan LLCs), not a cold call to AFHSVA directly.
+
+**The Corrie Bobe angle.** Personal high-school connection to Brady. Just transitioned (March 25, 2026) from Danville City Director of Economic Development (Caesars + Tyson + AeroFarms; 5 consecutive years on Virginia Business 500) to Danville Regional Foundation Director of Economic Development. Her new role is non-governmental, covers Pittsylvania County + Caswell County NC, and allows informal strategic conversations a sitting city director cannot have. Best opening: "I'm watching the corridor between Roanoke and Danville. What do you see from where you sit?" Not a path to Zeidan directly — a path to Danville business intelligence and regional credibility.
+
+### AGR Acquisition (Aug 2026 — already in plan)
+
+$69M revenue / 12 stores in MS + LA. Ashley divesting corporate stores to a stronger licensee — mirrors Howard Fineman 2022 pattern. Current AGR EBITDA est. 8-10%; integration uplift to 14% over 18 months (mattress attach + DC consolidation + expense rationalization). Brady's risk: ERP go-live June 1 + AGR close Aug 1 = dual integration pressure in his first 90 days. Y1 bonus floor is non-negotiable for this reason.
 
 ---
 
-## Next 3 Bests (Fran's opinion — Apr 26 evening, pre-call)
+## Binding Constraints (consolidated — post-offer)
 
-1. **Walk into the call with the SFDR-018 numbers and the SFDR-020 12-ask list.** The structural asks (M&A RACI, Director interview, PG status, bonus floor formula) cost Justin almost nothing. Get those locked in writing before negotiating dollars. Cheap to ask, hard to re-litigate Day 1+.
-2. **Don't anchor a base number first.** Let Justin re-table after Brady raises the structure. Brady's response to "$150K base" should be: "Let me come back to base after we've talked about the bonus formula and Y1 floor — those drive the math more than the base does." That keeps Justin from feeling he's already negotiated.
-3. **Ask the Russell PG question before the call ends.** It's the cleanest test of Brady's "lender and bank syndicate relationships" scope being real or theatrical. Justin's answer reveals more about Russell's actual posture toward outside leadership than any pitch language.
+1. **Low-base, high-variable structure.** $150K base (Justin's number) is $130K below Brady's floor. Total package only works if EBITDA formula delivers and structural protections are locked.
+2. **Justin owns the hire.** Russell aligned, not gatekeeper. Phase 3 Russell-as-gate framing obsolete.
+3. **Alyson Nohelty scope collision.** Severity-5 on M&A playbook + operating model territory. For-discussion in Justin's email = unresolved. Must get M&A RACI in writing pre-Day 1.
+4. **AGR diaspora team.** Justin importing his AGR relationships. Brady must not be seen as external to that network — early Russell alignment is the counterweight.
+5. **2026 EBITDA likely at low end.** Iran-war Q2/Q3 + ERP go-live + AGR integration. Y1 bonus floor is the insurance policy.
+6. **Russell PG status unknown.** Owns store real estate via LLCs. If still personally guaranteeing senior debt, Brady's "lender relationships" scope is constrained.
+7. **Director of Strategy (GT MBA, ~May 3 start) was Justin's hire, not Brady's.** Political risk if he becomes Justin's guy pre-Day 1. Interview + 90-day veto + no dotted line to Justin.
+
+---
+
+## Negotiation Posture (Apr 26 evening — preserved)
+
+**Top 3 structural asks (cost Justin almost nothing):**
+1. M&A RACI in writing — Brady chairs Deal Committee, Alyson owns integration execution
+2. Director interview pre-start + 90-day veto + no dotted line to Justin
+3. EBITDA bonus formula in writing — uncapped, 80% Y1 floor, formula transparency
+
+**Comp anchors (SFDR-018 validated):**
+- Base target: $400-450K
+- Bonus: 0.85-1.10% of EBITDA quarterly, with floor + accelerator above $40M
+- LTI: $200-250K annual grant, 5-yr vest, unit-denominated at 6-7x EBITDA multiple
+- Target all-in: $750-850K at $34M post-AGR EBITDA
+
+**Brady's frame:** "The real negotiation is not comp. It's Control, Scope, Time allocation (strategy vs firefighting), Access to upside over time."
+
+---
+
+## Operating at mception.ai
+
+- **Main hub:** `/1915-south` — engagement history, negotiation files, innovation workshop, SFDRs
+- **Operator map:** `/1915-south-map` — interactive Southeast map, one dot per state:franchisee, click for research
+- **Executive overview:** `/1915-south-execs` — client-safe engagement overview
+- **M&A workspace:** `/1915-south-ma` — roll-up thesis, named targets, capital partner universe
+- **CFO role design:** `/1915-south-cfo` — scope, AI roadmap, finance modernization, GMROI
+
+---
+
+## Next 3 Bests (Fran's opinion — May 4, 2026)
+
+1. **Confirm April 26 call outcome.** The synthesis has no confirmed post-call record. Update with: (a) did comp terms close? (b) were the three structural asks accepted? (c) what's the start date signal? Until that's confirmed, everything below is queued waiting.
+2. **Open the Corrie Bobe relationship.** She's in her first weeks at DRF — ideal moment. Opening question: "What are you seeing in the Danville-Pittsylvania-Caswell corridor as you get your bearings at DRF?" This maintains the relationship, builds regional intelligence, and plants the Danville/Roanoke corridor frame without any M&A signal.
+3. **Activate the pending research stubs** (Dispatch threads). VA/NC corridor + GA/FL + SC/MS/AL + recession elasticity are the four highest-priority. The Ashley operator map is only as good as its research depth — the stubs need content before any market decision gets made.
 
 ---
 
 ## Phase 4 Updates Log
 
-- **2026-04-25 — Apr 25 Proposed Position email (Justin → Brady):** Org chart, named scope per role, 13.5% EBITDA scenarios, timeline through June 2027. Captured to `proposed-position-2026-04-25.md` (durable source-of-truth doc).
-- **2026-04-26 morning — Specific comp numbers landed:** $150K base / 1.25% EBITDA quarterly / $50K LTI 5-yr vest. Captured to `negotiation/negotiation-kb-2026-04-26.md`.
-- **2026-04-26 — SFDR-018 written:** Financial validation. 13.5% EBITDA at industry ceiling; 14% on AGR is a 24-month target not Y1; 2024→2025 +43% jump is mostly 2024 noise; bonus pool implications.
-- **2026-04-26 — SFDR-019 written:** People + network + background pass. Alyson = Justin's GE/Marquette buddy, AGR diaspora pattern, Russell PG question, no litigation/SEC/EEOC findings, Justin's 5-jobs-in-5-years yellow flag.
-- **2026-04-26 — SFDR-020 written:** Org structure analysis. 12-ask negotiation list, scope overlap heat map, Alyson question deep-dive.
+- **2026-04-25** — Justin's "Proposed Position and Plan" email. Org chart, scope, financial scenarios, timeline through June 2027.
+- **2026-04-26 morning** — Specific comp numbers: $150K base / 1.25% EBITDA quarterly / $50K LTI 5-yr vest.
+- **2026-04-26** — SFDR-018, 019, 020 written. Financial validation, people pass, org structure 12-ask list.
+- **2026-04-26 evening** — Brady comp negotiation call with Justin. Outcome not confirmed in repo.
+- **2026-04-29** — Virginia Ashley Operators Deep Dossier (45+ sources). Zeidan succession signal, Corrie Bobe angle, Providence template, Trivett's profile.
+- **2026-05-04** — Cross-thread synthesis updated. Operator map published to mception.ai (`/1915-south-map`). New SFDRs added to portal files dir (003, 004, 011, 012, 016, Virginia dossier, SFDR-010).
