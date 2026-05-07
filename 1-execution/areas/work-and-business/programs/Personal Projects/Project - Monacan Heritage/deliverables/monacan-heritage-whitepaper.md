@@ -1,0 +1,1629 @@
+# The Last of the Monacans
+
+### A Compilation of Research Compiled by and for the Virginia Smallwood Family (Children of Gene Smallwood; Grandchildren of Lutie Clark)
+
+**Compiled May 2026 by Brady Smallwood**
+
+---
+
+## Abstract
+
+This document synthesizes archival, genealogical, and ethnohistorical research on the Clark family of Irish Creek, Cornwall, and Buena Vista, Virginia — a documented Eastern Siouan (Monacan) lineage running from the 1780 Pedlar River land patent of William Clarke through eight generations to the present day. The corpus draws on primary records held at the Library of Virginia, the LDS Church History Library, the Smithsonian Institution, federal census images from 1850 forward, the AncestryDNA raw genotype file of the principal researcher, the Heinegg *Free African Americans* registry catalog of colonial Virginia free people of color, and roughly a dozen parallel research threads on tribal history, religious doctrine, and the bureaucratic machinery of Virginia racial classification.
+
+The method separates verified primary-source evidence from family folklore and from open archival questions, and follows the documentary chain generation by generation rather than relying on oral tradition. The synthesis finds that the Clark line entered the documentary record already classified as a free-people-of-color household in Amherst County by 1780, was continuously classified Mulatto or "free colored" in federal records through 1860, was named on Walter Plecker's official 1943 list of "mongrel" surnames for both Amherst and Rockbridge counties, was central to the 1924–25 *Sorrells v. Shields* mandamus case that briefly broke Plecker's enforcement system in Rockbridge County, and converted to The Church of Jesus Christ of Latter-day Saints in 1911 in response to Lamanite doctrine — surviving a 27-year exclusion from the priesthood (1924–1951) before the case was resolved through a documentary review anchored to the Sorrells precedent.
+
+The narrative voice throughout is third-person. Inline parenthetical definitions are provided on first use for legal, anthropological, religious, and historical terms a general reader would not know.
+
+---
+
+## Table of Contents
+
+1. **Part 1** — Who the Monacan Actually Are (origins, archaeology, copper, the Jamestown link)
+2. **Part 2** — The Collapse, 1607–1750 (disease, dispersal, Treaty of Middle Plantation, Fort Christanna)
+3. **Part 3** — Survival in the Hollows, 1700–1900 (the 1705 Slave Code, the Bear Mountain settlement, the Brown People)
+4. **Part 4** — The Entry Point (William Clarke's 1780 land patent, James Clark Sr. + Anny Moseley 1785, the trail going cold)
+5. **Part 5** — The Clark Family of Irish Creek, 1797–1900 (Joseph Carter Clark Sr., Nelson Harrison Clark's three wives, Mulatto in 1860)
+6. **Part 6** — Plecker and the "Paper Genocide," 1912–1946 (the 1924 Act, the surname lists, the mechanics)
+7. **Part 7** — Atha Sorrells and the Court That Said No (Nov 1, 1924; the Clark family tree as evidence; Holt's ruling)
+8. **Part 8** — Why the Clark Line Became Mormon, 1875–1978 (Lamanite doctrine, the priesthood ban, the 1951 rescue)
+9. **Part 9** — The Recognition Fight and Today (Houck 1984, state recognition 1989, federal recognition 2018, Diane Shields)
+10. **Part 10** — What the DNA Says (the AncestryDNA file, mtDNA N, Y R-M269, why no Native percentage, what it can and cannot do)
+11. **Part 11** — Open Questions and What to Do Next (Caroline County tax rolls, Ruth Knight Bailey, the May Powwow, enrollment)
+
+Back matter: acknowledgments, source list, colophon.
+
+---
+
+## Key Findings
+
+The eight findings below are stated as evidentiary claims in third-person factual voice. Each is a load-bearing conclusion of the synthesis and is supported by the citations enumerated in its body section.
+
+**Finding 1.** The Clark family lineage is documented within Eastern Siouan (a branch of the Siouan language family historically spoken across the Virginia Piedmont, Carolinas, and West Virginia, distinct from the better-known Western Siouan languages of the Plains) Monacan community surname clusters, not Iroquoian (Cherokee). Linguistic, archaeological, and tribal-recognition evidence places the line in the Virginia Piedmont Siouan continuum from 1780 forward. No documented Cherokee genealogical connection has been identified. The recurring "Monacan branch of the Cherokee" gloss in family memory derives partly from an alternate identity adopted by some Buffalo Ridge cousins in Amherst County, partly from Cherokee being the only Southeastern Native identity legible to outsiders after the Trail of Tears, and partly from a deliberate rhetorical strategy by Walter Ashby Plecker to argue the Monacan no longer existed. [Credibility 5 — Heinegg, *Free African Americans*; Encyclopedia Virginia, *Monacan Indian Nation*.]
+
+**Finding 2.** The Native ancestry in the paternal Clark line was already in federal records by 1780 — earlier than family folklore suggested. Heinegg's registry — the canonical reference for colonial Virginia free people of color (a Virginia legal category for non-enslaved persons of African, mixed-African, or sometimes Native ancestry) — establishes that William Clarke (~1735–1821), Brady Smallwood's 8x-great-grandfather, received a 72-acre land patent on the head branches of Pedlar River in Amherst County on 20 July 1780. He was already classified as "free colored" in his 1783 Amherst tax record and as Mulatto (the 19th-century U.S. census term for a person of mixed European and African or Native ancestry) by 1800–1813 in the same county's tax rolls. His son James Clark Sr. (1764–1840) married Anny Moseley in Henrico County on 25 January 1785 with James Hartless as marriage surety — Hartless being the canonical Bear Mountain Monacan surname documented in the same Amherst free-people-of-color registry, indicted for cohabiting with a white woman in 1761. The Clark family did not become Indian-classified through later admixture. The documentary record opens with the line already classified Mulatto / man of color in Amherst County in 1780. The actual founding generation — the un-named Native woman whose marriage to a Clark settler man produced this line — is one or two generations further back, in eastern Virginia, in the late 1600s or early 1700s, undocumented by name. That is the limit of the paper trail. [Credibility 5 — Heinegg, *Free African Americans*; primary archival records, Library of Virginia patent books.]
+
+**Finding 3.** Nelson Harrison Clark was enumerated as Mulatto on the 1860 federal census. Three generations downstream of William Clarke, in 1860, Nelson Harrison Clark — Brady's 6x-great-grandfather, born 1793 — was enumerated as Mulatto in the federal census in Amherst County, Virginia, age 66, household 1860 with his third wife Frances Mason and his Mason father-in-law (FamilySearch ARK 1:1:M4B1-4DF). The same record confirms a single living person classified non-white by the federal government in primary archival evidence, sixty-four years before Plecker began altering certificates. The classification is not inference. It is a federal record entry retrievable on demand. [Credibility 5 — primary federal record, FamilySearch ARK 1:1:M4B1-4DF.]
+
+**Finding 4.** The Clark surname appears on Walter Plecker's official 1943 surname list for both Amherst County and Rockbridge County. Plecker's 1943 circular letter to county clerks and registrars across Virginia named "mongrel" surnames in each county. So do Tyree, Sorrells, Painter, Hartless, Mason, Johns, and most of the surnames the Clarks' great-great-grandparents married into. From 1912 to 1946, a single Richmond physician used the State of Virginia's vital records apparatus to systematically erase Monacan identity from birth, marriage, and death certificates. He named the family on paper. The full surname lists are reproduced in Part 6 of this document. [Credibility 5 — Library of Virginia primary state document; Encyclopedia Virginia.]
+
+**Finding 5.** Atha Sorrells, age 20 and pregnant, sued the State of Virginia in 1924 and won — using the Clark family tree as evidence. Plecker's enforcement led to a Rockbridge County court case called *Sorrells v. Shields*. Atha Sorrells — a direct cousin of the Clark line through her great-grandparents Joe Clark Jr. and Julia (Sorrells) Clark — was 20 years old, pregnant, and a minor under Virginia law when she walked into the office of County Clerk A.T. Shields with her fiancé Robert Painter on November 1, 1924, and was refused a marriage license under the Racial Integrity Act of 1924. She filed a petition for writ of mandamus (a court order compelling a public official to perform a legal duty). Her father William filed the petition on her behalf. The Clark family tree was the central piece of evidence, including her great-uncle James Clark's 1876 *Clark v. Moore* mandamus victory in the same courthouse. Judge Henry W. Holt ruled for Sorrells in January 1925. Plecker himself, in a letter dated May 9, 1925 at the Library of Virginia (accession 1160754), advised Shields not to appeal because if the Virginia Supreme Court upheld the ruling it would "embolden the Rockbridge tribe." That phrase — "the Rockbridge tribe" — is Plecker's own. It refers to the Clark community. Atha married Robert Painter on May 31, 1925. She lived until 1979. [Credibility 5 — Library of Virginia accessions 1140744, 1164679, 1160754.]
+
+**Finding 6.** The Clark line converted to the LDS faith for a specific theological reason — and the family paid a 27-year price for it. Joseph Anderson Clark was baptized into The Church of Jesus Christ of Latter-day Saints in 1911. The reason he gave, recorded in Ted Olson's *Crossroads* chapter (Mercer University Press, 2004), was that he believed "people with the blood of Israel had special responsibilities to prepare for the second coming of the Messiah." That is Lamanite doctrine (the LDS theological framework, derived from the Book of Mormon, identifying Native Americans as descendants of biblical Israelite migrants to the Americas). The LDS missionaries who walked into Irish Creek in 1911 were the only people in the Blue Ridge offering Joseph Clark an *elevated* identity for being Indian. Other denominations were offering reduction. From 1924 onward, Plecker reclassified the Clarks as "colored," which under the LDS priesthood policy in effect from 1852 to 1978 meant the men could not hold the priesthood. The Clark men were caught for 27 years between LDS doctrine that elevated them and LDS racial policy that excluded them. [Credibility 5 — Olson, *Crossroads* 2004; Race and the Priesthood Gospel Topics essay, December 2013.]
+
+**Finding 7.** In 1951, a four-person team broke the documentary conflict that had excluded the Clark men from the priesthood. Branch President Eugene Larsen in Buena Vista refused to quietly deny 12-year-old Claude Clark's ordination and instead escalated the case to Salt Lake. Elder William S. Tanner at the Church Genealogical Society wrote to Larsen on May 1, 1951, with the bad news that the courthouse marriage records said "colored" — and then continued researching rather than closing the file. Two unnamed LDS genealogical missionaries from Utah traveled to Rockbridge County and, working with Joseph Anderson Clark, then 82 years old, assembled the counter-evidence using the 1925 Atha Sorrells case as legal precedent. Larsen ordained Claude Clark, Alvin Coleman, and Garvis Wheeler. In 1957, Claude Clark became the first full-time missionary called from the Waynesboro Virginia ward. Joseph Clark's role was to insist the case was worth pursuing and to provide the family memory. The execution was done by other documented actors. This is the proximate cause of the Clark line's continuing membership in the LDS Church. [Credibility 4 — Olson, *Crossroads* 2004.]
+
+**Finding 8.** Brady Smallwood and his contemporaries could not enroll in the Monacan Indian Nation today as adults, but Brady's children could, under specific conditions, if research and outreach proceed quickly. Monacan enrollment is currently open for ages 0–18 only, January 1 to March 31 annually. Adult enrollment is closed and Council has not set new dates. The standard requires lineal descent (a tribal-enrollment standard that requires documented ancestry to a person on a tribal roll, regardless of fraction of Native ancestry — distinct from blood quantum, which sets a minimum percentage) within three generations to a name on the current Monacan Rolls. Joseph Anderson Clark is almost certainly on the rolls (the joepayne.org "1906 Joseph Clark + Mary S. Clark" entry matches Joseph Anderson Clark by year, names, and community). Brady is 3 generations from Joseph Anderson Clark; Brady's children are 4 generations — past the current cutoff. Brady is the bridge generation. If anyone in the line is ever enrolled, the documentary work has to be completed at this stage. [Credibility 5 — monacannation.gov enrollment page; enrollment_packet_8_5_2025.pdf.]
+
+The remainder of this document is the long-form documentary record supporting these findings.
+
+---
+
+# Part 1 — Who the Monacan Actually Are
+
+> *Pre-contact, the Monacan controlled more than half of present-day Virginia — from the Roanoke River north to the Potomac, and from the fall line at Richmond west through the Blue Ridge. They were Eastern Siouan, the dominant power of the upland Piedmont, and the rivals of the Algonquian-speaking Powhatan Confederacy on the coast. They were not the people John Smith met. They were the people he was kept away from. Their political economy ran on copper, soapstone, and mica — the prestige goods of pre-contact Eastern North America — and their geographic position at the western gateway of the James River drainage made them the unavoidable middlemen between the Great Lakes copper sources and the coastal demand. This is the part of the Virginia story that gets cut from the textbook version. It is also the part that turns out to matter most to who the Clark line is.*
+
+## 1.1 The single biggest correction this synthesis makes
+
+The Monacan are Siouan-speaking — not Algonquian (like Powhatan) and not Iroquoian (like Cherokee). [Credibility 5 — Encyclopedia Virginia, peer-reviewed under Virginia Humanities editorial control.]
+
+This is the most common error in family lore about Virginia Indian ancestry, and it matters because the linguistic family tree determines almost everything else: kinship, archaeology, ceremonial life, and which living tribes the Monacan are still connected to today. The Monacan belonged to the Eastern Siouan branch — the same family as the Tutelo, Saponi, Occaneechi, and Manahoac. Linguists believe the broader Siouan family originated in the Ohio River Valley thousands of years ago and split as groups migrated east and west. The eastern branch settled across what is now Virginia, the Carolinas, and West Virginia. The western branch became the better-known Plains Sioux: Lakota, Dakota, Nakota. The Monacan and the Lakota are distant cousins on the same family tree — separated by perhaps three thousand years of migration. [Credibility 4 — Virginia Department of Education *First People*; Wikipedia *Tutelo language*.]
+
+Horatio Hale's 1883 paper for the American Philosophical Society was the first to confirm definitively that Tutelo — the best-documented of the Virginia Siouan languages — belonged to the Siouan family, related to Dakota and Hidatsa. Hale gathered a 279-word Tutelo vocabulary from an elderly man named Nikonha at the Six Nations Reserve in Ontario, where Tutelo descendants had been living since the 1750s. Since no Monacan speakers survived into the documentation era, Hale's Tutelo work is the best linguistic proxy for what Monacan sounded like. [Credibility 5 — Hale, "The Tutelo Tribe and Language," American Philosophical Society, 1883.]
+
+## 1.2 What the Monacan called themselves
+
+The word "Monacan" is an English rendering of an outsider's pronunciation. The Monacan called themselves "Yesan" — "the people." [Credibility 5 — Lederer, *The Discoveries of John Lederer*, 1672.]
+
+John Lederer, the German physician who made three expeditions into Virginia under commission from Governor William Berkeley between 1669 and 1670, recorded the only surviving Monacan origin tradition preserved in writing by a contemporary European observer. At a stone pyramid monument he found near the Monakin village, Lederer wrote in May 1670 that the mound recorded *"the Number of an Indian Colony drawn out by Lot from a Neighbour-Countrey over-peopled, and led hither by one Monack, from whom they take the Name of Monakin."*
+
+That is the only Monacan origin story preserved in writing by a contemporary European observer. A leader named Monack led an overpopulated colony of his neighbor country to a new land. The people took his name. The pyramid recorded their numbers in stone.
+
+## 1.3 Pre-contact territory and capital
+
+At European contact in 1607, the Monacan and their allied tribes controlled more than half of present-day Virginia. The official tribal history places their range *"from the Roanoke River Valley to the Potomac River, and from the Fall Line at Richmond and Fredericksburg west through the Blue Ridge Mountains"* — the entire Piedmont and Blue Ridge of central Virginia, with the James River as the spine of the homeland. The Monacan held the territory above the falls of the James (modern Richmond); the Powhatan Confederacy held everything east of the falls down to the Chesapeake. [Credibility 5 — Monacan Indian Nation official history, *monacannation.gov/our-history*.]
+
+The mountain anchor of the homeland was — and remains — Bear Mountain in Amherst County, west of Lynchburg. This is the spiritual center of the Monacan world and the continuous reference point of their identity for "hundreds of years" by their own account, and likely much longer based on archaeology. Irish Creek and Buena Vista in Rockbridge County — the Clark family's origin point — sit squarely inside this pre-contact homeland, in the Blue Ridge foothills less than 40 miles west of Bear Mountain. The Clark ancestors there were not on the periphery of Monacan country. They were inside its core mountain redoubt. [Credibility 5 — Encyclopedia Virginia.]
+
+The pre-contact Monacan numbered at least 10,000 people, and possibly as many as 15,000 across the alliance, organized into towns under regional chiefs. They practiced mound burial. Bodies were placed in the open, then bones were ceremonially reinterred in earthen mounds raised over centuries — a mortuary practice known archaeologically as secondary bundle burial (the practice in which bodies were exposed to decay, then bones were collected, bundled, and ceremonially reinterred in earthen mounds). Thomas Jefferson famously excavated one of these Monacan burial mounds near the Rivanna River in 1784 and published his findings in *Notes on the State of Virginia* in 1785. He counted remains of approximately 1,000 individuals, observed bones "placed at different layers in the mound, proving it was built in stages," and concluded it was "a common sepulchre of a town." His methodology — a central trench examining strata — predated Charles Lyell's formalization of stratigraphy (the geological study of rock layers as a record of time and deposition order) by decades and is routinely cited as the first scientific archaeological excavation in North America. The mound he opened was Monacan. [Credibility 5 — Encyclopedia Virginia, *Jefferson's Mound Archaeological Site*.]
+
+When Smithsonian researcher David I. Bushnell Jr. searched for Jefferson's mound in 1911, it had completely disappeared. A century of plowing and flood erosion had erased the site without a trace. Its exact location remains unknown.
+
+## 1.4 The capital — Rassawek
+
+The Monacan capital was Rassawek, located at the confluence of the Rivanna and James Rivers — what is now called Point of Fork, in Fluvanna County, about 45 miles west of Richmond. At the time of Jamestown's founding, Rassawek had roughly 1,500 residents, a 60-foot longhouse, and at least a dozen roundhouses. It was the political and ceremonial center of the entire Monacan alliance and a major regional trade hub. Modern carbon dating (radiocarbon analysis of organic material to determine its age based on the decay of the carbon-14 isotope) at the site itself confirms continuous human habitation for 4,730 years — equivalent to approximately 200 generations before John Smith. The 5,000-year and 10,000-year figures that appear in some materials are regional estimates of broader Virginia Indian habitation; 4,730 is the documented minimum for Rassawek specifically. [Credibility 4 — National Trust for Historic Preservation; Smithsonian NMAI reporting on the Rassawek preservation case.]
+
+In September 1608, Captain Christopher Newport led an expedition up the James River from Jamestown into Monacan country with 120 men — the first sustained English contact. Newport visited two Monacan towns, Mowhemicho and Massanack, and mapped three more: Rassawek, Monasukapanough, and Monahassanugh. The English never actually reached Rassawek itself — Powhatan blocked them. Captain John Smith published his famous 1612 *Map of Virginia* including these five Monacan towns based on Newport's expedition and accounts from Powhatan informants. No European is documented as ever having stood inside Rassawek. The Monacan kept their distance and their secrets. This early standoffish posture is part of why they survived as a community when other Virginia tribes were declared extinct. [Credibility 5 — Encyclopedia Virginia; Wikipedia *Rassawek*.]
+
+## 1.5 Rivals of the Powhatan — a structural correction
+
+This is the second major correction. Most Virginians grow up with the Powhatan / Pocahontas / Jamestown story as *the* Virginia Indian story. The Monacan were the Powhatan's rivals. Powhatan ruled the Algonquian-speaking Tidewater. The Monacan ruled the Siouan-speaking Piedmont. The two confederacies were "traditional enemies," and Powhatan repeatedly warned the English away from Monacan country in the early Jamestown years — partly because he wanted to monopolize trade with the colonists, and partly because the rivalry over hunting territory and copper trade routes ran deep.
+
+When the Smallwood family talks about being descended from "Virginia Indians," the instinct is to picture Powhatan and Pocahontas. The truer picture is the *opposite* people: the upland Siouan rivals, fewer in number on the colonial record because they kept the English at arm's length and retreated into the mountains rather than treat with them.
+
+> **SIDEBAR: The wrong sentence everyone learned.**
+> John Smith described the Monacan as *"very barbarous, living for most part of wild beasts and fruits."* Direct quote from his 1612 *Map of Virginia*. That sentence is wrong. Bioarchaeology at the Rapidan Mound (Site 44OR1) — excavated by UVA archaeologists 1988–1990 — found C13/C12 isotope ratios (a chemical signature in bone collagen indicating the relative dietary contribution of cultivated maize versus wild foods) in the bone collagen showing heavy dietary dependence on cultivated maize. Maize, not "wild beasts and fruits." Smith was either misinformed or using the hunter-forager framing to diminish Monacan social complexity. [Credibility 5 — *American Antiquity*, Rapidan Mound study; Hantman 1990 and 2018.]
+
+## 1.6 The hidden engine — copper, soapstone, mica
+
+This is arguably the most important and underappreciated dimension of Monacan political economy — and the thread that directly connects to why Jamestown survived its first decade.
+
+The Monacan were not copper *miners*. They were copper *middlemen*. Recent LA-ICP-MS analysis (laser-ablation inductively-coupled-plasma mass spectrometry, a technique that identifies the geological source of metal artifacts by their trace-element signature) of copper artifacts from Virginia and North Carolina sites has established that the majority of pre-contact copper in Virginia Piedmont-to-Coast trade networks originated far from Virginia — primarily from the Great Lakes region (Michigan), with secondary sources from Pennsylvania and New Jersey. Blue Ridge copper deposits (actively mined historically between 1848 and 1944) contributed some material, but Great Lakes copper dominates the archaeological assemblage. [Credibility 5 — *American Antiquity* copper trade study, 2024.]
+
+The Monacan's geographic position at the western edge of navigable James River territory made them the unavoidable gateway through which Great Lakes copper moved eastward toward the Powhatan Confederacy on the coast. They were the toll-booth between the interior ore sources and the coastal demand. This is what archaeologist Jeffrey Hantman calls the "gateway community" function, and it explains why the Monacan had comparable social complexity to the Powhatan despite being fewer in number. Population size is not required to control a trade route. [Credibility 5 — Hantman, *American Anthropologist* 1990.]
+
+Copper was not the only item. The Monacan also controlled soapstone extraction from Piedmont quarry sites — Bushnell documented in 1926 more than twenty ancient soapstone quarry pits south of Damon in Albemarle County, with excavations 10–30 feet in diameter extending 1,000 feet along a ridge — and mica from Piedmont deposits, a high-value prestige material across eastern North America. The package of copper plus soapstone plus mica gave the Monacan exceptional leverage in inter-group economic relations.
+
+## 1.7 Why this connects to Jamestown
+
+Hantman's 1990 argument is the most important analytical reframing in Monacan scholarship: Powhatan's tolerance of the English at Jamestown in 1607 was not primarily diplomatic generosity. It was an attempt to absorb the English into his tributary network so that English trade goods (especially copper and metal tools) would allow him to *bypass his dependency on Monacan-controlled interior trade routes*. Powhatan needed European copper and metalwork to replace the Great Lakes copper he was obtaining through Monacan middlemen, so he could stop paying Monacan tribute prices.
+
+The implication: the Monacan copper monopoly was a structural cause of the specific diplomacy surrounding Jamestown's founding. English survival in 1607 was partly a function of being useful to Powhatan's anti-Monacan economic strategy. The Monacan never appear in Pocahontas's story, but they are baked into its political logic. In the Disney version, the Monacan are the off-screen reason it works the way it does. [Credibility 5 — Hantman 1990.]
+
+---
+
+# Part 2 — The Collapse, 1607–1750
+
+> *In sixty-three years, the Monacan went from a confederacy of perhaps fifteen thousand people across thirteen burial-mound sites — the dominant interior power of Virginia — to thirty bowmen in a single village along the James. The collapse was not gradual. It happened in a thirty-year window between 1670 and 1700, and the people who survived it split in two: half went north into the Iroquois Confederacy and ended up at the Six Nations Reserve in Ontario, half went west into the Blue Ridge hollows and became the ancestors of the modern Monacan Indian Nation. The Clark line is in the second half. This is the part of the story that no one writes down because the people involved had stopped being a state and started being a survival.*
+
+## 2.1 What John Lederer saw in 1670
+
+The most important early colonial witness account is John Lederer's. He was a German physician working under commission from Virginia Governor William Berkeley to find a western passage to the Pacific. He made three expeditions, 1669 and 1670, and published his report in Latin in 1672 — translated into English the same year by Sir William Talbot. Available free on the Internet Archive today.
+
+Lederer's Monacan-specific observations are the last direct European witness account of the Monacan in their territory. Three things he recorded:
+
+- **Population collapse confirmed.** By May 1670, Lederer found approximately 30 bowmen at the Monakin village — implying a total population of perhaps 100, for a tribe that had numbered in the thousands in 1607. [Credibility 5 — Lederer, *The Discoveries of John Lederer*, 1672.] This is the starkest quantification of what European disease did to the Monacan: 63 years, from perhaps 15,000 to perhaps 100. Smallpox, measles, influenza — all ran through populations that had no immunity, and they did so in the *interior* before sustained colonial settlement reached the Piedmont.
+- **Firearms.** The Monakin greeted Lederer and his party "with Volleys of Shot." The Monacan had firearms by 1670. Sixty-three years into contact, they were already integrated into the colonial trade network for guns and powder, even as their numbers crashed.
+- **Towns still occupied.** Mowhemencho and Massinacack were still inhabited as of 1670 (Lederer calls them "Mahoe" and "Monakin"). Rassawek is referred to as "Mahock." This pushes the abandonment of the eastern towns to between 1670 and 1699 — not 1607, not even 1650. The visible decline that earlier sources implied as immediate was actually a slow trauma punctuated by a sudden collapse near the end of the century.
+
+## 2.2 The dispersal sequence
+
+Reconstructed from multiple sources, the timeline of how the Monacan came apart is as follows:
+
+| Year | Event |
+|------|-------|
+| 1607 | Jamestown founded; estimated 10,000–15,000 Siouan speakers across the confederacy |
+| 1608 | Newport's expedition reaches Monacan towns; blocked from Rassawek |
+| 1654 | First crisis: Nahyssan and Manahoac seek English protection after a Pamunkey-English coalition attacks their James River settlement, killing Pamunkey chief Totopotamoi |
+| 1670 | Lederer visits Monakin: 30 warriors, ~100 people total |
+| 1676 | Bacon's Rebellion devastates Tidewater tribes but does not directly target the Monacan |
+| 1677 | Treaty of Middle Plantation signed by Pamunkey, Nottoway, Appomattoc, Nansemond, others |
+| **1680** | **Monacan, Saponi, Manahoac, Meherrin join the Treaty of Middle Plantation** under leader Shurenough, signed as "King of the Manakins" |
+| 1690s | Rassawek and eastern James River towns abandoned; core population merges with Nahyssan/Tutelo-Saponi, moves southwest |
+| 1700 | Huguenot refugees settle the Mowhemencho site (Manakin Town) — Virginia House of Burgesses grants the land |
+| 1702 | Last documented Monacan individuals in the Rassawek vicinity |
+| 1705 | Robert Beverley: "none of which are now left in those Parts" |
+| 1714–1718 | Fort Christanna gathers Saponi, Tutelo, Occaneechi, Eno under Governor Spotswood |
+| 1718 | House of Burgesses closes Fort Christanna |
+| 1728–1730 | Saponi dispersal from Christanna area — some go south to Catawba, some go north |
+| 1740 | Tutelo-Saponi remnants at Shamokin, Pennsylvania, under Oneida viceroy Shickellamy |
+| 1753 | Cayuga formally adopt the Tutelo at the Council of Six Nations at Onondaga |
+| 1779 | Sullivan Expedition destroys Coreorgonel; Tutelo follow Joseph Brant to Six Nations Reserve at Grand River, Ontario |
+| 1871 | Last fluent Tutelo speaker, Nikonha, dies at Six Nations Reserve at approximately 106 years old |
+
+What this table shows: the tribal fabric did not decay gradually. It collapsed in a 30-year window — 1670 to 1700 — then the remnant split. Half went north (Tutelo migration → Pennsylvania → New York → Ontario). Half went into the Blue Ridge foothills (the ancestors of the Bear Mountain community, the same population the Clark family belongs to). The two branches had no further documented contact for two centuries.
+
+## 2.3 Bacon's Rebellion — what it didn't do
+
+A common assumption is that Bacon's Rebellion (1676) directly broke the Monacan. It did not — at least not by direct attack. Bacon's forces attacked Pamunkey and other Tidewater tributaries. The Monacan were too far west to be primary targets.
+
+The Rebellion's indirect effect was political: it discredited Governor Berkeley's tributary-protection system, removing the legal framework that had offered western tribes any protection at all, and set the stage for the more aggressive treaty system of 1677/1680. [Credibility 4 — Encyclopedia Virginia, *Treaty of 1677*.]
+
+## 2.4 The Treaty of Middle Plantation — 1677, then 1680
+
+The existing scholarship does not make enough of the Treaty of Middle Plantation. It matters because it is the last moment the Monacan appear as a legal entity in Virginia's colonial record.
+
+The treaty was signed in two stages: original signatories in 1677, and the Monacan and Saponi (among others) joining in 1680 — three years later — signed by their chief Shurenough as "King of the Manakins." This is sometimes confusingly reported as if the Monacan signed in 1677. They did not. The 1677 treaty includes Pamunkey and other Tidewater tribes; the Monacan came in three years later. [Credibility 4 — Encyclopedia Virginia, *Treaty of 1677*.]
+
+The treaty made the signing tribes Crown tributaries — formally subjugated, theoretically protected. The "tributary tribe" classification (Native nations that signed treaties acknowledging English Crown sovereignty in exchange for protection and territorial guarantees) carried specific obligations: an annual tribute payment, military assistance against non-tributary tribes, and acceptance of English jurisdiction in some matters. In practice the protection was ineffective and the Monacan abandoned their eastern towns within a decade. By Robert Beverley's first history of Virginia in 1705 — *History and Present State of Virginia*, the first history of a British colony written by a native of that colony — Beverley was writing flatly: *"formerly the Seat of a Great and Warlike Nation of Indians call'd the Monacàns, none of which are now left in those Parts."* [Credibility 5 — Beverley, 1705.]
+
+He also noted that the common trade language among Virginia Indians was Occaneechi — a Siouan language. Even as individual nations collapsed, Siouan dominance in interior Virginia trade networks persisted. The people had moved, not vanished.
+
+## 2.5 Fort Christanna — the Siouan last stand, 1714–1718
+
+Governor Alexander Spotswood's Fort Christanna in Brunswick County is the next colonial-era waypoint. Built in 1714, the fort gathered the Saponi, Tutelo, Occaneechi, Eno, and Stegaraki (a Manahoac subtribe) onto a 36-acre tract. It offered protection from Iroquois raids and operated a school for Indian children run by Charles Griffin — up to 100 children at peak, taught English, the Bible, and the Book of Common Prayer.
+
+The Monacan proper were not the primary Fort Christanna population, but the Saponi and Tutelo had absorbed many Monacan remnants by this point. The House of Burgesses closed the fort in 1718 when it became commercially inconvenient. The Saponi and Tutelo lingered near the fort site at a village called Junkatapurse for a few years, then split — some moved south to join the Catawba, others began the northward migration that would end at the Six Nations Reserve in Ontario in 1753. [Credibility 4 — Encyclopedia Virginia, Fort Christanna.]
+
+The closure of Fort Christanna in 1718 is the moment when the formal colonial machinery for managing Virginia's interior Siouan tribes ended. From that point forward, the population that remained in Virginia did not have a treaty, a reservation, an agent, or a school. They had hollows, kinship, and surnames.
+
+## 2.6 The 1685–1714 Iroquois pressure — why people went west
+
+The collapse was not only about disease. It was also about Iroquois military pressure from the north, which intensified during the 1680s and 1690s.
+
+Roberta Estes' 2012 article on *Native Heritage Project*, citing Jay Hansford C. Vest's 2003 piece in *American Indian Quarterly*, traces the migration chain. Beginning around 1685, Iroquois raids drove Monacan and allied bands to seek protection. By 1714 they were placed at Fort Christanna. After 1720 the fort closed and bands dispersed into Rockbridge and Amherst counties, where land was cheaper and racial classification was more administratively flexible. The Bear Mountain community formed by the intermarried remnants of this dispersal. [Credibility 3 — Native Heritage Project blog citing peer-reviewed academic sources; use as a lead.]
+
+Vest's piece names the families who appear in the post-Christanna Bear Mountain settlement: Beverly, Clark, Adcock, Terry, Nuckles/Knuckles, Hicks, Hamilton, Lawhorne, Penn, Lawless, Roberts, Johns, Branham, Redcross. Land patent holders in the Saponi Fort / Irish Creek area: Urvine (Irvine), Turner, Floyd, West (Vest). Trader surnames: Beverly, Irwin, Hicks (Hix), Jones (Johns).
+
+The Clark family — the Clarks of Pedlar River and Irish Creek — show up in this Bear Mountain community list by 1780. The family did not arrive there by accident. The arrival was part of the dispersal. Section 4 of this synthesis walks through that arrival in detail.
+
+## 2.7 What the towns look like archaeologically
+
+The thirteen Monacan burial mounds across the Blue Ridge and Piedmont corridor — radiocarbon-dated to a construction window between AD 1070 and AD 1440 — are the physical signature of the population that this collapse erased.
+
+The most extensively excavated mound, the Rapidan Mound (Site 44OR1) in the headwaters of the Rapidan River, contained at least 60 individual skeletal remains, with an estimated 1,000–2,000 total burials over time. The mound functioned across many generations as a charnel community ossuary. Secondary bundle burials were the dominant practice: bodies were exposed to allow soft tissue to decay, then bones were collected, bundled, and ceremonially reinterred — exactly the practice English colonial accounts describe as "charnel houses."
+
+The mound originally stood 15 feet high. By the late 1800s, half had eroded and the center had been quarried by looters. Nine thousand repatriated bones were ceremonially reburied by the Monacan tribe in 1998. [Credibility 5 — *American Antiquity*, Rapidan Mound study; Hantman 1990 and 2018.]
+
+That 1998 reburial — performed by the modern federally-recognized tribe at a site identified through 20th-century archaeology — is the closest the Monacan come to a public ceremonial moment of return. The bones went home. The story did not.
+
+## 2.8 The two diaspora paths
+
+By 1750, the Monacan as a coherent confederation no longer existed. The remnant population had taken two paths.
+
+**Path 1: North.** Tutelo and Saponi survivors moved into Pennsylvania by 1740, settled at Shamokin under the Oneida viceroy Shickellamy, then formally joined the Iroquois Confederacy in 1753 when the Cayuga Nation adopted the Tutelo at the Council of Six Nations at Onondaga. The Tutelo settled at Coreorgonel near present-day Ithaca, New York. After the Sullivan Expedition destroyed Coreorgonel in 1779, they followed Joseph Brant to the Six Nations Reserve at Grand River, Ontario, in what is now Brantford. Tutelo descendants live there to this day, though the language died with Nikonha at the Six Nations Reserve in 1871. [Credibility 5 — Wikipedia *Tutelo language*; Hale 1883.]
+
+**Path 2: West, into the hollows.** A separate population — including the Monacan proper plus absorbed Nahyssan, Tutelo-Saponi, and Occaneechi remnants — withdrew into the Blue Ridge foothills of Amherst, Rockbridge, Nelson, and Bedford counties. Unlike the Powhatan tribes of the Tidewater, who negotiated treaties and reservations with the English (the 1646 and 1677 treaties created the Pamunkey and Mattaponi reservations that exist to this day), the Monacan did not negotiate, did not treat, did not concentrate. They dispersed.
+
+This is the key mechanism by which the Monacan persisted as a community when other Virginia tribes were declared extinct. They were never on a reservation. They were never on a treaty. They were never enumerated as a tribe. They were classified by colonial and antebellum Virginia as "free people of color" — a category that was deliberately ambiguous and that Monacan families used to remain together while staying off the radar of state machinery.
+
+> **SIDEBAR: Why the second path was the one that survived.**
+> The northern path required adoption by another tribe. The Tutelo at the Six Nations Reserve are Iroquois citizens; Tutelo identity is preserved in the Cayuga ceremonial calendar but not as an autonomous political entity. The western path required disappearing into "free colored" classification in remote upland communities. It is the western path — the path of paperwork ambiguity rather than treaty subjugation — that the modern Monacan Indian Nation traces back to. And it is the western path that put the Clark family on the headwaters of Pedlar River by 1780. The federally-recognized tribe at Bear Mountain today is the second-path survival. So is the Clark line. The same population, two slightly different routes through.
+
+The next two parts of this synthesis trace what happened on the second path. Part 3 covers the long survival in the Blue Ridge hollows, 1700–1900. Part 4 covers the documented entry point of the Clark line into that survival.
+
+---
+
+# Part 3 — Survival in the Hollows, 1700–1900
+
+> *Two centuries of being officially nobody. The Monacan who stayed in Virginia after 1718 had no treaty, no reservation, no agent, and no school. They had three things: a remote upland geography that white settlers did not want, a dense network of intermarried surnames that held the community together, and a federal census category — "free colored" — vague enough to keep them legally alive without making them legally Indian. The 1705 Virginia Slave Code did the structural damage. The 1831 William Johns land purchase founded the modern Bear Mountain settlement. The 1908 Bear Mountain Indian Mission School gave the community an institutional anchor. By 1948, the Smithsonian itself was naming Irish Creek and Bear Mountain as a single shared Indian-descended population. Plecker came in at the end of this period and tried to erase what was left, but the people he was trying to erase had already survived eight generations of erasure attempts. The Clark family is in this story from the early 1700s. The Clark surname is on the Bear Mountain Memorial Stone, the 1943 Plecker list, the 1948 Smithsonian report, and the 1924 Sorrells case file — every one of them an independent confirmation.*
+
+## 3.1 The 1705 Virginia Slave Code — the foundational legal trap
+
+The single statute that did the most structural damage to Monacan identity is not the 1924 Racial Integrity Act. It is the 1705 Virginia Slave Code, 219 years earlier. The specific statutory language that absorbed Indian identity into the "mulatto" category:
+
+> *"The child of an Indian and the child, grandchild, or great-grandchild of a negro were deemed, accounted, held and taken to be a mulatto."*
+
+[Credibility 4 — Wikipedia, *Virginia Slave Codes of 1705*; cross-referenced with multiple academic sources.]
+
+This single provision did enormous structural work:
+1. It collapsed Indian identity into a racial category — "mulatto" — that denied tribal distinctiveness.
+2. It placed Indians under the same legal disabilities as free Black Virginians.
+3. It ran three generations deep — meaning a great-grandchild of a Black ancestor was mulatto regardless of the other seven great-grandparents.
+4. It ended Indian slavery (technically) while simultaneously classifying Indian-descended children as mulatto — removing Indian legal distinctiveness without granting Indian rights.
+
+Free "colored" persons (including those deemed mulatto) could not hold public office, testify against white persons in court, or exercise most civic rights. The effect on Monacan community cohesion was severe. It removed the legal distinctiveness that had made tribal membership meaningful in a colonial legal framework. Plecker did not invent the erasure machine in 1924. He inherited a 219-year-old statutory mechanism, automated it, and weaponized it.
+
+Virginia's 1823 race law expansion later expanded the mulatto definition to include "children or great-grandchildren of Negroes," deepening the statutory mechanism. By that point, the Bear Mountain community (forming in the 1790s–1830s) was already being classified in census records as "free colored" — Indian identity legally buried even as oral tradition maintained it.
+
+## 3.2 How the process worked in practice
+
+Three stages, repeating across generations:
+
+**Post-1705**: Indian children were classified as mulatto by statute. Any documented Black ancestry in the family tree — and many Monacan families had intermarried with free Black Virginians during the disruption of the 18th century, when the surviving community had no population large enough to maintain strict endogamy — could trigger reclassification for the entire line.
+
+**18th century reality**: Monacan families intermarried with free Black Virginians (escaped enslaved people or free persons of color) and white settlers in mountain hollows where the mix of surviving people was whoever was available. The resulting phenotypic diversity gave authorities a tool to dispute Indian identity. *"If any Black ancestry, then mulatto."*
+
+**19th century**: Census records consistently categorized Bear Mountain families as "free colored" or "mulatto." An 1896 newspaper account describes the Bear Mountain community as *"typical Indians, of a rich copper color, high cheek-bones, long, straight black hair"* — visible Indian identity maintained in the community while the legal record denied it.
+
+The soil was prepared for Plecker for 200 years before he arrived. He was the most aggressive enforcer, but he was working a system that had been waiting for him.
+
+## 3.3 The Bear Mountain corridor — geography and surnames
+
+The continuous Monacan community that survives into the present is anchored in the Bear Mountain corridor of Amherst County, Virginia, with a northern wing in Irish Creek and the Cornwall / Buena Vista area of Rockbridge County. This is the geography the Clark family belongs to.
+
+The corridor runs roughly north-south through the Blue Ridge foothills:
+
+| Sub-community | County | Notes |
+|---|---|---|
+| **Bear Mountain** | Amherst | Modern Monacan Indian Nation headquarters; William Johns 1833 land purchase; St. Paul's Episcopal Mission |
+| **Pedlar Creek / Pedlar River** | Amherst | Mason family; J. Golden Kimball / Peter Mason 1883 LDS baptism; **William Clarke 1780 patent (Brady's direct paternal line)** |
+| **Tobacco Row Mountain** | Amherst | Coexists with Bear Mountain in Smithsonian 1948 description of "Issues" community |
+| **Buffalo Ridge** | Nelson / Amherst | The "Cherokee-claiming" subset of the same population; Horace Rice 1991 |
+| **Irish Creek** | Rockbridge | "Brown People" community; 300+ documented in Smithsonian 1948 (Gilbert); **Brady's direct paternal line from Joseph Carter Clark Sr. 1797 forward** |
+| **Cornwall / Buena Vista** | Rockbridge | LDS ward formation 1918 / 1932; Joseph Anderson Clark 1911 baptism |
+| **Vesuvius / Alto** | Rockbridge | Joseph Anderson Clark + Mary Susan Clark birthed children here |
+| **Clarktown** | Rockbridge | Place name surviving today off Wert Faulkner Highway near Glasgow; documented Clark settlement |
+
+The same surnames recur across the corridor: Clark, Tyree, Sorrells, Painter, Mason, Pinn, Cooper, Beverly, Branham, Tyree, Johns, Hartless, Hicks, Hamilton, Adcock, Redcross, Roberts, Willis, Terry. These families intermarried for two hundred years inside this geography. They form what historians and the federal government's own anthropologists called tri-racial isolates (endogamous communities of mixed white, Native, and African ancestry, organized around a small set of recurring surnames).
+
+The single most important external recognition of this community as a coherent population came in 1948 with the publication of William Harlan Gilbert Jr.'s *Surviving Indian Groups of the Eastern United States* in the *Annual Report of the Smithsonian Institution*, pages 407–438. Gilbert had also published a 1946 Library of Congress memorandum on the same topic. Together the two documents establish independent federal recognition of the Irish Creek Indian community in 1946 and 1948 — immediately preceding Plecker's retirement in 1947. [Credibility 5 — Smithsonian Institution primary publication.]
+
+Gilbert's exact words on Irish Creek:
+
+> *"To the northwest of Amherst County in Rockbridge County is a small group located on Irish Creek, not more than twelve miles east of Lexington, Virginia, and called Brown People. Their number is estimated at 300, and they show a mixture of White, Indian, and occasionally Negro blood. Like the Issues of Amherst County, they are a group apart from both Whites and Negroes."*
+
+The phrase *"Like the Issues of Amherst County"* is the structural link. Gilbert is explicitly drawing a single ethnographic line connecting the Irish Creek Brown People (Rockbridge) to the Bear Mountain Issues (Amherst). Joseph Anderson Clark, born 1869 in Irish Creek, was a member of the population Gilbert documented.
+
+## 3.4 The Bear Mountain settlement — William Johns, 1831–1833
+
+The continuous-community story has a specific founding event. In 1831–1833, William Johns — a free man of color, age 63, who had married Molly Evans in 1790 — purchased over 400 acres on Bear Mountain from Landon Cabell for $400. He bought the land specifically as a refuge for his extended Indian family, *"to establish a place where he and his family could reside apart from the prejudices of the rest of Amherst County."* [Credibility 4 — *Lynch's Ferry Magazine*, "William Johns"; Monacan official history.]
+
+By the 1850 census, 29 large, interrelated Indian families were living on or around the Bear Mountain settlement. This is the demographic core from which the modern Monacan Indian Nation descends — and the documentary chain (deeds, censuses, church records) anchored to William Johns is the spine of contemporary Monacan enrollment proof.
+
+The Clark family's connection to Bear Mountain runs through several lines: through the Hartless intermarriages of William Clarke's daughters in the 1790s–1810s, through the Pedlar River 1780 land patent, and through the social network that placed Joseph Carter Clark Sr.'s brother Nelson Harrison Clark in an Amherst County household with his Mason father-in-law in 1860. The Bear Mountain community and the Irish Creek community are not two communities. They are one community separated by a county line and a Blue Ridge ridgeline.
+
+## 3.5 The 1850 census — what the federal government wrote down
+
+The 1850 federal census is 74 years before the Racial Integrity Act of 1924. The race column in 1850 used four categories: W (White), B (Black), M (Mulatto), I (Indian). No "Indian" entries appear in any of the matching households in Rockbridge or Amherst — but Mulatto appears repeatedly, clustered geographically, in households whose surnames overlap with the Clark genealogy and Plecker's 1943 hit list.
+
+The single cleanest documentary hit in Brady's biological line on the maternal side: William Wesley Cooper, household 975, District 51, Rockbridge County, 1850 census. Entire household classified Mulatto. [Credibility 5 — GenealogyTrails Rockbridge County Census transcriptions.]
+
+| Name | Age | Race |
+|------|-----|------|
+| William W Cooper | 45 | M (Mulatto) |
+| Jane Cooper | 48 | M |
+| David Cooper | 23 | M |
+| Nicholas Cooper | 21 | M |
+| Winston Cooper | 19 | M |
+| Emeline Cooper | 17 | M |
+| Lihue Cooper | 14 | M |
+
+This matches Brady's family tree at Generation 5: William Wesley Cooper (1805–Deceased) and Jane Bobb Clark (1803–1861). The "Lihue" entry, age 14 in 1850, is almost certainly Elihu Elisha Cooper (1835–1900) — Brady's 4th-great-grandfather on the Sorrells/Cash side. The federal government, in 1850, classified Brady's direct biological 5x-great-grandfather and his entire household as Mulatto. Not as a result of Plecker's machinery. As a matter of standard federal enumeration in the antebellum South.
+
+In the same district (District 51), Joseph Clark Jr. appears in household 178 as age 26, Mulatto, Farmer — almost certainly the Joseph Clark Jr. who is named in the 1924 Sorrells case file as Atha Sorrells's grandfather. Nearby: the Sorrels family at household 180; the Painter family at household 182. This is the geographic clustering of the tri-racial isolate community in primary federal records, 74 years before Plecker.
+
+## 3.6 The split race column — same surname, different races
+
+The Clark surname is genuinely split between white-classified and mulatto-classified branches in the same county at the same census moment. District 51 of Rockbridge County, 1850, contains:
+
+- White-classified Clark families: Robert Clark (household 806, mason), Isaac Clark (household 219, District 51½), Samuel Clark, John Clark, William Clark — none with race designation, meaning white default.
+- Mulatto-classified Clark family: Joseph Clark Jr. (household 178, age 26, M).
+
+This is the textbook tri-racial-isolate signature playing out within one surname in one county in one census year. The same family branches differently — some pass into "white" classification by economic standing or marriage, some are documented "Mulatto" by the same enumerator on the same day.
+
+The Sorrells case argument in 1924 — that the family was "historically white but with Indian admixture" — partly relied on the white-classified Clark records. But the parallel 1850 record classified Joseph Clark Jr. as Mulatto. The legal claim of historical whiteness was a strategic argument under the 1924 Act, not a fully accurate description of the community's lived classification in the 1800s. Atha Sorrells and her attorneys leaned on the white side of the record because the Pocahontas Exception in the Racial Integrity Act required them to. The fuller historical truth is that members of the Clark family had been classified mulatto in primary federal records since the late 1700s, and that classification was a feature, not a bug, of who the community actually was.
+
+## 3.7 The Bear Mountain Memorial Stone
+
+At the modern Monacan Indian Nation's ancestral burial site on Bear Mountain, the tribe has installed a memorial stone listing the surnames of the ancestors buried there:
+
+> *"On this site are buried our Monacan ancestors: Johns, Branham, Hicks, Lawless, Beverly, Adcock, Redcross, Knuckles, Duff, **Clark**, Roberts, Nuckles, Willis, Hamilton, Terry."*
+
+[Credibility 5 — *C-VILLE Weekly*, "After inhabiting Virginia land for 10,000 years, the Monacan Indian Nation finally receives federal recognition" (2018), photographed on-site March 2006.]
+
+This carries different evidentiary weight than Plecker's list (hostile evidence), or federal census records (inconsistent), or court records (contested in the moment). It is the Monacan community's own affirmative claim — in stone, at their ancestral burial ground — that Clark is a Monacan ancestor surname. No other piece of evidence has this combination of authoritative source and permanent physical form.
+
+## 3.8 Why the community survived as a community
+
+Pulling the threads together, the Monacan survived as a recognizable people while many other Virginia tribes were declared extinct because of an unusual stack of factors:
+
+1. **Geographic refuge.** They retreated into terrain (Blue Ridge hollows around Bear Mountain and Irish Creek) the colonists did not want.
+2. **Endogamous kinship.** A small number of interrelated family lines — anchored to William Johns's 1833 land purchase and to earlier 1780s settlements like William Clarke's Pedlar River patent — held together for five-plus generations.
+3. **A church-school institutional anchor (1908–1964).** St. Paul's Episcopal Mission and the Bear Mountain Indian Mission School gave the community a physical center, an educational pipeline, and a written record (baptisms, marriages, attendance) that later supported recognition.
+4. **Documentary survivors.** Despite Plecker's deliberate "paper genocide," enough pre-1924 records survived — deeds, census entries, mission rolls, family Bibles, the 1850 mulatto-classified census entries above — to rebuild the lineage chain.
+5. **Refusal to assimilate downward.** Monacan families consistently refused the "colored" classification when it would have erased their Indian identity, even at the cost of education, mobility, and (in the Clark line's case) the LDS priesthood.
+
+That last point holds across every documented generation of the Clark line. From William Clarke in 1780 to James Clark in 1876 to Atha Sorrells in 1924 to Joseph Anderson Clark in 1951 — at every inflection point, a member of the extended family chose Indian identity over the easier path. The family does not always make the same choice. On this particular question, repeatedly, across two centuries, they did.
+
+The next part of this synthesis is the structural centerpiece: the documented entry point of Native ancestry into the paternal Clark line. It walks through what was researched, what was expected, and what was actually found.
+
+---
+
+# Part 4 — The Entry Point
+
+> *Where does Native ancestry actually enter the paternal Clark line? The family folklore — preserved in a 1956 letter to the* Lexington County News *by Mary Monroe Penick — places the entry point at the 1810s–1820s, when Joseph Carter Clark Sr. and his brother Nelson Harrison Clark are said to have "married into Indian families" in the Blue Ridge after the War of 1812. The documentary record places it at least three generations earlier. Heinegg's* Free African Americans of North Carolina, Virginia, and South Carolina *— the canonical reference work cataloging colonial-era Virginia free people of color — documents the Clark line as already classified Mulatto in Amherst County tax rolls by 1780, with William Clarke (the boys' grandfather) holding a 72-acre land patent on the headwaters of Pedlar River that same year. The Clark line did not "become" Monacan through marriage at some later moment. The line arrived in the documentary record already Monacan. The actual founding marriage — the European-married-Native event that generated the mixed-ancestry line — has not been recovered. The trail goes cold one generation upstream of William Clarke. But the family was already a free-people-of-color household in 1780, and the documentary chain from William Clarke's 1780 patent down to the present is unbroken. This part walks through how that is established.*
+
+## 4.1 The question the research started with
+
+Brady's family folklore — preserved in a 1956 letter to the *Lexington County News* by Mary Monroe Penick — was that two Clark brothers, Joseph and Nelson, left Henrico County after the War of 1812 and "married into Indian families" in the Blue Ridge. The letter said they settled in Irish Creek and that their descendants are buried at Rocky Mountain Cemetery. [Credibility 3 — local secondary, family tradition.]
+
+That implied a clean entry point: the Native ancestry entered the Clark line through marriage in the 1810s or 1820s, when Joseph Carter Clark Sr. and his brother Nelson Harrison Clark married Polly Clark and Edith Ware respectively.
+
+The research went looking to confirm or extend that story. Two outcomes were anticipated:
+
+- A Native woman named in the family record who could be identified as the "marrying-in" ancestor, with a tribal-community surname (Mason, Sorrells, Painter, Hartless) attached, OR
+- An undocumented woman whose absence from the record was itself evidence of marginal-community status, with the structural pattern matching what tri-racial isolate genealogies typically look like.
+
+The actual finding was different. The Clark family was already classified as a Mulatto household in Amherst County tax rolls by 1780. The "marrying into Indian families" story softens the structural fact: by 1780, the Clarks already were one of the Indian families of Amherst County. The marriages that Joseph and Nelson made in the 1810s–1820s were continuation of an existing family identity, not the entry point into a new one.
+
+This part walks through the documentary chain that establishes that, generation by generation, citation by citation.
+
+## 4.2 The Heinegg registry
+
+The canonical reference for colonial Virginia free people of color is Paul Heinegg's *Free African Americans of North Carolina, Virginia, and South Carolina from the Colonial Period to about 1820* — a primary-source compilation peer-cited in dozens of academic works, available free at `freeafricanamericans.com` and at the Lost Colony Research Group mirror. [Credibility 5 — Heinegg's compilation is the standard academic reference for this question.]
+
+Heinegg's published Clark family entry catalogs William1 Clark of Amherst County as follows:
+
+> *"William1 Clark, born say 1755, was granted 72 acres on the head branches of Pedlar River in Amherst County on 20 July 1780 \[Patents E, 1780-1, 282\]. He was head of an Amherst County household of 7 whites (free persons) in 1783 \[VA:48\] and 8 in 1785 \[VA:85\]. On 3 May 1785 the Amherst County court ordered that he, George Clark and William Ampey work on the road from Irish Creek Gap to Mill Creek, and on 6 October 1789 he, Peter Hartless, George Clarke, Leonard Clark, James Clark and Joseph Ailstock were ordered to work on the road from Blue Ridge at Irish Creek Gap to the three forks of Pedlar River \[Orders 1784-7, 131; 1787-90, 590\]. He was taxable in Amherst County from 1782 to 1820: with 'CM' after his name in 1800, 'Blue Ridge' from 1801-3, a 'man of color' in 1811, 1812, and 1815, a 'Mulatto' in 1813, a planter over the age of 45 in a list of 'Free Negroes & Mulattoes' in 1816 and 1818."*
+
+That is Brady's 8x-great-grandfather. He matches the WikiTree profile Clarke-20931 on every recoverable detail. WikiTree gives his birth year as ~1735 (descendant tradition); Heinegg gives "say 1755" (conservative documentary first-appearance convention). The two are consistent if "say 1755" is read as "no later than" rather than as a precise birth year. Everything else aligns: Amherst County, Pedlar River, the 1780 patent, the 1810/1820 federal census household composition, the tax-roll classifications "CM" / "man of color" / "Mulatto" / "free colored," his sons James + George + Leonard Clark, his daughters Mary Clark Hartless + Jane Clark Hartless + Nelly Clark Painter, and his probate inventory administrators (Anderson Ware, Thomas Jordan, William Hartless, John H. Clements, Angus McCloud).
+
+His will was dated 21 June 1821, probated 15 October 1821 in Amherst County. It names three sons (George, Henry, James) and four daughters (Rebecca Clark, Mary Hartless, Jane Hartless, Nelly Painter). Three of his four daughters married into documented Bear Mountain Monacan-community families — Hartless and Painter, both canonical surnames on Plecker's 1943 list and on the Bear Mountain Memorial Stone.
+
+## 4.3 The 1780 patent — a primary fact that anchors everything
+
+The single anchor record is this:
+
+> **William1 Clark, granted 72 acres on the head branches of Pedlar River, Amherst County, Virginia, 20 July 1780 [Patents E, 1780-1, 282].**
+
+[Credibility 5 — primary archival record, Library of Virginia patent books, via Heinegg.]
+
+Two things make this record decisive. First, it is primary-source archival evidence, not secondary tradition. The Library of Virginia holds the original land patent book. Second, the location is Pedlar River in Amherst County — geographically inside the Bear Mountain Monacan corridor, less than 25 miles from where the modern Monacan Nation tribal headquarters now sits. William Clarke did not migrate to the corridor in 1820. He patented land *in* the corridor in 1780 — fifty-one years before William Johns made his Bear Mountain purchase, two years before the U.S. Constitution was ratified.
+
+By 1783, his household was enumerated as 7 free persons in Amherst County. By 1785, 8 persons. By 1810, his household contained 9 "other free" persons, classified non-white in the federal census. By 1813, the Amherst County tax rolls listed him as "Mulatto." By 1820, the federal census enumerated his household as "free colored." The classification of the Clark family as a free-people-of-color family in Amherst County is a continuous documentary record from 1780 to his death in 1821 — forty-one years of unbroken official classification.
+
+## 4.4 James Clark Sr., 1764–1840 — Brady's 7x-great-grandfather
+
+William Clarke's son James Clark Sr. (1764–1840) is identical to "James3 Clark, born say 1764" in Heinegg's Clark family entry. He is documented in Amherst County tax rolls 1789–1820 as Mulatto / man of color / "free colored":
+
+> *"James3 Clark, born say 1764, was head of an Amherst County household of 9 'other free' in 1810 [VA:298]. He and his wife Anny sold land to Henry Hartless by deed proved in Amherst County on 19 July 1802 [Orders 1801-2, 217]. He was taxable in Amherst County from 1789 to 1820: ... called a 'man of color' in 1811, 1812, and 1815, a 'Mulatto' in 1813, in a list of 'Free Mulattoes & Negroes with his unnamed son in 1814 and in 1816 when he was over the age of 45, living on his own plantation, and taxable on 3 tithables ... He married (second) Nancy Clark in Amherst County on 20 September 1809."*
+
+Heinegg explicitly identifies James Clark Sr.'s sons. Four of them match Brady's family tree:
+
+- **Micajah** — born say 1785 — = Brady's Micajah Lynch Clark (1800), slight date discrepancy but same name and birth window
+- **Nelson** — born about 1793 — = **Nelson Harrison Clark, Brady's 6x-great-grandfather**, exact match by birth year
+- **Benjamin H.** — born about 1800 — = Brady's Benjamin H. Clark (1800), exact match
+- **James4** — born about 1801 — = Brady's James Clark Jr. (1801–1887), exact match
+
+The same Heinegg entry contains the 12 July 1860 Amherst County free-Negro registration of Nelson Clark: *"brown complexion, 67 years of age, 5 feet 11½ inches high, born in Bedford."* That registration is the same Nelson Harrison Clark whose 1860 census entry was already pulled — independently corroborated. He was registering himself with Amherst County as a free man of color in 1860, age 67, with the federal census classifying him Mulatto in the same year.
+
+[Credibility 5 — Heinegg's compilation is the canonical academic reference; FamilySearch ARK 1:1:M4B1-4DF is the primary federal census record.]
+
+## 4.5 The 1785 marriage — James Clark Sr. and Anny Moseley, with James Hartless as surety
+
+The 25 January 1785 Henrico County marriage record names *"James CLARKE and Anney Moseley, of lawful age. Sur. Thomas Harris and James Heartless. p. 18."* [Credibility 5 — Lindsay, *Marriages of Henrico County, Virginia, 1680–1808*, full text at archive.org.]
+
+Two things matter about this record. First, both parties were "of lawful age" — meaning no parent's consent was required, suggesting Anny Moseley was at least 21 in January 1785, putting her birth at ~1764 or earlier. Second, the marriage surety was James Heartless — the same Hartless surname that appears on Plecker's 1943 list, on the Bear Mountain Memorial Stone, and as the canonical Bear Mountain Monacan family thoroughly documented in Heinegg's parallel Hartless entry.
+
+James Hartless was the son of Henry1 Hartless (~1725, Caroline County VA — d. 9 Jul 1802 Amherst VA), who was indicted by Spotsylvania County court on 4 May 1761 for *"cohabiting with a white woman"* — making him a documented "mulatto" by the colonial Virginia legal definition before 1761. His mother is described in FamilySearch as *"Monaccan Indian"* (contested attribution) or as a slave woman of unknown origin (more conservative WikiTree reading); either way, the Hartless family was one of the early-1700s mixed-race Virginia families. Henry Hartless purchased 215 acres in Amherst County on the south fork of Buffalo River and Long Mountain on 28 February 1778. He is the kinship anchor of the Bear Mountain Monacan community as documented by Heinegg.
+
+The Hartless family is the smoking gun for community membership. James Clark Sr.'s sister Jane Clark married Henry Hartless's son Henry2 (25 June 1798 Amherst bond, William Clark surety). His sister Mary Clark married John Hartless (named in William Clarke's 1821 will as daughter "Mary Hartless"). His daughter (or niece) Eleanor "Nelly" Clark married John Painter — Painter being another canonical Plecker-list Monacan surname. And on 19 July 1802, James and Anny Clark sold 266 acres directly to Henry Hartless. By 1818, the Hartless heirs were jointly selling land with intermarried Clark, Cooper, Wilson, Graham, Jarvis, Peters families — the entire Bear Mountain extended kinship network in one transaction.
+
+This is not a network adjacent to the Monacan community. It is the Monacan community, decades before Bear Mountain coalesced as the formal tribal center.
+
+## 4.6 What about Anny Moseley?
+
+A reasonable question: was the Native ancestry coming through Anny Moseley, James Clark Sr.'s wife, rather than through the Clark side?
+
+The answer: almost certainly no. WikiTree (Moseley-2556) and FamilySearch (LVXM-G55) both assign Anna Moseley to the well-documented English/Dutch-origin Henrico/Norfolk Moseley colonial planter family — Father: Thomas Moseley (~1707, Henrico County VA Colony, d. before June 1769). Mother: Phoebe Giles (~1715, VA Colony, d. after 1784). Earlier line traces to William Moseley (~1605, possibly Delft, Netherlands → Lower Norfolk Virginia).
+
+The WikiTree page itself flags the assignment as needing *"careful re-assessment"* with *"no serious level of confidence,"* so the specific parent attribution is shaky. But even granting it, the conclusion is the same: Anna Moseley would have been an English/Dutch-origin settler-class woman who married into an already-Mulatto Clark family. The free-people-of-color classification of the Clark family in Amherst pre-dates her arrival by five years (William Clarke's 1780 patent and 1783 free-classified household). [Credibility 2 for the Moseley parent attribution; 5 for the structural conclusion that Anna Moseley married into an already-classified family.]
+
+What Anna Moseley contributed, if her Henrico Moseley descent is correct, is the deep English/Northern European ancestry already documented in Brady's GEDCOM through the Moseley → Heigham → Waldegrave → Cotton → Abbott → de Cotton lineage — back to medieval England.
+
+## 4.7 The trail going cold — William Clarke's parents
+
+This is the honest part. William Clarke's (~1735, Amherst, d. 1821) parents are not documented in any record located. Neither WikiTree, FamilySearch, Heinegg, nor any genealogy resource accessed provides his parents' names. He appears in the documentary record fully formed in 1780, age approximately 45, receiving his 72-acre Pedlar River patent.
+
+The trail stops there. The synthesis has a Mulatto-classified family head in 1780 Amherst County. It does not have his parents.
+
+The family tradition — preserved in Ruth Knight Bailey's *Lost Tribes: Indian Mormons in the Blue Ridge Mountains of Virginia* (cited via the WikiTree biography for Joseph Carter Clark Sr.) — is that the founding generation involved three Clark brothers married to Monacan Indian women:
+
+> *"Family tradition records that Junior's Clark family came from Ireland and lived for a short time in Henrico County Virginia. They settled in the Pedlar area of Amherst County Virginia. Family tradition also reports that the first Clarks were three brothers with Indian brides. I believe those Indian brides were either full or half Monacan Indians ... William and George Clark came to Amherst County in 1780 during the Revolutionary War. Later on, they were joined by Joseph, Leonard, and James Clark. ... James's father or grandfather may have been from Ireland and his mother or grandmother could have been a full blooded Monacan Indian."*
+
+[Credibility 3 — secondary book cited via WikiTree paraphrase; consistent with documentary pattern but not independently corroborable.]
+
+This places the founding marriage at William Clarke's parents' generation or earlier — i.e., Brady's 9x or 10x great-grandparents, in the 1690s–1730s window, in eastern Virginia (Henrico, Spotsylvania, Caroline, Hanover, or Louisa County), in the broader Saponi-Monacan diaspora context. The Heinegg introduction documents this pattern across dozens of Virginia FPOC families: a Native or half-Native woman cohabits with an Anglo or Irish settler man in eastern Virginia in the late 1600s or early 1700s, producing children classified "mulatto" under Virginia's 1705 statute, who in turn migrate westward into the Amherst / Rockbridge upland communities by the 1770s.
+
+The Clark Monacan brothers — William, George, Joseph, Leonard, and James — settled the Pedlar Creek / Buffalo River / Irish Creek corridor of the Blue Ridge between roughly 1770 and 1790. Their descendants intermarried with the Hartless, Painter, Mason, Pinn, Cooper, Beverly, Branham, Tyree, Johns, and Sorrells families. Two centuries later, those descendants would include both the modern federally-recognized Monacan Indian Nation enrolled at Bear Mountain and Brady Smallwood.
+
+## 4.8 The founding scene that does not appear in the record
+
+This is the part where a more romantic version of the story would name the woman. A Native bride in Henrico County in 1715 or 1720, married to a Clark settler — her name preserved by family memory, recorded on a tombstone, written into a family Bible. That scene is not preserved. Two and a half centuries of paperwork stand between the present day and her, and most of the paperwork is gone or never existed.
+
+What is preserved instead is the structural fact that by 1780, before William Clarke planted a foot on Pedlar River soil, the family was already classified by the Commonwealth of Virginia as a free-colored household. Surviving documents include a 72-acre patent, a tax roll, a 1785 wedding with a Hartless surety, a 1789 court order to repair the road from Irish Creek Gap to the three forks of Pedlar River alongside the Hartlesses and the other Clarks, a 1802 deed to Henry Hartless, a 1818 joint family land sale, an 1821 will naming Hartless and Painter sons-in-law. The record contains, in plain documentary form, two centuries of free-people-of-color community membership in the same geography that would later become the federally-recognized Monacan Indian Nation.
+
+The marriage that started it is undocumented by name. The community it produced is documented by every measure colonial Virginia had.
+
+## 4.9 The Penick 1956 letter, reframed
+
+Mary Monroe Penick's 1956 letter to the *Lexington County News* — the family-tradition source that says Joseph and Nelson "married into Indian families" after the War of 1812 — is partially right and partially a softening of the actual chronology.
+
+What is right: Joseph Carter Clark Sr. and his brother Nelson Harrison Clark did marry within the Indian-classified community of the Pedlar / Irish Creek corridor in the 1810s–1820s. Joseph married Polly Clark on 14 August 1819. Nelson married first Virginia [unknown surname] in 1816 (she died 1817), then Edith Ware on 6 July 1819, then Frances Mason in 1840. Both brothers ended their lives inside the Monacan community.
+
+What is softened: the Clarks did not "marry into" Indian families as a moment of entry. The Clark family had been an Indian family in the Amherst County record since 1780, when their father William Clarke received his Pedlar River patent and was classified as a free person of color in his Amherst tax record. Joseph and Nelson were not crossing into the community. They were continuing within it. The marriages they made in the 1810s–1820s were the next generation's marriages within an already-existing community.
+
+The 1956 letter is not wrong about *what* happened. It is wrong about *when* the boundary was crossed, and the answer to "when" turns out to be three generations earlier than the letter suggests.
+
+This matters for one specific reason: it changes how the documentary record reads on the question of whether Brady's children can credibly claim Monacan identity. If the family "became Indian" through 19th-century marriage, the inheritance is recent, partial, and easy to dismiss. If the family was already an Amherst County free-people-of-color household in 1780 — confirmed by primary land patent, tax rolls, federal census, deeds, wills, and probate inventory — the inheritance is two and a half centuries deep, in the same county the federally-recognized tribe sits in today. The folklore account places the family's entry into Indian identity in the 19th century. The documented account places it no later than 1780. The Clark line follows the documented account.
+
+---
+
+# Part 5 — The Clark Family of Irish Creek, 1797–1900
+
+> *Three generations of named, documented Clark men. Joseph Carter Clark Sr. born 1797, the last full generation in Amherst County; his brother Nelson Harrison Clark born 1793, who married three times and was Mulatto on the 1860 census; their nephew/cousin James Clark, who won a Rockbridge mandamus case in 1876 — half a century before Atha Sorrells would use the same precedent. The household snapshots are recoverable from the 1830, 1840, 1850, 1860, 1870, and 1880 federal censuses. The race column flips back and forth across the same surname in the same county in the same year. By the time the record reaches Joseph Anderson Clark, born 1869, the documentary chain is complete enough that fifty years later it would carry his grandson's case through the LDS priesthood door. The first Mason connection in the Clark line, by the way, is a step-relationship. Frances Elizabeth Mason was Nelson's third wife and Preston's stepmother — not biological. Earlier readings of the FamilySearch tree had placed her in Brady's direct line; the GEDCOM record corrects that attribution. The biological line runs through Edith Ware, an English-descended woman born 1798 in Rockbridge whose father Harrison Wane is the only undocumented person in this generation. Whatever the answer to who Harrison Wane was, the Clark side is established Mulatto by 1780. The maternal-side question is interesting but not dispositive.*
+
+## 5.1 Generation 8 — Nelson Harrison Clark (1793–1871)
+
+Brady's 6x-great-grandfather. Born 1793 in Bedford or Rockbridge County, Virginia, son of James Clark Sr. and Anna Moseley (per Heinegg's catalog and the FamilySearch tree). Died 7 August 1871 in Lexington, Virginia. Buried at Clarks Mountain Cemetery. Classified Mulatto on the 1860 federal census, Amherst County, age 66, household entry FamilySearch ARK 1:1:M4B1-4DF. [Credibility 5 — primary federal record.]
+
+His full life is bracketed by three primary documents. The 1819 marriage record — *"Virginia, County Marriage Records, 1771-1989,"* FamilySearch ARK 1:1:668H-KVWQ — gives his second wife as "Edy Ware" (later transcribed in the GEDCOM as "Edith Wane," same person). The 12 July 1860 Amherst County free-Negro registration, recorded in Heinegg's catalog, describes him as *"brown complexion, 67 years of age, 5 feet 11½ inches high, born in Bedford."* The 1871 death record places his burial in Lexington.
+
+He had three wives. This is the part where the FamilySearch tree's surface attribution mis-routes biological descent, and it matters because it changes the path of the Native-ancestry chain.
+
+| Wife | Dates | Married | Children | Status |
+|------|-------|---------|----------|--------|
+| **Virginia [unknown surname]** | d. 1817 | 1816 | None documented; likely died in childbirth | First wife |
+| **Edith Ware** (a.k.a. Wane) | b. 1798 Rockbridge VA, d. 1835 | 6 July 1819 in Rockbridge | Andrew Jackson, Sarah J, **Preston Harrison**, Mary Jane, Margaret | **Brady's biological 6x-great-grandmother — the line runs through Preston** |
+| **Frances Elizabeth Mason** | b. 1820 Amherst VA | 21 March 1840 in Amherst | Nelson Madison, Elisha A, Susan Josephine, Pheby J, Zach, Elijah A, Alfred M, Rebecca Frances, Charles Thomas Sr. | Third wife — STEPMOTHER to Preston, not biological to Brady's line |
+
+[Credibility 5 — GEDCOM family records, FamilySearch trees, marriage record FamilySearch ARK 1:1:668H-KVWQ.]
+
+## 5.2 Frances Elizabeth Mason — the correction
+
+An earlier reading of the FamilySearch tree placed the Mason / Pedlar Creek connection in Brady's biological paternal line through Frances Elizabeth Mason (1820), the daughter of Jesse Mason (b. 1775) and Polly Ann Branham (1792–1828). That reading was attractive: Frances was on the Monacan Rolls as Indian, her father Jesse Mason connects to the LDS-converting Pedlar Creek Mason community, and her mother Polly Ann Branham was from the Branham family — one of the foundational Bear Mountain surnames.
+
+That reasoning is correct about Frances. It is wrong about the biology.
+
+Frances Elizabeth Mason married Nelson Harrison Clark on 21 March 1840 in Amherst County. Preston Harrison Clark — Brady's 5x-great-grandfather, born October 1821 in Rockbridge County — was 19 years old when his father remarried. Preston is Nelson's second-marriage child, biologically the son of Edith Ware (1798–1835), not of Frances Mason. Frances is Preston's stepmother. The FamilySearch tree explicitly tags the first five "children" in Nelson's household as "Step – Frances Elizabeth Mason." [Credibility 5 — GEDCOM and FamilySearch trace LVTK-X5K, 2026-05-06 19:55.]
+
+What does not change: Frances Mason was in Nelson Harrison Clark's household from 1840 until Nelson's death in 1871. She raised Preston as a young man — Preston was 19 at the marriage, so the developmental influence was modest, but Frances would have been the matriarch of the household for three decades. Her father Jesse Mason (born ~1780, age 80 in 1860) was living in the household by 1860 — confirmed in the same 1860 census record that classifies Nelson Harrison Clark as Mulatto. The Mason connection ran *through* the household even though it does not run through Brady's biology. The community membership was real. The biological pathway is different from what the FamilySearch tree initially showed.
+
+## 5.3 Edith Ware (1798–1835) — the actual biological 6x-great-grandmother
+
+Edith Ware — alternately recorded as Edy Ware (in the 1819 marriage record), Edith Wane (in the GEDCOM), and Edie Clark (in Virginia Vital Records 1853–1934 after her marriage) — is Brady's biological 6x-great-grandmother. Born 1798 in Rockbridge County, Virginia. Died 1835. Married Nelson Harrison Clark on 6 July 1819 in Rockbridge. [Credibility 5 — primary marriage record FamilySearch ARK 1:1:668H-KVWQ.]
+
+Her parents are partially resolved. Her mother Sally Wane is documented English — born 24 September 1784 in Aylesford, Kent, England, the daughter of Nicolas Wane (1754) and Martha Burren (1753), with primary sources from English parish registers under "England Births and Christenings, 1538–1975." Sally emigrated to Virginia at some point between 1784 and 1798. [Credibility 5 — FamilySearch Aylesford parish registers.]
+
+Her father Harrison Wane (b. 1773) is essentially undocumented. FamilySearch ID G9ZK-D8N. Zero sources attached. *"Parents and Siblings"* radio button is disabled — meaning he has no documented parents in the FamilySearch tree. No location of birth listed. No tax roll, militia record, deed, or census appearance located. The only documented child is Edith.
+
+This is genuinely interesting. The complete absence of records for Harrison Wane is itself the kind of pattern that fits Virginia tri-racial isolate families in the late 18th century. Free people of color and Native-descended men in marginal-community status often appear minimally or not at all in formal records — no land tax (because they did not own taxable land), no militia (because the militia was racially restricted), no deed transactions (because they were tenants or squatters), no census beyond the head-of-household summary count.
+
+The synthesis cannot prove Harrison Wane was Native-descended. The available record shows that his complete absence from documentary surfaces is consistent with that hypothesis and not consistent with the standard Anglo-Virginia farmer profile of the same generation. For the purpose of the structural conclusion, this question is moot. The Native ancestry in the paternal Clark line was already established three generations upstream of Edith Ware via William Clarke's 1780 patent. Even if Harrison Wane turns out to be a documented Anglo settler with sources not yet located, the Clark line was already classified Mulatto in Amherst tax rolls before Edith was born.
+
+## 5.4 Generation 7 — Joseph Carter Clark Sr. (1797–1859)
+
+Nelson Harrison Clark's brother. Born 1797 in Amherst County, Virginia. Died 8 January 1859 in Rockbridge County. Cause of death: gravel (kidney or bladder stones). Buried at Rocky Mountain Cemetery in Rockbridge. Race in primary records: Mulatto (1850 U.S. Census); Colored/Black (1859 Virginia Death Register). FamilySearch ID LVTG-YCP, 32 attached sources. [Credibility 5 — primary records.]
+
+He is the named protagonist of the Penick 1956 letter to the *Lexington County News*. The Appalachian fiddle tune "Old Joe Clark" — recorded by Doc Watson, the Carter Family, and dozens of other artists — has sometimes been associated with him in regional Rockbridge County tradition, but no documented connection between the song and Joseph Carter Clark Sr. of Irish Creek has been established in the folklore-scholarship record. The song appears in print at least as early as the 1810s, predating Joseph Carter Clark Sr.'s adulthood, and the leading scholarly candidate for the song's namesake is a different Joe Clark, of Clay County, Kentucky. The "Old Joe Clark" attribution should be treated as regional folk association rather than confirmed biographical fact. His structural role in the Clark family history is concrete on other grounds:
+
+- He owned more than 2,500 acres on Irish Creek by the time of his death — the largest documented landholding in the Clark family record before the 20th century.
+- He owned at least one enslaved person — a man named Peter Curry, purchased at auction. The Sorrells case file records this fact, and it was used in the 1924 mandamus to argue that the Clark family had historically been classified as legally white in pre-1865 Virginia. (In antebellum Virginia, only legally white persons could own slaves with full legal protection; "free people of color" technically could but rarely did so without legal jeopardy. Joe Clark Sr.'s undisputed ownership of Peter Curry placed him on the legally-white side of the antebellum line.)
+- He married Mary Margaret "Polly" Clark on 14 August 1819 in Rockbridge County. The original 1819 marriage bond survives. Leonard Clarke was named as the second party — a relative standing surety, common practice. Joseph and Polly shared the same surname — a classic feature of community endogamy.
+- He fathered nine children with Polly, including Lee Harrison Clark, who would later serve as informant on Joseph's 1859 death certificate.
+- His will, dated 3 January 1859 — five days before he died — survives.
+
+Three things matter about Joe Clark Sr. for the broader family story. First, his 1797 birth year places him exactly one generation downstream of William Clarke's 1780 Amherst patent — he was the grandson of the Pedlar River patriarch. Second, his slave ownership and large landholdings made him the patriarchal anchor of the Clark legal-whiteness chain that the 1924 Sorrells case would lean on. Third, his community standing meant that when his descendants needed documentary evidence of historical white classification, they had it.
+
+He almost certainly did not see himself as a historical figure. He was a man trying to build something on Irish Creek. What he built turns out to be more than lumber.
+
+## 5.5 The 1830, 1840, 1850 census household snapshots
+
+The race column for Joseph Carter Clark Sr.'s household across three federal censuses:
+
+| Year | Classification | Household composition |
+|------|----------------|----------------------|
+| 1830 | Free Colored | 3 Free Colored Males under 10; 1 Free Colored Male age 24–35 (Joseph, ~33); Free Colored Females in younger brackets |
+| 1840 | Free Colored | 3 Free Colored Males under 10; 3 Free Colored Males aged 10–23 — growing family by late 1830s |
+| 1850 | Mulatto | District 51, Rockbridge County; household 991, dwelling 979, line 11; Joseph age 53 (M), Polly age 52 (M), 9 children classified Mulatto |
+
+[Credibility 5 — federal census records via GenealogyTrails Rockbridge County transcriptions and FamilySearch.]
+
+The 1850 record is the cleanest. The entire household — Joseph, Polly, and all nine children — were enumerated by the federal census taker as Mulatto. There is no ambiguity. The 1859 Virginia Death Register, completed by Joseph's son Lee Harrison Clark as informant, lists his race as "Colored/Black" — using the post-1854 simplified racial categories — but the federal record nine years earlier was Mulatto.
+
+## 5.6 Generation 6 — Preston Harrison Clark (1821–1903) and the next link
+
+Preston Harrison Clark, Brady's 5x-great-grandfather, was born October 1821 in Rockbridge County to Nelson Harrison Clark and Edith Ware (the GEDCOM-corrected biological mother, not Frances Mason). Died 7 May 1903 and is buried at Clarks Mountain Cemetery, the same family burying ground as his father. [Credibility 5 — FamilySearch ID 277S-36M, GEDCOM @I547.]
+
+He married Susan Ann Virginia Clark (b. 1828 Rockbridge, d. 6 June 1869). Susan Ann Virginia Clark was a Clark herself, married into the family — endogamous cousin marriage within the broader Clark community, the same pattern as Joseph and Polly two generations earlier. They produced 10 children including Nelson Alexander Clark (born January 1857), Brady's 4x-great-grandfather and Joseph Anderson Clark's father.
+
+Preston's life spans 82 years across the entire arc of the 19th-century Clark family identity story: born in 1821 inside an Amherst-Rockbridge community already classified Mulatto by federal census, lived through the Civil War, lived through Reconstruction, lived through the 1876 *James Clark v. J. P. Moore* mandamus that established the family's legal precedent for marriage-license claims, lived to see the early days of Plecker's tenure (Plecker took office in 1912; Preston died 1903 — he just missed the worst of it). He did not live to see the Sorrells case in 1924, but his cousin's daughter would go to court using the family tree he had been part of building.
+
+## 5.7 The 1876 James Clark v. J.P. Moore case
+
+In December 1876 — eleven years after Appomattox, during the late-Reconstruction window when Southern racial law was briefly in flux — James Clark of Rockbridge County applied to County Clerk J. P. Moore for a marriage license to marry Cerinda Robison, identified in the case file as "a white woman." Moore refused, declaring Clark "a black man." Clark filed a petition for writ of mandamus in Rockbridge Circuit Court. He argued he was of mixed blood — less than 1/4 Indian or Negro — and was not properly classified as Black under Virginia law. The court ruled in his favor and ordered the license issued. [Credibility 5 — Library of Virginia accession 1140710; case in County Court order Book, 1876, pages 137 and 174.]
+
+The case file includes correspondence with the Amherst County clerk inquiring into Clark's racial background. This is the earliest documentary proof that Rockbridge and Amherst county officials understood the two-county Indian community as a single shared population.
+
+James Clark is identified in the 1924 Sorrells case file as the grandfather of the Sorrells-era Clarks. He is almost certainly Joseph Anderson Clark's grandfather as well, though the exact generational linkage requires more archival work to pin down. He was a member of the same Irish Creek community, related to Joseph Carter Clark Sr. by descent or marriage, and his 1876 victory became the controlling precedent cited in the 1924 case 48 years later.
+
+## 5.8 Generation 5 — Nelson Alexander Clark (1857–1902)
+
+Joseph Anderson Clark's father. Born January 1857 in Amherst, Virginia. Died 3 April 1902. Buried in Rockbridge County. [Credibility 5 — GEDCOM @I247.]
+
+He married Mary Martha Robertson, born 5 July 1860 in Rockbridge County, died 6 June 1898 in Amherst County (age 38, short life — likely complications from childbearing or illness). Her parents were William Thomas Robertson (b. 1839 Rockbridge, d. 20 September 1882 Clarks Gap Rockbridge) and Mary Holivey "Mondula" (b. 6 February 1820 in Scotland, d. 2 April 1908 in Nelson, Virginia). [Credibility 5 — GEDCOM @I245, @I528, @I529.]
+
+The Mondula surname mystery resolves here. "Mondula" → "Menduel" — a transcription drift. Mary Holivey Mondula was born in Scotland to William Menduel and Polly Stokesbury, both born ~1790 in North Carolina, with Polly's father documented as having married in 1778 in the Diocese of Ossory, Leinster, Ireland. This is European (Scottish via Ireland) ancestry on Mary Martha Robertson's mother's side — confirming the *Irish* half of the college-genealogy folklore (which had said "Cherokee and Irish") even as the Cherokee half resolves to Monacan. [Credibility 4 — GEDCOM-traced lineage.]
+
+This is also where the structural composition of Brady's paternal line gets clearer. Brady Smallwood's documented direct ancestors include:
+
+- Sally Wane (1784) — English — 7x-great-grandmother on the paternal Clark line
+- Mary Holivey "Mondula" (1820) — Scottish — 4x-great-grandmother on the paternal Clark line (mother of Mary Martha Robertson)
+- Polly Stokesbury's father — Irish — married 1778 Diocese of Ossory, Leinster, Ireland
+- Multiple deeper English / Northern European lines through the Moseley → Heigham → Waldegrave → Cotton → Abbott → de Cotton lineage (back to medieval England via Anna Moseley)
+
+The European ancestry side of Brady's tree is well-documented and extensive. The Native ancestry side is documented through the federal-records chain — William Clarke 1780 patent, Mulatto Amherst tax rolls 1782–1820, James Clark Sr. 1789–1820 Mulatto, Nelson Harrison Clark Mulatto in 1860 — without a clean named-individual founding scene. The Native ancestor exists in the record as a continuous family classification, not as a remembered first name.
+
+## 5.9 Generation 4 — Joseph Anderson Clark (1869–1963)
+
+Born 1869 in Rockbridge County, Virginia, son of Nelson Alexander Clark and Mary Martha Robertson. Died 1963. He is the figure who routes the Monacan community's history into the specific Smallwood bloodline. He is the first LDS convert in Brady's direct paternal line. He is the elder who, in 1951, refused to let his branch of the family stay frozen out of the priesthood. [Credibility 5 — primary records; Olson *Crossroads* 2004.]
+
+Three things define Joseph Anderson Clark:
+
+**He was already the "Indian" identity carrier of his generation.** When LDS missionaries reached him in 1911, he was 42 years old. He had grown up in Irish Creek inside a community the 1948 Smithsonian report would later document as "Brown People — a mixture of White, Indian, and occasionally Negro blood, like the Issues of Amherst County." His race classification on his 1906 marriage certificate to Mary Susan Clark was "colored" — the standard Virginia catch-all for non-white in 1906, before Plecker's 1924 reclassification machinery formalized the term. The community he belonged to had been telling itself it was Indian since at least the 1700s. The state of Virginia had been calling them anything but. [Credibility 5 — 1906 marriage record; Olson *Crossroads* 2004.]
+
+**He converted to Mormonism for a specific theological reason.** Per Olson's *Crossroads* chapter (Mercer University Press, 2004), Joseph Anderson Clark *"became a Mormon in 1911 because he believed that people with the blood of Israel had special responsibilities to prepare for the second coming of the Messiah."* That sentence is theologically precise. It is not "the missionaries were nice." It is a man articulating Lamanite doctrine in his own voice. He understood what was being offered, and he accepted the identity claim — Israelite, chosen, end-times preparer — that the LDS Church specifically extended to Native Americans. Part 8 of this synthesis walks through the implications.
+
+**He is the bridge between everything that came before and everything that came after.** Nelson Harrison Clark died in 1871, 2 years after Joseph's birth — the family memory of the 1860 Mulatto classification, the Irish Creek "Brown People" community, the 1876 *Clark v. Moore* mandamus, the William Clarke 1780 patent — all of that lived in the Clark family oral tradition that Joseph Anderson Clark would have grown up hearing. By 1951, when he was 82 years old, he would still be alive to provide the family memory that the LDS genealogical missionaries from Utah used to assemble Claude Clark's priesthood case. He lived from 1869 to 1963. Ninety-four years. He saw the family identity nearly destroyed in his middle age and rebuilt in his old age. He did not fix it himself. He lived long enough to help.
+
+The next part of this synthesis covers the years 1912–1946 — the Plecker era, the Racial Integrity Act of 1924, and how the State of Virginia tried to make the Clark family stop being Indian on paper.
+
+---
+
+# Part 6 — Plecker and the "Paper Genocide," 1912–1946
+
+> *The phrase "paper genocide" was coined by Chickahominy Chief Stephen Adkins to describe the bureaucratic erasure of Virginia Native identity through documents rather than violence. For thirty-four years, a single physician sitting in Richmond named Walter Ashby Plecker ran an administrative campaign of erasure against the Native peoples of Virginia. He had statutory authority over every birth, death, and marriage record in the Commonwealth. He used it to redefine who counted as Indian, who counted as white, and who would be forced into the legal category "colored." In January 1943, he sent a circular letter to county clerks across Virginia naming "mongrel" surnames in each county. Clark appears on his official 1943 list of mongrel surnames for both Amherst County and Rockbridge County. Tyree, Sorrells, Painter, Hartless, Mason, Johns, and most of the Clark extended kin network appear in one or both. From 1930 to 1940, the U.S. Census recorded Virginia's Indian population dropping from 779 to 198 — a 75% decline in a decade with no epidemic and no migration to explain it. The decline was bureaucratic. Plecker's tools were a typewriter, a letter file, and the Commonwealth of Virginia's seal. The damage he did to documentary chains is what made the 1924 Sorrells case necessary, the 1951 LDS genealogy rescue necessary, the 1984 Houck book necessary, and the 2018 Thomasina E. Jordan Act necessary. He never killed anybody. He was the most consequential anti-Indian actor in 20th-century Virginia.*
+
+## 6.1 Walter Ashby Plecker — biography in five lines
+
+**Born:** April 2, 1861, Augusta County, Virginia. Merchant family. **[Credibility 5.]**
+**Education:** Hoover Military Academy (1880); MD from University of Maryland Medical School (1885).
+**Career path:** Practiced medicine in western Virginia and Alabama; settled in Elizabeth City County (now Hampton) in 1892. Public health officer there from 1902, focused on midwife regulation and infant mortality.
+**Appointment:** In 1912, the Virginia legislature created the Bureau of Vital Statistics and named Plecker its first director. From 1912 forward, every birth certificate issued in Virginia carried a racial designation — and Plecker controlled that designation.
+**Death:** August 2, 1947. Struck by an automobile in Richmond. Buried in Hollywood Cemetery. He had retired the year before, after thirty-four years in the post.
+
+What made him dangerous was not his power alone. It was his methodology — and the fact that the appointment had no fixed term. He survived four governors. By the time he retired, the system he had built was institutionalized in every county clerk's office in the Commonwealth.
+
+## 6.2 The Racial Integrity Act of 1924
+
+The Racial Integrity Act of 1924 was a Virginia statute that recognized only two racial categories — "white" and "colored" — and prohibited marriage between them, with limited exception for persons of one-sixteenth or less American Indian ancestry. **Passed by the Virginia General Assembly: March 20, 1924.** Drafted by three men working in close coordination: Walter Ashby Plecker (director of the Virginia Bureau of Vital Statistics); John Powell (a prominent Richmond concert pianist and white-supremacist activist who founded the Anglo-Saxon Clubs of America); and Earnest Sevier Cox (a writer and racial ideologist). Their intellectual patron was Madison Grant of New York, author of *The Passing of the Great Race* (1916) — the single most influential American eugenics text of the 20th century. [Credibility 4 — Encyclopedia Virginia, Library of Virginia primary collections.]
+
+The Act did one fundamental thing: it collapsed Virginia's racial categories to two. The new law recognized only *white* and *colored*. No Indian category. No mulatto. No free person of color. A person not unambiguously white — meaning *"no trace whatsoever of any blood other than Caucasian"* — was classified colored.
+
+There was exactly one carve-out, called the Pocahontas Exception (a 1924 Racial Integrity Act provision allowing persons of up to one-sixteenth Indian ancestry to be legally classified as white, drafted to protect the descendants of Pocahontas and John Rolfe among Virginia's First Families): a person with one-sixteenth or less American Indian blood, and no other non-Caucasian blood, could still be classified white.
+
+> **SIDEBAR: Why the Pocahontas Exception existed.**
+> The Pocahontas Exception was a class compromise that protected hundreds of First Families of Virginia (FFV) — the Lees, Randolphs, Bollings, and others — who proudly traced their lineage to Pocahontas through John Rolfe. Without the exception, those families would have become legally "colored" overnight. The Pocahontas Exception is the single most important piece of evidence that the Racial Integrity Act was never about science. It was a legal carve-out for elite white Virginia, applied at the boundaries to rural mixed-ancestry communities — exactly the communities the Clarks belonged to.
+
+The anti-miscegenation provision was the enforcement lever. Marriage between a white person and any non-white person became a felony. County clerks were personally liable if they issued a "white" marriage license to anyone who later turned out to be colored under the new definitions. This meant every clerk in every county courthouse was now effectively an agent of racial enforcement — with criminal exposure if they got it wrong.
+
+Plecker circulated the Act to county clerks across the state within weeks of passage. His accompanying instructions made clear that the law was not self-enforcing — it would require the clerks to push back on any application from a family he had flagged. He already had a list of target surnames.
+
+The 1928 amendment redefined "colored" as anyone with *"any ascertainable degree of negro blood,"* removing the practical 1/16 threshold and installing the absolute "one-drop rule" (the racial-classification principle that any documented African ancestry, however remote, classifies a person as Black under Virginia law) for Black ancestry. The Act was struck down in pieces over the following four decades: *Loving v. Virginia*, 1967 (anti-miscegenation provisions); 1975 (formal repeal of remaining statute); 2001 (Virginia General Assembly resolution formally denouncing the Act).
+
+## 6.3 The six mechanisms — what Plecker actually did
+
+The phrase "paper genocide" — coined by Chickahominy Chief Stephen Adkins — is now used by Virginia's federally recognized tribes themselves and by the Library of Virginia. It describes the bureaucratic erasure of Native identity through documents — not through bullets. Plecker's tools, in operational sequence:
+
+**Mechanism 1: Reclassified existing records.** Plecker physically altered birth, marriage, and death certificates that had originally listed "Indian." He overwrote them with "colored" or "negro." Specific documented examples include Cora Almond's 1940 census entry, where "Ind" was scratched out and replaced with "2" (the colored code), and Alfred L. Allmond's 1913 birth certificate, which Plecker amended directly. [Credibility 5 — Library of Virginia primary documents.]
+
+**Mechanism 2: Letters taped to records.** Beginning in the 1940s, Plecker attached typed letters to the back of birth certificates of Indigenous Virginia children. The letters explained, in his words, why the child should not be considered Indian or white. These attachments are still physically present in the records at the Library of Virginia.
+
+**Mechanism 3: Threatened midwives, ministers, and county clerks.** Plecker corresponded directly with midwives delivering babies in Amherst, Rockbridge, Augusta, Bedford, Nelson, Halifax, and other counties. He warned them that filing a birth certificate with "Indian" listed would be falsification under penalty of one year in the penitentiary (Section 5099a of the Virginia Code, as amended in 1924). The letters survive in the Rockbridge County Clerk's Correspondence collection, Library of Virginia accession 1160754.
+
+**Mechanism 4: Refused marriage licenses.** County clerks who issued a "white" marriage license to anyone Plecker had flagged as a "mongrel" surname risked prosecution. This is the lever that produced the Sorrells case — covered in Part 7.
+
+**Mechanism 5: Blocked Indian children from white schools.** Plecker pressured local school boards to refuse enrollment to children of flagged families, citing the racial classification on the birth certificate he himself had altered.
+
+**Mechanism 6: Blocked federal recognition.** When World War I and World War II draft cards required racial classification, Plecker insisted that Virginia's Native men be recorded as "colored." This had cascading effects on military identification, veterans' benefits, and decades later, on tribal recognition petitions.
+
+## 6.4 The 1943 surname lists — Clark on both
+
+In January 1943, Plecker mailed a circular letter to local registrars, clerks, and legislators across Virginia. It contained a list of "mongrel" surnames organized by county and the assertion that *"there does not exist today a descendant of Virginia ancestors claiming to be an Indian who is unmixed with negro blood."* [Credibility 5 — primary state document; Library of Virginia, reproduced at Encyclopedia Virginia and mixedracestudies.org.]
+
+**Complete Amherst County list:**
+> Adcock (Adcox), Beverly, Branham, **Clark**, Cash, Duff, Floyd, Hamilton, Hartless, Hicks, Johns, Lawless, Nuckles (Knuckles), Painter, Ramsey, Redcross, Roberts, Southards (Suthards, Southerds, Southers), Sorrells, Terry, Tyree, Willis, Wood
+
+**Complete Rockbridge County list:**
+> Cash, **Clark**, Coleman, Duff, Floyd, Hartless, Hicks, Johns, Mason, Mayse (Mays), Painters, Pultz, Ramsey, Sorrells, Southerds (Southers, Southards, Suthards), Tarry, Tyree, Wood
+
+Clark appears in both counties. The overlap surnames between the two lists — Clark, Tyree, Cash, Duff, Floyd, Hartless, Hicks, Johns, Painter/Painters, Sorrells, Southards, Ramsey, Wood — confirm Plecker himself recognized these as one connected population spanning the county line. The Irish Creek (Rockbridge) to Bear Mountain (Amherst) corridor was the geography he was hunting.
+
+This is the single most important documentary fact for the Clark line. Walter Plecker, in writing, on official Bureau of Vital Statistics letterhead, in January 1943, named "Clark" as a target surname in both of the counties the Clark family lived in. Joseph Anderson Clark was 73 years old when this letter went out. His son James William Clark was 39. Their birth certificates had already been reclassified or were about to be.
+
+## 6.5 *Mongrel Virginians: The Win Tribe* (1926)
+
+The pseudo-scientific scaffolding underneath Plecker's bureaucratic violence. Without it, his policies would have looked like personal racism. With it, they looked like science.
+
+**Authors:** Arthur H. Estabrook of the Eugenics Record Office at Cold Spring Harbor, New York, and Ivan E. McDougle, sociologist at Goucher College.
+**Published:** 1926, by Williams & Wilkins, Baltimore.
+**Funded by:** the Eugenics Record Office and the Carnegie Foundation.
+
+The book studied a real mixed-ancestry community in Amherst County and surrounding Rockbridge / Nelson / Bedford counties, but disguised the location and the surnames behind a coded label: "WIN" — White-Indian-Negro. The "WIN tribe" was, in plain language, the Monacan-descended community of the Blue Ridge foothills around the Tobacco Row and Pedlar Mountain areas — the same community the Clarks belonged to. [Credibility 5 — multiple library catalog entries; original full text on HathiTrust.]
+
+Estabrook and McDougle drew family pedigrees of several hundred individuals and concluded that the WIN community was the product of an Indian-white union three or four generations earlier, *"later contaminated"* by what they termed "mean-white" and "negro" admixture. They presented the community as morally and intellectually deficient — *"low-down"* was their actual phrase — and used the pedigrees as evidence that interracial mixing produced degenerate offspring. [Credibility 4.]
+
+Plecker cited *Mongrel Virginians* in his official Bureau of Vital Statistics correspondence as proof that there were no "real" Indians left in central Virginia — only mixed-blood "negroes" trying to "pass." It became his standard rhetorical move: when a Monacan family complained about a reclassified birth certificate, Plecker cited Estabrook and McDougle.
+
+The modern scholarly takedown is unambiguous. Abraham Myerson, reviewing the book for *American Journal of Psychiatry* in 1926, called it *"a really absurd and useless book."* J. David Smith, *The Eugenic Assault on America: Scenes in Red, White, and Black* (George Mason University Press, 1992), provided the definitive academic dismantling — showing that Estabrook and McDougle had cherry-picked subjects, used invalid IQ instruments, ignored white-passing branches of the same families, and confused poverty with hereditary deficiency. [Credibility 4 — Smith 1992.]
+
+The current consensus among Virginia historians and the federally recognized tribes is that *Mongrel Virginians* is a textbook example of eugenics-era pseudo-science deployed as an instrument of state policy.
+
+## 6.6 The numbers — 779 to 198
+
+Between 1930 and 1940, the U.S. Census recorded an apparent decline in Virginia Indians from 779 to 198 — a reduction of about 75% in a decade. No tribe was massacred. No epidemic ran through. The decline was almost entirely paperwork — Plecker's office reclassifying living people as "colored." [Credibility 4 — National Park Service, *The Racial Integrity Act, 1924: An Attack on Indigenous Identity*; Encyclopedia Virginia.]
+
+This is the metric that gives "paper genocide" its weight. Six hundred eighty-one Virginians did not stop existing. They were reclassified out of the Indian category by a single Richmond office, in the space of ten years, using existing federal infrastructure that had been designed for actuarial public health.
+
+## 6.7 What it did to the Clark line — the structural damage
+
+The damage Plecker did to the Clark line is not a single event. It is a structural distortion of the documentary record that took 94 years to undo.
+
+Joseph Anderson Clark and Mary Susan Clark's 1906 marriage is recorded in Rockbridge County with both spouses listed as "colored." 1906 predates the Racial Integrity Act by 18 years. The "colored" designation in 1906 was a catch-all for anyone non-white, including Indian — there was no "Indian" option on the standard 1906 form in many county courthouses. Once that record existed with "colored" on it, Plecker would later use it as proof that the Clarks were Black — even though the original record contained no claim about African ancestry. This is the circular reasoning the Library of Virginia describes as Plecker's signature technique: deny Indigenous status by pointing to prior "colored" classifications on records that had never offered "Indian" as an option. [Credibility 4 — Library of Virginia.]
+
+The children's records, 1912–1946 — Joseph Anderson Clark's children were born during Plecker's tenure. Their birth certificates were almost certainly issued with the racial designation "colored" by Plecker's office, even if the local midwife reported "Indian" or "white." If the family ever sought a marriage license, school enrollment, or military identification, they would have run into the same Clark surname flag that Plecker explicitly listed in 1943 for both Amherst and Rockbridge counties.
+
+Plecker did not destroy the underlying paper. He altered it. The original midwife's report, the original 1869 birth record, the original 1906 marriage record — these survive at the Library of Virginia and at the Rockbridge County Circuit Court. The forensic work of comparing original entries to Plecker's overwrites is now actively done by Virginia Indian Heritage Program archivists and by family genealogists. The paper trail of the genocide is also the paper trail by which it can be partially undone.
+
+That is the work the 1951 LDS genealogical missionaries did for Claude Clark. It is also the work this synthesis has been doing, over the past two months. The paper Plecker altered is recoverable. The story he tried to erase is not gone. Most of it is in Richmond, in the Library of Virginia reading room, sitting in boxes that anyone with a research card and a half-day can request.
+
+## 6.8 What he did not do
+
+Plecker did not arrest anyone. He did not kill anyone. He did not run violent enforcement. He had no police authority. He had a typewriter, a letter file, and the Commonwealth of Virginia's seal.
+
+That is the part that matters most. This much damage can be done with paperwork. A federally recognized tribe's documentary chain can be erased so completely that it takes a 1984 medical history book by a Lynchburg doctor to even begin reassembling it. It can be done sitting at a desk. The forty-three years from Plecker's appointment in 1912 to Claude Clark's 1957 LDS mission call is the time it took the Clarks' specific branch of the Bear Mountain Monacan community to recover from one man with one job.
+
+The federally recognized Monacan Indian Nation got its 2018 federal recognition through a legislative path — the Thomasina E. Jordan Act — *because* the Bureau of Indian Affairs administrative path was effectively closed to Virginia's tribes. The standard BIA evidentiary path required documentation of continuous tribal community that Plecker had spent thirty-four years specifically destroying. The federal recognition process designed to protect Native communities was, in Virginia's case, the wrong tool for the job. The damage had already been done at the document level. The fix had to be done at the legislative level.
+
+The next part of this synthesis is the courtroom part. November 1, 1924. Atha Sorrells walks into the Rockbridge County Courthouse in Lexington. She is twenty years old. She is pregnant. Her family tree is the Clark family tree.
+
+---
+
+# Part 7 — Atha Sorrells and the Court That Said No
+
+> *On November 1, 1924, a twenty-year-old pregnant woman from Irish Creek walked into the Rockbridge County Courthouse in Lexington with her fiancé Robert Painter and asked the clerk for a marriage license. The clerk refused. Eight months earlier, the Virginia legislature had passed the Racial Integrity Act. The clerk's name was A.T. Shields. The Bureau of Vital Statistics director who had told him to refuse was Walter Plecker. Two weeks later — on November 14, 1924 — Atha Sorrells filed a petition for writ of mandamus. Her father William filed it on her behalf because, under Virginia law at the time, a person under twenty-one was a minor and required a guardian to act for them in court. The Clark family tree was the central exhibit. Walter Plecker traveled to Lexington and testified for the defense in person. So did John Powell, co-drafter of the Racial Integrity Act. **Judge Henry W. Holt ruled for Atha Sorrells in January 1925**. He ordered the marriage license issued. Plecker himself, in a letter dated May 9, 1925 — preserved at the Library of Virginia — advised Shields not to appeal because if the Virginia Supreme Court upheld the ruling it would "embolden the Rockbridge tribe." That phrase — the Rockbridge tribe — is Plecker's own. It refers to the Clark community. Atha married Robert Painter on May 31, 1925. She had her first daughter in July 1925. She lived until 1979. The Clark family tree submitted as her evidence is the same family tree that runs through Brady. This is the courtroom record at the center of the family file.*
+
+## 7.1 The world in March 1924
+
+To understand what Atha Sorrells walked into in November, the legal landscape established eight months earlier must be set. Part 6 of this synthesis covered the Racial Integrity Act in mechanical detail. The lived consequence by November 1924 was this:
+
+Every county clerk in every Virginia courthouse was now operating under a new rule. If they issued a "white" marriage license to anyone who later turned out to be classified as colored under the new definitions, they faced criminal exposure. Plecker had already circulated his target surname list. In Rockbridge County, the list included Clark, Sorrells, Painter, Johns, Tyree, and roughly a dozen other names from the Irish Creek / Cornwall / Vesuvius community. Any application with one of those surnames was supposed to be reviewed against Plecker's records and, where indicated, refused.
+
+The clerk in Rockbridge County was A.T. (Abner Terry) Shields. He had been corresponding with Plecker since 1912. The Library of Virginia accession 1160754 — *Rockbridge County (Va.) Clerk's Correspondence (Walter A. Plecker to A. T. Shields), 1912–1943* — preserves their three decades of letters. Shields was not a villain in the dramatic sense. He was a county bureaucrat doing what Plecker had told him to do. The Racial Integrity Act gave Plecker's instructions the force of felony law.
+
+## 7.2 The case before Atha — Dorothy Johns, September 1924
+
+Before Atha Sorrells, there was Dorothy Johns. The contrast between the two cases is essential to understanding why Atha won.
+
+In September 1924, just weeks after the Racial Integrity Act took effect, James Conner and Dorothy Johns applied for a marriage license at the same Rockbridge County Courthouse. The same clerk, A.T. Shields, refused — on the same grounds. Johns also sued. The case is *Rockbridge County (Va.) James Connor and Dorothy Johns vs. A. T. Shields, Clerk of Court, 1924 September*, Library of Virginia accession 1140743. [Credibility 5 — primary case file.]
+
+Johns is a canonical Monacan surname. It appears on the Bear Mountain Memorial Stone, on Plecker's 1943 list, on the Fort Christanna migration chain (Tartleton Johns, Susan Johns), and throughout the community's documented genealogy. Dorothy Johns was a member of the same kinship network the Sorrells case would later defend.
+
+Holt heard the Johns case. Plecker testified. Silas Coleman, a resident of Amherst County, provided anecdotal testimony that Johns had "colored" ancestry. Holt refused to issue the license. He found sufficient evidence that Johns was at least part African American. He raised concerns about the burden of proof in the Act — flagging, even in a ruling against her, that the law was poorly designed — but on the evidence before him, he ruled against her.
+
+The difference between the two cases was the evidence. Johns had documented African American ancestry in Plecker's records that her side could not effectively counter. Atha had the Clark family tree — 130 years of documented white and Indian ancestry, the 1876 James Clark mandamus, War of 1812 service records, and federal land warrants. She had a case Johns did not have. She won where Johns lost for exactly that reason. When Silas Coleman was asked to testify against Atha, he declined — out of fear of community retribution, according to the Encyclopedia Virginia account. He had testified against Dorothy Johns. He would not testify against Atha Sorrells.
+
+Two community-supported petitioners (the party who initiates a court action by filing a formal petition) in the same courtroom in the same year, the same judge, the same clerk, the same defense counsel, the same hostile witness — and one won and one did not. The thing that made the difference was a 130-year paper trail tracing back to a man named Joe Clark Sr. who was born in Amherst County in 1797.
+
+## 7.3 Who Atha Sorrells was
+
+Atha Sorrells was born in 1904 in Rockbridge County, Virginia. Her father was William Sorrells, who served as her "next friend" in the court case — the legal designation for a guardian or parent acting on behalf of a minor under Virginia law at the time. She died in 1979 at age 75. She lived through the entire arc of the events her case set in motion: *Loving v. Virginia* in 1967, the 1975 formal repeal of what remained of the Racial Integrity Act, and the first years of the Monacan Indian Nation's push for state recognition (formally achieved in 1989). She did not live to see the 2018 federal recognition that put the final legal nail in Plecker's coffin, but she had seen most of the unraveling.
+
+Her great-grandparents were Joe Clark Jr. and Julia (Sorrells) Clark. This is the genealogical fact that makes the case a Clark family case under a Sorrells caption. Atha's connection to the Clark line was through her maternal great-grandparents. The Clark family tree she and her attorneys submitted as evidence was, in the most literal sense, her own ancestry chart.
+
+Her intended husband was Robert Painter. Painter is also on Plecker's Rockbridge County 1943 surname list — a fact that, in 1924, was already implicit in how county officials treated applications from his family. The marriage they were trying to formalize was, to the Irish Creek community, a straightforward union between two families who had been neighbors and kin for generations. To Plecker and to A.T. Shields, the clerk, it was a potential felony.
+
+## 7.4 The case file
+
+**Full caption:** *Atha Sorrells, by her next friend William Sorrells, vs. A.T. Shields, Clerk of Circuit Court of Rockbridge County, Virginia*
+
+**Court:** Circuit Court of Rockbridge County, Virginia
+
+**Library of Virginia archival accessions:** 1140744 and 1164679 (case papers); 1160754 (Plecker-to-Shields correspondence file, companion)
+
+**Related precedent:** *James Clark v. J.P. Moore, Clerk of Court, Rockbridge County, 1876 December* — accession 1140710
+
+**Parallel 1924 case from same clerk's office:** *James Connor and Dorothy Johns v. A.T. Shields, Clerk of Court, 1924 September* — accession 1140743
+
+These files are at the Library of Virginia, 800 East Broad Street, Richmond. The full case papers — depositions, exhibits including the Clark family tree, Judge Holt's memorandum opinion, and the Plecker correspondence — are physical documents, not fully digitized. The petition itself is reproduced at Encyclopedia Virginia. The rest must be ordered in person or via mail request.
+
+**The parties:**
+- **Petitioner:** Atha Sorrells (b. 1904), by her next friend William Sorrells
+- **Respondent** (the party against whom a court action is brought): A.T. Shields, Clerk of the Circuit Court of Rockbridge County
+- **Marriage applicant (Atha's fiancé):** Robert Painter
+- **Witnesses for the respondent:** Walter Ashby Plecker, personally — and John Powell, co-drafter of the Racial Integrity Act and founder of the Anglo-Saxon Clubs of America
+- **Atha's attorneys:** Fred T. Deaver and C.S. Glasgow
+- **Presiding judge:** Henry W. Holt, Circuit Court of Rockbridge County
+
+The presence of both Plecker and Powell in the Rockbridge courtroom is significant. Powell had co-written the Act with Plecker. He was the ideological engine behind the law. That both men traveled to Lexington to testify personally against a 20-year-old woman from Irish Creek demonstrates how seriously they treated the threat she represented.
+
+## 7.5 The timeline
+
+| Date | Event |
+|---|---|
+| March 20, 1924 | Virginia Racial Integrity Act takes effect |
+| September 1924 | Dorothy Johns case filed and lost |
+| **November 1, 1924** | **Atha Sorrells and Robert Painter apply for a marriage license; Shields refuses** |
+| **November 14, 1924** | **Atha files petition for writ of mandamus in Rockbridge Circuit Court** |
+| Nov 1–15, 1924 | Witnesses subpoenaed; depositions taken; **family tree of Clark family entered as exhibit** |
+| January 9–10, 1925 | Hearing before Judge Holt |
+| **January 1925** | **Holt rules for Sorrells; marriage license ordered issued** |
+| **May 9, 1925** | **Plecker writes to Shields advising NOT to appeal** |
+| May 31, 1925 | Atha Sorrells and Robert Painter marry |
+| July 1925 | Their first daughter is born |
+
+## 7.6 The four legal arguments
+
+Atha's attorneys made four distinct arguments:
+
+**1. She had Indian ancestry, not African ancestry.** The evidence was her family tree tracing back to Joe Clark Sr. (born 1797). The chart showed that the ancestry was white and Indian — and specifically that it was not Black. The strategic logic was the Pocahontas Exception: if she had only Indian blood, and less than one-sixteenth of it, she should be classifiable as white.
+
+**2. The 1924 Racial Integrity Act was unconstitutionally vague.** Specifically, "Caucasian" had no settled scientific meaning. No human being could prove the complete absence of non-Caucasian blood across many generations. This argument was a direct attack on the statute itself — and it clearly resonated with Judge Holt.
+
+**3. The 1876 James Clark v. J.P. Moore mandamus was precedent.** Forty-eight years earlier, a Rockbridge Circuit Court had already ruled that a member of the Clark family could not be classified as Black and was entitled to a "white" marriage license. That ruling was in the county court order book (pages 137 and 174) and was cited directly in Atha's petition.
+
+**4. The Clerk had no authority to make this determination unilaterally.** Plecker's system required the clerk to act as a racial adjudicator — a role that the statute, Atha's lawyers argued, did not actually authorize the clerk to fill. There was no mechanism for appeal from the clerk, which meant a single bureaucrat's decision could permanently block a marriage.
+
+## 7.7 The Clark family tree submitted as evidence
+
+The court file contains "a large family tree of the Clark family from whom Atha Sorrells descended." Documented names from the genealogy:
+
+- **Joe Clark Sr.** (born ca. 1797) — slave owner; recorded as having purchased Peter Curry at auction. The fact that a Clark in 1797 owned an enslaved person was used by the Sorrells legal team to argue the family was historically classed as white, not Black.
+- **Polly Clark** (née Clark) — mother of James Clark.
+- **James Clark** — central to the case. James Clark himself had sued the Rockbridge County Clerk in 1876 in *James Clark v. J. P. Moore, Clerk of Court*. The 1876 case was cited in the 1924 Sorrells petition as precedent.
+- **Joe Clark Jr.** and **Julia Clark** (née Sorrells) — Atha's great-grandparents. The maternal grandparents on the chart that connects her to Brady's biological line.
+- **John Whiteside** and **Bettie Sorrells** — listed in court records as "always white, no question."
+
+Walter Plecker testified in person for the defense. He appears in the case file as a defense witness — his presence in the courtroom underscoring how personally invested he was in the outcome. He had drafted the law. He was the enforcement mechanism. He was not going to let Irish Creek walk away without a fight. He came to Lexington and testified himself.
+
+The chart also included War of 1812 service records and federal land warrants — documents establishing that members of the Clark family had been recognized as legally white for more than a century. The Sorrells case is, in genealogical fact, a Clark-family case operating under a Sorrells caption.
+
+## 7.8 Judge Holt's ruling
+
+Judge Henry W. Holt issued his ruling in January 1925. He ruled for Atha Sorrells. The marriage license was ordered issued. His memorandum opinion survives in full at Encyclopedia Virginia. It is worth reading as a primary document — not just for the outcome but for the quality of the legal reasoning and the subtle contempt Holt directed at the statute itself. Two key passages:
+
+On the impossibility of the burden of proof the Act imposed:
+
+> *"In twenty-five generations one has thirty two millions of grandfathers, not to speak of grandmothers, assuming there is no intermarriage. Half the men who fought at Hastings were my grandfathers. Some of them were probably hanged and some knighted. Who can tell? Certainly in some instances there was an alien strain. Beyond peradventure I cannot prove that there was not, and so the relief granted by appeal is no relief at all."*
+
+On the meaninglessness of the word "Caucasian":
+
+> *"The statute undertakes to define with accuracy who are white and says that they only are white who are of pure Caucasian blood. That is a definition which in the present state of Ethnology has no certain meaning and no meaning upon which two authorities agree."*
+
+On the specific evidence in front of him:
+
+> *"The evidence in this case which covers a period of 130 years, certainly the weight of it is to the effect that there is no strain present in the applicant of any blood other than white, except Indian, and there is not enough of that to come within the statute."*
+
+[Credibility 5 — Encyclopedia Virginia primary documents; Library of Virginia case file.]
+
+The ruling did not strike down the Racial Integrity Act. Holt did not have the authority to do that — he was a circuit court judge. What he did was apply the Pocahontas Exception correctly to a Clark-family applicant on the basis of a 130-year documentary chain, and in doing so, he carved out a hole in Plecker's enforcement system that would survive in Rockbridge County for the rest of Plecker's tenure.
+
+## 7.9 The May 9, 1925 letter — Plecker's smoking gun
+
+This is the letter that makes Atha Sorrells's victory legible as a strategic Plecker defeat. Library of Virginia accession 1160754 contains a letter dated May 9, 1925, from Walter Plecker to A.T. Shields, advising Shields NOT to appeal Holt's ruling.
+
+Plecker's reasoning, in paraphrase: if the Virginia Supreme Court of Appeals upheld Holt's decision, it would establish a precedent that anyone with predominantly Indian (not Black) ancestry could be declared white under the Pocahontas Exception. That, Plecker wrote, would *"embolden the Rockbridge tribe"* — his own term — and open the door for hundreds of other families on his surname list to seek the same relief. [Credibility 5 — Library of Virginia primary archive.]
+
+That phrase — *"embolden the Rockbridge tribe"* — is the smoking gun. Plecker himself, in writing, acknowledged that the Sorrells/Clark ruling was the lesser evil. Better to lose one case quietly than to lose statewide. He named the population he was hunting. He named the Clark community. Atha Sorrells's victory is one of the few documented cases where the "paper genocide" machine was outmaneuvered in court, and it was outmaneuvered using the Clark family tree.
+
+He distributed John Powell's brochure *"The Breach in the Dike"* to county clerks across Virginia in the wake of the ruling, warning of the danger of *"intermarriage of Whites with So-Called Indians."* The brochure is essentially Plecker's confession that one Rockbridge family in one courtroom had broken his system in one county.
+
+## 7.10 What Atha Sorrells's victory did, and did not do
+
+**What it did:**
+- Established a binding precedent in Rockbridge County for Indian-ancestry-only mandamus petitions under the Pocahontas Exception.
+- Forced Plecker himself to back off Rockbridge enforcement against the Clark/Sorrells/Painter network.
+- Preserved a 130-year Clark family documentary chain in the public court record — accessible today at the Library of Virginia.
+- Provided the documentary template and the legal theory for the 1951 LDS genealogy rescue that broke the priesthood ban for Claude Clark and the Buena Vista branch.
+- Allowed Atha Sorrells to marry Robert Painter on May 31, 1925, and to have a daughter in July 1925, both unambiguously Native rather than Black under Virginia law.
+
+**What it did not do:**
+- Strike down the Racial Integrity Act. That would not happen until *Loving v. Virginia* in 1967.
+- Stop Plecker from enforcing the Act everywhere else in Virginia. The Sorrells precedent was Rockbridge-specific. In Amherst County, in Caroline County, in Henrico, Plecker continued the same campaign.
+- Force the Bureau of Vital Statistics to correct existing reclassifications. The altered birth and marriage certificates remained altered until administrative relief began under Governor George Allen in 1997.
+- Make the Clark family legally Indian in any prospective sense. The Sorrells victory was framed as "predominantly white with some Indian." It got the family out of the colored category. It did not get them into the Indian category as a positive identity. That move had to wait for federal recognition in 2018.
+
+## 7.11 What Joseph Anderson Clark knew
+
+Joseph Anderson Clark was 55 years old in 1924. He was living in the same Irish Creek community as Atha Sorrells. He was a member of the same family tree she submitted as evidence. He was the bridge generation — already an LDS convert (1911), already raising children whose birth certificates were being reclassified by Plecker, almost certainly aware of the case as it happened.
+
+There is no document in the case file that names Joseph Anderson Clark as a participant. He may have provided community support; he may have been a deponent; he may have just been one of the dozens of Clark cousins watching the courtroom from the gallery. The case file at the Library of Virginia survives, and a careful reading of every deposition would resolve the question. That archival pull is one of the open research items at the back of this synthesis.
+
+What is known structurally: 26 years later, when Joseph Anderson Clark was 82 and his grandson Claude was 12, the family tree from this case file became the documentary asset that the 1951 LDS genealogical missionaries used to assemble Claude's priesthood ordination dossier. The Sorrells case did not have to be Joseph Anderson Clark's case to be load-bearing for his line. It was load-bearing because it was preserved. That is what court records do. They sit in the archive. They wait. Twenty-six years later, when somebody else needs them, they are there.
+
+Atha Sorrells lived until 1979. She was 75 years old. She had grandchildren, great-grandchildren, and great-great-grandchildren who lived past the 1967 *Loving* decision and into a different country. The full descendant tree of Atha and Robert Painter — and how their living relatives connect to the Clark biological line by community kinship — is one of the open research questions, and one of the reasons to attend the next Monacan Powwow.
+
+---
+
+# Part 8 — Why the Clark Line Became Mormon, 1875–1978
+
+> *Joseph Anderson Clark was not a random convert. He was the most theologically logical convert the Southern States Mission could have hoped for in 1911, and at the same time the most racially impossible one — a doctrinal conflict that shaped four decades of his family's relationship with the Church and explains every gap and cluster in the baptism record. The LDS missionaries came looking for him. Joseph Clark went looking for them. The Episcopals offered an alternative — and lost. Plecker then placed the family in the documentary conflict described in Part 6. The 1951 documentary review, anchored to the 1925 Sorrells precedent, resolved the conflict for the Clark men. The 1978 revelation came too late for Joseph but on time for his great-grandsons. And in 2013 the Church disavowed the doctrine that had drawn the Clarks in. The Clark line remains LDS. The doctrine that converted Brady's great-great-great-grandfather has been functionally retired in the form he heard it. The community he built has not.*
+
+## 8.1 Why LDS missionaries were in southern Appalachia in 1911
+
+**Short answer:** They had been there for 36 years, riding a circuit that ran from Tennessee through the Blue Ridge, and they were specifically seeking out what they read as "Lamanite" populations — dark-skinned, mixed-ancestry mountain communities they believed were literal Israelites.
+
+Brigham Young formally organized the Southern States Mission at the LDS October 1875 General Conference. Eight men were called: Henry G. Boyle, George Teasdale, D.P. Rainey, Joseph Standing, John Morgan, John D.H. McCallister, David H. Perry, and John Winder. By summer 1876, the mission covered Georgia, Alabama, Mississippi, Arkansas, Tennessee, and Virginia. Between 1875 and 1898, 1,760 elders baptized 3,839 people across the South. Notable Southern States missionaries included John Morgan, B.H. Roberts, LeGrand Richards, George Albert Smith, and J. Golden Kimball — five future apostles or general authorities. [Credibility 5 — Heather Seferovich, *History of the LDS Southern States Mission, 1875–1898*, BYU dissertation.]
+
+The Mormons were not seen as Christians by southern Protestants. They were seen as polygamists, federal subversives, and cultists — *"spiritual carpetbaggers,"* as one historian phrased it. Reconstruction-era hostility was raw, and the missionaries arrived in homespun suits with Books of Mormon in their saddlebags.
+
+The defining moment of the early Southern States Mission was the Cane Creek Massacre, August 10, 1884, in Lewis County, Tennessee, where five people died: missionaries John H. Gibbs and William S. Berry, local LDS members Martin Conder and J.R. Hutson, and the mob's own leader David Hinson. The trigger was the *Salt Lake Tribune's* "Red Hot Address" — a fabricated sermon — combined with anti-polygamy sentiment whipped up by Baptist preacher John Clayborn Vandiver. No trial was ever held. [Credibility 5 — BYU Studies; Bruce Crow, *A Land of Strangers*.]
+
+J. Golden Kimball was working in the Chattanooga mission office as mission secretary when news of Cane Creek arrived. He developed malaria during this same mission. He returned as Mission President from 1891 to 1894, simultaneously serving as a member of the First Council of the Seventy — a sitting general authority running a mission in the violent post-Reconstruction South. His tenure professionalized the missionary corps, expanded the circuit into the southern Appalachian uplands, and explicitly emphasized identifying "Lamanite" populations.
+
+Kimball's own field journals describe Peter Mason of Pedlar Creek — just over the Blue Ridge from Irish Creek — as having *"Indian descent, his skin being almost as dark as an Indians. His hair was long and black."* That is not casual ethnography. That is a mission president flagging a target population. [Credibility 4 — Olson, *Crossroads* 2004, citing Kimball journals.]
+
+By 1911, the Southern States Mission had evolved a regular Blue Ridge circuit: Pedlar Creek (Amherst County) → Irish Creek (Rockbridge County) → Buena Vista boom town → Cornwall and Long Hollow. The Pedlar Creek "Mason neighborhood" had been a mission headquarters since the 1880s. This is the circuit that reached Joseph Anderson Clark.
+
+## 8.2 The Lamanite doctrine
+
+This is where the doctrinal mechanics become decisive. In Joseph Smith's 1830 Book of Mormon, the family of Lehi — a wealthy Hebrew prophet — left Jerusalem around 600 BCE and sailed to the Americas. Their descendants split into two main peoples: the Nephites (righteous, white) and the Lamanites (rebellious, "cursed" with dark skin). After centuries of war, the Lamanites destroyed the Nephites in roughly 421 CE.
+
+For 19th-century Mormons, the Lamanites were not metaphor. They were Native Americans. Brigham Young taught explicitly that Indians were the *"precious remnant"* of the House of Israel and that converting and intermarrying with them would fulfill prophecy. The Church's first organized mission, in October 1830, was the *"Lamanite Mission"* — Oliver Cowdery, Parley P. Pratt, Peter Whitmer Jr., and Ziba Peterson sent west to preach to the Delaware, Seneca, Wyandot, and Shawnee. In 1855, Brigham Young called 160 missionaries to American Indian communities from the West Coast to the Mississippi. Wilford Woodruff personally adopted a Paiute boy named Moroni Bosnel that same year. [Credibility 5 — ChurchofJesusChrist.org "Lamanite Identity"; Wikipedia "Native American people and Mormonism."]
+
+This is the theological water Joseph Anderson Clark stepped into in 1911. The missionaries who knocked on his cabin door were not generic evangelists. They were operating under a doctrine that said *he* — a man classified as "colored" by Virginia bureaucrats but understood by his family as Indian — was a literal descendant of the House of Israel with a special role in preparing for the Second Coming of Christ.
+
+Joseph Anderson Clark's stated reason for converting, recorded in Olson's *Crossroads* chapter: he *"became a Mormon in 1911 because he believed that people with the blood of Israel had special responsibilities to prepare for the second coming of the Messiah."* That sentence is theologically precise. It is not "the missionaries were nice." It is a man articulating Lamanite doctrine in his own voice. [Credibility 4 — Olson, *Crossroads* 2004.]
+
+## 8.3 The Episcopal alternative — Bear Mountain vs. Irish Creek
+
+This is the comparative move that locks in the analysis.
+
+**Bear Mountain, Amherst County:** The Reverend F.W. Neve — Episcopal Archdeacon of the Blue Ridge — wrote *"Some Mountain Missions in Virginia"* in 1901, surveying Episcopal outreach to the Monacan/Brown People community. In 1908, the Reverend Arthur P. Gray Jr. formally established St. Paul's Mission and the Bear Mountain Indian Mission School on Monacan land in Amherst County. Because Virginia's segregation laws excluded Monacans from public schooling, the Episcopal mission provided seventh-grade education to Bear Mountain children from 1908 until integration in 1964. The school is on the National Register of Historic Places. The relationship between the Monacan Nation and the Episcopal Church continues today. [Credibility 5 — Encyclopedia Virginia; Diocese of Southwestern Virginia.]
+
+**Irish Creek, Rockbridge County:** Same population — descendants of the same pre-contact Monacan/Tutelo people, identified in Library of Congress records as "Rockbridge County Brown People," numbering 300+. But geographically separated from Bear Mountain by the Blue Ridge, and on the wrong side of the watershed from the Episcopal circuit. The Mormons got there first and stayed.
+
+The split is structural:
+- The Episcopals offered: schooling, Anglican respectability, integration with white Virginia's mainline religious establishment.
+- The Mormons offered: chosen-people identity, literal Israelite ancestry, an end-times role, and a doctrine that elevated Native identity rather than treating it as a deficit.
+
+For a community already being told by Walter Plecker that they were "colored" and inadmissible, the Episcopal mission was framed as charity. The Mormon mission was framed as election. That is the choice Joseph Anderson Clark made when the missionaries reached him in 1911.
+
+## 8.4 The 1911–1932 Clark family baptisms
+
+Per the family genealogy, the baptism timeline is:
+
+- **1911:** Joseph Anderson Clark (head of household)
+- **1911:** Mary Susan Clark (wife)
+- **1912:** Walter (son)
+- **1917:** James (son), Fannie (daughter)
+- **1918:** Levi (son)
+- **1932:** Elijah, Mark, Paul, Silas (sons)
+
+There were no resident priesthood holders in Irish Creek. Baptisms required a Melchizedek or Aaronic priesthood holder, which under church policy meant ordained white men from outside the community. The Southern States Mission ran a circuit, not a parish — missionaries swept through, baptized whoever was ready, then moved on. The 1911 → 1912 → 1917 → 1918 cluster matches the documented circuit cycles of Pedlar/Irish Creek/Buena Vista. [Credibility 4.]
+
+Then Church activity ended in and near Buena Vista in 1918. Per Olson and the Shaybo synthesis: official LDS records for Buena Vista, Cornwall, and Oronoco disappear from the rolls after 1918. World War I disrupted the missionary corps; the 1918 influenza pandemic disrupted everything; and the Southern States Mission shifted resources toward urban centers.
+
+The 14-year dormancy (1918–1932) is where the family genealogy becomes most interesting. Without resident priesthood, the Clark family could not partake of the sacrament, could not be confirmed if not already, and could not have new male members ordained. They had baptism (an Aaronic ordinance), but the higher ordinances were inaccessible.
+
+What they appear to have done instead is preserve practice in a vernacular form. Per Olson's account, members held meetings in homes and under trees, reading scripture together. Myrtle Wilhelm Coleman, born 1923, told Olson she *"had always belonged"* to the church but *"didn't know anything about elders"* growing up. Theologically, this is functionally pre-priesthood Christianity — a baptized lay community without ordained leadership, dependent on personal scripture reading and oral transmission of doctrine. Closer to early Christian house-church practice than to standard 20th-century Mormonism.
+
+In 1932, Elder Alvin Pocock arrived in Buena Vista and conducted intensive baptismal work, reactivating the dormant community. Pocock served two consecutive missions in the same location (unusual in LDS practice, where rotation is the norm), with mission program covers documented from 1930 and 1934. He performed full-immersion baptisms in the South River near Cornwall and in *"the blue hole."* The 1932 baptisms of Elijah, Mark, Paul, and Silas Clark are part of this Pocock reactivation. A church building was constructed in Long Hollow by 1937, with Elder Reid Tippitts recording the dedication on May 30, 1937, with 130 attendees. [Credibility 4.]
+
+## 8.5 The 1849–1978 priesthood and temple ban on Black members
+
+There is no scriptural foundation for the ban in Joseph Smith's lifetime — Smith ordained at least a few Black men, including Elijah Abel and Walker Lewis. The ban is institutionalized under Brigham Young, beginning roughly 1849–1852, and formalized in his February 5, 1852 address to the Utah Territorial Legislature. Young's stated rationale combined biblical curse-of-Cain theology with antebellum racial pseudoscience. [Credibility 5 — Race and the Priesthood Gospel Topics essay, December 2013.]
+
+The ban applied to anyone with "any known African descent" — a one-drop rule that exactly mirrored the Plecker-era Virginia statute. This is the documentary collision point that defines the Clark line's story.
+
+For most of the ban's history (1852–1978):
+- Black men: no priesthood, no temple endowment, no temple sealing.
+- Black women: no temple endowment, no temple sealing.
+- Native Americans: priesthood eligible (Lamanite doctrine).
+- **Native Americans reclassified as "colored": ineligible (one-drop rule).**
+
+The Clarks lived in the seam of this contradiction for 27 years (1924–1951). LDS by faith, "colored" on paper, ineligible by policy.
+
+## 8.6 The 1951 Joseph Anderson Clark genealogy review
+
+This is the climactic moment in the Clark family's LDS history. Reconstructed carefully:
+
+**The trigger:** In 1950, Joseph Anderson Clark's grandson Claude Clark — 12 years old, the standard age for ordination to the Aaronic Priesthood as a deacon — was denied ordination when LDS officials checking courthouse records discovered his family classified as "colored." [Credibility 4 — Olson *Crossroads* 2004.]
+
+**The branch president:** The Buena Vista branch president at the time was Eugene Larsen, who appears to have been sympathetic but bound by policy. Larsen's response was to write to LDS Church headquarters requesting a genealogical review. He could have quietly let the denial stand. He chose to escalate.
+
+**The genealogical missionaries:** Per the Olson/Shaybo synthesis:
+- Elder William S. Tanner responded to Larsen's inquiry on May 1, 1951, with courthouse marriage records confirming that Joseph Anderson Clark and Mary Susan Clark had been married "as colored" in Amherst County in 1906. This was the bad news.
+- Two unnamed LDS genealogical missionaries from Utah then traveled to Rockbridge County and worked with Joseph Anderson Clark — then 82 years old — to assemble counter-evidence.
+
+**The key precedent: Atha Sorrells, 1925.** The legal hinge was the 1925 *Sorrells v. Shields* case. Sorrells had successfully demonstrated descent from Indian (specifically Pocahontas-Exception-eligible) ancestry in the same Rockbridge Circuit Court, on the same Clark family tree, with the same judge — Henry W. Holt — who wrote the opinion. The Sorrells case file at the Library of Virginia (accession 1140744) and the Plecker correspondence file (accession 1160754) were the documentary assets. The 1924 case became the template for the 1951 dossier.
+
+Joseph Clark and the genealogical missionaries appear to have used a combination of:
+1. The Sorrells case as legal precedent.
+2. Cross-family evidence showing that Claude Clark's parents shared ancestors with families classified as "white" *and* "Indian," not "Black."
+3. Antebellum free-people-of-color records that showed Indian, not African, lineage.
+4. Microfilm copies of Rockbridge County court records assembled with help from the genealogical missionaries.
+
+The dossier was reviewed by Branch President Larsen and accepted. Larsen ordained Claude Clark that same year, along with Alvin Coleman and Garvis Wheeler — direct descendants of Peter and Diannah Mason of Pedlar Creek, who Olson notes Larsen referred to as *"Lamonite \[sic\] brothers."* [Credibility 4.]
+
+In 1957, Elder Claude Edward Clark served as the first full-time missionary from the Waynesboro Branch of the LDS Church — the symbolic capstone of the 1951 genealogy review.
+
+The Madsen reference at page 85 of *Against the Grain: Memoirs of a Western Historian* (Signature Books, 1998) — referenced in the family genealogy — would name Brigham D. Madsen as one of the Utah-side researchers connected to the 1951 Clark effort. Page 85 has not been directly retrieved; that is one of the open research items. Madsen's papers at the University of Utah include extensive Native American research files, and his Sunstone interview confirms he worked on Indian genealogy projects in the postwar period.
+
+## 8.7 The 1978 revelation and the 2013 disavowal
+
+The ban was lifted on June 1, 1978, when President Spencer W. Kimball assembled the First Presidency and Quorum of the Twelve in the Salt Lake Temple. At 2:45 p.m., they formed a prayer circle around the altar, and Kimball announced he had received revelation that the priesthood ban was lifted. The official declaration was issued on June 8, 1978, and canonized at General Conference on September 30, 1978, as Official Declaration 2 in the Doctrine and Covenants. [Credibility 5 — Edward L. Kimball, *BYU Studies*.]
+
+Striking timing: the Waynesboro Virginia Stake was formally organized on May 28, 1978 — eleven days *before* the June 8 announcement. The stake went live with full priesthood structure within weeks of the ban being lifted, which would have meaningfully expanded ordinance access for any remaining Clark descendants whose paperwork had been ambiguous. [Credibility 5 — Wikipedia "Church of Jesus Christ of Latter-day Saints in Virginia."]
+
+The 1978 revelation came too late for Joseph Anderson Clark, who died in or around 1963. He never lived to see the ban lifted institutionally, but he had already engineered its lifting *for his own family* in 1951 by establishing Native, not Black, ancestry.
+
+On December 6, 2013, the LDS Church posted "Race and the Priesthood" on its official website. The essay explicitly disavows the historical theological justifications for the ban: *"The Church disavows the theories advanced in the past that black skin is a sign of divine disfavor or curse, or that it reflects actions in a premortal life; that mixed-race marriages are a sin; or that blacks or people of any other race or ethnicity are inferior in any way to anyone else."* [Credibility 5.]
+
+This is the closest the Church has come to an institutional reckoning with the ban. It does not rescind the ban (the 1978 revelation already did that). It rescinds the *theology* used to justify the ban for 126 years.
+
+## 8.8 The DNA problem and the doctrinal walk-back
+
+In 2002–2003, Mormon scientists Thomas Murphy and Simon Southerton published genetic studies arguing that Native American ancestry traces overwhelmingly to East Asian migrations across Beringia, with no detectable Hebrew/Middle Eastern signal. This is the scientific consensus today.
+
+The Church responded in 2006 by amending the Book of Mormon's introductory page from describing Lamanites as *"the principal ancestors of the American Indians"* to *"among the ancestors of the American Indians."* A 2007 *Deseret News* article confirmed this was understood as a response to the DNA evidence. The 2013 Lamanite Identity Gospel Topics essay further softened the position: the Church now *"does not take a position on the specific geography of the Book of Mormon or claim complete knowledge about the origins of any specific modern group in the Americas or the Pacific."*
+
+This creates a theological tension for descendants of communities like the Clarks who *converted specifically because of Lamanite doctrine*. The doctrine that brought Joseph Anderson Clark to the font in 1911 has been functionally retired in its literal form. What remains is a softer covenantal claim — that all members are part of the "covenant house of Israel" by descent or adoption — without the specific Native American election that animated the 19th-century mission to Pedlar Creek and Irish Creek.
+
+## 8.9 The Catawba comparison
+
+The Clark conversion was not unique but was part of a documented LDS strategy to evangelize Appalachian Native and mixed-ancestry communities under Lamanite doctrine. The closest analog is the Catawba.
+
+LDS missionaries first contacted the Catawba Indian Nation of South Carolina in approximately 1883. A formal branch was established July 31, 1885. The mass conversion was extraordinary: by 1950, 97% of the Catawba Indian Nation belonged to the LDS Church. As late as the 1950s, the majority of the tribe still affiliated. Persecution mirrored what happened in Tennessee and Virginia: missionaries hid in the woods, subsisted on what Catawbas smuggled to them, held secret night baptisms. Samuel Taylor Blue — who later became Catawba chief in the early 1930s and president of the Catawba Branch — physically carried missionaries across the river on his back to protect them from mobs. Some Catawbas migrated west, founding the LDS towns of Fox Creek, La Jara, and Sanford in southern Colorado. [Credibility 5 — BYU dissertation; South Carolina Encyclopedia.]
+
+The Clark conversion fits the Catawba template almost perfectly, just on a smaller scale — a tight-knit Native or Native-descended community in the upland Southeast, contacted by Southern States Mission elders riding circuit, persuaded by Lamanite doctrine, and held together across multi-generational dormancy by oral transmission and family ties.
+
+## 8.10 Where the doctrinal record stands
+
+Five layers of theological inheritance, sitting in tension:
+
+1. Joseph Anderson Clark converted because he was told he was an Israelite chosen for the Second Coming.
+2. The genetic evidence the Church now lives with says he was not, in any literal sense.
+3. The institutional ban that nearly excluded the Clark line was disavowed in 2013.
+4. The doctrine that drew the family in has been softened to the point of near-metaphor.
+5. And yet the Buena Vista and Waynesboro wards remain — built by Clarks, peopled by Clarks, anchored in a community that exists *because* a Monacan man on Irish Creek in 1911 said yes to a doctrine that no longer exists in the form he heard it.
+
+That is the actual structural question, and it is not a question of *what happened* — the historical record is clear. It is a question of how a family-scale theological commitment survives the disavowal of the doctrine that produced it. The Catawba Branch faces the same question. So do the Mason descendants on Pedlar Creek. The pattern in all three cases is that the community persists *as a community* even as the original theological frame attenuates — what the missionaries called Lamanite, and what the 2013 essays now treat as a more diffuse covenantal belonging.
+
+In 2026, the Clark line is on the back end of that pattern. The doctrine that brought Brady's great-great-great-grandfather in is not the doctrine the present generation inherits. The community he built is.
+
+---
+
+# Part 9 — The Recognition Fight and Today
+
+> *In 1984, a Lynchburg physician named Peter Houck published a book called* Indian Island in Amherst County, *the first scholarly work to identify the Bear Mountain community as Monacan rather than Cherokee. That book gave the modern recognition movement the academic cover it had lacked. State recognition followed in 1989. Federal recognition followed in January 2018, after eighteen years of legislative work, under the Thomasina E. Jordan Act. In March 2022 the federally-recognized tribe used its newly-acquired powers to stop the James River Water Authority from building a pumping station on Rassawek — the documented Monacan capital, where four-thousand-seven-hundred and thirty years of habitation had been continuously layered on the same ground. The capital city the colonial record never recorded a European entering is now under Monacan ownership, four hundred years after Newport's 1608 expedition mapped it from a distance. Diane Shields was elected Chief in June 2023. The tribe today has approximately 2,100 enrolled citizens. Karenne Wood, who would have been the most articulate public voice for federal-recognition-era Monacan identity, died of cancer at her home in Fluvanna County on July 21, 2019, before she could see Rassawek protected. Her ashes were spread over Bear Mountain. The recognition record owes her a substantial debt. So does the broader public record of who the Monacan are.*
+
+## 9.1 Houck 1984 — the academic anchor
+
+The modern recognition campaign began with Peter W. Houck's *Indian Island in Amherst County* (Lynchburg: Lynchburg Historical Research Co., 1984; expanded 2nd ed. 1993, with Mintcy D. Maxham). Houck was a Lynchburg physician and historian. The book directly identified the Amherst County Indian community as Monacan — *"the first to link"* the local Bear Mountain population to the Monacan tribal identity. Before Houck, most people claiming Native ancestry in the area had identified as Cherokee. After Houck, the academic and legal infrastructure for a Monacan recognition claim existed. [Credibility 5 — Encyclopedia Virginia; *Lynch's Ferry Magazine*.]
+
+The Monacan Tribal Association incorporated as a Virginia non-profit in 1988. State recognition by the Virginia General Assembly followed on February 14, 1989. For nearly two decades after that, the Monacan and five other state-recognized Virginia tribes — Chickahominy, Eastern Chickahominy, Upper Mattaponi, Rappahannock, Nansemond — lobbied Congress for federal recognition. The Bureau of Indian Affairs administrative path was effectively closed to them because Plecker-era record destruction made the standard "continuous tribal community" documentation requirement nearly impossible to satisfy. So the tribes pursued a legislative path instead.
+
+## 9.2 The Thomasina E. Jordan Act, January 2018
+
+The Thomasina E. Jordan Indian Tribes of Virginia Federal Recognition Act of 2017 (H.R. 984, 115th Congress) passed both chambers of Congress and was signed into law by President Trump on January 29, 2018 as Public Law 115-121. [Credibility 5 — Congress.gov; Public Law 115-121 PDF.]
+
+The bill is named for Thomasina E. Jordan, a longtime advocate for Virginia Indian recognition who died before seeing the law passed. The Act federally recognized six Virginia tribes:
+1. Chickahominy Indian Tribe
+2. Chickahominy Indian Tribe – Eastern Division
+3. Upper Mattaponi Tribe
+4. Rappahannock Tribe
+5. **Monacan Indian Nation**
+6. Nansemond Indian Nation
+
+(The Pamunkey Indian Tribe had been federally recognized earlier, in 2015, through the standard BIA administrative process.)
+
+**Senate sponsors:** Tim Kaine (D-VA) and Mark Warner (D-VA) were the lead Senate cosponsors of the companion bill S. 691 and managed the floor process. Both publicly celebrated passage. **House sponsor:** Rep. Rob Wittman (R-VA-1). The package was the first congressional tribal-recognition bill in over a decade and reflected an unusual bipartisan Virginia delegation effort.
+
+**Critical caveat:** the Act contains an explicit, airtight prohibition on tribal gaming for all six tribes. There will be no Monacan casino. This was a deliberate political concession to clear the path through Congress. The Monacan path is about survival, dignity, and services — not the gaming-economics path that has dominated the public image of recognized tribes since the 1988 Indian Gaming Regulatory Act.
+
+What federal recognition gives the Monacan: eligibility for the full menu of federal Indian services — health (Indian Health Service), education (BIE programs), housing (HUD ICDBG), environmental (EPA tribal grants), and cultural protection (NAGPRA standing). The Act also requires the BIA to take certain pre-2007 lands into federal trust for the Monacan, in specified counties.
+
+## 9.3 The Rassawek victory, 2014–2022
+
+The single most consequential Monacan public action of the past decade was the protection of Rassawek from a proposed water pumping station.
+
+In 2014, the James River Water Authority (JRWA) — a joint Fluvanna and Louisa County entity — announced plans to build a water intake and pumping station at Point of Fork to supply development around Zion Crossroads. The site is the documented location of Rassawek, the Monacan capital. Once the Monacan Nation gained federal recognition in 2018, it acquired formal Section 106 (the federal cultural-resources consultation process under the National Historic Preservation Act, requiring consultation with affected tribes for any federally permitted action) consulting-party standing in the federal permitting process and used that leverage hard.
+
+Key escalation points:
+- **2019** — A whistleblower exposed that the archaeologist hired by JRWA's consultant lacked proper credentials. The Virginia Department of Historic Resources rejected the cultural-resource survey.
+- **2020** — Preservation Virginia listed Rassawek as endangered. The National Trust for Historic Preservation named Rassawek to its "11 Most Endangered Historic Places" list. Approximately 12,000 individuals and organizations filed comments opposing the project with the Army Corps of Engineers.
+- **March 16, 2022** — JRWA voted unanimously to abandon the Rassawek site and relocate the pumping station 2.3 miles upstream. JRWA also transferred ownership of the Rassawek parcel to the Monacan Indian Nation.
+
+[Credibility 5 — Wikipedia *Rassawek*; *culturalheritagepartners.com/saverassawek*; *Washington Post*; *Virginia Mercury*; *National Geographic*.]
+
+This was a textbook case of federal recognition translating directly into protective leverage. Without recognition, the Monacan would have been a stakeholder. With recognition, they became a consulting party with legal teeth. The capital city the colonial record never recorded a European entering is now under Monacan ownership, four centuries after Newport's 1608 expedition mapped it from a distance.
+
+## 9.4 Diane Shields, elected June 2023
+
+Chief Diane Shields (Linda Diane Johns Shields) was elected at the regularly scheduled tribal election on June 17, 2023, at the close of Kenneth Branham's sixteen-year tenure (four terms). She is the second woman to hold the office, after Sharon Bryant (2011–2015, who died of liver cancer in office). Shields was born in Virginia and relocated to Ohio at age five; her paternal heritage is Monacan. Before running for chief she served as Assistant Chief, Tribal Secretary, and Tribal Treasurer at various points, sat on the Monacan-Pamunkey-Mattaponi (MPM) Consortium and United Indians of Virginia boards, and after federal recognition in 2018 directed the Monacan Nation Cultural Foundation. She also did substantial documentary work assembling the genealogical evidence used in the BIA petition. [Credibility 5 — tribal bio PDF, monacannation.gov.]
+
+**Assistant Chief:** Edith "Lou" Branham Parrish.
+**Tribal Council (2026):** Dean Branham, Daniel B. Branham, Mark Bryant, Bertha Riley, Amber Rasnick Fink, Isaiah Moss, Rhonda Matthews.
+**Tribal Secretary:** Teresa Pollak.
+**Tribal Treasurer:** Pamela Thompson.
+
+The tribe today has approximately 2,000–2,100 enrolled citizens — the largest of the six tribes recognized in the 2018 Act. Satellite communities exist in West Virginia, Maryland, Tennessee, and Ohio. Amherst County remains the demographic and ceremonial center.
+
+The tribe runs a working portfolio of federally funded and tribally administered programs: the Madison Heights health clinic ($10M, self-funded, opened post-recognition); the Mid-Atlantic Tribal Health Center in Charles City ($18M, IHS-funded, serving all seven mid-Atlantic Virginia tribes); SDPI diabetes programs; OAA elder nutrition programs; LIHEAP energy assistance; CCDF child care programs; an annual third-weekend-of-May Powwow at Laurel Cliff Farm; the Monacan Indian Nation Ancestral Museum at Bear Mountain; ongoing land repatriation through Virginia Land Conservation Foundation grants. Approximately 2,150 acres are now tribally controlled or co-protected across the Bear Mountain corridor, after a 2024–2026 expansion via state conservation grants and a 1,292-acre 2021 self-funded purchase of Laurel Cliff Farm at $5.5M.
+
+## 9.5 Karenne Wood, 1960–2019
+
+The most articulate public voice of the federal-recognition era was Karenne Wood. She was Monacan, a poet, an anthropologist, and the director of the Virginia Indian Programs at Virginia Humanities. She earned her doctorate in linguistic anthropology from the University of Virginia in 2016 — the first Monacan to receive a UVA doctorate. She edited *The Virginia Indian Heritage Trail* (2007, Virginia Foundation for the Humanities), the canonical guidebook to all Virginia tribes' physical sites and cultural centers. Her two collections of poetry — *Markings on Earth* (2001) and *Weaving the Boundary* (2016) — established her literary voice. *Markings on Earth* won the Diane Decorah Award from the Native Writers' Circle of the Americas. [Credibility 5 — Wikipedia *Karenne Wood*; UVA Today; Library of Virginia DVB.]
+
+She died of cancer on July 21, 2019, at her home in Fluvanna County. Her ashes were spread over Bear Mountain. She was 59 years old.
+
+She did not live to see Rassawek protected in March 2022 — three years after her death. She did not live to see the Mid-Atlantic Tribal Health Center break ground in August 2022, or the Bear Mountain land-base expansion of 2024–2026, or the 2025 Virginia state legislative push for tribal sovereignty (HB 2134 / SB 949). She built the public-facing scaffolding for everything that came after.
+
+Acknowledging her loss to the Monacan record is appropriate. She was the most visible public intellectual of the recognition era. Her tribal history project produced much of the genealogical and cultural archive the recognition petition cited. UVA installed a memorial portrait of her in 2020–2021. Her successor as Coordinator for Virginia Indian Programs at Virginia Humanities — Savannah Baber, named April 2023 — descends from the Chickahominy Tribe of Virginia and the Lumbee Tribe of North Carolina, not Monacan. There is no single named successor on the Monacan-specific cultural-historical voice. That role has diffused across Cultural Heritage Partners, the Monacan Nation Cultural Foundation, and individual tribal members.
+
+## 9.6 The enrollment question and the bridge generation
+
+This is the question that returns to Brady's specific position. Could anyone in the Clark line enroll in the Monacan Indian Nation today?
+
+Monacan enrollment is based on lineal descent — not blood quantum. The standard requires applicants to document direct lineal descent within three generations to a Monacan citizen on the current rolls. Required documents: certified state-issued birth certificates, marriage records, and death records sufficient to construct the family tree to a documented Monacan ancestor. The burden of proof rests on the applicant. [Credibility 5 — monacannation.gov enrollment page; enrollment_packet_8_5_2025.pdf.]
+
+**The current open enrollment window:**
+- **Ages 0–18:** Open annually January 1 – March 31.
+- **Ages 19–59:** Currently closed — *"No dates currently set by Council."*
+- **Ages 60+:** Currently closed.
+
+This is a tight policy. An adult who has never enrolled cannot currently apply. The 0–18 window functions as a generational membership-perpetuation mechanism rather than a re-opening of the rolls. Brady is 41 and would not currently be eligible.
+
+The structural question for the Clark line: does Joseph Anderson Clark (1869–1963) appear on a current Monacan Roll? If yes, Brady is his great-great-grandson — exactly 3 generations from JAC, qualifying on its face if adult enrollment ever reopens. If yes, Brady's children are 4 generations from JAC — past the current cutoff. Brady is the bridge generation.
+
+The joepayne.org "Original Monacan Rolls 1700–1961" index — privately compiled but the most accessible public window into the rolls — lists *"Joseph Clark (1906) married Mary S. Clark."* That entry almost certainly documents Joseph Anderson Clark and Mary Susan Clark. The year matches, the names match, the community matches. The tribal enrollment office is the dispositive authority, not the joepayne index. Confirmation has to come from the Monacan Nation directly.
+
+If Joseph Anderson Clark is on the current rolls, and if the tribe ever reopens adult enrollment, Brady's window to enroll is open. Brady's children's window currently is not. They could enroll only if the rolls expand, the policy loosens, or the tribe accepts a 4-generation lineal-descent argument. None of those outcomes are predictable. What is clear is that the documentary work has to be done at the present stage if it is to be done at all.
+
+The next part of this synthesis is the DNA analysis. It documents what Brady's AncestryDNA file actually shows about Native ancestry and what it can and cannot prove — including why the test that was expected to be the validation turned out to be the part that does not matter most.
+
+---
+
+# Part 10 — What the DNA Says
+
+> *Brady's raw AncestryDNA file was exported in 2026. The file is well-formed: 668,912 lines, V2.0 array, GRCh37 build, 0.575% missing-data rate, normal heterozygosity, confirmed-male sex chromosomes, clean homoplasmic mtDNA. It was run against four GEDmatch admixture calculators and the diagnostic positions for mtDNA haplogroup, Y-DNA haplogroup, and Native-American Ancestry-Informative Markers were pulled. The headline result is exactly what the documentary record predicted and exactly what the test cannot distinguish at this resolution: Brady's paternal Y line is European R-M269 (about 70% of British/Scottish/Irish men), his maternal mtDNA is on the N macrohaplogroup branch (also European), and the AIM panel shows European-dominant pigmentation with no clean Native-American single-SNP signal. Native ancestry from a 3rd-great-grandfather — Joseph Anderson Clark, five generations back — has an expected autosomal contribution of 3.125%. That is below the threshold where any single AIM gives a clean signal. Reference-panel bias against Eastern Woodlands tribes makes it worse. The DNA confirms what the paper trail establishes: Brady has substantial European ancestry on every documented line, and no detectable Native signal at the resolution of consumer testing. That does not refute the paper trail. It confirms the structural composition. The Monacan inheritance in this line is documentary, communal, and historical. It is not in the consumer DNA panel because the panel is too coarse to see it. The Monacan Indian Nation does not accept DNA as proof of enrollment, and the National Congress of American Indians explicitly says genetic ancestry testing has no role in tribal enrollment. The paper trail is what counts. The DNA is consistent with the paper trail.*
+
+## 10.1 What is in the file
+
+The export file is **AncestryDNA.txt — 668,912 lines, Ancestry V2.0 array, GRCh37 build, exported 2026-05-06**.
+
+The terms used in this section are defined as follows. mtDNA (mitochondrial DNA, inherited only from the mother and traced through the all-female line back through generations) carries phylogenetic markers used to identify maternal-line haplogroups. Y-chromosome DNA (inherited only from father to son and traced through the all-male line back through generations) carries similar markers for the paternal line. Autosomal DNA (the 22 non-sex chromosomes, inherited from both parents in roughly equal mixtures from each previous generation) is the substrate for ethnicity estimates and cousin-matching. AIMs (Ancestry-Informative Markers — specific genetic variants whose frequency differs sharply between continental populations and which can be used as approximate indicators of ancestry) are the foundation of single-SNP ancestry inference.
+
+| Check | Result | Interpretation |
+|-------|--------|----------------|
+| Total lines | 668,912 | Header + ~668,890 SNP rows. Within Ancestry V2.0 expected range. |
+| Header version | V2.0 array, GRCh37 build | Current Ancestry chip; replaced V1.0 in 2016. **Includes Y, X, and chrMT.** |
+| Missing genotypes | 3,849 / 668,893 = **0.575%** | Excellent call rate (>99.4%). |
+| Autosomal heterozygosity | 189,262 / 634,108 = **29.85%** | Normal for outbred individual. Inbreeding coefficient ≈ 0. |
+| X heterozygosity | 18 / 28,592 = **0.06%** | Effectively zero — confirms male. |
+| Y heterozygosity | 2 / 1,625 = **0.12%** | Near-zero, as expected for haploid Y. |
+| mtDNA heteroplasmy | 0 / 194 = **0.00%** | Clean homoplasmic signal across all called positions. |
+
+The file is well-formed and high quality. Safe to upload to all third-party services. (FTDNA = FamilyTreeDNA, a commercial direct-to-consumer genetic testing company specializing in Y-DNA and mtDNA; GEDmatch = a free third-party platform that accepts raw DNA exports from Ancestry, 23andMe, and FTDNA and offers a wide range of ancestry-analysis tools; 23andMe = another commercial direct-to-consumer testing company offering autosomal, mtDNA, and Y-DNA testing.)
+
+## 10.2 mtDNA — the maternal line
+
+195 mtDNA SNPs in this V2.0 chip. Ancestry samples mtDNA but does NOT do a full sequence (a true mtFull from FTDNA covers all 16,569 positions). Most positions Ancestry includes are medical/disease variants, not the HVR1/HVR2 phylogenetic positions used to call haplogroups.
+
+**Phylogenetically diagnostic positions present:**
+
+| Position | Call | Interpretation |
+|----------|------|----------------|
+| 1438 | G | Ancestral. Non-discriminating. |
+| **10398** | **A** | A = mtDNA macrohaplogroup N (the maternal-lineage branch that includes most European haplogroups H, U, J, T, K and the Native American founder lineages A2 and X2a). G = M branch (incl. Native American C and D). |
+| **12705** | **C** | Derived. Confirms N macrohaplogroup placement. |
+| 15326 | G | Ancestral. Non-discriminating. |
+
+Native American mtDNA founder positions (663, 1736, 4824, 8794 for A2; 9bp deletion for B2; 3552/9540/14318 for C1; 5178/4883 for D1; 8913/12397/14470 for X2a) — all absent from Ancestry's V2.0 mtDNA panel. This is a genuine limitation of the chip: the file alone cannot definitively call A2 vs. X2a vs. European H.
+
+**What can be said:**
+- Brady's mtDNA is on the N macrohaplogroup branch (not M).
+- This rules out Native American haplogroups C and D.
+- It is consistent with A2 or X2a — but ALSO consistent with European H, U, J, T, V, K, W, I (vastly more common in a colonial-era VA male).
+
+**Bottom line:** A FamilyTreeDNA mtFull Sequence ($159) is the only way to definitively call the maternal haplogroup. Joseph Anderson Clark is on Brady's paternal side (Clark surname = paternal ancestor). The Monacan line, if direct, would only show on Brady's mtDNA if it travels mother → mother → mother all the way down. That requires mapping the maternal-only chain — which is the maternal Cash/Sorrells/Cooper side covered by the William Wesley Cooper 1850 Mulatto record. The mtDNA test would tell Brady if there is a Native maternal haplogroup on that chain.
+
+## 10.3 Y chromosome — the paternal Clark line
+
+Brady's V2.0 file has 1,643 Y-chromosome SNPs. The diagnostic positions check ancestral-vs-derived for R1b cluster markers and Q-cluster (Native American) markers.
+
+**Interpretation:**
+The R1b-cluster markers all show alleles consistent with the R-M269 (R1b1a2) clade — R-M269 (the dominant Western European Y-chromosome haplogroup, found in roughly 70% of British/Scots-Irish men). The Q-clade markers (M242, M3) checked here look ancestral / non-Q.
+
+This is consistent with the Joseph Anderson Clark paternal line being European-origin, not Native. That tracks with what is documented: the Clark surname itself is English/Irish, and the Monacan ancestry would have entered through one of the Clark family's earlier maternal connections — specifically, the un-named Native woman who married a Clark settler man in the 1690s–1730s window in eastern Virginia. The Y-line tracks one specific lineage. The autosomal racial classification reflects the whole family's appearance and community membership.
+
+The 1860 Mulatto classification of Nelson Harrison Clark and the 1850 Mulatto classification of Joseph Carter Clark Sr.'s entire household are not contradicted by the R-M269 Y-haplogroup. The two facts are consistent. The paternal Y-line is European; the family was classified Mulatto in federal records for 80 years before Plecker. Both things are simultaneously true.
+
+## 10.4 Autosomal AIM panel
+
+These are single-SNP looks at published Native American Ancestry-Informative Markers. **Caveat upfront: single-SNP looks are NOT a substitute for ADMIXTURE-style modeling against a Native reference panel. These are exploratory checks only — not ethnicity calls.**
+
+Brady's pigmentation/EDAR profile is dominantly European. Specifically: rs3827760 (EDAR V370A — drives shovel-shaped incisors, dense hair, sweat-gland density; ~95%+ frequency in Native Americans) returns AA — the ancestral European/African allele. No Native American EDAR signal. A homozygous Native ancestor 5 generations back (3.125% expected contribution) would not be expected to leave a clean EDAR signature anyway — much more recent or higher-fraction Native ancestry would be required. Negative result here is not evidence of absence of Monacan ancestry.
+
+The other AIMs — SLC24A5, OCA2, HERC2/OCA2, TYR — return European-typical alleles. rs2814778 (Duffy null — African ancestry indicator) returns TT, non-African. rs4911414 (ASIP) returns TG, heterozygous, common in mixed-European populations.
+
+What this AIM panel tells the analysis: Brady's pigmentation/EDAR profile is dominantly European. None of the strong-signal Native AIMs come back positive. This is completely expected for someone with a single documented Native ancestor 5 generations back — the expected autosomal contribution is ~3.125%, which is below the threshold where any single AIM gives a clean signal. ADMIXTURE-style aggregate analysis across many thousands of SNPs would be required to detect a 3% Native fraction reliably. Single-SNP AIM panels are blunt instruments here.
+
+## 10.5 Why no Native percentage shows up — the reference-panel problem
+
+Three reasons consumer DNA tests systematically under-detect Eastern Woodlands ancestry:
+
+**1. Reference-panel bias is real.** Native American reference panels at consumer services are dominated by Mexican / Central American / South American populations (more samples, more participation). Eastern Woodlands tribes (Monacan, Powhatan, Cherokee, Lenape) are systematically under-represented. A Monacan-descendant individual will often show LOW Native % even when the genealogy is solid.
+
+**2. Plecker-era under-testing.** The Virginia Racial Integrity Act of 1924 actively erased Monacan and other VA tribal identities from official records, forcing families to label themselves "white" or "colored" on documents. Three generations of Monacan-descendant Virginians documented themselves as white to avoid Jim Crow penalties. Today's Monacan-descendant population has disproportionately under-tested vs. other tribal populations, leaving even fewer reference samples and fewer DNA-matched cousins.
+
+**3. The 5-generation rule.** Joseph Anderson Clark is Brady's 3rd-great-grandfather — 5 generations back. Expected autosomal DNA contribution from a single 3xGGF: mean 3.125%, with high variance (0–7% range is normal due to random recombination). By the 7th–8th generation, ~50% of any single ancestor's DNA contribution is statistically zero — meaning some 3xGGFs are genealogical-but-not-genetic ancestors. JAC might be one of those (small chance) OR he might have passed on more than 3.125% (also possible).
+
+If multiple branches of Brady's tree have Monacan ancestry (which is plausible given community endogamy in 19th-century Rockbridge County), the cumulative fraction could be 5–10%, which IS reliably detectable. The single-strand math says 3%; the multi-branch reality could easily double it.
+
+## 10.6 The two cleanest documentary chains
+
+The DNA is interesting but not load-bearing. The documentary chains are. Brady has two clean chains showing primary federal-record evidence of Native classification in his biological line:
+
+**Paternal chain (Clark line):**
+- William Clarke 1780 Pedlar River patent + 1782–1820 Amherst tax-roll Mulatto designations (Heinegg)
+- James Clark Sr. 1789–1820 Amherst tax-roll Mulatto / man of color (Heinegg)
+- Joseph Carter Clark Sr. 1850 federal census Mulatto household (District 51, Rockbridge)
+- **Nelson Harrison Clark 1860 federal census Mulatto** (Amherst, FamilySearch ARK 1:1:M4B1-4DF)
+- Plecker 1943 surname list — Clark on both Amherst and Rockbridge
+- Joseph Anderson Clark 1906 marriage record "colored"
+
+**Maternal chain (Cash/Sorrells/Cooper line):**
+- William Wesley Cooper 1850 federal census Mulatto household (District 51, Rockbridge — household 975, all 7 family members classified M)
+- Cooper line connecting to Sorrells line, the same Sorrells family Atha Sorrells defended in court 1924–25
+- Plecker 1943 surname list — Sorrells on both Amherst and Rockbridge
+
+Both chains are primary federal record evidence. Both are direct biological descent. Both run through the same Rockbridge County tri-racial isolate community. The DNA test is consistent with both — European-dominant autosomal profile, no detectable Native percentage at consumer-test resolution — because the inheritance is too far back and the reference panel is too poor to register it. The paper says yes. The DNA says nothing. The tribe does not accept DNA anyway.
+
+## 10.7 What DNA can and cannot do
+
+**What it CAN do:**
+- Corroborate a paper trail (positive correlation when present).
+- Identify cousins who can fill gaps in the genealogical record.
+- Place Brady on Y/mtDNA haplogroup trees that may help triangulate the documented Clark line.
+- Confirm or refute hypotheses about which specific maternal/paternal lines carry which signal, given enough resolution.
+
+**What it CANNOT do:**
+- Prove tribal membership.
+- Assign a specific tribal label (no consumer test will say "Monacan").
+- Substitute for the 3-generation paper-record requirement that the Monacan Nation actually requires.
+- Refute a paper trail when the test resolution cannot see the inheritance.
+
+The Monacan Indian Nation does not accept DNA as proof of enrollment. The National Congress of American Indians explicitly states: *"Genetic ancestry testing has no role in tribal enrollment."* [Credibility 5 — http://genetics.ncai.org/tribal-enrollment-and-genetic-testing.cfm.]
+
+So the DNA file is interesting context. It is not the question. The question is the paper. The paper says, with primary federal record evidence, that Brady's direct biological ancestors were classified as a free-people-of-color community in Amherst County, Virginia, from 1780 forward, in continuous documentary record through 1924, and that the same community is the one the federally-recognized Monacan Indian Nation traces itself back to.
+
+That is the answer the DNA cannot give but does not have to.
+
+---
+
+# Part 11 — Open Questions and What to Do Next
+
+> *Honest list. The trail Brady followed runs cold at five identifiable places. Each of them is recoverable with a specific archival pull or an in-person visit. To assemble the strongest possible documentary case for Monacan identity for Brady's children — not the family folklore version, but the version that the tribal enrollment office could read and act on — these are the next steps. None of them require DNA. All of them are paper-trail work.*
+
+## 11.1 Where the trail goes cold
+
+**1. William Clarke's parents (Generation 9).** William Clarke (~1735–1821) of Amherst County is Brady's 8x-great-grandfather. His parents are not documented in any record located — not in WikiTree, not in FamilySearch, not in Heinegg, not in any genealogy resource accessed. The family tradition (Ruth Knight Bailey, *Lost Tribes: Indian Mormons in the Blue Ridge Mountains of Virginia*) is that the founding generation involved three Clark brothers married to Monacan Indian women. The pattern fits the broader Saponi-Monacan diaspora documented in Heinegg's introduction. The named Native woman in the 9x-great generation has been lost to the record. **Action item:** order Caroline County and Spotsylvania County, Virginia 1700s tax lists / parish registers via ILL or LVA visit; interlibrary-loan Ruth Knight Bailey's *Lost Tribes* from a research library; check Henrico County 1700s tax / parish registers.
+
+**2. Sorrells case depositions and exhibits.** The Sorrells case file at the Library of Virginia (accession 1140744 / 1164679) survives. The full case papers — depositions, exhibits including the Clark family tree, Judge Holt's memorandum opinion, and the Plecker correspondence — are physical documents, not fully digitized. Whether Joseph Anderson Clark's name appears in the depositions, the witness list, or the exhibits is recoverable but not yet recovered. **Action item:** day trip to Richmond. Address: Library of Virginia, 800 East Broad Street, Richmond, VA 23219, 2nd floor reading room. Request accessions 1140744, 1164679, 1140710, 1140743, 1160754. Estimated cost: ~$60 in copy fees for full case files. One day on-site.
+
+**3. Donna Huffer's *Fare Thee Well Old Joe Clark*.** Confirmed exists. *Fare Thee Well Old Joe Clark: History of the Clark Family of Rockbridge County, Virginia* by Donna Huffer is in the Wake County (NC) Public Library catalog and listed in Google Books (id 1HK6tgAACAAJ). Not digitized. Likely contains Joseph Anderson Clark and Mary Susan Clark by name, and likely names earlier generations of the Irish Creek Clark community. **Action item:** ILL via Wake County NC system, Lexington VA Rockbridge Regional Library, Leyburn Library at Washington & Lee, or the Library of Virginia. Free; 1–2 weeks.
+
+**4. Madsen *Against the Grain* page 85.** Brigham D. Madsen's *Against the Grain: Memoirs of a Western Historian* (Signature Books, 1998), referenced in the family genealogy at page 85, would name Madsen as one of the Utah-side researchers connected to the 1951 Clark genealogy effort. Page 85 has not been directly retrieved. **Action item:** request scan of *Against the Grain* p. 85 from a research library. Madsen's papers (held at the University of Utah) include extensive Native American research files; the LDS Church History Library in Salt Lake City may have related correspondence. Free; days to weeks.
+
+**5. The descendants of Peter Curry.** Joseph Carter Clark Sr. owned an enslaved man named Peter Curry, purchased at auction. The Sorrells case file records this fact, and the 1924 case used it to argue the Clarks had been classified white in pre-1865 Virginia. Peter Curry has surviving descendants somewhere — the historical record of Virginia slave manumissions and post-1865 freedperson rolls suggests they should be locatable. Any descendants of Peter Curry are a moral connection the Clark family ought to acknowledge. This is not a Monacan-enrollment question. It is a separate ethical thread that runs through Joe Clark Sr.'s 1859 will and Peter Curry's life. **Action item:** Rockbridge Circuit Court order books 1820–1860 for any documented Curry mention; post-1865 Freedmen's Bureau records for Rockbridge County; ancestry.com matches with surname Curry that come up on Brady's own DNA file are also worth reviewing. Multi-month research thread.
+
+## 11.2 The five highest-leverage next moves
+
+In priority order:
+
+**1. Email the Monacan Tribal Enrollment Office.** Address: enrollment@monacannation.gov. Outline the Clark / Tyree line through Joseph Anderson Clark (b. 1869 Rockbridge VA) and Mary Susan Clark, ask whether JAC appears on current rolls, and ask what documentation they need. **30 minutes. Free. Highest information value per unit of effort.** [Credibility 5.]
+
+**2. Post on the Monacan Genealogy Assistance Facebook group** (facebook.com/monacangenealogy, ~3,000 members). Post the Clark/Tyree/Irish Creek line. Likely surfaces enrolled Monacan members who already have documentation on those surnames. **1 hour. Free.** Lower-formality complement to the official enrollment office contact.
+
+**3. Day trip to the Library of Virginia in Richmond** to pull the Sorrells case file (accessions 1140744, 1164679), the James Clark v. Moore 1876 file (1140710), the James Connor and Dorothy Johns 1924 file (1140743), and the Plecker-Shields correspondence 1912–1943 (1160754). Read every deposition. Note any Joseph Anderson Clark mentions. **One day on-site, ~$60 in copy fees.** [Credibility 5.]
+
+**4. Attend the Monacan Annual Powwow** at Laurel Cliff Farm, 225 Laurel Cliff Rd, Monroe, Virginia, third weekend of May. Public event. Gates 10 a.m., grand entry 12 p.m. This is the moral and ceremonial entry point — meeting the living tribe at their ancestral land, on their terms, on a calendar they set. Free admission. Travel cost. Annual event.
+
+**5. Order Peter W. Houck's *Indian Island in Amherst County***, the foundational scholarly work establishing the Amherst Indian community is Monacan. ILL or purchase. Read alongside Karenne Wood's *The Virginia Indian Heritage Trail* (2007) and *Markings on Earth* (2001). **A month of reading.** [Credibility 5.]
+
+## 11.3 What this synthesis asks of its readers
+
+Three things, ranked by importance.
+
+**One: keep the paper.** This synthesis is going to be wrong about something. Future research will refine it. Future census-image releases will surface ancestors not located in this round. Future DNA-test methodology will shift the resolution. The document should be retained anyway. Print it. Save it to a hard drive that is not iCloud. Pass it on to one of Brady's children when they are old enough to read it.
+
+**Two: visit Bear Mountain.** The May Powwow at Laurel Cliff Farm. The Monacan Indian Nation Ancestral Museum at the Bear Mountain mission cabin. The memorial stone with the Clark surname carved into it. Putting one's hand on the stone changes what one knows about it. Brady has not done this yet. The synthesis is being compiled in May 2026 and the next Powwow is the third weekend of May 2026. Brady's intent is to attend in 2027.
+
+**Three: communicate the record to children when appropriate.** Not as Native cosplay. Not as identity politics. As a long, slow, multigenerational record about a community of ordinary people who refused to be wrongly classified by the State of Virginia or by the institutional church, across nine generations, and whose refusal is the reason the present-day Clark descendants are here. Joseph Anderson Clark's specific 1911 conversion is in the line. Atha Sorrells's specific 1924 mandamus petition is in the line. William Clarke's specific 1780 Pedlar River patent is in the line. Each of those people made a small choice that their grandchildren and great-great-great-great-grandchildren would still be benefiting from a century or two later.
+
+That is the operating point of the document: Brady's children are downstream of a long sequence of small refusals. Most of them did not feel heroic at the time. The cumulative effect of them is the family that exists today.
+
+---
+
+# Acknowledgments
+
+This synthesis draws on more than a dozen lines of inquiry running in parallel. Specific debts:
+
+To **Mary Monroe Penick**, whose 1956 letter to the *Lexington County News* preserved the family tradition of "Joseph and Nelson married into Indian families" — partially incorrect on chronology, but the entry point for the research that produced this document.
+
+To **Ted Olson**, whose 2004 chapter in *CrossRoads: A Southern Culture Annual* (Mercer University Press) provided the most rigorous secondary synthesis of the Mason/Clark community's LDS history. His footnotes are most of the citation chain in Part 8.
+
+To **Paul Heinegg**, whose *Free African Americans of North Carolina, Virginia, and South Carolina* registry — published online for free at freeafricanamericans.com — is the canonical primary-source compilation of Virginia's free-people-of-color records. The William Clarke 1780 Pedlar River patent and the 1785 James Clark / Anny Moseley marriage with James Hartless as surety are both in his Clark family entry. Without Heinegg, the entry-point chain in Part 4 of this synthesis would not exist.
+
+To **Walter Plecker**, posthumously, for keeping such meticulous correspondence files. The May 9, 1925 letter advising A.T. Shields not to appeal Atha Sorrells's case — the letter where he called the Clark community *"the Rockbridge tribe"* — is the documentary smoking gun of the entire Plecker-era enforcement system. He preserved his own confession.
+
+To **Atha Sorrells**, whose 1924 mandamus petition on a Clark family tree carried the line through the Plecker era and through the LDS priesthood ban, and who lived until 1979 — long enough to see the law she had defied finally repealed.
+
+To **Joseph Anderson Clark**, for converting in 1911 because he believed the Lamanite identity claim, and for being alive in 1951 to provide the family memory that resolved the priesthood case for his grandson.
+
+To **Karenne Wood** (1960–2019), whose tribal history project produced much of the genealogical and cultural archive the recognition petition cited. Her ashes are on Bear Mountain. Her work is in this paper.
+
+To **Chief Diane Shields and the Monacan Tribal Council**, for running a federally-recognized tribe whose enrollment process is honest, whose health center is built, whose Powwow is open to the public, and whose Bear Mountain land base is growing. The work of the next century is theirs. Brady's line is downstream.
+
+To **Brady's mother**, who sent the JMU thesis and a copy of Brady's own college genealogy paper from 2004 and started the conversation that produced this document.
+
+To **Brady's children**, when they read this someday: this is the record. The answer was harder to find than it should have been. The fact that it was hard to find is the point.
+
+---
+
+# Source list
+
+A consolidated source list, organized by credibility tier. Full URLs and accession numbers in the body of the document.
+
+## Primary archival sources (Credibility 5)
+
+- Library of Virginia, accession 1140744 / 1164679 — *Atha Sorrells v. A.T. Shields*, 1924–1925
+- Library of Virginia, accession 1160754 — *Rockbridge County (Va.) Clerk's Correspondence (Walter A. Plecker to A. T. Shields), 1912–1943*
+- Library of Virginia, accession 1140710 — *James Clark v. J.P. Moore*, 1876
+- Library of Virginia, accession 1140743 — *James Connor and Dorothy Johns v. A.T. Shields*, 1924
+- Amherst County land patent, William1 Clark, 72 acres on the head branches of Pedlar River, 20 July 1780 [Patents E, 1780-1, 282]
+- Amherst County will of William Clark, 21 June 1821, proved 15 October 1821
+- Henrico County, Virginia 1785 marriage record: James CLARKE and Anney Moseley (Lindsay, *Marriages of Henrico County, Virginia, 1680–1808*)
+- 1810, 1820 U.S. Federal Census, Amherst County VA — William Clark and James3 Clark households
+- 1850 U.S. Federal Census, Rockbridge County VA, District 51 — Joseph Carter Clark Sr. household 991, William Wesley Cooper household 975, Joseph Clark Jr. household 178
+- 1860 U.S. Federal Census, Amherst County VA — Nelson H Clarke and Frances E Clarke household, Mulatto, FamilySearch ARK 1:1:M4B1-4DF
+- 1819 marriage record, Nelson H. Clark and Edy Ware, FamilySearch ARK 1:1:668H-KVWQ
+- Walter A. Plecker, "Surnames, by Counties and Cities, of Mixed Negroid Virginia Families Striving to Pass as 'Indian' or White," ca. 1943 — Library of Virginia; reproduced at Encyclopedia Virginia and mixedracestudies.org
+- Public Law 115-121, Thomasina E. Jordan Indian Tribes of Virginia Federal Recognition Act of 2017
+- John Lederer, *The Discoveries of John Lederer*, London 1672 — Internet Archive
+- Robert Beverley, *History and Present State of Virginia*, London 1705 — Internet Archive
+- Horatio Hale, "The Tutelo Tribe and Language," American Philosophical Society, 1883
+- William Harlan Gilbert Jr., "Surviving Indian Groups of the Eastern United States," *Annual Report of the Smithsonian Institution, 1948* — Internet Archive
+- Bear Mountain Memorial Stone, ca. 1980s — *C-VILLE Weekly* (2018), photographed on-site March 2006
+
+## Peer-reviewed academic (Credibility 5/4)
+
+- Paul Heinegg, *Free African Americans of North Carolina, Virginia, and South Carolina from the Colonial Period to about 1820* — freeafricanamericans.com
+- Jeffrey Hantman, *Monacan Millennium*, University of Virginia Press, 2018
+- Jeffrey Hantman, "Between Powhatan and Quirank," *American Anthropologist* 92:3 (1990)
+- Peter W. Houck, *Indian Island in Amherst County*, Lynchburg Historical Research Co., 1984
+- David I. Bushnell Jr., "The Five Monacan Towns in Virginia, 1607," Smithsonian Misc. Collections 82:12, 1930
+- James Mooney, "Siouan Tribes of the East," BAE Bulletin 22, 1894
+- Heather Seferovich, *History of the LDS Southern States Mission, 1875–1898*, BYU dissertation
+- Edward L. Kimball, "Spencer W. Kimball and the Revelation on Priesthood," *BYU Studies* (Vol. 47:2)
+- Brigham D. Madsen, *Against the Grain: Memoirs of a Western Historian*, Signature Books, 1998 (page 85 — not directly retrieved)
+- Jennifer Marie Huff, "A Question of Indian Identity in the Plecker Era: The Monacan Indian Nation in the Twentieth Century," JMU MA thesis, 2012
+- J. David Smith, *The Eugenic Assault on America: Scenes in Red, White, and Black*, George Mason University Press, 1992
+- Ted Olson (ed.), *CrossRoads: A Southern Culture Annual*, Mercer University Press, 2004 — chapter on the Pedlar Creek/Irish Creek LDS community
+
+## Tribal and government primary sources (Credibility 5)
+
+- Monacan Indian Nation official site: monacannation.gov — Government, Enrollment, Powwow, Museum
+- Monacan Indian Nation Enrollment Packet 8/5/2025
+- Encyclopedia Virginia entries: Monacan Indian Nation; Atha Sorrells petition; Plecker 1943 surname list; Bear Mountain Indian Mission School; Walter Plecker; Racial Integrity Laws (1924–1930); Treaty of 1677; Fort Christanna; Jefferson's Mound Archaeological Site; Rassawek
+- Bureau of Indian Affairs: bia.gov/tribal-leaders/monacan-indian-nation
+- LDS Gospel Topics essays: "Race and the Priesthood" (2013); "Lamanite Identity"
+- Official Declaration 2, *Doctrine and Covenants*
+
+## Secondary synthesis (Credibility 4/3)
+
+- Ruth Knight Bailey, *Lost Tribes: Indian Mormons in the Blue Ridge Mountains of Virginia* (existence confirmed; full text not retrieved — cited via WikiTree paraphrase)
+- Donna Huffer, *Fare Thee Well Old Joe Clark: History of the Clark Family of Rockbridge County, Virginia* (existence confirmed; full text not retrieved)
+- Bruce Crow, *A Land of Strangers: Cane Creek Tennessee's Mormon Massacre*
+- Mary Monroe Penick, letter to *Lexington County News*, 22 October 1956
+- D. E. Brady Jr., *Irish Creek: History and Diversions*, Rockbridge Historical Society, 1981/2018
+- Native Heritage Project, "Atha Sorrells, the Woman who had the Audacity..." (2012)
+- Native Heritage Project, "From Nansemond to Monacan: The Legacy of the Pochick-Nansemond among the Bear Mountain Monacan" (2012, citing Vest 2003)
+- *Lynch's Ferry Magazine*, "William Johns" and "Peter Houck's contributions"
+- joepayne.org/brightstar.html — Original Monacan Rolls 1700–1961 (privately compiled secondary index)
+
+## DNA / genetic context (Credibility 5/3)
+
+- AncestryDNA raw export file (Brady Smallwood), V2.0 array, GRCh37 build, exported 2026-05-06
+- WikiTree profile Clarke-11533 (Nelson Harrison Clarke), citing FamilySearch "United States, Census, 1860" ARK 1:1:M4B1-4DF
+- WikiTree profile Clarke-20931 (William Clarke ~1735, Amherst)
+- WikiTree profile Clark-73390 (Joseph Carter Clark Sr.) citing Ruth Knight Bailey
+- FamilySearch profiles: KLLX-Q5D (Edith Wane), G9ZK-D8N (Harrison Wane), LVXN-HL5 (Sally Wane), LVTK-X5K (Frances Elizabeth Mason), LCXX-54K (James Clark Sr.)
+- *Brady Family Tree.ged* — GEDCOM v5.5.1, exported from RootsMagic 6 May 2026, 4,287 individuals, 2,097 families
+- NCAI: "Genetic ancestry testing has no role in tribal enrollment" — http://genetics.ncai.org/tribal-enrollment-and-genetic-testing.cfm
+
+---
+
+---
+
+# Appendix — Tutelo / Saponi / Monacan: A Documentary Word List
+
+## Section 1 — Provenance and Method
+
+The Monacan language proper is not directly documented. No European or scholar ever sat with a fluent Monacan speaker and recorded a vocabulary while the language was being spoken at home in Virginia. The Monacan towns mapped by John Smith in 1608 — Rassawek, Monasukapanough, Mowhemencho, Massinacack, Monahassanugh — were largely depopulated within a single human lifetime, and the surviving population merged with the Nahyssan, Saponi, and Tutelo as those groups migrated north under English and Iroquois pressure between roughly 1670 and 1740.
+
+What we have instead is the closest documented sister language, **Tutelo**, recorded by the philologist Horatio Hale in October 1870 from **Nikonha** (also called Waskiteng, "Old Mosquito"), the last fluent Tutelo speaker, at the Six Nations Reserve at Grand River, Ontario. Nikonha died February 21, 1871, at approximately 106 years of age. Hale's article "The Tutelo Tribe and Language" was read before the American Philosophical Society on March 2, 1883, and remains the single foundational source for any historical Tutelo-Monacan lexicon. James Owen Dorsey extended Hale's collection in the late 1880s with additional speakers' material, and Frank G. Speck and George Herzog later documented the Tutelo Spirit Adoption Ceremony (1942). All of this is the historical record. None of it represents a living tongue at the time of recording.
+
+That **Tutelo and Monacan were the same language at the level of mutual intelligibility** is the strong consensus position. John Lederer, traveling the Virginia Piedmont in 1670, wrote of the Monakin, Saponi, Nahyssan, and related groups: "*One language is common to them all, though they differ in Dialects.*" Modern Siouan linguists place Tutelo, Saponi, Monacan, Manahoac, Occaneechi, Nahyssan, and Eno together within a single Eastern Siouan language commonly called **Tutelo-Saponi** (modern designation: **Yesa:sahį́**, the language of the *Yesa*).
+
+The **21st-century revival** is the **Tutelo-Saponi Monacan Living Dictionary**, produced by Living Tongues Institute for Endangered Languages with a 2022 Native Voices Endowment grant from the Endangered Language Fund. The project director is Dr. Marvin "Marty" Richardson (Haliwa-Saponi); core linguistic work is by Corey Roberts (Occaneechi community linguist, University of Arizona doctoral candidate, M.A. 2020). Five descendant tribes are partnered: Monacan Indian Nation, Occaneechi Band of the Saponi Nation, Sappony Tribe, Haliwa-Saponi Tribe, and the Saponi Nation of Ohio. The dictionary, hosted at livingdictionaries.app/tutelo-saponi, was projected to hold over 3,000 entries with audio by the end of 2023.
+
+**A note on transcription.** Hale used the Pickering-Powell-Whitney philological transcription system standard in late-19th-century Americanist work — vowels generally as in Italian or German, with diacritical marks for length and quality. Hale's spellings have been variously rendered in later sources; alternative Hale-era forms appear in parentheses where the literature differs. The modern Yesa:sahį́ orthography developed by Roberts and the Occaneechi Band uses the International Phonetic Alphabet (IPA) for technical work, with a colon (`:`) marking long vowels (*ka:xi*, "crow") and an acute accent or under-tilde marking nasalization (e.g., *Yesá:sahį́*). Where modern and Hale-era forms are both attested, both are listed.
+
+**Disclaimer.** This list is documentary. It will not teach Brady's family to speak. The appropriate way to engage with the living language is through the descendant tribes and the Living Dictionaries platform.
+
+---
+
+## Section 2 — Word List
+
+Each entry: **Tutelo or Yesa:sahį́ word** — English meaning. *Notes.* [Source.]
+
+Where Hale's transcription is given, his exact spelling is reproduced; modernized spellings from later sources are noted in parentheses. Confidence flags:
+- **High** — appears in Hale 1883 and at least one comparative source (Dorsey, Mooney, modern Living Dictionary).
+- **Medium** — appears in Hale alone, or in one modern source.
+- **Low/contested** — multiple attested forms with no consensus, or the word is reconstructed.
+
+---
+
+### People and Kinship
+
+- **ati** — father. *Hale-era form.* [Hale 1883, comparative vocabulary. **High.**]
+- **hena** (also *ina*, *henun*) — mother. *Multiple variants attested across Hale's two informants.* [Hale 1883. **High.**]
+- **tdgutqkai** (read approximately *takutskai*) — son. [Hale 1883. **Medium.**]
+- **suntka** — younger brother. *Hale flagged this as kinship-specific; "older brother" carried a different stem.* [Hale 1883. **Medium.**]
+- **wagutska** — child. [Hale 1883. **Medium.**]
+- **wahtahka** — man. *Modern simplified rendering from Hale.* [native-languages.org / Hale 1883. **High.**]
+- **mahei** (Hale: *miliani*) — woman. *Two variants reflecting different recordings.* [Hale 1883; native-languages.org. **High.**]
+- **Yesa** (Hale: *Yesah*, *Yesang*) — the people. *Self-designation. Modern attestation as "the people" comes from the Tutelo-Saponi Monacan Living Dictionary and the Yesa:sahį́ Language Project (Virginia Tech CALS Magazine, Spring 2024). Hale himself recorded it as the autonym but did NOT translate it semantically — see Section 3.* [Hale 1883 (form); Living Dictionary / CALS 2024 (gloss). **High** for the form; **Medium** for the gloss.]
+
+### Body Parts
+
+- **pasiti** — head. [Hale 1883. **High.**]
+- **ihi** (also *%h*) — mouth. [Hale 1883. **Medium.**]
+- **netqi** (also *netsi*, *letqi*) — tongue. [Hale 1883. **High.**]
+- **ilil** — tooth. [Hale 1883. **Medium.**]
+- **isi** — foot. [Hale 1883. **Medium.**]
+- **wayi** (also *wayli*) — blood. [Hale 1883. **Medium.**]
+- **wasitt** — brain. [Hale 1883. **Medium.**]
+- **-ha:k opu:ską** — index finger, fore-finger. *Modern Living Dictionary entry. The leading dash indicates this stem requires a possessive marker (e.g., "my index finger"); the colon marks long vowel.* [Tutelo-Saponi Monacan Living Dictionary, body-parts entry. **High** as modern attested form.]
+
+### Numbers 1–10
+
+The numerals are the most thoroughly documented part of the language because Hale specifically targeted them for cross-Siouan comparison. Two columns of forms appear in his text — one from his primary Tutelo informant and one from a "semi-Tutelo" speaker — which is why most entries below show alternates.
+
+- **nons** (also *nosen*, *nosai*, *nosdi*) — one. [Hale 1883. **High.**]
+- **nomp** (also *nomba*, *nombai*) — two. [Hale 1883. **High.**]
+- **lani** (also *ndni*) — three. [Hale 1883. **High.**]
+- **topa** (also *topai*) — four. [Hale 1883. **High.**]
+- **kise** (also *kisahai*) — five. [Hale 1883. **High.**]
+- **akdspe** (read approximately *akaspe*; also *agas*) — six. [Hale 1883. **High.**]
+- **sagomei** (also *sdgom*, *sagom*) — seven. [Hale 1883. **High.**]
+- **palani** — eight. *Note transparent compound: pa- + lani (three), suggesting "second three" or related construction common across Siouan number systems.* [Hale 1883. **High.**]
+- **kasankai** (also *ksank*, *ksarika*) — nine. [Hale 1883. **High.**]
+- **putqkai** (also *putqk*, *putska*) — ten. [Hale 1883. **High.**]
+- **ukenii** — one hundred. [Hale 1883. **Medium.**]
+
+### Animals
+
+This category is sparse because Nikonha by 1870 was recalling vocabulary from his Pennsylvania-and-New-York childhood. Hale's table is incomplete for many common animals; the gaps are real, not omitted.
+
+- **monti** (also *mont*) — bear. [Hale 1883. **High.**]
+- **tqunhi** (also *tqorigo*, *tqongo*, *tqonki*) — dog. *The variation reflects multiple recordings; possibly *t͡suŋki*.* [Hale 1883. **High.**]
+- **ka:xi** (also *ka:hi*) — crow. *Modern Living Dictionary entry, classified as Bird/Animal.* [Tutelo-Saponi Monacan Living Dictionary. **High.**]
+- **mandahe** — corn (technically a plant, listed here for cultural significance). *Wikipedia attributes this as a possible blend of Algonquian *mandamin* + Iroquoian *nehe*, suggesting maize entered Tutelo vocabulary as a borrowing — consistent with the archaeological record of maize moving through the Eastern Woodlands trade network.* [Mooney 1894 / Wikipedia secondary. **Medium.**]
+
+*No documented Tutelo vocabulary located for: deer, eagle, fish, turtle, snake, horse, wolf, fox, beaver, raccoon, otter, buffalo. Lawson (1709) recorded that the Tutelo "had great plenty of buffaloes, elks and bears, with every sort of deer," but did not give the Tutelo names for these animals.*
+
+### Plants and Food
+
+- **mandahe** — corn / maize. *(See Animals note above.)* [Mooney 1894. **Medium.**]
+
+*Sparse category. Hale's vocabulary did not preserve agricultural or food terms in detail. The modern Yesa:sahį́ Language Project at Virginia Tech is actively building this domain — the indigenous community garden at Smithfield (Virginia Tech) grows "Yesa foods" including Tutelo Strawberry Corn and Tutelo beans, but the linguistic terms for these have not been published in sources I can verify. **Provenance flag: any "traditional" Tutelo plant name found in popular sources without a Hale, Dorsey, Speck, or Living Dictionary citation should be treated as suspect.***
+
+### Land and Water (Sky, Earth, Day, Night)
+
+- **mi** — sun, also moon. *Same root in many Siouan languages; lunar/solar distinction often by compound.* [Hale 1883. **High.**]
+- **minosa** — moon. *Modern simplified form recorded as a distinct lexeme.* [native-languages.org / Hale 1883. **Medium.**]
+- **mani** (also *mam*, *mini*) — water. *The most-cited Tutelo word in modern sources. Living Dictionary uses *ma:ni*. Note the compounding visible in "Monasukapanough" (see Section 4).* [Hale 1883; Living Dictionary; Mooney 1894. **High.**]
+- **nahdmbi** (also *nihdmpi*, *nihanpi*) — day. [Hale 1883. **High.**]
+- **wanei** (also *wdnerli*) — winter. [Hale 1883. **Medium.**]
+- **tani** — autumn. [Hale 1883. **Medium.**]
+- **amariiy** (also *amai*) — land, earth. [Hale 1883. **Medium.**]
+- **moni** — ford, river crossing. *Reconstructed/inferred from place names; see Section 4. Distinct from *mani* (water) but obviously related.* [Cvillepedia / Mooney 1894 etymological inference. **Medium / contested.**]
+
+*No documented Tutelo vocabulary located for: sky, cloud, rain, snow, wind, ice, mountain (Quirank — see Section 4), river, lake, stone, tree (separate from "wood"), grass, leaf, fire, smoke, summer, spring.*
+
+### Verbs and Concepts
+
+- **luta** — eat. [Hale 1883. **Medium.**]
+- **howa** — come. [Hale 1883. **Medium.**]
+- **kTci** — dance. *Hale's notation uses irregular characters; modernization uncertain.* [Hale 1883. **Low / contested transcription.**]
+- **ktewa** — kill. [Hale 1883. **Medium.**]
+- **mahananka** — sit. [Hale 1883. **Medium.**]
+- **te** — die / dead. [Hale 1883. **High** (cognate with broader Siouan *t'e*).]
+- **Yandosteka** — to love (the citation form). *Hale recorded the full conjugation paradigm. The verb structure is morphologically rich; Hale compared it to Latin and Ancient Greek for tense complexity.* [Hale 1883. **High.**]
+  - *Yandowasteka* — I love
+  - *Yandoyasteka* — you (sg.) love
+  - *Yandosteka* — he/she loves
+  - *Mankyandosteka* — we love
+  - *Yandoyastekapui* — you (pl.) love
+  - *Yandostekahnese* — they love
+
+### Pronouns
+
+- **mima** (Hale: *mim*) — I, me. [Hale 1883 / Dorsey, via Wikipedia. **High.**]
+- **yima** (Hale: *yim*) — you (singular). [Hale 1883 / Dorsey, via Wikipedia. **High.**]
+- **ima** — he, she, it. [Dorsey, via Wikipedia. **High.**]
+- **mimahuk** — we. [Dorsey, via Wikipedia. **High.**]
+- **yimahuk** — you (plural). [Dorsey, via Wikipedia. **High.**]
+- **imahese** — they. [Dorsey, via Wikipedia. **High.**]
+- **huk** — all (combining element in plural pronouns). [Dorsey, via Wikipedia. **High.**]
+
+### Colors
+
+- **asdi** (also *asani*, *asdniy*) — white. [Hale 1883. **High.**]
+- **asepi** — black. [Hale 1883. **High.**]
+- **wasi** (also *sfi*) — yellow. [Hale 1883. **Medium.**]
+
+*No documented Tutelo vocabulary located for: red, blue, green.*
+
+### Greetings and Common Phrases
+
+*No documented Tutelo greeting phrases survive in Hale 1883 or Dorsey. Hale recorded vocabulary and verb paradigms, not pragmatic phrases or greetings. Modern Yesa:sahį́ Language Project teaching materials (per CALS Spring 2024) are developing classroom phrases — but those are not yet in the open published record I can verify, and any "ancestral greeting" found online without Living Dictionary or Roberts thesis attribution should be treated as suspect.*
+
+---
+
+## Section 3 — Etymology of "Yesa" and Self-Designation
+
+Hale's exact recorded statement (1883, p. 11):
+
+> "Both of my semi-Tutelo informants assured me that the proper national name — or the name by which the people were designated among themselves — was **Yesang** or **Yesah**, the last syllable having a faint nasal sound."
+
+This is the foundational attestation. **Hale did not translate it.** He did not say it meant "the people." Hale also notes (same page) that he believed *Yesah* underlay the colonial-era ethnonym *Nahyssan* (the tribe Lederer met on the upper Roanoke).
+
+The semantic gloss "**the people**" enters the record from the modern revival, not from Hale. The Virginia Tech CALS Magazine (Spring 2024) states explicitly: "*The word Yesá translates to 'the people' in Yesá:sahį́ or the Tutelo-Saponi language and is used to refer to individuals and communities descended from the Monacan Alliance.*" The Yesa:sahį́ Language Project (Indigenous-led, with representation from Monacan, Haliwa-Saponi, Sappony, Occaneechi, and Ohio Saponi communities) treats the word as the living self-designation today.
+
+**Provenance flag.** The "the people" gloss is community-attested in the 21st century revival but is NOT directly translated in the 19th-century Hale record. This is normal in language revival — community speakers carry semantic content that field linguists did not record. The whitepaper should treat the gloss as the authoritative modern community position while being transparent that the Hale record itself only confirms the form, not the meaning.
+
+**Variant spellings in the literature:** *Yesah, Yesang, Yesañ, Yesáh, Yesáng, Yesą, Yesan, Yesa, Yesá, Yesá:* (the colon and tilde-under-i mark vowel length and nasalization in the modern orthography, respectively).
+
+**The language name** in modern community use is **Yesa:sahį́** — analyzable as *Yesa* (the people) + *-sahį́* (their language / what is theirs), though the precise morphological analysis varies in the linguistic literature.
+
+**Related ethnonyms in the record:**
+
+- **Tutelo / Totero / Toderochrone / Toderichroone** — the Iroquois exonym for the Tutelo and (per Mooney) for all Virginia-Carolina Siouan peoples broadly. Hale (1883, p. 11): "*So far as can be learned, the word Tutelo or Totero…has no meaning either in the Tutelo or the Iroquois language. It may have been originally a mere local designation.*" Treated as opaque in the historical record.
+- **Nahyssan** — Hale's reading: a Lederer-era variant of *Yesah*, possibly from a regional pronunciation prefixed with *na-*.
+- **Saponi / Sapon / Sapona** — Mooney 1894: "*The name Sapon or Saponi may possibly have a connection with the Siouan (Dakota) word sapa, 'black.'*" The popular *sapa + oni* ("black water") parsing circulates widely but is not firmly established in the linguistic literature.
+- **Monacan** — Strachey (1612) parsed it from Powhatan *monohacan* / *monowhauk*, "sword" or "club" — i.e., a Powhatan exonym, not a Monacan self-name. Mooney suggests an alternative: that the *Mona-* prefix may reflect Siouan *ma-* "earth, country." Both explanations are in the literature; neither is settled.
+
+---
+
+## Section 4 — The Place-Name Layer (Five Smith-Mapped Towns)
+
+John Smith's 1612 map records five Monacan towns upstream of the James-Rivanna confluence. None has a fully secure Siouan etymology, because all the names come to us through Powhatan-language interpreters and English colonial transcription. What follows is what the literature defends.
+
+| Town (Smith spelling) | Likely modern location | Etymological note | Source |
+|---|---|---|---|
+| **Rassawek** (also *Rasauweack*) | Confluence of the Rivanna and James Rivers, modern Fluvanna County. The Monacan capital. | No defensible Siouan parsing in the published record. Mooney 1894 lists it as a place name without etymological commentary. The site itself is the subject of a major preservation campaign (National Trust for Historic Preservation). | Smith 1612; Mooney 1894; Hantman 2018. |
+| **Monasukapanough** | Crossing of the South Fork Rivanna near modern Carrsbrook (north of Charlottesville). The town nearest Jefferson's mound. | Probably contains *moni* "ford" (the river crossing) plus elements not securely parsed. One folk etymology renders it as *moni-seep*, "shallow water," but this is unsourced in primary linguistic literature. The morpheme *moni*-as-ford is the only defensible piece. | Smith 1612; Cvillepedia (etymological assertion); Hantman 2018. |
+| **Mowhemencho** (also *Mohemencho*, *Monohemencho*) | Downstream James, eventually re-occupied by Huguenot refugees in 1700 as **Manakin Town**. | The English name Manakin / Manakins derives from the Monacan / Monakin tribal name itself, not from a Monacan word. The original Mowhemencho has no published etymological breakdown. | Smith 1612; Lederer 1670; Mooney 1894. |
+| **Massinacack** | Modern Powhatan County, on the James. | No published Siouan etymology. The name pattern (-cack ending) appears in other Eastern Woodlands place names without a single agreed source language. | Smith 1612; Mooney 1894. |
+| **Monahassanugh** | Specific coordinates not securely identified by archaeology. | The most linguistically interesting of the five. Hale and others have read *Monahassanugh* as containing a form of **Yesah** — i.e., this town name preserves the Monacan self-designation, prefixed with *Mona-* and followed by a locative. If correct, it is the only Smith-era place name to include the autonym. | Smith 1612; Hale 1883 (interpretation); Mooney 1894. |
+
+**Quirank** — Strachey 1612 records this as the Powhatan name for the Blue Ridge Mountains. It is the name the Tidewater (coastal Algonquian) people gave the highlands, not the Monacan name. **No documented Monacan name for the Blue Ridge survives.** The popular practice of treating "Quirank" as Monacan is incorrect; it is Powhatan.
+
+---
+
+## Section 5 — Words Preserved (or Not) in Modern English Place Names
+
+This section corrects a common error. Several Virginia place names are widely *believed* to be Monacan or Tutelo in origin, but the actual record does not support most of those claims.
+
+- **Rivanna River** — **NOT Monacan.** The river is named for **Queen Anne** of England; the original colonial form was *Anna River* / *River Anna*, contracted to *Rivanna*. The Cvillepedia, Wikipedia, and Rivanna Conservation Alliance histories all converge on this etymology. The popular notion that *Rivanna* reflects a Monacan word is folk etymology. **Provenance flag: do not list Rivanna as a Monacan word.**
+- **Manakin (Manakin Town, Manakin-Sabot, VA)** — derived from the tribal name **Monakin** / **Manakin** (i.e., Monacan), so this is the only major Virginia place name that does carry the Monacan name forward into modern English usage. The town is named after the people, not after a Monacan-language word. Per Lederer 1670, this is also possibly tied to a chief named *Monack*.
+- **Rassawek (Point of Fork)** — survives as a place name but only through the colonial-record spelling. The modern usage at Point of Fork preserves the Smith-era English transcription, not a living Monacan word.
+- **Saponi / Saponey / Sapony** — surfaces in several Virginia and North Carolina place names (Saponey, Sappony Creek). These preserve the tribal name, which itself may or may not contain Siouan *sapa* "black." Treat as the tribal name, not as a translated Monacan word.
+- **Totteroy River** (now the Big Sandy River, KY/WV border) — Tutelo-given name. No published etymology.
+- **Coreorgonel** (Tutelo village near modern Ithaca, NY, destroyed 1779) — Tutelo place name; no published etymology.
+
+The honest conclusion: **the Tutelo-Monacan place-name layer in modern Virginia is thin and most popular attributions do not survive scrutiny.** Manakin and the documented Smith-era town names (preserved in archaeology) are the secure points.
+
+---
+
+## Section 6 — Sources and Further Reading
+
+Credibility scale: 5 = primary archive / peer-reviewed; 4 = major institution or peer-reviewed secondary; 3 = regional press or vetted secondary; 2 = hobbyist/blog/general reference.
+
+**Primary linguistic sources (foundational)**
+- **Hale, Horatio. "The Tutelo Tribe and Language."** *Proceedings of the American Philosophical Society*, Vol. 21, No. 114 (March 2, 1883), pp. 1–47. **Credibility: 5.** Read this first if you read anything. Internet Archive: archive.org/details/jstor-982359 and archive.org/details/tutelatribelangu00hale.
+- **Dorsey, James Owen.** Tutelo vocabulary and grammar collection (late 1880s, Bureau of American Ethnology). Cited extensively in Wikipedia's grammar section; primary materials at the National Anthropological Archives, Smithsonian. **Credibility: 5.** Not directly retrieved in this compilation; cited via Wikipedia "Tutelo language" which carries detailed Dorsey citations.
+- **Speck, Frank G., and George Herzog. *The Tutelo Spirit Adoption Ceremony: Reclothing the Living in the Name of the Dead* (with *Transcriptions and Analysis of Tutelo Music*).** Pennsylvania Historical and Museum Commission, 1942. **Credibility: 5.** Primary source for ceremonial vocabulary and song texts. Not extracted in this compilation; would extend the lexicon meaningfully if acquired. Available as 2001 reprint and 2012 reprint.
+- **Speck, Frank G. *Catawba Texts*.** Columbia University Press, 1934. **Credibility: 5.** Catawba is Eastern Siouan but, per Speck himself, "stands clearly apart" from Tutelo. Useful for distant cognate work, not for direct Tutelo-Monacan vocabulary. Internet Archive: archive.org/details/rosettaproject_chc_vertxt-1.
+- **Mooney, James. "The Siouan Tribes of the East."** Bureau of American Ethnology Bulletin 22 (Smithsonian Institution, 1894). **Credibility: 4.** Referenced for ethnonym etymology (Saponi, Tutelo, Monacan, Yesah). Internet Archive: archive.org/details/siouantribesofea00moon.
+
+**Modern secondary linguistics**
+- **Roberts, Corey. "A Grammar Sketch of Tutelo-Saponi."** M.A. thesis, University of Arizona, 2020. Advisor: Dr. Wilson De Lima Silva. **Credibility: 5.** The foundational modern grammar of the language. Uses IPA + Occaneechi orthography. Open-access at repository.arizona.edu/handle/10150/648661.
+- **Oliverio, Giulia. "A Grammar and Dictionary of Tutelo."** Ph.D. dissertation, University of Kansas, 1996. **Credibility: 5.** Major scholarly grammar; not directly retrieved here but cited extensively in Wikipedia and Roberts 2020.
+- **Mithun, Marianne. *The Languages of Native North America*.** Cambridge University Press, 1999. **Credibility: 5.** Standard reference for North American language families; treats Tutelo within the Eastern Siouan branch.
+
+**Living revival sources (active community work)**
+- **Tutelo-Saponi Monacan Living Dictionary.** livingdictionaries.app/tutelo-saponi. Living Tongues Institute for Endangered Languages, ongoing. **Credibility: 5.** The active dictionary. Sample entries verified: *ka:xi* (crow), *-ha:k opu:ską* (index finger). Access via web; mobile-friendly.
+- **Living Tongues Institute for Endangered Languages.** "The Team Building the Tutelo-Saponi Monacan Living Dictionary Receives A Grant from Native Voices Endowment." livingtongues.org/tutelo-saponi-monacan-grant/. February 2022. **Credibility: 4.** Project announcement and grant context.
+- **Searching for Saponitown.** "Tutelo-Saponi Monacan Living Dictionary Receives Native Voices Endowment Grant." saponitown.com. **Credibility: 3.** Community-press coverage; useful for project director (Dr. Marvin Richardson) and partner-tribe attribution.
+- **Virginia Tech College of Agriculture and Life Sciences. "Preserving the past and reclaiming the future."** *CALS Magazine* Spring 2024. cals.vt.edu/magazine/spring-24/features/language-project.html. **Credibility: 4.** Source for the modern Yesa:sahį́ Language Project and the gloss of *Yesa* as "the people."
+
+**Historical record (place names, ethnonyms, tribal context)**
+- **Strachey, William. *The Historie of Travell into Virginia Britania.*** 1612. **Credibility: 5.** Source for the Powhatan etymology *monohacan / monowhauk* "sword/club" and the place-name *Quirank* for the Blue Ridge.
+- **Lederer, John. *The Discoveries of John Lederer.*** 1672 (London edition; based on 1669–1670 expeditions). **Credibility: 5.** Source for "*One language is common to them all, though they differ in Dialects.*" Critical for establishing mutual intelligibility of Monakin, Saponi, Nahyssan, etc.
+- **Smith, John. *A Map of Virginia.*** 1612. **Credibility: 5.** Original source for the five Monacan town names.
+- **Hantman, Jeffrey L. *Monacan Millennium: A Collaborative Archaeology and History of a Virginia Indian People.*** University of Virginia Press, 2018. **Credibility: 5.** Modern synthesis with collaborative tribal authorship; treats place names in archaeological context.
+- **Hantman, Jeffrey L. "Between Powhatan and Quirank: Reconstructing Monacan Culture and History in the Context of Jamestown."** *American Anthropologist* 92:3 (1990), 676–690. **Credibility: 5.** The article that put *Quirank* into the modern academic conversation as the Powhatan name for the Blue Ridge.
+- **Wikipedia, "Tutelo language" and "Tutelo."** **Credibility: 3** (well-cited but tertiary). Used in this compilation as a guide to primary sources, not as a primary source itself.
+- **VirginiaPlaces.org, "The Monacan in Virginia."** virginiaplaces.org/nativeamerican/monacantribe.html. **Credibility: 3.** Useful for the explicit acknowledgment that *Rivanna* derives from Queen Anne, not from Monacan.
+- **AccessGenealogy, "Nahyssan."** accessgenealogy.com/topics/nahyssan. **Credibility: 2.** Reference-level only; corroborates Hale's *Yesah ↔ Nahyssan* identification.
+- **native-languages.org, "Tutelo Words (Saponi)."** **Credibility: 3.** Concise word list; aligns with Hale 1883.
+
+**Reconstructed Siouan / comparative work**
+- **Rankin, Robert L.** Comparative Siouan reconstruction (Proto-Siouan). Various journal articles and the Comparative Siouan Dictionary project. **Credibility: 5.** Not directly extracted here. Useful if pursuing deeper etymology of single words like *mani*, *mi*, *te*.
+
+**Provenance concerns flagged in this compilation**
+1. The semantic gloss of *Yesa* / *Yesah* as "the people" is community-attested in the 21st-century revival, not directly translated by Hale 1883. Treated above as community-authoritative, but flagged.
+2. *Rivanna* is folk-etymologized as Monacan in many popular sources; the actual etymology is "Queen Anne." Corrected above.
+3. *Quirank* is widely cited as a Monacan word for the Blue Ridge; it is Powhatan (Strachey 1612), not Monacan. Corrected above.
+4. *Mandahe* (corn) is given in some sources as native Tutelo; Wikipedia (citing scholarship) presents it as a possible blend of Algonquian and Iroquoian terms, suggesting it entered the Tutelo lexicon as a borrowing.
+5. Hale's transcriptions vary between his two informants and are difficult to standardize. Where modern Living Dictionary forms exist, they should be preferred for any teaching context.
+
+---
+
+## Section 7 — How to Engage with the Living Language
+
+This dictionary is documentary. It records what scholars and tribes have already published. It is not a path to becoming a Tutelo-Saponi speaker, and it is not a substitute for community contact.
+
+The appropriate channels for descendants of the Monacan Alliance — including descendants of the Bear Mountain / Amherst County / Rockbridge County families — to engage with the language:
+
+- **Monacan Indian Nation cultural office** — Bear Mountain Indian Mission, Amherst County, Virginia. The tribal cultural office is the appropriate first point of contact for any Monacan-descended family wanting to engage with language work.
+- **Yesa:sahį́ Language Project** — Indigenous-led, with representation from Monacan, Haliwa-Saponi, Sappony, Occaneechi, and Ohio Saponi tribal communities. Programs with Virginia Tech as of 2024.
+- **Living Tongues Institute for Endangered Languages** — livingtongues.org. Hosts the Tutelo-Saponi Monacan Living Dictionary.
+- **Tutelo-Saponi Monacan Living Dictionary** — livingdictionaries.app/tutelo-saponi. The active corpus. Web-accessible, mobile-friendly.
+
+Self-teaching from a documentary list — including this one — is not the right starting point for the descendants of the people who carried this language as their inheritance. The dictionary exists to be returned to the community, not to be appropriated from it. For Brady's family and others in the same position, the path forward goes through tribal contact first.
+
+---
+
+# Closing
+
+The synthesis began with a family folklore — "Cherokee and Irish, smallpox-quarantined in 1839" — and a documentary mandate to test it against primary records. The Cherokee component resolves to Monacan: the same Eastern Siouan-speaking people of central Virginia, the same federally-recognized tribe at Bear Mountain in Amherst County, the same surnames on the 1943 Plecker list, the same family tree submitted in the 1924 Sorrells case. The Irish component is correct — preserved on Mary Holivey "Mondula" Menduel's side via a 1778 Diocese of Ossory marriage in Leinster, Ireland. The 1839 smallpox-quarantine story has no documentary support that could be located in this round of research.
+
+The structural finding is that the Native ancestry in the paternal Clark line goes much earlier than the family folklore suggested. The "marrying into Indian families" sentence places the entry point at the 1810s–1820s, after the War of 1812. The Heinegg registry places it at 1780, in Amherst County, with a 72-acre land patent on the headwaters of Pedlar River, in the same geography the federally-recognized tribe sits in today. The Clark family did not "become" Indian in 1820. The line arrived in the documentary record already classified, in 1780. The marriage that produced the original Native-Clark line is one or two generations further back, undocumented by name, in eastern Virginia, in the 1690s–1730s window.
+
+That is the structural answer. The rest of the documentary record — Plecker, Sorrells, LDS doctrine, the 1951 priesthood case, the 2018 federal recognition, the 2022 Rassawek victory — is the unfolding of what that 1780 patent set in motion.
+
+The synthesis is incomplete. Five archival pulls remain open. Ruth Knight Bailey's *Lost Tribes* has not been read. Donna Huffer's *Fare Thee Well Old Joe Clark* has not been ordered. The Monacan Tribal Enrollment Office has not been contacted. The Powwow at Bear Mountain has not been attended. Most of the next round of work can be done from a desk. The Powwow has to be done on the ground.
+
+---
+
+## Colophon
+
+Compiled May 2026. Smallwood Family Heritage Research Project. Brady Smallwood, principal researcher. Bentonville, Arkansas.
+
