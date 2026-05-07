@@ -1,7 +1,13 @@
 # Brady OS — Infrastructure Registry
 # Canonical source for all external service IDs, secrets, and cross-repo dependencies.
 # Referenced by TRANSPARENCY.md and CLAUDE.md.
-# Last updated: 2026-04-16
+#
+# COMPANION: 3-reference/connector-registry.yml
+#   Holds per-harness inventory of MCPs / CLIs / browser surfaces / data sources with
+#   verify commands. Use that to answer "do I have X right now"; use this to answer
+#   "what's the canonical ID/secret/cross-repo dep for X."
+#
+# Last updated: 2026-05-07
 
 # ─── Notion Databases ───
 notion:

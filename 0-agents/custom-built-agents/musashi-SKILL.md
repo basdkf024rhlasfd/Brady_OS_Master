@@ -209,6 +209,43 @@ Cap at 3–5 surfaced items. Prune aggressively — "new AI tool" isn't enough; 
 
 If tools are unavailable (rate limits, auth), emit `_(Tech Scan unavailable this run — [reason])_` and move on.
 
+## Phase 4.5 — Connector Scout
+
+**Why this phase exists:** Cross-harness confusion about "do I have X" is a real cost — agents claim they don't have Chrome / a CLI / an MCP that actually exists, or worse, never recommend a new connector that would make a workflow safer/cheaper/faster. Musashi is the nightly forcing function on both halves.
+
+**Inputs (read silently before searching):**
+- `3-reference/connector-registry.yml` — current per-harness inventory (Conductor, CoWork, Claude Desktop, Claude in Chrome, ChatGPT)
+- `wishlist:` section of the registry — capabilities Brady wants but doesn't yet have
+
+**Pass A — Recommend NEW connectors that would replace something painful in the registry**
+
+For each `wishlist` item AND each entry where `verify.type: manual` (proxy for "this is hacky"), search Exa + Bright Data for connectors released or improved in the last 30 days that would directly close the gap.
+
+Search queries (parameterize per wishlist item, but generic shape):
+1. `"<capability>" MCP server site:github.com OR site:smithery.ai`
+2. `"<capability>" Anthropic Claude integration 2026`
+3. `"<service-name>" official API new`
+
+For each promising hit, emit:
+- **Connector name + link**
+- **Replaces/augments:** which registry entry or wishlist item it addresses
+- **Why it matters** — one of: safer (sandboxes credentials), easier (kills a manual step), cheaper (replaces a paid scrape), faster (latency win), or new capability
+- **Install sketch** — MCP install command, CLI binary, or API auth path. Include estimated wiring time.
+- **Approval gate:** `approve musashi connector-[slug]` to install + add to registry
+
+**Pass B — Audit existing entries for staleness / drift**
+
+Walk every connector entry in `connector-registry.yml`. Flag for Heidi handoff (do NOT auto-fix):
+- Any entry with `last_verified: never` or older than 30 days
+- Any entry whose `verify.type` is `mcp_tool` but the matching tool prefix is NOT in the current Conductor session's tool list (means the connector silently disappeared)
+- Any entry whose `verify.type: shell` would clearly fail (e.g., binary moved, version drift)
+
+Output as a table, not as recommendations — Heidi's Rule 6 owns enforcement, Musashi just surfaces signal.
+
+**Cap:** 1–3 new-connector recs (Pass A), unlimited staleness flags (Pass B — Heidi reads them).
+
+**Skip rule:** If Exa + Bright Data both unavailable, emit `_(Connector Scout — Pass A skipped, search tools unavailable)_` and run Pass B only (it's local-only, no external calls).
+
 ## Phase 5 — Business Ideation
 
 Generate 3–5 monetizable ideas **filtered by Brady's constraints**:
@@ -324,6 +361,15 @@ Say "approve musashi sprint-[N]" to start
 ## Tech Scan — What Moved This Week
 - **[tool name]** ([link]) — [what it does] | Plugs into: [agent] | Size: small/medium/large | `approve musashi tech-[slug]`
 
+## Connector Scout
+### New Connectors (Pass A)
+- **[connector]** ([link]) — Replaces: [registry entry / wishlist item] | Why: safer/easier/cheaper/faster/new | Install: [sketch] | `approve musashi connector-[slug]`
+
+### Staleness Flags (Pass B — handed to Heidi Rule 6)
+| Surface | Entry | Last Verified | Flag |
+|---|---|---|---|
+| [harness] | [slug] | [date or never] | stale / disappeared / verify-fails |
+
 ## Business Ideation
 ### 1. [Idea Name]
 **Pitch:** ...
@@ -368,6 +414,10 @@ TOP 3 RECOMMENDATIONS (ranked by lift × reversibility):
 TECH SCAN (top 2):
 - [tool] — [1-line fit] → `approve musashi tech-[slug]`
 - ...
+
+CONNECTOR SCOUT (top 2 new + N stale flags):
+- New: [connector] — replaces [registry-entry], [why] → `approve musashi connector-[slug]`
+- Stale: [N] entries flagged for Heidi Rule 6 (see backup)
 
 BIZ IDEAS (top 2):
 - [name] — [1-line pitch + economics] → `approve musashi biz-[slug]`
@@ -414,8 +464,9 @@ Musashi Review: [STATUS]. [N] agents scored (avg [X.X]/10). [M] recs, [K] tech, 
 - **Sprint approval gate:** Musashi never starts a sprint without Brady's `approve musashi sprint-[N]`. He proposes; Brady decides.
 - **Token budget:** ~150k input / 40k output per run. If exceeded, degrade in order:
   - First: skip or shrink Phase 5 (Biz Ideation) and Phase 5.5 (Sprint Proposal)
-  - Second: skip Phase 4 (Tech Scan) and Phase 3.5 (Backlog Hygiene)
-  - Never: skip Phase 2 (Scoring) or Phase 3 (Recommendations) — those are the core.
+  - Second: skip Phase 4 (Tech Scan), then Phase 4.5 Pass A (new-connector search) — keep Phase 4.5 Pass B (staleness flags, local-only)
+  - Third: skip Phase 3.5 (Backlog Hygiene)
+  - Never: skip Phase 2 (Scoring), Phase 3 (Recommendations), or Phase 4.5 Pass B — those are the core.
 - **Backup-first writes:** File is written before Notion. On any Notion failure, backup header becomes `STATUS: partial — [reason]` and remaining Notion writes abort. Morning sweep sees "no review" and proceeds normally.
 - **Duplicate prevention:** If a `Type="Musashi Review"` row exists for today, overwrite body in place. If a Backlog item with the same slug already exists, update (don't duplicate).
 - **Self-review caveat:** Musashi scores himself. Budget for 1 point of bias upward — Brady should sanity-check Musashi's own score at weekly sweep.
@@ -475,8 +526,8 @@ Verification: Claudine queries Notion Streaming Notes for `Name starts with "Mus
 
 ## Data Dependencies
 
-- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB, Routing Log page, Product Backlog DB (if exists), git history (14-day window), the web via Exa + Bright Data
-- **Writes:** Streaming Notes DB (one review row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`; Product Backlog DB (new/updated item rows, if DB exists and approved)
+- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB, Routing Log page, Product Backlog DB (if exists), `3-reference/connector-registry.yml`, git history (14-day window), the web via Exa + Bright Data
+- **Writes:** Streaming Notes DB (one review row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`; Product Backlog DB (new/updated item rows, if DB exists and approved). **Does NOT write to connector-registry.yml directly** — `approve musashi connector-[slug]` queues a Build Request that adds the new entry; Heidi's Rule 6 updates `last_verified` fields.
 
 ---
 
