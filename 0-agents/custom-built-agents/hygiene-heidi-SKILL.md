@@ -72,6 +72,7 @@ rules by updating this section and re-deploying the skill.
 | 3 | **Agents must naturally seek constant improvement** | SKILL.md contains at least one of: approval loops that create feedback cycles, prior-run learning references, Musashi integration (explicitly named as the improvement mechanism), or recursive self-improvement logic | SKILL.md terminates with no improvement feedback loop — runs and stops with no mechanism to get better over time |
 | 4 | **Streaming Notes purgatory: nothing sits >7 days without a state decision** | Item is in a terminal state (Done, Complete, Archived, Promoted, Published) OR has been consciously moved to a non-intake temporary state (In Progress, Processing, On Hold, Blocked) with a Next Action set | Item has been at "Not Started" for 7+ days with no Next Action, no status change, and no body update — classic purgatory |
 | 5 | **Research Library stays loaded, current, and leveraged** (Claudine Research Score ≥ 5/10) | K16 composite from `claudine-scorecard` is ≥ 5/10 AND no Active row has been unreferenced for >90 days AND every active client engagement has ≥ 10 sources tagged with its `Client Relevance` value | K16 < 5/10 OR any Active row with `Last Referenced` >90 days old (dormancy) OR any active client with <10 tagged sources (coverage gap) |
+| 6 | **Connector Registry stays accurate** — no phantom or missing connectors across harnesses | Every entry in `3-reference/connector-registry.yml` has `last_verified` ≤ 30 days AND its `verify:` probe currently passes | Any entry with `last_verified > 30 days` (stale) OR any entry whose `verify:` probe fails (phantom or disappeared) OR any Conductor MCP tool present in the session that is NOT yet listed in the registry (undocumented) |
 
 ### Rule 2 — Self-Scoring Interpretation Note
 
@@ -141,14 +142,14 @@ If a future run starts and finds an existing today-dated backup with `STATUS: ru
 
 **Roster-State enforcement policy (canonical, per claudine-onboarding doctrine):**
 
-| Roster State | Rules 1–3 (SKILL.md structure) | Rule 4 (Streaming Notes purgatory) | Rule 5 (Research Library) |
-|---|---|---|---|
-| **Active** | Full enforcement | Full enforcement (DB-level) | Full enforcement (DB-level) |
-| **Bench** | Relaxed — profile `.md` required, but SKILL.md with full scoring/self-scoring is optional. Amber if missing, not Red. | Full enforcement | Full enforcement |
-| **Retired** | Skipped entirely | Full enforcement | Full enforcement |
-| **Missing from registry** | Treat as Active (fail-safe) | Full enforcement | Full enforcement |
+| Roster State | Rules 1–3 (SKILL.md structure) | Rule 4 (Streaming Notes purgatory) | Rule 5 (Research Library) | Rule 6 (Connector Registry) |
+|---|---|---|---|---|
+| **Active** | Full enforcement | Full enforcement (DB-level) | Full enforcement (DB-level) | Full enforcement (registry-level) |
+| **Bench** | Relaxed — profile `.md` required, but SKILL.md with full scoring/self-scoring is optional. Amber if missing, not Red. | Full enforcement | Full enforcement | Full enforcement |
+| **Retired** | Skipped entirely | Full enforcement | Full enforcement | Full enforcement |
+| **Missing from registry** | Treat as Active (fail-safe) | Full enforcement | Full enforcement | Full enforcement |
 
-Rules 4 and 5 are DB-level audits that don't care about roster state — they apply regardless.
+Rules 4, 5, and 6 are infrastructure-level audits that don't care about roster state — they apply regardless.
 
 Include Hygiene Heidi herself in the inventory — she is Active and not exempt from her own rules.
 
@@ -262,19 +263,52 @@ For each active client tag: count Research Library rows where `Client Relevance`
 - Dormant items list (with approval gates `approve heidi research-dormant-{id}`)
 - Coverage gaps list (with approval gates `approve heidi research-cover-{client-slug}`)
 
+## Phase 5.3 — Rule 6: Connector Registry Verification
+
+Read `3-reference/connector-registry.yml`. For every entry across every harness section, do three checks:
+
+**Step 1 — Staleness check.** Any entry with `last_verified` older than 30 days (or `never`) → **Amber** (or **Red** if older than 90 days). Surface in a "Stale Verifications" table.
+
+**Step 2 — Probe check.** For each entry whose `verify.type` is one Heidi can execute on Conductor:
+- `mcp_tool`: check the current session's available tool list for the exact `check:` string. Missing → **Red** (phantom — registry says it's there, reality says it's not).
+- `shell`: run `check` via Bash. Non-zero exit → **Red**.
+- `file`: run `test -f <check>` (or `-d`). Missing → **Red**.
+- `http`: best-effort GET; non-2xx (except 401, which often means "alive but auth-gated") → **Amber**.
+- `manual`: skip — Brady owns these. Note count in summary.
+
+After every successful probe, update the entry's `last_verified` to today's date directly in `connector-registry.yml`. This is the ONE file Heidi is allowed to mutate beyond her three normal outputs (see Safety Rails).
+
+**Step 3 — Undocumented-connector check.** Inspect the current Conductor session's tool list. For every `mcp__*__*` tool present, check if its server prefix appears as a `tool_prefix:` in the registry's `conductor.mcp_servers` section. Any tool prefix in the session but NOT in the registry → **Amber** (undocumented — Brady has a connector that nobody told the registry about; recommend Musashi add it on next nightly).
+
+**Step 4 — Pull Musashi's Pass B flags.** If today's Musashi Review (Streaming Notes, `Type="Musashi Review"`) contains a `## Connector Scout > Staleness Flags` section, merge those into Heidi's Step 1 + 2 output (don't double-report).
+
+**Output gates:**
+- Stale entries → `approve heidi connector-stale-{slug}` → Brady's reply: `verify` (re-run probe + update timestamp), `remove` (delete entry), or `replace {new-slug}` (supersede).
+- Failing probes → `approve heidi connector-fail-{slug}` → reply: `remove`, `repair {steps}`, or `accept` (mark `verify.type: manual` with a note).
+- Undocumented connectors → `approve heidi connector-add-{prefix}` → reply: `add` (Musashi drafts the registry entry on next nightly) or `ignore`.
+
+**Pass condition:**
+- All entries `last_verified` ≤ 30 days AND all probes pass AND no undocumented connectors → **Green**
+
+**Amber condition:**
+- 1–3 stale (30–90 days), no failures, ≤2 undocumented → **Amber**
+
+**Red condition:**
+- Any failing probe, OR any entry stale >90 days, OR ≥3 undocumented connectors → **Red**
+
 ### 5.1 — Heidi's Self-Score (Rule 2 compliance)
 
 At end of Phase 5, Heidi computes her own score for this run:
 
 | Dimension | 0 | 1 | 2 |
 |---|---|---|---|
-| **Coverage** — all agents + Research Library inventoried? | Missed >2 agents or skipped Library | Missed 1 | Complete inventory |
+| **Coverage** — all agents + Research Library + Connector Registry inventoried? | Missed >2 agents or skipped Library or skipped Registry | Missed 1 | Complete inventory |
 | **Precision** — violations correctly classified (no false positives)? | >2 false positives | 1 false positive | All classifications accurate |
 | **Purgatory detection** — all 7+ day items surfaced? | Notion unavailable | Partial (degraded) | Full query returned |
 | **Research Library audit** — K16 pulled, dormancy + coverage computed? | Skipped | Partial (K16 only) | All 3 sub-checks complete |
-| **Routing** — all violations routed with approval gates? | Missing gates on >1 red | 1 gate missing | All reds have gates |
+| **Connector verification** — every probe run, timestamps refreshed, undocumented surfaced? | Skipped | Partial (probes only, no timestamp writes) | All 4 steps complete |
 
-Self-score: sum of 5 dimensions = `/10`. Include in backup and Streaming Notes output. If self-score < 8, add one improvement recommendation for next run. (The prior "Timeliness" dimension was replaced by "Research Library audit" when Rule 5 was added on 2026-04-24.)
+Self-score: sum of 5 dimensions = `/10` (Routing dimension folded into Coverage when Rule 6 was added). Include in backup and Streaming Notes output. If self-score < 8, add one improvement recommendation for next run. (Lineage: original "Timeliness" replaced by "Research Library audit" on 2026-04-24; "Routing" replaced by "Connector verification" on 2026-05-07 when Rule 6 was added.)
 
 ## Phase 6 — Output
 
@@ -323,6 +357,30 @@ Legend: 🟢 Green (pass) · 🟡 Amber (borderline/exception) · 🔴 Red (viol
 | [client] | [N] | Run deep-research on [topic] | `approve heidi research-cover-[slug]` |
 
 _Gates: `keep`, `archive`, `supersede {new-id}` for dormant; `approve` triggers a deep-research run for coverage._
+
+---
+
+## Rule 6 — Connector Registry Verification
+
+**Probes run:** [N total — M passed, K failed, J manual-skipped]
+**Undocumented connectors detected:** [N]
+
+**Stale Verifications (>30 days):** [N]
+| Surface | Slug | Last Verified | Days Stale | Gate |
+|---|---|---|---|---|
+| [harness] | [slug] | YYYY-MM-DD | [N] | `approve heidi connector-stale-[slug]` |
+
+**Failing Probes:** [N]
+| Surface | Slug | Verify Type | What Failed | Gate |
+|---|---|---|---|---|
+| [harness] | [slug] | mcp_tool / shell / file / http | [error] | `approve heidi connector-fail-[slug]` |
+
+**Undocumented Connectors:** [N]
+| Tool Prefix in Session | Suggested Slug | Gate |
+|---|---|---|
+| `mcp__claude_ai_X__` | [slug] | `approve heidi connector-add-[prefix]` |
+
+_Gates: stale → `verify` / `remove` / `replace {new-slug}` · fail → `remove` / `repair` / `accept` · add → `add` / `ignore`._
 
 ---
 
@@ -412,6 +470,12 @@ RESEARCH LIBRARY (Rule 5):
 - Dormant items: [N] → `approve heidi research-dormant-[id]`
 - Coverage gaps: [N] → `approve heidi research-cover-[slug]`
 
+CONNECTOR REGISTRY (Rule 6):
+- Probes: [P passed / F failed / M manual-skipped]
+- Stale: [N] → `approve heidi connector-stale-[slug]`
+- Failing: [N] → `approve heidi connector-fail-[slug]`
+- Undocumented: [N] → `approve heidi connector-add-[prefix]`
+
 PURGATORY ([Z] items):
 - [item name] · [N] days · [Type] → `approve heidi purgatory-[id]`
 - ...
@@ -430,22 +494,23 @@ per `3-reference/skills/_shared/routing-log.md`:
 | Original Title | `Hygiene Check — YYYY-MM-DD` |
 | Destination | `Streaming Notes (Hygiene Check row) + hygiene-heidi-reports/YYYY-MM-DD.md` |
 | Reason | Weekly agent compliance + Streaming Notes purgatory audit |
-| Summary | [N] agents checked; [Y] violations ([Z] red, [A] amber); [B] purgatory items; Research K16 [X]/10 ([D] dormant, [E] coverage gaps). Self-score: [X]/10. |
+| Summary | [N] agents; [Y] violations ([Z] red, [A] amber); [B] purgatory; Research K16 [X]/10 ([D] dormant, [E] gaps); Connectors [P passed/F failed/N stale/U undoc]. Self-score: [X]/10. |
 
 ## Phase 8 — Report Back
 
 ```
-Hygiene Check: [STATUS]. [N] agents · [Y] violations · [Z] purgatory items. Research K16 [X]/10 ([D] dormant, [E] gaps). Self-score: [X]/10.
+Hygiene Check: [STATUS]. [N] agents · [Y] violations · [Z] purgatory · Research K16 [X]/10 ([D] dormant, [E] gaps) · Connectors [P/F/N/U]. Self-score: [X]/10.
 Review: Streaming Notes / Hygiene Check — YYYY-MM-DD. Backup: 1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md
 ```
 
 ## Safety Rails
 
-- **Heidi writes THREE things and nothing else:**
+- **Heidi writes FOUR things and nothing else:**
   1. The backup markdown file
   2. One Streaming Notes row (Type="Hygiene Check")
   3. One Routing Log row
-- **Never touches:** agent profile files, SKILL.md files, CLAUDE.md, Rules & Preferences, any Streaming Notes record's Status/Next Action fields, any existing records other than the review row
+  4. `3-reference/connector-registry.yml` — only to update `last_verified:` timestamps on entries whose `verify:` probe passed this run, AND only by replacing the date value in place. No structural edits, no new entries, no deletions.
+- **Never touches:** agent profile files, SKILL.md files, CLAUDE.md, Rules & Preferences, any Streaming Notes record's Status/Next Action fields, any existing records other than the review row, any connector-registry.yml content other than `last_verified` dates
 - **Approval-gated remediation:** Heidi never executes fixes. All red items get an `approve heidi [slug]` gate. Morning sweep (Saturday) can pick these up and draft remediation plans at `.context/plans/heidi-[slug].md`. Brady must approve before any agent file is edited.
 - **No false positives:** If a violation has documented rationale (in the file, in git commit messages, in a CLAUDE.md note), classify as Amber with the rationale cited. Do not red-flag conscious architectural decisions.
 - **Self-inclusion:** Heidi checks herself against all 4 rules. If she fails any rule, she flags it at the same priority as any other agent. She is not exempt.
@@ -494,6 +559,6 @@ Command: invoke hygiene-heidi skill
 
 ## Data Dependencies
 
-- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB (open items query), Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`), Routing Log page, latest `claudine-scorecard/YYYY-MM.md`, git history (for amber classification)
-- **Writes:** Streaming Notes DB (one Hygiene Check row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md`
-- **Republishes:** on every automated Saturday run, Rule 5 (Research Library K16 + dormancy + coverage) is recomputed from live state — the score in the Saturday brief always reflects current Library health, not a cached value.
+- **Reads:** every file in `0-agents/custom-built-agents/`, Streaming Notes DB (open items query), Research Library DB (`4f87259b-e9a7-4d35-86ba-2148cb472d0f`), Routing Log page, latest `claudine-scorecard/YYYY-MM.md`, `3-reference/connector-registry.yml`, current session's tool list, git history (for amber classification)
+- **Writes:** Streaming Notes DB (one Hygiene Check row per run); Routing Log page (one run-summary row); `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md`; `3-reference/connector-registry.yml` (only `last_verified:` timestamp updates, never structural changes)
+- **Republishes:** on every automated Saturday run, Rule 5 (Research Library K16 + dormancy + coverage) and Rule 6 (Connector Registry verification + timestamps) are recomputed from live state — both reflect current health, never cached values.

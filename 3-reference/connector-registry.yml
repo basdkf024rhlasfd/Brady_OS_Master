@@ -1,0 +1,371 @@
+# Brady OS — Connector Registry
+# Canonical source for every MCP, CLI, browser automation surface, data source, and
+# credentialed integration available across Brady's harnesses.
+# Companion to infrastructure-registry.yml (which holds Notion DB IDs / Drive folders /
+# secrets inventory). This registry answers: "Do I have X right now, on this surface?"
+#
+# Loaded by:
+#   - CLAUDE.md (session-start reference for any agent on any harness)
+#   - musashi-SKILL.md Phase 4.5 (Connector Scout — recommends new entries)
+#   - hygiene-heidi-SKILL.md Rule 6 (weekly verification + staleness audit)
+#
+# ─── Verify Schema ───
+# Every entry carries a `verify:` block that an agent can execute to confirm the
+# connector is real on the current harness. Schema:
+#
+#   verify:
+#     type: mcp_tool | shell | file | http | manual
+#     check: "<the actual probe>"
+#     expect: "<what success looks like>" (optional)
+#
+# Type semantics:
+#   mcp_tool — agent inspects its tool list for a tool name matching `check` (prefix or exact)
+#   shell   — agent runs `check` as a shell command; success = exit 0
+#   file    — agent runs `test -f <check>` (or -d for directories)
+#   http    — agent issues a HEAD/GET against `check`; success = 2xx or named status
+#   manual  — Brady or human has to verify; `check` is the human-readable instruction
+#
+# Every entry also carries `last_verified` (YYYY-MM-DD or `never`). Hygiene Heidi
+# Rule 6 re-runs verify weekly and updates this field. Stale (>30d) → Amber.
+# Failing verify → Red, gated as `approve heidi connector-{slug}`.
+#
+# Last updated: 2026-05-07
+
+# ─── Harness: Conductor ──────────────────────────────────────────────────────────
+# The local Mac app where Brady spawns parallel coding agents. Tools come from
+# Anthropic's MCP marketplace (claude_ai_*) plus Conductor's own MCP and Playwright.
+
+conductor:
+  description: "Local parallel-agent workspace on Mac. Default for code work."
+
+  mcp_servers:
+    notion:
+      slug: conductor-mcp-notion
+      tool_prefix: "mcp__claude_ai_Notion__"
+      purpose: Read/write Notion databases (Streaming Notes, Routing Log, Research Library, etc.)
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Notion__notion-search"
+      last_verified: 2026-05-07
+
+    gmail:
+      slug: conductor-mcp-gmail
+      tool_prefix: "mcp__claude_ai_Gmail__"
+      purpose: Search threads, read messages, draft emails, manage labels
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Gmail__search_threads"
+      last_verified: 2026-05-07
+
+    google_calendar:
+      slug: conductor-mcp-gcal
+      tool_prefix: "mcp__claude_ai_Google_Calendar__"
+      purpose: Read events, create/update/delete events, suggest meeting times
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Google_Calendar__list_events"
+      last_verified: 2026-05-07
+
+    google_drive:
+      slug: conductor-mcp-gdrive
+      tool_prefix: "mcp__claude_ai_Google_Drive__"
+      purpose: Search, read, copy, create files in Drive
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Google_Drive__search_files"
+      last_verified: 2026-05-07
+
+    airtable:
+      slug: conductor-mcp-airtable
+      tool_prefix: "mcp__claude_ai_Airtable__"
+      purpose: Read/write Airtable bases, tables, records, schema
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Airtable__list_bases"
+      last_verified: 2026-05-07
+
+    canva:
+      slug: conductor-mcp-canva
+      tool_prefix: "mcp__claude_ai_Canva__"
+      purpose: Generate, edit, export Canva designs (innovation workshop, client deliverables)
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Canva__search-designs"
+      last_verified: 2026-05-07
+
+    exa:
+      slug: conductor-mcp-exa
+      tool_prefix: "mcp__claude_ai_Exa__"
+      purpose: Fast neural web search + fetch (deep-research, exec-intel-brief, daily-whitepaper)
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Exa__web_search_exa"
+      last_verified: 2026-05-07
+
+    bright_data:
+      slug: conductor-mcp-brightdata
+      tool_prefix: "mcp__claude_ai_Bright_Data__"
+      purpose: Heavy web scraping (search engine batch, scrape-as-markdown) when Exa isn't enough
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Bright_Data__scrape_as_markdown"
+      last_verified: 2026-05-07
+
+    granola:
+      slug: conductor-mcp-granola
+      tool_prefix: "mcp__claude_ai_Granola__"
+      purpose: Meeting transcript retrieval + folder/list queries
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Granola__list_meetings"
+      last_verified: 2026-05-07
+
+    otter:
+      slug: conductor-mcp-otter
+      tool_prefix: "mcp__claude_ai_Otter__"
+      purpose: Otter.ai meeting search + fetch (sweep meeting capture)
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Otter__search"
+      last_verified: 2026-05-07
+
+    vercel:
+      slug: conductor-mcp-vercel
+      tool_prefix: "mcp__claude_ai_Vercel__"
+      purpose: Deployments, projects, runtime logs, domain checks (Musashi Deploy Mode)
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Vercel__list_deployments"
+      last_verified: 2026-05-07
+
+    vibe_prospecting:
+      slug: conductor-mcp-vibe
+      tool_prefix: "mcp__claude_ai_Vibe_Prospecting__"
+      purpose: Business enrichment, prospect matching, dataset queries
+      verify:
+        type: mcp_tool
+        check: "mcp__claude_ai_Vibe_Prospecting__enrich-business"
+      last_verified: 2026-05-07
+
+    playwright:
+      slug: conductor-mcp-playwright
+      tool_prefix: "mcp__playwright__"
+      purpose: Headless browser automation (PDF rendering, web scraping, UI tests)
+      verify:
+        type: mcp_tool
+        check: "mcp__playwright__browser_navigate"
+      last_verified: 2026-05-07
+
+    conductor_native:
+      slug: conductor-mcp-native
+      tool_prefix: "mcp__conductor__"
+      purpose: Conductor workspace primitives (AskUserQuestion, DiffComment, GetWorkspaceDiff, GetTerminalOutput)
+      verify:
+        type: mcp_tool
+        check: "mcp__conductor__GetWorkspaceDiff"
+      last_verified: 2026-05-07
+
+  cli_tools:
+    git:
+      verify: { type: shell, check: "command -v git" }
+      last_verified: 2026-05-07
+    gh:
+      purpose: GitHub CLI for PRs, issues, releases
+      verify: { type: shell, check: "command -v gh" }
+      last_verified: 2026-05-07
+    vercel:
+      purpose: Vercel CLI for deploys + env management (currently 51.5.0; 53.2.0 available — upgrade prompt)
+      verify: { type: shell, check: "vercel --version" }
+      last_verified: 2026-05-07
+    npx:
+      verify: { type: shell, check: "command -v npx" }
+      last_verified: 2026-05-07
+    pnpm:
+      verify: { type: shell, check: "command -v pnpm" }
+      last_verified: 2026-05-07
+    clasp:
+      purpose: Google Apps Script deploy (email-classifier, os-recap-mailer)
+      verify: { type: shell, check: "command -v clasp" }
+      last_verified: 2026-05-07
+
+  scoped_tools:
+    telly_bot_token:
+      purpose: Direct Telegram message-send from Conductor (~/telly-bot/.env.local)
+      verify: { type: file, check: "/Users/bs/telly-bot/.env.local" }
+      last_verified: 2026-05-07
+    home_assistant_local:
+      purpose: Roborock control via HA REST API at localhost:8123
+      verify: { type: http, check: "http://localhost:8123", expect: "200 or 401" }
+      last_verified: 2026-05-07
+
+# ─── Harness: CoWork ─────────────────────────────────────────────────────────────
+# Brady's mobile/desktop Claude harness. Used for morning sweep, weekly sweep,
+# evening sweep — the daily scheduled rituals. Runs on Anthropic's hosted infra.
+
+cowork:
+  description: "Anthropic-hosted scheduled-agent harness. Owns daily/weekly sweeps."
+  mcp_servers:
+    notion:
+      slug: cowork-mcp-notion
+      tool_prefix: "mcp__claude_ai_Notion__"
+      purpose: Same Notion access as Conductor (sweeps read/write Streaming Notes + Routing Log)
+      verify: { type: mcp_tool, check: "mcp__claude_ai_Notion__notion-search" }
+      last_verified: never  # confirm next CoWork session
+
+    gmail:
+      slug: cowork-mcp-gmail
+      verify: { type: mcp_tool, check: "mcp__claude_ai_Gmail__search_threads" }
+      last_verified: never
+
+    google_calendar:
+      slug: cowork-mcp-gcal
+      verify: { type: mcp_tool, check: "mcp__claude_ai_Google_Calendar__list_events" }
+      last_verified: never
+
+    granola:
+      slug: cowork-mcp-granola
+      verify: { type: mcp_tool, check: "mcp__claude_ai_Granola__list_meetings" }
+      last_verified: never
+
+    otter:
+      slug: cowork-mcp-otter
+      verify: { type: mcp_tool, check: "mcp__claude_ai_Otter__search" }
+      last_verified: never
+
+  notes:
+    - "CoWork sessions don't have file system access to ~/conductor/* — agents must read repo via git."
+    - "When CoWork agent claims an MCP is missing, cross-check against this registry first."
+
+# ─── Harness: Claude Desktop (Mac app) ───────────────────────────────────────────
+# Brady's desktop Claude.ai client. Used for ad hoc work, light coding, agent chat.
+
+claude_desktop:
+  description: "Claude.ai desktop app on Mac. Personal/strategic chat surface."
+  mcp_servers:
+    status: unknown
+    notes:
+      - "Brady has not yet inventoried Claude Desktop MCPs. Run a session and ask Claudine to enumerate, then update this section."
+  verify_protocol: |
+    To populate: open Claude Desktop, ask "list every MCP server currently connected on this surface,"
+    then transcribe the answer into this section with verify entries.
+
+# ─── Harness: Claude in Chrome ───────────────────────────────────────────────────
+# Browser-native Claude. Used for Suno, Midjourney, mception navigator, suno-songwriter.
+
+claude_in_chrome:
+  description: "Claude extension running inside Chrome. Owns browser-resident skills (Suno, Midjourney, mception navigator)."
+  capabilities:
+    chrome_session: { verify: { type: manual, check: "Open Chrome, confirm Claude side panel renders" }, last_verified: 2026-05-07 }
+    midjourney_signed_in: { verify: { type: manual, check: "Visit midjourney.com and confirm logged in to correct account" }, last_verified: never }
+    suno_signed_in: { verify: { type: manual, check: "Visit suno.com and confirm logged in" }, last_verified: never }
+    mception_logged_in: { verify: { type: manual, check: "Visit mception.ai/ and confirm Clerk session" }, last_verified: never }
+
+# ─── Harness: ChatGPT (Phil) ─────────────────────────────────────────────────────
+# Phil's ChatGPT agent surface. Per Amendment 1, Phil-the-agent is non-executing —
+# the daily Phil pre-sweep runs via Claudine on Conductor. ChatGPT surface is for
+# Brady's ad hoc grooming chats with Phil.
+
+chatgpt:
+  description: "OpenAI ChatGPT — Phil's persona surface. Non-executing per Amendment 1."
+  agent_personas:
+    phil: { last_verified: 2026-05-07, role: "Notion grooming dialogue partner" }
+  notes:
+    - "ChatGPT does not have access to Brady OS files or Notion MCP. Don't ask it to execute — paste output into Conductor for execution."
+
+# ─── Cross-Surface Data Sources ──────────────────────────────────────────────────
+# These are services available via at least one harness's MCP. Source-of-truth IDs
+# live in infrastructure-registry.yml; this section says which surfaces can reach them.
+
+data_sources:
+  notion_workspace:
+    surfaces: [conductor, cowork]
+    purpose: Streaming Notes, Routing Log, Research Library, Companies, Projects (see infrastructure-registry.yml for IDs)
+    verify: { type: mcp_tool, check: "mcp__claude_ai_Notion__notion-search" }
+    last_verified: 2026-05-07
+
+  gmail_brady:
+    surfaces: [conductor, cowork]
+    account: brady.smallwood@gmail.com
+    verify: { type: mcp_tool, check: "mcp__claude_ai_Gmail__search_threads" }
+    last_verified: 2026-05-07
+
+  gmail_family:
+    surfaces: [conductor, cowork]
+    account: bksmallwoodfam@gmail.com
+    verify: { type: manual, check: "Confirm Gmail MCP can search bksmallwoodfam@gmail.com label scope" }
+    last_verified: never
+
+  google_calendar_primary:
+    surfaces: [conductor, cowork]
+    verify: { type: mcp_tool, check: "mcp__claude_ai_Google_Calendar__list_calendars" }
+    last_verified: 2026-05-07
+
+  google_drive_personal:
+    surfaces: [conductor]
+    verify: { type: mcp_tool, check: "mcp__claude_ai_Google_Drive__search_files" }
+    last_verified: 2026-05-07
+
+  monarch_money:
+    surfaces: [conductor]
+    purpose: Personal + business finances (Finn skill source)
+    verify: { type: manual, check: "No API. Manual CSV export via Chrome: Settings > Data > Download transactions (JS click required)" }
+    last_verified: 2026-04-29
+
+  airtable_workspaces:
+    surfaces: [conductor]
+    verify: { type: mcp_tool, check: "mcp__claude_ai_Airtable__list_workspaces" }
+    last_verified: 2026-05-07
+
+  vercel_projects:
+    surfaces: [conductor]
+    primary_project: mception-ai
+    legacy: munich (do not use)
+    verify: { type: mcp_tool, check: "mcp__claude_ai_Vercel__list_projects" }
+    last_verified: 2026-05-07
+
+  github_brady_os:
+    surfaces: [conductor]
+    repo: brady-os
+    verify: { type: shell, check: "gh auth status" }
+    last_verified: 2026-05-07
+
+  telegram_telly:
+    surfaces: [conductor]
+    purpose: Outbound notifications via bot token (~/telly-bot/.env.local), inbound via Telly webhook
+    verify: { type: file, check: "/Users/bs/telly-bot/.env.local" }
+    last_verified: 2026-05-07
+
+  home_assistant:
+    surfaces: [conductor]
+    purpose: Roborock vacuum control via REST API
+    verify: { type: http, check: "http://localhost:8123/api/" }
+    last_verified: 2026-05-07
+
+# ─── Connector Wishlist (drives Musashi Connector Scout) ─────────────────────────
+# Capabilities Brady wants but doesn't yet have a connector for. Musashi reads this
+# during Phase 4.5 to bias new-tool searches toward gaps that actually matter.
+
+wishlist:
+  - capability: "Direct Monarch Money API access (currently CSV-export-only)"
+    why: "Finn skill blocks weekly on manual export. Any official or third-party Monarch MCP would unlock daily refresh."
+    last_searched: 2026-05-07
+
+  - capability: "iMessage read/search MCP"
+    why: "Sweeps currently have to inspect attributedBody hex blobs for CutTime/school messages. A native MCP would simplify."
+    last_searched: never
+
+  - capability: "USPS Informed Delivery scraping"
+    why: "Financial anomaly review needs mail-in-transit signal; currently manual."
+    last_searched: never
+
+  - capability: "Walmart+ / Amazon order history scraping"
+    why: "Financial anomaly review currently uses Gmail order confirmations only — gaps when emails miss."
+    last_searched: never
+
+  - capability: "Clerk Admin API MCP"
+    why: "Musashi Deploy Mode would automate allowlist edits without leaving the agent surface."
+    last_searched: never
+
+  - capability: "Substack subscriptions API/MCP"
+    why: "Daily whitepaper currently scrapes via Bright Data. Native API would be cheaper + faster."
+    last_searched: never
