@@ -10,6 +10,14 @@
 
 ---
 
+## Pre-Start Personal Prep
+
+Tasks Brady needs to complete before Day 1 at 1915 South.
+
+- [ ] Buy button-down shirts + polos (wardrobe for exec role) — Amazon or in-store
+
+---
+
 ## Customer Problem
 
 1915 South is growing fast (Jacksonville 2022, Yulee 2025), ranked #50 US furniture retailer, record sales and profit in 2025 under Justin. Under pressure from Ashley corporate (Todd Wanek) on the **GMROI franchise directive** (Dec 2024) and the AI-or-get-left-behind posture. Investing in AI via Zapsight (data foundation + agentic AI) but without an internal operating layer between data infrastructure and store-level business decisions. Justin joined 13 months ago from Ashley Global Retail (SVP Retail Sales & Ops) — first non-family President — and is building the new leadership team.
