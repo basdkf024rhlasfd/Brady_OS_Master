@@ -18,12 +18,12 @@ Last updated: 2026-05-08
 
 | Date | Merchant | Amount | Insurer | Status | Notes |
 |------|----------|--------|---------|--------|-------|
-| 2026-05-07 | AFLAC Wellness benefit | $150.00 | Aflac | **Open** | Wellness claim — 11 AM block 05/07. Submit via Aflac portal. |
-| 2026-05-07 | AFLAC CI Screening benefit | $50.00 | Aflac | **Open** | Critical Illness screening claim — same session. Submit with wellness. |
+| 2026-05-07 | AFLAC Wellness benefit | $150.00 | Aflac | **Open — due Mon 05/11** | Brady pushed to Monday. Submit via Aflac portal. |
+| 2026-05-07 | AFLAC CI Screening benefit | $50.00 | Aflac | **Open — due Mon 05/11** | Brady pushed to Monday. Submit with wellness. |
 | 2026-04 | Siloam Springs Clinic | $1,856.68 | UHC | **Open** | Unknown service type — pull EOB from UHC portal first |
 | 2026-04 | Wellness & Courage | $420.00 | UHC (verify coverage) | **Open** | Confirm plan covers this before submitting |
 | 2026-05 | Kia — auto insurance claim | TBD | Allstate | **Open** | File claim with Allstate. Details unknown — Brady to initiate. |
-| 2026-05 | Minivan — auto insurance claim | TBD | Allstate | **Open — BLOCKED** | Waiting on Karissa: date/time, what happened, photos, whether she started anything. Text sent 05/07. |
+| 2026-02 (approx) | Minivan — auto insurance claim | TBD | Allstate | **Open — ready to file** | Karissa replied 05/07: scraped side of van on metal bollard (upside-down U) at gas station, ~February 2026, no photos, no prior claim. She'll help if guided. Next: Brady calls Allstate to open claim, then guides Karissa on any follow-up. |
 
 ---
 
