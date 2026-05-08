@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--
+  Kids Test Results 1-Pager Template
+  Skill: 3-reference/skills/kids-test-results-onepager/
+
+  Usage: duplicate this file, replace {{PLACEHOLDERS}}, save the rendered output
+  to ~/brady-os-local/family/kids/ (NEVER the repo — sensitive kid data).
+
+  Color identity (preserve across runs so kids recognize their pages):
+    Isla   → purple   (.isla)
+    Luke   → blue     (.luke)
+    Quinn  → pink     (.quinn)
+    Lily   → reserve  (.lily)  — when needed
+    Faith  → reserve  (.faith) — when needed
+
+  One <div class="page <kid>"> block per kid. Last page should drop
+  page-break-after via :last-child rule (already in CSS).
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{TITLE}}</title>
+<style>
+  @page { size: letter; margin: 0.6in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    page-break-after: always;
+    padding: 0.2in 0;
+    max-width: 7.3in;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .header-bar {
+    border-radius: 8px;
+    padding: 18px 24px;
+    color: white;
+    margin-bottom: 18px;
+  }
+  .isla  .header-bar { background: linear-gradient(135deg, #6b46c1, #9f7aea); }
+  .luke  .header-bar { background: linear-gradient(135deg, #1e6091, #3b82c9); }
+  .quinn .header-bar { background: linear-gradient(135deg, #b91c5c, #e94e8c); }
+  .lily  .header-bar { background: linear-gradient(135deg, #047857, #10b981); }
+  .faith .header-bar { background: linear-gradient(135deg, #b45309, #f59e0b); }
+
+  .header-bar h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+  }
+  .header-bar .sub {
+    margin-top: 4px;
+    font-size: 14px;
+    opacity: 0.92;
+    font-weight: 300;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .stat-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-card .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #64748b;
+    font-weight: 600;
+  }
+  .stat-card .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 2px;
+  }
+  .stat-card .note {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 1px;
+  }
+
+  .section { margin-bottom: 16px; }
+  .section h2 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid;
+  }
+  .isla  .section h2 { color: #6b46c1; border-color: #d6bcfa; }
+  .luke  .section h2 { color: #1e6091; border-color: #bfdbfe; }
+  .quinn .section h2 { color: #b91c5c; border-color: #fbcfe8; }
+  .lily  .section h2 { color: #047857; border-color: #a7f3d0; }
+  .faith .section h2 { color: #b45309; border-color: #fde68a; }
+
+  .section p { font-size: 13px; margin: 6px 0; }
+  .section .lead {
+    font-size: 14px;
+    font-weight: 500;
+    background: #f8fafc;
+    padding: 10px 12px;
+    border-left: 4px solid;
+    border-radius: 0 6px 6px 0;
+  }
+  .isla  .section .lead { border-left-color: #6b46c1; }
+  .luke  .section .lead { border-left-color: #1e6091; }
+  .quinn .section .lead { border-left-color: #b91c5c; }
+  .lily  .section .lead { border-left-color: #047857; }
+  .faith .section .lead { border-left-color: #b45309; }
+
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+    margin: 6px 0;
+    columns: 2;
+    column-gap: 18px;
+  }
+  .checklist li {
+    font-size: 12.5px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    break-inside: avoid;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #94a3b8;
+    border-radius: 3px;
+  }
+  .checklist li .meta {
+    color: #64748b;
+    font-size: 11px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .footer {
+    margin-top: 14px;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 11px;
+    color: #64748b;
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     KID PAGE TEMPLATE — duplicate this <div class="page {{KID_SLUG}}">
+     block once per kid. Replace all {{PLACEHOLDER}} tokens.
+     KID_SLUG must be one of: isla / luke / quinn / lily / faith
+     ========================================================= -->
+<div class="page {{KID_SLUG}}">
+  <div class="header-bar">
+    <h1>{{KID_FULL_NAME}}</h1>
+    <div class="sub">{{KID_GRADE}} · {{KID_SCHOOL}} · {{REPORT_PERIOD}}</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="label">{{SUBJECT_1_LABEL}}</div>
+      <div class="value">{{SUBJECT_1_LEVEL}}</div>
+      <div class="note">{{SUBJECT_1_NOTE}}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{{SUBJECT_2_LABEL}}</div>
+      <div class="value">{{SUBJECT_2_LEVEL}}</div>
+      <div class="note">{{SUBJECT_2_NOTE}}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{{SUBJECT_3_LABEL}}</div>
+      <div class="value">{{SUBJECT_3_LEVEL}}</div>
+      <div class="note">{{SUBJECT_3_NOTE}}</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>{{NARRATIVE_HEADER}}</h2>
+    <p class="lead">{{NARRATIVE_LEAD_SENTENCE}}</p>
+    <p><strong>Stand-out moments:</strong> {{STAND_OUT_MOMENTS}}</p>
+    <p><strong>{{ONE_THING_HEADER}}</strong> {{ONE_THING_TO_WORK_ON}}</p>
+  </div>
+
+  <div class="section">
+    <h2>{{READING_HEADER}}</h2>
+    <ul class="checklist">
+      <!-- 8 books per kid, calibrated to Lexile band -->
+      <li>{{BOOK_1_TITLE}} <span class="meta">— {{BOOK_1_AUTHOR}}</span></li>
+      <li>{{BOOK_2_TITLE}} <span class="meta">— {{BOOK_2_AUTHOR}}</span></li>
+      <li>{{BOOK_3_TITLE}} <span class="meta">— {{BOOK_3_AUTHOR}}</span></li>
+      <li>{{BOOK_4_TITLE}} <span class="meta">— {{BOOK_4_AUTHOR}}</span></li>
+      <li>{{BOOK_5_TITLE}} <span class="meta">— {{BOOK_5_AUTHOR}}</span></li>
+      <li>{{BOOK_6_TITLE}} <span class="meta">— {{BOOK_6_AUTHOR}}</span></li>
+      <li>{{BOOK_7_TITLE}} <span class="meta">— {{BOOK_7_AUTHOR}}</span></li>
+      <li>{{BOOK_8_TITLE}} <span class="meta">— {{BOOK_8_AUTHOR}}</span></li>
+    </ul>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <h2>{{LEFT_COLUMN_HEADER}}</h2>
+      <ul class="checklist" style="columns:1;">
+        <li>{{LEFT_ITEM_1}}</li>
+        <li>{{LEFT_ITEM_2}}</li>
+        <li>{{LEFT_ITEM_3}}</li>
+        <li>{{LEFT_ITEM_4}}</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>{{RIGHT_COLUMN_HEADER}}</h2>
+      <ul class="checklist" style="columns:1;">
+        <li>{{RIGHT_ITEM_1}}</li>
+        <li>{{RIGHT_ITEM_2}}</li>
+        <li>{{RIGHT_ITEM_3}}</li>
+        <li>{{RIGHT_ITEM_4}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    {{CLOSING_LINE}}
+  </div>
+</div>
+<!-- =========================================================
+     END KID PAGE — duplicate above for each additional kid
+     ========================================================= -->
+
+</body>
+</html>
