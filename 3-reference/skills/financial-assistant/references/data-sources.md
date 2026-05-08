@@ -2,7 +2,7 @@
 
 Tracks all financial data sources: what we have, what's stale, what needs scraping.
 
-Last updated: 2026-04-19
+Last updated: 2026-05-08
 
 ---
 
@@ -76,14 +76,16 @@ These data sources require Chrome browser scraping (via `claude-in-chrome` MCP t
 
 ### 2. Amazon Order History
 - **URL:** https://www.amazon.com/gp/your-account/order-history
-- **Status:** COMPLETE (scraped Apr 17, 2026 — see `data/amazon-doordash-scrape-2026-04-17.md`)
-- **Account:** Brady's Amazon (42 orders, past 3 months)
+- **Status:** COMPLETE (scraped May 8, 2026 — see `data/amazon-scrape-2026-05-08.md`; prior scrape `data/amazon-doordash-scrape-2026-04-17.md`)
+- **Account:** Brady's Amazon (36 orders, Mar 28 – May 8, 2026)
 - **Key findings:**
-  - ALL 42 orders ship to Brady L Smallwood — zero Utah deliveries
-  - Only 2 return flags on Brady's account (vs 78 returns in Monarch)
-  - **The Monarch Amazon returns must be from Karissa's own Amazon account**
-  - Notable: Nest cameras ($499 total), robot vacuum ($547), Subscribe & Save Celsius
-- **Priority:** Done — Karissa's Amazon account is the gap
+  - ALL orders ship to Brady L Smallwood — zero Utah deliveries confirmed in both scrapes
+  - 2 refunds: adidas kids shoes Apr 22 ($78.93 total)
+  - Gross spend $1,773.78 / net $1,694.85 for 6-week window
+  - CELSIUS Subscribe & Save running 6 orders in 6 weeks ($157.38 = ~$26/week)
+  - Big-ticket: roborock ($547.49) + Nest Cam ($218.99) + TV wall mount set ($95.59) = $862.07 in period
+  - **Monarch Amazon returns still attributable to Karissa's separate account**
+- **Priority:** Done — Karissa's Amazon account remains the gap
 
 ### 3. DoorDash Order History + Payment Methods
 - **URL:** https://www.doordash.com/orders + /consumer/payment/
@@ -199,7 +201,7 @@ Run before any major analysis session:
 - [x] Gmail financial email scan (Gmail MCP) — **DONE Apr 17** (see gmail-scan file)
 - [x] Walmart.com subscription scrape — **COMPLETE Apr 24** (73 items, full cadence + cost data — see `grocery-subscriptions.md`)
 - [~] Walmart.com order history scrape — **PARTIAL Apr 17** (2 pages, key Utah address found — order history pagination still needed)
-- [x] Amazon order scrape (Chrome agent) — **DONE Apr 17** (42 orders, all Brady, no Utah)
+- [x] Amazon order scrape (Chrome agent) — **UPDATED May 8** (36 orders, Mar 28–May 8, all Brady, no Utah — `data/amazon-scrape-2026-05-08.md`)
 - [x] DoorDash order + payment scrape (Chrome agent) — **DONE Apr 17** (orders + payment methods + address)
 - [ ] Arvest HELOC balance check (Chrome agent) — NOT STARTED
 - [ ] Target order scrape (Chrome agent) — NOT STARTED (low priority)
