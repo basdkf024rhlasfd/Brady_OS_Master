@@ -107,6 +107,18 @@ This is exactly the same structural pattern as the Clark/Monacan run: paternal s
 
 ---
 
+## Bull family published genealogies — IN HAND (added 2026-05-09)
+
+Three publications by Mary Frances Carey, Certified Genealogist #237, now in `research/source/`. Definitive published secondary sources for Bull families in Accomack County. Directly address V2-QUEUE B2. Full analysis: `research/25-bull-family-carey-genealogies.md`. Credibility: 3 (secondary published; underlying citations are primary Accomack court records).
+
+- **`BullsofAccCo.pdf`** — *Bulls of Accomack County, Virginia* (48 pp.). Main 8-generation line: Tobias I → Tobias II → Daniel (will 1781, enslaved people named) → Ezekiel → Elisha (b. c.1803) → Edward T. (d. 1856, wife Susan Elizabeth Kellam) → Henry Lee → Charles Maurice. Includes Eastern Shore map.
+- **`BullBagwell.pdf`** — *Bulls of Accomack County: The Bagwell Bull Line* (47 pp.). Separate branch: Tobias I → Tobias II → Tobias III → John → Bagwell (5th) → William → Bagwell (7th). **Curtis Bull = Revolutionary War pensioner; all descendants eligible DAR/SAR.** Potential third DAR path.
+- **`BullsofMessongoCreek.pdf`** — *Bulls of Messongo Creek: Supplement to Bulls of Accomack County* (14 pp., 1996). Geographic focus: Helltown / Messongo Creek / southern Accomack (matches the V2 Bull-family triangle). Named informants: Hilda Jean Bull White, Herbert J. Bull Jr. (Sanford), Agnes Bell Taylor, Joanie Slater, Marvin L. Hamblin (Crisfield MD), Karen L. Simkins (Milford DE).
+
+**Critical open question:** Fannye Bull's father (the Bull who married Mary Eliza Rogers c. 1893–1895) not yet identified in these texts. Finding him is the link between the Carey genealogies and the direct Donahoe Heritage line.
+
+---
+
 ## Phase 2 agent reading list
 
 Every Phase 2 agent: read this file first, then own your numbered file end-to-end.
