@@ -1,12 +1,48 @@
 # Project — Monacan Heritage Research
 
-**Owner:** Brady
+**Owner:** Brady (post-Phase 5 ongoing maintenance: **Genie**)
 **Started:** 2026-05-06
-**Status:** Active research / draft whitepaper complete
+**v2 Plan locked:** 2026-05-09
+**Status:** v1 deliverables complete (heritage + Atha Sorrells + Earlier Generations + Modern PI). v2 in pre-flight per `V2-QUEUE.md`.
 
 ## Goal
 
 Pierce the family mystery around Brady's Monacan Indian heritage and the early-1900s Mormon conversion in Buena Vista, VA. Produce a definitive whitepaper for Brady's kids and broader family that answers — with sources — who we actually are, what was done to us, and what we should do next.
+
+## v2 Whitepaper Spec (locked 2026-05-09)
+
+**Scope reframe.** v1 treated this as a Clark project with Tyree / Curry / Sorrells as satellites. v2 reframes as the **Clark and Tyree heritage** (paternal Monacan line) with Curry and Sorrells as in-line research, paralleling the Donahoe project's multi-line scope. The project folder name and Notion anchors stay stable.
+
+**Title (working):** *The Clark, Tyree, and Monacan Line — A Family Heritage Compiled for [TBD: Brady's kids? broader family? — Brady's call before render]*
+
+**Subtitle:** *v2 — Custom Research Paper, 2026*
+
+**Fineprint (copied from Donahoe v2 spec):** AI did the work of compiling from original sources. Any inaccuracies in facts may come from those original sources, although some occasional AI mistakes still arise. Readers should treat sourced claims as primary, AI synthesis as secondary, and verify before treating as canonical.
+
+**Target word count:** 12,000–15,000 words (vs. ~9,500 in v1's heritage whitepaper). Adds:
+- **Demise + Divergence** keystone chapter (~4,000–6,000 words) — Monacan polity collapse 1607–1924 + cross-project paternal-vs-maternal contrast.
+- **The First Clark** chapter — original Clark who married into Monacan.
+- **FFV chapter** — file 17's Custis / Thoroughgood / Offley cascade through Lutie Fannie Clark, but **only verification-walk-survivors**.
+- Updated map appendix with Monacan landmark layer.
+
+**Hard gates (per genealogy-research SKILL):**
+1. Verification Walk file (`research/18-relationship-verification-walk.md`) must complete before v2 synthesis starts.
+2. Brady reads v2 markdown before HTML/PDF render.
+3. Append-only research files; corrections get new numbers, never overwrite.
+
+## File numbering convention (v1 vs v2)
+
+- Files **01–17** are v1 (research, corrections, modern PI). Append-only — do not renumber.
+- File **18 onward** is v2 (Verification Walk + new research from `V2-QUEUE.md` Tier A/B firings).
+
+## Standalone deliverables (new in v2)
+
+In addition to the v2 whitepaper, v2 produces two standalone documents driven by Brady's directive (2026-05-09):
+
+- `deliverables/uva-stewardship-essay.md` — UVA stewardship essay (2,500–4,000 words). Built on Tier B8 institutional artifact inventory. Suitable for circulation to UVA leadership.
+- `deliverables/recognition-push.md` — Recognition Push companion (3,000–5,000 words). Built on Tier B9 unrecognized landmarks scout. Suitable for handoff to MIN tribal government for political/legal action.
+
+Full v2 plan and execution queue: **`V2-QUEUE.md`** (this folder).
 
 ## Source materials (`research/source/`)
 
