@@ -34,6 +34,7 @@ Last updated: 2026-04-22
 | Jem 8th Street | ~$106/mo | Unknown recurring — flag for Brady to identify. |
 | Casey's | ~$17/txn, frequent | Arkansas gas station. |
 | Maverik | ~$17/txn, very frequent | **Utah gas station.** High transaction count on Karissa's card = Utah household driving. |
+| 1st Green Lawn | ~$140/invoice | **Lawn treatment vendor.** Paid via SoFi Bill Pay, not Cash App. Address: 9685 AR-72, Bentonville, AR 72712. Last invoice #26031, dated 5/4/2026. Known-good — do not flag as anomaly. Pairs with Hugo Martinez (Cash App, mowing crew). |
 
 ## Suspicious / Unresolved
 
