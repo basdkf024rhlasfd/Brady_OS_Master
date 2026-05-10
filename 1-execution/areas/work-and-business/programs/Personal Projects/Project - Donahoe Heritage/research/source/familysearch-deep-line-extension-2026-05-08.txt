@@ -1,0 +1,114 @@
+## A. Coulbourne / Boggs / Parker line
+
+**Coulbourne side (walking up from Col William Coulbourne 997F-NJ3):**
+
+- Col. William Coulbourne (997F-NJ3, 1630–1689); b. Westminster, London, England (chr. St Martin-in-the-Fields 19 Jan 1630); d. Pomfret Plantation, Marion, Somerset Co, Maryland; parents = Charles Coulbourne (G7JM-5XZ) + Audrey (9VRC-CFR); 21 sources, 7 collaborate notes, 1 memory; well documented (Torrence's *Old Somerset on the Eastern Shore of Maryland*, Maryland Historical Trust property file). The profile's Brief Life History explicitly cites the **1623 Visitation of Somerset (Harleian Society Pub. Vol. XI, p. 26)**: "William Colborne of Wythehill → John Colborne → Thomas Colborne → William Colborne of Braton, living 1623, married Mary Topp" — and notes that this *visitation pedigree* is "not unlikely" but explicitly NOT proven for the Maryland immigrant. Treat the visitation chain below as TRADITION, not confirmed.
+  - Charles Coulbourne (G7JM-5XZ, 1603–1662); b. St Martin in the Fields, Westminster, London; d. Somerset Co, MD; parents = William Benjamin Coulbourne (G29Y-F2G) + Mary Topp (L1CH-MDB); 4 sources; profile reproduces the same 1623 Harleian pedigree text verbatim.
+    - William Benjamin Coulbourne (G29Y-F2G, 1578–1623); b. Somerset, England; d. Norfolk, Virginia; parents = Thomas Colborne (GC2X-4TD) + Mary Topp Coulbourne (G29Y-393); 1 source; **child-list contains 11 children but ~5 are obvious duplicate ghost siblings (Charles/Charles Covekowne, William/William Covekowne, etc.) — un-merged duplicate profiles, data-integrity flag.**
+      - Thomas Colborne (GC2X-4TD, 1556–1625); b. Somerset, England; bur. 17 Jul 1625 Lacock, Wiltshire, England; parents = John Colborne (GDM5-R42) + Margery Flinger (GDMF-JM7); 1 source; this is the "Thomas Colborne" of the visitation pedigree.
+        - John Colborne (GDM5-R42, ~1515–1585); b./d. Wythehill, Somerset, England; parents = John Colborne Sr. (P9C2-ZJ4) + Lady Agnes Hellier (P9C2-4H7); 1 source; **conflict flag — same Lady Agnes Hellier is also linked as wife to alternate father William Colbourne (PCC1-G7W, 1495–1555); two parent-pair candidates, neither sourced.**
+          - John Colborne Sr. (P9C2-ZJ4, 1490–Deceased); b. Wythehill, Somerset, England; **0 sources; no parents linked; line dead-ends here ★** (the profile explicitly notes the chain is "Per Diamond Family Tree in Ancestry" — i.e., crowdsourced, not documentary).
+
+**Parker side (walking up from William H. Parker 9SKY-DJ3, husband of Frances Colburne):**
+
+- Capt. William H. Parker (9SKY-DJ3, ~1717–1784); b./d. Accomack Co, VA; parents = John Parker III (MDWF-BKF) + Frances Colburne (L4H6-5PC); 3 sources; Revolutionary War Lieutenant 1776 → Captain 1778–81.
+  - John Parker III "Sr." (MDWF-BKF, 1685–1755); b./d. Accomack Co, VA; parents = John Parker II (LZPL-BL1) + Bridget Sacker (LHRR-CSM); 4 sources; will written 25 Aug 1754, probated 1 Jan 1755.
+    - John Parker II (LZPL-BL1, ~1662–before 7 Feb 1721); b. Cashville, Accomack Co, VA; parents = John Parker Sr (LY2W-JFR) + Amy Anderson (LHRR-Z5F, dau of Garrett Anderson I); 2 sources; will of 26 Jan 1721.
+      - John Parker Sr "of Mattapony" (LY2W-JFR, 25 May 1634–19 Sep 1695); b./chr. Southampton, Hampshire, England; d. Cashville, Accomack Co, VA; immigrant; parents = George Parker (LD16-D95) + Abigail Barlow (LV7T-7FW); 7 sources; came to Virginia by Mar 1655 transported by his brother George; patented 600 acres "Mattapany" 1660; well documented in MILESFILES and Whitelaw's *Virginia's Eastern Shore*.
+        - George Parker "of Southampton" (LD16-D95, 16 Dec 1596–before 9 May 1639); b./d. Southampton, Hampshire, England; bur. St Laurence Church, Southampton; parents = John Parker (LV7T-75M) + Marie Gerard (LV58-SLB); 15 sources; will dated 24 Oct 1638 (transcribed in full on the profile).
+          - John Parker (LV7T-75M, 1550–1612); b./d. Southampton, Hampshire, England; m. Marie Gerard 1587 Southampton (or 1570 per a citation note). **No further parents linked; line dead-ends here ★** for the Parker patriline.
+
+## B. Kellam / Garrison / Floyd line
+
+**Kellam side (walking up from Richard Kellam II LQR6-LDT):**
+
+- Richard Kellam II "of Occahannock" (LQR6-LDT, chr. 30 Aug 1618–between 1 Jun and 6 Oct 1703); b./chr. St James Parish, Aslackby, Lincolnshire, England; d. Accomack Co, VA; parents = Richard Kellam (GWDK-5KZ) + Katherine Ederidge (GWDK-YBN); **69 sources** — by far the best-documented person in this entire walk; came to VA on the *Primrose* (Capt. Douglas) cleared from Gravesend 27 Jul 1635 aged 16; m. Sarah Ansley c. 1649; built large Eastern Shore estate.
+  - Richard Kellam (GWDK-5KZ, ~1581–23 Sep 1636); b. Aslackby, Lincolnshire, England; d. St Giles without Cripplegate, Middlesex, England; m. Katherine Ederidge 20 Mar 1616 St Paul, Lincoln; 9 sources; parents = Edmund Kellam (LJK6-W15) + Mary Kellam (LL74-S6W).
+    - Edmund Kellam (LJK6-W15, 1555–Deceased); b./d. England; m. Mary Kellam (LL74-S6W) c. 1578 London; **0 sources**; parents = Thomas Kellam (GJ1G-BRC) + Elizabeth Draper (GJ1G-RFJ); also has a second listed wife "Frances West" — an unsourced alternate marriage, **data-quality flag**.
+      - Thomas Kellam (GJ1G-BRC, 1520–1577); b. Boxley, Kent, England; d. Crayford, Kent, England; m. Elizabeth Draper 1554; **0 sources**; parents = "Robert Kellam Als Draper" (GT44-6PL, 1490–1547) + Elizebeth Fyfield (LRQZ-JR4, 1500–1557). **STOP — fraud-flag concentration**: father is recorded as "Kellam alias Draper" while wife Elizabeth is also a Draper; sibling list mixes Kellams with Drapers (Bennett Draper, John Draper, William Draper, Henry Draper, Mathew Draper); two of them have the placeholder birth/death "–1558" / "–1577" (no date). This entire branch is a likely cross-family conflation rather than a real Kellam pedigree. **Walking the Kellam line stops here.** ★
+
+**Garrison side (Rose Kellam's husband's father — the ascent on Brady's chain through Jonathan Garrison's father is missing):**
+
+- Rose Kellam (LH6H-HYQ, 1650–1717) — confirmed daughter of Richard Kellam II in the children list of the parent profile (verified above).
+- Her son **Jonathan Garrison (968Z-BYJ, 1690–1760) has NO father linked in the FamilySearch tree** — only Rose Kellam as mother. So the Garrison patriline above Jonathan dead-ends immediately. ★
+
+## C. Donahoe / Donaghe Ulster line
+
+- James Donaghe (LY3C-FTL, 1635–1685); b. Kilkeel, Co. Down, Northern Ireland; d. Ireland; **0 sources**; parents = William Donaghe (GMWB-R7L) + Margaret Donaghe (PQBP-3JC); same surname both sides, **data-quality flag**.
+  - William Donaghe (GMWB-R7L, 1605–1655); b. Kilkeel, Co. Down, Ireland; d. Ireland; **0 sources**; parents = George Donaghey (PQBX-PL4) + Isabella Harvey (PQBF-KNF).
+    - George Donaghey (PQBX-PL4, before 1591–Deceased); b. Ireland; d. unknown; **0 sources; no parents linked; line dead-ends here ★.** No Ulster Plantation record, no Scottish origin documentation, no parish data — the entire Donaghe patriline above Brady's documented immigrant is vibes-only with no sources whatsoever.
+
+**Currie / Curry side (Elizabeth Currie, James Donaghe's wife):**
+
+- Elizabeth Currie or Curry (G7H6-SRJ, 1637–1687); b. Ardee, Co. Louth, Ireland; **0 sources**; parents = Thomas Currie (PQBG-51F) + Gordana Gordia (PQBG-1RH). **Spouse "Gordana Gordia" name flag — looks invented** (no sources, made-up-sounding name).
+  - Thomas Currie (PQBG-51F, 1607–1657); b./d. Ardee, Co. Louth, Ireland; **0 sources; no parents linked; line dead-ends here ★.** No documented Curry English/Scottish origin, no Plantation record.
+
+## D. Maynard baronetcy line
+
+**FRAUD FLAG — line walked but stopped due to explicit "parents not confirmed" warning on the very first profile.**
+
+- Sir John Henry Maynard "3rd Baronet" (KDBG-GPF, 30 Jun 1681–16 Nov 1738); b. Walthamstow, Essex, England; d. Anne Arundel, Maryland; 21 sources; tree-linked parents = Sir William Maynard 1st Baronet (LHT1-T9G, 1641–1685) + Lady Mary Baynbrigg (LCVK-NKG, 1647–1716). **THE PROFILE CARRIES TWO EXPLICIT FRAUD-FLAG NOTES from researcher Steve Maynard (20 Jun 2018):**
+  1. "Was Henry Maynard in the line of the Maynards of Easton Court? … In the case of Henry son of Charles, there is no evidence that he was ever married — he mentions neither a wife nor children in his will. While there are many references among Henry & Sarah's descendants that he came from the line of the Maynards of Easton Court, when the family histories of that family are analyzed in the various books on English peerage (nobles), a specific heritage is not at all obvious. **More research for proven documentation of Henry's parentage is needed.**"
+  2. "**Parents of Henry Maynard not confirmed (as of 20 Jun 2018)** … On 15 Jun 2018, a merger of the files of a Henry Mainard with this file of Henry Maynard was made by another contributor. That merger resulted in Henry being reported as the son of Henry and Mariorey Maynard of Gloucester, England. It is unclear what the evidential basis for the merger was. … In my extensive research of Henry (my 6th great-grandfather), I have seen no other information suggesting he comes from the Gloucester area."
+  - Additional red flag: the *real* William 1st Baronet of Walthamstow had a son Henry who became the 3rd Baronet — but per the same Steve Maynard note, that real Henry "was married to a woman of a different name and his will makes no mention of a wife Sarah or children in Maryland."
+  - Additional red flag: the children list of Sir William 1st Baronet on this tree shows TWO sons claiming "3rd Baronet" — "William Maynard 2nd Baronet" (MM2B-X68) AND "Sir Henry Maynard 3rd Baronet" (G144-WRC) AND "Sir John Henry Maynard 3rd Baronet" (KDBG-GPF). The duplicate "3rd Baronet" assignment is itself diagnostic of a fraudulent merge.
+  - **Walking this line stops here. The "Maynard 3rd Baronet" identification is an unverified aspirational graft.** ★
+
+**Hopkins side (Lady Rachel Sarah Hopkins G3XH-3DR, 1675–1737):**
+
+- Same fraud-flag pattern. The profile carries an explicit note: "This Sarah's **maiden name is 'unknown'** as are her birth date and place, parentage, and when she was married to Robert Hopkins. … Most of the sources that appear on record LHYM-MCZ for Sarah Hopkins are accurate with respect to record LBDT-1TP for Sarah (Unknown) Hopkin [Maynard]." The "Lady Rachel Sarah" name and the "Sir Robert Hopkins Sr / Lady Sarah Elizabeth DeVille" parents are genealogical-fanfic upgrades on a real person whose actual maiden name is genuinely unknown. **Walking the Hopkins line above her is unsafe.** ★
+
+## E. Daly / Donovan Famine-Irish line
+
+- John Daly (MC1D-84F, 1841/42–Deceased); b. Ireland (no townland recorded on his profile); m. Ellen Donovan **19 Sep 1859 Minane Bridge, Co. Cork**; both later residing 1870/1880 Grass Lake, Jackson Co, Michigan; 33 sources; father = Timothy Daly (P7R4-KC5); mother not linked.
+  - Timothy Daly (P7R4-KC5, 1816–1871); b. **Ballincolly, Co. Cork, Ireland**; d. Cork, Co. Cork, Ireland; **0 sources, no parents linked; line dead-ends here ★.** No emigration record, no ship, no religious affiliation captured.
+
+- Ellen Donovan (MC1D-8HW, ~1844–Deceased); b. Ireland; 29 sources; parents = Daniel Donovan (PQS5-YL4) + Catherine Arundel (G4XZ-674); m. 3 Mar 1835 Muintervarra, Cork, Co. Cork.
+  - Daniel Donovan (PQS5-YL4, 1812–1880); b. **Durrus, Co. Cork, Ireland**; d. Pennsylvania, USA (so he emigrated post-Famine); 5 sources; father = Thade T Donovan (PQH6-9X4); mother not linked.
+    - Thade T Donovan (PQH6-9X4, 1780–Deceased); b. Cork, Co. Cork, Ireland; **0 sources, no parents linked; line dead-ends here ★.** No religious affiliation, no ship, no townland tighter than "Cork."
+  - Catherine Arundel (G4XZ-674, 1811–Mar 1892); b. **Durrus, Co. Cork, Ireland**; d. Co. Cork, Ireland; 5 sources; parents = William Arundel (PQST-4C3) + Judith Sullivan (PQSR-SLX). Note: a duplicate father William Arundel (G4XZ-8FY) is also linked — un-merged duplicate, data-quality flag.
+    - William Arundel (PQST-4C3, 1775–Deceased); b. **Pembrokeshire, Wales** (! — significant: the Arundel patriarch came from Wales, not Ireland); 1 source; **no parents linked; line dead-ends here ★.**
+    - Judith Sullivan (PQSR-SLX, –1884); no sources, no parents linked. Line dead-ends ★.
+
+## F. Dean Pilgrim-stock line / Fisher Great-Migration line
+
+**Dean side: NO Pilgrim-stock connection in the tree as it stands.**
+
+- Nathaniel Dean (P76R-69B, 9 Jan 1693–11 Oct 1727); b. Connecticut, USA; m. Johanna Fisher 17 May 1716 Mass. Bay Colony; 3 sources (American Genealogical-Biographical Index, Vol 41 p 370); **NO PARENTS LINKED**; tree dead-ends here ★. There is no documented Mayflower/Plymouth Bay/Massachusetts Bay 1620–1640 ancestry on this profile — the Dean line, contrary to family tradition, terminates at a 1693-born Connecticut individual with no traceable parents.
+
+**Fisher side (Johanna Fisher's line — this is the well-documented Great Migration ancestor on this branch):**
+
+- Johanna "Hannah" Fisher (P765-18Y, 5 Sep 1686–Deceased); b. Dedham, Suffolk, Mass. Bay Colony; 8 sources; parents = Josiah Fisher (L4VG-YSR) + Meletiah Bullen (LZM9-YTJ).
+  - Josiah Fisher (L4VG-YSR, 1 May 1654–12 Apr 1736); b./d. Dedham, Mass. Bay Colony; 16 sources; freeman 13 Feb 1683/4; representative 1699; selectman; coroner 1716; will 27 May 1735; parents = Anthony Fisher (M9DB-TRM) + Johanna Faxon (FYFQ-6H2); married 7 Sep 1647 Dedham.
+    - Anthony Fisher Jr. (M9DB-TRM, ~1623–13 Feb 1670); b./chr. Syleham, Suffolk, England (chr. 7 Aug 1623); d. Dedham, Suffolk, Mass. Bay Colony; 20 sources; **arrived Boston on the ship *Rose* from Yarmouth, 26 June 1637 — Great Migration documentation confirmed**; freeman 6 May 1646; joined Dedham Church 20 Jul 1645; parents = Anthony Fisher Sr (93SD-F8P) + Alice (LRMS-PZ3).
+      - Anthony Fisher Sr (93SD-F8P, 23 Apr 1591–18 Apr 1671); b./chr. Syleham, Suffolk, England; d. Dorchester, Mass. Bay Colony; 30 sources; **also arrived on the *Rose* 26 Jun 1637**; took Freeman's Oath 1646; signed the Dedham Covenant (#36); m. Alice c. 1614/15 Suffolk, England; parents = Anthony Fisher (M7M9-7G6) + Mary Fiske (LZGX-WK7); cited NEHGR sources include *NEHGR* 151:171–183 ("The English Ancestry of New England Settlers Joshua and Anthony Fisher" by Hyde & Plummer, 1997) and Smith & Sanborn, *The Ancestry of Eva Belle Kempton 1878–1908* (NEHGS, 1996–2008), 4:239–244.
+        - Anthony Fisher (M7M9-7G6, chr. 1 Feb 1558–11 Apr 1640); chr./bur. Stradbroke, Suffolk, England; bur. 11 Apr 1640 Syleham, Suffolk; m. Mary Fiske 16 Oct 1586 Fressingfield, Suffolk; 9 sources; parents = William Fisher (MBYX-79X) + Margery Bert (L8Y1-GCV).
+          - William Fisher (MBYX-79X, 1527–4 Jul 1591); b. Syleham, Suffolk; d./bur. South Elmham St James, Suffolk; m. Margery Bert 15 Oct 1551 Stradbroke, Suffolk; 10 sources; will 14 Jun 1591 (probated 9 Aug 1591, Consistory Court of Norwich, reg wills 88:152). Yeoman, literate, owned armor. Parents = Robert Fisher (LRCK-DLH) + Lucille Middleton (LC2D-5M1).
+            - Robert Fisher (LRCK-DLH, ~1495–Jan 1564); b. Wingfield, Suffolk; d. Syleham, Suffolk; 10 sources; identified in his father's 1522/3 will (Archdeaconry Court of Suffolk reg wills 8:300, FHL #096911); appears in 1524 lay subsidy of Syleham; parents = John Fisher (G55R-K3V, 1465–1523) + Christina Reinholt (GKLW-6J6, 1479–1523).
+              - John Fisher of Wingfield (G55R-K3V, 1465–1523); deepest documented Fisher ancestor in the tree; will 27 Feb 1522/3 (proved 15 Apr 1523). **No further parents linked in the tree; line terminates here at a 15th-century Suffolk yeoman ★** — exactly the documented European-origin terminus the user is looking for.
+
+## G. Bull / Floyd Eastern Shore VA line
+
+**Bull side: terminus is exactly where the GEDCOM ended.**
+
+- Elijah "Eli" Bull (LZRY-9GP, ~1748/1760–Deceased); b. Accomack Co, VA; m. Nancy Fitzgerald 21 Dec 1785 Accomack Co; 6 sources; **NO PARENTS LINKED** in the FamilySearch tree; line dead-ends here ★. No documented colonial Accomack/Northampton Co Bull patentee ancestor is in the tree above him — extending the Bull surname further back in FamilySearch is not currently possible.
+
+**Floyd side (Berry Floyd K83H-88L):**
+
+- Berry Floyd (K83H-88L, 7 Jul 1714–13 Jun 1771); b. Northampton Co, VA; d. Accomack Co, VA; m. Esther Dalby c. 1740; 2 sources; parents = Matthew Floyd Sr (GZVD-NFN) + Sarah Green (LZDJ-92N).
+  - Matthew Floyd Sr (GZVD-NFN, ~1684–9 Jun 1752); b./d. Northampton Co, VA; will 15 Apr 1751 (probated 9 Jun 1752); 2 sources; parents = John Floyd I (LRNC-CKK) + Mary Ann Berry (LZD2-T6V).
+    - John Floyd I "of Hog Island" (LRNC-CKK, ~1640–before 28 Jul 1687); b./d. Northampton Co, VA; **arrived Northampton Co 30 Jul 1660** as one of 20 headrights transported by John Wilcocks; 12 sources; will 2 Apr 1687 (probated 28 Jul 1687); patented 100 acres tract N37 (1668), then in 1681 a patent for 2,200 acres (with Hunt, Bibby & Clarke) for "Hogg Island alias Shooting Beach"; appointed constable of Northampton Co 1669. **The profile's own Brief Life History explicitly states: "He was presumably born in Wales, although nothing of his parentage or early life is known."** Tree-linked parents = Nathaniel Floyd (L271-LHS) + Mary Floyd (LL7Q-PBV) — but per the profile's own narrative this is unconfirmed and a Hog Island deed shows the surname spelled "Lloyd."
+      - Nathaniel Floyd (L271-LHS, 1601–before 1674); b. Wales; d. Isle of Wight Co, VA; 10 sources; arrived on the *Bona Nova* before 4 Feb 1624/5 at Blaney's Plant, James City, VA; patented 850 acres in Isle of Wight Co, VA, 20 Nov 1637. **FRAUD FLAG / data-integrity warning:** the profile's explicit "Questionable Parents" note states: "It is not clear that **Sir John Theophelus Floyd** and Elizabeth 'Lady Mary in Queen Elizabeth's Court' Veriar Woodward are his parents. … The sources used for his parents' marriage (1608) show they married 7 or 8 years after Nathaniel was born (1600/1) … No source information can be found which indicates she actually was part of Queen Elizabeth's court." Additional internal contradiction: tree-linked father Sir John Floyd (GQN3-SFP, 1575–1634) is shown with a son "John Floyd 1650–1725" — i.e., born 16 years AFTER his alleged father died. **The "Sir John Floyd" / "Lady Elizabeth Veriar of Queen Elizabeth's Court" graft above Nathaniel Floyd is exactly the Shawnee-Heritage-style aspirational nobility pattern the user asked me to flag and refuse to walk past.** ★ **Walking the Floyd line stops at Nathaniel.**
+
+### Summary of fraud / data-integrity flags raised across all sections
+
+1. **Coulbourne (A):** Visitation pedigree (Wythehill → John → Thomas → William of Braton) is *traditional, not proven* — the profile itself says so. Children-list of William Benjamin Coulbourne contains ~5 duplicate ghost siblings ("CovekowneMale" entries). John Colborne (1515) has two contradictory parent-pair assignments.
+2. **Kellam (B):** Above Edmund Kellam (1555) the tree confuses Kellams with Drapers — Thomas Kellam's father is "Robert Kellam ALS Draper" and Thomas's wife is also a Draper, and his sibling list is half-Draper/half-Kellam. Almost certainly a cross-family conflation. Stopped walking.
+3. **Donaghe / Currie (C):** Entire Donaghe patriline has zero sources on every node; spouse "Gordana Gordia" appears invented. No documented Ulster Plantation or Scottish-origin record.
+4. **Maynard (D):** **Highest-priority fraud flag in this entire walk.** The profile carries explicit "Parents of Henry Maynard not confirmed" notes from a serious researcher; the "Sir John Henry Maynard 3rd Baronet" identification is internally contradicted by the existence of TWO separate "3rd Baronet" sons under Sir William Maynard 1st Baronet, and the real 3rd Baronet's will doesn't mention Sarah or Maryland children.
+5. **Hopkins (D):** "Lady Rachel Sarah Hopkins" — profile note says her maiden name is genuinely unknown; the "Lady" + DeVille parents are unverified upgrades.
+6. **Daly / Donovan / Arundel (E):** Lines die out at 1780–1812 individuals with 0 sources, no townland tighter than "Cork," no ship records, no religious affiliations. Notable side fact: the Arundel surname enters via Wales (Pembrokeshire), not Ireland.
+7. **Dean (F):** Nathaniel Dean (1693, Connecticut) has NO parents linked. There is **no Pilgrim/Plymouth/Mass. Bay Great Migration link on the Dean side at all** in the current tree.
+8. **Fisher (F):** Cleanest deep European chain in the entire walk — fully sourced through NEHGR 151 to John Fisher of Wingfield, Suffolk (b. 1465).
+9. **Bull (G):** Elijah Bull (1748) has NO parents linked. No colonial Accomack patentee Bull ancestor available.
+10. **Floyd (G):** **Second-highest fraud flag.** Above Nathaniel Floyd (1601), the tree grafts onto a "Sir John Theophelus Floyd / Lady Mary Veriar of Queen Elizabeth's Court" couple which the profile's own note flags as bogus (impossible birth years, unverifiable nobility claims). Walked-line terminates at Nathaniel Floyd of Isle of Wight Co (a

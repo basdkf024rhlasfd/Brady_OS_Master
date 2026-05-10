@@ -1,0 +1,138 @@
+## Task 1: Relationship Verification
+
+**Important framing.** FamilySearch's "View Relationship" tool only reports the relationship from the *logged-in user* (Brady Smallwood, KW6Y-FDB) to the target ancestor. It does not let you reset the "from" person, and there is no working URL parameter to swap it. So the labels below are Brady's, not Susan's. However, the descent path the tool draws makes it perfectly clear which lines pass through Susan (LF86-MCX, Brady's mother — the Dean/Donahoe maternal side) and which do **not** (the Smallwood/Clark/Cash paternal side, which has nothing to do with Susan). That distinction is the most important finding here. For lines that *do* pass through Susan, Susan's relationship is exactly one generation closer than Brady's (e.g. Brady's "9th great-grandfather" = Susan's "8th great-grandfather"). For lines that don't pass through Susan, Susan has **no genealogical relationship at all** to that ancestor — those are Brady's paternal kin only.
+
+### 1. Lt. Col. Richard Cocke Sr. — LY5R-B2Q (1597–1665)
+
+- **FamilySearch label (Brady):** "My 2nd cousin twelve times removed"
+- **Direct ancestor of Susan?** **NO.** This is a *cousin* relationship, not a direct line. Susan and Richard Cocke Sr. share common ancestors William Edmund Cocke (L8WV-6H7, 1520–1582) + Elizabeth Neville Carter (LC8K-XD2, 1519–1567), but Richard Cocke Sr. descends through their son William Edmund Cocke (G41H-HQ1) → Thomas Cocke (LL7K-TS9) → Richard Cocke Sr. Susan descends through their *other* son Thomas John Cox Esq (LJLL-2RZ).
+- **Path from common ancestors down to Susan (Brady's chain minus Brady):**
+  William Edmund Cocke (L8WV-6H7, 1520–1582) → Thomas John Cox Esq (LJLL-2RZ, 1543–1587) → John Cox (LV4R-D18, 1569–1630) → Robert Cocke (L1F2-96V, 1607–1665) → Rebecca Cocke (GMH3-DYR, 1661–Deceased) → Johannah Taylor (G6R2-J5K, 1703–1770) → John Chandler III (LWJP-VGB, 1722–1781) → Mitchel Chandler Sr. (LW6G-263, 1750–1796) → Mitchell Chandler Jr. (MJ95-BX7, 1776–1851) → Sylvester Randal Chandler Sr. (K6MY-NXH, 1819–1877) → Caroline White Chandler (K8SW-5Y8, 1850–1914) → Mary Eliza Rogers (LC7S-HXW, 1878–1946) → Fannye Rogers "Fannie" Bull (LHNT-HK4, 1906–1982) → Mary Ellen Donahoe (LF86-MZT, Living) → Susan Caylor Dean (LF86-MCX, Living).
+- **Chain integrity:** No fraud flags or broken links visible; two "Living" placeholders (Mary Ellen Donahoe, Susan herself) sit at the bottom but are Brady's normal living kin, not blocking the historical chain.
+
+### 2. Capt. Adam Thorowgood — L5FW-RK1 (1604–1640)
+
+- **FamilySearch label (Brady):** "My 12th great-grandfather"
+- **Direct ancestor of Susan?** **NO — this line is on Brady's paternal Smallwood side, which does not touch Susan at all.**
+- **Brady's descent path (does NOT include Susan):** Adam Thorowgood (L5FW-RK1) → Elizabeth Thorowgood (27JC-2WB, 1633–1670) → Margaret Michael (KNW3-JZY, 1658–1697) → Henry Custis (LHG7-ZWD, 1680–1732) → Anne Custis (G8H6-MF2, 1725–1768) → Nancy Staton (L2WK-3BR, 1758–1834) → John Heartly (G7BC-Y5T, 1784–1858) → Eliza Hartless (LVPD-VW3, 1816–1880) → Julia A Floyd (LC6R-7VN, 1853–1900) → Sarah Luticia Floyd (KZRX-PCQ, 1869–1950) → Georgie Anna Sorrells (KW86-LJH, 1883–1969) → Nellie Mae Cash (KW8S-2D7, 1910–2003) → "Lutie" Fannie Clark (KW84-1WJ, 1926–2001) → Dennis Eugene "Gene" Smallwood (LXH1-JSF, 1950–2014) → Brady Smallwood.
+- **Chain integrity:** No broken links or fraud flags visible; chain is fully populated. **But again — none of these people descend to or from Susan Caylor Dean.**
+
+### 3. Sarah Offley — 28MK-WGM (1609–1657)
+
+- **FamilySearch label (Brady):** "My 12th great-grandmother"
+- **Direct ancestor of Susan?** **NO — same Smallwood paternal line as Adam Thorowgood (she's his wife).** Same descent path as #2.
+- **Chain integrity:** Clean, identical to Adam's. **Not in Susan's tree.**
+
+### 4. Maj. Gen. John Custis II Esq — 9J1J-CNC (1630–1696)
+
+- **FamilySearch label (Brady):** "My 11th great-grandfather"
+- **Direct ancestor of Susan?** **NO — Smallwood paternal line.**
+- **Brady's descent path (does NOT include Susan):** John Custis II (9J1J-CNC) → Capt. John Custis III (LHKW-694, 1654–1713) → Henry Custis (LHG7-ZWD, 1680–1732) → Anne Custis (G8H6-MF2, 1725–1768) → Nancy Staton (L2WK-3BR, 1758–1834) → John Heartly (G7BC-Y5T, 1784–1858) → Eliza Hartless (LVPD-VW3, 1816–1880) → Julia A Floyd (LC6R-7VN, 1853–1900) → Sarah Luticia Floyd (KZRX-PCQ, 1869–1950) → Georgie Anna Sorrells (KW86-LJH, 1883–1969) → Nellie Mae Cash (KW8S-2D7, 1910–2003) → "Lutie" Fannie Clark (KW84-1WJ, 1926–2001) → Dennis Eugene Smallwood (LXH1-JSF, 1950–2014) → Brady.
+- **Chain integrity:** Clean. **Not in Susan's tree.**
+
+### 5. Col. William Coulbourne — 997F-NJ3 (1630–1689)
+
+- **FamilySearch label (Brady):** "My 10th great-grandfather" → therefore Susan's 9th great-grandfather.
+- **Direct ancestor of Susan?** **YES.** This line *does* go through Susan (Dean/Donahoe maternal side).
+- **Descent path from William Coulbourne down to Susan:**
+  Col. William Coulbourne (997F-NJ3, 1630–1689) → Robert Coulburne (L7FB-BHJ, 1667–1698) → Frances Colburne (L4H6-5PC, 1696–1755) → William H. Parker (9SKY-DJ3, 1717–1784) → Ruth Parker (LZR4-MQP, 1742–1815) → Francis Boggs III (L4HS-B3C, 1775–1823) → Eliza Evins Boggs (KHZS-J1M, 1813–1880) → William Frances Rodgers (KZNX-SJ5, 1847–1895) → Mary Eliza Rogers (LC7S-HXW, 1878–1946) → Fannye Rogers "Fannie" Bull (LHNT-HK4, 1906–1982) → Mary Ellen Donahoe (LF86-MZT, Living) → **Susan Caylor Dean (LF86-MCX, Living).**
+- **Chain integrity:** Fully populated, no fraud flags, no privacy blocks above Susan's mother. **Clean direct line.**
+
+### 6. Richard Kellam II — LQR6-LDT (1618–1703)
+
+- **FamilySearch label (Brady):** "My 9th great-grandfather" → therefore Susan's 8th great-grandfather.
+- **Direct ancestor of Susan?** **YES.** Dean/Donahoe maternal side, but routed through Bull/Floyd/Garrison/Kellam (not Rogers/Boggs/Coulbourne).
+- **Descent path from Richard Kellam II down to Susan:**
+  Richard Kellam II (LQR6-LDT, 1618–1703) → Rose Kellam (LH6H-HYQ, 1650–1717) → Jonathan Garrison (968Z-BYJ, 1690–1760) → George Garrison (KBZW-57Z, 1734–1789) → Rachel Garrison (L89D-9QW, 1766–1815) → Rachel Floyd (L89D-9QX, 1792–1823) → Edward S Bull (LCFD-GJC, 1820–1856) → Joseph Saples Bull (KK39-MP8, 1850–1923) → Fannye Rogers "Fannie" Bull (LHNT-HK4, 1906–1982) → Mary Ellen Donahoe (LF86-MZT, Living) → **Susan Caylor Dean (LF86-MCX, Living).**
+- **Chain integrity:** Clean. No broken links, no fraud flags, no privacy blocks above Susan's mother.
+
+### 7. Jane (Joane) Pierce — L5T1-JVH (1595–1650)
+
+- **FamilySearch label (Brady):** "My 5th cousin twelve times removed"
+- **Direct ancestor of Susan?** **NO — and not even a direct ancestor of Brady. This is a cousin link on the Smallwood paternal side, with a "Living" privacy placeholder in the descent chain on Jane's branch.**
+- **Common ancestors:** Thomas Malet Esq. (LJGR-BPH, 1440–1501) + Joan Wadham (G4RS-SPB, 1430–1510). Brady descends through their son Sir William Mallett (L6JZ-XK6) → Baldwin Mallett → Anne Mallett → Johanna Vivian → William Phillips → Henry Phillips → Alice Phillips → Mercy Stimpson → John Harmon → Martha Harmon → Sarah E Williams → Mary Margaret Clark → Lee Harrison Clark → Joseph Anderson Clark → James William Clark → "Lutie" Fannie Clark → Dennis Eugene Smallwood → Brady. Jane Pierce descends from the same couple through their daughter Joana Mallett (LVSZ-73G) → **[Living person, unknown sex, privacy-blocked]** → John Fitzpen (L2F1-JBM, 1528–1583) → Robert Fitzpen (LZXR-BK8) → Joan Phippen (LH2L-X71, 1580–1660) → Jane Pierce.
+- **Chain integrity issue flagged:** There is a **"Living / Unknown sex" privacy placeholder** between Joana Mallett and John Fitzpen on Jane Pierce's side of the V — which is suspicious because everyone in this segment died in the 1500s and *cannot* be living. This is almost certainly a corrupted record or a misjoined merge. Apart from that, the cousin relationship to Brady is not in dispute by the tool, but **Jane Pierce is not in Susan's direct ancestry.**
+
+### 8. John Smith of Stanley Hundred — LZZ2-PYC (1625–1691)
+
+- **FamilySearch label (Brady):** "My 6th cousin eleven times removed"
+- **Direct ancestor of Susan?** **NO.** John Smith is Jane Pierce's son — same Mallett/Fitzpen/Phippen common-ancestor structure as #7, with the same "Living / Unknown sex" privacy placeholder defect on the Pierce/Smith branch.
+- **Path on John Smith's side (with the same defect):** Joan Wadham + Thomas Malet → Joana Mallett (LVSZ-73G) → **[Living, Unknown sex]** → John Fitzpen (L2F1-JBM) → Robert Fitzpen (LZXR-BK8) → Joan Phippen (LH2L-X71) → Jane Pierce (L5T1-JVH) → John Smith (LZZ2-PYC). Brady's side is identical to #7.
+- **Chain integrity issue flagged:** Same privacy placeholder problem as Jane Pierce — there's a "Living" person sitting between two 16th-century individuals, which is a clear data error. **Not in Susan's direct ancestry.**
+
+### Summary table
+
+| # | Ancestor | FSID | Brady's label | In Susan's direct line? | Susan's relationship |
+|---|---|---|---|---|---|
+| 1 | Richard Cocke Sr | LY5R-B2Q | 2nd cousin 12× removed | No (cousin via Cocke/Cox) | 2nd cousin 11× removed |
+| 2 | Capt. Adam Thorowgood | L5FW-RK1 | 12th great-grandfather | **No (Smallwood paternal)** | None — not related to Susan |
+| 3 | Sarah Offley | 28MK-WGM | 12th great-grandmother | **No (Smallwood paternal)** | None — not related to Susan |
+| 4 | John Custis II Esq | 9J1J-CNC | 11th great-grandfather | **No (Smallwood paternal)** | None — not related to Susan |
+| 5 | Col. William Coulbourne | 997F-NJ3 | 10th great-grandfather | **Yes (Donahoe/Bull/Rogers)** | 9th great-grandfather |
+| 6 | Richard Kellam II | LQR6-LDT | 9th great-grandfather | **Yes (Donahoe/Bull/Garrison)** | 8th great-grandfather |
+| 7 | Jane Pierce | L5T1-JVH | 5th cousin 12× removed | No (cousin via Mallett); chain has a "Living" placeholder defect | None as direct ancestor |
+| 8 | John Smith of Stanley Hundred | LZZ2-PYC | 6th cousin 11× removed | No (cousin via Mallett, same defect) | None as direct ancestor |
+
+**Bottom line for Task 1:** Of the 8 "FFV ancestors" you flagged, only **two — Col. William Coulbourne (997F-NJ3) and Richard Kellam II (LQR6-LDT) — are actually direct ancestors of Susan Caylor Dean** in the FamilySearch tree as it stands today. The Thorowgood / Offley / Custis II trio are real direct ancestors of Brady, but only on his Smallwood paternal side — Susan has zero genealogical relationship to them. The Cocke, Pierce, and Smith of Stanley Hundred connections are all *cousin*-type relationships through shared 15th- and 16th-century English ancestors, not lineal descents — and the Pierce/Smith chains have a corrupt "Living/Unknown sex" privacy placeholder sitting between two 16th-century individuals, which needs to be cleaned up in the tree.
+
+## Task 2: Mary Kimburrow Memories
+
+Mary "Molly" Kimburrow (LRKY-41Q, before 30 Jan 1703 – 4 Nov 1775) has exactly 4 Memories on her profile. Listed in the order they appear on the tab (left-to-right):
+
+### Memory 1 — "Maria M Malden in Virginia, U.S., Wills and Probate Records"
+
+- **Type:** Document scan (Ancestry.com index page screenshot, JPEG)
+- **Upload date:** 15 September 2024
+- **Contributor:** richardfriley1
+- **File name:** 5C1DE3B3-067F-4EDA-BE98-B293F7CA5800.jpeg
+- **Tagged people:** Mary Kimburrow (LRKY-41Q)
+- **Content:** A black-and-white scan of an Ancestry.com index page from "Virginia, U.S., Wills and Probate Records." The masthead reads "Maria M Malden in Virginia, U.S., Wills and Probate Records" with a Cumberland County, Virginia subheading. The body of the page is a tabular alphabetical surname index (Personal/Property column) listing dozens of Cumberland County wills entries from roughly 1781 to the 1940s — surnames Vaughan, Vaughn, Wilkinson, etc., with dates, page numbers and book references. Despite the title naming "Maria M Malden," she is not visibly the focal entry on the visible portion; this looks like Ancestry served the index page where Maria M. Malden's name happened to appear in their search hit. **Not Bible-related.**
+
+### Memory 2 — (no title; displayed as "No title" in the viewer)
+
+- **Type:** Document scan / photograph of a printed page (image of a page from a typewritten or printed family history)
+- **Upload date:** 23 September 2023
+- **Contributor:** LittleFoxBurk
+- **File name:** fs_temp_image_crop.jpg
+- **Tagged people:** William Woodrum (2MGG-Q29, 1728–1792) and Mary Kimburrow (LRKY-41Q); also a non-clickable "Mary Baze" tag (alternate name)
+- **Content:** A photograph of a printed page (numbered "3" at the bottom-left, with the URL "https://www.genealogy.com/ftm/l/e/w/Robert-W…" visible at the bottom edge — this is a page from a Genealogy.com Family Tree Maker user-submitted family file, not an original primary source). The image is cropped — the visible text begins mid-sentence:
+
+  > "It was also written in the same bible that Mary 'Molly' was born in 1704 and that she was an Indian. All males in her tribe (Monacan) had been killed by the settlers. The Indian Village was called 'Mowhemencho'. They occupied 10,000 acres of land close to Richmond on the south side of the James River in Virginia. Mary 'Molly' later became John's wife."
+
+  Below that, a numbered list of children is given:
+  > "Children of John Woodrum and Mary 'Molly' are:
+  > 2. i. William² Woodrum, born 11 May 1728 in St. James Parish, Goochland County, Virginia; died Abt. 1792 in Goochland County, Virginia.
+  > 3. ii. John Woodrum, Jr., born 1730 in Goochland County, Virginia; died 03 Jan 1775 in Goochland County, Virginia.
+  > 4. iii. Sarah Woodrum, born Abt. 1732 in Goochland County, Virginia; died Bef. 1783. She married John Sneed 06 Apr 1763 in Virginia; born 1738 in Virginia.
+  > 5. iv. David Woodrum, born 1734 in Goochland County, Virginia.
+  > 6. v. Mary Woodrum, born Abt. 1737 in Goochland County, Virginia; died Abt. 1795 in Fluvanna, Virginia.
+  > 7. vi. Alice Woodrum, born Abt. 1738 in Goochland County, Virginia; died 1798.
+  > 8. vii. Susannah Woodrum, born Abt. 1739 in Goochland County, Virginia."
+
+  John and John Jr.'s lines are highlighted in yellow.
+- **Priority assessment vs. your two target items:**
+  - This is **NOT (a)** a photograph or scan of the actual Bible page from Dr. Jacob Woodrum of Tennessee's family Bible. It is a typewritten *secondary* narrative *referring* to the Bible ("It was also written in the same bible that Mary 'Molly' was born in 1704 and that she was an Indian…").
+  - This is **NOT (b)** the Marjorie Fluor Moore memo dated 27 July 1983. There is no date, no author byline, and no "Marjorie Fluor Moore" or "Moore" name visible. The page is from a Genealogy.com FTM user file (Robert-W…), not a Moore-authored memo, and the page is page 3 of that file rather than a single-page memo.
+  - However, this page is the closest documentary echo of those sources in this memories collection. It claims to summarize the Bible's content and the Native (Monacan) ancestry assertion. It would have been derived from either the Bible itself, the Moore memo, or a tertiary source quoting one of them. Treat it as a **secondary** witness, not the Bible scan or the Moore memo.
+
+### Memory 3 — (no title; displayed as "No title")
+
+- **Type:** Document scan (photograph of a printed book page)
+- **Upload date:** 23 September 2023
+- **Contributor:** LittleFoxBurk
+- **File name:** fs_temp_image_crop.jpg
+- **Tagged people:** Mary Kimburrow (LRKY-41Q)
+- **Content:** A photograph of page 54 of "The Douglas Register" (a published transcription of the parish register of Rev. William Douglas of St. James Northam Parish, Goochland Co., Virginia). The page is an alphabetical marriage index from BAKER through BELLAMY. The relevant entry — which is why this memory was attached to Mary — reads: **"BAZE, Mary, & John Woodrum, both in this parish Nov: 15 1761 p. 4."** Other entries on the page include Baker, Bailey, Ballow, Banks, Bantam, Barclay, Barker, Barnard, Barnes, Barns, Barnet, Barret, Basket, Basset, Bassit, Battersby, Baze (Mary), and Bellamy, with marriage dates in the 1750s–1780s. This document supports the marriage of Mary (under the surname "Baze," an alternate/anglicized form of Kimburrow / Kimborough) to John Woodrum on **15 November 1761** in St. James Parish. **Not Bible-related.**
+
+### Memory 4 — (no title; displayed as "No title")
+
+- **Type:** Image / photo (digital graphic, PNG)
+- **Upload date:** 1 July 2021
+- **Contributor:** Meleea Miller
+- **File name:** Screenshot_2021-07-01-10-16-55(1).png
+- **Tagged people:** Mary Kimburrow (LRKY-41Q)
+- **Content:** The official seal/logo of the **Monacan Indian Nation**. A circular emblem with "MONACAN INDIAN NATION" arched along the top in yellow. The center contains a four-quadrant circular field divided by a white vertical line and a black-and-orange horizontal line: upper-left quadrant shows a pale-blue field with three black-and-white feathered arrows arranged as a directional/compass cross; upper-right quadrant shows a green silhouette map of the state of Virginia on a pale-blue background; lower foreground shows a brown/red walking bear, with two dangling black-and-white eagle feathers hanging from the lower-left of the rim. This is the modern Monacan Nation's tribal emblem and was attached to support the family-tradition claim that Mary "Molly" Kimburrow was of Monacan descent. **Not Bible-related — not a Bible page, not a memo.**
+
+### Bottom line for Task 2
+
+**Neither of your two priority targets is present in Mary Kimburrow's 4 Memories.** There is no scan of Dr. Jacob Woodrum of Tennessee's family Bible, and there is no copy of the 27 July 1983 Marjorie Fluor Moore memo. The closest item is **Memory 2**, an uncredited cropped page (numbered page 3) from a Genealogy.com Family Tree Maker user file that *paraphrases* what the Bible reportedly said — claiming Mary "Molly" was born in 1704 and was Monacan Indian, that the men of her tribe had been killed by settlers, and that the village was called "Mowhemencho" on 10,000 acres on the south side of the James River near Richmond. That paragraph reads like a downstream paraphrase of either the Bible or the Moore memo, but the original of neither is in this Memories tab. If you want to locate them, the next logical places to look are (i) the profile of John Woodrum (Mary's husband) or William Woodrum / John Woodrum Jr. (her sons), and (ii) the Memories tab of Dr. Jacob Woodrum himself if he has a profile in the tree.

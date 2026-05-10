@@ -17,3 +17,10 @@ portal/.env.local
 
 # Claude Code runtime state
 .claude/
+
+# Browser automation artifacts (Playwright / Claude in Chrome scratch)
+.playwright-mcp/
+
+# Python bytecode caches
+**/__pycache__/
+*.pyc

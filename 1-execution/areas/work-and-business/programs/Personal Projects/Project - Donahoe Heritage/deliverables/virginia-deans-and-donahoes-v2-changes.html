@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Virginia Deans and Donahoes — What Changed v1 → v2</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">@page { size: letter; margin: 0.85in 0.9in; }
+html { font-size: 11pt; }
+body { font-family: 'Charter', 'Georgia', 'Times New Roman', serif; line-height: 1.55; color: #1a1a1a; max-width: none; margin: 0; padding: 0; }
+h1, h2, h3, h4 { font-family: -apple-system, 'Helvetica Neue', sans-serif; font-weight: 700; color: #0a0a0a; page-break-after: avoid; }
+h1 { font-size: 22pt; margin: 1.4em 0 0.5em 0; border-bottom: 2px solid #1a1a1a; padding-bottom: 0.3em; page-break-before: always; }
+h1:first-of-type { page-break-before: auto; }
+h2 { font-size: 15pt; margin: 1.4em 0 0.4em 0; color: #1a1a1a; }
+h3 { font-size: 12pt; margin: 1.2em 0 0.3em 0; font-style: italic; font-weight: 600; }
+p { margin: 0 0 0.8em 0; orphans: 3; widows: 3; }
+strong { color: #0a0a0a; }
+em { color: #2a2a2a; }
+a { color: #1a4d7a; text-decoration: none; }
+blockquote { margin: 1em 1.5em; padding: 0.6em 1.2em; border-left: 3px solid #888; background: #f6f4f0; font-style: italic; color: #2a2a2a; page-break-inside: avoid; }
+blockquote p { margin: 0.4em 0; }
+table { border-collapse: collapse; margin: 1em 0; font-size: 10pt; width: 100%; page-break-inside: avoid; }
+th { background: #1a1a1a; color: #fff; padding: 0.5em 0.7em; text-align: left; font-family: -apple-system, sans-serif; font-weight: 600; font-size: 9.5pt; }
+td { padding: 0.4em 0.7em; border-bottom: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) { background: #faf9f6; }
+hr { border: 0; border-top: 1px solid #999; margin: 2em 0; }
+ul, ol { margin: 0.5em 0 0.8em 1.5em; padding: 0; }
+li { margin: 0.25em 0; }
+code { font-family: 'SF Mono', Menlo, monospace; font-size: 9.5pt; background: #efece5; padding: 0.1em 0.3em; border-radius: 2px; }
+.title-block-header { display: none; }
+header#title-block-header { display: none; }
+.cover { page-break-after: always; text-align: center; padding-top: 3in; }
+.cover .title { font-family: -apple-system, 'Helvetica Neue', sans-serif; font-weight: 700; font-size: 32pt; margin: 0 0 0.5em 0; color: #0a0a0a; border: none; padding: 0; }
+.cover .subtitle { font-family: 'Charter', 'Georgia', serif; font-size: 14pt; font-style: italic; color: #2a2a2a; margin: 0 0 2em 0; }
+.cover .version { font-family: -apple-system, sans-serif; font-size: 10pt; color: #6a6a6a; letter-spacing: 0.1em; text-transform: uppercase; }
+
+span.new-v2, span.new-v3, span.new-v4 { color: #1a4d7a; }
+strong span.new-v2, strong span.new-v3, strong span.new-v4 { color: #1a4d7a; }
+table span.new-v2, table span.new-v3, table span.new-v4 { color: #1a4d7a; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Virginia Deans and Donahoes — What Changed v1 →
+v2</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#how-to-read-this" id="toc-how-to-read-this">How to read
+this</a></li>
+<li><a href="#resolved-or-substantially-extended-in-v2" id="toc-resolved-or-substantially-extended-in-v2">Resolved or
+substantially extended in v2</a></li>
+<li><a href="#corrected-in-v2" id="toc-corrected-in-v2">Corrected in
+v2</a></li>
+<li><a href="#carried-forward-unchanged-from-v1" id="toc-carried-forward-unchanged-from-v1">Carried forward unchanged
+from v1</a></li>
+<li><a href="#still-open-at-v2-the-v3-carry-list" id="toc-still-open-at-v2-the-v3-carry-list">Still open at v2 — the v3
+carry list</a></li>
+<li><a href="#a-short-methodological-note" id="toc-a-short-methodological-note">A short methodological
+note</a></li>
+</ul>
+</nav>
+<div class="cover">
+<div class="title">
+What Changed
+</div>
+<div class="subtitle">
+<i>Virginia Deans and Donahoes</i><br />v1 → v2 Companion
+Document<br />Susan Elzey and Paulette Dean<br />2026
+</div>
+<div class="version">
+Version 2 Changelog · May 2026
+</div>
+</div>
+<h2 id="how-to-read-this">How to read this</h2>
+<p>This is the standalone delta document for version 2 of <em>Virginia
+Deans and Donahoes</em>. It exists so a reader who has already read v1
+can see in five minutes exactly what version 2 adds, corrects, or
+retracts — without re-reading the full ~14,500-word whitepaper.</p>
+<p>Inside the v2 whitepaper itself, substantial new findings are marked
+in soft blue (the same <code>#1a4d7a</code> blue as the document’s link
+color) so they’re visible-but-quiet on the page. This document collects
+those marked findings plus the underlying research that justified
+them.</p>
+<p>The conventions:</p>
+<ul>
+<li><strong>Resolved or substantially extended</strong> = a v1 open
+question that v2 closed, or a generation that v2 added to a line. These
+are the load-bearing additions.</li>
+<li><strong>Corrected</strong> = a v1 claim that v2 changed. Some are
+factual (e.g. William Penn → William Patrick Donahoe), some are
+interpretive (e.g. Donahoe Civil War service: Union → Confederate).</li>
+<li><strong>Carried forward unchanged</strong> = v1 findings that v2’s
+research confirmed or did not touch. Listed for completeness.</li>
+<li><strong>Still open at v2</strong> = the carry list to v3. Each item
+names the path to closure.</li>
+</ul>
+<p>Two new primary sources powered most of v2: Susan Elzey’s
+autobiography <em>The Story of My Life</em> (189 pages, updated every
+five years), and Brady’s 3 May 2020 oral history with Mary Ellen Donahoe
+Dean. Plus fourteen parallel documentary research streams that worked
+the deep-line questions v1 left open.</p>
+<hr />
+<h2 id="resolved-or-substantially-extended-in-v2">Resolved or
+substantially extended in v2</h2>
+<h3 id="the-bull-line-now-reaches-1666-289-years-of-continuous-family-ground">The
+Bull line now reaches 1666 — 289 years of continuous family ground</h3>
+<p>V1 dead-ended at Elijah “Eli” Bull (b. ~1748 Accomack) because the
+FamilySearch tree carried no parents for him. V2 closed the gap:
+<strong>Tobias Bull I (d. 1687) → Tobias Bull II (d. 1761, will dated 4
+May 1751) → Daniel Bull (d. 1782) → Elijah Bull (~1748)</strong>. The
+patriarchal precursor surfaces in <strong>John Bulluck and Thomas
+Bulluck on the 1666 Northampton tithables</strong> — the surname-shift
+Bulluck → Bull characteristic of late-seventeenth-century Eastern Shore
+Virginia. The geographic anchor: Tobias II’s 1751 will deeded son
+Benjamin “200 acres on James Walker’s Branch” — colonial alternate name
+for <strong>Pungoteague Creek</strong>, which locals called “Bull Run”
+precisely because of this family. <strong>The Bull family held the same
+Pungoteague Creek ground from at least 1666 through 1955 — 289
+years.</strong> No other branch of Susan or Paulette’s pedigree shows
+that depth on a single piece of land.</p>
+<p><em>Research file 30. Sources: Carey’s three published Bull
+genealogies, Nottingham’s Accomack tithables, Tobias I 1687 will, Tobias
+II 1751 will, Daniel Bull 1782 will.</em></p>
+<h3 id="the-dean-line-now-reaches-1568-six-generations-beyond-v1-and-a-second-1637-pilgrim-immigrant">The
+Dean line now reaches 1568 — six generations beyond v1, and a second
+1637 Pilgrim immigrant</h3>
+<p>V1 dead-ended at Nathaniel Dean (b. 1693, Connecticut), with no
+parents linked. V2 walked it back six generations: <strong>Nathaniel
+Dean (1693 Stonington CT) → James Deane (?–1725, Stonington blacksmith →
+first Plainfield town clerk 1699) → Walter Deane (1612–1693)</strong>,
+who <strong>arrived Boston aboard the <em>Speedwell</em> in April 1637
+from South Chard, Somerset, England</strong>, alongside his brother
+John. → William Deane (1568–1634, South Chard).</p>
+<p>The implication corrects v1’s framing of the Pilgrim ancestry:
+<strong>Susan has TWO documented Great Migration 1637 immigrant
+ancestors, not just one.</strong> Anthony Fisher Sr. on the
+<em>Rose</em> (26 June 1637) was already in v1; Walter Deane on the
+<em>Speedwell</em> (April 1637) is new in v2. The two ships arrived at
+Boston roughly two months apart. The 1716 marriage of Nathaniel Dean to
+Johanna Fisher therefore merged two 1637 Pilgrim-stock founder lines,
+one generation removed from each immigrant.</p>
+<p>The Dean line is now the deepest documented surname line in Brady’s
+tree at roughly 460 years of continuous documentation from South Chard,
+Somerset, England (1568) through Danville, Virginia today.</p>
+<p><em>Research file 27. Sources: Barbour Collection of Connecticut
+vital records; Anderson’s </em>Great Migration* series; Stonington and
+Plainfield town records.*</p>
+<h3 id="the-caylor-line-traces-to-a-documented-1767-pennsylvania-german-immigrant">The
+Caylor line traces to a documented 1767 Pennsylvania-German
+immigrant</h3>
+<p>V1 noted that Lucinda Caylor (b. 1845, m. William Patrick Donahoe)
+was the source of the Caylor middle name in the family and that “Caylor”
+was German Palatine-derived (Köhler / Kayler), but did not trace the
+line to its immigrant. V2 resolved it: <strong>Johannes Kohler arrived
+at Philadelphia on the ship <em>Britannia</em> (Captain Alexander Hardy,
+Rotterdam → Portsmouth → Philadelphia) on 25 October 1767</strong>,
+indentured for approximately four years. The migration corridor:
+Philadelphia 1767 → southeastern Pennsylvania → the Shenandoah Valley by
+1780 → southwest Virginia (Washington, Wythe, Russell, Tazewell
+Counties) by 1800 → eastern Kentucky (Floyd, Wayne) by 1830 →
+Cabell-Wayne West Virginia by 1860. <strong>Lucinda Caylor (b. 1845)
+fits the fourth-generation pattern exactly</strong> — the Cabell-Wayne
+WV Caylor cluster of mid-nineteenth-century Appalachia. Original family
+religion was almost certainly German Reformed or Schwarzenau Brethren,
+transitioning to Methodist or Baptist in later Appalachian
+generations.</p>
+<p><em>Research file 28. Sources: Strassburger and Hinke,
+</em>Pennsylvania German Pioneers* vol. 1; Caylor and Brown,
+<em>Johannes Kohler’s Family</em>.*</p>
+<h3 id="hugh-casslin-donaghe-sr.s-1809-will-pulled">Hugh Casslin Donaghe
+Sr.’s 1809 will pulled</h3>
+<p>V1 noted Hugh Casslin Donaghe Sr. (b. ~1728, d. 1809 Augusta County
+VA) was a substantial Augusta County landholder near Naked Creek but did
+not pull his will. V2 has the will via Chalkley’s Augusta County
+abstract: signed 25 June 1805, codicil 26 February 1807, probated 25
+December 1809. Wife <strong>Anne (née Usher)</strong>, predeceasing him
+by 1809. Children <strong>Elisabeth Donaghe Campbell, John Donaghe,
+Sarah Donaghe, James Donaghe (deceased by 1805), William W. Donaghe (an
+infant in 1805)</strong>. Grandson <strong>Hugh Donaghe</strong> (son of
+the deceased son James). Executors <strong>Archibald Stuart</strong>
+(the Federalist-era Virginia elite) and son John Donaghe. The 1807
+codicil rebukes Robert Campbell’s family. Hugh’s Augusta County land
+patents elsewhere in the record show <strong>1,500-plus acres on Naked
+Creek</strong> plus <strong>1,000 acres at the Mouth of the Miami River,
+Ohio</strong> (purchased from James Culbertson’s 1788 estate).
+<strong>Hugh was a slaveholder by 1770</strong> — confirmed by a Charles
+Pickett mortgage that included “slaves and furniture” — though the 1809
+will is silent on enslaved people, leaving the 1809-status question open
+pending the 1810 estate inventory.</p>
+<p>A separate v2 finding: Hugh was <strong>stabbed by John
+Dunn</strong>, an indentured servant of David Laird, on 21 March 1765;
+Dunn received 39 lashes. Hugh accumulated more than 160 Augusta County
+lawsuits across his life.</p>
+<p><em>Research file 39. Sources: Chalkley’s </em>Chronicles of the
+Scotch-Irish Settlement in Virginia<em>; Augusta County Will Books;
+Pickett-Donaghe mortgage 1770.</em></p>
+<h3 id="rev.-stephen-alexander-donahoes-first-ministerial-appointment-documented">Rev. Stephen
+Alexander Donahoe’s first ministerial appointment documented</h3>
+<p>V1 left the question of Rev. Stephen Alexander Donahoe’s
+denomination, ordination, and charges open. Susan’s autobiography
+(p. 52) confirmed he was the family’s Methodist minister. V2’s
+documentary work landed his first known appointment: <strong>Methodist
+Episcopal Church South pastor at Kanawha Falls, Fayette District,
+Western Virginia Conference, conference year 1891–92.</strong>
+Documented in the 1891 General Conference compilation <em>Minutes of the
+Annual Conferences of the MEC South</em>. The conference session was
+held at Parkersburg, West Virginia, 16–22 September 1891, with Bishop
+Granbery presiding. He is listed under Question 2 (“remaining on
+trial”), implying admission before 1891 (most likely 1890). His charge
+had 105 members. Presiding Elder: C. H. Dowell.</p>
+<p>The geography is decisive. He married Leona Rollyson on 30 June 1891
+at Gauley Bridge, Fayette County, West Virginia — four river miles
+upstream from Kanawha Falls. He was sitting on his own charge at the
+time of his marriage. This anchors his early ministry to the upper
+Kanawha River valley in 1890–1892.</p>
+<p><em>Research file 33. Sources: General Commission on Archives and
+History of The United Methodist Church (gcah.org); Western Virginia
+Conference Annual Conference Journals 1891.</em></p>
+<h3 id="read-farm-located-10084-rushton-rd-green-oak-township-livingston-county-mi">Read
+farm located: 10084 Rushton Rd, Green Oak Township, Livingston County,
+MI</h3>
+<p>V1 noted that Editha Read Dean’s brother Allie ran a dairy farm on
+Rushton Rd, Michigan, but did not locate it. V2 has the farm at
+<strong>10084 Rushton Rd, Green Oak Township, Livingston County,
+Michigan</strong>, between 9 Mile and 10 Mile Roads, on Lake Nichwagh.
+The farmhouse is on the <strong>National Register of Historic
+Places</strong> (1972) as the <strong>Alonzo W. Olds House / Albert Read
+House</strong>. Allie’s wife was Harriet <strong>Driver</strong>. Their
+children: <strong>Loren Albert Read</strong> (1928–2009, Phillips
+Funeral Home, South Lyon), <strong>Lois A. Read Smith</strong> (b.
+~1932, m. Charles “Chuck” L. Smith), <strong>Leslie M. Read</strong>
+(1934–2021). The Florida connection in Mary Ellen’s oral history is now
+refined to <strong>Webster Travel Park, Webster, Sumter County,
+Florida</strong> — a snowbird RV community, not permanent migration.</p>
+<p><em>Research file 34. Sources: National Register of Historic Places
+file; Phillips Funeral Home obituary records; Livingston County
+deeds.</em></p>
+<h3 id="joseph-saples-bulls-two-marriages-and-susie-elizabeth-bull-as-1946-55-grantor-candidate">Joseph
+Saples Bull’s two marriages and Susie Elizabeth Bull as 1946-55 grantor
+candidate</h3>
+<p>V1 treated Mary Ellen’s grandmother Mary Eliza Rogers as Joseph
+Saples Bull’s only wife. V2 found that <strong>Joseph had two
+marriages</strong>: first to <strong>Fanny L. Rogers</strong> (m. 5
+November 1879 at Bobtown VA; d. 14 December 1893 at Accomack — daughter
+of A. M. Rogers), second to <strong>Mary “Mamie” Eliza Rogers</strong>
+(m. 25 March 1896 at Onancock; d. 17 November 1946). Two distinct Rogers
+women, possibly cousins. Documented children include <strong>Arthur
+Clyde Bull</strong> (1880–1911) and <strong>Susie Elizabeth
+Bull</strong> (1885–1963) — both half-siblings to Fannye, both children
+of Joseph’s first marriage. <strong>Susie Elizabeth Bull lived through
+the entire 1946–1955 farm-loss window</strong> (Mary Eliza’s 1946 death
+through the 1955 Eastern Shore Produce Exchange dissolution) and is the
+strongest-probability grantor on the still-missing Bull-farm
+parcel-transfer deed.</p>
+<p><em>Research file 38. Sources: Bobtown VA marriage records 1879;
+Onancock marriage 1896; Eastern Shore Death Notice index.</em></p>
+<h3 id="susans-autobiography-opened-the-family-memory-record">Susan’s
+autobiography opened the family-memory record</h3>
+<p>Susan Dean Elzey’s <em>The Story of My Life I update every five
+years</em> (189 pages, March 2024) was loaded into the project corpus
+and surfaced multiple new facts:</p>
+<ul>
+<li><strong>Stephen Alexander Donahoe was the Methodist
+minister</strong> (autobiography p. 52: “Even though his father was a
+Methodist minister, Dada had trouble behaving in church even as an
+adult”). Closes the v1 open question about whose Methodist ministry
+anchored Mary Ellen’s lifelong Methodism.</li>
+<li><strong>Paul “Dada” Donahoe worked Civil Service at Marine Corps Air
+Station Cherry Point, North Carolina</strong> before retirement to
+Danville. New geography for the family.</li>
+<li><strong>Uncle Billy Donahoe</strong> had Down Syndrome, attended the
+<strong>Virginia School for the Deaf and Blind</strong> age 4–6
+(~1939–41), lived with Mary Ellen and Del 13 years after Fannye’s June
+1982 death, died Alzheimer’s October 1995.</li>
+<li><strong>Joe (Joel Caylor) Donahoe</strong> + wife
+<strong>Nancye</strong> + sons <strong>Harper and Stephen</strong>
+identified as Mary Ellen’s Donahoe-side cousin family in Danville —
+likely holders of family Bibles, photographs, papers.</li>
+<li><strong>Paul “Riley Kidd”</strong> named after a committee in the
+room when he was born. Paul gave <strong>piano lessons to Shirley Temple
+Black’s daughter Linda Susan Agar</strong> on the Eastern Shore in the
+late 1940s/early 1950s.</li>
+<li><strong>Mary Ellen and Del Dean’s family lived on Montague Street,
+Danville</strong> in fall 1963, when Susan, Paulette, and Mary Ellen
+stayed with Paul and Fannye for two months between Del’s transfer to
+Germany and the family’s own ship voyage.</li>
+</ul>
+<p><em>Research file 23. Source: Susan’s autobiography (189 pages,
+primary copy in
+<code>research/source/susan-elzey-story-of-my-life-2024.pdf</code>).</em></p>
+<h3 id="mary-ellens-3-may-2020-oral-history-opened-the-read-inheritance-record">Mary
+Ellen’s 3 May 2020 oral history opened the Read inheritance record</h3>
+<p>Brady recorded Mary Ellen’s oral history three years before her
+death. The recording surfaced material that does not appear in the
+FamilySearch tree or any web source:</p>
+<ul>
+<li><strong>Editha Read had a son Alvin out of wedlock</strong> before
+her marriage to Roy Franklin Dean. Editha’s parents Albert and Addie
+Read excluded her from their inheritance entirely as a result. Alvin did
+not learn of his illegitimacy or the inheritance exclusion until after
+Editha’s death in 1980, at which point he was very upset. The family had
+kept the circumstances secret from him throughout his life. The
+inheritance rift generated lasting hard feelings between Del Dean’s
+siblings and Allie’s children (Loren, Lois, Leslie); the rift between
+Editha and Allie himself was less severe.</li>
+<li><strong>Roy Dean collected indigenous arrowheads</strong> from the
+Read farm over decades. At some point, probably mid-twentieth century,
+the collection was taken to the <strong>University of Michigan</strong>
+and assessed; the assessment reportedly identified one arrowhead as
+<strong>very valuable</strong>. The collection is currently in the
+possession of the Smallwood children (Brady’s generation).</li>
+<li><strong>Pop’s first cousins</strong> Loren Read (m. Helen), Lois
+Read (m. Chuck), Leslie Read (m. another Lois) all named.</li>
+<li><strong>Editha</strong> is pronounced with a short ‘e’ (like
+“edible”), not “Ee-die-tha.”</li>
+</ul>
+<p><em>Research file 24. Source: Brady’s 3 May 2020 oral history with
+Mary Ellen Donahoe Dean.</em></p>
+<h3 id="xmom-column-corpus-search-surfaced-five-high-value-items">7XMOM
+column corpus search surfaced five high-value items</h3>
+<p>Susan’s 957-column 7XMOM corpus (2009–2026, <em>Danville Register
+&amp; Bee</em>) was searched in v2 for deep-tree references. Five items
+worth noting:</p>
+<ul>
+<li><strong>Mary Ellen was WAC</strong> (Women’s Army Corps), not WAVES.
+Susan’s words: “She herself was a WAC until she got married, then
+pregnant with me, and had to leave the Army because pregnancy was a
+no-no back then.”</li>
+<li><strong>Fannye’s full middle name was Rogers</strong> (Fannye Rogers
+Bull) — confirms the Bull/Rogers naming pattern in this branch.</li>
+<li>Susan’s family-tradition reading of the <strong>Caylor</strong>
+surname is <strong>Norman-English</strong>, not German Palatine (the
+documented origin). Susan: “actually a Norman name and was used in
+England after the Norman Conquest in 1088.” V2 records both honestly;
+the paper record is unambiguous.</li>
+<li>A <strong>live Christmas/Thanksgiving cactus directly descended via
+cuttings from the original plant the Read ancestors carried with them
+from England in 1852</strong> sits in Susan’s Danville living room
+today. Same 1852 date as the Read family England-to-Ann-Arbor
+immigration. A living botanical artifact of the Atlantic crossing.</li>
+<li>Aunt Harriet (Driver) Read published two volumes of poetry — useful
+confirmation of her identity and a possible source if any printed copies
+survive.</li>
+</ul>
+<p><em>Research file 32. Source: 957 columns at
+<code>~/Documents/Claude/Projects/7xMom/SusanElzey_TextCorpus/</code>.</em></p>
+<hr />
+<h2 id="corrected-in-v2">Corrected in v2</h2>
+<h3 id="donahoe-civil-war-service-confederate-not-union">Donahoe Civil
+War service: Confederate, not Union</h3>
+<p>V1 speculated that mountain Scots-Irish families were
+Union-sympathizing, and read the Donahoes that way. <strong>V2
+overturned the speculation.</strong> Brady’s Donahoes were Confederate
+Scots-Irish, not Union. <strong>Alexander L. Donahoo</strong>
+(collateral ancestor) served in the <strong>34th Virginia Cavalry
+Battalion (Witcher’s Battalion), Co. A</strong>, and the <strong>16th
+Virginia Cavalry, Co. H</strong> — both Confederate, both raised in
+Wayne County WV/VA and the southwestern WV–Kentucky-border zone.
+<strong>William Patrick Donahoe</strong> (b. 1842, prime military age
+1861–65) almost certainly served Confederate; his specific compiled
+service record is queued as a NARA pull. The post-war federal Test-Oath
+disfranchisement worked against this family, not for it.</p>
+<p><em>Research file 29.</em></p>
+<h3 id="william-patrick-not-penn-donahoe">William
+<strong>Patrick</strong> (not Penn) Donahoe</h3>
+<p>V1 carried the name as “William Penn (or Patrick) Donahoe” because
+both spellings appear in the FamilySearch tree. V2’s deep-line walk
+settled it: <strong>William Patrick</strong> is the documented form.
+“Penn” was a transcription drift on a single FamilySearch profile.</p>
+<p><em>Research file 29.</em></p>
+<h3 id="james-h.-donahoe-is-hugh-casslins-grandson-not-son">James H.
+Donahoe is Hugh Casslin’s GRANDSON, not son</h3>
+<p>V1 recorded the line as Hugh Casslin Donaghe Sr. (1728–1809) → James
+H. Donahoe (1806). V2’s deep-line walk surfaced an intermediate
+generation: <strong>Hugh M. Donnahoe (1783–1845)</strong>. So the line
+is Hugh Casslin → Hugh M. → James H. James H. Donahoe is Hugh Casslin’s
+grandson. Susan’s relationship to Hugh Casslin is <strong>5th
+great-grandfather</strong> in v2 (revised from v1’s 4th).</p>
+<p><em>Research file 29.</em></p>
+<h3 id="donahoe-migration-corridor-augusta-eastern-ky-wayne-wv-not-eastern-wv-mountain-counties">Donahoe
+migration corridor: Augusta → Eastern KY → Wayne WV (not eastern WV
+mountain counties)</h3>
+<p>V1 framed the corridor speculatively as Augusta →
+Pendleton/Highland/Bath/Greenbrier/Pocahontas → Fayette WV. <strong>V2
+overturned the speculation.</strong> Donahoes show essentially zero
+presence in the eastern WV mountain counties across 1810–1891 (one 1832
+Bath County indenture is the only hit). The actual corridor runs
+<strong>west and south through Kentucky before doubling back east into
+West Virginia at the Big Sandy</strong>: Augusta County (1809 Hugh
+Casslin death) → eastern Kentucky (Big Sandy / Lawrence-Greenup-Floyd,
+~1820s–1840s) → Wayne County VA/WV (by 1850 census) → Wayne / Cabell WV
+→ Fayette WV (Stephen Alexander’s 1891 marriage at Gauley Bridge) →
+Jackson WV (Paul’s 1896 birth at Ripley) → Eastern Shore VA (Paul’s 1926
+marriage to Fannye Bull).</p>
+<p><em>Research file 29.</em></p>
+<h3 id="coulbourne-english-origin-yorkshire-pontefract-candidate-stronger-than-somerset-visitation">Coulbourne
+English origin: Yorkshire (Pontefract) candidate stronger than Somerset
+visitation</h3>
+<p>V1 reproduced the 1623 Visitation of Somerset pedigree (Wythehill →
+John → Thomas → William of Braton, m. Mary Topp) for the Coulbournes,
+citing Harleian Society Vol. XI, p. 26, and noted the chain was
+“tradition, not verified.” V2 confirmed the visitation entry exists
+exactly as cited (verbatim verification). But the bridge from the
+Somerset visitation Coulbournes to the Maryland immigrant <strong>is not
+proven</strong>, and a competing English origin is currently
+better-supported:</p>
+<ol type="1">
+<li>The Pontefract, Yorkshire parish register records a baptism:
+William, son of Roger, on 2 February 1620.</li>
+<li>The Maryland plantation Col. William named <strong>Pomfret</strong>
+is the colloquial English form of <strong>Pontefract</strong>,
+Yorkshire.</li>
+<li>Y-DNA testing on direct male-line Coulbourne descendants returns
+<strong>haplotype I-A18256</strong> — the Norse / Danelaw signature,
+characteristic of Yorkshire, not Somerset.</li>
+<li>The Maryland local-history <em>Coulbourn essay</em> concedes the
+English origin is unconfirmed.</li>
+</ol>
+<p>For v2 the honest framing is: Col. William Coulbourne is Susan’s
+documented 9th great-grandfather. His English origin is genuinely
+unknown. <strong>Pontefract / Yorkshire is the better-supported
+candidate</strong> based on the plantation name and the Y-DNA evidence;
+the Somerset visitation chain is real as an antiquarian pedigree but
+cannot be proved to connect to the Maryland immigrant.</p>
+<p><em>Research file 26.</em></p>
+<h3 id="donaghe-pre-1635-in-co.-down-clean-negative">Donaghe pre-1635 in
+Co. Down: clean negative</h3>
+<p>V1 read the Donahoe surname as plausibly Plantation-era Ulster Scots
+Lowland Presbyterian. V2 ran a targeted query of every surviving
+Co. Down primary source — the 1630 Muster Roll of Ulster (PRONI
+D1759/3C/1), the Hamilton Manuscripts 1867 publication, the Clanbrassil
+Estate Rent Roll 1681, the Earl of Antrim Estate Papers, the Books of
+Survey and Distribution, the Pender 1659 census-substitute, and the
+Presbyterian Historical Society of Ireland’s Kilkeel/Mourne Kirk Session
+catalogs. <strong>The result was a clean negative.</strong> No “Donaghe
+/ Donaghy / Donachy / Donachie” surname appears in any of those sources
+for Co. Down. This inverts v1’s probability stack. The Plantation-era
+Ulster-Scots Lowland reading drops from “most plausible” to about 25%,
+and the <strong>Catholic Mac Donnchaidh from Tyrone/Derry migrating into
+Magennis Mourne reading rises to about 50%</strong>. Definitive
+resolution would require a Y-DNA Big-Y test on a male-line Donahoe
+descendant.</p>
+<p><em>Research file 31.</em></p>
+<h3 id="pilgrim-stock-immigrant-on-susans-fathers-side-two-great-migration-ancestors-not-one">Pilgrim-stock
+immigrant on Susan’s father’s side: TWO Great Migration ancestors, not
+one</h3>
+<p>V1 noted the Great Migration ancestry on Brady’s tree was on the
+Fisher line (Anthony Fisher Sr., the <em>Rose</em>, June 1637). V2 added
+a second, on the Dean line: Walter Deane on the <em>Speedwell</em>,
+April 1637. (See “The Dean line” above.)</p>
+<hr />
+<h2 id="carried-forward-unchanged-from-v1">Carried forward unchanged
+from v1</h2>
+<p>The following v1 findings were either confirmed by v2’s research or
+not touched:</p>
+<ul>
+<li><strong>Col. William Coulbourne</strong> (1630–1689) as Susan’s 9th
+great-grandfather; Pomfret Plantation, Quaker host to George Fox, 1687
+Nanticoke treaty negotiator. His English origin moves to “uncertain” in
+v2 (see above) but his identity and Maryland career are unchanged.</li>
+<li><strong>Richard Kellam II “of Occahannock”</strong> (1618–1703) as
+Susan’s 8th great-grandfather; <em>Primrose</em> immigrant 1635; bought
+land from “King Tabutiabum of Nandau” 1647; will probated 1703.</li>
+<li><strong>Capt. William H. Parker</strong> (~1717–1784) as Susan’s 6th
+great-grandfather; Revolutionary War militia captain, Accomack County,
+sworn in 30 July 1777 — primary DAR Patriot candidate.</li>
+<li><strong>John Floyd I “of Hog Island”</strong> (~1640–1687) —
+Welsh-origin Northampton County immigrant 1660. <strong>Nathaniel
+Floyd</strong> (1601–&lt;1674) — Welsh, <em>Bona Nova</em> arrival
+1624/5.</li>
+<li><strong>Anthony Fisher Sr.</strong> (1591–1671) — Great Migration on
+the <em>Rose</em> 1637; signed Dedham Covenant #36. The Fisher chain
+back to <strong>John Fisher of Wingfield, Suffolk</strong>
+(1465–1523).</li>
+<li><strong>Mary “Molly” Bays/Baze Woodrum</strong> as Susan’s 7th
+great-grandmother. Family-Bible Native (Monacan) ancestor per Dr. Jacob
+Woodrum’s Bible (Tennessee), with the family-tradition Mowhemencho
+birthplace recorded in the Marjorie Fluor Moore 1983 memorandum.</li>
+<li>The <strong>Famine-Irish Daly + Donovan + Welsh-origin
+Arundel</strong> line. Helena Daly’s parents John Daly (1841 Ballincolly
+Cork) + Ellen Donovan (1844 Durrus Cork). Welsh William Arundel (1775
+Pembrokeshire).</li>
+<li>The <strong>Eastern Shore Civil War occupation</strong> experience —
+Lockwood expedition 1861, oath-of-allegiance system, no documented
+Bull/Kellam/Rogers/Boggs/Floyd/Garrison enlistment in either army.
+<strong>The 1860 Slave Schedule line-check remains an open v3
+task.</strong></li>
+<li>The <strong>Shawnee Heritage retraction</strong> — the four named
+“Native ancestors” (Sharp As Fox John Spiller, Dancing Waters Moon
+Spiller, Delaware Indian Fivekiller, Water) plus Solomon John
+“Rappahanno…” Kimbrough and Mary Elizabeth Spiller remain documented
+FamilySearch fraud (book series by Don Greene &amp; Noel Swartz).</li>
+<li>The <strong>cousin-only relationships</strong> to Lt. Col. Richard
+Cocke (2nd cousin 12× removed), Joane Pierce, John Smith of Stanley
+Hundred, Capt. Adam Thoroughgood, Sarah Offley, Maj. Gen. John Custis II
+Esq. — none direct ancestors of Susan; the v1 retractions stand.</li>
+<li>The <strong>Maynard 3rd Baronet retraction</strong> — the
+FamilySearch fraud-flag stands; Henry Maynard (1681–1738) is a real
+ancestor without a verified baronetcy.</li>
+<li>The <strong>Floyd nobility graft retraction</strong> — “Sir John
+Theophelus Floyd / Lady Mary Veriar of Queen Elizabeth’s Court” remains
+documented FamilySearch fraud above Nathaniel Floyd.</li>
+</ul>
+<hr />
+<h2 id="still-open-at-v2-the-v3-carry-list">Still open at v2 — the v3
+carry list</h2>
+<p>The v3 path closes in two clusters: (a) Brady’s logged-in browser
+tasks (FamilySearch / Ancestry, no archival travel required), and (b)
+targeted documentary pulls.</p>
+<p><strong>Brady’s logged-in browser cluster:</strong> - Lt. Samuel
+Black DAR direct-descent verification (FamilySearch View Relationship
+calculator) - 1860 Slave Schedule line-check on Bull / Kellam / Rogers /
+Boggs / Floyd / Garrison surnames in Accomack and Northampton (Ancestry
+/ FamilySearch) - Del Dean’s siblings — full enumeration from Roy
+Franklin Dean’s FSID 2WFL-B1C profile - Remaining Joseph Saples Bull
+children — 1900–1940 Accomack censuses + 1946 Mary Eliza will</p>
+<p><strong>Targeted documentary pulls:</strong> - Mary Ellen (WAC) and
+Del (Korean War Army) NPRC service records — file SF-180 (turnaround
+weeks/months) - Hugh Casslin Donaghe Sr.’s 1809 manuscript will + 1810
+estate inventory at Augusta County (Chalkley is an abstract; manuscript
+would name enslaved people and specific land tracts) - William Patrick
+Donahoe Confederate compiled service record (NARA pull) - Stephen
+Alexander Donahoe’s post-1892 Methodist appointments + 1935 death record
+(West Virginia Wesleyan Methodist Archives — email Brett Miller) - U of
+M arrowhead assessment record (Bentley Historical Library inquiry to
+bentley.ref@umich.edu re: James B. Griffin papers) - Donaghe pre-1635
+resolution: Y-DNA Big-Y test on a male-line Donahoe descendant (~$449
+FTDNA) - Coulbourne English origin: Pontefract parish-register evidence
+- Marjorie Fluor Moore 1983 memorandum (Dr. Jacob Woodrum’s Tennessee
+Bible transcription)</p>
+<p><strong>Oral-history cluster (Susan + Paulette):</strong> - Alvin
+Read’s name and biography (only Susan and Paulette would know) - The
+remaining Bull-side aunts and uncles (Joseph Saples Bull’s children
+other than Fannye, Arthur Clyde, and Susie Elizabeth) - The Bull farm
+loss specifics — which sibling lost the parcel, immediate trigger -
+Letters or papers from Paul “Dada” Donahoe in family-paper archives -
+The “Caylor as Norman-English” family tradition’s provenance - Roy
+Dean’s arrowhead collection — current location, condition, photographic
+inventory</p>
+<hr />
+<h2 id="a-short-methodological-note">A short methodological note</h2>
+<p>V2 has a research-discipline takeaway worth recording:</p>
+<p>V1’s methodological lesson — <em>FamilySearch screenshots are a
+hypothesis, not a fact, until verified through the
+relationship-calculator descent path</em> — was supplemented in v2 by a
+second principle: <strong>published abstract-level sources are a
+hypothesis, not a fact, until verified against the manuscript</strong>.
+Chalkley’s abstract of Hugh Casslin Donaghe’s 1809 will is internally
+consistent and useful for v2, but the manuscript will at Augusta County
+and the 1810 estate inventory would name enslaved people and specific
+land tracts that the abstract omits. V3 should pull both.</p>
+<p>Both lessons are now baked into the engine skill
+(<code>3-reference/skills/genealogy-research/SKILL.md</code>) as
+Conventions #11 and #12. Future versioned whitepapers — v3 of
+<em>Virginia Deans and Donahoes</em>, or any other heritage project that
+comes through the engine — will inherit the conventions
+automatically.</p>
+<hr />
+<p><em>Companion to <code>virginia-deans-and-donahoes-v2.md</code> and
+<code>virginia-deans-and-donahoes-v2.pdf</code>. May 2026.</em></p>
+</body>
+</html>
