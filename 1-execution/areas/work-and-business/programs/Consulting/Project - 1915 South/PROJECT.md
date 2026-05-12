@@ -4,7 +4,9 @@
 **Primary contact:** Justin Woods, President (Jan 2025–present). Russell Turner (CEO/sole owner) on escalation.
 **Project agent:** Fran (`0-agents/custom-built-agents/fran.md` + `fran-SKILL.md`)
 **Opened:** 2026-04-21
-**Brady's goal (as of 2026-04-26):** Negotiate the named exec offer (Chief Finance & Strategy Officer) Justin sent Apr 25. Lock structural protections (M&A RACI vs. Alyson, Director-of-Strategy reporting, Russell PG status, Y1 bonus floor, formula transparency). Time start to honor Panda's 6-month engagement (target: Aug 1 announcement / later start).
+**Brady's goal (as of 2026-05-08):** Close the CFSO offer cleanly. Panda turned down — 1915 South is THE bet. Comp aligned in principle ($150K + 1.5% EBITDA). Round 1 email sent May 8 covering severance + D&O + workspace. Round 2 (DD list + structural items: CoC, co-invest/deal economics, travel/PTO/tax) held until Justin acks Round 1. June 1 start now a feature, not a conflict — arrives at ERP go-live, owns the rollout from day one.
+
+*Prior goal (Apr 26):* Negotiate base + structural protections, time start for post-Panda. Superseded — Brady accepted $150K base + 1.5% EBITDA structure; Panda declined; comp negotiation reframed as buyer-side DD.
 
 *Original goal (Phase 0-1):* Convert Justin's Apr 20 advisory pitch into a scoped engagement — workshop first (Scenario C), optionality to convert. Superseded by named-offer path Apr 25.
 
@@ -18,16 +20,17 @@ The opening: Justin explicitly pitched Brady on April 20 — *"this is sort of w
 
 ---
 
-## Scoreboard (revised 2026-04-26)
+## Scoreboard (revised 2026-05-08)
 
 | Metric | Baseline | Target | Status |
 |---|---|---|---|
-| Relationship depth with Justin | Apr 20 first call | Trusted exec partner | **Strong — 5+ touchpoints, written offer + comp structure shared** |
-| Engagement structure | Unscoped role pitch | Signed offer letter, structural protections in writing | **Verbal offer w/ comp structure; Apr 26 evening call to negotiate** |
-| Russell Turner access | Zero direct | Met in person + phone aligned | Not yet — Justin closed gatekeeper question; meeting likely post-acceptance |
+| Relationship depth with Justin | Apr 20 first call | Trusted exec partner | **Strong — written offer received, comp aligned in principle May 8** |
+| Engagement structure | Unscoped role pitch | Signed offer letter + structural protections in writing | **Round 1 email sent May 8 (severance + D&O + workspace); Round 2 (DD + structural) held** |
+| Russell Turner access | Zero direct | Met in person + phone aligned | Not yet — meeting likely post-acceptance, before formal start |
 | Innovation Workshop delivery | Not started | Full Product + Ops Workshop deliverable | **DELIVERED 2026-04-22** — published at mception.ai/1915-south |
-| mception posture | Active | Preserved as outside ownership | Preserved — must verify in offer letter language |
-| Comp negotiation | Pre-set anchors | Base $300K+, 1% EBITDA min, Y1 floor 80%, no cap, M&A RACI in writing | **In flight** — Justin proposed $150K + 1.25% EBITDA + $50K LTI = ~$600K post-AGR |
+| mception posture | Active | Preserved as outside ownership | Preserved — to be verified in formal offer letter language |
+| Comp aligned | Pre-set anchors retired | $150K + 1.5% EBITDA accepted in principle | **ALIGNED 2026-05-08** — pending Justin reply on severance / D&O / workspace |
+| Panda capacity conflict | June 1 start collided with 6-mo Panda engagement | Resolved | **CLOSED 2026-05-08** — Panda declined; 1915 South is sole bet |
 
 ---
 
@@ -67,10 +70,34 @@ The opening: Justin explicitly pitched Brady on April 20 — *"this is sort of w
 - SFDR-020 (org structure analysis) closed: 12-ask negotiation list, scope overlap heat map, Alyson question deep-dive, GT MBA Director political risk.
 - **Apr 26 evening call scheduled** — comp negotiation.
 
-**Phase 5 — Offer letter close (pending — target Apr 27-30)**
-- Lock structural protections in writing: M&A RACI, Director reporting line + 90-day veto, Russell PG status, Y1 bonus floor, EBITDA formula transparency, mception preservation language.
-- Negotiate base toward $250-300K minimum while preserving 1% EBITDA bonus economics.
-- Define start date: target Aug 1 announcement / later start (post-Panda completion).
+**Phase 5a — Comp Round 1 (sent 2026-05-08, awaiting reply)**
+- Justin's formal offer email landed 3:27 PM CT May 8: $150K base / 1.5% EBITDA quarterly / no LTIP / no severance / June 1 start aligned with ERP go-live.
+- Brady declined Panda earlier in the day → 1915 South now sole bet; June 1 start is a feature.
+- Brady reply sent 5:13 PM CT May 8 — three paragraphs:
+  1. Comp aligned in principle ($150K + 1.5% EBITDA); LTIP conceded; DD on EBITDA picture deferred to next week
+  2. Severance + D&O packaged together as "tail risk / lender radar" tail-risk protection
+  3. Signing bonus question + The Ledger workspace ($1,200-1,800/mo private office) in lieu of relocation
+- Durable record: `negotiation/comp-round-2026-05-08.md`
+- Status: awaiting Justin reply
+
+**Phase 5b — DD List + Structural items (HELD, fires when Justin acks Phase 5a)**
+- Pre-drafted at `negotiation/dd-list-pending-2026-05-W2.md`
+- Three buckets:
+  - **Financial DD (NDA-gated):** EBITDA history + one-timers + EBITDA definition + acquisition accounting + earnouts + AGR Y1 contribution + 2026 YTD + macro sensitivity (oil/PVC/rates)
+  - **Operational DD:** org chart + AGR DD status + ERP plan + Bo Walthall background
+  - **Structural items:** Change-of-Control protection, co-invest / deal economics on M&A Brady leads (biggest hidden lever), travel framework, PTO, tax prep stipend
+- Trigger: Justin email/call confirming comp round closed in principle
+- Send as standalone email (separate thread) so Justin can delegate parts to Bo
+
+**Phase 5c — Offer letter signing (pending Round 2 close)**
+- Formal HR offer letter (health benefits, 401K, etc.) per Justin's email
+- NDA / confidentiality agreement
+- Verify mception preservation language in writing
+- Russell meeting before signing
+
+**Phase 6 — Onboarding / June 1 start**
+- ERP go-live alignment
+- 30/60/90-day plan in scope (M&A pipeline + AGR close + finance team build with Bo Walthall + AI roadmap)
 
 ---
 
@@ -85,6 +112,9 @@ The opening: Justin explicitly pitched Brady on April 20 — *"this is sort of w
 
 ## Source Files
 
+**Canonical Doctrine (mandatory-load):**
+- `justin-corpus.md` — Justin Woods's statements treated as binding governance. Every email/call/disclosure logged with date, source, quote, and operating implication. Fran loads this at session start; cites entries when recommending. Append new statements as Justin speaks. Wins over prior strategy docs on conflict.
+
 **Pre-engagement (Phase 0-1):**
 - `research/phase-0-ashley-furniture-baseline.md` — full Phase 0 deep research (22 sources cited)
 - `scenario-matrix.md` · `engagement-shapes.md` — 4-scenario strategic options framework (archived; superseded by named-offer path)
@@ -92,11 +122,14 @@ The opening: Justin explicitly pitched Brady on April 20 — *"this is sort of w
 - `1915-south-working-session-2026-04-24.{md,html,pdf}` — Innovation Workshop deliverable
 - `m-and-a-deep-research-2026-04-22.{md,html,pdf}` — pre-Saturday M&A research corpus
 
-**Negotiation phase (Phase 4):**
+**Negotiation phase (Phase 4-5):**
 - `proposed-position-2026-04-25.md` — durable extract of Justin's offer email (org chart + financials + timing)
 - `negotiation/negotiation-kb-2026-04-26.md` — full negotiation knowledge base
 - `negotiation/email-justin-counter-2026-04-26.md` — Brady's counter draft
 - `negotiation/chatgpt-strategy-log-2026-04-26.md` — strategy session log
+- `negotiation/comp-round-2026-05-08.md` — May 8 offer + Brady's three-paragraph reply + Finn math + LTIP trade analysis
+- `negotiation/dd-list-pending-2026-05-W2.md` — Round 2 DD list (held; fires when Justin acks Round 1)
+- `.context/attachments/Gmail - Chief Finance and Strategy Officer - Offer and Scope Details.pdf` — original offer PDF
 
 **Research SFDRs:**
 - `research/sfdr-018-justin-financials-validation.md` — financial sanity-check + benchmarking
@@ -121,6 +154,8 @@ The opening: Justin explicitly pitched Brady on April 20 — *"this is sort of w
 ---
 
 ## Binding Constraints (what Fran must never forget)
+
+0. **Justin Corpus is canonical doctrine** (added 2026-05-11). Every Justin statement = binding governance. Fran loads `justin-corpus.md` at session start, cites entries when advising, appends new statements as Justin speaks. Justin is Brady's boss — treat his stated preferences as binding defaults. If a recommendation conflicts with a corpus entry, flag explicitly before proceeding.
 
 1. **1915 South is winning, not struggling** — record 2025. Brady is an accelerant, not a rescue.
 2. **Russell Turner is 4th-gen family owner** — decentralization and culture preservation matter. Outsider-COO framing must be handled carefully.
