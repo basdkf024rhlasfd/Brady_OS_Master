@@ -2,7 +2,7 @@
 
 Used by Finn to contextualize college timelines, 529 urgency, and household cost structure.
 
-Last updated: 2026-04-24
+Last updated: 2026-05-08
 
 ---
 
@@ -59,6 +59,30 @@ Brady uses a 73-item Walmart+ subscription system as the primary household suppl
 - **Key insight:** Cheese and tortillas are already on bi-weekly cadence — running-short issues are likely demand spikes, not a cadence gap
 
 **When Finn sees large Walmart charges:** Cross-reference subscription delivery dates (Tuesdays) vs. ad hoc orders. Tuesday charges = subscription delivery. Other days = ad hoc.
+
+---
+
+## Summer Chore & Paid Help Plan (2026 — June–Aug)
+
+Established 2026-05-07 brain dump. Pay handsomely if consistent; miss it = role reassigned, doesn't come back. ~$1.5–2K/mo total.
+
+**Lily** (~$400-600/mo)
+- Faith rides captain — $25/ride or $100/wk flat
+- Library trip with triplets weekly — $50/run
+
+**Rachel** (~$520-700/mo)
+- Reading w/ Ayla & Quinn — $25/session × 2/wk
+- Workbooks w/ triplets — $40/session × 2/wk
+
+**Kids' chores** (~$400-600/mo)
+- Daily trash — Luke or Quinn — $5/day
+- Daily mail-in — triplet rotation — $1/day each
+- Dishes (load/unload/put away) — TBD kid — $5/day
+- Chore talk with kids pending — consistency framing, role-reassignment rule
+
+**Brady to do:**
+- Sign kids up for summer camps (deadline now)
+- Sign Quinn up for piano lessons
 
 ---
 
