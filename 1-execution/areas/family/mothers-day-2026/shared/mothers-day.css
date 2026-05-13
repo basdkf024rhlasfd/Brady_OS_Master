@@ -1,0 +1,407 @@
+/* Mother's Day 2026 — shared keepsake styles
+   Light mception bones, warmed up. Cream paper, soft rose + gold accents,
+   handwriting feel. Letter-size portrait, print-ready. */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+@page { size: 8.5in 11in; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #FBF7F1;
+  --paper-2: #F4ECDF;
+  --ink: #3A2F25;
+  --ink-soft: #6E5B47;
+  --rose: #C77B7E;
+  --rose-deep: #9E5A5D;
+  --gold: #C9A24A;
+  --gold-deep: #A38234;
+  --sage: #8AA081;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  width: 8.5in;
+  height: 11in;
+  margin: 0 auto;
+  padding: 0.45in 0.55in 0.4in;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(201,162,74,0.04), transparent 35%),
+    radial-gradient(circle at 90% 90%, rgba(199,123,126,0.04), transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
+/* ─── HEADER ─── */
+.ribbon { text-align: center; margin-bottom: 14px; }
+.ribbon-tag {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  padding: 0 18px;
+  position: relative;
+}
+.ribbon-tag::before, .ribbon-tag::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+.ribbon-tag::before { right: 100%; }
+.ribbon-tag::after  { left:  100%; }
+
+h1 {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 56px;
+  color: var(--rose-deep);
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.subtitle {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.subtitle .name { color: var(--rose-deep); font-weight: 600; }
+
+/* ─── HERO PHOTO/ARTIFACT ─── */
+.hero {
+  background: white;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.04),
+    0 8px 18px rgba(58,47,37,0.08);
+  margin: 0 auto 18px;
+  width: 4.5in;
+  transform: rotate(-1.2deg);
+}
+.hero.hero-large { width: 5.0in; }
+.hero.hero-compact { width: 3.8in; }
+.hero.hero-compact img { max-height: 3.5in; }
+.hero.hero-short img { max-height: 2.9in; }
+.hero.hero-short { width: 4.0in; }
+.hero.hero-portrait { width: 3.5in; }
+.hero.hero-portrait img { max-height: 4.6in; }
+
+/* ─── TOP-ROW (two side-by-side keepsakes — drawing + photo) ─── */
+.top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 0 auto 14px;
+  max-width: 6.6in;
+  align-items: center;
+}
+.top-row > div {
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.04),
+    0 6px 14px rgba(58,47,37,0.10);
+}
+.top-row .drawing-card { transform: rotate(-1.0deg); }
+.top-row .photo-card-large { transform: rotate(1.2deg); }
+.top-row img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+.top-row .drawing-card img { max-height: 3.2in; object-fit: contain; }
+.top-row .photo-card-large img {
+  height: 3.2in;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.top-row-caption {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 16px;
+  margin-top: 4px;
+}
+.hero img {
+  width: 100%;
+  max-height: 4.6in;
+  object-fit: contain;
+  display: block;
+  border-radius: 2px;
+}
+.hero-caption {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+/* ─── BANNER (typeset clarification, captions, etc.) ─── */
+.banner {
+  text-align: center;
+  margin: 0 auto 18px;
+  padding: 10px 24px;
+  border-top: 1px solid rgba(201,162,74,0.35);
+  border-bottom: 1px solid rgba(201,162,74,0.35);
+  max-width: 5.2in;
+  background: linear-gradient(180deg, rgba(201,162,74,0.05), rgba(201,162,74,0.01));
+}
+.banner-words {
+  font-family: 'Caveat', cursive;
+  font-size: 38px;
+  color: var(--gold-deep);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+.banner-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+/* ─── KID LETTER (actual kid-written note) ─── */
+.kid-letter {
+  margin: 0 auto 16px;
+  padding: 16px 32px 14px;
+  max-width: 5.4in;
+  border-top: 1px solid rgba(201,162,74,0.35);
+  border-bottom: 1px solid rgba(201,162,74,0.35);
+  background: linear-gradient(180deg, rgba(201,162,74,0.05), rgba(201,162,74,0.01));
+  text-align: center;
+}
+.kid-letter-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 10px;
+}
+.kid-letter-body {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.kid-letter-signoff {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--rose-deep);
+  margin-top: 6px;
+}
+
+/* ─── POEM CARD (poem chosen or written by a kid) ─── */
+.poem-card {
+  margin: 0 auto 14px;
+  padding: 14px 24px 12px;
+  max-width: 4.6in;
+  text-align: center;
+  border-top: 1px solid rgba(199,123,126,0.3);
+  border-bottom: 1px solid rgba(199,123,126,0.3);
+}
+.poem-card-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  margin-bottom: 10px;
+}
+.poem-card-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.poem-card-attribution {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+/* ─── PHOTO GRID ─── */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.row-single { display: block; }
+.row.row-tight .photo-card img { max-height: 1.5in; }
+.photo-card {
+  background: white;
+  padding: 10px 10px 8px;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.04),
+    0 6px 14px rgba(58,47,37,0.08);
+}
+.photo-card img {
+  width: 100%;
+  max-height: 2.2in;
+  object-fit: contain;
+  display: block;
+  border-radius: 2px;
+}
+.photo-card-label {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 17px;
+  margin-top: 4px;
+}
+.photo-card.tilt-l { transform: rotate(-0.8deg); }
+.photo-card.tilt-r { transform: rotate(0.9deg); }
+
+/* placeholder card for missing artifacts — reads as a quiet held space, not a TODO */
+.placeholder-card {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(201,162,74,0.35);
+  border-radius: 4px;
+  padding: 30px 30px;
+  text-align: center;
+  margin: 0 auto 16px;
+  width: 4.6in;
+  position: relative;
+}
+.placeholder-card::before, .placeholder-card::after {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  opacity: 0.5;
+  font-size: 14px;
+}
+.placeholder-card::before { top: 14px; }
+.placeholder-card::after { bottom: 14px; }
+.placeholder-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+.placeholder-label strong {
+  display: block;
+  font-style: normal;
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  color: var(--rose-deep);
+  margin-bottom: 8px;
+  letter-spacing: 0;
+}
+
+/* ─── FOOTER ─── */
+.footer { text-align: center; margin-top: auto; padding-top: 16px; }
+.footer-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+}
+.footer-heart { color: var(--rose); font-size: 14px; margin: 0 6px; }
+.footer-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* ─── POEM PAGE ─── */
+.poem-page {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.poem-frame {
+  margin: auto;
+  max-width: 5.5in;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+}
+.poem-frame::before, .poem-frame::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+  transform: translateX(-50%);
+}
+.poem-frame::before { top: 30px; }
+.poem-frame::after  { bottom: 30px; }
+.poem-title {
+  font-family: 'Caveat', cursive;
+  font-size: 56px;
+  color: var(--rose-deep);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.poem-byline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 1.5px;
+  margin-bottom: 36px;
+}
+.poem-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--ink);
+  line-height: 1.85;
+}
+.poem-body p { margin-bottom: 16px; }
+.poem-attribution {
+  margin-top: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+}

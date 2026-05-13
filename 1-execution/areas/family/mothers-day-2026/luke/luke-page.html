@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>From Luke — For Mom</title>
+<link rel="stylesheet" href="../shared/mothers-day.css">
+<style>
+  /* Luke's scrapbook composition: letter card + photo side by side, TOP 3 box below.
+     Slightly different visual register — kid-doodle cards taped onto the cream page. */
+  .luke-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 0 auto 18px;
+    max-width: 7.0in;
+    align-items: stretch;
+  }
+  .luke-letter-card, .luke-photo-card {
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.04),
+      0 8px 18px rgba(58,47,37,0.10);
+    display: flex;
+    flex-direction: column;
+  }
+  .luke-letter-card { transform: rotate(-1.0deg); }
+  .luke-photo-card { transform: rotate(1.2deg); }
+  .luke-letter-card img, .luke-photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+  }
+  .luke-top3 {
+    margin: 0 auto 14px;
+    max-width: 4.8in;
+    transform: rotate(-0.5deg);
+    background: white;
+    padding: 6px;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.04),
+      0 6px 14px rgba(58,47,37,0.08);
+  }
+  .luke-top3 img {
+    width: 100%;
+    display: block;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="ribbon">
+    <span class="ribbon-tag">From the Kids · Mother's Day 2026</span>
+  </div>
+
+  <div class="luke-row">
+    <div class="luke-letter-card">
+      <img src="luke-game-day-letter.png" alt="Luke's letter — Luke & Mom, Game Day">
+    </div>
+    <div class="luke-photo-card">
+      <img src="luke-game-day-photo.png" alt="Luke and Karissa at the bleachers">
+    </div>
+  </div>
+
+  <div class="luke-top3">
+    <img src="luke-top-3-things.png" alt="Top 3 Things About My Mom — by Luke">
+  </div>
+
+  <div class="footer">
+    <div class="footer-date">Mother's Day · May 10, 2026</div>
+  </div>
+
+</body>
+</html>

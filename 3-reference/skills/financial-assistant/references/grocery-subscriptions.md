@@ -1,7 +1,7 @@
 # Grocery & Household Subscription Reference
 
-Last updated: 2026-04-30
-Source: `data/walmart-scrape-2026-04-30.md`
+Last updated: 2026-05-08
+Source: `data/walmart-scrape-2026-04-30.md` + May 8 subscription page scrape (88 items)
 
 ---
 
@@ -15,7 +15,7 @@ Brady manages an **84-item** Walmart+ subscription system covering most househol
 - **In-store:** Karissa uses Walmart Visa ending in 2021 for her own runs
 - **Delivery:** Tuesdays, 10am–12pm, 4505 NE Birchgrove Pl, Bentonville, AR 72712
 - **Delivery fee:** $0 (Walmart+ membership)
-- **Total items:** 84 across rotating cadences (up from 73 as of Apr 24)
+- **Total items:** 88 across rotating cadences (up from 84 as of Apr 30)
 
 ---
 
@@ -64,8 +64,8 @@ Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = 
 
 | Date | Item Count | Notable Items |
 |------|------------|---------------|
-| Tue May 05 | ~28 | Cheese ×2, buns ×2, peanuts, oatmeal, Chobani yogurt ×2, eggs, butter, milk ×2, chicken, Monster Energy, trash bags 120ct |
-| Tue May 12 | ~27 | Fiber supplement, Larabar, bread, English muffins, avocados, lettuce, tomato, chips ×3, beans ×3, rice ×3, soy sauce, Chobani S'mores |
+| ~~Tue May 05~~ | **MISSED** | Subscription disrupted by 04/24 cancel → 04/25 Karissa re-subscribe. Weekly items rolled to May 12. |
+| Tue May 12 | ~34 | All weekly items (butter, milk ×2, Monster, chicken, mild cheddar, paper plates/bowls, bananas, strawberries) + Fiber, Larabar, bread, English muffins, avocados, lettuce, tomato, chips ×3, beans ×3, rice ×3, soy sauce, Chobani S'mores. Large delivery — budget ~$280-300. |
 | Tue May 19 | ~14 | Dishwasher pods, pretzels, broccoli, hot dog buns, Mac & cheese, melatonin, birria tacos, ketchup, cleaner, dairy drink |
 | Tue May 26 | 7 | Hot dogs, PB large, ramen, sugar, fajita tortillas, salsa, tomato bisque |
 | Jun 09 | 2 | Tissues, Herdez carnitas |
@@ -153,6 +153,14 @@ Budget target for food & consumables: $3,900/mo total. Walmart+ subscriptions = 
 - Don Lee Farms chicken birria tacos (every 4 weeks, $5.97)
 - Freshness Guaranteed garlic bread (every 4 weeks, $2.46)
 - Dot's pretzels 16oz (every 3 weeks, $6.17)
+
+### Spreads & Convenience Foods (new as of May 8)
+- Smucker's Squeeze Strawberry Fruit Spread 20oz (every 4 weeks, $3.74)
+- Smucker's Uncrustables Chocolate Hazelnut 4ct (every 3 weeks, $3.97)
+- Pop-Tarts Frosted S'mores 16ct (every 4 weeks, $4.97)
+
+### Personal Care (new as of May 8)
+- Secret Invisible Solid Antiperspirant Powder Fresh 0.5oz (every 3 weeks, $1.50)
 
 ### Snacks & Beverages
 - Monster Energy Zero Ultra 4-pk (weekly, $7.98) — new Apr 2026
