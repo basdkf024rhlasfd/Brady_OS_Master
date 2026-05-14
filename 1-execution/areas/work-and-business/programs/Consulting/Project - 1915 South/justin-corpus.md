@@ -76,6 +76,9 @@
 
 ## 6. M&A Strategy & Targets
 
+- **2026-05-14 (Otter `6n5juXDe8Vn1pnf8I5qg5sDf-l0` 0:19:39, Frank Pina reporting):** Justin **sourced Advocate AI** (customer service AI agent now deploying at 1915 South) **through his YPO network** — *"He met some people [at YPO] talking about how they have an AI customer service agent."*
+  - **Implication:** **YPO is an active vendor / deal-flow channel for Justin.** When Brady proposes new vendors, frame on whether they're YPO-network or new-source — YPO-sourced has faster credibility. Brady should also flag any of his own YPO-adjacent intros when Justin opens that door.
+
 - **2026-04-25 (Proposed Position email):** *"AGR integration leadership and the playbook for future M&A integrations"* (Alyson's scope).
   - **Implication:** AGR integration is **Alyson's lane**, not Brady's. Brady owns deal sourcing/modeling/execution support; Alyson owns post-close integration. **CRITICAL RACI question to resolve pre-Day 1:** who owns synergy tracking, integration P&L, capital allocation to acquired entities?
 
@@ -91,6 +94,9 @@
 ---
 
 ## 7. Org / Direct Reports / Brady's Team
+
+- **2026-05-14 (Otter `8SEH6-YF9_T1YgLVYM7A0pfO55I` 0:08:26, Leah reporting):** When Justin arrived (~Jan 2025), he **introduced formal titles to the org from scratch.** Pre-Justin, no one — including Leah after 18 years — had a formal title. He also **cleaned house on legacy office occupancy**: *"all the offices were full, and it was just not even positions that needed office. And he came in and was like, nope."*
+  - **Implication:** Justin uses **titles + office geography as governance levers**, not status decoration. His title and seating decisions for Brady (CFO+CAIO or equivalent, Bentonville shared with Director of Analytics per §1) are intentional org signals. Don't treat them as flexible cosmetics.
 
 - **CORPUS UPDATE 2026-05-11 (research finding, not Justin statement, but operationally critical):** Dillon DeClemente — the senior inventory operator with 9 years tenure who earned a finance degree on the job — **left for Fidelity Investments in 2024**. The inventory function Brady inherits has been operating without its strongest institutional-knowledge holder for ~18 months. Rebecca Hester (then-AP/Payroll Manager) was lifted out of the accounting team in October 2025 to become "Associate, Executive & People Operations" reporting directly through Justin's office. So Brady walks into an accounting+inventory bench that has been **thinned twice** in the 18 months before his arrival, with at least one Glassdoor exit review (May 2024) citing "no allowance to learn or grow." Cory Jones (CPIM cert April 2026, Thomas University grad, currently under Andrew Crawford in Distribution) is the one visible bench player Brady should evaluate Day 1 for possible elevation. Full dossier at `~/brady-os-local/1915-south-confidential/pnl-dd-2026-05/junior-staff-dossier.md`. **Implication for Brady:** Day-1 roster audit is mandatory — the public-web org chart is out of sync with the seated team. Refresh authority Justin granted may already be partially executed by attrition.
 
@@ -110,6 +116,9 @@
 ---
 
 ## 8. Hiring Philosophy
+
+- **2026-05-14 (Otter `6n5juXDe8Vn1pnf8I5qg5sDf-l0` 0:08:00, Frank Pina reporting):** Justin **recruited Frank to VP S&O at AGR first** (predates 1915 South), then **recruited him again to 1915 South VP S&O in Feb 2025.** Second-tour relationship.
+  - **Implication:** Justin **re-recruits proven operators** rather than building fresh from market. Aligns with §1's *"work where we find a person known to us already with the same hustle"* — Frank is the template, Brady (Walmart-era) is the second. Expect Justin to do this again as 1915 South scales: watch for additional AGR-era operators landing in 1915 South seats. Brady can introduce Justin to operators in Brady's network using the same vetted-by-relationship pattern.
 
 - **2026-05-11 (email):** *"I will recommend the appropriate LinkedIn sourcing of these resources to find the type of person that will work that allows for personal development opportunities, etc."*
   - **Implication:** Hiring approach for accounting assistants = LinkedIn-sourced, college-educated, high-potential, development-track. Not low-level back-office hires — entry-level professional roles. Brady should design accordingly.
@@ -150,6 +159,12 @@
 
 ## 11. Strategy / Growth Vision
 
+- **2026-05-14 (Otter `8SEH6-YF9_T1YgLVYM7A0pfO55I` 0:19:10, Leah reporting):** Leah's assessment that Justin's 15-month transformation phase is **complete** — *"we have hit on every area of the business, and we've cleaned it all up — now it's just time to let's go with the team we got."* Org now in **execution mode, not transformation mode** from inside the building.
+  - **Implication:** **Change velocity is dropping**, not increasing, from Leah's perch. Don't position Brady as the next-wave change agent. Frame Brady's entry as **execution velocity + capital allocation + AI leverage on top of Justin's structural work** — adding compound to a foundation, not breaking ground.
+
+- **2026-05-14 (Otter `6n5juXDe8Vn1pnf8I5qg5sDf-l0` 0:19:39, Frank Pina reporting):** Per Frank, **Justin has stronger investment discipline than Todd Wanek** — vets ROI before committing. *"Justin's a little better with this. He's able to really bring it in and say, okay, are we going to make this investment? This is what this investment is."* (Todd by contrast described as "shiny object" chaser whose billionaire status absorbs mistakes.)
+  - **Implication:** Justin is **the ROI gate** for 1915 South in a way Ashley corporate is not. Brady's financial-discipline lane has air cover — Justin will defend rigorous business-case work against shiny-object pressure flowing down from Ashley corporate. This is a meaningful asset for Brady's Y1 stance with Frank and ops.
+
 - **2026-04-25 (Proposed Position):** *"This year is probably looking more like somewhere between $25-28M in EBITDA given deal timing and time to implement new ways of working."*
   - **Implication:** 2026 EBITDA target $25-28M (with Brady joining mid-year). This is the **Year 1 baseline for Brady's bonus.** Implication for Brady's Y1 take-home: $375K-$420K bonus on annualized basis, prorated for June 1 start.
 
@@ -165,6 +180,19 @@
 
 - **File evidence (2026-05-11):** `2024ConsolidatedMonthlyFinSt 5th3rd.xls` — Fifth Third Bank consolidated reporting.
   - **Implication:** **Fifth Third is the primary lender.** Brady's lender-relationship mandate includes maintaining 5th3rd relationship. Consolidated monthly P&L reporting is the deliverable cadence. Brady should expect to be the primary 5th3rd contact post-Carl-transition.
+
+---
+
+## 13. Management Style / Tech Habits
+
+- **2026-05-14 (Otter `6n5juXDe8Vn1pnf8I5qg5sDf-l0` 0:37:38, Frank Pina reporting):** Justin **personally builds Claude apps on weekends and sends them to the exec team for feedback** — most recently a consultative-selling app for Frank's team to evaluate. Frank's response: *"Justin, stay in your lane"* (banter), then *"it's actually pretty damn good."*
+  - **Implication:** Justin is a **builder-CEO, not a sponsor-CEO.** He ships working artifacts, not just decks. Brady should NOT default to "I'll write a spec and hand it off" — match the velocity by shipping working things alongside Justin. GitHub-shipped Claude apps are culturally legitimate output (Frank ships them too — see `frank-corpus.md` §5). Brady-OS-style work is on-pattern, not exotic.
+
+- **2026-05-14 (Otter `8SEH6-YF9_T1YgLVYM7A0pfO55I` 0:02:44, Leah reporting):** Justin keeps a **tight internal comms gate even on his own team.** When Leah preemptively sent Brady's offer letter, Justin corrected her by name — *"Leah, I did not say send it"* — and added items before re-sending.
+  - **Implication:** Justin owns **final-pass approval on outbound exec comms even when authored by his direct team.** Brady should NOT treat verbal alignment in a meeting as green light to send. Confirm in writing before any externally-facing Brady output (offers, comp letters, vendor agreements, client comms) leaves Brady's inbox. Mirrors `fran-SKILL.md` §G (Brady is the sole comm channel for Justin/Russell-tier) — Justin runs the same discipline on his own side. Leah's posture: owned the error, didn't get defensive.
+
+- **2026-05-14 (Otter `6n5juXDe8Vn1pnf8I5qg5sDf-l0` 0:19:39, Frank reporting on AI investment pattern):** Justin's AI/vendor deployment pattern is **YPO-sourced → Frank-vetted → Claude-validated → committed.** Layered diligence before spend.
+  - **Implication:** Brady should mirror this — show 2-3 diligence layers before bringing a vendor or capital recommendation. Single-source pitches will not land.
 
 ---
 
