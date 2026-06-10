@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insourcing the Build — June 9, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+
+  :root {
+    --bg: #0C0F14;
+    --bg-card: #13161D;
+    --bg-card-alt: #181C25;
+    --gold: #D4A843;
+    --gold-dim: #9A7B32;
+    --blue: #4A7FB5;
+    --white: #F0EDE6;
+    --gray: #8A8D94;
+    --gray-light: #B0B3BA;
+    --red: #C45C5C;
+    --rule: rgba(212,168,67,0.22);
+    --rule-soft: rgba(212,168,67,0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background: var(--bg);
+    color: var(--gray-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11pt;
+    line-height: 1.62;
+  }
+  .doc { max-width: 860px; margin: 0 auto; padding: 0 60px; }
+
+  /* COVER */
+  .cover {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    page-break-after: always;
+    padding: 40px 0;
+  }
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 26px;
+  }
+  .cover-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 52pt;
+    letter-spacing: -1.5px;
+    line-height: 1.02;
+    color: var(--white);
+  }
+  .cover-divider {
+    width: 120px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+    margin: 28px 0;
+    border-radius: 2px;
+  }
+  .cover-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 18pt;
+    line-height: 1.3;
+    color: var(--gray-light);
+    max-width: 620px;
+    margin-bottom: 44px;
+  }
+  .cover-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt;
+    letter-spacing: 1px;
+    color: var(--gray);
+  }
+  .cover-meta > div { margin-bottom: 7px; }
+  .cover-meta span { color: var(--gold-dim); }
+
+  /* BODY TYPOGRAPHY */
+  .body { padding-bottom: 60px; }
+  .body h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 21pt;
+    letter-spacing: -0.4px;
+    line-height: 1.15;
+    color: var(--white);
+    margin: 38px 0 4px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .body h2:first-child { border-top: none; padding-top: 0; margin-top: 8px; }
+  .body h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13.5pt;
+    color: var(--gold);
+    margin: 26px 0 6px;
+  }
+  .body p { margin: 0 0 12px; }
+  .body strong { color: var(--white); font-weight: 600; }
+  .body em { color: var(--gray-light); }
+  .body a { color: var(--blue); text-decoration: none; }
+  .body ul, .body ol { margin: 0 0 14px 22px; }
+  .body li { margin-bottom: 7px; }
+  .body hr {
+    border: none;
+    border-top: 1px solid var(--rule-soft);
+    margin: 30px 0;
+  }
+
+  /* Intro italic lede (the framing paragraph) */
+  .body > p > em:only-child,
+  .body > p em { color: var(--gray-light); }
+
+  /* CALLOUT — blockquote (the worked-example) */
+  .body blockquote {
+    background: var(--bg-card);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 0 0 16px;
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  .body blockquote p { margin: 0; }
+
+  /* TABLES */
+  .body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 22px;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    page-break-inside: auto;
+  }
+  .body thead { background: var(--bg-card-alt); }
+  .body th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 9px 11px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: bottom;
+  }
+  .body td {
+    padding: 9px 11px;
+    vertical-align: top;
+    color: var(--gray-light);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .body tbody tr:nth-child(even) { background: rgba(255,255,255,0.018); }
+  .body td strong { color: var(--white); }
+  .body tr { page-break-inside: avoid; }
+
+  /* The intro framing paragraph sits before the first H2 */
+  .lede-block {
+    font-size: 11.5pt;
+    color: var(--gray-light);
+    border-left: 3px solid var(--gold-dim);
+    padding: 4px 0 4px 20px;
+    margin: 4px 0 8px;
+  }
+
+  @media print {
+    body { font-size: 10.5pt; }
+    .doc { max-width: none; padding: 0; }
+    .body h2 { page-break-after: avoid; }
+    .body h3 { page-break-after: avoid; }
+    .body table, .body blockquote { page-break-inside: avoid; }
+  }
+
+
+</style>
+</head>
+<body>
+<div class="doc">
+
+    <section class="cover">
+      <div class="cover-label">WALMART · REAL ESTATE &amp; CONSTRUCTION · PRECEDENT RESEARCH</div>
+      <h1 class="cover-title">Insourcing the Build</h1>
+      <div class="cover-divider"></div>
+      <div class="cover-subtitle">Vertically Integrating General-Contractor Capability at Retail Scale</div>
+      <div class="cover-meta">
+        <div>PREPARED FOR · <span>A Real Estate & Construction executive at Walmart</span></div>
+        <div>DATE · <span>June 9, 2026</span></div>
+        <div>CLASSIFICATION · <span>DISCUSSION DRAFT · EXTERNAL PRECEDENT &amp; STRATEGIC OPTIONS</span></div>
+      </div>
+    </section>
+    <div class="body"><h2>Executive Summary</h2>
+<p><strong>The short answer: yes, the model is real, the math works, and Walmart is unusually well-positioned to run this play — but the version that works is not "become a 50-state general contractor overnight." It is a staged insourcing of the <em>control layer</em> of construction, anchored to a captive builder and a standardized prototype, with monetization as a deliberate Phase 3, not a launch feature.</strong></p>
+<p>Five findings drive the recommendation:</p>
+<ol>
+<li>
+<p><strong>Almost nobody self-performs raw construction at retail scale — but the best operators own the control layer.</strong> Across big-box, QSR, convenience, tech, and manufacturing, the winners do not swing their own hammers. They insource the <em>program-management, design-standardization, and builder-relationship</em> layer, then lock in a captive or exclusive builder against a repeatable prototype. <strong>Costco</strong> is the cleanest analog: it keeps construction management in-house, uses <strong>one exclusive builder (Span Construction) for ~21 years</strong>, builds <strong>~90% of warehouses from off-site-manufactured steel panels</strong>, and opens a warehouse <strong>foundation-to-doors in ~110 days versus an industry-typical 160–180</strong> (Chain Store Age; American Builders Quarterly).</p>
+</li>
+<li>
+<p><strong>Walmart already owns most of the capability — it just hasn't pointed it at the build.</strong> Walmart Realty is roughly <strong>2,500 professionals</strong>, including an internal construction department of construction managers, estimators, and designers (Buildings.com). Walmart owns ~6,039 of its retail locations and is restarting new-store construction while running one of the largest remodel and automation programs in the world. The gap between today and an insourced model is narrower than it looks.</p>
+</li>
+<li>
+<p><strong>The prize is real and quantifiable: roughly 3–9% of construction spend, with a defensible central estimate near 5%.</strong> General-contractor fee, loaded general conditions, subcontractor markup, insurance, and bonding are all capturable layers. Net of the cost to stand up an internal organization, a well-run, standardized, high-volume program can durably keep <strong>~3–9% of annual construction spend</strong> — on the order of <strong>$15M–$45M for every $500M built</strong> (FHWA; CII/Charles Pankow Foundation; industry benchmarks). Retail's unusually heavy general-conditions load (~16% vs. a 6–12% commercial norm) is upside.</p>
+</li>
+<li>
+<p><strong>The "insource, then monetize" flywheel is not theoretical for Walmart — it is the house playbook, run at least six times.</strong> Advertising (<strong>Walmart Connect, $4.4B+ and &gt;70% gross margin</strong>), delivery (<strong>GoLocal</strong>, sold to Home Depot and Lowe's), fulfillment (<strong>WFS</strong>), store software (<strong>Walmart Commerce Technologies / Store Assist</strong>), data (<strong>Data Ventures / Scintilla</strong>), and payments (<strong>OnePay, $4B+ valuation</strong>) are all cost centers Walmart insourced, standardized, and sold to others. These "other businesses" now contribute roughly <strong>one-third of operating profit</strong> at margins far above retail (Talk Business; Grocery Doppio). Construction is a logical next candidate — and Walmart Realty <em>already</em> sells tenant-improvement services to outside parties (Buildings.com), so the seed exists.</p>
+</li>
+<li>
+<p><strong>The cautionary evidence is just as clear, and it all rhymes.</strong> The failures — Berlin Brandenburg Airport (owner self-managed instead of using a GC; fragmented into ~50 lots; <strong>14 years late, &gt;€7B, ~3× over budget</strong>), Tesco's Spenhill land bank (<strong>£804M writedown</strong>, sites sold off) — share two causes: fragmenting accountability to dodge the GC fee, and coupling fixed construction capacity to a single, cyclical demand source. The successes share the inverse: single-point accountability, a separately capitalized vehicle, and a pipeline big enough to keep the capability fully utilized. Walmart has the pipeline. The discipline has to be designed in.</p>
+</li>
+</ol>
+<p><strong>Recommendation in one line:</strong> Run it as a <strong>crawl-walk-run</strong> — insource construction management and a captive-builder model on a standardized prototype first, self-perform only the highest-markup repeatable scopes second, and treat an external "Walmart Build Services" arm as a Phase-3 option to be earned, not assumed. The rest of this paper is the evidence and the roadmap.</p>
+<hr />
+<h2>1. Framing the Question Precisely</h2>
+<p>"Insourcing general-contractor work" is not one decision — it is a spectrum, and most of the confusion (and most of the risk) comes from collapsing five very different operating models into one phrase. Before naming who does it, define what "it" is:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>What the owner does</th>
+<th>What stays external</th>
+<th>Margin captured</th>
+<th>Risk absorbed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Owner's-rep / in-house construction management (CM)</strong></td>
+<td>Owns program management, design, estimating, scheduling, builder selection; directs the work</td>
+<td>GCs and all trades self-perform the physical build</td>
+<td>Thin — coordination efficiency, fewer change orders</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><strong>2. Captive / exclusive builder</strong></td>
+<td>Same as above + locks one builder to a standardized prototype across the whole program</td>
+<td>The captive builder still physically builds</td>
+<td>Standardization + speed; volume-priced fee</td>
+<td>Low–moderate</td>
+</tr>
+<tr>
+<td><strong>3. Self-perform key trades</strong></td>
+<td>Owner directly employs crews for the highest-markup, most repeatable scopes (e.g., concrete, fixtures, low-voltage)</td>
+<td>Specialized/cyclical trades still subbed</td>
+<td>Captures GC's markup on those trades</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td><strong>4. Full owner-builder</strong></td>
+<td>Owner holds the GC license and self-performs broadly</td>
+<td>Little — owner is the builder</td>
+<td>Full fee + general conditions + sub markup</td>
+<td>High — licensing, bonding, liability, labor</td>
+</tr>
+<tr>
+<td><strong>5. Integrated master builder (and external sales)</strong></td>
+<td>Owner runs a full design-build organization, builds for itself <em>and sells to others</em></td>
+<td>Nothing structural</td>
+<td>Fee margin + external revenue</td>
+<td>Highest — plus antitrust/conflict</td>
+</tr>
+</tbody>
+</table>
+<p>The critical, non-obvious finding from the precedent research: <strong>the operators who win at scale cluster at Models 2–3, not Model 4.</strong> Big-box retailers do not run armies of their own ironworkers. They own the <em>control layer</em> (Model 1), bolt on a <em>captive builder and a prototype</em> (Model 2), and selectively <em>self-perform the trades where the markup is fattest and the work most repeatable</em> (Model 3). The "build your own GC org and become your own general contractor" framing in the original question is real — but the defensible version of it lives in Models 2–3, with Model 5 (monetization) as a separate, later, optional bet.</p>
+<p>This reframing matters because it changes the risk profile from "bet the construction program on a standing army of crews" to "insource the brain and the prototype, rent the muscle on standardized terms, and self-perform only where the arithmetic is overwhelming."</p>
+<hr />
+<h2>2. Where Walmart Sits Today</h2>
+<p>Three facts establish that Walmart is closer to this than a standing start.</p>
+<p><strong>Walmart already owns the construction control layer.</strong> Walmart Realty is a Bentonville-based organization of roughly <strong>2,500 professionals</strong> — architects, store planners, real-estate managers, design managers, <strong>construction managers, estimators, and designers</strong> — with an internal construction department (Buildings.com; Walmart Careers). Walmart <strong>owns ~6,039 of its retail locations</strong> and actively buys and redevelops real estate, so it already carries developer-style ownership economics rather than a pure developer-build/sale-leaseback model (Arkansas Business). What it does <em>not</em> generally do today is self-perform the physical build: new stores and remodels are executed by long-tenured external GCs such as <strong>McCrory Construction (25+ years on Walmart)</strong> and <strong>Engineered Structures Inc. (~450 Walmart stores)</strong> under Walmart's own construction managers.</p>
+<p><strong>The pipeline is enormous and re-accelerating — exactly the condition the successful models require.</strong> Walmart's capital program runs around <strong>3.5% of net sales, on the order of ~$23–25B for FY27</strong> (Constellation Research; Retail Dive, reporting on Walmart's annual report and FY27 guidance — note these are secondary figures; the exact line item should be pulled from the 10-K for any board model). New-store/club investment <strong>jumped ~212% year-over-year to ~$1.4B in FY26</strong>, signaling the restart of Supercenter building after roughly a decade of remodel-only focus. The remodel program ("Store of the Future") completed <strong>~675 remodels in FY26</strong>; the January 2024 growth plan committed to <strong>150+ new/converted stores and 650 remodels over five years across 47 states and Puerto Rico</strong> (Retail Dive; Construction Dive). On top of that sits a multi-billion-dollar supply-chain automation buildout (Symbotic et al.). This is the single most important fact in the analysis: <strong>the volume and repeatability that make insourcing pay are already present.</strong></p>
+<p><strong>Walmart is already reaching past the control layer into how buildings get physically delivered.</strong> In late 2025, <strong>Walmart, Sika, and Alquist 3D struck a landmark deal to 3D-print 12+ commercial projects</strong>, described as moving 3D concrete printing "beyond one-off pilots into full-scale commercialization," following earlier printed projects in Athens, TN (2024) and a Huntsville, AL pickup center built in ~7 days (CNBC; Construction Dive). The delivery model — contractor-run robotic printers operating 24/7 with a small crew — is precisely the kind of standardized, technology-led build that an insourced program is built to exploit.</p>
+<p><strong>Honest caveat for any internal audience:</strong> there is no public evidence that Walmart is standing up a fully self-performing internal GC today. The accurate framing is that Walmart already owns the <em>management</em> layer and is now standardizing the <em>physical delivery</em> layer — which is the wedge for this entire thesis, not proof the decision is made.</p>
+<hr />
+<h2>3. The Precedent That Matters Most — Walmart's Own Flywheel</h2>
+<p>Before looking outward, look inward. The strongest argument for "insource construction, then monetize it" is that <strong>Walmart has already run this exact play at least six times</strong>, and the resulting businesses now carry a disproportionate share of company profit. The sequence is identical every time: <em>build a capability to run Walmart at scale → standardize it → sell it to others as a service → capture margins far above retail.</em></p>
+<table>
+<thead>
+<tr>
+<th>Internal cost center</th>
+<th>Productized as</th>
+<th>External proof point</th>
+<th>Margin signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Advertising / shelf placement</td>
+<td><strong>Walmart Connect</strong></td>
+<td>$4.4B FY25 (+27%); $6.4B incl. Vizio</td>
+<td><strong>&gt;70% gross margin</strong> (retail-media)</td>
+</tr>
+<tr>
+<td>Last-mile delivery network</td>
+<td><strong>Walmart GoLocal</strong></td>
+<td>White-label delivery sold to <strong>Home Depot, Lowe's, Chico's, Kelly-Moore</strong>; 1M+ deliveries in year one</td>
+<td>New high-margin revenue line</td>
+</tr>
+<tr>
+<td>E-commerce fulfillment</td>
+<td><strong>Walmart Fulfillment Services</strong></td>
+<td>~200K active sellers; ~44% of marketplace volume; ~50% GMV lift for sellers</td>
+<td>Amazon-FBA analog</td>
+</tr>
+<tr>
+<td>Store/commerce software</td>
+<td><strong>Walmart Commerce Technologies / Store Assist</strong></td>
+<td>Sold to other retailers via Adobe &amp; Salesforce; tech had fulfilled 830M+ orders across 4,700+ stores</td>
+<td>SaaS economics</td>
+</tr>
+<tr>
+<td>First-party shopper data</td>
+<td><strong>Walmart Data Ventures / Scintilla</strong></td>
+<td>Sold to P&amp;G, PepsiCo and other suppliers</td>
+<td>Data-as-a-service margin</td>
+</tr>
+<tr>
+<td>Payments / financial services</td>
+<td><strong>OnePay</strong></td>
+<td>Super-app; <strong>$4B+ valuation (Jan 2026)</strong></td>
+<td>Fintech multiple</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: Talk Business; Grocery Doppio; eMarketer; Walmart Corporate; TechCrunch; Salesforce; Bloomberg.</p>
+<p>Two implications:</p>
+<ul>
+<li>
+<p><strong>The pattern is proven and repeatable, not a one-off.</strong> Walmart has done this across marketing, logistics, software, data, and payments. "Other businesses" — advertising, membership, marketplace — now contribute roughly <strong>one-third of operating profit</strong>, at margins the core retail business cannot touch (Talk Business). The institutional muscle to insource-then-monetize is real and resident.</p>
+</li>
+<li>
+<p><strong>Construction already has a monetization seed.</strong> Walmart Realty's internal construction team has historically offered <strong>tenant-improvement services to outside customers</strong>, and Walmart monetizes surplus real estate via redevelopment and leasing (Buildings.com; Propmodo). This is the closest direct precedent to "we built an internal construction capability for ourselves, then sold it externally" — and it already exists inside the building.</p>
+</li>
+</ul>
+<p><strong>The one honest qualifier to carry into any executive conversation:</strong> the <em>monetization</em> step for construction is the thesis/extrapolation. What is documented is (a) the repeatable insource-then-monetize pattern across six other functions and (b) Walmart actively insourcing and standardizing construction <em>delivery technology</em> right now. The argument is that construction is the next logical candidate — not that it has been announced.</p>
+<hr />
+<h2>4. Who Else Is Doing This — The Evidence Base</h2>
+<p>The research swept four populations: big-box and retail operators, hyperscalers and manufacturers, companies that monetized an internal build capability externally, and international owners. The pattern repeats across all four.</p>
+<h3>4a. Big-box, grocery, and high-volume retail</h3>
+<p><strong>The headline finding: no major retailer runs large self-perform crews — but the best ones own the control layer and lock in a captive builder against a standardized prototype.</strong> The realistic spectrum is owner-builder/developer (owns the building), in-house construction management (directs external GCs against a prototype), and prefab/modular standardization (vertical integration of the <em>process</em>). Strongest analogs:</p>
+<ul>
+<li>
+<p><strong>Costco — the cleanest big-box playbook.</strong> In-house construction department under a <strong>Senior VP of Construction</strong>; does <em>not</em> self-perform crews, but uses <strong>Span Construction as its exclusive worldwide builder for ~21 years</strong> — a captive, standardized partner rather than open competitive bid. Uses <strong>off-site-manufactured steel "sandwich panel" systems on ~90% of warehouses</strong> and builds <strong>foundation-to-opening in ~110 days vs. an industry-typical 160–180</strong>. Span has built <strong>110M+ sq ft</strong> for Costco at 40+ projects/year (Chain Store Age; American Builders Quarterly; Deseret News). <em>This is the single best model for Walmart to study: insource the brain and the prototype, lock one builder, let standardization — not crews — drive the cost and speed win.</em></p>
+</li>
+<li>
+<p><strong>Chick-fil-A — owner-builder + modular.</strong> Leases the ground but <strong>builds the structure itself</strong>; an internal Restaurant Development/Construction team drives the program. The shift to <strong>modular/prefab doubled construction productivity in 2021</strong>, finished builds <strong>~6 weeks faster</strong>, and tightened cost control. ~150 new restaurants/year, roughly one-third now modular (Bisnow; Construction Dive).</p>
+</li>
+<li>
+<p><strong>Buc-ee's — the fully-owned end of the spectrum.</strong> <strong>100% company-owned, no franchising</strong>; site selection, buildout, and operations kept in-house; the company <strong>holds a Texas general-contractor license</strong> and is listed as property owner on hundreds of permits; the founder holds a construction-science degree (Levelset; BuildZoom). Proves the owner-builder model is operable at chain scale — though Buc-ee's publishes the least financial proof.</p>
+</li>
+<li>
+<p><strong>Aldi (Germany) — the separately capitalized development arm.</strong> Aldi Süd stood up a dedicated <strong>in-house project-development company</strong> with local offices to develop and own its store real estate (increasingly mixed-use), with a <strong>€4.6B self-built real-estate book value</strong> and ~65% of German stores owned (REFIRE; Discount Retail Consulting). Aldi US, by contrast, runs an in-house store-development team but contracts external GCs — a useful illustration that the model can be dialed up or down by geography.</p>
+</li>
+<li>
+<p><strong>Supporting cases:</strong> <strong>IKEA/Ingka</strong> self-develops and owns its real estate (Ingka Centres/Investments; &gt;€5B capex through FY27). <strong>Chipotle</strong> runs in-house design plus ~12 construction managers and a prototyping "Cultivate Center," but outsources the GC. <strong>H-E-B</strong> built a <strong>93,000-sq-ft store in ~100 days</strong> via prefabricated walls under in-house construction management. <strong>Sheetz and Wawa</strong> keep construction leadership in-house, outsource the build, and are moving to modular. <strong>Lidl/Schwarz</strong> runs a real-estate arm (Schwarz Immobilien Service) but bids the actual building to external GCs.</p>
+</li>
+</ul>
+<p><strong>Takeaway for 4a:</strong> the retail evidence does <em>not</em> support "Walmart becomes a self-performing GC." It strongly supports "Walmart owns construction management + a captive builder + a hard-standardized prototype," with selective self-perform on the highest-markup scopes.</p>
+<h3>4b. Hyperscalers and manufacturers — the owner-as-construction-manager model at extreme scale</h3>
+<p>Where the retail world stops at the control layer, the tech and manufacturing world pushes further — and provides the clearest "we deliberately brought this in-house" statements.</p>
+<ul>
+<li>
+<p><strong>Meta — the most explicit insourcing narrative.</strong> Its own retrospective: the decision was "to <strong>take control of our data centers, which meant designing and building our own</strong>." In-house design, engineering, construction, and operations; external GCs are treated as performance-managed partners held to Meta's standards "rather than following traditional construction industry practices." ~95 buildings built or under construction; it has even copied Tesla's tactic of <strong>building under tents to halve construction time</strong> (Meta Engineering; TechCrunch).</p>
+</li>
+<li>
+<p><strong>Tesla — the clearest self-perform / vertical-integration case.</strong> On Gigafactory Nevada, Tesla "<strong>is its own contractor on the project, learning how to build other factories</strong>," reusing the capability across Shanghai, Berlin, and Texas. It installs manufacturing equipment concurrently with the building shell and treats the factory as a product ("the machine that builds the machine"). Motivation is explicitly speed and cost (Wikipedia; InsideEVs). <strong>Important counter-evidence:</strong> Tesla's self-direction also produced friction — roughly <strong>$24M in contractor liens</strong> over payment disputes — a caution about absorbing the GC's coordination role without the GC's administrative discipline.</p>
+</li>
+<li>
+<p><strong>Amazon — the largest documented internal construction-management org.</strong> A named <strong>R2L Construction</strong> team where Amazon construction managers run RFPs, vet and select GCs, administer contracts, and act as "schedule auditor," while external design-builders (e.g., Gray) physically build — a million-square-foot fulfillment center delivered in <strong>11 months</strong> (Amazon Jobs; Gray). Owner-as-CM at fleet scale.</p>
+</li>
+<li>
+<p><strong>Google, Microsoft, Apple — in-house program management + self-built assets.</strong> Google staffs in-house data-center construction program managers and self-builds/operates (e.g., a reported <strong>$100B Kansas City campus</strong>). Microsoft runs in-house construction PMs and has launched a <strong>STAR program and Datacenter Academy to build an internal labor pipeline</strong> against the construction-worker shortage, framing itself as the entity that "builds, owns, and operates." Apple's internal Real Estate &amp; Development team "leads all related capital construction projects" and self-builds its data centers.</p>
+</li>
+</ul>
+<p><strong>Takeaway for 4b:</strong> at sufficient scale and repeatability, owners routinely insource the <em>construction-management and standardization</em> layer — and the most aggressive (Meta, Tesla) push into genuine self-perform. Walmart's per-unit scale and repetition exceed any of these on store count; the constraint is geographic dispersion and licensing, not capability.</p>
+<h3>4c. The monetizers — companies that built it for themselves, then sold it</h3>
+<p>This is the population that speaks directly to the second half of the question: <em>can you turn an internal build capability into an external business?</em> The answer is yes, with clean precedents — and one important pattern (it usually starts internal, then opens up).</p>
+<ul>
+<li>
+<p><strong>Toyota Home / Misawa → Prime Life Technologies — the purest "manufacturer monetized internal build capability."</strong> Toyota formed an internal housing group in 1968–69 explicitly to <strong>repurpose its automobile-manufacturing technology</strong> (assembly-line production, jigs, quality systems) for building; launched the Toyota Home brand in 1977; spun it into Toyota Housing Corporation; acquired Misawa Homes; and in 2020 merged with Panasonic Homes into <strong>Prime Life Technologies, supplying ~17,000 detached houses/year</strong> (Construction Physics; Toyota). The exact arc: build a capability by repurposing your own manufacturing DNA, then productize and sell it.</p>
+</li>
+<li>
+<p><strong>Sears Modern Homes — the canonical <em>retailer</em> that monetized building.</strong> Born from a <em>failing internal building-materials department</em>: in 1906 the fix was to bundle existing materials inventory into complete mail-order house kits. ~<strong>70,000–75,000 homes sold 1908–1942</strong>, with the attached <strong>mortgage business</strong> proving more profitable than the houses (Wikipedia; The Pursuit of History). A retailer turning an internal cost center into a national building <em>and financing</em> business — a century before "fintech attach."</p>
+</li>
+<li>
+<p><strong>Walmart Realty (again) — the closest modern retailer analog,</strong> already covered: internal construction team that began offering <strong>tenant-improvement services externally</strong> and monetizes surplus development (Buildings.com; Arkansas Business).</p>
+</li>
+<li>
+<p><strong>IKEA BoKlok (JV with Skanska) — retailer + builder productizing housing.</strong> IKEA's flat-pack cost-engineering DNA + Skanska's construction capability → low-cost modular homes sold to municipalities and housing associations, ~1,200/year (Ellen MacArthur Foundation). <strong>Caveat:</strong> Skanska later offloaded the BoKlok factory — evidence the monetization has been uneven, and that a JV partner can exit.</p>
+</li>
+<li>
+<p><strong>Integrated "master builders" (the operating template):</strong> <strong>Ryan Companies</strong> self-developed first (Ryan Realty owned what Ryan built), then scaled into a full design-build-develop-manage platform. <strong>Clayco</strong> (~$8.1B revenue, #1 design-build firm) collapses architect/engineer/contractor into single-point responsibility and self-performs critical-path scopes. <strong>Gray</strong> (~$5B) and <strong>Mortenson</strong> pair construction with in-house development. These prove the <em>operating model</em> of "develop for yourself and build for others under one roof."</p>
+</li>
+<li>
+<p><strong>Industrial-origin homebuilding giants:</strong> <strong>Sekisui House</strong> (world's largest homebuilder; acquired MDC Holdings for <strong>$4.95B</strong> to scale in the US) and <strong>Daiwa House</strong> show industrial firms becoming construction giants. <strong>Clayton Homes (Berkshire Hathaway)</strong> is the textbook vertical-integration-of-homebuilding play (20+ plants, in-house finance, surrounded by Berkshire building-products brands) — though it is integration, not externalization.</p>
+</li>
+</ul>
+<p><strong>Takeaway for 4c:</strong> monetizing an internal build capability is well-precedented, but the durable cases (Toyota, Sears, Walmart Realty, Ryan) all <strong>built it for themselves first and opened it up second</strong> — and the uneven cases (BoKlok) warn that productized construction is capital-intensive and partner-dependent. This is a Phase-3 bet, earned by first proving the internal model.</p>
+<h3>4d. International — the Schwarz parallel and the develop-then-divest discipline</h3>
+<ul>
+<li>
+<p><strong>Schwarz Group (Lidl &amp; Kaufland) — the philosophical twin of Walmart's flywheel.</strong> Europe's largest retailer explicitly covers "the entire value cycle." Each insourced function started captive, then opened externally: <strong>Schwarz Produktion</strong> makes private-label goods and now produces for third parties; <strong>PreZero</strong> began as internal recycling and "expanded its range of services to third parties" into a global environmental-services business; <strong>Schwarz Digits / STACKIT</strong> was "born out of internal needs of the retail business, but opened up to external customers." This is the clearest international proof that "insource the whole value chain, then sell pieces of it externally" is a repeatable corporate strategy — the exact logic behind monetizing construction. <strong>Accuracy caveat:</strong> the research could <strong>not</strong> verify a distinct standalone Schwarz construction/GC subsidiary in primary sources; Schwarz's documented vertical integration is production, recycling, and IT — so any claim of a "Schwarz construction arm" should be softened or independently confirmed.</p>
+</li>
+<li>
+<p><strong>Develop-then-divest discipline:</strong> <strong>Woolworths (Australia)</strong> develops shopping centres via its in-house arm <strong>Fabcot</strong> and then often <em>sells the completed assets</em> — recycling capital rather than holding construction capacity through the cycle. <strong>Wesfarmers</strong> is entering modular construction via a <strong>JV with an established contractor (Built)</strong> rather than building a raw self-perform GC — a deliberate de-risking move. <strong>Majid Al Futtaim</strong> and <strong>Emaar</strong> (Middle East) are developer-operators who build and own their own real estate. <strong>Aldi (Germany)</strong> ring-fences risk in a separately capitalized development company.</p>
+</li>
+</ul>
+<p><strong>Takeaway for 4d:</strong> the international successes share two traits the failures lack — (1) a <strong>separately capitalized vehicle</strong> for the build/development arm, and (2) <strong>pipeline continuity</strong> that keeps it fully utilized. Both are directly designable into a Walmart program.</p>
+<hr />
+<h2>5. The Economics — What Is Actually Capturable</h2>
+<p>The strategic case only matters if the arithmetic holds. It does, within a defensible range. All figures are sourced industry benchmarks; where owner-builder data is thin (because academic studies measure <em>contracted</em> delivery, not owners removing the GC entirely), the paper says so and reasons from documented markup layers rather than overclaiming a measured number.</p>
+<h3>The capturable layers</h3>
+<table>
+<thead>
+<tr>
+<th>Layer an external GC charges</th>
+<th>Typical range</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GC fee / overhead &amp; profit</strong></td>
+<td>~4–8% of hard costs at scale (the "10-and-10 = ~20%" rule applies only to small jobs)</td>
+<td>Large-program CM fees run <strong>1–5%</strong> above $10M; federal CM-as-constructor caps fee at <strong>3% (max 5%)</strong></td>
+</tr>
+<tr>
+<td><strong>General conditions</strong></td>
+<td>5–15% of project cost (commonly 6–12%); <strong>retail runs ~16%</strong></td>
+<td>Retail loads more for phasing around occupied centers — a key insourcing target</td>
+</tr>
+<tr>
+<td><strong>Markup on subcontracted work / change orders</strong></td>
+<td>~15% standard sub markup; change-order O&amp;P caps ~10–15%</td>
+<td>The core arbitrage: GCs who self-perform capture the markup that would otherwise stack on a sub</td>
+</tr>
+<tr>
+<td><strong>Owner-Controlled Insurance (OCIP / wrap-up)</strong></td>
+<td>~1–4% of construction cost (commonly 2–4%) + 0.5–1.2% loss control</td>
+<td><strong>Rolling OCIP</strong> aggregates many small projects — viable at <strong>~$200M+ over 2–3 years</strong>, which a retail rollout clears easily</td>
+</tr>
+<tr>
+<td><strong>Bonding</strong></td>
+<td>~0.5–1.5% (~1% avg)</td>
+<td>Private big-box work by a creditworthy owner is typically <strong>un-bonded</strong> — a direct saving</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: NextInsurance; EdgeStrat; Angi; Acquisition.gov; EB3 Construction (retail); J.S. Held; Procore; FHWA.</p>
+<h3>Delivery-method evidence — the most defensible hard data</h3>
+<p>Owner-builder/self-perform has the least peer-reviewed cost data, so anchor the financial case on the well-studied <em>integration</em> methods, which independently corroborate mid-single-digit savings <em>before</em> removing the GC fee entirely:</p>
+<ul>
+<li><strong>FHWA Design-Build Effectiveness Study:</strong> design-build delivered <strong>~3% lower total cost and ~14% shorter duration</strong> vs. design-bid-build, at equal quality.</li>
+<li><strong>CII / Charles Pankow Foundation</strong> (Molenaar &amp; Franz, 212 projects): design-build vs. design-bid-build — <strong>3.8% less cost growth, 36% faster construction phase</strong>; design-build vs. CM-at-risk — <strong>2.4% less cost growth, 1.9% lower cost/sf</strong>.</li>
+<li><strong>Penn State multi-method study:</strong> design-build <strong>&gt;6% cost savings, ~33% faster</strong>.</li>
+<li><strong>CM-at-risk</strong> field example: ~<strong>$700K saved</strong> on a single municipal building by switching from design-bid-build.</li>
+</ul>
+<p>The directional conclusion is consistent across independent studies: <strong>integration and owner-control consistently produce mid-single-digit total-cost savings and double-digit schedule savings</strong> — and that is <em>before</em> an owner-builder removes the GC fee and sub markup outright.</p>
+<h3>The value-capture math</h3>
+<p>For an owner spending <strong>$X per year</strong> on construction, the theoretically capturable pool — netting out the cost to run an internal organization — works out as follows:</p>
+<ul>
+<li><strong>Gross theoretical capture: ~8–15% of construction spend</strong> (GC fee + a recoverable slice of the loaded general conditions + sub/change-order markup + OCIP + bonding). The high end requires removing the entire GC layer, self-performing key trades, running a rolling OCIP, and going un-bonded — rarely fully achieved.</li>
+<li><strong>Internal organization cost: ~3–6% of construction spend</strong> to staff competent program/construction management, estimating, procurement, QA/safety, legal/risk, and per-state license qualifiers. Scale pushes this toward the low end.</li>
+<li><strong>Net durable capture: ~3–9%, with ~5% a reasonable central estimate</strong> for a well-run, standardized, multi-hundred-site program.</li>
+</ul>
+<p><strong>Worked example — $500M of annual construction:</strong></p>
+<blockquote>
+<p>Gross capture at 10% = <strong>$50M/yr</strong>. Internal org cost at ~4.5% ($22.5M) leaves <strong>~$27.5M/yr net (~5.5%)</strong>. Conservative (3% net) ≈ <strong>$15M/yr</strong>; aggressive (9% net) ≈ <strong>$45M/yr</strong>.</p>
+</blockquote>
+<p>Applied against Walmart's capital program (a multiple of $500M in addressable building work annually), the same percentages scale into the <strong>hundreds of millions per year</strong> at the program level — which is precisely why this is a board-level question rather than a procurement tweak. The capture skews <em>higher</em> for a standardized, high-repeat retail program than for one-off complex builds, but is bounded by three things, addressed next: per-state licensing friction, the liability the owner absorbs, and the fixed cost of carrying the organization through volume troughs.</p>
+<hr />
+<h2>6. Risks and Mitigations</h2>
+<p>The failures are as instructive as the successes, and they converge on a small number of root causes. Each has a designed mitigation drawn from the operators who got it right.</p>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>The cautionary evidence</th>
+<th>Mitigation (drawn from the winners)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fragmented accountability ("dodge the GC fee, lose the GC")</strong></td>
+<td><strong>Berlin Brandenburg Airport:</strong> the owner judged the GC bid too expensive and self-managed, splitting the terminal into ~7 lots that ballooned to ~50, with up to ~70 firms planning on site at once. "The absence of a responsible general contractor is one of the main causes of the disaster." <strong>Opened 14 years late, &gt;€7B, ~3× over budget.</strong></td>
+<td>Keep <strong>single-point accountability</strong> — a captive builder or true integrated master builder (Costco/Span model). Never fragment into dozens of self-managed lots to save the fee.</td>
+</tr>
+<tr>
+<td><strong>Coupling fixed capacity to one cyclical demand source</strong></td>
+<td><strong>Tesco Spenhill:</strong> an aggressive in-house land/development arm reversed into an <strong>£804M property writedown</strong> and a sell-off of 14 sites for £250M when expansion slowed.</td>
+<td><strong>Separately capitalize</strong> the build arm (Aldi model) and design for <strong>pipeline continuity</strong>; recycle capital via <strong>develop-then-divest</strong> where applicable (Woolworths/Fabcot).</td>
+</tr>
+<tr>
+<td><strong>Labor scarcity and cyclicality ("feast or famine")</strong></td>
+<td>Structural skilled-labor shortage (ABC: ~349K net new workers needed in 2026); contractors carry fixed crew overhead between waves. Tesla's self-direction drew <strong>~$24M in liens</strong>.</td>
+<td>Self-perform <strong>only the most repeatable, continuously-utilized scopes</strong> (Model 3). Build an <strong>internal labor pipeline</strong> (Microsoft's STAR/Datacenter Academy model). Rent cyclical/specialized trades.</td>
+</tr>
+<tr>
+<td><strong>Multi-state licensing, bonding, liability</strong></td>
+<td>~33 states require a commercial GC license; owner-builder exemptions are mostly residential; the owner absorbs construction-defect, OSHA, and completed-operations liability.</td>
+<td>Treat <strong>per-state license qualification as the #1 operational workstream</strong>; use a captive/JV builder in hard states; consider <strong>captive insurance / rolling OCIP</strong> to capture insurance margin while managing liability.</td>
+</tr>
+<tr>
+<td><strong>Antitrust / conflict-of-interest if monetized to competitors</strong></td>
+<td>FTC vertical-integration concerns: foreclosing rivals, gaining a window into competitors' sensitive information, conflicts favoring your own units — with information "firewalls" as the costly standard remedy.</td>
+<td>Phase monetization carefully; sell to <strong>non-competing or adjacent buyers first</strong> (the GoLocal pattern sold to Home Depot/Lowe's, but construction is more sensitive); design firewalls in from day one.</td>
+</tr>
+<tr>
+<td><strong>Distraction from the core mission</strong></td>
+<td>Vertical integration into a non-core, lumpy, liability-heavy business can absorb disproportionate executive attention.</td>
+<td>Ring-fence in a <strong>separate P&amp;L and leadership team</strong> (Aldi/Schwarz model); enter via <strong>JV with an established contractor</strong> to buy capability (Wesfarmers/Built model).</td>
+</tr>
+</tbody>
+</table>
+<p>The spine of the risk section: <strong>the failures came from fragmenting accountability to dodge a fee, and from welding fixed construction capacity to a single cyclical demand source. The successes did the inverse — single-point accountability, a separately capitalized vehicle, and a pipeline big enough to stay fully utilized.</strong> Walmart uniquely has the pipeline. The other two are design choices.</p>
+<hr />
+<h2>7. Recommendation and Phased Roadmap</h2>
+<p>The evidence supports a staged, reversible insourcing — not a single irreversible leap. Each phase is independently value-accretive and earns the right to the next.</p>
+<p><strong>Phase 1 — Own the control layer and prove a captive-builder prototype (0–18 months).</strong>
+Point Walmart Realty's existing construction-management muscle at a <strong>standardized prototype</strong> for one repeatable building type (e.g., the Store-of-the-Future remodel package, a pickup center, or a small-format build). Lock a <strong>captive/exclusive builder</strong> against that prototype (the Costco/Span model) and instrument cost-per-square-foot, schedule, and change-order rates against today's external-GC baseline. Layer in a <strong>rolling OCIP</strong> across the program to capture insurance margin immediately. <em>Expected capture: the mid-single-digit delivery-method savings (FHWA/CII range) plus insurance — bankable, low-risk.</em></p>
+<p><strong>Phase 2 — Self-perform the highest-markup, most repeatable scopes (12–36 months).</strong>
+Where the arithmetic is overwhelming and the work is continuous — likely <strong>fixtures/millwork, low-voltage/automation fit-out, refrigeration, or sitework on the highest-volume formats</strong> — bring crews in-house (Model 3). Build an <strong>internal labor pipeline</strong> (Microsoft's academy model) to de-risk scarcity. Stand the build arm up as a <strong>separately capitalized entity</strong> with its own P&amp;L (Aldi model) so its cyclicality never contaminates the retail P&amp;L. Treat <strong>per-state licensing as the gating workstream</strong>. <em>Expected capture: the GC's markup on the self-performed scopes — the fattest, most defensible dollars.</em></p>
+<p><strong>Phase 3 — Earn the option to monetize externally (24–48 months, conditional).</strong>
+Only after the internal model is proven, consider a <strong>"Walmart Build Services" arm</strong> that sells standardized retail/industrial build-out, prefab/3D-print delivery, or program management to <strong>non-competing buyers first</strong> (the playbook Walmart already runs with GoLocal, Store Assist, and Scintilla; the Schwarz/PreZero/STACKIT pattern internationally; and Walmart Realty's existing tenant-improvement service as the seed). Design antitrust firewalls in from the start. <em>This is the optional, highest-upside, highest-complexity bet — to be approved on evidence, not assumed at launch.</em></p>
+<p><strong>The crawl-walk-run logic is the whole recommendation:</strong> insource the brain and the prototype first (Costco), self-perform the obvious trades second (Tesla/Meta, selectively), and monetize third only after the model is proven (Walmart's own flywheel). At every phase the move is reversible, separately measured, and ring-fenced — which is exactly what the cautionary tales (BER, Tesco) failed to do.</p>
+<hr />
+<h2>Appendix A — Company Evidence Table</h2>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Model</th>
+<th>What they actually do</th>
+<th>Hard proof point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Costco</strong></td>
+<td>2 (captive builder)</td>
+<td>In-house CM + one exclusive builder (Span) + steel-panel prototype</td>
+<td>~110-day build vs. 160–180; 110M+ sq ft built</td>
+</tr>
+<tr>
+<td><strong>Chick-fil-A</strong></td>
+<td>4 (owner-builder)</td>
+<td>Builds the structure itself; modular</td>
+<td>Doubled construction productivity 2021; ~6 wks faster</td>
+</tr>
+<tr>
+<td><strong>Buc-ee's</strong></td>
+<td>4 (owner-builder)</td>
+<td>100% owned; holds TX GC license</td>
+<td>Property owner on hundreds of permits</td>
+</tr>
+<tr>
+<td><strong>Aldi (DE)</strong></td>
+<td>1–2 + separate-capital dev co</td>
+<td>In-house project-development company</td>
+<td>€4.6B self-built real-estate value</td>
+</tr>
+<tr>
+<td><strong>IKEA / Ingka</strong></td>
+<td>Owner-developer</td>
+<td>Self-develops &amp; owns real estate</td>
+<td>&gt;€5B capex through FY27</td>
+</tr>
+<tr>
+<td><strong>Chipotle / H-E-B / Sheetz / Wawa</strong></td>
+<td>1 (in-house CM)</td>
+<td>Own design/CM; outsource the build; moving to modular</td>
+<td>H-E-B: 93k sq ft in ~100 days</td>
+</tr>
+<tr>
+<td><strong>Meta</strong></td>
+<td>1→4</td>
+<td>"Design and build our own"; performance-managed GCs</td>
+<td>~95 buildings; tents halve build time</td>
+</tr>
+<tr>
+<td><strong>Tesla</strong></td>
+<td>4 (self-perform)</td>
+<td>"Its own contractor… learning to build other factories"</td>
+<td>Concurrent shell + equipment; (caveat: $24M liens)</td>
+</tr>
+<tr>
+<td><strong>Amazon</strong></td>
+<td>1 (owner-as-CM)</td>
+<td>R2L Construction runs RFPs, selects/audits GCs</td>
+<td>1M-sq-ft FC in 11 months</td>
+</tr>
+<tr>
+<td><strong>Google / Microsoft / Apple</strong></td>
+<td>1 (in-house PM)</td>
+<td>In-house construction PM; self-built/owned assets</td>
+<td>MSFT internal labor academy; Google $100B campus</td>
+</tr>
+<tr>
+<td><strong>Toyota Home → Prime Life</strong></td>
+<td>5 (monetized)</td>
+<td>Repurposed auto-manufacturing tech into housing</td>
+<td>~17,000 homes/year</td>
+</tr>
+<tr>
+<td><strong>Sears Modern Homes</strong></td>
+<td>5 (monetized)</td>
+<td>Failing materials dept → kit homes + mortgages</td>
+<td>~70–75k homes 1908–1942</td>
+</tr>
+<tr>
+<td><strong>Walmart Realty</strong></td>
+<td>1 + seed of 5</td>
+<td>Internal construction dept; sells tenant-improvement services</td>
+<td>~2,500 professionals</td>
+</tr>
+<tr>
+<td><strong>IKEA BoKlok</strong></td>
+<td>5 (monetized, uneven)</td>
+<td>Modular housing JV with Skanska</td>
+<td>~1,200 homes/yr; Skanska later exited factory</td>
+</tr>
+<tr>
+<td><strong>Ryan / Clayco / Gray / Mortenson</strong></td>
+<td>5 (master builders)</td>
+<td>Self-develop + build for others</td>
+<td>Clayco ~$8.1B rev, #1 design-build</td>
+</tr>
+<tr>
+<td><strong>Schwarz (Lidl)</strong></td>
+<td>Insource-then-monetize</td>
+<td>Production, recycling (PreZero), IT (STACKIT) sold externally</td>
+<td>€175B revenue; no verified standalone GC arm</td>
+</tr>
+<tr>
+<td><strong>Woolworths / Wesfarmers</strong></td>
+<td>Develop-then-divest / JV</td>
+<td>Fabcot develops &amp; sells; Wesfarmers JV with Built</td>
+<td>Capital-recycling discipline</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Appendix B — Methodology and Source Notes</h2>
+<p>This paper synthesizes parallel research streams across retail/grocery operators, hyperscalers and manufacturers, monetization precedents, construction-delivery economics, and international examples plus cautionary cases. Three honesty notes for any executive audience:</p>
+<ol>
+<li><strong>The "Walmart sells construction externally" step is a thesis, not an announced move.</strong> What is documented is Walmart's six-times-proven insource-then-monetize pattern and its active insourcing of construction <em>delivery technology</em> (3D printing).</li>
+<li><strong>Owner-builder cost capture is reasoned from documented markup layers, not a single peer-reviewed study,</strong> because academic research measures contracted delivery methods. The design-build / CM-at-risk figures (FHWA, CII/Pankow, Penn State) are the hard data and should anchor any board model.</li>
+<li><strong>Two specific claims were flagged as unverified in primary sources</strong> and softened accordingly: a standalone "Schwarz construction subsidiary," and exact Walmart capex dollar figures (cited from secondary reporting on the annual report; pull the line item from the 10-K for any financial model).</li>
+</ol>
+<h3>Sources</h3>
+<p><strong>Walmart — delivery model, capex, flywheel:</strong> Buildings.com (Walmart Realty org); Arkansas Business (real-estate strategy); Walmart Careers (Real Estate, Construction &amp; Realty Execution); McCrory Construction; Engineered Structures Inc.; Constellation Research and Retail Dive (FY26 annual report / FY27 capex and remodel program); Construction Dive (5-year growth plan; 3D printing); CNBC (Walmart–Sika–Alquist 3D printing); Talk Business (new profit centers / operating-profit mix); Grocery Doppio and eMarketer (Walmart Connect); Walmart Corporate and Retail Dive (GoLocal); Walmart Marketplace and Marketplace Pulse (WFS); TechCrunch and Salesforce (Commerce Technologies / Store Assist); Walmart Corporate and Supply Chain Dive (Data Ventures / Scintilla); Bloomberg and Crowdfund Insider (OnePay); Propmodo (Walmart real-estate monetization).</p>
+<p><strong>Retail / big-box construction:</strong> Chain Store Age, American Builders Quarterly, Deseret News, Commercial Observer (Costco / Span); Bisnow, Construction Dive, LoopNet (Chick-fil-A); Levelset, BuildZoom (Buc-ee's); REFIRE, Discount Retail Consulting, ESM Magazine (Aldi); Ingka (IKEA); Chipotle Newsroom; Supermarket News (H-E-B); Sheetz and Wawa real-estate pages; Schwarz Group, Construction Briefing, Retail Week (Lidl/Schwarz).</p>
+<p><strong>Hyperscalers / manufacturers:</strong> Amazon Jobs (R2L Construction), Gray (Amazon FC); Google Careers and Data Center Dynamics (Google); Microsoft (Community-First AI Infrastructure), Data Center Knowledge (STAR/Academy); Meta Engineering, TechCrunch (Meta tents); Wikipedia and InsideEVs (Tesla); Construction Owners (Tesla liens); Apple Jobs and dgtlinfra (Apple).</p>
+<p><strong>Monetization precedents:</strong> Construction Physics and Toyota Global (Toyota Home / Prime Life); Wikipedia and The Pursuit of History (Sears Modern Homes); Ellen MacArthur Foundation and Construction Briefing (IKEA BoKlok); Wikipedia and company sites (Ryan, Clayco, Gray, Mortenson); Builder and Statista (Sekisui, Daiwa); Berkshire Hathaway and Builder (Clayton Homes).</p>
+<p><strong>Economics:</strong> NextInsurance, EdgeStrat Finance, Angi, Acquisition.gov, EB3 Construction, J.S. Held (fees/general conditions/markup); FHWA Design-Build Effectiveness Study; DBIA and ASCE (CII/Charles Pankow Foundation, Molenaar et al.); Procore (self-perform, OCIP, licensing); Harbor Compliance (state licensing); AIA and Stoel Rives (bonding vs. SDI).</p>
+<p><strong>International + risks:</strong> Schwarz Group, PreZero/GreenCycle, Schwarz Digits; REFIRE and Irish Times (Aldi); Retail Week and The Grocer (Tesco/Spenhill); Sainsbury's corporate; Majid Al Futtaim and Emaar; The Urban Developer and Channel News (Woolworths/Wesfarmers); AeroTime, Wikipedia, Euronews (Berlin Brandenburg Airport); PMI and Fohlio (cost-overrun base rates); ENR and McClone (labor cyclicality); FTC and CRS (vertical-integration antitrust).</p>
+<hr />
+<p><em>Prepared as external precedent research and strategic options analysis. Figures drawn from public reporting and industry benchmarks; where data is estimated or unverified, the text says so. Not a substitute for a deal-specific financial model built on Walmart's own cost histories.</em></p></div>
+</div>
+</body>
+</html>
