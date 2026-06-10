@@ -6,6 +6,18 @@
 projects:
 
   # --- Top level (ungrouped) ---
+  - slug: mark-walmart
+    label: "Mark - Walmart"
+    short: "W"
+    href: "/mark-walmart"
+    description: "Insourcing the Build — strategic white paper on whether Walmart should vertically integrate its general-contractor capability. Cross-industry precedents (Costco, Tesla, Toyota, Sears, Schwarz) plus value-capture math. Prepared for Mark."
+    approved: 2026-06-09
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/mark-walmart/viewer/index.html"
+
   - slug: kroger
     label: "Kroger"
     short: "K"
