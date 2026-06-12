@@ -3,6 +3,10 @@
 Project agent: **Fran** (`0-agents/custom-built-agents/fran.md` + `fran-SKILL.md`)
 Project folder: `1-execution/areas/work-and-business/programs/Consulting/Project - 1915 South/`
 
+## Recurring artifact references (load before touching the underlying file)
+
+- **`workbook-reference-1915-south.md`** — Navigation + operating manual for the annual `YYYYAshleyMonthlyFinSt_1915 South.xlsx` workbook and its sister files (Stores `.xls` mgmt view + `ConsolidatedMonthlyFinSt 5th3rd.xls` lender view). Sheet inventory, row anchors, sister-file purposes, known #REF! issues, seasonality factor, Other Corp bridge. **Mandatory load for any P&L question.** Update on each new FY file rather than rewriting.
+
 ## File Save Rules (mandatory for all agents)
 
 ### Research outputs

@@ -24,6 +24,11 @@ trust_tier: T1
 | `scenario-matrix.md` | 4-scenario strategic options framework (A/B/C/D) |
 | `talk-track-justin.md` | Next-conversation playbook (5 questions, close, signals) |
 | `research/phase-0-ashley-furniture-baseline.md` | Phase 0 deep research brief (22 sources, full Justin / Russell / Todd / 1915 South / Ashley coverage) |
+| `workbook-reference-1915-south.md` | **Workbook navigation + operating manual for the annual `YYYYAshleyMonthlyFinSt_1915 South.xlsx` file.** Sheet inventory, P&L row anchors, column layouts, sanity-check numbers, sister-file references (Stores file + Consolidated 5th3rd file), known #REF! issues, common task recipes. **MANDATORY load when any P&L question hits — saves figuring out the workbook structure each time.** |
+| `negotiation/justin-durability-note-2026-05-13.md` | Drafted (not yet sent) durability-of-EBITDA follow-up for Justin: 3 angles (recession / Other Corp / M&A) with 4 specific data-grounded bullets. Includes "deliberately not included" log of sharper findings held back for in-person. |
+| `transcripts/ingestion-sop.md` | **Canonical SOP for transcript / research ingestion (added 2026-05-14).** Four-KPI rubric (Specificity / Project relevance / Durability / Decision influence), save threshold (Σ≥5 OR any single 3 on Spec or Decision), source-quality grading (A/B/C/D), destination routing, closed taxonomy. **Mandatory load** before ingesting any new Otter transcript, research artifact, or major email. Applied first run: `transcripts/2026-05-14-classification.md` (Leah + Frank). |
+| `transcripts/2026-05-14-classification.md` | First-application of ingestion SOP. Sentence-level scoring + destination routing for both 2026-05-14 intro calls (Leah People Ops + Frank Pina). 99 atomized saves across both, organized by destination. |
+| `<speaker>-corpus.md` (`leah-corpus.md`, `frank-corpus.md`, `russell-corpus.md`, `amanda-corpus.md`) | **Per-person canonical doctrine files** (added 2026-05-14, pattern from `justin-corpus.md`). One file per durable 1915 South operating exec. Sections: Identity & Tenure / Operating Philosophy / Domain Ownership / Comp & Org Views / AI & Systems Posture / Relationships / Brady-Relevant Signals / Outside Context / Pending. **Append-only within sections, newest on top.** Load whichever person's corpus is relevant for the current question; load Justin's by default. |
 
 **Synthesis files:**
 
@@ -32,6 +37,8 @@ trust_tier: T1
 | `synthesis/cross-thread-synthesis.md` | Executive summary, binding constraints, operating model recommendation, current state, Next 3 Bests |
 | `synthesis/knowledge-gaps.md` | Ranked open questions (High/Medium/Low) + seeded SFDRs |
 | `synthesis/kpi-benchmark-table.md` | 1915 South vs. Ashley corporate + peer furniture retailers (RH, Havertys, Rooms To Go, Arhaus) |
+| `synthesis/financial-dd-findings-2026-05-13.md` | **DD findings from the 3-file P&L deep dive (2024 Stores + 2024 Consolidated 5th3rd + 2025 file).** 11 sections: $17M→$10M bridge, true EBITDA gap math, 2024 PY restatement signal, YoY same-store decomposition, quartile analysis with occupancy as dominant separator, 19-year trend, 2007-2013 deep-dive, JAX cluster scorecard, COVID stress test (3.5x elasticity), GM durability split, open questions. **Mandatory load for any financial/DD question. Cite specific sections by §number when recommending or answering.** |
+| `team-corpus-1915-south.md` | **Per-colleague intel corpus** (Amanda, Frank, Leah, Bo, Carl, Wayne, Russell). Direct quotes from Brady's intro calls + Otter transcripts. Each entry date-stamped, source-cited, with an "Implication for Brady" line. Sensitive — political reads + private assessments live here, do NOT migrate raw to 1915-owned tools. **Mandatory load when colleague-specific context is in play (intro calls, RACI, post-call debriefs, comms drafting).** Cite by `[Person] §[number]`. |
 
 **Deliverables (shipped 2026-04-22):**
 
@@ -121,6 +128,9 @@ At the start of every session with Fran:
 
 1. **Load PROJECT.md** → read Phase Log to confirm active phase and open status items. Current phase: Phase 5b — DD list sent, awaiting Justin reply; offer letter in flight per Justin's "I'll get things rolling on an offer" May 11.
 1a. **LOAD `justin-corpus.md` — MANDATORY (added 2026-05-11).** Canonical doctrine layer. Every Justin statement Brady should treat as binding governance. Fran cites specific entries when recommending an approach (*"Per Justin Corpus §1 on Thomasville-first hiring..."*) and flags conflicts explicitly. Append new Justin statements before session close. Treat as the constitutional layer for the engagement — wins over prior strategy docs on conflict.
+1a-bis. **LOAD `workbook-reference-1915-south.md` — MANDATORY when any P&L question is in play (added 2026-05-13).** Workbook navigation + operating manual for the annual `YYYYAshleyMonthlyFinSt_1915 South.xlsx` and its sister files (`YYYY Financials 1915 South Stores.xls` mgmt view + `YYYYConsolidatedMonthlyFinSt 5th3rd.xls` lender view). Includes sheet inventory, row anchors, sister-file purposes, known #REF! issues, seasonality factor (Dec = 9.6%, ×10.41 to annualize), and Other Corp bridge mechanics. **Skip this load only if the session is pure strategy with no financial-statement touchpoint.** Append updates when a new FY file lands (don't rewrite).
+1a-ter. **LOAD `synthesis/financial-dd-findings-2026-05-13.md` — MANDATORY when financial / EBITDA-durability / store-performance / bonus-basis questions are in play (added 2026-05-13).** 11-section DD findings file with the $17M→$10M bridge, the corrected $1.82M true EBITDA gap (not $3.55M), the 2024 PY restatement signal, the YoY same-store decomposition (87% same-store / 13% new), the quartile analysis (**occupancy is the dominant separator — 7.3% top vs 15.3% bottom**), the 19-year trend, the 2007-2013 per-store productivity finding (store count went UP during recession while per-store revenue fell -40%), the JAX cluster scorecard (1 strong / 1 OK / 1 weak / 2 losing), the COVID stress test (3.5x EBITDA elasticity to revenue), and the GM durability split. **Cite specific sections by §number when recommending or answering** (e.g. "Per Financial DD §5, occupancy is the dominant separator..."). Append (don't rewrite) when new files arrive — keep findings durable across years.
+1a-quater. **LOAD `team-corpus-1915-south.md` — MANDATORY when colleague-specific context is in play (added 2026-05-13).** Direct-quote corpus on every 1915 South colleague Brady has met or will meet. Currently populated for Amanda Hall (12 sections); placeholders for Frank, Leah, Bo, Carl, Wayne, Russell. Cite by `[Person] §[number]`. **Sensitive file** — political reads + private assessments live here. Per file's own update protocol: if Brady ever asks about migrating to 1915-owned tools, strip the "Implication for Brady" lines (they're private). Append after every intro call; flag transcripts that haven't been processed yet.
 1b. **Load 1915 South's Company page** directly at `34ced43b-89c5-81c1-992a-cf4fe5f2eb2b` (Companies DB `d41b6f0d-9455-4bb4-9332-ac1539473253`) → read the **Problem Statements** H2 section. **As of 2026-04-24 this section is a draft scaffold** (P1: Franchise Format Differentiation, P2: Franchise Economics, P3: Succession/Ownership Continuity). Your job on next session: sharpen P1-P3 from `synthesis/cross-thread-synthesis.md` + `synthesis/knowledge-gaps.md` and append P4-PN as needed. Company page wins over Agent Wiki on conflict — you write canonical to the Company page, mirror to Wiki.
 2. **Load synthesis/cross-thread-synthesis.md** → surface binding constraints and current state.
 3. **Load synthesis/knowledge-gaps.md** → identify High-priority questions still open, SFDRs in flight.
@@ -273,6 +283,24 @@ SFDR-011: Dufresne Spencer Group — current revenue, acquisition pipeline, post
 Source: DSG press releases, LinkedIn, Home News Now, trade show coverage
 Effort: Medium
 Unlock: Clarifies whether DSG is a competitive buyer threat or a neighbor
+
+SFDR-021 — OPEN (2026-05-14): How does 1915 South currently allocate **delivery costs** in the P&L — own-fleet COGS line, separate OpEx line, or spread across SG&A? Per Leah, an open methodology question internally ("does delivery really go in this line, or this line").
+Source: Bo (Director Strategic Planning & Finance) or workbook reference + Storis GL setup
+Effort: Low-Medium (Brady can ask Bo in week 1; cross-check `workbook-reference-1915-south.md`)
+Owner: Brady-direct-question
+Unlock: Material for the JB-Hunt-vs-own-fleet decision math (SFDR-015/016 already closed) — without the current allocation methodology, the proposed outsourcing economics can't be cleanly bridged to current P&L.
+
+SFDR-022 — OPEN (2026-05-14): Identity of "**Russell, the owner's son**" referenced by Leah re: Destin FL store search. Is there a Russell Jr. (son of Russell Turner who shares the name), or was Leah informally referring to **Garland Turner** (Russell's son, 5th-gen, named in memory)?
+Source: VA/GA SoS entity records, 1915 South LinkedIn, Russell-family genealogy, direct Justin clarification
+Effort: Low (Justin can answer in passing)
+Owner: Brady-ask-Justin or Fran-web-pull
+Unlock: Family-governance map clarity. Material because this person is operationally engaged on real-estate decisions (Destin FL push) — adds a 5th-gen decision-input node Brady hasn't met.
+
+SFDR-023 — OPEN (2026-05-14): Reconcile **real-estate ownership structure**. Leah said "we currently own the building and about half of the stores" (company-owned framing). Prior Fran intel (`project_1915_south_russell_pg_real_estate.md` memory) said "Russell Turner owns 1915 South store real estate via personal LLCs." Which is current truth — company-owned, Russell-personal-LLC-owned, or hybrid (some each)? Justin already noted "EBITDA of operating company — separate from real estate" — supports some entity separation.
+Source: VA/GA/FL/AL/MS/NC SoS records by store address; Justin or Bo direct question; deed records
+Effort: Medium (1-2hr web + filings)
+Owner: Fran-web-pull (start) → Brady-ask-Justin (confirm)
+Unlock: Material for valuation, sale-leaseback discussions, and Brady's M&A modeling. Also clarifies the personal-guarantee question on senior debt (memory item from VA real-estate research).
 ```
 
 **New SFDRs opened by SFDR-010 closure (2026-04-23):**
