@@ -2,7 +2,7 @@
 owner: Finn
 maintained_by: financial-assistant skill
 cadence: drip protocol — Brady sends Karissa 1-3 providers at a time, waits for completion before sending next batch
-last_updated: 2026-04-25
+last_updated: 2026-05-13
 ---
 
 # Karissa Financial Follow-Up Queue
@@ -22,7 +22,7 @@ Brady flagged that UHC website is currently showing inactive — likely due to t
 | # | Provider | YTD | Status |
 |---|----------|-----|--------|
 | 1 | Center for Change | $2,520.00 | **RECEIPT IN HAND** (Gmail 3/24, ZPay) — file with insurance once UHC verified |
-| 2 | Siloam Springs Clinic | $2,093.00 | Open — top of queue |
+| 2 | Siloam Springs Clinic | $2,093.00 | **Batched 2026-05-13** — Brady emailed Karissa solo provider with itemized-receipt + claim-routing asks |
 | 3 | Wellness & Courage | $1,600.00 | Open |
 | 4 | Walgreens | $870.68 | Open — Walgreens app pull for Rx-only split |
 | 5 | Ziva Aesthetics | $550.00 | Open |
