@@ -58,7 +58,7 @@ projects:
     description: "Turtle species ID and personal registry. Photograph any turtle, get a Claude-powered species identification, and build a longitudinal record of every turtle you encounter."
     approved: 2026-04-25
     type: iframe-external
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: "https://shellprint-web.vercel.app"
       path: "/"
@@ -71,7 +71,7 @@ projects:
     description: "VC portfolio intelligence hub for Baden Bagley. Startup tracking, deal pipeline, and investment thesis management."
     approved: 2026-03-29
     type: iframe-external
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: "https://basdkf024rhlasfd.github.io/baden-bagley"
       path: "/"
@@ -96,7 +96,7 @@ projects:
     description: "QSR / multi-unit foodservice strategy engagement. AI-driven ops analysis, market positioning, and innovation pipeline."
     approved: 2026-04-15
     type: iframe-local
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: "/panda/viewer"
       path: "/index.html"
@@ -108,7 +108,7 @@ projects:
     description: "Operations innovation lab. Tests AI-native management workflows, operator wisdom loops, and problem-first innovation frameworks."
     approved: 2026-04-15
     type: iframe-external
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: "https://ops-lab-tau.vercel.app"
       path: "/"
@@ -121,7 +121,7 @@ projects:
     description: "Interactive Southeast US map — one dot per state:franchisee combination. Click to surface research, succession signals, and acquisition context. Brady-only."
     approved: 2026-05-04
     type: iframe-local
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: ""
       path: "/1915-south-map/viewer/index.html"
@@ -245,7 +245,7 @@ projects:
     description: "IVFH platform for Gary's fertility clinic network. Patient journey mapping, clinic operations, and referral pipeline."
     approved: 2026-03-30
     type: iframe-external
-    magic_link: false
+    magic_link: true
     frame:
       baseUrl: "https://basdkf024rhlasfd.github.io/ivfh"
       path: "/"

@@ -13,17 +13,23 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json();
-  const { project, recipient, expiresInDays } = body;
+  const { project, projects, recipient, expiresInDays } = body;
 
-  if (!project || !recipient) {
+  // Accept either a single `project` (legacy) or a `projects` array.
+  const projectList = projects ?? project;
+  if (!projectList || projectList.length === 0 || !recipient) {
     return NextResponse.json(
-      { error: "project and recipient are required" },
+      { error: "project(s) and recipient are required" },
       { status: 400 }
     );
   }
 
   try {
-    const token = await createMagicLink({ project, recipient, expiresInDays });
+    const token = await createMagicLink({
+      projects: projectList,
+      recipient,
+      expiresInDays,
+    });
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://mception.ai";
     const url = `${baseUrl}/share/${token}`;
 
