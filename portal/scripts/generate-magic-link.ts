@@ -4,8 +4,10 @@
  *
  * Usage:
  *   npx tsx scripts/generate-magic-link.ts --project mark-schmulen --recipient "Mark" --days 30
+ *   npx tsx scripts/generate-magic-link.ts --projects kroger,innovation-lab,panda --recipient "Anton" --days 30
  *
- * Reads MAGIC_LINK_SECRET from .env.local automatically.
+ * Reads MAGIC_LINK_SECRET from .env.local automatically. Falls back to the
+ * MAGIC_LINK_SECRET environment variable (e.g. pulled from Vercel) if absent.
  */
 
 import { readFileSync } from "fs";
@@ -51,19 +53,32 @@ async function main() {
   const { values } = parseArgs({
     options: {
       project: { type: "string", short: "p" },
+      projects: { type: "string" },
       recipient: { type: "string", short: "r" },
       days: { type: "string", short: "d" },
       "base-url": { type: "string" },
     },
   });
 
-  const project = values.project;
   const recipient = values.recipient ?? "client";
   const days = parseInt(values.days ?? "7", 10);
   const baseUrl = values["base-url"] ?? process.env.NEXT_PUBLIC_APP_URL ?? "https://mception.ai";
 
-  if (!project || !VALID_PROJECTS.includes(project)) {
-    console.error(`Error: --project must be one of: ${VALID_PROJECTS.join(", ")}`);
+  // Accept --projects a,b,c (multi) or --project a (single).
+  const projects = (values.projects ?? values.project ?? "")
+    .split(",")
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  if (projects.length === 0) {
+    console.error("Error: pass --project <slug> or --projects <slug,slug,...>");
+    process.exit(1);
+  }
+
+  const invalid = projects.filter((p) => !VALID_PROJECTS.includes(p));
+  if (invalid.length > 0) {
+    console.error(`Error: invalid project(s): ${invalid.join(", ")}`);
+    console.error(`Valid projects: ${VALID_PROJECTS.join(", ")}`);
     process.exit(1);
   }
 
@@ -74,7 +89,7 @@ async function main() {
   }
 
   const secretBytes = new TextEncoder().encode(secret);
-  const token = await new SignJWT({ project, sub: recipient })
+  const token = await new SignJWT({ projects, sub: recipient })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(`${days}d`)
@@ -84,7 +99,7 @@ async function main() {
 
   console.log("\nMagic Link Generated");
   console.log("====================");
-  console.log(`Project:   ${project}`);
+  console.log(`Projects:  ${projects.join(", ")}`);
   console.log(`Recipient: ${recipient}`);
   console.log(`Expires:   ${days} days`);
   console.log(`\nURL:\n${url}\n`);
