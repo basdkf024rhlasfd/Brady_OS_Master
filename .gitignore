@@ -17,3 +17,6 @@ portal/.env.local
 
 # Claude Code runtime state
 .claude/
+
+# Next.js build traces (root-level stray build artifacts)
+.next/
