@@ -2,8 +2,8 @@
 """
 Monarch Money CSV → financial cockpit data.js generator.
 
-Reads the latest Monarch CSV export, applies Brady's category mappings,
-account ownership rules, and Utah detection, then writes
+Reads the latest Monarch CSV export, applies Brady's category mappings
+and account ownership rules, then writes
 portal/public/financial-assistant/data.js with window.COCKPIT_DATA.
 
 Usage:
@@ -119,20 +119,6 @@ def bucket_category(cat: str) -> str:
 
 def is_excluded(cat: str) -> bool:
     return normalize_cat(cat) in EXCLUDED_CATEGORIES
-
-# ---------------------------------------------------------------------------
-# Utah detection
-# ---------------------------------------------------------------------------
-
-UTAH_STRINGS = [
-    "OREM", "PLEASANT GROV", "LINDON", "MURRAY",
-    "SMITHS FOOD #4144", "SMITHS FOOD #4073",
-    "MACEY", "HARMONS", "EAGLE MOUNTAIN",
-]
-
-def is_utah(original_statement: str) -> bool:
-    s = original_statement.upper()
-    return any(u in s for u in UTAH_STRINGS)
 
 # ---------------------------------------------------------------------------
 # Return detection
@@ -624,7 +610,6 @@ def run(csv_path: Path):
     for t in all_txns:
         t["owner"] = get_owner(t["account"])
         t["bucket"] = bucket_category(t["category"])
-        t["utah"] = is_utah(t["original_statement"])
         t["is_return"] = is_merchant_return(t)
         t["excluded"] = is_excluded(t["category"])
         t["is_business"] = is_business_txn(t)
@@ -651,13 +636,6 @@ def run(csv_path: Path):
     cur_returns = [t for t in cur_txns if t["is_return"]]
     cur_return_total = sum(t["amount"] for t in cur_returns)
 
-    # Utah spend (all time, last 8 weeks for context)
-    cutoff_8w = date(TODAY.year, TODAY.month - 2 if TODAY.month > 2 else 1, 1)
-    utah_txns = [t for t in all_txns if t["utah"] and not t["excluded"] and t["amount"] < 0]
-    utah_total = sum(abs(t["amount"]) for t in utah_txns)
-    utah_returns = [t for t in all_txns if t["utah"] and t["is_return"]]
-    utah_return_total = sum(t["amount"] for t in utah_returns)
-
     # --- By owner (current month spend) ---
     owners = {}
     for owner in ["Brady", "Karissa", "Kids", "Shared"]:
@@ -666,23 +644,6 @@ def run(csv_path: Path):
             "total": round(sum(abs(t["amount"]) for t in o_spend), 2),
             "transactions": len(o_spend),
         }
-
-    # --- Karissa velocity (last 6 months, Karissa account only) ---
-    karissa_velocity = []
-    for offset in range(5, -1, -1):
-        m = CURRENT_MONTH - offset
-        y = CURRENT_YEAR
-        while m <= 0:
-            m += 12
-            y -= 1
-        mo_txns = [t for t in all_txns
-                   if t["date"].year == y and t["date"].month == m
-                   and t["owner"] == "Karissa" and not t["excluded"] and t["amount"] < 0]
-        karissa_velocity.append({
-            "month": f"{MONTH_NAMES[m]} {y}",
-            "total": round(sum(abs(t["amount"]) for t in mo_txns), 2),
-            "transactions": len(mo_txns),
-        })
 
     # --- Categories (current month) ---
     cat_totals: dict[str, dict] = defaultdict(lambda: {"total": 0.0, "count": 0})
@@ -710,26 +671,6 @@ def run(csv_path: Path):
         {"merchant": k, "amount": round(v["total"], 2), "transactions": v["count"]}
         for k, v in sorted(merchant_totals.items(), key=lambda x: -x[1]["total"])
     ][:25]
-
-    # --- Utah detail ---
-    utah_merchant_totals: dict[str, dict] = defaultdict(lambda: {"total": 0.0, "count": 0})
-    for t in utah_txns:
-        key = t["merchant"].strip()
-        utah_merchant_totals[key]["total"] += abs(t["amount"])
-        utah_merchant_totals[key]["count"] += 1
-
-    utah_merchants = [
-        {"merchant": k, "amount": round(v["total"], 2), "transactions": v["count"]}
-        for k, v in sorted(utah_merchant_totals.items(), key=lambda x: -x[1]["total"])
-    ][:20]
-
-    # Approximate weeks of Utah data (from earliest Utah transaction)
-    utah_dates = [t["date"] for t in utah_txns]
-    utah_weeks = 0
-    utah_address = "Orem / Pleasant Grove area"
-    if utah_dates:
-        earliest = min(utah_dates)
-        utah_weeks = max(1, (TODAY - earliest).days // 7)
 
     # --- Recurring ---
     recurring = detect_recurring(all_txns)
@@ -773,7 +714,6 @@ def run(csv_path: Path):
             "account": t["account"],
             "amount": round(abs(t["amount"]), 2),
             "owner": t["owner"],
-            "utah": t["utah"],
         }
         for t in recent
     ]
@@ -918,11 +858,6 @@ def run(csv_path: Path):
                 "amount": round(cur_return_total, 2),
                 "count": len(cur_returns),
             },
-            "utahSpend": {
-                "amount": round(utah_total, 2),
-                "transactions": len(utah_txns),
-                "weeks": utah_weeks,
-            },
         },
 
         "byOwner": {
@@ -933,22 +868,8 @@ def run(csv_path: Path):
             ],
         },
 
-        "karissaVelocity": karissa_velocity,
         "categories": categories,
         "merchants": top_merchants,
-
-        "utah": {
-            "totalSpend": round(utah_total, 2),
-            "transactions": len(utah_txns),
-            "returns": {
-                "amount": round(utah_return_total, 2),
-                "count": len(utah_returns),
-            },
-            "netSpend": round(utah_total - utah_return_total, 2),
-            "weeks": utah_weeks,
-            "address": utah_address,
-            "merchants": utah_merchants,
-        },
 
         "recurring": recurring,
         "openQuestions": [],

@@ -31,7 +31,7 @@ Last updated: 2026-04-17 (Fidelity additions 2026-04-22).
 | Account | Owner | Type | Notes |
 |---|---|---|---|
 | FREE BLUE ...9004 | Lily | Arvest debit | Exclude from adult spending analysis |
-| MONEY ...8535 | Faith | Cap One kids card | Zions Bancorp deposited $15 Jan 20 — investigate Utah banking relationship |
+| MONEY ...8535 | Faith | Cap One kids card | Zions Bancorp deposited $15 Jan 20 — origin unconfirmed |
 | Greenlight (kids collectively) | — | Debit/allowance | Not in Monarch |
 
 **Rule:** Exclude kids' accounts from adult spending comparisons.
@@ -45,8 +45,8 @@ Last updated: 2026-04-17 (Fidelity additions 2026-04-22).
 
 ## Flagged / Untracked Channels
 
-- **Card ending 1842** — Walmart gift card used in-store in Orem, UT. Split payment with Arvest debit on Apr 1. Potential untracked spending channel. Not in Monarch.
-- **Zions Bancorporation** — $15 deposit to Faith's MONEY card Jan 20. Possible Utah banking relationship. Not investigated.
+- **Card ending 1842** — Walmart gift card, split payment with Arvest debit on Apr 1. Potential untracked spending channel. Not in Monarch.
+- **Zions Bancorporation** — $15 deposit to Faith's MONEY card Jan 20. Origin unconfirmed. Not investigated.
 - **Venmo** — Brady's P2P payments. Separate CSV export, not in Monarch.
 
 ## Investment Accounts — Classification Rule

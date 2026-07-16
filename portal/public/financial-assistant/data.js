@@ -129,11 +129,6 @@ window.COCKPIT_DATA = {
     "mayReturns": {
       "amount": 67.45,
       "count": 2
-    },
-    "utahSpend": {
-      "amount": 6870.98,
-      "transactions": 289,
-      "weeks": 105
     }
   },
   "byOwner": {
@@ -161,38 +156,6 @@ window.COCKPIT_DATA = {
       }
     ]
   },
-  "karissaVelocity": [
-    {
-      "month": "December 2025",
-      "total": 9549.77,
-      "transactions": 294
-    },
-    {
-      "month": "January 2026",
-      "total": 8311.3,
-      "transactions": 282
-    },
-    {
-      "month": "February 2026",
-      "total": 9203.46,
-      "transactions": 292
-    },
-    {
-      "month": "March 2026",
-      "total": 23213.23,
-      "transactions": 305
-    },
-    {
-      "month": "April 2026",
-      "total": 15122.96,
-      "transactions": 224
-    },
-    {
-      "month": "May 2026",
-      "total": 1678.76,
-      "transactions": 27
-    }
-  ],
   "categories": [
     {
       "name": "Other Spending",
@@ -352,119 +315,6 @@ window.COCKPIT_DATA = {
       "transactions": 1
     }
   ],
-  "utah": {
-    "totalSpend": 6870.98,
-    "transactions": 289,
-    "returns": {
-      "amount": 1151.73,
-      "count": 35
-    },
-    "netSpend": 5719.25,
-    "weeks": 105,
-    "address": "Orem / Pleasant Grove area",
-    "merchants": [
-      {
-        "merchant": "Target",
-        "amount": 1603.6,
-        "transactions": 46
-      },
-      {
-        "merchant": "Harmons",
-        "amount": 917.07,
-        "transactions": 42
-      },
-      {
-        "merchant": "Smith's",
-        "amount": 896.35,
-        "transactions": 39
-      },
-      {
-        "merchant": "Maverik",
-        "amount": 445.78,
-        "transactions": 30
-      },
-      {
-        "merchant": "Walmart",
-        "amount": 401.58,
-        "transactions": 13
-      },
-      {
-        "merchant": "Walgreens",
-        "amount": 358.78,
-        "transactions": 15
-      },
-      {
-        "merchant": "7-Eleven",
-        "amount": 213.69,
-        "transactions": 16
-      },
-      {
-        "merchant": "Crumbl Cookies",
-        "amount": 171.69,
-        "transactions": 6
-      },
-      {
-        "merchant": "American Eagle",
-        "amount": 145.98,
-        "transactions": 4
-      },
-      {
-        "merchant": "H&M",
-        "amount": 138.88,
-        "transactions": 3
-      },
-      {
-        "merchant": "Old Navy",
-        "amount": 122.84,
-        "transactions": 2
-      },
-      {
-        "merchant": "Macey's",
-        "amount": 122.07,
-        "transactions": 8
-      },
-      {
-        "merchant": "Kohl's",
-        "amount": 103.26,
-        "transactions": 3
-      },
-      {
-        "merchant": "Cafe Rio",
-        "amount": 92.8,
-        "transactions": 1
-      },
-      {
-        "merchant": "Lovisa",
-        "amount": 85.94,
-        "transactions": 1
-      },
-      {
-        "merchant": "The Nail Expo",
-        "amount": 85.35,
-        "transactions": 2
-      },
-      {
-        "merchant": "Domino's",
-        "amount": 80.98,
-        "transactions": 2
-      },
-      {
-        "merchant": "Windsor Fashions",
-        "amount": 77.15,
-        "transactions": 1
-      },
-      {
-        "merchant": "Claire's",
-        "amount": 69.72,
-        "transactions": 5
-      },
-      {
-        "merchant": "Trader Joe's",
-        "amount": 60.3,
-        "transactions": 2
-      }
-    ]
-  },
   "recurring": [
     {
       "merchant": "Wageworks",

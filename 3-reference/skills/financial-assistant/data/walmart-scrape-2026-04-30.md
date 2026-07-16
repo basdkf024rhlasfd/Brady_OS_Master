@@ -135,7 +135,7 @@ Notes: Sweet corn ×2, Ben & Jerry's ×2, marshmallows, Little Debbie = cookout/
 | Mainstays Plastic Bento Snack Container, 19 oz | 1 | $5.63 |
 | Brookstone Travel 3-pc Mesh Packing Cube Set | 1 | $11.43 |
 
-Context: Brady in Lindon, UT (kids' primary home base). Packing cubes = travel prep. Bento container = snack kit for a kid or trip. Diet Coke = convenience grab. Not a household spend — travel logistics.
+Context: Brady traveling in Lindon, UT. Packing cubes = travel prep. Bento container = snack kit for a kid or trip. Diet Coke = convenience grab. Not a household spend — travel logistics.
 
 ---
 
