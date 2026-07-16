@@ -8,8 +8,8 @@ Filed: 2026-03-17 (based on preparer signature date)
 ## Filing Status & Household
 
 - **Filing:** Married Filing Jointly (Brady + Karissa Smallwood)
-- **Brady SSN:** 225-49-6767
-- **Karissa SSN:** 528-93-3706
+- **Brady SSN:** XXX-XX-6767 (masked)
+- **Karissa SSN:** XXX-XX-3706 (masked)
 - **Address on file:** 4505 NE Birchgrove Place, Bentonville, AR 72712
 - **Dependents (Form 8812):** 5 children claimed (Lily, Faith, Isla, Luke, Quinn)
 - **Preparer:** Stephen W. Butler — Miller Butler PLLC, 224 S 2nd St, Rogers AR 72756. Phone 479-621-0006.
