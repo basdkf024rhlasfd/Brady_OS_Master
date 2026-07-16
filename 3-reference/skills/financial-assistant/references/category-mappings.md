@@ -132,21 +132,6 @@ Positive amounts that are NOT income/transfers are merchant returns. To isolate 
 
 ---
 
-## Utah Transaction Detection
-
-Transactions with these strings in `Original Statement` indicate Utah activity:
-- OREM
-- PLEASANT GROV
-- LINDON
-- MURRAY
-- SMITHS FOOD #4144
-- SMITHS FOOD #4073
-- MACEY
-- HARMONS
-- EAGLE MOUNTAIN
-
----
-
 ## High-Frequency Merchants to Track Individually
 
 Never aggregate these into "Other" — always show individually:

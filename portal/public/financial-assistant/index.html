@@ -656,11 +656,6 @@
         <div class="med c-gold">${$(t.aprilReturns.amount)}</div>
         <div class="small">${t.aprilReturns.count} returns in ${t.aprilMTD.days} days</div>
       </div>
-      <div class="card">
-        <h3>Utah Spend</h3>
-        <div class="med c-gold">${$(t.utahSpend.amount)}</div>
-        <div class="small">${t.utahSpend.transactions} transactions &middot; ~${t.utahSpend.weeks} weeks</div>
-      </div>
     </div>`;
   }
 
@@ -679,21 +674,6 @@
       </div>`;
     });
     html += `</div>`;
-
-    // Karissa velocity
-    if (D.karissaVelocity && D.karissaVelocity.length) {
-      html += `<div class="card card-red">
-        <h3>Karissa Weekly Velocity (Post-Separation)</h3>`;
-      D.karissaVelocity.forEach(w => {
-        const c = w.pct >= 90 ? 'var(--red)' : 'var(--gold)';
-        html += `<div class="bar-row">
-          <span class="bar-label">${w.label}</span>
-          <span class="bar-wrap"><span class="bar-fill" style="width:${w.pct}%;background:${c}"></span></span>
-          <span class="bar-val">${$(w.amount)}</span>
-        </div>`;
-      });
-      html += `</div>`;
-    }
 
     html += `</div>`;
   }
@@ -729,38 +709,6 @@
       </tr>`;
     });
     html += `</table></div>`;
-  }
-
-  // UTAH ACTIVITY
-  if (D.utah && D.utah.totalSpend > 0) {
-    html += `<div class="section">
-      <div class="section-header">Utah Activity (Karissa)</div>
-      <div class="grid-3" style="margin-bottom:14px">
-        <div class="card" style="text-align:center;border-top-color:var(--gold)">
-          <h3>Total Utah Spend</h3>
-          <div class="med c-gold">${$(D.utah.totalSpend)}</div>
-          <div class="small">${D.utah.transactions} transactions</div>
-        </div>
-        <div class="card card-green" style="text-align:center">
-          <h3>Utah Returns</h3>
-          <div class="med c-green">${$(D.utah.returns.amount)}</div>
-          <div class="small">${D.utah.returns.count} returns</div>
-        </div>
-        <div class="card" style="text-align:center;border-top-color:var(--gold)">
-          <h3>Net Utah Spend</h3>
-          <div class="med c-gold">${$(D.utah.netSpend)}</div>
-          <div class="small">~${D.utah.weeks} weeks</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">`;
-    D.utah.merchants.forEach(m => {
-      html += `<span class="flag flag-yellow">${m}</span>`;
-    });
-    html += `</div>`;
-    if (D.utah.address) {
-      html += `<div style="font-size:0.72rem;color:var(--gray)">Address confirmed: <strong style="color:var(--white)">${D.utah.address}</strong></div>`;
-    }
-    html += `</div>`;
   }
 
   // RECURRING BILLS

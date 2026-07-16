@@ -73,7 +73,7 @@ Direct deposit: routing 031130035, account 00310000036 (likely SoFi Checking ...
 
 3. **$29K refund received in 2026 (for 2025 tax year)** — treat as one-time cash event, not income. Likely already deposited into SoFi Checking.
 
-4. **Karissa had no W-2 income in 2025** — all income on return is Brady's. Relevant if divorce filing changes to MFS for 2026.
+4. **Karissa had no W-2 income in 2025** — all income on return is Brady's.
 
 5. **Effective tax rate 2025:** $165,824 / $668,096 = **24.8%**. For 2026 consulting income, expect federal marginal ~24% + SE tax ~14.1% (after deduction) = ~38% blended. 30% reserve may be light in high-income months.
 

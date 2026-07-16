@@ -7,22 +7,6 @@ Status: **PARTIAL** — pagination is client-side, only 2 pages captured. Need t
 
 ---
 
-## KEY FINDING: Utah Delivery Address
-
-**Order 200014584744661 (Apr 17, 2026 — TODAY)**
-- Item: Time and Tru Goldtone Multicolored Bead Initial "K" Necklace ($9.92)
-- Ship to: **Karissa Smallwood, 196 Inglewood Dr, Orem, UT 84097**
-- Payment: Card ending in 2021 (Karissa's Arvest debit)
-- Total: $10.66 (incl. tax $0.74, Walmart+ waived $6.99 min fee)
-- Status: Arrives tomorrow (Apr 18) by 10pm
-
-**This is a NEW Utah address** — not previously documented:
-- Primer had: 4312 E Suffolk Ln, Eagle Mountain, UT (from DoorDash)
-- Primer had: 285 W Broadway, Salt Lake City (from DoorDash)
-- **Now:** 196 Inglewood Dr, Orem, UT 84097 (from Walmart)
-
----
-
 ## ORDERS CAPTURED
 
 ### Page 1 (Most Recent)
@@ -30,7 +14,7 @@ Status: **PARTIAL** — pagination is client-side, only 2 pages captured. Need t
 | Order # | Date | Type | Items | Total | Ship To | Payment |
 |---------|------|------|-------|-------|---------|---------|
 | 200014640514849 | Apr 21 (pending) | Delivery from store | 11+ items (subscription groceries) | $68.05 | Bentonville (inferred) | — |
-| 200014584744661 | Apr 17 | Delivery (shipped) | "K" necklace | $10.66 | **Orem, UT 84097** | 2021 |
+| 200014584744661 | Apr 17 | Delivery (shipped) | "K" necklace | $10.66 | (personal) | 2021 |
 | 200014779746439 | Apr 16 | Delivery (shipped) | Certain Dri antiperspirant | $9.63 | (not checked) | — |
 | 200014683226933 | Apr 14 | Delivery from store | 82 items (family groceries) | $353.11 | **Bentonville, AR 72712** | **2021** |
 | (no ID captured) | Apr 14 | Delivery (shipped) | Plastic spoons (6-pack) | (part of above?) | (not checked) | — |
@@ -77,17 +61,17 @@ Status: **PARTIAL** — pagination is client-side, only 2 pages captured. Need t
 
 2. **Subscription shipment active.** The Apr 21 order is a "Subscription shipment" — auto-recurring grocery delivery to Bentonville.
 
-3. **Mixed personal + grocery.** Same account has Brady's family groceries AND Karissa's personal Utah shipments (necklace). Attribution requires checking ship-to address on every order.
+3. **Mixed personal + grocery.** Same account has Brady's family groceries AND Karissa's personal shipments (necklace). Attribution requires checking ship-to on every order.
 
-4. **Walmart+ membership active.** Free delivery benefits being used on both Bentonville and Utah orders.
+4. **Walmart+ membership active.** Free delivery benefits being used across orders.
 
 ---
 
 ## REMAINING SCRAPE WORK
 
 - [ ] Continue paginating past page 2 (need to use client-side Next button, not URL params)
-- [ ] Check ship-to addresses on ALL "Delivery" (shipped) orders to identify Utah vs Bentonville
-- [ ] Focus on Mar 20 – Apr 9 window (post-separation, highest spend velocity)
+- [ ] Check ship-to addresses on ALL "Delivery" (shipped) orders
+- [ ] Focus on Mar 20 – Apr 9 window
 - [ ] Check the Apr 16 Certain Dri order — where did it ship?
 - [ ] Check Apr 13 JOLLY CHEF cups order — where did it ship?
 - [ ] Look for any orders with Walmart gift card (1842) as payment method
