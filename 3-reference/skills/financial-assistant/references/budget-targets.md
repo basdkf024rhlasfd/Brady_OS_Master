@@ -38,7 +38,9 @@ Reserve; does not change the $14,250 draw. Trues up as real EBITDA prints — lo
 
 ### Live rules (full detail in budget-guidance)
 
-- **Food & household: $4,500/mo, $1,040/wk cap.** The #1 lever — actual ran $5–7K. Watch weekly.
+- **Food & household: $4,500/mo, $1,040/wk cap** *(locked by Brady 2026-07-16)*. The #1 lever —
+  actual ran $5–7K. Watch weekly. Set objectively = Liberal USDA grocery tier + ~$600 consumables +
+  ~$1,050 dining cap (method in budget-guidance Rule 4). Refreshed quarterly against the USDA report.
 - **HELOC is not income.** The Apr-2026 $37,859 "Other Income" was an Arvest HELOC draw (borrowed).
   Any lifestyle draw = automatic Red. HELOC = appreciating assets only.
 - **Travel = $0 net** — reimbursed by employer. Confirm reimbursements actually land.

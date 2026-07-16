@@ -99,12 +99,24 @@ that is a Red event** — Finn surfaces it before the draw, not after.
 It's the biggest controllable line and the one that quietly sinks months. Everything else is
 mostly fixed or small. Watch this weekly, not monthly.
 
-- **Monthly target: $4,500. Weekly cap: $1,040.**
+- **Monthly target: $4,500. Weekly cap: $1,040.** *(Locked by Brady 2026-07-16 — this is the Liberal USDA grocery tier + a dining cap, not an austerity number. See the USDA-anchored method below.)*
 - Sources: groceries + the Amazon/Walmart/Target "shopping" catch-all + dining.
 - 🟢 ≤ $1,040/wk · 🟡 $1,040–1,200 · 🔴 > $1,200
 - **Two weeks Red in a row → the month fails.** Finn surfaces it at week 2, not at month-end.
 - Historical actual ran **$5,000–7,000/mo**. Closing the gap to $4,500 is worth more than every
   other cut combined — so this is the only line Finn actively coaches.
+
+**How the target is set (objective, refreshable — not a gut number):**
+The food line decomposes into three parts, only one of which is discretionary:
+1. **At-home groceries** = the sum of the **USDA Food Plan** per-person monthly cost for each of the
+   7 family members by age/sex, at a chosen tier (Moderate or Liberal), minus ~5% for large-household
+   economies of scale. This is demographic *fact* once the tier is picked. Finn re-pulls the current
+   USDA "Cost of Food" report each quarter (fns.usda.gov/cnpp) and reprices.
+2. **Household consumables + coffee** (paper, toiletries, cleaning) — measured from actuals, ~$600/mo.
+3. **Dining out** — a policy cap; the only real lever.
+Target = (1) + (2) + (3). **$4,500 = Liberal USDA grocery tier (~$2,800) + ~$600 consumables + ~$1,050 dining.**
+Liberal is the *top* USDA tier, so $4,500 is generous, not tight. To change the target, change the
+tier or the dining cap — nothing else is up for debate.
 
 ---
 
