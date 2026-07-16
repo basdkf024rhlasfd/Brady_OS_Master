@@ -205,6 +205,18 @@ projects:
       baseUrl: "/financial-assistant"
       path: "/index.html"
 
+  - slug: family-budget
+    label: "Family Budget"
+    short: "F"
+    href: "/family-budget"
+    description: "The Daily Five — Karissa's 5-minute daily budget cockpit. Log the food & household number, glance the traffic light, run any purchase over $100 through the deterministic 'can we afford it?' calculator. Powered by budget-guidance (Finn)."
+    approved: 2026-07-16
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: "/family-budget/viewer"
+      path: "/index.html"
+
   - slug: bucket-system
     label: "Bucket System"
     short: "B"
