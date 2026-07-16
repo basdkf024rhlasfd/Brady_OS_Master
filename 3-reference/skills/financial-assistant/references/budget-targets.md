@@ -23,8 +23,11 @@ plan and no longer applies. W-2 income now; withholding is automatic; no separat
 | Bonus salary (smoothed from Reserve) | **$14,250** | Conservative $300K/yr gross ($75K/qtr, 1.5% × ~$20M EBITDA), ~$174K net ÷ 12 |
 | **Total steady income** | **$23,000** | Budget against this, never against last bonus size |
 
-*First bonus (~next week): ~$60K gross = 1.5% × $4M, protected floor, 31-day partial quarter. Seeds the
-Reserve; does not change the $14,250 draw. Trues up as real EBITDA prints — log to `bonus-log.md`.*
+*First bonus (~next week): **~$20,440 gross** = 1.5% × $4.0M Q2 EBT × (31 employed / 91 quarter days),
+prorated for the 5/31 start. Nets ~$13K. Seeds the Reserve (thin at first — a partial quarter fills the
+tank slowly); does not change the $14,250 draw. Trues up as real EBT prints — log to `bonus-log.md`.
+Note: Q2 EBT of $4.0M annualizes to ~$240K/yr, below the $300K assumption — revisit the smoothed draw if
+Q3/Q4 hold near $4M.*
 
 ### Four buckets
 
