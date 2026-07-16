@@ -193,6 +193,15 @@ projects:
     type: native
     magic_link: false
 
+  - slug: healthcare
+    label: "Healthcare"
+    short: "+"
+    href: "/healthcare"
+    description: "Family benefits handbook, live. Who to call, what to do when a bill arrives, coverage at a glance for medical, pharmacy, dental, vision & accident — with a chatbot that knows the whole 1915 South handbook. Built for Karissa."
+    approved: 2026-07-16
+    type: native
+    magic_link: false
+
   - slug: financial-assistant
     label: "Financial Cockpit"
     short: "$"
