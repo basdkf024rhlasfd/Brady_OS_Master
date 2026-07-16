@@ -127,6 +127,22 @@ The orchestration layer above the Unified Client Object. `{client, problem}` →
 - **Hygiene Heidi:** `0-agents/custom-built-agents/hygiene-heidi-SKILL.md` — Weekly Saturday 8 AM CT OS compliance check. Audits every agent against **6 canonical hygiene rules** (objective scoring methodology, self-scoring, improvement-seeking, Streaming Notes purgatory ≤7 days, **Research Library health — K16 ≥5/10, no items unreferenced >90d, every active client ≥10 sources**, **Connector Registry — every entry verified ≤30 days with passing probe, no undocumented connectors**). Red/amber/green brief + approval gates for all violations. Rules 5 & 6 recomputed live every Saturday run. Writes gitted backup at `1-execution/areas/brady-os/hygiene-heidi-reports/YYYY-MM-DD.md` + Streaming Notes row + Routing Log row + `last_verified:` timestamp updates in `connector-registry.yml`. Trigger: "run heidi", "hygiene check", "compliance check".
 - **Research Library (Notion DB):** `4f87259b-e9a7-4d35-86ba-2148cb472d0f` (parent: 3 - Reference Layer). Canonical durable KB. Flow: Streaming Notes `Type=Research` → streaming-notes-processor enriches + routes here. Every row: Title, Source URL, Source Type, Topic Tags, Project relation, Client Relevance, TL;DR, Key Quotes, Source Credibility (1–5), Reference Count, Last Referenced, Status (Active/Archived/Superseded). Retrieval: exec-intel-brief pre-check, deep-research write-back, project agents query + increment Reference Count in Synthesis mode. Governed by Hygiene Heidi Rule 5 + Claudine Scorecard K16.
 
+## Communication Protocol — "WAITING ON YOU" (hard rule, 2026-07-16)
+
+Brady reads most agent output on his phone. Every message that needs anything from him
+MUST end with an explicit, scannable block — never bury an ask in prose:
+
+```
+⏳ WAITING ON YOU
+1. <one line — the decision/approval/action needed, with the exact reply token if applicable (e.g. "merge PR #282", "approve musashi [slug]")>
+2. <next item>
+```
+
+- One line per item, imperative, phone-scannable.
+- If nothing is needed: end with `⏳ Waiting on you: nothing — FYI only.` (pure conversational replies may omit).
+- Applies to ALL surfaces: Code, Cowork, Chat, sweeps, standups, briefs, Telly pushes, PR updates.
+- Streaming Notes System Instruction: `39fed43b-89c5-815b-8b3e-f862c27770f5`.
+
 ## Feedback Capture (Rules & Preferences)
 
 Brady may give behavioral feedback mid-conversation using any of these triggers:
