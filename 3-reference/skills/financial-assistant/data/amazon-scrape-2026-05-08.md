@@ -20,7 +20,7 @@
 | Largest purchase | roborock Qrevo S5V Robot Vacuum ($547.49, Mar 28) |
 | CELSIUS orders | 6 subscribe-and-save runs at $26.23 each = $157.38 |
 
-**All orders ship to 4505 NE Birchgrove Pl, Bentonville, AR 72712. Zero Utah deliveries confirmed.**
+**All orders ship to 4505 NE Birchgrove Pl, Bentonville, AR 72712.**
 
 ---
 
@@ -124,7 +124,6 @@ $24.28 insoles ordered today. Not material financially, but worth noting for any
 | Orders covered | Jan 22 – Apr 16 (42 orders, ~3 months) | Mar 28 – May 8 (36 orders, 6 weeks) |
 | Overlap period | — | Mar 28 – Apr 16 |
 | New orders in this scrape | — | Apr 17 – May 8 (19 new orders) |
-| Utah deliveries | 0 | 0 |
 | Account | Brady's Prime | Brady's Prime |
 
-**No Utah deliveries in either scrape.** Monarch Amazon returns remain attributable to Karissa's separate account.
+Monarch Amazon returns remain attributable to Karissa's own Amazon account.

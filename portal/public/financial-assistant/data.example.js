@@ -29,22 +29,12 @@ window.COCKPIT_DATA = {
   topline: {
     aprilMTD: { amount: 0, transactions: 0, days: 0 },
     marchTotal: { amount: 0, transactions: 0 },
-    aprilReturns: { amount: 0, count: 0 },
-    utahSpend: { amount: 0, transactions: 0, weeks: 0 }
+    aprilReturns: { amount: 0, count: 0 }
   },
 
   byOwner: { month: "Month", owners: [] },
-  karissaVelocity: [],
   categories: [],
   merchants: [],
-
-  utah: {
-    totalSpend: 0, transactions: 0,
-    returns: { amount: 0, count: 0 },
-    netSpend: 0, weeks: 0,
-    address: "",
-    merchants: []
-  },
 
   recurring: [],
   openQuestions: [],

@@ -2,15 +2,15 @@
 name: financial-anomaly-review
 agent: Finn (0-agents/custom-built-agents/finn.md)
 description: |
-  Cross-source review of shared household financial activity to surface transactions, patterns, and
-  behavioral anomalies that warrant Brady's review. Pulls from Monarch transaction exports, Brady's
-  Gmail (order confirmations, shipping notices, refund emails), shared Walmart/Amazon order history,
-  USPS Informed Delivery, and known subscription records. Produces a structured list of "worth a
-  look" items that Claudine (or another agent) can fold into a broader financial briefing for Brady.
+  Cross-source review of household financial activity to surface transactions and patterns that
+  warrant Brady's review — fraud, billing errors, duplicate charges, subscription creep, and
+  unexpected mail. Pulls from Monarch transaction exports, Brady's Gmail (order confirmations,
+  shipping notices, refund emails), Walmart/Amazon order history, USPS Informed Delivery, and
+  known subscription records. Produces a structured list of "worth a look" items that Claudine
+  (or another agent) can fold into a broader financial briefing for Brady.
 
   TRIGGER whenever Brady says: "run the financial review," "anything weird on the cards,"
-  "check the household spend," "karissa review," "spouse transaction review," "shared account
-  check," "any flags on the accounts," "financial surveillance," "anomaly check on spending,"
+  "check the household spend," "any flags on the accounts," "anomaly check on spending,"
   or any variation requesting a review of household financial activity for unusual items.
   Also trigger as part of the weekly sweep rollup if Brady has it enabled, and any time Brady
   asks for a "financial briefing" or "money review" that isn't just budget vs actuals.
@@ -18,9 +18,9 @@ description: |
   This skill owns cross-source financial anomaly detection. It does NOT own budget tracking
   (budget-baseline), daily news (daily-news-digest), or general email triage (email-summary).
 
-  BOUNDARY vs financial-assistant: This skill = adversarial/private T0 detection on
-  household/shared activity (Karissa spending patterns, ship-to mismatches, cash-adjacent
-  transfers). Output is private-only and must NEVER reach the portal /financial-assistant
+  BOUNDARY vs financial-assistant: This skill = private T0 error/fraud detection on
+  account activity (unusual merchants, ship-to mismatches, duplicate charges). Output is
+  private-only and must NEVER reach the portal /financial-assistant
   chat surface or any family-shared resource. financial-assistant = positive cockpit
   (net worth, pipeline, runway). If Brady's request is "snapshot" / "how are we doing" /
   "budget check" → route to financial-assistant. Overlap phrases like "financial review" /
@@ -60,7 +60,7 @@ Output folds into whatever the calling agent is already producing.
 - Known subscription list (maintained in Notion if one exists; skill prompts to create if not)
 
 **What this skill does NOT monitor:**
-- Karissa's personal email, messaging, or accounts she has not shared
+- Any family member's personal email, messaging, or accounts not shared with Brady
 - Any account or data source Brady does not already have legitimate access to
 - Personal private communications of any kind
 - Geolocation, device activity, or anything surveillance-like
@@ -69,7 +69,7 @@ Output folds into whatever the calling agent is already producing.
 - Make accusations or characterize intent
 - Conclude that a transaction is "suspicious" or "hidden" — only that it's unusual relative to
   historical patterns
-- Generate outbound communication (emails to Karissa, messages to anyone else) — T3 gate applies
+- Generate outbound communication (messages to anyone) — T3 gate applies
   and this skill is T0 by design
 - Persist findings outside Brady's private workspace
 
@@ -138,8 +138,7 @@ Each detector produces zero or more flags. Each flag has:
 - `category`: which detector fired
 - `description`: one-line description of what was found
 - `evidence`: the specific data (transaction ID, email subject, order number)
-- `suggested_next_step`: "ask Karissa casually," "check with her directly," "monitor," or "no
-  action needed"
+- `suggested_next_step`: "confirm the transaction," "monitor," or "no action needed"
 
 ### Detector 1 — Large transactions
 Flag any single transaction over $300 that is NOT in a known recurring pattern (mortgage,
@@ -154,8 +153,8 @@ Severity:
 Flag transactions where the merchant OR the location does not appear in the trailing 90-day
 history. Geo-anomaly detection uses the Original Statement field's city/state suffix.
 
-Brady and Karissa have a known Utah spending pattern (Orem/Lindon cluster) — treat that as
-baseline, not anomaly. Flag Utah transactions only if merchant is new to the pattern.
+Known recurring travel and second-location spending should be treated as baseline, not anomaly.
+Flag out-of-area transactions only if the merchant is new to the established pattern.
 
 ### Detector 3 — Round-number transfers or cash-adjacent activity
 This is the high-priority detector for the stated goal. Flag:
@@ -184,8 +183,7 @@ This is the other high-priority detector. Flag:
 - Returns processed at physical stores (Walmart, Target) in amounts over $100 — because these
   can generate store credit or cash that doesn't show up in Monarch at all
 - Amazon returns where the refund method is "gift card balance" rather than original payment method
-- Returns where the item doesn't match any purchase in Brady's visible order history (suggests
-  the original purchase was made through an account Brady doesn't see)
+- Returns where the item doesn't match any purchase in Brady's visible order history
 - Multiple returns at the same merchant within a short window
 - Return-without-receipt patterns (Walmart's ID-verification return process — visible in some
   statements)
@@ -265,8 +263,8 @@ If zero flags fire, output is a single line: `Financial anomaly review: no flags
 Critical. The calling agent (usually Claudine) reports these flags to Brady. The tone rule:
 
 - **Neutral**, not alarmist. "Target return for $247 on 4/18" not "suspicious return."
-- **Factual**, not interpretive. "New merchant: ShopWM Nutrition, $128, Orem UT" not
-  "unknown Utah store, concerning pattern."
+- **Factual**, not interpretive. "New merchant: ShopWM Nutrition, $128" not
+  "unknown store, concerning pattern."
 - **Actionable**, not accusatory. "Worth confirming the shipping address on this one" not
   "this was sent to an address you don't recognize."
 
@@ -281,7 +279,7 @@ it's out of scope.
 - Never surface findings to any family-shared resource (family chat bot, shared calendar, etc.)
 - Never include findings in any Telly outbound message, even to Brady, unless the outbound
   channel is explicitly Brady-only and encrypted
-- Never draft communication to Karissa, family members, or anyone else based on findings
+- Never draft communication to family members or anyone else based on findings
 - Findings older than 90 days are archived; don't re-surface them in subsequent runs unless
   Brady explicitly asks for historical review
 - The existence of this skill is not publicized anywhere outside Brady's private OS

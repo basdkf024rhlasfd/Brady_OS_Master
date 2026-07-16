@@ -8,8 +8,8 @@ Filed: 2026-03-17 (based on preparer signature date)
 ## Filing Status & Household
 
 - **Filing:** Married Filing Jointly (Brady + Karissa Smallwood)
-- **Brady SSN:** 225-49-6767
-- **Karissa SSN:** 528-93-3706
+- **Brady SSN:** XXX-XX-6767 (masked)
+- **Karissa SSN:** XXX-XX-3706 (masked)
 - **Address on file:** 4505 NE Birchgrove Place, Bentonville, AR 72712
 - **Dependents (Form 8812):** 5 children claimed (Lily, Faith, Isla, Luke, Quinn)
 - **Preparer:** Stephen W. Butler — Miller Butler PLLC, 224 S 2nd St, Rogers AR 72756. Phone 479-621-0006.
@@ -73,7 +73,7 @@ Direct deposit: routing 031130035, account 00310000036 (likely SoFi Checking ...
 
 3. **$29K refund received in 2026 (for 2025 tax year)** — treat as one-time cash event, not income. Likely already deposited into SoFi Checking.
 
-4. **Karissa had no W-2 income in 2025** — all income on return is Brady's. Relevant if divorce filing changes to MFS for 2026.
+4. **Karissa had no W-2 income in 2025** — all income on return is Brady's.
 
 5. **Effective tax rate 2025:** $165,824 / $668,096 = **24.8%**. For 2026 consulting income, expect federal marginal ~24% + SE tax ~14.1% (after deduction) = ~38% blended. 30% reserve may be light in high-income months.
 

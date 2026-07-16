@@ -12,10 +12,8 @@ Last updated: 2026-05-08
 
 ## Karissa
 
-- **Karissa Smallwood** — DOB: 7/6/1985 (age 40)
-- Status: Separated. Living in Orem/Pleasant Grove, UT area with some/all kids part-time.
-- Household: Brady paying COBRA for full family ($3,000/mo). Two-household cost structure in effect.
-- Divorce proceedings: status TBD — update when known.
+- **Karissa Smallwood** — DOB: 7/6/1985 (age 40). Brady's wife.
+- Household: Brady paying COBRA for full family ($3,000/mo).
 
 ## Kids
 
@@ -88,8 +86,7 @@ Established 2026-05-07 brain dump. Pay handsomely if consistent; miss it = role 
 
 ## Household Cost Context
 
-- Brady is single income earner supporting family of 7 (himself + 5 kids + Karissa partially)
-- COBRA at $3,000/mo covers full family — temporary bridge; cost drops significantly if/when Karissa gets independent coverage or divorce finalizes
-- Bentonville, AR is Brady's primary residence (mortgage, utilities)
-- Utah household costs show up in Monarch via Karissa's Arvest card (...9380) — tagged as Utah spend
-- Legal/divorce costs: TBD — flag if attorney retained and bills appear in Monarch
+- Brady is the single income earner supporting the family of 7 (Brady + Karissa + 5 kids)
+- COBRA at $3,000/mo covers the full family — temporary bridge until the family moves to independent coverage
+- Bentonville, AR is the family's primary residence (mortgage, utilities)
+- Household spending on Karissa's Arvest card (...9380) flows into Monarch classified as "Karissa"

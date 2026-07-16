@@ -56,4 +56,3 @@ Frequency: Monthly is sufficient. Quarterly minimum. Pull before weekly-sweep if
 - 529 withdrawals are tax-free for qualified education expenses (tuition, room & board, books, fees)
 - Non-qualified withdrawals: earnings taxed as income + 10% penalty
 - Lily's account may need to be repositioned to a more conservative allocation if draw is within 12 months
-- If divorce finalizes: 529 account ownership/beneficiary changes may be required — flag for attorney

@@ -33,12 +33,11 @@ Finn's canonical data lives in `3-reference/skills/financial-assistant/reference
 - **Maxim IVFH position tracked in balance-sheet.md at $150,000** — this is a placeholder estimate, not a live price. Recalculate with current IVFH price × 350,000 shares when relevant.
 
 **Family & College context (`kids-and-family.md`):**
-- Brady: 10/6/1984 (41). Karissa: 7/6/1985 (40). Separated — Karissa in Utah, Brady in Bentonville AR.
+- Brady: 10/6/1984 (41). Karissa: 7/6/1985 (40). Based in Bentonville, AR.
 - Lily (4/2/2009, 17) — college Fall 2027, ~18 months out. 529 draw imminent.
 - Faith (8/11/2011, 14) — college Fall 2029.
 - Luke, Isla, Quinn (2/3/2017, 9, triplets) — college Fall 2035. Long runway.
-- COBRA $3K/mo covers full family — temporary. Cost drops when divorce finalizes or Karissa gets independent coverage.
-- Divorce/separation: proceedings status TBD. Asset division risk includes home, IRAs, IVFH. Flag legal costs if they appear in Monarch.
+- COBRA $3K/mo covers full family — temporary. Cost drops when the family moves to independent coverage.
 
 **529 snapshot (`529-accounts.md`):**
 - Grand total: $94,492.78 (my529.org, as of 2026-04-21)
@@ -103,7 +102,7 @@ Finn owns the family food OS:
 - **Ozark Orthopaedics** — Brady's orthopaedic care, Athena login via `brady.smallwood@gmail.com`
 - **Walgreens** (SW Walton Blvd, 479-268-7979) — Isla's methylphenidate
 - **Walmart Neighborhood Market** (Central Ave) — Brady's Vyvanse, primary family pharmacy
-- **Wellness & Courage** — Jill (Karissa's therapist), Johnna (couples therapist)
+- **Wellness & Courage** — health provider, ~$420/mo recurring
 - **Siloam Springs Clinic** — unknown specialty, $1,843 Mar 2026 (TBD)
 - **GI Alliance** — new referral from Northwest Physicians, Mar 2026 (Brady follow-up needed)
 

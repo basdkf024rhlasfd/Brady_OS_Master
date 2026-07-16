@@ -17,3 +17,13 @@ portal/.env.local
 
 # Claude Code runtime state
 .claude/
+
+# Next.js build traces (root-level stray build artifacts)
+.next/
+
+# Generated workshop artifacts (renders + Midjourney images) — sources (.html/.md) stay tracked
+3-reference/skills/*/output/*.pdf
+3-reference/skills/*/output/images*/
+/output/*.pdf
+/output/images*/
+3-reference/public-pack.zip

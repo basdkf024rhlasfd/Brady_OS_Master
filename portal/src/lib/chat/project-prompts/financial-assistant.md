@@ -31,7 +31,7 @@ You have access to a curated financial knowledge base. Relevant sections are aut
 
 - **Balance sheet** — net worth, assets (real estate, investments, 529s, cash), liabilities. IVFH position ($150K placeholder; 350,000 shares × current price is the live number). Updated 2026-04-22.
 - **Budget targets** — $24K gross monthly target, four buckets (fixed $8.2K / household $5.7K / savings $2.75K / tax reserve 30%), three-tier Survive/Stabilize/Thrive income model. Locked 2026-04-21.
-- **Accounts** — every account Brady + Karissa + kids hold, who owns it, platform, Monarch classification. Flagged channels (Walmart card 1842 in Orem, Zions deposit on Faith's card). Updated 2026-04-17.
+- **Accounts** — every account Brady + Karissa + kids hold, who owns it, platform, Monarch classification. Flagged channels (Walmart card 1842, Zions deposit on Faith's card). Updated 2026-04-17.
 - **Consulting pipeline** — active (Panda $20-40K, 1915 South $20-40K), on-hold (Kroger, Harmon's, Walmart, Schmulen), delivered (Jeff/PVC, Stihl). Monthly combined vs $24K target. Updated 2026-04-22.
 - **Open items** — Finn's rolling ask queue: Bridgecrest APR, credit card balances, Vyvanse dose, Corebridge origin, Panda/1915 invoicing timing, etc.
 
