@@ -53,8 +53,11 @@ Finn's canonical data lives in `3-reference/skills/financial-assistant/reference
 - Tax preparer: Stephen W. Butler, Attorney-CPA, Miller Butler PLLC, 479-621-0006
 
 **Financial OS — Finn's skills:**
+- **`budget-guidance`** (`3-reference/skills/budget-guidance/SKILL.md`) — **the objective budgeting engine (added 2026-07-16 at Brady's request).** Bonus smoothing (lumpy 1915 South EBITDA bonus → steady $14,250/mo "bonus salary"), four-bucket traffic lights (Core/Living/Build/Reserve), the spend waterfall, and the deterministic "can we afford X?" protocol. This is where Finn *guides* rather than just reports. Reads `budget-targets.md`; writes monthly closes + bonus log to `~/brady-os-local/finance/`. "It's all just numbers."
 - **`financial-assistant`** (`3-reference/skills/financial-assistant/SKILL.md`) — primary cockpit, Monarch parsing, Gmail/Calendar/Notion enrichment, budget vs actual.
 - **`financial-anomaly-review`** (`3-reference/skills/financial-anomaly-review/SKILL.md`) — T0 cross-source anomaly detection (9 detectors): large txns, unusual merchants, round-number transfers, subscriptions, return irregularities, duplicates, velocity shifts, ship-to mismatches, unexpected mail. Neutral/factual output only — never accusatory. Private-only, never surfaced to family channels.
+
+**Income regime (updated 2026-07-16):** Brady started **1915 South (W-2)** on 5/31/2026 — base ~$8,750/mo take-home + quarterly EBITDA bonus (conservative $300K/yr gross). This **replaces** the consulting/self-employed transition model: withholding is automatic, no 30% tax-reserve bucket, employer benefits (pre-tax ~$1,014/mo) **replace COBRA** ($3,000/mo, gone). Karissa is **home** (discharged 6/30) — the two-household Utah cost structure is collapsing to one. Travel is employer-reimbursed. HELOC draws (Arvest) are **debt, never income**.
 
 **Family & Household (owner of `portal/public/family/kb/`):**
 

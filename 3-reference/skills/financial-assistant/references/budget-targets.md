@@ -1,13 +1,54 @@
 # Monthly Budget Targets
 
-Last updated: 2026-05-14
+Last updated: 2026-07-16
+
+> **Read this with the engine.** The objective rules that operate these numbers —
+> bonus smoothing, traffic lights, the waterfall, "can we afford X" — live in
+> `3-reference/skills/budget-guidance/SKILL.md`. This file is the numbers; that file is
+> the logic. Sensitive month-by-month actuals: `~/brady-os-local/finance/`.
 
 ---
 
-*Transition year. Single income earner. Family of 7. Bentonville, AR.*
-*Locked 2026-04-21. Consulting scenario below. 1915 South employment scenario appended.*
+## LIVE PLAN (2026-07-16) — Post-Discharge / New Job
+
+*Two events reset the picture: 1915 South job started **5/31/2026**, Karissa discharged **6/30/2026**.
+The consulting "$24K gross / 30% tax reserve" model below is **ARCHIVED** — it was the transition-year
+plan and no longer applies. W-2 income now; withholding is automatic; no separate tax-reserve bucket.*
+
+### Income (smoothed — see budget-guidance Rule 1)
+
+| Source | Monthly | Basis |
+|--------|--------:|-------|
+| 1915 South base (take-home) | **$8,750** | Actual June deposit $8,743; post pre-tax benefits + 401k + withholding |
+| Bonus salary (smoothed from Reserve) | **$14,250** | Conservative $300K/yr gross ($75K/qtr, 1.5% × ~$20M EBITDA), ~$174K net ÷ 12 |
+| **Total steady income** | **$23,000** | Budget against this, never against last bonus size |
+
+*First bonus (~next week): ~$60K gross = 1.5% × $4M, protected floor, 31-day partial quarter. Seeds the
+Reserve; does not change the $14,250 draw. Trues up as real EBITDA prints — log to `bonus-log.md`.*
+
+### Four buckets
+
+| Bucket | Funded by | Monthly | Notes |
+|--------|-----------|--------:|-------|
+| **Core** (mortgage $3,330, auto/Escalade $839, student loan $640, utilities $735, phone+internet $445, HELOC interest ~$642, insurance/streaming $150, other loan ~$250) | Base | **~$7,030** | Must fit inside base take-home |
+| **Living** (food & household $4,500, Karissa personal $1,800, kids extracurricular/allowance $780, medical copays $300, clothing $300, fun $400, buffer $400) | Bonus salary | **~$8,480** | Food is the watched line |
+| **Build** (529s $1,250, investing $2,000, HELOC principal $250, emergency/buffer rebuild ~$1,640) | Bonus salary | **~$5,140** | Flexes first when Reserve is 🟡/🔴 |
+| **Reserve** | Bonus (100% swept) | balance ≥ 1 qtr (~$42,750) | The smoothing tank |
+| **Total outflow** | | **~$20,650** | vs $23,000 income = **~$2,350 cushion** (real only if no HELOC lifestyle draw) |
+
+### Live rules (full detail in budget-guidance)
+
+- **Food & household: $4,500/mo, $1,040/wk cap.** The #1 lever — actual ran $5–7K. Watch weekly.
+- **HELOC is not income.** The Apr-2026 $37,859 "Other Income" was an Arvest HELOC draw (borrowed).
+  Any lifestyle draw = automatic Red. HELOC = appreciating assets only.
+- **Travel = $0 net** — reimbursed by employer. Confirm reimbursements actually land.
+- **Bonus never spent directly** — 100% to Reserve, paid out as the $14,250 salary.
 
 ---
+
+## ARCHIVED — Transition-Year Consulting Model (locked 2026-04-21, superseded 2026-07-16)
+
+*Kept for history. Do not budget against this — the W-2 job replaced it.*
 
 ## The Target
 

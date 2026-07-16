@@ -146,7 +146,8 @@ Brady gets one answer from Karissa per day max — never push more than one item
 
 ## What This Skill Does NOT Do
 
-- **Not a budgeting app.** No enforcement, no guilt trips. Reports facts and forecasts.
+- **Budget guidance lives in a sibling skill now.** As of 2026-07-16 Brady asked Finn to actively guide the budget ("help us be objective"). That objective engine — targets, traffic lights, bonus smoothing, "can we afford X?" — is `3-reference/skills/budget-guidance/SKILL.md`. This skill still reports the *picture*; budget-guidance owns the *rules*. Route "budget check / can we afford / bonus landed / are we on track" there.
+- **Still no guilt trips here.** This cockpit reports facts and forecasts; the rules do the coaching, not the tone.
 - **Not real-time.** Limited by CSV export frequency. Brady controls the refresh cycle.
 - **Not tax preparation.** Surfaces tax-related items but doesn't calculate tax liability.
 - **Not connected to any financial API.** All transaction data from manually exported CSVs.
