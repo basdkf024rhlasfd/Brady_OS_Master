@@ -1,0 +1,89 @@
+enabled: true
+prompt: healthcare.md
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "Hi! I know the whole family benefits handbook. Ask me anything — \"a $480 bill just arrived, what do I do?\" or \"is an eye exam covered?\" — or tap a shortcut."
+operatorMode: true
+configAware: false
+
+shortcuts:
+  - label: "A bill arrived"
+    command: "A medical bill just arrived in the mail. Walk me through exactly what to do, step by step."
+  - label: "Find a doctor"
+    command: "We need to see a new doctor. What do I do before booking the appointment?"
+  - label: "Sick right now"
+    command: "Someone is sick right now and it's not an emergency. What are my options?"
+  - label: "Prescriptions"
+    command: "How do prescriptions work on our plan, and how do I save money on them?"
+  - label: "Dental & vision"
+    command: "What does our dental and vision coverage look like — costs and how often?"
+  - label: "Accident payout"
+    command: "Someone had an accident. How do I file the Sun Life claim for the cash payout?"
+
+agentInstructions: |
+  YOU ARE ON: Healthcare — mception.ai/healthcare
+  PRIMARY USER: Karissa (Brady's wife). Also Brady.
+
+  ## Page Structure
+  - **"What do I do when…"** accordion at top: the 9 most common situations with step-by-step answers
+  - **Who to call** quick-reference cards: tap-to-call phone numbers for ClaimDOC, HealthSCOPE, Teladoc, Unum, VSP, Sun Life
+  - **The 5 golden rules**: the plan's bill-handling rules (never pay before the EOB)
+  - **Coverage at a glance**: one card per benefit (Medical, Pharmacy, Teladoc, Dental, Vision, Accident) with key numbers
+  - **Plan IDs**: what a front desk asks for (member ID, group #, payor ID)
+  - **Setup checklist**: one-time account setup tasks with progress saved in the browser
+
+  ## Key Context
+  - The medical plan is SELF-FUNDED with reference-based pricing (no network) — bills often look wrong at first and usually aren't owed in full
+  - ClaimDOC (888-330-7295) is the free advocate team that fights bills and preps new providers
+  - The single most important habit: never pay a medical bill until the HealthSCOPE EOB arrives
+  - Open items still to confirm: coinsurance %, monthly premium, PPO-vs-MAC dental election
+
+dataSources:
+  - label: "Healthcare KB Files"
+    type: "kb-directory"
+    status: "ready"
+    id: "portal/public/healthcare/kb"
+    description: "10 markdown files distilled from the 1915 South Family Benefits Handbook (July 2026) — golden rules, contacts, medical/pharmacy/dental/vision/accident details, EOB playbook, glossary"
+  - label: "1915 South Family Benefits Handbook (PDF)"
+    type: "kb-directory"
+    status: "partial"
+    id: "source: 1915_South__Family_Benefits_Handbook.pdf"
+    description: "Source document (July 2026). KB files must be regenerated when a new handbook version is issued (open enrollment / plan changes each October 1)"
+  - label: "HealthSCOPE member portal"
+    type: "external"
+    status: "recommended"
+    url: "https://healthscopebenefits.com"
+    description: "Live deductible progress, claims, and EOBs — no API integration; chatbot answers from the handbook only"
+
+kb:
+  enabled: true
+  directory: public/healthcare/kb
+  maxFiles: 4
+  routing: keyword
+  routes:
+    - keywords: [bill, invoice, owe, pay, paid, charge, charged, balance, eob, explanation of benefits, patient responsibility, collections, statement]
+      files: [04-bills-eob-claimdoc.md, 01-golden-rules.md, 02-emergency-contacts.md]
+    - keywords: [doctor, specialist, provider, appointment, nominate, pave the way, new doctor, pcp, pediatrician, office, network, take our insurance, accept]
+      files: [03-medical-plan.md, 04-bills-eob-claimdoc.md, 02-emergency-contacts.md]
+    - keywords: [deductible, out of pocket, coinsurance, copay, premium, coverage, covered, cost, how much, plan year, preventive, physical]
+      files: [03-medical-plan.md, 01-golden-rules.md]
+    - keywords: [prescription, rx, refill, pharmacy, medication, meds, optum, drug, formulary, generic, mail order, home delivery]
+      files: [05-pharmacy-teladoc.md, 02-emergency-contacts.md]
+    - keywords: [sick, fever, flu, cold, teladoc, telehealth, urgent care, tonight, weekend, video visit, pink eye, rash, sinus]
+      files: [05-pharmacy-teladoc.md, 09-playbook.md, 02-emergency-contacts.md]
+    - keywords: [emergency, er, 911, ambulance, hospital, broken, stitches, concussion, icu]
+      files: [09-playbook.md, 08-accident.md, 02-emergency-contacts.md]
+    - keywords: [dental, dentist, teeth, tooth, cleaning, filling, crown, braces, orthodontic, root canal, unum]
+      files: [06-dental.md, 02-emergency-contacts.md]
+    - keywords: [vision, eye, eyes, glasses, frames, contacts, lenses, exam, vsp, eyeconic, lasik, optometrist]
+      files: [07-vision.md, 02-emergency-contacts.md]
+    - keywords: [accident, injury, injured, sun life, cash, payout, wellness benefit, claim form, sports physical, screening]
+      files: [08-accident.md, 09-playbook.md]
+    - keywords: [member id, group number, policy, id card, payor, claims address, insurance card, verify, eligibility]
+      files: [02-emergency-contacts.md, 03-medical-plan.md]
+    - keywords: [setup, register, account, portal, app, checklist, wallet, healthscope, claimdoc, sign up]
+      files: [10-glossary-setup.md, 04-bills-eob-claimdoc.md]
+    - keywords: [what is, mean, means, definition, glossary, self-funded, reference-based, rbp, term]
+      files: [10-glossary-setup.md, 01-golden-rules.md]
+    - keywords: [call, phone, number, contact, who do i, email, hours]
+      files: [02-emergency-contacts.md, 09-playbook.md]
