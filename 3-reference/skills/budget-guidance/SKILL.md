@@ -49,7 +49,8 @@ Income has two shapes. Treat them differently, on purpose:
 **Conservative planning basis (locked 2026-07-16):**
 - Annual bonus assumption: **$300K gross = $75K/quarter**, even split (1.5% of ~$20M EBITDA).
 - Net after ~42% blended high-income tax: **~$174K/yr ≈ $14,250/mo** — that's the bonus-salary figure.
-- **First payment (~next week): ~$60K gross** = 1.5% × $4M, protected floor, partial quarter (start 5/31, 31 days). This *seeds* the Reserve; it doesn't change the $14,250 draw.
+- **First payment (~next week): ~$20,440 gross** = 1.5% × $4.0M Q2 EBT × (31 employed / 91 quarter days) — prorated for the 5/31 start (a full quarter would be $60K). Nets ~$13K. This *seeds* the Reserve; it doesn't change the $14,250 draw, but a partial-quarter seed leaves the Reserve 🔴 (thin) at first — it fills over the first 1–2 full quarters.
+- **Annual-pace watch:** Q2 EBT of $4.0M annualizes to ~$16M → ~$240K/yr bonus, **below** the $300K conservative assumption. One data point; don't move the draw yet, but if Q3/Q4 hold near $4M, step the smoothed salary down from $14,250 toward ~$11,400/mo. The `bonus-log.md` trues this up each quarter.
 
 **Reserve health (objective):**
 | Reserve balance | Light | Action |
@@ -165,6 +166,16 @@ not earned. It made a losing month look like a winning one.
 - Target changes → `budget-targets.md` (repo; numbers only, no personal/medical detail).
 - A Red event or Core miss → Streaming Notes `Priority=Must` via Finn's Escalation Protocol
   (de-dup topic keys, incl. new key `HELOC lifestyle draw`).
+
+## Family-facing surface
+
+Karissa's daily interface to this engine is **mception.ai/family-budget** ("The Daily
+Five", `portal/public/family-budget/viewer/index.html`) — log the food number, glance
+the light, run purchases >$100 through the deterministic calculator. The page carries
+targets only (repo-safe numbers from `budget-targets.md`); anything typed stays in the
+browser (localStorage), so no actuals leave the device. When targets change in
+`budget-targets.md`, update the constants at the top of that page's `<script>` block
+(WEEK_CAP / WEEK_AMBER / MONTH_CUSHION) and the bucket cards.
 
 ## Tone (non-negotiable)
 
