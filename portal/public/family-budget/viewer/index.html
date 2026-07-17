@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Budget — The Daily Five</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0F14;
+  --bg-card: #13161D;
+  --bg-card-alt: #181C25;
+  --gold: #D4A843;
+  --gold-dim: #9A7B32;
+  --blue: #4A7FB5;
+  --white: #F0EDE6;
+  --gray: #8A8D94;
+  --gray-light: #B0B3BA;
+  --red: #C45C5C;
+  --red-bg: rgba(196,92,92,0.12);
+  --amber: #D4A843;
+  --amber-bg: rgba(212,168,67,0.12);
+  --green: #7CB97A;
+  --green-bg: rgba(124,185,122,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.container { max-width: 920px; margin: 0 auto; padding: 28px 24px 80px; }
+
+/* Header */
+.header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; padding-bottom: 18px;
+  border-bottom: 2px solid var(--gold-dim); margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.header .tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 8px;
+}
+.header h1 {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 32px; letter-spacing: -1px; line-height: 1.1;
+}
+.header h1 .accent { color: var(--gold); }
+.header .subtitle { font-size: 13px; color: var(--gray-light); margin-top: 6px; max-width: 520px; }
+.header-right { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray); }
+
+.section-header {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 10px; margin: 32px 0 14px;
+}
+.section-header::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,67,0.25); }
+
+.card {
+  background: var(--bg-card); border: 1px solid rgba(240,237,230,0.08);
+  border-radius: 12px; padding: 22px 24px; margin-bottom: 14px;
+}
+
+/* ── The one number ── */
+.one-number { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+.one-number .big {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 52px; letter-spacing: -2px; line-height: 1;
+}
+.one-number .of-cap { font-size: 14px; color: var(--gray-light); margin-top: 6px; }
+.one-number .of-cap strong { color: var(--white); }
+
+.light-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px;
+  padding: 10px 18px; border-radius: 999px; white-space: nowrap;
+  border: 1px solid; text-align: center;
+}
+.light-green { color: var(--green); background: var(--green-bg); border-color: var(--green); }
+.light-amber { color: var(--amber); background: var(--amber-bg); border-color: var(--amber); }
+.light-red   { color: var(--red);   background: var(--red-bg);   border-color: var(--red); }
+
+.meter { height: 10px; border-radius: 6px; background: rgba(240,237,230,0.08); margin-top: 16px; overflow: hidden; position: relative; }
+.meter .fill { height: 100%; border-radius: 6px; transition: width .4s ease; }
+.fill-green { background: var(--green); }
+.fill-amber { background: var(--amber); }
+.fill-red { background: var(--red); }
+.meter-labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray); margin-top: 6px; }
+
+.log-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+input[type="number"], input[type="text"], select {
+  background: var(--bg-card-alt); color: var(--white);
+  border: 1px solid rgba(240,237,230,0.15); border-radius: 8px;
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 15px;
+  min-width: 0;
+}
+input:focus, select:focus { outline: none; border-color: var(--gold); }
+.btn {
+  background: var(--gold); color: #14161B; border: none; border-radius: 8px;
+  padding: 10px 20px; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  font-size: 14px; cursor: pointer; white-space: nowrap;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn-ghost {
+  background: transparent; color: var(--gray-light);
+  border: 1px solid rgba(240,237,230,0.2);
+}
+.hint { font-size: 12px; color: var(--gray); margin-top: 10px; }
+
+.entry-list { margin-top: 14px; font-size: 13px; color: var(--gray-light); }
+.entry-list .entry {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; border-bottom: 1px dashed rgba(240,237,230,0.08);
+}
+.entry .del { color: var(--gray); background: none; border: none; cursor: pointer; font-size: 12px; }
+.entry .del:hover { color: var(--red); }
+.entry .amt { font-family: 'JetBrains Mono', monospace; color: var(--white); }
+
+/* Week trail */
+.trail { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.trail .wk {
+  flex: 1; min-width: 90px; background: var(--bg-card-alt);
+  border: 1px solid rgba(240,237,230,0.08); border-radius: 10px;
+  padding: 12px; text-align: center;
+}
+.trail .wk .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; }
+.trail .wk .val { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 17px; margin-top: 4px; }
+.trail .wk .dot { width: 10px; height: 10px; border-radius: 50%; margin: 8px auto 0; }
+.dot-green { background: var(--green); }
+.dot-amber { background: var(--amber); }
+.dot-red { background: var(--red); }
+.dot-off { background: rgba(240,237,230,0.15); }
+
+/* Afford calculator */
+.afford-grid { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; }
+.afford-grid label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+.afford-grid input, .afford-grid select { width: 100%; }
+.answer {
+  margin-top: 18px; border-radius: 10px; padding: 16px 18px;
+  font-size: 15px; display: none; border: 1px solid;
+}
+.answer .verdict { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+.answer .why { color: var(--gray-light); font-size: 13px; }
+.answer .log-cushion { margin-top: 12px; }
+.cushion-note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray); margin-top: 12px; }
+
+/* Buckets */
+.buckets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.bucket {
+  background: var(--bg-card); border: 1px solid rgba(240,237,230,0.08);
+  border-radius: 12px; padding: 16px;
+}
+.bucket .name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
+.bucket .target { font-family: 'JetBrains Mono', monospace; font-size: 17px; color: var(--gold); margin-top: 4px; }
+.bucket .desc { font-size: 11.5px; color: var(--gray); margin-top: 8px; line-height: 1.45; }
+
+/* Rules */
+.rules li { margin: 10px 0 10px 18px; font-size: 14px; color: var(--gray-light); }
+.rules li strong { color: var(--white); }
+
+/* Ritual */
+.ritual { counter-reset: step; }
+.ritual .step { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed rgba(240,237,230,0.08); align-items: baseline; }
+.ritual .step:last-child { border-bottom: none; }
+.ritual .num {
+  counter-increment: step; font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; color: var(--gold); font-size: 18px; min-width: 26px;
+}
+.ritual .num::before { content: counter(step); }
+.ritual .what { font-size: 14.5px; }
+.ritual .time { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray); white-space: nowrap; }
+
+.privacy {
+  font-size: 12px; color: var(--gray); text-align: center; margin-top: 36px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@media (max-width: 720px) {
+  .container { padding: 20px 14px 60px; }
+  .header h1 { font-size: 26px; }
+  .one-number { grid-template-columns: 1fr; }
+  .one-number .big { font-size: 42px; }
+  .buckets { grid-template-columns: repeat(2, 1fr); }
+  .afford-grid { grid-template-columns: 1fr 1fr; }
+  .afford-grid .btn { grid-column: span 2; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="tag">Smallwood Family OS</div>
+      <h1>Family Budget — <span class="accent">The Daily Five</span></h1>
+      <div class="subtitle">Five minutes a day. One number to log, one light to glance at, one calculator for anything over $100. The rules do the arguing so we don't have to.</div>
+    </div>
+    <div class="header-right">
+      <div id="today-date"></div>
+      <div id="week-label" style="margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- STEP 1: The one number -->
+  <div class="section-header">Step 1 · Log today's food &amp; household spend</div>
+  <div class="card">
+    <div class="one-number">
+      <div>
+        <div class="big" id="week-total">$0</div>
+        <div class="of-cap">this week, of the <strong>$1,040 weekly cap</strong> ($4,500/mo)</div>
+      </div>
+      <div class="light-pill light-green" id="week-light">ON TRACK</div>
+    </div>
+    <div class="meter"><div class="fill fill-green" id="week-fill" style="width:0%"></div></div>
+    <div class="meter-labels"><span>$0</span><span>green ≤ $1,040</span><span>amber ≤ $1,200</span><span>red</span></div>
+
+    <div class="log-row">
+      <input type="number" id="spend-input" placeholder="Today's total (groceries + Walmart/Amazon household + dining)" style="flex:1" min="0" step="0.01">
+      <button class="btn" onclick="logSpend()">Log it</button>
+    </div>
+    <div class="hint">Count anything that feeds or runs the house: groceries, the Walmart/Amazon/Target catch-all, restaurants, coffee runs. Nothing spent today? Log $0 — the streak counts.</div>
+    <div class="entry-list" id="entries"></div>
+  </div>
+
+  <!-- STEP 2: The month at a glance -->
+  <div class="section-header">Step 2 · Glance at the month</div>
+  <div class="card">
+    <div class="trail" id="trail"></div>
+    <div class="hint" style="margin-top:14px;">Two red weeks in a row and the month fails — that's the whole test. One amber week is fine; the next week just runs a little lighter.</div>
+  </div>
+
+  <!-- STEP 3: Can we afford it? -->
+  <div class="section-header">Step 3 · Can we afford it? (anything over $100)</div>
+  <div class="card">
+    <div class="afford-grid">
+      <div>
+        <label>How much?</label>
+        <input type="number" id="afford-amount" placeholder="$" min="0" step="1">
+      </div>
+      <div>
+        <label>What kind?</label>
+        <select id="afford-bucket">
+          <option value="living">Living — family / kids / fun / house</option>
+          <option value="build">Build — savings, investing, extra paydown</option>
+          <option value="core">Core — a new fixed bill</option>
+        </select>
+      </div>
+      <div>
+        <label>How often?</label>
+        <select id="afford-freq">
+          <option value="once">One-time</option>
+          <option value="recurring">Every month</option>
+        </select>
+      </div>
+      <button class="btn" onclick="runAfford()">Answer</button>
+    </div>
+    <div class="answer" id="afford-answer">
+      <div class="verdict" id="afford-verdict"></div>
+      <div class="why" id="afford-why"></div>
+      <div class="log-cushion" id="afford-log" style="display:none;">
+        <button class="btn btn-ghost" onclick="logCushion()">We bought it — take it out of the cushion</button>
+      </div>
+    </div>
+    <div class="cushion-note" id="cushion-note"></div>
+    <div class="entry-list" id="cushion-entries"></div>
+  </div>
+
+  <!-- The buckets -->
+  <div class="section-header">The four buckets (where every dollar lives)</div>
+  <div class="buckets">
+    <div class="bucket">
+      <div class="name">Core</div>
+      <div class="target">$7,030/mo</div>
+      <div class="desc">Mortgage, cars, loans, utilities, phones. Fixed. Paid by the base paycheck. Not ours to flex.</div>
+    </div>
+    <div class="bucket">
+      <div class="name">Living</div>
+      <div class="target">$8,480/mo</div>
+      <div class="desc">Food &amp; household $4,500 · Karissa $1,800 · kids $780 · medical, clothes, fun. The food line is the only one we watch daily.</div>
+    </div>
+    <div class="bucket">
+      <div class="name">Build</div>
+      <div class="target">$5,140/mo</div>
+      <div class="desc">529s, investing, buffer. Pays the future. First thing to pause when money is tight — never the first thing to raid for fun.</div>
+    </div>
+    <div class="bucket">
+      <div class="name">Reserve</div>
+      <div class="target">≥ $42,750</div>
+      <div class="desc">Every bonus lands here, 100%. It pays us a steady $14,250 "bonus salary" on the 1st. We never spend a bonus directly.</div>
+    </div>
+  </div>
+
+  <!-- The rules -->
+  <div class="section-header">The rules (so it never has to be a debate)</div>
+  <div class="card">
+    <ul class="rules">
+      <li><strong>We budget against $23,000/mo, always.</strong> $8,750 base + $14,250 bonus salary. The size of the last bonus check changes nothing.</li>
+      <li><strong>A bonus landing is a non-event here.</strong> It sweeps 100% to the Reserve. If it hits the checking account, text Brady — it's in the wrong place.</li>
+      <li><strong>The HELOC is not income.</strong> Ever. It's for things that make the house worth more. A HELOC draw for lifestyle is an automatic red month.</li>
+      <li><strong>When money is tight, things give in this order:</strong> extra investing → fun &amp; discretionary → (only if forced) food to the floor → 529s last → the mortgage never.</li>
+      <li><strong>No guilt.</strong> A red week isn't a fight, it's a light. The next week runs lighter and the month can still pass.</li>
+    </ul>
+  </div>
+
+  <!-- The ritual -->
+  <div class="section-header">The whole job — 5 minutes</div>
+  <div class="card">
+    <div class="ritual">
+      <div class="step"><div class="num"></div><div class="what">Log today's food &amp; household number above (your banking app's "today" view, or receipts).</div><div class="time">~2 min</div></div>
+      <div class="step"><div class="num"></div><div class="what">Glance at the light and the week trail. Green — done, close the tab.</div><div class="time">~30 sec</div></div>
+      <div class="step"><div class="num"></div><div class="what">Thinking about buying anything over $100? Run it through the calculator and take the answer.</div><div class="time">~2 min</div></div>
+      <div class="step"><div class="num"></div><div class="what">Red light or a weird answer? Screenshot it and text Brady. That's the escalation path — not a negotiation.</div><div class="time">only if red</div></div>
+    </div>
+  </div>
+
+  <div class="privacy">Targets come from the family plan. Anything you type stays in this browser only — nothing is sent anywhere.</div>
+</div>
+
+<script>
+// ─── Budget constants (from budget-targets.md, locked 2026-07-16) ───
+const WEEK_CAP = 1040;        // green ceiling
+const WEEK_AMBER = 1200;      // amber ceiling; above = red
+const MONTH_CUSHION = 2350;   // true monthly cushion after all buckets
+
+const fmt = n => '$' + Number(n).toLocaleString('en-US', {maximumFractionDigits: 0});
+
+// ─── Date keys ───
+function isoWeekKey(d) {
+  const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+  const week = Math.ceil((((t - yearStart) / 86400000) + 1) / 7);
+  return t.getUTCFullYear() + '-W' + String(week).padStart(2, '0');
+}
+const monthKey = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+const NOW = new Date();
+const WEEK = isoWeekKey(NOW);
+const MONTH = monthKey(NOW);
+
+// ─── Storage ───
+const load = (k, fb) => { try { return JSON.parse(localStorage.getItem(k)) ?? fb; } catch { return fb; } };
+const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+// spend entries: { "2026-W29": [ {d:"Jul 16", amt: 214.5, ts: 123} ] }
+let spendLog = load('fb-spend', {});
+// cushion draws: { "2026-07": [ {d:"Jul 16", amt: 350, what:"", ts: 123} ] }
+let cushionLog = load('fb-cushion', {});
+
+// ─── Week total + light ───
+function weekEntries() { return spendLog[WEEK] || []; }
+function weekTotal() { return weekEntries().reduce((s, e) => s + e.amt, 0); }
+
+function lightFor(total) {
+  if (total <= WEEK_CAP) return ['green', 'ON TRACK'];
+  if (total <= WEEK_AMBER) return ['amber', 'RUN LIGHTER'];
+  return ['red', 'OVER — TEXT BRADY'];
+}
+
+function renderWeek() {
+  const total = weekTotal();
+  const [color, label] = lightFor(total);
+  document.getElementById('week-total').textContent = fmt(total);
+  const pill = document.getElementById('week-light');
+  pill.className = 'light-pill light-' + color;
+  pill.textContent = label;
+  const fill = document.getElementById('week-fill');
+  fill.className = 'fill fill-' + color;
+  fill.style.width = Math.min(100, (total / WEEK_AMBER) * 100) + '%';
+
+  const list = document.getElementById('entries');
+  list.innerHTML = weekEntries().map((e, i) =>
+    `<div class="entry"><span>${e.d}</span><span><span class="amt">${fmt(e.amt)}</span> <button class="del" onclick="delSpend(${i})">✕</button></span></div>`
+  ).join('');
+}
+
+function logSpend() {
+  const el = document.getElementById('spend-input');
+  const amt = parseFloat(el.value);
+  if (isNaN(amt) || amt < 0) return;
+  (spendLog[WEEK] = spendLog[WEEK] || []).push({
+    d: NOW.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    amt, ts: Date.now()
+  });
+  save('fb-spend', spendLog);
+  el.value = '';
+  renderWeek(); renderTrail();
+}
+function delSpend(i) {
+  spendLog[WEEK].splice(i, 1);
+  save('fb-spend', spendLog);
+  renderWeek(); renderTrail();
+}
+
+// ─── Month trail: the ISO weeks that touch this month ───
+function monthWeeks() {
+  const weeks = [];
+  const d = new Date(NOW.getFullYear(), NOW.getMonth(), 1);
+  while (d.getMonth() === NOW.getMonth()) {
+    const k = isoWeekKey(d);
+    if (!weeks.includes(k)) weeks.push(k);
+    d.setDate(d.getDate() + 7);
+  }
+  const last = new Date(NOW.getFullYear(), NOW.getMonth() + 1, 0);
+  const lk = isoWeekKey(last);
+  if (!weeks.includes(lk)) weeks.push(lk);
+  return weeks;
+}
+
+function renderTrail() {
+  const weeks = monthWeeks();
+  document.getElementById('trail').innerHTML = weeks.map((k, i) => {
+    const entries = spendLog[k] || [];
+    const total = entries.reduce((s, e) => s + e.amt, 0);
+    const isFuture = k > WEEK;
+    const hasData = entries.length > 0;
+    const [color] = lightFor(total);
+    const dot = isFuture || !hasData ? 'dot-off' : 'dot-' + color;
+    const val = isFuture ? '—' : (hasData ? fmt(total) : '—');
+    const cur = k === WEEK ? ' style="border-color: var(--gold-dim);"' : '';
+    return `<div class="wk"${cur}><div class="lbl">Week ${i + 1}</div><div class="val">${val}</div><div class="dot ${dot}"></div></div>`;
+  }).join('');
+}
+
+// ─── Cushion ledger ───
+function cushionEntries() { return cushionLog[MONTH] || []; }
+function cushionLeft() { return MONTH_CUSHION - cushionEntries().reduce((s, e) => s + e.amt, 0); }
+
+function renderCushion() {
+  document.getElementById('cushion-note').textContent =
+    'Cushion left this month: ' + fmt(Math.max(0, cushionLeft())) + ' of ' + fmt(MONTH_CUSHION) +
+    ' (resets on the 1st)';
+  const list = document.getElementById('cushion-entries');
+  list.innerHTML = cushionEntries().map((e, i) =>
+    `<div class="entry"><span>${e.d} — cushion purchase</span><span><span class="amt">${fmt(e.amt)}</span> <button class="del" onclick="delCushion(${i})">✕</button></span></div>`
+  ).join('');
+}
+function delCushion(i) {
+  cushionLog[MONTH].splice(i, 1);
+  save('fb-cushion', cushionLog);
+  renderCushion();
+}
+
+// ─── "Can we afford it?" — deterministic, per budget-guidance Protocol A ───
+let pendingCushionAmt = null;
+
+function monthHasRed() {
+  return monthWeeks().some(k => {
+    const entries = spendLog[k] || [];
+    if (!entries.length || k > WEEK) return false;
+    return entries.reduce((s, e) => s + e.amt, 0) > WEEK_AMBER;
+  });
+}
+
+function runAfford() {
+  const amt = parseFloat(document.getElementById('afford-amount').value);
+  const bucket = document.getElementById('afford-bucket').value;
+  const freq = document.getElementById('afford-freq').value;
+  if (isNaN(amt) || amt <= 0) return;
+
+  let verdict, why, color, offerLog = false;
+
+  if (bucket === 'core') {
+    verdict = 'Hold — that\'s structural.';
+    why = 'A new fixed bill changes the Core bucket, which has to fit inside the base paycheck forever. That\'s a Brady + Finn decision at the month close, not a day-to-day one. Send it over.';
+    color = 'amber';
+  } else if (freq === 'recurring') {
+    verdict = 'Yes — but only as a swap.';
+    why = 'Anything monthly has to fit the target, not just this month\'s slack. Name the existing ' +
+      (bucket === 'living' ? 'Living' : 'Build') +
+      ' line it replaces (' + fmt(amt) + '/mo worth), and it\'s a yes. No swap named = not yet.';
+    color = 'amber';
+  } else if (bucket === 'living' && monthHasRed()) {
+    verdict = 'Not this month.';
+    why = 'The food line already ran red this month, so extra Living spend waits for the 1st. It\'s not a no — it\'s a date.';
+    color = 'red';
+  } else if (amt <= cushionLeft()) {
+    verdict = 'Yes.';
+    why = 'It fits inside what\'s left of this month\'s cushion (' + fmt(cushionLeft()) + ' available). If you buy it, log it below so the cushion stays honest.';
+    color = 'green';
+    offerLog = true;
+  } else if (bucket === 'build') {
+    verdict = 'Yes — money already headed to Build.';
+    why = 'Extra saving or paydown beyond the cushion just moves this month\'s Build allocation around. Mention it to Brady so Finn books it right.';
+    color = 'green';
+  } else {
+    verdict = 'Wait for the 1st — or name a swap.';
+    why = 'It\'s ' + fmt(amt) + ' against ' + fmt(Math.max(0, cushionLeft())) + ' of cushion left. Two clean options: wait for the cushion to reset on the 1st, or swap out a Living line this month (skip something of equal size). Bigger than one month\'s cushion? That\'s a bonus-day purchase — text Brady.';
+    color = 'red';
+  }
+
+  const box = document.getElementById('afford-answer');
+  box.style.display = 'block';
+  box.className = 'answer light-' + color;
+  box.style.borderColor = '';
+  document.getElementById('afford-verdict').textContent = verdict;
+  document.getElementById('afford-why').textContent = why;
+  document.getElementById('afford-log').style.display = offerLog ? 'block' : 'none';
+  pendingCushionAmt = offerLog ? amt : null;
+}
+
+function logCushion() {
+  if (!pendingCushionAmt) return;
+  (cushionLog[MONTH] = cushionLog[MONTH] || []).push({
+    d: NOW.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    amt: pendingCushionAmt, ts: Date.now()
+  });
+  save('fb-cushion', cushionLog);
+  pendingCushionAmt = null;
+  document.getElementById('afford-log').style.display = 'none';
+  renderCushion();
+}
+
+// ─── Header dates ───
+document.getElementById('today-date').textContent = NOW.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+document.getElementById('week-label').textContent = WEEK;
+
+renderWeek(); renderTrail(); renderCushion();
+</script>
+</body>
+</html>

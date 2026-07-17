@@ -167,6 +167,16 @@ not earned. It made a losing month look like a winning one.
 - A Red event or Core miss → Streaming Notes `Priority=Must` via Finn's Escalation Protocol
   (de-dup topic keys, incl. new key `HELOC lifestyle draw`).
 
+## Family-facing surface
+
+Karissa's daily interface to this engine is **mception.ai/family-budget** ("The Daily
+Five", `portal/public/family-budget/viewer/index.html`) — log the food number, glance
+the light, run purchases >$100 through the deterministic calculator. The page carries
+targets only (repo-safe numbers from `budget-targets.md`); anything typed stays in the
+browser (localStorage), so no actuals leave the device. When targets change in
+`budget-targets.md`, update the constants at the top of that page's `<script>` block
+(WEEK_CAP / WEEK_AMBER / MONTH_CUSHION) and the bucket cards.
+
 ## Tone (non-negotiable)
 
 No guilt, no lectures, no "you should have." The lights and the waterfall carry the message.
