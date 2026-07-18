@@ -96,6 +96,25 @@ if [ "$CI_MODE" = 0 ]; then
   fi
 fi
 
+# --- R7.6: skills registry drift (full-repo mode only) ---
+if [ "$CI_MODE" = 0 ]; then
+  drift=()
+  for d in 3-reference/skills/*/; do
+    name=$(basename "$d")
+    [ "$name" = "_shared" ] && continue
+    grep -q "3-reference/skills/$name/" CLAUDE.md || drift+=("skill dir not in CLAUDE.md registry: $name")
+  done
+  while IFS= read -r p; do
+    [ -e "$p" ] || drift+=("CLAUDE.md registry path missing on disk: $p")
+  done < <(grep -o '3-reference/skills/[a-z0-9_-]*/SKILL\.md' CLAUDE.md | sort -u)
+  if [ ${#drift[@]} -gt 0 ]; then
+    note "AMBER R7.6 skills registry drift:"
+    printf '        %s\n' "${drift[@]}"
+  else
+    note "PASS  R7.6 skills registry in sync with CLAUDE.md"
+  fi
+fi
+
 # --- R7.5: size report ---
 if [ "$CI_MODE" = 0 ]; then
   tree=$(du -sh --exclude=.git . 2>/dev/null | cut -f1)
