@@ -69,12 +69,14 @@ Every dollar is Core, Living, Build, or Reserve. Each bucket has a target and a 
 | Bucket | Funded by | Monthly target | Light checks |
 |--------|-----------|---------------:|--------------|
 | **Core** — mortgage, auto, loans, utilities, phone, HELOC interest | Base | **~$7,030** | Must always fit inside base. Red = structural problem, not a spending one. |
-| **Living** — food/household, Karissa personal, kids, medical, fun | Bonus salary | **~$8,480** | Checked weekly on the food line (Rule 4). |
+| **Living** — food/household, Karissa personal, kids, medical, fun, subscriptions, ad hoc buffer | Bonus salary | **~$9,380** | Checked weekly on the food line (Rule 4); ad hoc buffer sized per Rule 6. |
 | **Build** — 529s, investing, HELOC principal, buffer rebuild | Bonus salary | **~$5,140** | Flexes first when Reserve is 🟡/🔴. |
 | **Reserve** — the smoothing tank | Bonus (100%) | balance ≥ 1 qtr | Rule 1. |
 
-Total planned outflow ≈ **$20,650** against ~$23,000 income = **~$2,350 true monthly cushion**
-— *real* only if no HELOC draw funds any of it (Rule 5).
+Total planned outflow ≈ **$21,550** against ~$23,000 income = **~$1,450 true monthly cushion**
+— *real* only if no HELOC draw funds any of it (Rule 5). Note: this cushion has **no room for a
+vacation line** at current bonus assumptions — personal travel stays unfunded until a fuller bonus
+quarter confirms more headroom (see Rule 6).
 
 ---
 
@@ -134,6 +136,38 @@ not earned. It made a losing month look like a winning one.
 
 ---
 
+## Rule 6 — The ad hoc / surprise buffer
+
+Every household has spend that isn't a bill, isn't groceries, and isn't a named line — home repairs,
+random purchases, a dealer fee, a one-off charity ask. That's not chaos, it's a category, and it gets
+sized from data like every other line, not guessed.
+
+**Monthly target: $1,000.** *(Locked by Brady 2026-07-18.)*
+
+**How it's set (objective, refreshable):**
+1. Pull every transaction over several clean months (skip any anomalous/contaminated period — e.g. a
+   treatment or transition window) that **doesn't already have a budget line** — i.e. exclude Core
+   bills, food & household, Karissa's personal line, kids' activities, clothing, medical.
+2. Split what's left into three buckets by nature, not just size:
+   - **Recurring but uncounted** (appears in ≥3 of the sampled months) — this is a *predictable* miss,
+     not ad hoc. Give it its own line (see "Subscriptions & personal SaaS" in `budget-targets.md`).
+   - **Travel/vacation-tagged** — lumpy but plannable. Keep it separate; don't let it inflate the
+     "surprise" number just because it's irregular.
+   - **True one-off** (appears in <3 months, not travel-tagged) — this is the real ad hoc pool.
+3. Average the true one-off pool over the sample window. Round to a clean number **between the trimmed
+   mean (excluding the single biggest outlier) and the full mean** — enough slack for an occasional
+   $500–800 surprise without being permanently inflated by the one $1,000+ anomaly in the sample.
+4. Refresh the same way each quarter, using the next clean window.
+
+**What this replaces:** a flat guessed "buffer" line. Guessing under-sizes the buffer (feels like
+overspending every month) or over-sizes it (steals from savings). Measuring it fixes both.
+
+**What NOT to fold in:** vacation/travel and recurring subscriptions. They're real costs, but a
+different shape — plannable vs. fixed vs. genuinely random — and folding them into "ad hoc" hides
+which lever actually needs adjusting when the number moves.
+
+---
+
 ## The three protocols (how Finn actually responds)
 
 ### A. "Can we afford [X]?" — deterministic, answer in one pass
@@ -163,6 +197,9 @@ not earned. It made a losing month look like a winning one.
 
 - Rolling monthly close → `~/brady-os-local/finance/budget-close-YYYY-MM.md` (sensitive; actuals).
 - Bonus log → `~/brady-os-local/finance/bonus-log.md` (each payment; trues up the $300K assumption).
+- Ad hoc buffer refresh (quarterly, Rule 6) → `~/brady-os-local/finance/adhoc-buffer-analysis.md`
+  (sensitive; merchant-level detail). Update `budget-targets.md`'s buffer line only if the refreshed
+  number moves meaningfully from $1,000.
 - Target changes → `budget-targets.md` (repo; numbers only, no personal/medical detail).
 - A Red event or Core miss → Streaming Notes `Priority=Must` via Finn's Escalation Protocol
   (de-dup topic keys, incl. new key `HELOC lifestyle draw`).

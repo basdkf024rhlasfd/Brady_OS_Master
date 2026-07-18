@@ -34,19 +34,32 @@ Q3/Q4 hold near $4M.*
 | Bucket | Funded by | Monthly | Notes |
 |--------|-----------|--------:|-------|
 | **Core** (mortgage $3,330, auto/Escalade $839, student loan $640, utilities $735, phone+internet $445, HELOC interest ~$642, insurance/streaming $150, other loan ~$250) | Base | **~$7,030** | Must fit inside base take-home |
-| **Living** (food & household $4,500, Karissa personal $1,800, kids extracurricular/allowance $780, medical copays $300, clothing $300, fun $400, buffer $400) | Bonus salary | **~$8,480** | Food is the watched line |
+| **Living** (food & household $4,500, Karissa personal $1,800, kids extracurricular/allowance $780, medical copays $300, clothing $300, fun $400, subscriptions ~$300, ad hoc/surprise buffer $1,000) | Bonus salary | **~$9,380** | Food is the watched line |
 | **Build** (529s $1,250, investing $2,000, HELOC principal $250, emergency/buffer rebuild ~$1,640) | Bonus salary | **~$5,140** | Flexes first when Reserve is 🟡/🔴 |
 | **Reserve** | Bonus (100% swept) | balance ≥ 1 qtr (~$42,750) | The smoothing tank |
-| **Total outflow** | | **~$20,650** | vs $23,000 income = **~$2,350 cushion** (real only if no HELOC lifestyle draw) |
+| **Total outflow** | | **~$21,550** | vs $23,000 income = **~$1,450 cushion** (real only if no HELOC lifestyle draw) |
 
 ### Live rules (full detail in budget-guidance)
 
 - **Food & household: $4,500/mo, $1,040/wk cap** *(locked by Brady 2026-07-16)*. The #1 lever —
   actual ran $5–7K. Watch weekly. Set objectively = Liberal USDA grocery tier + ~$600 consumables +
   ~$1,050 dining cap (method in budget-guidance Rule 4). Refreshed quarterly against the USDA report.
+- **Ad hoc / surprise buffer: $1,000/mo** *(locked by Brady 2026-07-18)*, replacing the old guessed
+  $400 line. Data-backed from ~6.5 clean months of true one-off spend (home repairs, auto costs, small
+  irregular purchases) — averaged ~$950–1,300/mo depending on outlier treatment. Method + methodology
+  detail in budget-guidance Rule 6. **Vacation/travel and recurring subscriptions are deliberately NOT
+  folded into this line** — they're separate, more predictable categories (see below).
+- **Subscriptions & personal SaaS: ~$300/mo** *(new line, 2026-07-18)* — previously uncounted recurring
+  spend (streaming, personal software tools) that was hiding inside "ad hoc." Predictable, so it gets
+  its own line instead of inflating the buffer.
+- **Vacation/travel: not yet funded in this plan.** One-off travel has averaged ~$1,273/mo historically
+  — real, but discretionary/plannable, not an emergency. At the current ~$1,450/mo cushion, there isn't
+  room for a full vacation line without either raising the bonus assumption or trimming elsewhere. Revisit
+  once a full quarter of actual bonus data is in.
 - **HELOC is not income.** The Apr-2026 $37,859 "Other Income" was an Arvest HELOC draw (borrowed).
   Any lifestyle draw = automatic Red. HELOC = appreciating assets only.
-- **Travel = $0 net** — reimbursed by employer. Confirm reimbursements actually land.
+- **Travel (work) = $0 net** — reimbursed by employer. Confirm reimbursements actually land. (Distinct
+  from personal vacation travel above, which is unfunded.)
 - **Bonus never spent directly** — 100% to Reserve, paid out as the $14,250 salary.
 
 ---
