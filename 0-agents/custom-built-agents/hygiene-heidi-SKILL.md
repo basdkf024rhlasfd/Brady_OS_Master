@@ -73,6 +73,7 @@ rules by updating this section and re-deploying the skill.
 | 4 | **Streaming Notes purgatory: nothing sits >7 days without a state decision** | Item is in a terminal state (Done, Complete, Archived, Promoted, Published) OR has been consciously moved to a non-intake temporary state (In Progress, Processing, On Hold, Blocked) with a Next Action set | Item has been at "Not Started" for 7+ days with no Next Action, no status change, and no body update — classic purgatory |
 | 5 | **Research Library stays loaded, current, and leveraged** (Claudine Research Score ≥ 5/10) | K16 composite from `claudine-scorecard` is ≥ 5/10 AND no Active row has been unreferenced for >90 days AND every active client engagement has ≥ 10 sources tagged with its `Client Relevance` value | K16 < 5/10 OR any Active row with `Last Referenced` >90 days old (dormancy) OR any active client with <10 tagged sources (coverage gap) |
 | 6 | **Connector Registry stays accurate** — no phantom or missing connectors across harnesses | Every entry in `3-reference/connector-registry.yml` has `last_verified` ≤ 30 days AND its `verify:` probe currently passes | Any entry with `last_verified > 30 days` (stale) OR any entry whose `verify:` probe fails (phantom or disappeared) OR any Conductor MCP tool present in the session that is NOT yet listed in the registry (undocumented) |
+| 7 | **Repo stays lean** — no oversized files, build artifacts, family binaries, or duplicate bloat in git | `3-reference/scripts/repo-janitor/repo-janitor.sh` exits 0: no tracked file >5MB outside `portal/public` deliverables, no build artifacts, no family photos/PDFs, duplicate waste <1MB | Any RED from the janitor script: oversized file, tracked artifact (renders, `.next`, zips), family binary (policy: `~/brady-os-local`), or growing duplicate waste |
 
 ### Rule 2 — Self-Scoring Interpretation Note
 
@@ -296,6 +297,24 @@ After every successful probe, update the entry's `last_verified` to today's date
 **Red condition:**
 - Any failing probe, OR any entry stale >90 days, OR ≥3 undocumented connectors → **Red**
 
+## Phase 5.4 — Rule 7: Repo Hygiene (Repo Janitor)
+
+Run `3-reference/scripts/repo-janitor/repo-janitor.sh` from the repo root (full-sweep mode, no flags). It performs five checks and prints one PASS/AMBER/RED line each:
+
+- **R7.1 oversized files** — tracked files >5MB outside the `portal/public` deliverable allowlist → **Red** per file
+- **R7.2 build artifacts** — renders/images in output dirs, `.next/`, `.zip` files → **Red** per file
+- **R7.3 family binaries** — photos/PDFs under `1-execution/areas/family/` (policy: `~/brady-os-local`, see `LOCAL-RECORDS-POINTER.md`) → **Red** per file
+- **R7.4 duplicate waste** — byte-identical duplicate groups wasting >1MB → **Amber** (report groups + MB)
+- **R7.5 size trend** — working tree + git pack size, compared against the previous week's report → **Amber** if tree grew >10% week-over-week
+
+**Output gates:**
+- Oversized/artifact/family hits → `approve heidi repo-remove-{n}` → Brady's reply: `remove` (delete from tree, manifest per the removed-artifact-manifest pattern in `docs/investigations/`), `allow` (add to the script's allowlist regex with a comment), or `relocate` (move to `~/brady-os-local`/Drive first — Brady's local step, Heidi follows up next run).
+- Duplicate waste growth → single `approve heidi repo-dupes` gate with the top offending groups listed.
+
+Note: the same script runs in CI (`.github/workflows/repo-janitor.yml`, `--ci` mode) and blocks PRs that ADD violations — Heidi's weekly sweep is the backstop that catches pre-existing debt and slow drift that per-PR checks can't see.
+
+**Pass condition:** janitor exits 0 and tree size within 10% of last week → **Green**
+
 ### 5.1 — Heidi's Self-Score (Rule 2 compliance)
 
 At end of Phase 5, Heidi computes her own score for this run:
@@ -307,6 +326,8 @@ At end of Phase 5, Heidi computes her own score for this run:
 | **Purgatory detection** — all 7+ day items surfaced? | Notion unavailable | Partial (degraded) | Full query returned |
 | **Research Library audit** — K16 pulled, dormancy + coverage computed? | Skipped | Partial (K16 only) | All 3 sub-checks complete |
 | **Connector verification** — every probe run, timestamps refreshed, undocumented surfaced? | Skipped | Partial (probes only, no timestamp writes) | All 4 steps complete |
+
+Repo-hygiene (Rule 7) is folded into the Coverage dimension: a run that skips the janitor script cannot score 2 on Coverage.
 
 Self-score: sum of 5 dimensions = `/10` (Routing dimension folded into Coverage when Rule 6 was added). Include in backup and Streaming Notes output. If self-score < 8, add one improvement recommendation for next run. (Lineage: original "Timeliness" replaced by "Research Library audit" on 2026-04-24; "Routing" replaced by "Connector verification" on 2026-05-07 when Rule 6 was added.)
 
