@@ -19,14 +19,6 @@ Coverage: Mar 1 – Apr 17, 2026 (receipts/payments), plus historical for insura
 - The $1,843 in Monarch data (Apr 8 + Apr 13) has no email paper trail
 - **Action needed:** Check Monarch transaction details for exact merchant name, or search Arvest statements
 
-### DoorDash Account Access — SUSPICIOUS LOGIN
-- Mar 25 at 8:05 PM: "New login to your DoorDash account from a different device"
-- Verification code 954900 requested at same time
-- **Possible Karissa accessing Brady's DoorDash from Utah** — timing aligns with her Utah stay
-- Brady's actual DoorDash orders are all Bentonville-area restaurants
-
----
-
 ## RECURRING BILLS (from email receipts/statements)
 
 | Bill | Amount | Frequency | Payment Method | AutoPay? |
@@ -59,7 +51,7 @@ WageWorks account activated Mar 1, 2026. Multiple FSA card denials from late 202
 | Date | Source | Amount | Notes |
 |------|--------|--------|-------|
 | Mar 23 | athenahealth / NW Physicians | — | Payment link forwarded. "Dr Philip Pack" — Karissa says she doesn't remember seeing him |
-| Mar 24 | Center for Change (Orem, UT) | $2,520.00 | Treatment payment. Auth code 346113. |
+| Mar 24 | Center for Change | $2,520.00 | Treatment payment. Auth code 346113. |
 | Mar 24 | athenahealth / NW Physicians | — | Another payment link forwarded |
 | Apr 3 | athenahealth | — | Payment link forwarded |
 
@@ -94,17 +86,16 @@ WageWorks account activated Mar 1, 2026. Multiple FSA card denials from late 202
 | Mar 13 | Ziggi's Coffee | Bentonville | Brady |
 | Mar 14 | Ziggi's Coffee | Bentonville | Brady |
 | Mar 15 | Unknown | Bentonville | Brady |
-| Mar 25 | **NEW LOGIN from different device** | — | **Suspicious** |
 | Mar 27 | Pickleman's Gourmet Cafe | Bentonville | Brady |
 | Mar 29 | Raising Cane's | Bentonville | Brady |
 | Apr 2 | McDonald's | Bentonville | Brady |
 
-**Note:** Need to check DoorDash.com order history directly to find any orders with Utah delivery addresses that aren't in Brady's Gmail.
+**Note:** Need to check DoorDash.com order history directly for any orders not captured in Brady's Gmail.
 
 ## OTHER NOTABLE ITEMS
 
 - **Arkansas Secretary of State filing** (Mar 30) — Brady filed something, payment receipt from ark.org. Likely business registration (Sycamore Lane Holdings?)
-- **Metropolis Parking** — XNA airport, Mar 23 ($5.50 for 2h43m) and Mar 29 ($0 for 52m). Mar 23 timing aligns with Karissa's flight to Utah.
+- **Metropolis Parking** — XNA airport, Mar 23 ($5.50 for 2h43m) and Mar 29 ($0 for 52m).
 - **Klarna** — Brady has active Klarna financing for GoDaddy subscriptions. Multiple small payments.
 - **Precision Door Service** — Invoice Apr 8, NW Arkansas. Home repair.
 - **Black Hills Energy past due** — $197.42 was past due as of Apr 15 (due Apr 10). Paid Apr 16.

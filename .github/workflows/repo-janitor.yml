@@ -1,0 +1,21 @@
+name: Repo Janitor
+
+# Blocks PRs that add oversized files, build artifacts, or family binaries.
+# Only newly ADDED files are checked — pre-existing debt never blocks a PR.
+# Full-repo sweep (dupes, size trend) runs weekly via Hygiene Heidi Rule 7.
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  janitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run repo-janitor (added files only)
+        run: |
+          chmod +x 3-reference/scripts/repo-janitor/repo-janitor.sh
+          3-reference/scripts/repo-janitor/repo-janitor.sh --ci "origin/${{ github.base_ref }}"

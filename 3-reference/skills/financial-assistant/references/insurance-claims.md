@@ -30,7 +30,7 @@ Last updated: 2026-05-08
 ## Karissa's Claims (Brady to track / ensure submitted)
 
 Brady suspects Karissa is behind on out-of-pocket claim submissions. These need to be audited
-and submitted — they affect the shared financial picture regardless of separation status.
+and submitted — they affect the shared financial picture.
 
 | Date | Merchant | Amount | Insurer | Status | Notes |
 |------|----------|--------|---------|--------|-------|

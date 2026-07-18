@@ -13,10 +13,9 @@
 
 ## Household Structure
 
-- Brady is primary custodial parent
+- Brady and Karissa are the parents
 - Jill is co-parent — coordinate schedule via text and shared Family calendar
-- Karissa — schedule details TBD
-- Six people total in the household for meal planning, grocery, and logistics
+- Coordinate schedules via the shared Family calendar for meal planning, grocery, and logistics
 
 ## Schools
 

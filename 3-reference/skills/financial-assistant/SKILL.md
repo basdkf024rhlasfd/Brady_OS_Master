@@ -118,7 +118,7 @@ PDFs without re-pulling from the portal.
 
 `window.COCKPIT_DATA` written to `portal/public/financial-assistant/data.js`. Top-level keys:
 `generated`, `dataThrough`, `scrapedDate`, `csvStaleDays`, `budget`, `alerts`, `topline`,
-`byOwner`, `karissaVelocity`, `categories`, `merchants`, `utah`, `recurring`, `openQuestions`,
+`byOwner`, `categories`, `merchants`, `recurring`, `openQuestions`,
 `dataSources`, `recentTransactions`, `burnRate`, `forecast`, `runway`, `business`, `consulting`.
 
 `burnRate`, `forecast`, `runway`, `business` — computed by `scripts/generate-data.py`.
@@ -135,18 +135,10 @@ Before creating any new `Priority=Must` Streaming Notes row from this skill (Fin
 
 Finn KB Notion Section 0 Phase 4.2 is the canonical implementation surface — any future change must update Notion first, then propagate here.
 
-## Karissa Follow-Up Queue
-
-Maintained at `3-reference/skills/financial-assistant/karissa-followup.md`.
-
-On every run (any mode), Finn reads this file and surfaces the **top pending item** in the output as:
-> "Karissa follow-up today: [item]"
-
-Brady gets one answer from Karissa per day max — never push more than one item. When Brady marks an item asked or resolved (via "karissa update" or "karissa status"), update the table and commit.
-
 ## What This Skill Does NOT Do
 
-- **Not a budgeting app.** No enforcement, no guilt trips. Reports facts and forecasts.
+- **Budget guidance lives in a sibling skill now.** As of 2026-07-16 Brady asked Finn to actively guide the budget ("help us be objective"). That objective engine — targets, traffic lights, bonus smoothing, "can we afford X?" — is `3-reference/skills/budget-guidance/SKILL.md`. This skill still reports the *picture*; budget-guidance owns the *rules*. Route "budget check / can we afford / bonus landed / are we on track" there.
+- **Still no guilt trips here.** This cockpit reports facts and forecasts; the rules do the coaching, not the tone.
 - **Not real-time.** Limited by CSV export frequency. Brady controls the refresh cycle.
 - **Not tax preparation.** Surfaces tax-related items but doesn't calculate tax liability.
 - **Not connected to any financial API.** All transaction data from manually exported CSVs.

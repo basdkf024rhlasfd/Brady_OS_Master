@@ -8,11 +8,10 @@ This file is updated daily by the evening sweep. It contains unresolved family i
 
 ### Money + Health
 
-- **Wellness & Courage therapy reimbursement review** (scheduled next week)
-  - Providers: Jill (Karissa's individual therapist) + Johnna (couples therapist)
+- **Wellness & Courage reimbursement review** (scheduled next week)
   - Spend: ~$420/mo recurring via Wellness & Courage billing
   - Task: Block time next week to compile receipts and submit to UHC for reimbursement
-  - Why it matters: Mental health often partially covered — currently flowing 100% out-of-pocket
+  - Why it matters: Often partially covered — currently flowing 100% out-of-pocket
 
 - **GI Alliance referral follow-up (Mar 2026)**
   - Northwest Physicians sent referral to GI Alliance on 3/6/2026 (per portal message from Jessica G.)

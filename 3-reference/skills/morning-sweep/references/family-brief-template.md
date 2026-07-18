@@ -7,7 +7,7 @@ Used by the morning-sweep skill to structure the family section.
 | Name | Role | Age/Grade | School | Key Context |
 |------|------|-----------|--------|-------------|
 | Brady | Dad | 41 | — | ADHD, portfolio career, Broker Co founder |
-| Karissa | Mom | — | — | Schedule details TBD |
+| Karissa | Mom | — | — | — |
 | Lily | Daughter | Junior (11th) | Bentonville High School | Chamber choir, a cappella, works at Genesis Gymnastics |
 | Faith | Daughter | Freshman (9th) | Bentonville High School | Advanced choir, Life Church / Switch youth program |
 | Isla | Daughter | 3rd grade | Apple Glen Elementary | Learning piano — 10 min daily practice |

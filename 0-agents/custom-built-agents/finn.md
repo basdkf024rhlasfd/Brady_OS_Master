@@ -33,12 +33,11 @@ Finn's canonical data lives in `3-reference/skills/financial-assistant/reference
 - **Maxim IVFH position tracked in balance-sheet.md at $150,000** — this is a placeholder estimate, not a live price. Recalculate with current IVFH price × 350,000 shares when relevant.
 
 **Family & College context (`kids-and-family.md`):**
-- Brady: 10/6/1984 (41). Karissa: 7/6/1985 (40). Separated — Karissa in Utah, Brady in Bentonville AR.
+- Brady: 10/6/1984 (41). Karissa: 7/6/1985 (40). Based in Bentonville, AR.
 - Lily (4/2/2009, 17) — college Fall 2027, ~18 months out. 529 draw imminent.
 - Faith (8/11/2011, 14) — college Fall 2029.
 - Luke, Isla, Quinn (2/3/2017, 9, triplets) — college Fall 2035. Long runway.
-- COBRA $3K/mo covers full family — temporary. Cost drops when divorce finalizes or Karissa gets independent coverage.
-- Divorce/separation: proceedings status TBD. Asset division risk includes home, IRAs, IVFH. Flag legal costs if they appear in Monarch.
+- COBRA $3K/mo covers full family — temporary. Cost drops when the family moves to independent coverage.
 
 **529 snapshot (`529-accounts.md`):**
 - Grand total: $94,492.78 (my529.org, as of 2026-04-21)
@@ -53,10 +52,13 @@ Finn's canonical data lives in `3-reference/skills/financial-assistant/reference
 - Tax preparer: Stephen W. Butler, Attorney-CPA, Miller Butler PLLC, 479-621-0006
 
 **Financial OS — Finn's skills:**
+- **`budget-guidance`** (`3-reference/skills/budget-guidance/SKILL.md`) — **the objective budgeting engine (added 2026-07-16 at Brady's request).** Bonus smoothing (lumpy 1915 South EBITDA bonus → steady $14,250/mo "bonus salary"), four-bucket traffic lights (Core/Living/Build/Reserve), the spend waterfall, and the deterministic "can we afford X?" protocol. This is where Finn *guides* rather than just reports. Reads `budget-targets.md`; writes monthly closes + bonus log to `~/brady-os-local/finance/`. "It's all just numbers."
 - **`financial-assistant`** (`3-reference/skills/financial-assistant/SKILL.md`) — primary cockpit, Monarch parsing, Gmail/Calendar/Notion enrichment, budget vs actual.
 - **`financial-anomaly-review`** (`3-reference/skills/financial-anomaly-review/SKILL.md`) — T0 cross-source anomaly detection (9 detectors): large txns, unusual merchants, round-number transfers, subscriptions, return irregularities, duplicates, velocity shifts, ship-to mismatches, unexpected mail. Neutral/factual output only — never accusatory. Private-only, never surfaced to family channels.
 - **`apple-reminders-scan`** (`3-reference/skills/apple-reminders-scan/SKILL.md`) — Scans Apple Reminders for incomplete items in Finn's domain. Classifies, logs to Streaming Notes, updates family KB files, and marks completed items done via osascript. Runs in morning sweep (compact) and evening sweep (action mode), or standalone on demand.
 - **`gocuttime`** (`3-reference/skills/gocuttime/SKILL.md`) — End-to-end handler for CutTime school choir forms. 7 micro-skills: DETECT (scan +18443858463 iMessage), PARSE (extract form URL), NAVIGATE (Chrome), FILL (data map), SUBMIT, CONFIRM, LOG. Brady should never have to touch these. Data map covers Lily + Faith. Runs automatically when Terry Hicks / BHS Choir forms detected.
+
+**Income regime (updated 2026-07-16):** Brady started **1915 South (W-2)** on 5/31/2026 — base ~$8,750/mo take-home + quarterly EBITDA bonus (conservative $300K/yr gross). This **replaces** the consulting/self-employed transition model: withholding is automatic, no 30% tax-reserve bucket, employer benefits (pre-tax ~$1,014/mo) **replace COBRA** ($3,000/mo, gone). Karissa is **home** (discharged 6/30) — the two-household Utah cost structure is collapsing to one. Travel is employer-reimbursed. HELOC draws (Arvest) are **debt, never income**.
 
 **Family & Household (owner of `portal/public/family/kb/`):**
 
@@ -102,7 +104,7 @@ Finn owns the family food OS:
 - **Ozark Orthopaedics** — Brady's orthopaedic care, Athena login via `brady.smallwood@gmail.com`
 - **Walgreens** (SW Walton Blvd, 479-268-7979) — Isla's methylphenidate
 - **Walmart Neighborhood Market** (Central Ave) — Brady's Vyvanse, primary family pharmacy
-- **Wellness & Courage** — Jill (Karissa's therapist), Johnna (couples therapist)
+- **Wellness & Courage** — health provider, ~$420/mo recurring
 - **Siloam Springs Clinic** — unknown specialty, $1,843 Mar 2026 (TBD)
 - **GI Alliance** — new referral from Northwest Physicians, Mar 2026 (Brady follow-up needed)
 

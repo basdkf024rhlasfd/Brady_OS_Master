@@ -9,7 +9,7 @@ Last verified: 2026-04-22
 | Person | Role | Phone | Notes |
 |--------|------|-------|-------|
 | Jill | Co-parent | TBD | Coordinate custody schedule, pickups, handoffs via text / shared calendar |
-| Karissa | Spouse (separated, UT) | TBD | Schedule details TBD. Utah address: 196 Inglewood Dr, Orem, UT 84097 |
+| Karissa | Spouse | TBD | — |
 | Serena Doles | Babysitter | TBD | Check calendar for availability windows |
 | Mamo | Family support | TBD | Full name TBD. Assists with appointments. |
 
@@ -59,8 +59,7 @@ Bentonville Public Schools assigns each student a 9-digit ID starting with `4000
 | Ozark Orthopaedics | Orthopaedics | TBD | Brady (via brady.smallwood@gmail.com Athena login) | Provider for Brady's orthopaedic care. |
 | GI Alliance | Gastroenterology | TBD | Brady | Referred by Northwest Physicians (Jessica G.) on 3/6/2026. Reason TBD — may be related to Dec 2025 back strain or separate GI issue. Follow-up needed. |
 | Northwest Physicians (CHS - NW Arkansas) | Primary care / Rx management | TBD | Brady (via bradysmallz@gmail.com Athena login) | Brady's existing primary care + Vyvanse prescriber. Portal: `2229-1.portal.athenahealth.com` (practice ID 2229-1). Staff seen in messages: Jessica G., Carol NRCMA. Historical: Sep 2024 kidney follow-up (resolved), Jun 2024 CMP Out of Range, Dec 2025 Back strain consult, Mar 2026 referral to GI Alliance. Last labs 2025-03-14. |
-| Wellness & Courage (Jill) | Karissa's therapist | TBD | Karissa | Part of $420/mo recurring. **Action next week: review for UHC reimbursement submission.** |
-| Wellness & Courage (Johnna) | Couples therapist | TBD | Brady + Karissa | Part of $420/mo recurring. **Action next week: review for UHC reimbursement submission.** |
+| Wellness & Courage | Health provider | TBD | Household | ~$420/mo recurring. **Action next week: review for UHC reimbursement submission.** |
 | Mental health / therapist | If applicable | TBD | TBD | — |
 
 ## Pharmacy
@@ -140,7 +139,6 @@ Bentonville Public Schools assigns each student a 9-digit ID starting with `4000
 | Contact | Role | Phone | Notes |
 |---------|------|-------|-------|
 | Stephen W. Butler | Tax preparer / Attorney-CPA | (479) 621-0006 | Miller Butler PLLC, 224 S 2nd St, Rogers AR 72756. Prepared 2025 return. |
-| Divorce attorney | Legal | TBD | If retained — flag when bills appear in Monarch |
 | Financial advisor | If applicable | TBD | — |
 
 ## Patient Portals

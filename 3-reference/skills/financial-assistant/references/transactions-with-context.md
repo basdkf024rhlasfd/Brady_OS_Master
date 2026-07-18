@@ -34,17 +34,17 @@ Last updated: 2026-04-22
 | Planet Fitness | $16.43/mo | Active gym membership — most recent charge Apr 17. Also had higher "IClub Fees SMALLWOOD" charges ($25–$54) Nov–Dec 2025, likely multi-person plan or annual fee. |
 | The Source | ~$114/visit | Medical marijuana dispensary. Personal, private. Not for business classification or insurance review. |
 | Casey's | ~$17/txn, frequent | Arkansas gas station. |
-| Maverik | ~$17/txn, very frequent | **Utah gas station.** High transaction count on Karissa's card = Utah household driving. |
+| Maverik | ~$17/txn, very frequent | Convenience/gas station. Frequent on Karissa's card. |
 | 1st Green Lawn | ~$140/invoice | **Lawn treatment vendor.** Paid via SoFi Bill Pay, not Cash App. Address: 9685 AR-72, Bentonville, AR 72712. Last invoice #26031, dated 5/4/2026. Known-good — do not flag as anomaly. Pairs with Hugo Martinez (Cash App, mowing crew). |
 | Cash App — Hugo Martinez | $65/visit (2026-05-09 onward); was $45/cut prior | **Lawn crew leader + summer maintenance.** Cash App from SoFi (...1907). Scope expanded summer 2026: mowing + mulch/rock area maintenance + weed control. Brady wants hands-off. Larger seasonal payments ($245–$450 end-of-season cleanup; $300 spring kickoff like Apr 26 2026) are normal. Treat all Cash App→Hugo as known-good. |
 
-## Suspicious / Unresolved
+## Unresolved / Needs Verification
 
 | Merchant / Pattern | Context | Status |
 |---|---|---|
-| Card ending 1842 | Walmart gift card used in Orem UT. Split payment with Karissa's Arvest 2021 on Apr 1. Not linked in Monarch. Potential untracked spending channel. | **UNRESOLVED** — need Arvest login to verify linkage |
+| Card ending 1842 | Walmart gift card. Split payment with Karissa's Arvest 2021 on Apr 1. Not linked in Monarch. Potential untracked spending channel. | **UNRESOLVED** — need Arvest login to verify linkage |
 | Siloam Springs Clinic | $1,843 in March transactions, no email trail, no clear patient attribution | **UNKNOWN** — ask Brady |
-| Zions Bancorporation | $15 deposit to Faith's MONEY card Jan 20. Utah bank. | **UNRESOLVED** — possible Utah banking connection |
+| Zions Bancorporation | $15 deposit to Faith's MONEY card Jan 20. | **UNRESOLVED** — verify purpose |
 | Arvest Bank — Online Banking | $324/mo avg, 3 months active | Likely HELOC draws. Cross-reference with liabilities growth. |
 | Corebridge Financial | Policy link expired Dec 2025 | **May have lapsed.** Verify if separate life insurance is still active. |
 
@@ -63,17 +63,7 @@ Last updated: 2026-04-22
 | Springdale Bentonville | $2,443 (one-time) | Unknown — ask Brady |
 | Norm The Tire Man | $389-655 per visit | Vehicle repairs (Escalade likely) |
 | Delta Airlines | ~$390/mo across 2-3 mo | Travel — often consulting or family trips |
-| Airbnb | ~$417/mo across 3 mo | Travel — likely Utah trips or vacations |
-
-## Utah Spending Pattern (Karissa's Household)
-
-Utah transactions identified by merchant/zip keywords in category-mappings.md. Primary indicators:
-- Harmons, Smith's, Macey's (Utah grocery chains)
-- Maverik (dominant Utah convenience/gas)
-- Crumbl Cookies, Cafe Rio, The Nail Expo (Utah-specific locations)
-- Target locations in Orem/Pleasant Grove
-
-**Current Utah spending:** $6,608 total / 273 transactions / 102 weeks = ~$65/week baseline, but **post-separation (Mar 20+) running at $2,194/week retail — a 5x jump.** This is the core divorce/separation financial signal.
+| Airbnb | ~$417/mo across 3 mo | Travel — likely trips or vacations |
 
 ## Income-Related (2026)
 
@@ -92,7 +82,7 @@ Currently none tracked MTD. When consulting receipts arrive, Finn should:
 ## Rules of Thumb
 
 - **Mortgage Truist $3,330+** appears in statements — includes escrow, single line item
-- **Karissa's Arvest 9380** is her spending channel — Utah transactions flow here
+- **Karissa's Arvest 9380** is her spending channel
 - **Kids' cards (FREE BLUE 9004, MONEY 8535)** are children's spending — exclude from adult analysis
 - **Anthropic + Apple + Delta** are frequently business-related — check business-vs-personal-rules.md for classification
 - **Arvest Online Banking** line items are usually HELOC draws or transfers — not spending

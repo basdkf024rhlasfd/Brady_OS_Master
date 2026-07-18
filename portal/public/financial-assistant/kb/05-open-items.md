@@ -17,7 +17,7 @@ Last sync: 2026-04-22.
 3. **Live IVFH price feed.** Position is 350,000 shares tracked at a $150K placeholder. Needs daily price refresh to show real value.
 4. **Panda & 1915 South — invoicing timing.** When does the first invoice go out for each engagement? Affects quarterly estimate math and cash-flow projection.
 5. **Corebridge Financial policy.** Policy details unclear — any paperwork or email Brady can forward for Finn to catalog?
-6. **Walmart gift card 1842** — in-store Orem UT usage. Channel not reconciled. Is this still active or closed?
+6. **Walmart gift card 1842** — channel not reconciled. Is this still active or closed?
 7. **Zions Bancorporation deposit** to Faith's MONEY card ($15 on Jan 20) — one-off or ongoing?
 
 ## Household / Medical — open

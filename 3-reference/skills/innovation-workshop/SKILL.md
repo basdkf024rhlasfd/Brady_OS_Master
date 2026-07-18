@@ -116,6 +116,15 @@ SKILL.md for full sub-query profile). This composes the scan across five source 
 Invoke deep-research with `silent: true`. Depth auto-scales based on readiness level
 (deep for Level 0, standard for Level 1, quick for Level 2).
 
+**Single-context synthesis (advanced-model mode):** When running on a Claude 5-class
+model, hold all five source layers in one context instead of treating each as a separate
+sub-query round-trip. The model does the cross-linking ("A's behavioral shift + B's
+timing"), blind-spot detection, and cluster synthesis itself in a single pass — deep-research
+is still the scan engine for Level 0 cold starts, but pivots, mashups, and drills in the
+riff loop should NEVER trigger a fresh scan; they recombine from what's already in context.
+Target: a Level 1 raw-theme run should reach the sharpness gate in one research pass, not
+two or three.
+
 #### 0.4 Render synthesis for dialogue
 
 deep-research returns the synthesis document. Present it to Brady like this:
@@ -213,6 +222,27 @@ coverage-gap detection. Lanes are a tag, not a starting point.
 
 Select 8-10 methods from full-stack-ideation based on the chosen categories.
 
+**2.0 Load the idea library into context first.** Before any method runs, pull the full
+cumulative idea library — all `top_picks` and idea names from `references/learning-log.yml`
+plus current titles from the Innovation Idea Pipeline Notion DB
+(`d7f77313-3bfc-42e6-9c6d-53aa7d2b2597`). This library is injected into every method run
+so differentiation is forced **at generation time**, not checked after the fact. A new idea
+that near-duplicates a library entry must either be dropped or explicitly framed as a
+variant of the existing one (name the parent).
+
+**2.1 Parallel method fan-out (advanced-model mode).** Each selected method runs as an
+independent subagent, blind to the other methods' output — isolation is a feature: it
+maximizes divergence and prevents early ideas from anchoring later ones. Each method agent
+receives:
+- The sharp prompt from Stage 0 (cluster, behavioral shift, why-now, JTBD, margin location)
+- The NOT-to-generate guardrails
+- The idea library (for at-generation dedup, per 2.0)
+- Its single method card from full-stack-ideation
+
+Each agent returns 3-4 structured raw ideas `{name, one_liner, method, why_it_fits_cluster}`.
+Merge the pool after all agents return. Fallback: if subagent orchestration is unavailable
+(e.g., a constrained harness), run methods sequentially in one thread as before.
+
 **Default product innovation cluster:**
 - Jobs to Be Done (#4)
 - Blue Ocean Strategy (#9)
@@ -243,10 +273,31 @@ Use Idea Scoring Systems (#69) + Brutal Editing (#20).
 
 Cut bottom 50% to land at ~20 survivors.
 
+**Judge panel scoring (advanced-model mode).** Scoring is no longer one model's single
+opinion. Run three independent judge agents over the merged raw pool, each scoring all
+6 criteria but with a distinct lens that shapes how they weigh evidence:
+
+| Judge | Lens | Bias it corrects |
+|-------|------|------------------|
+| **Margin Realist** | Unit economics, channel margin stacks, co-pack reality | Kills "cool but 12% gross margin" ideas |
+| **Novelty Maximalist** | Genuine newness, category creation, cultural timing | Kills safe rebrands that score well everywhere else |
+| **Ops Skeptic** | Manufacturability, cold chain, MOQ, fulfillment complexity | Kills ideas that die in execution |
+
+Final score per idea = **median** of the three judges' weighted totals. Flag any idea
+where judge spread exceeds 1.5 points — those are the contested ideas, and they get a
+`⚡ contested` marker at Gate 1 with a one-line summary of the disagreement (contested
+ideas are often the most interesting; don't silently average them away). Fallback: single-
+thread scoring with the standard rubric if orchestration is unavailable.
+
 ### ⏸ GATE 1 — Vet Before Image Generation
 
-**STOP HERE.** Present the ~20 survivors as a numbered list with: name, score, method, and
-a 1-line pitch summary. Wait for Brady's feedback before proceeding.
+**STOP HERE.** Present the ~20 survivors as a numbered list with: name, score, method,
+judge spread (with `⚡ contested` markers where applicable), and a 1-line pitch summary.
+Wait for Brady's feedback before proceeding.
+
+With judge-panel scoring and the verification pass (Step 5.5) in place, this gate's job
+shifts from quality control to **taste selection** — the pipeline should be handing Brady
+a list where every idea is defensible, and his job is picking which ones are *his*.
 
 Brady can:
 - Cut weak ideas from the list
@@ -300,6 +351,24 @@ multi-shot treatments for truly buyer-ready CPG runs.
 - 2-3 lines max per prompt
 - MJ v7 reliably renders 3-4 words of in-image text. Longer brand names get
   mangled — generate text-free and overlay in Canva during polish.
+
+**Image QA Pass (advanced-model mode) — runs after download, before assembly:**
+Read every downloaded PNG (the model views the actual image) and check it against its
+prompt with this checklist:
+
+| Check | Fail condition |
+|-------|----------------|
+| **Text integrity** | Any in-image text is mangled, misspelled, or exceeds the 3-4 word MJ limit |
+| **Material accuracy** | Rendered material contradicts the prompt (glossy plastic where prompt said "brushed aluminum") |
+| **Format accuracy** | Wrong product format (a bottle where the idea is a pouch; single unit where idea is a multi-pack) |
+| **Cropping** | Product cut off at frame edge, or composition unusable at 280px float |
+| **Reads as photography** | Output is illustrated/stylized rather than commercial product photography |
+
+Failed renders get **one re-queue** with an adjusted prompt (strip in-image text on text
+failures — overlay in Canva instead; sharpen material/format language otherwise). If the
+re-render also fails, keep the better of the two, mark the idea `image_qa: failed` in run
+metadata, and surface it in the Gate 2 summary so Brady knows which pages to eyeball.
+This makes the "3-4 words max of in-image text" rule enforced rather than hoped-for.
 
 **Image Embedding Protocol:**
 1. Save downloaded MJ PNGs to `images-<project-slug>/` with
@@ -391,6 +460,37 @@ challenges:
 **Research Basis** — 1-2 sentences citing the method used, the market signal that
 triggered the idea, and any data that supports the thesis. This is what separates
 "brainstorm output" from "research-backed product concept."
+
+### Step 5.5: Adversarial Verification Pass
+
+Every idea's factual claims get attacked before they reach the document. Spawn one
+verifier agent per surviving idea whose ONLY job is to **refute** — not confirm — the
+idea's claims. Verifiers run in parallel and are prompted skeptical-by-default.
+
+**Per-idea verification targets:**
+
+1. **Closest Comparables** — actually fetch every retailer URL. Confirm the product
+   exists, the price is within ±20% of what's claimed, and it's genuinely comparable.
+   A dead link or invented product is an automatic fail: replace it with a real one or
+   state "no close comparable found" in the pitch.
+2. **Cost Model** — challenge every line: is the wholesale input price plausible against
+   supplier-kb or public benchmarks? Is the margin math internally consistent (COGS +
+   labor + margin stack actually reaches `target_retail`)? Any line the verifier can't
+   defend gets downgraded to `source: assumption`.
+3. **RTB data points** — any RTB citing a market size, growth rate, or trend stat gets
+   checked against a source. Unverifiable stats are rewritten as qualitative signals or
+   cut. No number appears in the deliverable that a verifier couldn't trace.
+4. **Competitive Landscape** — confirm the named incumbents actually exist and do what
+   the pitch says they do.
+
+**Output per idea:** `verification: {comparables: pass|fixed|failed, cost_model:
+pass|downgraded, rtbs: pass|revised, competitive: pass|fixed}` in run metadata. Ideas
+with any `failed` field are flagged in the Gate 2 summary.
+
+This pass exists to kill the classic failure mode — plausible-but-invented comparables
+and confident-but-fabricated market stats — before Brady sees the document, not after
+he catches it. Fallback: if orchestration is unavailable, run verification as a single
+sequential pass over all ideas; do not skip it.
 
 ### Step 6: Assemble Document
 
@@ -522,7 +622,33 @@ After each run, update the learning log at `references/learning-log.yml`:
   learnings:
     - "SCAMPER consistently produces the most visually distinctive ideas"
     - "Downmarket disruption ideas score high on market size but low on margin"
+  judge_panel:
+    contested_ideas: 3                           # ideas with judge spread > 1.5
+    lens_disagreement_pattern: "Ops Skeptic consistently 1+ below on frozen formats"
+  image_qa: { checked: 20, requeued: 3, failed: 1 }
+  verification: { comparables_fixed: 4, cost_lines_downgraded: 6, rtbs_revised: 2 }
 ```
+
+**Cross-run analytics (advanced-model mode) — compute, don't just log.** After appending
+the run entry, load the FULL learning log and actually run the analysis the log was built
+for. Emit an `analytics` block into the run entry answering:
+
+- **Gate predictiveness** — do runs that passed the sharpness gate first-try produce
+  higher-scoring ideas than overridden/looped runs? (Compares mean survivor score across
+  `sharpness_gate_passes` / `sharpness_gate_override` cohorts.)
+- **Readiness-level outcomes** — do Level 0 cold-starts outperform Level 2/3 runs? This
+  is the signal for when deep scans pay off.
+- **Method hit-rate confidence** — a method's hit rate on <5 total ideas is noise, not
+  signal. Report hit rates with sample sizes and only reweight method selection on
+  methods with ≥8 lifetime ideas.
+- **Cluster yield ranking** — ideas-per-run and mean score per Category Intel cluster;
+  recommend which clusters to archive vs. refresh.
+- **Judge lens drift** — is one judge lens systematically harsher over time? (Signals a
+  rubric problem, not an idea problem.)
+
+Any policy change the analytics suggest (reweight a method, retire a cluster, adjust a
+gate criterion) is emitted as an **approval-gated recommendation** in the run summary —
+the engine proposes, Brady approves. The learning engine is now a policy, not a diary.
 
 ### Step 9: Sync to Notion + Idea Library
 
@@ -590,6 +716,16 @@ concentric-circles variant scan.
 
 **Trigger**: Brady explicitly names Stage 2 ideas to promote. The skill does NOT auto-
 promote ideas to Stage 3 — Brady picks.
+
+**Stage 3 Light Pass (advanced-model mode):** Parallel per-idea agents make it feasible
+to run a *light* validation pass over ALL Stage 2 survivors in one invocation — each agent
+does a compressed version of the deepResearch object (supply chain sniff test, one pricing
+sanity check, top risk, go/no-go lean) without the full concentric-circles variant sweep.
+Trigger: "light pass on the whole run" / "stage 3 light on everything". Output is a
+ranked shortlist with a one-paragraph rationale per idea — its purpose is to help Brady
+pick which 3-10 ideas deserve the FULL Stage 3 treatment below, not to replace it.
+Light-pass results do NOT advance ideas to Stage 3 in the pipeline DB; only the full
+protocol does.
 
 **Per-idea output (adds to the IDEAS record as `deepResearch`):**
 
@@ -679,12 +815,39 @@ The learning engine lives at `references/learning-log.yml` and grows with every 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+## Advanced-Model Execution Layer (added 2026-07-18)
+
+The upgrades marked "advanced-model mode" throughout this skill assume a Claude 5-class
+model with subagent orchestration, large context, and native image reading. Summary map:
+
+| # | Upgrade | Lives in | What it replaces |
+|---|---------|----------|------------------|
+| 1 | Single-context Stage 0 synthesis | Stage 0.3 | Multi-round-trip research aggregation |
+| 2 | Idea library loaded at generation | Step 2.0 | After-the-fact duplicate flagging |
+| 3 | Parallel blind method fan-out + 3-judge panel | Steps 2.1, 3 | Sequential methods, single-opinion scoring |
+| 4 | Adversarial verification (comparables, cost, RTBs) | Step 5.5 | Trusting the generator's own claims |
+| 5 | Image QA pass with one re-queue | Step 4 | Manual eyeball at Gate 2 |
+| 6 | Full-auto as a supported nightly mode | Gates section | "Full auto" as risky escape hatch |
+| 7 | Computed cross-run analytics + policy recommendations | Step 8 | Log-only learning engine |
+| 8 | Stage 3 Light Pass over all survivors | Step 11 | All-or-nothing deep research |
+
+**Degradation rule:** every advanced-mode feature has a stated single-thread fallback.
+On a constrained harness, the pipeline still runs — it just runs the old way. The
+verification pass (Step 5.5) is the one feature that must never be skipped, in any mode.
+
+What does NOT change: Midjourney stays the render engine (MJ-for-photography /
+Canva-for-polish is a quality finding, not a model limitation), gates default ON, and
+Brady remains the taste layer.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 ## Dependencies
 
 | Skill / System | Role |
 |----------------|------|
 | **deep-research** | Stage 0 scan engine — invoked with `research_type: category-intel` for cold-start / raw-theme / convergence runs |
 | **full-stack-ideation** | The 100 methods — this skill selects and runs them in Stage 1 |
+| **Subagent orchestration** (Agent/Workflow tooling) | Advanced-model mode: parallel method fan-out (Step 2.1), judge panel (Step 3), verifier agents (Step 5.5), Stage 3 Light Pass. Single-thread fallback documented per step. |
 | **midjourney-prompt** | Visual style guidance (category → shot type mapping) |
 | **mception-design-system** | Document styling tokens, layout patterns, PDF generation |
 | **Canva MCP** | Image generation: generate-design → create-from-candidate → export-design → curl download |
@@ -725,20 +888,35 @@ headers above):
 - **Stage 0: Problem Formation** — query Category Intel DB, detect readiness level (0-3),
   run deep-research (`category-intel` type) if needed, present cluster + alternates + blind
   spots, riff loop with Brady, sharpness gate, write/update cluster in Category Intel DB
-- **Step 2: Ideation** — run 8-10 methods on the sharp prompt, generate ~30 raw ideas
-- **Step 3: Score and filter** to ~20 survivors (score 0-5)
-   ⏸ **GATE 1** — Present survivors. Wait for Brady to vet/cut/approve.
-- **Step 4: Canva images** — generate hero images for approved ideas, download locally
+- **Step 2: Ideation** — load idea library into context, fan out 8-10 methods as parallel
+  blind subagents, generate ~30 raw ideas deduped at generation time
+- **Step 3: Score and filter** to ~20 survivors — 3-judge panel (Margin Realist / Novelty
+  Maximalist / Ops Skeptic), median score, contested ideas flagged
+   ⏸ **GATE 1** — Present survivors with judge spread. Brady applies taste, cuts, approves.
+- **Step 4: MJ images** — generate hero images for approved ideas, download locally,
+  run Image QA pass (one re-queue on failures)
 - **Step 5: Write pitches** — pitch + RTBs + competitive + ops for each idea
+- **Step 5.5: Adversarial verification** — parallel verifiers refute comparables URLs,
+  cost models, RTB stats, competitive claims; failures fixed or flagged
 - **Step 6: HTML assembly** — build per-run deliverable with mception design system
    ⏸ **GATE 2** — Show assembled HTML. Wait for Brady to review.
 - **Step 7: PDF generation** — Playwright Tabloid format
-- **Step 8: Learning log** — update method performance, category coverage, idea library, cluster yield, readiness-level outcomes, sharpness gate performance
+- **Step 8: Learning log** — update method performance, category coverage, idea library, cluster yield, readiness-level outcomes, sharpness gate performance; compute cross-run analytics and emit approval-gated policy recommendations
 - **Step 9: Notion sync** — push all new ideas to Innovation Idea Pipeline database; update cluster's Linked Ideas relation in Category Intel DB
 - **Deploy check** — ask Brady before pushing idea-library.html + new images to mception.ai
 
 **Default: gates are ON.** The pipeline pauses at the Stage 0 sharpness gate, Gate 1, and Gate 2.
 If Brady says "run it all" or "full auto" at the start, skip all gates and run end-to-end.
+
+**Full auto is now a supported mode, not just an escape hatch.** With judge-panel scoring
+(Step 3), image QA (Step 4), and adversarial verification (Step 5.5) in the pipeline, an
+unattended run produces ideas that are already vetted for the failure modes the gates were
+built to catch. A nightly full-auto run that lands 20 verified ideas in Notion by morning
+is defensible — the gates' value in full-auto shifts to the morning review, where Brady
+applies taste to a pre-verified list. Requirements for full-auto: verification pass may
+NOT be skipped, `image_qa`/`verification` metadata must be complete, and the run summary
+must lead with anything flagged `failed` or `⚡ contested`. Deploy confirmation is still
+required — full-auto never auto-publishes to mception.ai.
 
 ## What This Skill Does NOT Do
 

@@ -61,7 +61,6 @@ These data sources require Chrome browser scraping (via `claude-in-chrome` MCP t
 - **Account (Apr 17 scrape):** Karissa S (Member since 2021) — order history account
 - **Account (Apr 24 scrape):** Brady Smallwood, 4505 NE Birchgrove Pl, Bentonville. Payment card ending 2007 (Brady's Amex). Delivery Tuesdays 10am–12pm.
 - **Key findings (Apr 17):**
-  - Utah delivery confirmed: **196 Inglewood Dr, Orem, UT 84097** (necklace order Apr 17)
   - Brady's groceries ($353.11, 82 items) paid with Karissa's card (2021) to Bentonville
   - Karissa's Walmart list (40 items) still maintained
 - **Key findings (Apr 24):**
@@ -70,32 +69,30 @@ These data sources require Chrome browser scraping (via `claude-in-chrome` MCP t
   - Subscription payment on Brady's Amex (...2007), not Karissa's card
   - Today's ad hoc order: $96.87 (Order #2000149-54375074) — buns, cheese, pizza, care package items, pool party items
   - Subscription changes confirmed by Karissa today (Apr 24) — routine management, not flagged
-- **Remaining:** Paginate order history past page 2 to capture Mar 20 – Apr 9. Check Utah addresses and card 1842 usage.
+- **Remaining:** Paginate order history past page 2 to capture Mar 20 – Apr 9. Check card 1842 usage.
 - **Priority:** LOW (subscriptions done) / MEDIUM (order history pagination)
-- **Date range:** Mar 20 – present (post-separation)
+- **Date range:** Mar 20 – present
 
 ### 2. Amazon Order History
 - **URL:** https://www.amazon.com/gp/your-account/order-history
 - **Status:** COMPLETE (scraped May 8, 2026 — see `data/amazon-scrape-2026-05-08.md`; prior scrape `data/amazon-doordash-scrape-2026-04-17.md`)
 - **Account:** Brady's Amazon (36 orders, Mar 28 – May 8, 2026)
 - **Key findings:**
-  - ALL orders ship to Brady L Smallwood — zero Utah deliveries confirmed in both scrapes
+  - ALL orders ship to Brady L Smallwood in both scrapes
   - 2 refunds: adidas kids shoes Apr 22 ($78.93 total)
   - Gross spend $1,773.78 / net $1,694.85 for 6-week window
   - CELSIUS Subscribe & Save running 6 orders in 6 weeks ($157.38 = ~$26/week)
   - Big-ticket: roborock ($547.49) + Nest Cam ($218.99) + TV wall mount set ($95.59) = $862.07 in period
-  - **Monarch Amazon returns still attributable to Karissa's separate account**
-- **Priority:** Done — Karissa's Amazon account remains the gap
+  - **Monarch Amazon returns attributable to Karissa's own Amazon account**
+- **Priority:** Done — Karissa's Amazon account not yet scraped
 
 ### 3. DoorDash Order History + Payment Methods
 - **URL:** https://www.doordash.com/orders + /consumer/payment/
 - **Status:** COMPLETE (scraped Apr 17, 2026 — see `data/amazon-doordash-scrape-2026-04-17.md`)
 - **Account:** Brady's DoorDash (brady.smallwood@gmail.com)
 - **Key findings:**
-  - **Delivery address currently set to 196 Inglewood Dr, Orem, UT** (Karissa's address)
   - **Card 1842 NOT saved** — only Visa 2021 (Karissa's Arvest debit) is the default
-  - All visible orders (Mar 9 – Apr 1) are Bentonville restaurants — no Utah orders on this account
-  - Mar 25 "new login from different device" (Gmail) → address changed to Utah → but no Utah orders placed
+  - All visible orders (Mar 9 – Apr 1) are Bentonville restaurants
   - Karissa's Arvest card is the default payment on Brady's DoorDash
 - **Priority:** Done
 
@@ -111,7 +108,7 @@ These data sources require Chrome browser scraping (via `claude-in-chrome` MCP t
 - **URL:** https://www.target.com/orders
 - **Status:** Missing
 - **What to capture:** Date, items, prices, payment method, delivery/pickup location
-- **Why:** Target spending tripled post-separation. 29 returns ($577). Need item-level detail.
+- **Why:** Target spending increased in spring 2026. 29 returns ($577). Need item-level detail.
 - **Priority:** LOW
 - **Date range:** Mar 2026 – present
 
@@ -153,8 +150,6 @@ These require Gmail MCP searches, not browser scraping.
 - **Status:** COMPLETE (scanned Apr 17, 2026)
 - **Key findings:**
   - Brady's orders: Cronuts, Ziggi's Coffee (x3), Pickleman's, Raising Cane's, McDonald's — all Bentonville
-  - **Mar 25: NEW LOGIN from different device** + verification code — possible Karissa accessing Brady's DoorDash from Utah
-  - Some DoorDash emails routed via Apple Private Relay (Karissa's device)
 - **Priority:** Done — still need DoorDash.com scrape (#3) for delivery addresses and saved payment methods
 
 ---
@@ -165,7 +160,6 @@ These require Gmail MCP searches, not browser scraping.
 |--------|--------|----------|-------|
 | Walmart order tracker (manual) | Exists | Excel file — not in data/ yet | Sheet "Order Summary" — ship-to, who ordered, items, status |
 | DoorDash order history | Exists | Separate file in project folder | Shows orders on Brady's account |
-| Karissa health timeline | Exists | `Karissa health - Sheet1.csv` in Downloads | Treatment timeline, not financial |
 
 ---
 
@@ -185,10 +179,10 @@ Always use these consistently across all analysis:
 
 | Period | Dates | Weeks | What It Represents |
 |--------|-------|-------|--------------------|
-| Pre-Lockdown | Jul 2023 – Apr 2025 | 95.7 | Both adults spending freely on all cards |
-| Post-Lockdown | May 2025 – Dec 2025 | 34.7 | After Amex cut. Spending migrated to Karissa's account. |
+| Early (2023–Apr 2025) | Jul 2023 – Apr 2025 | 95.7 | Both adults spending freely on all cards |
+| Mid (May–Dec 2025) | May 2025 – Dec 2025 | 34.7 | After Amex cut. |
 | Baseline (controlled) | Jan 1 – Feb 28, 2026 | 8.6 | Spending CAN be managed. Retail dropped to $370/wk. |
-| Post-Separation | Mar 20 – present | varies | Karissa in Utah. Spending re-exploded to $2,194/wk. |
+| Recent (Mar 2026+) | Mar 20 – present | varies | Retail spending increased to ~$2,194/wk. |
 
 ---
 
@@ -200,8 +194,8 @@ Run before any major analysis session:
 - [ ] Fresh Venmo statement (venmo.com → Download April) — current through ~Apr 9
 - [x] Gmail financial email scan (Gmail MCP) — **DONE Apr 17** (see gmail-scan file)
 - [x] Walmart.com subscription scrape — **COMPLETE Apr 24** (73 items, full cadence + cost data — see `grocery-subscriptions.md`)
-- [~] Walmart.com order history scrape — **PARTIAL Apr 17** (2 pages, key Utah address found — order history pagination still needed)
-- [x] Amazon order scrape (Chrome agent) — **UPDATED May 8** (36 orders, Mar 28–May 8, all Brady, no Utah — `data/amazon-scrape-2026-05-08.md`)
+- [~] Walmart.com order history scrape — **PARTIAL Apr 17** (2 pages — order history pagination still needed)
+- [x] Amazon order scrape (Chrome agent) — **UPDATED May 8** (36 orders, Mar 28–May 8, all Brady — `data/amazon-scrape-2026-05-08.md`)
 - [x] DoorDash order + payment scrape (Chrome agent) — **DONE Apr 17** (orders + payment methods + address)
 - [ ] Arvest HELOC balance check (Chrome agent) — NOT STARTED
 - [ ] Target order scrape (Chrome agent) — NOT STARTED (low priority)
@@ -217,8 +211,6 @@ Run before any major analysis session:
 | Inferno MMA $377/mo | **RESOLVED** — Luke's BJJ dues (Kids / Child Activities) | Brady confirmed 2026-04-24 |
 | WageWorks / COBRA | **RESOLVED for April** — Brady confirmed payment made 2026-04-24 | Brady confirmed |
 | HELOC balance | **UPDATED** — $107K drawn, $193K available ($300K capacity) | Brady confirmed 2026-04-24 |
-| Card ending 1842 | **UNRESOLVED** — gift card used in Orem. Need Arvest login to verify. | Need Arvest scrape |
-| Karissa's Utah address | **PARTIALLY RESOLVED** — 196 Inglewood Dr, Orem, UT 84097 (Walmart). Also Eagle Mountain + SLC from DoorDash. | Walmart scrape |
+| Card ending 1842 | **UNRESOLVED** — Walmart gift card, linkage unverified. Need Arvest login to verify. | Need Arvest scrape |
 | Zions Bancorporation | **UNRESOLVED** — $15 deposit to Faith's card Jan 20 | — |
-| DoorDash account access | **NEW FINDING** — suspicious new login Mar 25, 8:05 PM from different device | Gmail scan |
 | Karissa insurance claim backlog | **OPEN** — Brady suspects Karissa is behind on many out-of-pocket UHC submissions | Brady note 2026-04-24 |

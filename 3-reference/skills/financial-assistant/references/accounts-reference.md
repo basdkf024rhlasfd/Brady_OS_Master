@@ -49,8 +49,8 @@ Last updated: 2026-04-17
 
 ## Flagged Cards / Channels
 
-- **Card ending 1842** — Walmart gift card used in-store in Orem, UT. Split payment with Arvest debit 2021 on Apr 1. Potential channel for untracked spending. Not linked in Monarch.
-- **Zions Bancorporation** — Utah bank deposited $15 to Faith's MONEY card Jan 20. Possible Utah banking relationship. Investigate.
+- **Card ending 1842** — Walmart gift card, split payment with Arvest debit 2021 on Apr 1. Potential channel for untracked spending. Not linked in Monarch.
+- **Zions Bancorporation** — $15 deposit to Faith's MONEY card Jan 20. Origin unconfirmed. Investigate.
 
 ## Fidelity Investment Accounts (added to Monarch 2026-04-22)
 

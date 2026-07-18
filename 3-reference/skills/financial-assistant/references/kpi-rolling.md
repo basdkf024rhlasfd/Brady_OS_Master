@@ -43,7 +43,7 @@ Read trend over **rolling 4-week / 8-week windows**, not single readings.
 - Total cluster typically $180–320
 
 **Excluded from numerator and denominator:**
-- Utah Walmart transactions (Lindon, Orem, Provo store IDs) — out of scope
+- Out-of-area Walmart transactions (non-local store IDs) — out of scope
 - Non-Walmart family grocery (Aldi, Sam's, etc. — those are tracked elsewhere)
 
 **Excluded from numerator only:**
