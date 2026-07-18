@@ -35,6 +35,7 @@ interface WorkspaceState {
   accessMap: AccessMap | null;
   configData: Record<string, unknown>;
   updateConfig: (key: string, value: unknown) => void;
+  agentMap: AgentMap;
 }
 
 const WorkspaceContext = createContext<WorkspaceState | null>(null);
@@ -52,12 +53,20 @@ function deriveProject(pathname: string): ProjectId | null {
   if (pathname.startsWith("/orlando")) return "orlando";
   if (pathname.startsWith("/mark-schmulen")) return "mark-schmulen";
   if (pathname.startsWith("/panda")) return "panda";
+  if (pathname.startsWith("/1915-south")) return "1915-south";
   if (pathname.startsWith("/group/family")) return "family";
+  if (pathname.startsWith("/group/panda-engagement")) return "panda-engagement";
   if (pathname.startsWith("/grocery-assistant")) return "grocery-assistant";
   if (pathname.startsWith("/school-hub")) return "school-hub";
   if (pathname.startsWith("/financial-assistant")) return "financial-assistant";
   return null;
 }
+
+export interface AgentSummary {
+  agentName: string;
+  agentAvatar?: string;
+}
+export type AgentMap = Record<string, AgentSummary>;
 
 function readLocalStorage<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -74,11 +83,13 @@ export function WorkspaceProvider({
   isAdmin,
   projects,
   projectConfigs,
+  agentMap = {},
 }: {
   children: ReactNode;
   isAdmin: boolean;
   projects: ProjectId[];
   projectConfigs: ProjectNav[];
+  agentMap?: AgentMap;
 }) {
   const pathname = usePathname();
   const activeProject = deriveProject(pathname);
@@ -169,6 +180,7 @@ export function WorkspaceProvider({
         accessMap,
         configData,
         updateConfig,
+        agentMap,
       }}
     >
       {children}

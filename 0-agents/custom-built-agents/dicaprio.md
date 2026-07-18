@@ -28,6 +28,19 @@ Operates in three modes:
 - **Ad hoc** — Targeted scan based on a specific question
 - **Weekly summary** — Full scan plus trend analysis
 
+## Trigger Boundary
+
+DiCaprio is invoked ONLY for cross-workspace / cross-repo recon — when Brady needs a status scan across multiple Conductor workspaces, multiple GitHub repos, or multiple OS layers simultaneously. For within-brady-OS synthesis (single repo, single Notion workspace), morning sweep and project-agent-standup do it better. DiCaprio's unique value: spanning multiple repos Brady is working in simultaneously when no single sweep covers all of them.
+
+**Trigger:** "dicaprio scan", "cross-repo status", "what's happening across all my repos", "full workspace scan", "what are all my active builds right now" — NOT: "what's happening with Panda", "OS status" (use morning sweep or admin-status skill for those)
+
+## What DiCaprio is NOT
+
+- Not a replacement for morning sweep within brady-os
+- Not a project agent (OC Optimus and Fran own per-engagement synthesis)
+- Not an admin-status dashboard (see 3-reference/skills/admin-status/SKILL.md)
+- Not invoked for single-workspace status — only for cross-workspace panorama
+
 ## Guardrails
 
 - Will NOT execute work, modify files, or change project state

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import CityAutocomplete from '@/components/moving/CityAutocomplete'
+import OrlandoPanel from '@/components/moving/OrlandoPanel'
 import {
   EstimateResult,
   SPECIAL_ITEM_COSTS,
@@ -22,6 +23,7 @@ interface Props {
   estimate: EstimateResult | null
   onDataChange: (data: Partial<ExtractedData>) => void
   panelView?: PanelView
+  isOrlando?: boolean
   onSendToChat?: (message: string) => void
   lastAIMessage?: string
 }
@@ -63,7 +65,8 @@ function getSeasonalTag(month: string): { label: string; color: string } | null 
   return null
 }
 
-const tabs: { id: PanelView; label: string; icon: string }[] = [
+const TAB_DEFS: { id: PanelView; label: string; icon: string }[] = [
+  { id: 'orlando', label: 'Orlando', icon: '🌴' },
   { id: 'calculator', label: 'Estimate', icon: '📊' },
   { id: 'companies', label: 'Movers', icon: '🏢' },
   { id: 'checklist', label: 'Checklist', icon: '✅' },
@@ -72,7 +75,8 @@ const tabs: { id: PanelView; label: string; icon: string }[] = [
   { id: 'vehicles', label: 'Vehicles', icon: '🚗' },
 ]
 
-export default function LiveEstimatePanel({ extractedData, estimate, onDataChange, panelView, onSendToChat, lastAIMessage }: Props) {
+export default function LiveEstimatePanel({ extractedData, estimate, onDataChange, panelView, isOrlando, onSendToChat, lastAIMessage }: Props) {
+  const tabs = isOrlando ? TAB_DEFS : TAB_DEFS.filter(t => t.id !== 'orlando')
   const [copiedEmail, setCopiedEmail] = useState(false)
   const [selectedCompany, setSelectedCompany] = useState<CompanyProfile | null>(null)
   const [showQuoteCheck, setShowQuoteCheck] = useState(false)
@@ -83,6 +87,7 @@ export default function LiveEstimatePanel({ extractedData, estimate, onDataChang
   const [tabOverride, setTabOverride] = useState<{ tab: PanelView; sourcePanelView?: PanelView } | null>(null)
 
   const sendToChatMessages: Record<PanelView, string> = {
+    orlando: 'I want to know more about living in Orlando — neighborhoods, costs, schools, hurricanes.',
     calculator: 'Here are my move details so far — what do you think?',
     companies: 'Which of these moving companies would you recommend for my move?',
     checklist: 'Can you help me plan my moving timeline?',
@@ -571,7 +576,7 @@ export default function LiveEstimatePanel({ extractedData, estimate, onDataChang
   )
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-[500px]">
+    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
       {/* Estimate display at top */}
       <div className="bg-slate-800 text-white p-5">
         {estimate ? (
@@ -617,13 +622,14 @@ export default function LiveEstimatePanel({ extractedData, estimate, onDataChang
 
       {/* Tab content */}
       <div className="flex-1 overflow-y-auto p-4">
+        {activeTab === 'orlando' && <OrlandoPanel onSendToChat={onSendToChat} />}
         {activeTab === 'calculator' && renderCalculator()}
         {activeTab === 'companies' && renderCompanies()}
         {activeTab === 'checklist' && renderChecklist()}
         {activeTab === 'tipping' && renderTipping()}
         {activeTab === 'storage' && renderStorage()}
         {activeTab === 'vehicles' && renderVehicles()}
-        {renderTabActions()}
+        {activeTab !== 'orlando' && renderTabActions()}
       </div>
     </div>
   )

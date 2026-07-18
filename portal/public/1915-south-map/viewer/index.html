@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashley HomeStore Operator Map — Southeast US</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-card: #161A23;
+    --bg-card-alt: #1E2330;
+    --white: #F5F1E8;
+    --gray: #A8ADB8;
+    --gray-light: #D4D7DD;
+    --accent: #E8A547;
+    --accent-soft: #C97E2A;
+    --line: #2A2F3D;
+    --teal: #4AB8C4;
+    --amber: #E8A547;
+    --orange: #E87C47;
+    --purple: #9B7AE8;
+    --green: #6FC37E;
+    --cyan: #47C4B8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    height: 100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────────────── */
+  #app { display: flex; height: 100vh; }
+  #map-container { flex: 1; position: relative; overflow: hidden; }
+  #map { width: 100%; height: 100%; }
+
+  /* ── HEADER ──────────────────────────────────────────── */
+  #header {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 900;
+    background: linear-gradient(to bottom, rgba(11,14,20,0.96) 65%, transparent);
+    padding: 14px 18px 28px;
+    pointer-events: none;
+  }
+  #header-inner { pointer-events: auto; }
+  .header-eyebrow {
+    font-size: 10px; color: var(--accent); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 2px;
+  }
+  .header-title { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 5px 12px; border-radius: 4px; border: 1px solid var(--line);
+    background: rgba(22,26,35,0.9); color: var(--gray);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+  .filter-btn:hover { border-color: var(--accent-soft); color: var(--white); }
+  .filter-btn.active { color: #0B0E14; }
+  .filter-btn.active[data-cat="all"]     { background: var(--white);  border-color: var(--white); }
+  .filter-btn.active[data-cat="client"]  { background: var(--teal);   border-color: var(--teal); }
+  .filter-btn.active[data-cat="target"]  { background: var(--amber);  border-color: var(--amber); }
+  .filter-btn.active[data-cat="comp"]    { background: var(--gray-light); border-color: var(--gray-light); }
+  .filter-btn.active[data-cat="pending"] { background: var(--cyan);   border-color: var(--cyan); }
+
+  /* ── LEGEND ──────────────────────────────────────────── */
+  #legend {
+    position: absolute; bottom: 20px; left: 12px; z-index: 900;
+    background: rgba(22,26,35,0.94);
+    border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px 14px;
+    min-width: 210px;
+  }
+  .legend-title {
+    font-size: 10px; font-weight: 700; color: var(--gray);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 9px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 9px;
+    margin-bottom: 7px; font-size: 12px; color: var(--gray-light);
+  }
+  .legend-item:last-child { margin-bottom: 0; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── DETAIL PANEL ────────────────────────────────────── */
+  #panel {
+    width: 370px; min-width: 300px;
+    background: var(--bg-card);
+    border-left: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative; z-index: 1000;
+    flex-shrink: 0;
+  }
+  #panel.open { transform: translateX(0); }
+
+  #panel-header {
+    padding: 18px 44px 14px 20px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+    position: relative;
+  }
+  #panel-close {
+    position: absolute; top: 14px; right: 14px;
+    background: none; border: none; cursor: pointer;
+    color: var(--gray); font-size: 16px; line-height: 1;
+    padding: 4px 6px; border-radius: 4px; transition: color 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  #panel-close:hover { color: var(--white); background: var(--bg-card-alt); }
+
+  #panel-body {
+    flex: 1; overflow-y: auto; padding: 18px 20px 28px;
+    scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  }
+  #panel-body::-webkit-scrollbar { width: 4px; }
+  #panel-body::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+
+  /* ── PANEL CONTENT ───────────────────────────────────── */
+  .panel-eyebrow {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 3px;
+  }
+  .panel-title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+
+  .category-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 3px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .cat-client  { background: rgba(74,184,196,0.15);  color: var(--teal); }
+  .cat-target  { background: rgba(232,165,71,0.2);   color: var(--amber); }
+  .cat-comp    { background: rgba(168,173,184,0.12); color: var(--gray-light); }
+  .cat-pending { background: rgba(71,196,184,0.15);  color: var(--cyan); }
+
+  .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .metric-card {
+    background: var(--bg-card-alt); border: 1px solid var(--line);
+    border-radius: 6px; padding: 10px 12px;
+  }
+  .metric-label {
+    font-size: 10px; color: var(--accent); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
+  }
+  .metric-value { font-size: 18px; font-weight: 700; color: var(--white); line-height: 1; }
+  .metric-value.small { font-size: 13px; padding-top: 2px; }
+
+  .summary-text { font-size: 13px; color: var(--gray-light); line-height: 1.58; margin-bottom: 16px; }
+
+  .panel-section { margin-bottom: 18px; }
+  .panel-section-title {
+    font-size: 10px; font-weight: 700; color: var(--gray);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 9px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .signals { list-style: none; margin: 0; padding: 0; }
+  .signals li {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 12px; color: var(--gray-light); margin-bottom: 7px; line-height: 1.48;
+  }
+  .signals li::before {
+    content: '→'; color: var(--accent); font-size: 11px;
+    flex-shrink: 0; margin-top: 1px; font-weight: 600;
+  }
+
+  .research-links { display: flex; flex-direction: column; gap: 6px; }
+  .research-link {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-card-alt); border: 1px solid var(--line);
+    border-radius: 5px; padding: 8px 12px;
+    font-size: 12px; color: var(--accent); text-decoration: none;
+    transition: all 0.15s;
+  }
+  .research-link:hover { border-color: var(--accent-soft); background: var(--bg); text-decoration: none; }
+  .research-link-icon { font-size: 10px; opacity: 0.65; flex-shrink: 0; }
+
+  /* ── LEAFLET OVERRIDES ───────────────────── */
+  .leaflet-container { background: #0B0E14; }
+  .leaflet-control-zoom {
+    border: 1px solid var(--line) !important;
+    border-radius: 6px !important; overflow: hidden;
+    box-shadow: none !important;
+  }
+  .leaflet-control-zoom a {
+    background: var(--bg-card) !important; color: var(--gray) !important;
+    border-bottom-color: var(--line) !important;
+    width: 28px !important; height: 28px !important; line-height: 28px !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+  .leaflet-control-zoom a:hover { background: var(--bg-card-alt) !important; color: var(--white) !important; }
+  .leaflet-control-attribution {
+    background: rgba(11,14,20,0.75) !important; color: var(--gray) !important;
+    font-size: 9px !important; padding: 2px 6px !important;
+  }
+  .leaflet-control-attribution a { color: var(--accent) !important; }
+
+  .leaflet-tooltip-custom {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--line) !important;
+    color: var(--white) !important;
+    padding: 5px 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+  }
+
+  /* Target pulse animation */
+  @keyframes pulse-ring {
+    0%   { transform: scale(1);  opacity: 0.4; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- MAP SIDE -->
+  <div id="map-container">
+    <div id="map"></div>
+
+    <div id="header">
+      <div id="header-inner">
+        <div class="header-eyebrow">1915 South Engagement · Fran Intelligence · Updated 2026-05-04</div>
+        <div class="header-title">Ashley HomeStore Operator Map — Southeast US</div>
+        <div class="filters">
+          <button class="filter-btn active" data-cat="all">All Operators</button>
+          <button class="filter-btn" data-cat="client">1915 South</button>
+          <button class="filter-btn" data-cat="target">M&amp;A Target</button>
+          <button class="filter-btn" data-cat="comp">Comps</button>
+          <button class="filter-btn" data-cat="pending">Pending (Aug 2026)</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="legend">
+      <div class="legend-title">Operator</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4AB8C4"></div>1915 South (Client)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E8A547;box-shadow:0 0 6px #E8A54766"></div>AFHSVA / Zeidan (Target)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9B7AE8"></div>Broad River Retail</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E87C47"></div>Trivett's Furniture</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#6FC37E"></div>Providence Enterprises</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#47C4B8"></div>AGR (Pending Aug 2026)</div>
+    </div>
+  </div>
+
+  <!-- DETAIL PANEL -->
+  <div id="panel">
+    <div id="panel-header">
+      <button id="panel-close" title="Close">✕</button>
+      <div id="panel-header-content"></div>
+    </div>
+    <div id="panel-body"></div>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* ── OPERATOR DATA ──────────────────────────────────────────────── */
+var OPERATORS = [
+
+  /* 1915 SOUTH — FLORIDA */
+  { id:'1915-fl', state:'FL', operator:'1915 South', category:'client', color:'#4AB8C4', stores:12, revEst:'~$79M est.',
+    lat:27.9, lng:-82.0,
+    summary:'Largest state footprint — 12 stores. Jacksonville DC (65K sqft) anchors the east coast cluster. Acquired from Howard Fineman / SFTF in May 2022.',
+    signals:[
+      'Jacksonville DC acquired with the SFTF deal (May 2022) — no greenfield build needed',
+      'AGR acquisition (Aug 2026) may add FL panhandle stores; Loxley AL DC provides coverage',
+      'Tariff/Iran-war supply chain risk on imported case goods — 1-2 pts gross margin compression',
+      'White-glove in-home delivery from Jacksonville + Loxley serves full state'
+    ],
+    links:[
+      { label:'Distribution Model (SFDR-015)', href:'/1915-south/files/sfdr-015-distribution-model.md' },
+      { label:'Financial Plan Validation (SFDR-018)', href:'/1915-south/files/sfdr-018-justin-financials-validation.md' },
+      { label:'Internal Hub ↗', href:'/1915-south' }
+    ]
+  },
+
+  /* 1915 SOUTH — GEORGIA */
+  { id:'1915-ga', state:'GA', operator:'1915 South', category:'client', color:'#4AB8C4', stores:7, revEst:'~$43M est.',
+    lat:31.7, lng:-83.8,
+    summary:'7 stores with Thomasville as HQ. Flagship DC: 105K sqft warehouse + 40K sqft mezzanine opened June 2023. Russell Turner family ownership base.',
+    signals:[
+      'Thomasville DC = ~$15-16M investment (building + equipment + truck fleet)',
+      'On-site fuel station, truck wash, customer pick-up, training center — crown jewel of network',
+      'Russell Turner sole owner — 4th generation; stepped back operationally Jan 2025',
+      'All incoming calls + delivery coordination routed through Thomasville support office'
+    ],
+    links:[
+      { label:'Distribution Model (SFDR-015)', href:'/1915-south/files/sfdr-015-distribution-model.md' },
+      { label:'M&A Deep Research (2026-04-22)', href:'/1915-south/files/m-and-a-deep-research-2026-04-22.md' }
+    ]
+  },
+
+  /* 1915 SOUTH — ALABAMA */
+  { id:'1915-al', state:'AL', operator:'1915 South', category:'client', color:'#4AB8C4', stores:5, revEst:'~$31M est.',
+    lat:32.8, lng:-86.6,
+    summary:'5 stores. Loxley AL DC (~80K sqft, expanded 2022) serves AL + MS + FL panhandle. Positioned to absorb AGR acquisition without a 5th DC.',
+    signals:[
+      'Loxley DC can absorb AGR MS/LA integration without a greenfield DC build',
+      'Adjacent to AGR acquisition territory — natural logistics bridge',
+      '300 total DC/delivery staff across network; Loxley est. 60-80 employees'
+    ],
+    links:[
+      { label:'Distribution Model (SFDR-015)', href:'/1915-south/files/sfdr-015-distribution-model.md' }
+    ]
+  },
+
+  /* 1915 SOUTH — NORTH CAROLINA */
+  { id:'1915-nc', state:'NC', operator:'1915 South', category:'client', color:'#4AB8C4', stores:4, revEst:'~$25M est.',
+    lat:35.7, lng:-79.7,
+    summary:'4 stores. Kernersville DC (up to 175K sqft) — largest in the network by sqft. Serves NC 4 + VA Danville (1). Bridge between Southeast footprint and Virginia corridor.',
+    signals:[
+      'Kernersville is the largest DC in the network — excess capacity for growth',
+      'JB Hunt partnership for AFHSVA VA acquisition would eliminate need for a 5th DC',
+      'AGR Tupelo + Oxford (March 2027) will add MS pressure on Loxley',
+      'NC corridor borders Broad River\'s SC cluster — monitor competitive pressure'
+    ],
+    links:[
+      { label:'Distribution Model (SFDR-015)', href:'/1915-south/files/sfdr-015-distribution-model.md' },
+      { label:'JB Hunt FMS Pricing (SFDR-016)', href:'/1915-south/files/sfdr-016-jbhunt-fms-pricing-intelligence.md' },
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* 1915 SOUTH — MISSISSIPPI */
+  { id:'1915-ms', state:'MS', operator:'1915 South', category:'client', color:'#4AB8C4', stores:1, revEst:'~$6M est.',
+    lat:31.9, lng:-89.9,
+    summary:'1 store today. AGR acquisition (Aug 2026) adds ~6 MS stores — 7× overnight footprint expansion in-state.',
+    signals:[
+      'AGR adds ~6 MS stores; total MS footprint becomes 7 stores by Q4 2026',
+      'ERP go-live June 1 and AGR close Aug 1 = dual integration risk in Q3 2026',
+      'Loxley AL DC (80K sqft) is the logistics anchor for MS + FL panhandle'
+    ],
+    links:[
+      { label:'Financial Plan Validation (SFDR-018)', href:'/1915-south/files/sfdr-018-justin-financials-validation.md' },
+      { label:'M&A Deep Research', href:'/1915-south/files/m-and-a-deep-research-2026-04-22.md' }
+    ]
+  },
+
+  /* 1915 SOUTH — VIRGINIA */
+  { id:'1915-va', state:'VA', operator:'1915 South', category:'client', color:'#4AB8C4', stores:1, revEst:'~$6M est.',
+    lat:36.53, lng:-79.45,
+    summary:'1 store (Danville). Served by Kernersville NC DC. Geographic bridge — positioned between Trivett\'s Central VA cluster and AFHSVA\'s SW VA corridor.',
+    signals:[
+      'Danville is the gateway to the Roanoke-Lynchburg uncontested corridor',
+      'Adjacent to AFHSVA priority acquisition target (Sam Zeidan)',
+      'Corrie Bobe (Danville Regional Foundation) personal relationship anchored here',
+      'Pittsylvania County surrounds Danville — DRF co-investment lever for any expansion'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' },
+      { label:'SW Virginia Findings (SFDR-010)', href:'/1915-south/files/sfdr-010-sw-virginia-findings.md' }
+    ]
+  },
+
+  /* AFHSVA / SAM ZEIDAN — M&A TARGET */
+  { id:'afhsva-va', state:'VA', operator:'AFHSVA / Sam Zeidan', category:'target', color:'#E8A547', stores:9, revEst:'$60–80M est.',
+    lat:37.27, lng:-79.95,
+    summary:'SW Virginia cluster: Roanoke ×2, Lynchburg, Harrisonburg, Staunton, Waynesboro, Blacksburg, Bluefield, Wytheville. 37+ year operator. Roanoke flagship ~45K sqft.',
+    signals:[
+      'The Zeidan Group LLC formed 9/25/2025 — holdco structure = #1 succession signal in VA public record',
+      'Sam Zeidan mid-60s; 37+ yr operator; Lebanese-American; same Compton Biddle Esq. across all LLCs',
+      '$50K AED donation Feb 2025 — liquid ($5-10M+ personal income), civic identity in Hanover County',
+      'Roanoke-Lynchburg-Danville corridor uncontested if Zeidan portfolio moves — clean adjacency to 1915 South Danville',
+      'Entry path: Hanover Supervisor Sean Davis (his "friend") or Compton Biddle Esq (his lawyer) — NOT a cold call',
+      'Timeline: 18-36 months; legacy seller not financial seller; Zeidan Group LLC is the first move signal'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' },
+      { label:'SW Virginia Findings (SFDR-010)', href:'/1915-south/files/sfdr-010-sw-virginia-findings.md' },
+      { label:'M&A Deep Research', href:'/1915-south/files/m-and-a-deep-research-2026-04-22.md' }
+    ]
+  },
+
+  /* TRIVETT'S FURNITURE — COMP */
+  { id:'trivetts-va', state:'VA', operator:"Trivett's Furniture", category:'comp', color:'#E87C47', stores:13, revEst:'$106.7M (2024)',
+    lat:37.43, lng:-77.63,
+    summary:'Central + Eastern Virginia. HNN125 #82 (2024). Largest VA Ashley operator by revenue. Growing while 75% of Top 100 contracted.',
+    signals:[
+      'Revenue +6% 2023→2024 in a down year — rare signal of operational strength',
+      'New Colonial Heights store Jan 2024 (ex-Toys R Us big box repurpose)',
+      '1 Trivett\'s branded + 11 Ashley HomeStores + 1 Ashley Outlet = multi-format operator',
+      'Sits in geographic gap between AFHSVA (SW VA) and Broad River (NoVA)',
+      'No succession signals in public record — separate research needed on ownership'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* BROAD RIVER — NORTHERN VIRGINIA */
+  { id:'broadriver-va', state:'VA', operator:'Broad River Retail', category:'comp', color:'#9B7AE8', stores:5, revEst:'Private',
+    lat:38.87, lng:-77.37,
+    summary:'Northern VA / DC suburbs: Manassas, Fairfax, Sterling, Reston, Alexandria. 2025 Ashley Licensee of the Year.',
+    signals:[
+      'Ashley 2025 Licensee of the Year — top licensee nationally',
+      '27+ Ashley stores + 4 outlets total; HQ Fort Mill SC',
+      'Growing aggressively: 33→38+ stores 2025-2026',
+      'NoVA cluster is geographically walled off from any Roanoke-Lynchburg corridor strategy'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* BROAD RIVER — SOUTH CAROLINA */
+  { id:'broadriver-sc', state:'SC', operator:'Broad River Retail', category:'comp', color:'#9B7AE8', stores:10, revEst:'Private',
+    lat:33.75, lng:-81.05,
+    summary:'Fort Mill SC HQ + Carolinas base. Primary operational footprint and brand home of the largest independent Ashley licensee by store count.',
+    signals:[
+      'Fort Mill SC HQ — 30 miles south of Charlotte NC metro',
+      'Adjacent to 1915 South\'s NC Kernersville stores — competitive border',
+      'Aggressive expansion culture; "Stories from the River" brand storytelling',
+      'Structural comp for any 1915 South valuation conversation'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* PROVIDENCE — WEST VIRGINIA */
+  { id:'providence-wv', state:'WV', operator:'Providence Enterprises', category:'comp', color:'#6FC37E', stores:6, revEst:'~$21M est.',
+    lat:38.5, lng:-80.7,
+    summary:'Charleston WV HQ + 5 WV stores including 4 Star Furniture/Mattress stores. Nitro WV DC is the distribution anchor for the full network.',
+    signals:[
+      '$77.1M total FY2024 revenue (+35.8% YoY) — fastest-growing Top 100 retailer',
+      '260+ employees across 22-store network in 5 states',
+      'Nitro WV + Gray TN DCs; "90-mile radius" expansion constraint governs geography',
+      'Bob Young "Team Leader"; values-driven; Christian culture; Furniture Today Top 100'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* PROVIDENCE — VIRGINIA (BRISTOL/WISE) */
+  { id:'providence-va', state:'VA', operator:'Providence Enterprises', category:'comp', color:'#6FC37E', stores:2, revEst:'~$7M est.',
+    lat:36.61, lng:-82.18,
+    summary:'Bristol + Wise — far SW Virginia tip. Functionally East Tennessee geography, not the Roanoke-Lynchburg-Danville corridor.',
+    signals:[
+      'NOT competitive with AFHSVA — different corridor, different market',
+      '4-hour drive west of Roanoke through hard mountain terrain; minimal overlap',
+      'Providence VA stores are in Gray TN DC radius, not Nitro WV radius'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* PROVIDENCE — TENNESSEE */
+  { id:'providence-tn', state:'TN', operator:'Providence Enterprises', category:'comp', color:'#6FC37E', stores:5, revEst:'~$18M est.',
+    lat:36.1, lng:-83.5,
+    summary:'Johnson City, Kingsport, Morristown (Bob Young hometown), + Zak\'s Home acquisition (Aug 2025). Gray TN DC anchors this cluster.',
+    signals:[
+      'Zak\'s Home acquisition = the tuck-in template: 48-hr courtship, seller rollover, legacy preservation framing',
+      'Bob Young\'s East Tennessee hometown market — personal narrative milestone store in Morristown 2023',
+      'Exact transaction pattern applicable to any AFHSVA/Zeidan conversation'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* PROVIDENCE — KENTUCKY */
+  { id:'providence-ky', state:'KY', operator:'Providence Enterprises', category:'comp', color:'#6FC37E', stores:1, revEst:'~$3.5M est.',
+    lat:37.48, lng:-82.52,
+    summary:'Pikeville KY. Opened 2023. Mountain Kentucky coal country. First KY store for Providence.',
+    signals:[
+      'Out-of-state expansion from WV — proof of cross-Appalachian ambition',
+      'Nitro WV DC services this store within the 90-mile radius constraint'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* PROVIDENCE — OHIO */
+  { id:'providence-oh', state:'OH', operator:'Providence Enterprises', category:'comp', color:'#6FC37E', stores:1, revEst:'~$3.5M est.',
+    lat:39.33, lng:-82.98,
+    summary:'Chillicothe OH. Opened 2023. Farthest north expansion for Providence.',
+    signals:[
+      'First Ohio store — cross-Appalachian expansion beyond core WV/VA/TN market',
+      'DC logistics stretch from Nitro WV (~90 miles)',
+      'Small market; tests Providence\'s ability to expand above the Mason-Dixon line'
+    ],
+    links:[
+      { label:'Virginia Deep Dossier (2026-04-29)', href:'/1915-south/files/virginia-targets-deep-dossier-2026-04-29.md' }
+    ]
+  },
+
+  /* AGR PENDING — MISSISSIPPI */
+  { id:'agr-ms', state:'MS', operator:'AGR (Pending Acquisition)', category:'pending', color:'#47C4B8', stores:6, revEst:'~$35M est.',
+    lat:32.45, lng:-88.65,
+    summary:'Ashley Global Retail MS stores. Acquisition closing Aug 2026. Adds ~6 stores to 1915 South\'s single existing MS location — transforming footprint.',
+    signals:[
+      'AGR = Ashley Inc\'s company-owned retail arm (118 corporate stores nationwide)',
+      'Mirrors 2022 Howard Fineman / Olinde\'s-DSG pattern — Ashley divesting to stronger licensee',
+      'Current AGR EBITDA est. 8-10%; 14% target achievable in ~18 months post-integration',
+      'ERP June 1 + AGR Aug 1 = dual integration risk in Brady\'s first 90 days',
+      'Brady Y1 bonus floor critical — don\'t get punished for integration events he didn\'t cause'
+    ],
+    links:[
+      { label:'Financial Plan Validation (SFDR-018)', href:'/1915-south/files/sfdr-018-justin-financials-validation.md' },
+      { label:'M&A Deep Research', href:'/1915-south/files/m-and-a-deep-research-2026-04-22.md' }
+    ]
+  },
+
+  /* AGR PENDING — LOUISIANA */
+  { id:'agr-la', state:'LA', operator:'AGR (Pending Acquisition)', category:'pending', color:'#47C4B8', stores:6, revEst:'~$34M est.',
+    lat:30.95, lng:-91.5,
+    summary:'Ashley Global Retail LA stores. New state entry for 1915 South — zero existing LA presence today. Closes with MS package Aug 2026.',
+    signals:[
+      'New state = logistics challenge; Loxley AL DC is nearest (2-3 hr drive to Lake Charles/Alexandria area)',
+      'Olinde\'s / DSG 2019 = the exact LA Ashley operator rollup precedent',
+      'JB Hunt final-mile default for new geographies per SFDR-015 recommendation',
+      'Justin\'s Beaumont TX 3 stores (June 2027) extend the LA platform westward'
+    ],
+    links:[
+      { label:'Distribution Model (SFDR-015)', href:'/1915-south/files/sfdr-015-distribution-model.md' },
+      { label:'JB Hunt FMS Pricing (SFDR-016)', href:'/1915-south/files/sfdr-016-jbhunt-fms-pricing-intelligence.md' },
+      { label:'Financial Plan Validation (SFDR-018)', href:'/1915-south/files/sfdr-018-justin-financials-validation.md' }
+    ]
+  }
+
+];
+
+/* ── MAP INIT ─────────────────────────────────────────────────── */
+var map = L.map('map', {
+  center: [34.2, -84.5],
+  zoom: 6,
+  zoomControl: true,
+  attributionControl: true
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+/* ── MARKERS ──────────────────────────────────────────────────── */
+var markers = {};
+var activeOp = null;
+
+function storeRadius(n) {
+  return Math.max(9, Math.min(20, 7 + n * 0.65));
+}
+
+OPERATORS.forEach(function(op) {
+  var r = storeRadius(op.stores);
+  var isTarget = op.category === 'target';
+
+  var iconHtml;
+  if (isTarget) {
+    iconHtml = [
+      '<div style="position:relative;width:', (r*2+20), 'px;height:', (r*2+20), 'px;">',
+      '<div style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;',
+        'background:', op.color, ';opacity:0.25;animation:pulse-ring 2.2s ease-out infinite;"></div>',
+      '<div style="position:absolute;top:10px;left:10px;width:', r*2, 'px;height:', r*2, 'px;',
+        'border-radius:50%;background:', op.color, ';',
+        'border:2.5px solid rgba(255,255,255,0.35);',
+        'box-shadow:0 0 14px ', op.color, '99, 0 2px 8px rgba(0,0,0,0.6);cursor:pointer;"></div>',
+      '</div>'
+    ].join('');
+  } else {
+    iconHtml = [
+      '<div style="width:', r*2, 'px;height:', r*2, 'px;border-radius:50%;',
+        'background:', op.color, ';',
+        'border:2px solid rgba(255,255,255,0.18);',
+        'box-shadow:0 2px 10px rgba(0,0,0,0.55);cursor:pointer;',
+        'transition:transform 0.12s, box-shadow 0.12s;">',
+      '</div>'
+    ].join('');
+  }
+
+  var icon = L.divIcon({
+    html: iconHtml,
+    className: '',
+    iconSize:   isTarget ? [r*2+20, r*2+20] : [r*2, r*2],
+    iconAnchor: isTarget ? [r+10,   r+10]   : [r,   r]
+  });
+
+  var marker = L.marker([op.lat, op.lng], { icon: icon });
+
+  var storeWord = op.stores === 1 ? 'store' : 'stores';
+  marker.bindTooltip(
+    '<b>' + op.operator + '</b><br>' + op.state + ' &middot; ' + op.stores + ' ' + storeWord,
+    { className: 'leaflet-tooltip-custom', direction: 'top', offset: [0, -(r + 8)] }
+  );
+
+  marker.on('click', function() {
+    openPanel(op);
+  });
+
+  marker._opData = op;
+  markers[op.id] = marker;
+  marker.addTo(map);
+});
+
+/* ── PANEL ─────────────────────────────────────────────────────── */
+var panel       = document.getElementById('panel');
+var panelHdr    = document.getElementById('panel-header-content');
+var panelBody   = document.getElementById('panel-body');
+var panelClose  = document.getElementById('panel-close');
+
+var CAT_LABELS = {
+  client:  'Client · 1915 South',
+  target:  'M&A Target — Priority',
+  comp:    'Comp / Peer Operator',
+  pending: 'Pending Acquisition (Aug 2026)'
+};
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/'/g,'&#39;');
+}
+
+function openPanel(op) {
+  activeOp = op;
+  var catClass = 'cat-' + op.category;
+  var catLabel = CAT_LABELS[op.category] || op.category;
+
+  panelHdr.innerHTML =
+    '<div class="panel-eyebrow" style="color:' + op.color + '">' + esc(op.operator) + '</div>' +
+    '<div class="panel-title">' + esc(op.state) + '</div>' +
+    '<span class="category-badge ' + catClass + '">' + esc(catLabel) + '</span>';
+
+  var signalHtml = op.signals.map(function(s) {
+    return '<li>' + esc(s) + '</li>';
+  }).join('');
+
+  var linksHtml = '';
+  if (op.links && op.links.length) {
+    linksHtml = '<div class="panel-section">' +
+      '<div class="panel-section-title">Research Files</div>' +
+      '<div class="research-links">' +
+      op.links.map(function(l) {
+        return '<a class="research-link" href="' + esc(l.href) + '" target="_blank">' +
+          '<span class="research-link-icon">↗</span>' + esc(l.label) +
+          '</a>';
+      }).join('') +
+      '</div></div>';
+  }
+
+  var revClass = op.revEst.length > 10 ? ' small' : '';
+
+  panelBody.innerHTML =
+    '<div class="metrics-grid">' +
+      '<div class="metric-card">' +
+        '<div class="metric-label">Stores</div>' +
+        '<div class="metric-value">' + op.stores + '</div>' +
+      '</div>' +
+      '<div class="metric-card">' +
+        '<div class="metric-label">Revenue</div>' +
+        '<div class="metric-value' + revClass + '">' + esc(op.revEst) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<p class="summary-text">' + esc(op.summary) + '</p>' +
+    '<div class="panel-section">' +
+      '<div class="panel-section-title">Key Signals</div>' +
+      '<ul class="signals">' + signalHtml + '</ul>' +
+    '</div>' +
+    linksHtml;
+
+  panel.classList.add('open');
+}
+
+panelClose.addEventListener('click', function() {
+  panel.classList.remove('open');
+  activeOp = null;
+});
+
+/* ── FILTERS ──────────────────────────────────────────────────── */
+var activeFilter = 'all';
+
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var cat = this.dataset.cat;
+    if (activeFilter === cat) return;
+
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    this.classList.add('active');
+    activeFilter = cat;
+
+    Object.values(markers).forEach(function(m) {
+      if (cat === 'all' || m._opData.category === cat) {
+        m.addTo(map);
+      } else {
+        if (map.hasLayer(m)) map.removeLayer(m);
+      }
+    });
+
+    // Close panel if active dot filtered out
+    if (activeOp && cat !== 'all' && activeOp.category !== cat) {
+      panel.classList.remove('open');
+      activeOp = null;
+    }
+  });
+});
+
+/* ── KEYBOARD ─────────────────────────────────────────────────── */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    panel.classList.remove('open');
+    activeOp = null;
+  }
+});
+</script>
+</body>
+</html>

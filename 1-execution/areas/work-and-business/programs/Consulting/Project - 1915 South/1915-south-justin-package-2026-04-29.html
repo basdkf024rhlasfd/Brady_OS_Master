@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>1915 South — Engagement Briefing for Justin Woods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F1E8;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #FAF6EE;
+  --ink: #1A1F2E;
+  --gray: #5A5D64;
+  --gray-light: #2A2D34;
+  --line: #D4CEBE;
+  --accent: #B56A1C;
+  --accent-soft: #8F5211;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 10.75pt;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 72px 56px;
+  background: var(--bg);
+}
+.page + .page { border-top: 1px solid var(--line); }
+.page.cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 96px 96px 72px;
+  background: linear-gradient(135deg, var(--bg) 0%, #ECE4D2 100%);
+  page-break-after: always;
+  border: 0;
+}
+.cover-eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 0.18em; font-size: 10pt; text-transform: uppercase; }
+.cover-title { font-size: 46pt; line-height: 1.04; font-weight: 800; margin: 24px 0 20px; letter-spacing: -0.02em; color: var(--ink); }
+.cover-subtitle { font-size: 16pt; font-weight: 500; color: var(--gray-light); max-width: 780px; line-height: 1.4; }
+.cover-meta { display: flex; gap: 48px; color: var(--gray); font-size: 10pt; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; flex-wrap: wrap; }
+.cover-meta strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 4px; font-family: 'Inter', sans-serif; letter-spacing: 0.02em; }
+.cover-toc { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+.cover-toc-title { font-size: 11pt; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 14px; }
+.cover-toc ol { list-style: none; counter-reset: tocnum; padding: 0; }
+.cover-toc li { counter-increment: tocnum; font-size: 13pt; padding: 8px 0; border-bottom: 1px dotted var(--line); display: flex; gap: 16px; align-items: baseline; }
+.cover-toc li::before { content: counter(tocnum, upper-alpha) "."; color: var(--accent); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 11pt; min-width: 28px; }
+.cover-toc li strong { color: var(--ink); font-weight: 600; }
+.cover-toc li span { color: var(--gray); font-size: 11pt; margin-left: 6px; }
+
+.section-eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 0.18em; font-size: 9.5pt; text-transform: uppercase; margin-bottom: 8px; }
+h1 { font-size: 30pt; font-weight: 800; letter-spacing: -0.015em; line-height: 1.1; margin: 0 0 16px; color: var(--ink); page-break-after: avoid; }
+h2 { font-size: 17pt; font-weight: 700; letter-spacing: -0.005em; margin: 36px 0 14px; color: var(--ink); padding-top: 14px; border-top: 1px solid var(--line); page-break-after: avoid; }
+h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 24px; }
+h3 { font-size: 12pt; font-weight: 700; margin: 22px 0 8px; color: var(--accent-soft); letter-spacing: 0.005em; page-break-after: avoid; }
+h4 { font-size: 10pt; font-weight: 700; margin: 14px 0 6px; color: var(--ink); text-transform: uppercase; letter-spacing: 0.08em; page-break-after: avoid; }
+p { margin: 0 0 12px; }
+p.lede { font-size: 12pt; color: var(--gray-light); max-width: 800px; line-height: 1.55; margin-bottom: 18px; }
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+li { margin-bottom: 5px; color: var(--gray-light); }
+li strong { color: var(--ink); font-weight: 600; }
+strong { color: var(--ink); font-weight: 700; }
+em { color: var(--gray-light); font-style: italic; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0 10px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 14px 0 10px; }
+.fact-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+.fact-card h3 { font-size: 9.5pt; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 8px; }
+.fact-card p { margin: 0; font-size: 10pt; color: var(--gray-light); line-height: 1.45; }
+
+.layer-stack { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 14px 0; }
+.layer { background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; }
+.layer h4 { font-size: 9.5pt; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 6px; }
+.layer p { margin: 0; font-size: 10pt; color: var(--gray-light); }
+
+.note { font-size: 10pt; color: var(--gray); padding: 12px 16px; background: var(--bg-card); border-left: 3px solid var(--accent); border-radius: 4px; margin: 16px 0; }
+.note strong { color: var(--ink); }
+
+table { width: 100%; border-collapse: collapse; margin: 14px 0 18px; font-size: 9.5pt; page-break-inside: auto; }
+thead { background: var(--bg-card-alt); }
+th, td { padding: 8px 11px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { color: var(--accent); font-weight: 700; font-size: 9pt; text-transform: uppercase; letter-spacing: 0.04em; }
+tr { page-break-inside: avoid; }
+tr:nth-child(even) td { background: var(--bg-card); }
+
+.concepts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 14px 0 12px; }
+.concept { background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.concept img { display: block; width: 100%; aspect-ratio: 3/2; object-fit: cover; background: var(--bg-card-alt); }
+.concept-meta { padding: 10px 14px 14px; }
+.concept-id { font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.concept-name { font-size: 10pt; font-weight: 600; color: var(--ink); margin-top: 4px; line-height: 1.35; }
+
+.section-break { page-break-before: always; }
+section, h2, table, ul, ol { page-break-inside: avoid; }
+h2, h3 { break-after: avoid; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px; padding: 4px 9px; color: var(--accent-soft); letter-spacing: 0.04em; }
+
+.callout { background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; margin: 16px 0; }
+.callout h4 { color: var(--accent); margin: 0 0 8px; font-size: 9.5pt; }
+.callout p { margin: 0; color: var(--gray-light); font-size: 10pt; }
+
+.foot { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: var(--gray); margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--line); letter-spacing: 0.04em; }
+
+@page { size: Letter; margin: 0.5in; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER                                                        -->
+<!-- ============================================================ -->
+<section class="page cover">
+  <div>
+    <div class="cover-eyebrow">1915 South · Engagement Briefing</div>
+    <div class="cover-title">A Read on the Chessboard</div>
+    <div class="cover-subtitle">M&amp;A and capital strategy, the role design behind the AI decision layer, and the ten concept tracks already on the table — drawn together into one working document.</div>
+  </div>
+
+  <div class="cover-toc">
+    <div class="cover-toc-title">Inside this document</div>
+    <ol>
+      <li><strong>Engagement Overview</strong> <span>— scope, three workstreams, what's already on the page</span></li>
+      <li><strong>M&amp;A and Capital</strong> <span>— roll-up thesis, target archetypes, financing structures, partnerships, sequence</span></li>
+      <li><strong>Role Design and Applied AI</strong> <span>— scope of accountability, the three operating layers, year-1 outline</span></li>
+      <li><strong>Innovation Workshop — Visual Preview</strong> <span>— ten concept tracks with hero visuals; companion PDF carries the full pitch</span></li>
+    </ol>
+  </div>
+
+  <div class="cover-meta">
+    <div><strong>Prepared for</strong> Justin Woods · President, 1915 South</div>
+    <div><strong>From</strong> Brady Smallwood</div>
+    <div><strong>Date</strong> April 29, 2026</div>
+    <div><strong>Companion</strong> Innovation Workshop PDF (39 ideas, three tracks)</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION A — ENGAGEMENT OVERVIEW                              -->
+<!-- ============================================================ -->
+<section class="page section-break">
+
+  <div class="section-eyebrow">Section A · Engagement Overview</div>
+  <h1>1915 South | Ashley</h1>
+  <p class="lede">29 Ashley HomeStores across the Southeast (FL · GA · NC · AL · MS · VA), four distribution centers, and a vertically integrated last-mile operation. A roll-up posture already proven by two acquisitions in three years and a stated path toward ~48 stores inside 18 months.</p>
+
+  <h2>At a glance</h2>
+  <div class="grid-2">
+    <div class="fact-card"><h3>Footprint</h3><p>29 stores: FL (12), GA (7), NC (4), AL (5), MS (1), VA (1). Four DCs across four states. Vertically integrated last-mile delivery.</p></div>
+    <div class="fact-card"><h3>M&amp;A cadence</h3><p>Two acquisitions in three years — Howard Fineman (Jacksonville, 2022) and Yulee FL (2025). The roll-up thesis is not hypothetical.</p></div>
+    <div class="fact-card"><h3>Ashley corporate context</h3><p>Manufacturer CEO Todd Wanek has publicly committed $2B to AI and innovation, set the GMROI Excellence Framework directive (Dec 2024), and ceased mainland China sourcing (April 2025). 170+ AI projects identified inside Ashley corporate.</p></div>
+    <div class="fact-card"><h3>Engagement focus</h3><p>Three workstreams running in parallel: Innovation Workshop (39 scored ideas), M&amp;A and Capital roadmap, and Role Design + Applied AI.</p></div>
+  </div>
+
+  <h2>What's on the table — three workstreams</h2>
+
+  <h3>Workstream 1 · Innovation Workshop</h3>
+  <p>39 scored ideas across three tracks — Format / Product, Ops / AI Arbitrage, and Back-Office / CFO Transition. Designed as both a portfolio of options and a working baseline for sequencing inside the next 6–24 months. Visual preview at the back of this document; the full pitch lives in the companion <strong>Innovation Workshop PDF</strong>.</p>
+
+  <h3>Workstream 2 · M&amp;A and Capital</h3>
+  <p>A 10-section deep brief on the roll-up thesis, valuation anchors, target operator pool screened from public sources, capital partner universe, and a recommended strategic sequence. Section B of this document carries the client-safe synthesis.</p>
+
+  <h3>Workstream 3 · Role Design and Applied AI</h3>
+  <p>Role architecture for the seat Justin sketched in his April 20 email — financial controllership plus M&amp;A operating partnership plus the AI decision layer above the existing data foundation. Section C lays out the scope of accountability, the three operating layers, and a year-1 outline.</p>
+
+  <h2>Engagement context</h2>
+  <ul>
+    <li><strong>Inbound conversation.</strong> Justin Woods opened the conversation in April 2026, framing the opportunity around organizational redesign tied to AI-enabled ways of working — including a CFO-shaped seat with technology and applied AI in scope.</li>
+    <li><strong>Manufacturer-level AI mandate.</strong> Ashley Furniture Industries (Todd Wanek, CEO) has publicly stated businesses have "3–5 years to figure out AI or get left behind," committed $2B to innovation, and operationalized a GMROI Excellence Framework for licensees (Dec 2024). 170+ AI projects in flight inside Ashley corporate.</li>
+    <li><strong>Roll-up posture.</strong> Two acquisitions in three years and a stated path to ~48 stores within 18 months. Southeast distress (Franchise Group / Conn's / Badcock / American Freight) cleared substantial regional retail capacity 2024–2025 — a real-estate window that's open now and won't last.</li>
+    <li><strong>Family ownership and continuity.</strong> Russell Turner, 4th-generation family owner, brought Justin in as President to lead the operating company forward. Continuity, culture, and 1915 South's track record are first-order constraints — the engagement is built around protecting them, not stress-testing them.</li>
+  </ul>
+
+  <div class="callout">
+    <h4>How to read this document</h4>
+    <p>Section B (M&amp;A and Capital) is the centerpiece — it carries the most depth and is the section most directly tied to the questions Justin has been asking. Section C is the role architecture. Section D is a visual preview pointing to the Innovation Workshop companion PDF.</p>
+  </div>
+
+  <div class="foot">1915 South · Engagement Briefing · Section A — Engagement Overview · April 29, 2026</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION B — M&A AND CAPITAL                                  -->
+<!-- ============================================================ -->
+<section class="page section-break">
+
+  <div class="section-eyebrow">Section B · M&amp;A and Capital</div>
+  <h1>M&amp;A and Capital Strategy</h1>
+  <p class="lede">Roll-up thesis, valuation anchors, named target operator pool (public sources only), capital partner universe, strategic-partnership map, adjacencies, and a recommended sequence across the next 6 / 12 / 24 months.</p>
+
+  <div class="tag-row">
+    <span class="tag">Buy-side roll-up</span>
+    <span class="tag">FRG real-estate dividend</span>
+    <span class="tag">Capital-in optionality</span>
+    <span class="tag">Strategic partnerships</span>
+    <span class="tag">Adjacencies</span>
+    <span class="tag">Strategic sequence</span>
+  </div>
+
+  <h2>B.1 The thesis in one paragraph</h2>
+  <p>1915 South is already a roll-up, not a single-site retailer. Two closed deals in three years and a named VP of Corporate Development &amp; Strategy mean the M&amp;A muscle is in place. The Southeast is currently the single most target-rich region in the country for furniture M&amp;A — Franchise Group's 2024 collapse emptied roughly 900 storefronts across 1915 South's core states; several multi-generation independents are at succession age; multiple Ashley licensees in adjacent territory are sub-scale; and Havertys, the public competitor, is executing a pure real-estate-scavenging expansion and leaving the customer-acquisition play on the table. 1915 South can credibly run two to three deals per year starting now, with a path to ~48 stores inside 18 months and a real-estate dividend that compounds the operating story.</p>
+
+  <h2>B.2 Anchors</h2>
+  <div class="grid-2">
+    <div class="fact-card"><h3>Roll-up cadence</h3><p>Two acquisitions in three years (Fineman Jacksonville 2022, Yulee FL 2025). Stated path to ~48 stores in 18 months. The team has built the muscle.</p></div>
+    <div class="fact-card"><h3>Regional dislocation</h3><p>~880 Southeast storefronts vacated 2024–2025 from Franchise Group / Badcock / Conn's / American Freight. Once-a-decade real-estate window inside the 1915 South footprint.</p></div>
+    <div class="fact-card"><h3>Manufacturer posture</h3><p>Ashley CEO Todd Wanek: $2B innovation commitment, GMROI Excellence Framework Dec 2024, mainland China sourcing ceased April 2025. Resident Home acquired for ~$1B March 2024.</p></div>
+    <div class="fact-card"><h3>PE re-entry</h3><p>PE home-goods activity +45.5% YoY in 2025 (16 deals YTD; 12 platform deals vs. 2 the prior year). Lincoln International expects H2 2025 to be when momentum breaks loose.</p></div>
+  </div>
+
+  <h2>B.3 Valuation anchors (back-of-envelope)</h2>
+  <p>Frames pulled from public-market comps and the standard mid-market frameworks. These are reference ranges, not external quotes — any number used outside this engagement should be re-underwritten against 1915 South's actual financials.</p>
+  <table>
+    <thead><tr><th>Frame</th><th>Low</th><th>Mid</th><th>High</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Public mid-market EV / EBITDA</strong> (HVT, ETD, LZB, BSET range 4–7×)</td><td>$102M</td><td>$140M</td><td>$180M</td><td>The readily-available benchmark.</td></tr>
+      <tr><td><strong>Kerrigan / Haig blue-sky</strong> (3.5–5.5× adjusted pre-tax, post-addbacks)</td><td>$90M</td><td>$115M</td><td>$150M</td><td>Operating value only. Real estate priced separately at 6–8% cap on owned locations.</td></tr>
+      <tr><td><strong>Strategic buyer premium</strong> (+1–2×)</td><td>$155M</td><td>$180M</td><td>$225M</td><td>A larger Ashley licensee or AFI itself would pay a premium for geographic density.</td></tr>
+    </tbody>
+  </table>
+  <p>Most credible current operating-EV range: <strong>$140–180M operating + separately-priced real estate</strong>; pushed to <strong>$200M+</strong> with a strategic acquirer in scope.</p>
+
+  <h2>B.4 Why now</h2>
+  <ul>
+    <li><strong>Manufacturer cover.</strong> Ashley corporate's AI mandate creates top-down support for showcase licensees who move on operating-model modernization in tandem with footprint expansion.</li>
+    <li><strong>Once-a-decade real-estate window.</strong> Box-for-box availability in the 1915 South footprint is the highest it has been in five-plus years and is unlikely to persist at this scale into 2027.</li>
+    <li><strong>Operator-pricing reset.</strong> Distressed transaction comps have re-anchored what franchisee tuck-ins should clear at — often well below the prior multiple regime.</li>
+    <li><strong>M&amp;A velocity already exists.</strong> Justin's named VP Corp Dev creates a permanent owner of the pipeline; codifying the playbook now (while Fineman and Yulee are fresh) costs a fraction of what it will cost in 12 months.</li>
+  </ul>
+
+  <h2>B.5 Buy-side — target archetypes</h2>
+  <table>
+    <thead><tr><th>Archetype</th><th>Profile</th><th>Reference</th><th>Financing</th><th>Integration timeline</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fineman-class tuck-in</strong></td><td>3–5 stores, same-state or adjacent, succession-stressed owner, overlapping vendor relationships</td><td>1915 South's May 2022 Jax + Brunswick deal</td><td>Cash + seller note common</td><td>~90 days to banner flip; 12 months to full margin capture</td></tr>
+      <tr><td><strong>FRG-footprint real-estate play</strong></td><td>Acquire former Conn's / Badcock / American Freight locations for re-banner; not a going concern, just a box plus local pricing data</td><td>Havertys playbook (Joann / Big Lots / B3 spaces)</td><td>Lease take-over, minimal equity</td><td>~6 months to open</td></tr>
+      <tr><td><strong>Adjacent-state Ashley licensee</strong></td><td>Small Ashley licensee in SC, TN, KY, or LA with 3–10 stores and a succession-age owner</td><td>Multiple candidates publicly identifiable</td><td>Cash + earnout + seller rollover</td><td>~6–9 months</td></tr>
+      <tr><td><strong>Distressed non-Ashley regional retailer + re-banner</strong></td><td>Mid-market independent facing rate / inventory stress; acquire and banner-flip to Ashley</td><td>Mitchell Gold, Z Gallerie, Interior Define precedents</td><td>Section 363 process or asset purchase from Ch. 11</td><td>~12–18 months</td></tr>
+    </tbody>
+  </table>
+
+  <h2>B.6 Named target operator pool</h2>
+  <p>15 named candidates screened from public sources only — geography, format, ownership posture, and adjacency to the 1915 South footprint. Highest-priority candidates summarized below; the full roster sits in the supporting research files.</p>
+  <ul>
+    <li><strong>Southwest Virginia Ashley licensee.</strong> 8–9 stores Roanoke through Bluefield; dual-brand operator with an independent Mechanicsville chain (Home-Makers Furniture, since 1988). Reverse-carve-out precedent. Directly adjacent to the Danville VA footprint.</li>
+    <li><strong>Grand Furniture / GrandBrands</strong> (Stein family, 4th gen, Norfolk VA). Operates own Grand brand plus Ashley HomeStores in Chesapeake / VA Beach / Newport News. Direct overlap with 1915 South's VA footprint.</li>
+    <li><strong>Kane's Furniture</strong> (Pinellas Park FL, ~18 stores, founded 1948). Post-founding-family leadership; FL-only geographic overlap with 1915 South's 12 FL stores.</li>
+    <li><strong>Baer's Furniture</strong> (Baer family, 4th gen, ~16 FL stores). Mid-price / high-end segment — would extend 1915 South's price-point coverage.</li>
+    <li><strong>Miskelly Furniture</strong> (Jackson MS, founding family since 1978). Direct MS-footprint overlap; Koalafi early adopter.</li>
+    <li><strong>FRG-footprint real-estate targets.</strong> Specific Conn's / Badcock boxes in FL, GA, AL, NC with good trade areas still available at distressed lease terms.</li>
+  </ul>
+
+  <h2>B.7 The FRG / Badcock real-estate dividend</h2>
+  <p>Between July 2024 and March 2025, Franchise Group and its consumer-retail subsidiaries collapsed: Conn's HomePlus (which had acquired Badcock in 2023) filed Chapter 11 in July 2024; Franchise Group parent followed in November 2024 with American Freight (357 stores) closing immediately. Net effect: roughly 900 retail storefronts vacated across the FRG footprint, with the customer base concentrated in low-prime credit tiers — the same customer segment Ashley HomeStores serve.</p>
+  <div class="grid-3">
+    <div class="fact-card"><h3>Real estate</h3><p>Badcock's Mulberry FL footprint, Conn's TX/LA/FL/AL/GA footprint, and American Freight's national footprint sit on landlord re-lease lists at distressed terms. Havertys is already executing this play.</p></div>
+    <div class="fact-card"><h3>Customer base</h3><p>FRG served roughly the same furniture customer as Ashley HomeStore. Those customers are now shopping somewhere; capture cost at re-banner is signage and local advertising rather than full LTV-led acquisition.</p></div>
+    <div class="fact-card"><h3>Talent</h3><p>Experienced furniture-retail store managers, delivery drivers, and sales associates are available in 1915 South's core markets — an unusual window to upgrade bench depth without paying market premium.</p></div>
+  </div>
+  <p><strong>The play.</strong> Treat the FRG-footprint dividend as a distinct sub-thesis inside the buy-side roll-up. Build a box-by-box opportunity map within a 45-mile radius of every existing 1915 South store. Score boxes on trade-area demographics, lease terms, and proximity to existing DC infrastructure. Target 3–5 new boxes in 2026, 5–8 in 2027. Capital requirements are modest — these are mostly lease take-overs; fit-out capex per box runs $500K–$1.5M with 24–36 month payback at historical store unit economics.</p>
+
+  <h2>B.8 Financing structures</h2>
+  <table>
+    <thead><tr><th>Structure</th><th>What it is</th><th>Best fit</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cash from operations + seller note</strong></td><td>Self-finance tuck-ins out of free cash flow; seller note bridges valuation gaps</td><td>Fineman-class deals; succession-motivated owners willing to carry paper</td></tr>
+      <tr><td><strong>ABL line + unitranche</strong></td><td>Dedicated acquisition facility through a relationship bank (likely Truist, BBVA-PNC, or Synovus given Southeast geography)</td><td>Larger deals; 4–6× senior leverage standard</td></tr>
+      <tr><td><strong>Seller-rollover equity</strong></td><td>10–20% seller rollover into NewCo at close; preserves operating knowledge and aligns incentives</td><td>Succession deals where founder wants continuity (Fineman archetype)</td></tr>
+      <tr><td><strong>Real-estate carve-out + sale-leaseback</strong></td><td>Separate OpCo from PropCo; sale-leaseback owned real estate at 6–8% cap</td><td>Capital-in lever that doesn't require operating-equity dilution</td></tr>
+    </tbody>
+  </table>
+
+  <h2>B.9 Strategic partnerships — universe map</h2>
+  <p>The partnership lanes 1915 South can deepen or restructure, ordered roughly by strategic leverage. Each is a no-regret move that does not depend on a capital event.</p>
+
+  <h3>Ashley corporate</h3>
+  <p>The relationship is not a partnership in the contractual sense — it's the parent-company dynamic — but every licensee has a defined elevation path. Top-tier status brings preferred territory assignments, innovation-pilot access, and margin-friendly terms. <strong>The play:</strong> position 1915 South as Ashley's AI + GMROI showcase licensee. Propose a quarterly Wanek-level review meeting; bring specific metrics from the new operating layer to every one. This is positioning, not a pitch for capital.</p>
+
+  <h3>Final-mile delivery</h3>
+  <p>The Bassett / Zenith Freight Lines template (JB Hunt acquired Bassett's in-house delivery in 2017 with a long-term master services agreement) is the playbook reference. Possible structures: (a) contract a 3PL for all final-mile, (b) divest in-house delivery assets to a 3PL under a long-term MSA, or (c) maintain a dual-provider model for resilience. Data-driven SLAs on damage rate, first-time delivery success, and NPS as explicit contract terms.</p>
+
+  <h3>Sleep / mattress vertical</h3>
+  <p>Tempur Sealy / Mattress Firm closed February 5, 2025. Tempur Sealy committed to reserve 25% of MFRM floor space for third-party brands for five years (75% of that for &gt;$1,500 mattresses) as a regulatory concession — a signal of strategic willingness to partner at scale with adjacent retailers. <strong>The play:</strong> a direct Tempur Sealy + 1915 South conversation about co-branded sleep destinations within Ashley stores, with preferred pricing and marketing support.</p>
+
+  <h3>Consumer financing</h3>
+  <p>The Koalafi / Synchrony waterfall (announced January 2026) is a single-application offer covering Synchrony store card + Koalafi lease-to-own — already live at The Wellsville Group (top-10 Ashley licensee) and Miskelly Furniture. <strong>The play:</strong> immediate adoption, with revenue-share mechanics integrated into the Ashley data platform so approval rates and lifetime value roll up into store-level P&amp;L.</p>
+
+  <h3>Data platform scope</h3>
+  <p>Existing data foundation (Zapsight) is shipping the pipes layer well; agentic capabilities are being built on top. The opportunity is a clean RACI plus a refreshed SOW: explicit definition of what the data vendor delivers (pipes, ingestion, agents) versus what 1915 South owns (decision layer, strategy, vendor management). Data-ownership terms should give 1915 South full optionality.</p>
+
+  <h2>B.10 Adjacencies and vertical integration</h2>
+
+  <h3>Ashley Care Plus — service as product</h3>
+  <p>Innovation Workshop concept A5. 40K annual deliveries × 30% attach × $120 AOV ≈ <strong>$1.4M high-margin revenue</strong>. Furniture-industry attach rates run 30–50% at high-performing retailers during product presentation versus &lt;10% at checkout — the lever is training and presentation, not the plan itself. Vendor options span Montage Furniture Services, Allstate Protection Plans / SquareTrade, Guardian Protection Products, OnPoint Warranty. Pattern reference: Best Buy Geek Squad runs 40–50% gross margin on $2B+ annual revenue, ~4% of total Best Buy revenue.</p>
+
+  <h3>B2B / hospitality / contract channel</h3>
+  <p>Ashley Contract, RH Contract, West Elm Contract, and Bernhardt Contract exist as dedicated B2B arms for competitors. A Southeast-focused contract arm could serve multi-family (Camden, Greystar), senior living (Watermark, Sunrise), student housing (American Campus, Scion), short-term rental (Vacasa, Sonder regional operators), and hospitality (Kimpton, InterContinental). Margin is thinner per unit, but volume is higher and more predictable, and it leverages existing DC and sales infrastructure.</p>
+
+  <h3>Trade-in / circular pilot</h3>
+  <p>AptDeco, Kaiyo, Chairish, FloorFound, and Revivn are developing retailer-partnership models. IKEA has run trade-in. A pilot offering trade-in credit toward new purchase within 90 days of delivery — with used product flowing through a dedicated outlet channel — is margin-neutral but drives repeat-purchase velocity.</p>
+
+  <h2>B.11 Strategic sequence — what to run next</h2>
+
+  <h3>Six months (May–Oct 2026)</h3>
+  <ol>
+    <li><strong>Codify the M&amp;A playbook.</strong> Innovation Workshop C7 expanded — diligence checklist, 90-day integration runbook, post-mortems from Fineman and Yulee. ~60 days. Owned jointly with VP Corp Dev.</li>
+    <li><strong>Land the partnership redesigns.</strong> Koalafi + Synchrony adoption, data-vendor RACI + revised SOW, Tempur Sealy 3rd-party conversation, structured final-mile assessment. All no-regret moves.</li>
+    <li><strong>Build the FRG-footprint opportunity map.</strong> 45-mile radius of every 1915 South store × all former Conn's / Badcock / American Freight + Mitchell Gold + Z Gallerie + similar 2023–2025 closures.</li>
+    <li><strong>Surface the AI showcase narrative to Ashley corporate.</strong> One-page proposed showcase outline; doesn't need AFI sign-off, but framing the intent builds the elevation narrative early.</li>
+  </ol>
+
+  <h3>Twelve months (by April 2027)</h3>
+  <ol start="5">
+    <li><strong>Close two deals.</strong> One Fineman-class tuck-in (Southwest VA Ashley licensee or similar) plus one FRG-footprint real-estate play (3–5 boxes re-opened).</li>
+    <li><strong>Pilot Ashley Care Plus</strong> at 5 stores × 90 days × instrumented attach-rate trials. Aim for 25%+ attach at blended $120 AOV.</li>
+    <li><strong>First quarterly AFI-level review.</strong> Present the AI showcase results to Wanek-level leadership.</li>
+    <li><strong>First formal valuation update.</strong> Post-deal revenue run-rate ~$210–230M; refresh the capital-allocation dashboard.</li>
+  </ol>
+
+  <h3>Twenty-four months (by April 2028)</h3>
+  <ol start="9">
+    <li><strong>$250M revenue milestone</strong> with post-integration 14–15% EBITDA. Strategic optionality work runs in parallel — informal capital-partner conversations carry the relationship side; any process is owner-driven.</li>
+    <li><strong>Ashley Care Plus fully deployed</strong> at $2–3M annual revenue run-rate, 50–60% margin.</li>
+    <li><strong>AI operating layer at scale.</strong> Store-level P&amp;L, margin, inventory, pricing, and clienteling all running through the integrated decision layer with quarterly Ashley performance reports.</li>
+  </ol>
+
+  <h2>B.12 Capital-partner universe (when relevant, on the owner's timeline)</h2>
+  <p>Capital-event optionality is owner-driven and not a near-term action item. The work in this lane is relationship-building over 12–18 months so that any future conversation happens on the owner's timeline with counterparties who already understand the business. The names below have been active in family-owned mid-market and consumer / specialty-retail platforms and are credible based on 2024–2026 deal activity.</p>
+  <ul>
+    <li><strong>Pritzker Private Capital</strong> — $3.4B fund (August 2025 close), mid-market family-owned focus.</li>
+    <li><strong>Bain Capital</strong> — owner of Bob's Discount Furniture; deep category knowledge.</li>
+    <li><strong>Forward Consumer Partners</strong> — ex-L Catterton spinout; $425M first fund (2024); mid-market consumer.</li>
+    <li><strong>Sun Capital Partners</strong> — Lexington Home Brands history; Florida-HQ'd.</li>
+    <li><strong>BDT &amp; MSD Partners</strong> — family-business advisory plus capital; relationship-first.</li>
+    <li><strong>Pamlico Capital</strong> — NC-HQ'd Southeast mid-market.</li>
+  </ul>
+
+  <h2>B.13 Risks to monitor</h2>
+  <ul>
+    <li><strong>Manufacturer approval mechanics.</strong> Every M&amp;A move involving an Ashley licensee requires AFI approval; the contractual mechanics aren't public. <em>Mitigation:</em> run informal Wanek-level conversations on any material move early — not after LOI.</li>
+    <li><strong>Integration capacity ceiling.</strong> Buyer-side bandwidth is the real governor on deal cadence. <em>Mitigation:</em> stage VP Corp Dev plus the redesigned Role Design + Applied AI seat before deal #2 and #3 close; model one new deal per integration-quarter as the ceiling.</li>
+    <li><strong>Seller's market as rates ease.</strong> Lincoln International expects H2 2025 to be when momentum breaks loose; valuations on attractive targets may rise 0.5–1.5× EBITDA. <em>Mitigation:</em> run two deals in the next 12 months; do not wait for perfect.</li>
+    <li><strong>FRG-footprint dividend is time-limited.</strong> Landlords will re-lease the vacant boxes across 2026–2027. <em>Mitigation:</em> 45-mile-radius opportunity map complete in 60 days; 3–5 boxes committed by end of 2026.</li>
+    <li><strong>Tariff volatility.</strong> Lincoln International flags tariffs as the 2025 wildcard; impacts COGS on anything not domestically sourced. <em>Mitigation:</em> scenario-model 10% / 20% / 30% tariff increases on non-US product mix.</li>
+  </ul>
+
+  <div class="callout">
+    <h4>What's in scope here vs. what's not</h4>
+    <p>This section synthesizes the M&amp;A and capital lane at the level appropriate for a working briefing. Sourcing, full named-target dossiers, capital-partner outreach mapping, and modeled cap tables sit in the supporting research files and are available as the engagement progresses.</p>
+  </div>
+
+  <div class="foot">1915 South · Engagement Briefing · Section B — M&amp;A and Capital · April 29, 2026</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION C — ROLE DESIGN AND APPLIED AI                       -->
+<!-- ============================================================ -->
+<section class="page section-break">
+
+  <div class="section-eyebrow">Section C · Role Design and Applied AI</div>
+  <h1>Role Design and the AI Decision Layer</h1>
+  <p class="lede">Role architecture for the seat sketched in Justin's April 20 note — a CFO-shaped role with technology and applied AI in scope, sitting <em>above</em> the existing data infrastructure rather than displacing it. The aim: a small set of crisp accountability statements, an applied-AI roadmap that compounds on existing investments, and a finance function that absorbs roll-up complexity without slowing it down.</p>
+
+  <h2>C.1 Role anchors</h2>
+  <div class="grid-2">
+    <div class="fact-card"><h3>Scope of accountability</h3><p>Accounting and controllership (incl. inventory). Deal support and modeling. Entity design and structure. Management and operating framework. Applied-AI roadmap. Technology and IT.</p></div>
+    <div class="fact-card"><h3>AI decision layer</h3><p>Existing data foundation provides implementation. The decision layer that turns data into operating choices and margin actions is the seat the role owns.</p></div>
+    <div class="fact-card"><h3>Manufacturer context</h3><p>Ashley corporate (Theo / FrontlineIQ for floor coaching, AshleyDirect for ordering and assets) is operating at the floor and pipes layer. The 29-store decision layer remains an open seat.</p></div>
+    <div class="fact-card"><h3>GMROI directive</h3><p>Ashley's December 2024 Excellence Framework is a positioning document with commercial enforcement (product access, co-op eligibility) — not a contractual numeric target.</p></div>
+  </div>
+
+  <h2>C.2 The three operating layers</h2>
+  <p class="lede">A useful way to read the AI landscape inside an Ashley licensee operation: floor, pipes, and decisions.</p>
+  <div class="layer-stack">
+    <div class="layer">
+      <h4>Floor layer · already shipping</h4>
+      <p>Sales-rep coaching at the showroom (Theo / FrontlineIQ via Ashley AI Advantage). Lands inside store sessions, free at the licensee level. Useful and underutilized — but bounded.</p>
+    </div>
+    <div class="layer">
+      <h4>Pipes layer · in build</h4>
+      <p>Data foundation, ingestion, model and dashboard infrastructure. Largely owned by the existing data vendor. Fast progress recently; agentic capabilities being built on top.</p>
+    </div>
+    <div class="layer">
+      <h4>Decision layer · open seat</h4>
+      <p>The translation of data into operating choices that move GMROI, gross margin, sell-through, and labor productivity. Connects pipes to specific weekly and quarterly merchandising, pricing, inventory, and operations decisions. This is where the Role Design + Applied AI seat sits.</p>
+    </div>
+  </div>
+
+  <h2>C.3 Year-1 outline</h2>
+  <ul>
+    <li><strong>Inventory and GMROI lever map.</strong> 80/20 SKU audit, order frequency / depth tuning (Ashley's MOQ-of-1 enables this), structured promotional clearance design.</li>
+    <li><strong>Pricing and assortment cadence.</strong> Weekly pricing rhythm with explicit decision rights and a single source of margin truth tied back to the data foundation.</li>
+    <li><strong>Last-mile economics.</strong> Independent assessment of the in-house delivery operation against 3PL alternatives at current and post-acquisition footprint scale, focused on capital and complexity not just unit cost.</li>
+    <li><strong>Finance modernization.</strong> Faster close, cleaner inventory accounting, and a forecasting cadence that holds up post-AGR integration.</li>
+    <li><strong>Applied-AI roadmap.</strong> Sequenced capabilities (call-center triage, demand forecasting layer above corporate, agentic decision support for merchants, etc.) with explicit coordination with the existing data vendor.</li>
+  </ul>
+
+  <h2>C.4 Why this role exists now</h2>
+  <ul>
+    <li><strong>Two-side mandate from Ashley corporate.</strong> Both the AI commitment and the GMROI directive create a multi-year window where modernization and franchisee economics are explicitly on Wanek's stage.</li>
+    <li><strong>Roll-up scale.</strong> A path to ~48 stores in 18 months changes the finance, IT, and decision-cadence requirements faster than incremental hiring can absorb. The role exists to absorb that complexity.</li>
+    <li><strong>Vendor seam.</strong> The pipes layer is well underway; the decision layer is the next build. The role exists to turn pipes into outcomes, not to rebuild pipes.</li>
+  </ul>
+
+  <h2>C.5 What the role specifically owns</h2>
+  <table>
+    <thead><tr><th>Lane</th><th>Owned</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Financial controllership</strong></td><td>Accounting system migration (likely toward Sage Intacct or NetSuite), month-end close acceleration, multi-entity P&amp;L consolidation post-roll-up.</td></tr>
+      <tr><td><strong>M&amp;A sourcing and diligence</strong></td><td>Owns pipeline and playbook in partnership with VP Corp Dev. Structures deals. Runs diligence. Owns integration outcomes.</td></tr>
+      <tr><td><strong>Capital allocation</strong></td><td>Owns the single-page capital dashboard. Updates quarterly. Tradeoff recommendations across new stores / M&amp;A / tech / dividend.</td></tr>
+      <tr><td><strong>Applied AI &amp; technology</strong></td><td>Owns the data-vendor relationship; evaluates tech investments using a defined ROI framework; owns the decision layer that sits on top of the data foundation.</td></tr>
+      <tr><td><strong>External partner management</strong></td><td>Ashley corporate, final-mile partners, Koalafi / Synchrony, sleep-vertical partners. The face for 1915 South leadership across the external relationships that matter to the operating model.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>C.6 What the role explicitly does not own</h2>
+  <ul>
+    <li>Replace the existing VP of People or VP of Sales / Operations.</li>
+    <li>Store-level HR policy, labor relations, or compensation committee.</li>
+    <li>Marketing execution (a VP Marketing exists).</li>
+    <li>Project-managing the data vendor (vendor-side role; managed but not owned by this seat).</li>
+  </ul>
+
+  <div class="foot">1915 South · Engagement Briefing · Section C — Role Design and Applied AI · April 29, 2026</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION D — INNOVATION WORKSHOP VISUAL PREVIEW               -->
+<!-- ============================================================ -->
+<section class="page section-break">
+
+  <div class="section-eyebrow">Section D · Innovation Workshop — Visual Preview</div>
+  <h1>Ten Concepts · Three Tracks</h1>
+  <p class="lede">A snapshot of Track A (Format / Product) hero visuals from the Innovation Workshop. Full pitch — including Track B (Ops / AI Arbitrage) and Track C (Back-Office / CFO Transition) — sits in the companion <strong>Innovation Workshop PDF</strong>, with 39 ideas scored and sequenced.</p>
+
+  <h2>Tracks at a glance</h2>
+  <div class="grid-3">
+    <div class="fact-card"><h3>Track A · Format / Product</h3><p>Store formats, service products, channel extensions. 10 hero concepts with visualizations.</p></div>
+    <div class="fact-card"><h3>Track B · Ops / AI Arbitrage</h3><p>Operating-cadence ideas where AI, automation, or process redesign creates measurable arbitrage against current run-rate.</p></div>
+    <div class="fact-card"><h3>Track C · Back-Office / CFO Transition</h3><p>Finance, controllership, and back-office modernization ideas tied directly to the role architecture in Section C.</p></div>
+  </div>
+
+  <h2>Track A — hero concepts</h2>
+  <div class="concepts">
+    <figure class="concept">
+      <img src="images-1915-south/a1-sleep-lab-specialty-stores-hero.png" alt="Sleep Lab / Specialty Stores">
+      <figcaption class="concept-meta"><div class="concept-id">A1 · Format</div><div class="concept-name">Sleep Lab / Specialty Stores</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a2b-store-of-future-single-element-pilot-hero.png" alt="Store-of-Future Single-Element Pilot">
+      <figcaption class="concept-meta"><div class="concept-id">A2b · Format</div><div class="concept-name">Store-of-Future Single-Element Pilot</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a3-15-minute-showroom-small-format-hero.png" alt="15-Minute Showroom · Small Format">
+      <figcaption class="concept-meta"><div class="concept-id">A3 · Format</div><div class="concept-name">15-Minute Showroom · Small Format</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a4-concierge-appointment-showroom-hero.png" alt="Concierge Appointment Showroom">
+      <figcaption class="concept-meta"><div class="concept-id">A4 · Format</div><div class="concept-name">Concierge Appointment Showroom</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a5-ashley-care-plus-service-as-product-hero.png" alt="Ashley Care Plus — Service as Product">
+      <figcaption class="concept-meta"><div class="concept-id">A5 · Product</div><div class="concept-name">Ashley Care Plus — Service as Product</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a6-regional-assortment-editor-hero.png" alt="Regional Assortment Editor">
+      <figcaption class="concept-meta"><div class="concept-id">A6 · Product</div><div class="concept-name">Regional Assortment Editor</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a7-final-mile-branded-white-glove-experience-hero.png" alt="Final-Mile Branded White-Glove">
+      <figcaption class="concept-meta"><div class="concept-id">A7 · Service</div><div class="concept-name">Final-Mile Branded White-Glove</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a8-furniture-subscription-rent-to-own-tier-hero.png" alt="Furniture Subscription / Rent-to-Own">
+      <figcaption class="concept-meta"><div class="concept-id">A8 · Product</div><div class="concept-name">Furniture Subscription / Rent-to-Own</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a9-builder-pro-b2b-channel-hero.png" alt="Builder Pro B2B Channel">
+      <figcaption class="concept-meta"><div class="concept-id">A9 · Channel</div><div class="concept-name">Builder Pro B2B Channel</div></figcaption>
+    </figure>
+    <figure class="concept">
+      <img src="images-1915-south/a10-kids-room-in-a-box-hero.png" alt="Kids Room in a Box">
+      <figcaption class="concept-meta"><div class="concept-id">A10 · Product</div><div class="concept-name">Kids Room in a Box</div></figcaption>
+    </figure>
+  </div>
+
+  <div class="callout">
+    <h4>Companion deliverable</h4>
+    <p>The Innovation Workshop PDF carries the full pitch behind each of the 39 ideas — scoring rationale, build-out sequence, capital and capability requirements, and the operator-grade detail behind the visuals above.</p>
+  </div>
+
+  <div class="foot">1915 South · Engagement Briefing · Section D — Innovation Workshop Visual Preview · April 29, 2026</div>
+</section>
+
+</body>
+</html>

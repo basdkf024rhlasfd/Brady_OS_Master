@@ -466,6 +466,97 @@ idea_library:
       - "Notion DB as live source scales better than hardcoded HTML — future runs skip the deploy step entirely"
       - "Telly-bot integration reuse avoided creating a new Notion integration; one-time DB share was enough"
 
+  # Run 7 — Home Cardboard Transformation Appliances
+  - date: "2026-04-29"
+    category: "Dad / Family Consumer Products — Home Circular Economy Hardware"
+    input_source: "Brady + Michael Smallwood (brother) — break-down time friction + $20/month paper plates + Brady riff on 3D printing/baler/chemical safety angles"
+    stage_0_readiness_level: 1
+    cluster_id_used: null
+    cluster_name: "Amazon Box Anxiety — Home Cardboard Transformation Appliance"
+    sharpness_gate_passes: 1
+    sharpness_gate_override: true  # Brady said "carry it all the way from beginning to end" = full auto
+    methods_used: [4, 9, 15, 21, 24, 51, 57, 56]
+    ideas_generated: 30
+    ideas_surviving: 20
+    stage_at_save: 2  # Researched — images queued for Musashi
+    top_picks:
+      - name: "CardBrick"
+        method: 57
+        score: 4.55
+        tags: [fire-log, downmarket, $0-input, high-margin, combustion-safe]
+      - name: "FlatPack Pro"
+        method: 4
+        score: 4.30
+        tags: [box-flattener, blue-ocean, white-space, direct-pain-solver]
+      - name: "BoxWax Studio"
+        method: 24
+        score: 4.15
+        tags: [wax, beeswax, craft-appliance, food-safe, cricut-adjacent]
+      - name: "BioPlate 2.0"
+        method: 4
+        score: 4.10
+        tags: [pulp-plate, lomi-model, food-safe-coating, $11B-market]
+      - name: "CardTile Studio"
+        method: 21
+        score: 4.10
+        tags: [decorative-tile, cricut-adjacent, subscription-molds, home-decor]
+    method_performance:
+      4:  { ideas_raw: 5, survivors: 5, hit_rate: 1.00, notes: "JTBD continues 100% — named-person seed (Michael) produced most grounded ideas in the run" }
+      9:  { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Blue ocean useful for white-space detection; eliminate/create grid harder in hardware than food" }
+      15: { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "Analogous inspiration (tortilla press, Lomi, Cricut) produced clearest positioning statements" }
+      21: { ideas_raw: 6, survivors: 5, hit_rate: 0.83, notes: "SCAMPER Reverse (log from box) + Adapt (industrial→home) strongest; one cut for overlap" }
+      24: { ideas_raw: 5, survivors: 4, hit_rate: 0.80, notes: "Max-contrast mashups (cardboard × fire, × wax, × kids) strongest; one low-contrast forced cut" }
+      51: { ideas_raw: 3, survivors: 2, hit_rate: 0.67, notes: "Urban homesteading + kids cardboard play strongest signals; CardFilament maker signal weaker" }
+      56: { ideas_raw: 2, survivors: 2, hit_rate: 1.00, notes: "Premiumization transformed 'recycling machine' into 'creative appliance' — pivotal framing" }
+      57: { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "Downmarket Disruption is the anchor method for hardware/appliance runs — industrial→home is the defining pattern" }
+    category_coverage:
+      "Premium Foodservice / CPG": 2
+      "Construction / Industrial Consumables": 0
+      "AI-Powered Physical Products": 1  # First touch via CardFilament
+      "Dad / Family Consumer Products": 2  # Second touch
+      "Beverage (Functional / Premium)": 1
+      "Professional / B2B Tools": 0
+      "Functional Indulgence — Performance Bakery & Snacks": 1
+      "Global Snacks / Cultural Format Transfer": 1
+      "Fermented Foods / Gut Health": 1
+      "Kids Fashion / DTC Apparel": 1
+      "Home Circular Economy Hardware": 1  # New lane — first touch
+    category_gaps_identified:
+      - "Construction/Industrial lane still untouched across all runs — high margin but low personal connection"
+      - "Professional/B2B Tools untouched — could combine with hardware (e.g., shipping/repackaging solutions)"
+      - "Home Circular Economy Hardware is now a registered lane — PaperPot Farm, NestMaker, SoilBlock+ suggest a garden sub-lane worth a dedicated run"
+    learnings:
+      - "Downmarket Disruption (#57) hit 100% in hardware run — it should anchor all future appliance/physical product runs (replaces Packaging Innovation #58 which is food/CPG only)"
+      - "Packaging Innovation (#58) excluded from Run 7 (irrelevant to physical device design) — confirmed: #58 is CPG/food only, not hardware"
+      - "Named-person ideation seeds (Michael with real problem + real cost) produce more grounded, defensible ideas than abstract category selection"
+      - "Chemical safety as product IP: a constraint (PFAS/ink concern) became the core differentiator for BioPlate 2.0 and CardPress Pro — front-load constraint analysis in Stage 0 for regulated-output categories"
+      - "Two-product family: CardBrick + FlameBox share mechanism at different scales — flag for Stage 3 platform strategy analysis"
+      - "The $39 tail (CardStack) has the highest margin (52%) and fastest time-to-market — workshop ranking by score systematically undervalues simplicity. Consider adding 'speed-to-market' as a separate scoring criterion."
+      - "Premiumization (#56) reframed an entire product: 'recycling machine' → 'creative appliance' changes buyer profile, price tolerance, and distribution channel simultaneously"
+      - "First non-CPG/food/fashion run — hardware runs need different method set (drop #58, anchor on #57, keep #15 and #21)"
+
+  # Run 7 idea library
+  - { name: "CardBrick", category: "Home Hardware / Fire", method: 57, date: "2026-04-29" }
+  - { name: "FlatPack Pro", category: "Home Hardware / Organization", method: 4, date: "2026-04-29" }
+  - { name: "BoxWax Studio", category: "Home Hardware / Craft", method: 24, date: "2026-04-29" }
+  - { name: "BioPlate 2.0", category: "Home Hardware / Kitchen", method: 4, date: "2026-04-29" }
+  - { name: "CardTile Studio", category: "Home Hardware / Decor", method: 21, date: "2026-04-29" }
+  - { name: "CardPress Pro", category: "Home Hardware / Kitchen", method: 15, date: "2026-04-29" }
+  - { name: "FlameBox", category: "Home Hardware / Outdoor Fire", method: 57, date: "2026-04-29" }
+  - { name: "ArtPulp Press", category: "Home Hardware / Craft", method: 56, date: "2026-04-29" }
+  - { name: "BoxBar", category: "Home Hardware / Organization", method: 9, date: "2026-04-29" }
+  - { name: "GiftBoxCraft", category: "Home Hardware / Gifting", method: 24, date: "2026-04-29" }
+  - { name: "KidStation BoxBot", category: "Home Hardware / Kids", method: 51, date: "2026-04-29" }
+  - { name: "KidPlayMaker", category: "Home Hardware / Kids", method: 15, date: "2026-04-29" }
+  - { name: "CardLog Outdoor", category: "Home Hardware / Outdoor Fire", method: 57, date: "2026-04-29" }
+  - { name: "PaperPot Farm", category: "Home Hardware / Garden", method: 15, date: "2026-04-29" }
+  - { name: "SoilBlock+", category: "Home Hardware / Garden", method: 24, date: "2026-04-29" }
+  - { name: "LitterMat Maker", category: "Home Hardware / Pet", method: 4, date: "2026-04-29" }
+  - { name: "CardFilament", category: "Home Hardware / Maker", method: 15, date: "2026-04-29" }
+  - { name: "NestMaker", category: "Home Hardware / Garden", method: 15, date: "2026-04-29" }
+  - { name: "CrateBuilder", category: "Home Hardware / Organization", method: 21, date: "2026-04-29" }
+  - { name: "CardStack", category: "Home Hardware / Organization", method: 4, date: "2026-04-29" }
+
   # Run 5 idea library
   - { name: "Charm Cargo", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
   - { name: "The Canvas Collection", category: "Kids Fashion / DTC", method: 24, date: "2026-04-19" }

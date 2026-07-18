@@ -1,0 +1,107 @@
+runs:
+  - run_id: "orange-chicken-2026-04-23"
+    date: "2026-04-23"
+    cluster: "Functional Indulgence in Asian Comfort Format"
+    category_intel_page_id: "34bed43b-89c5-811a-8152-dfa132f2e4f9"
+    readiness_level: 2
+    readiness_label: "Trend Convergence"
+    stage_0_override: false
+    full_auto: true
+    ideas_generated: 30
+    ideas_survived: 20
+    survival_rate: 0.67
+    methods_used:
+      - "JTBD #4"
+      - "Blue Ocean Strategy #9"
+      - "Analogous Inspiration #15"
+      - "SCAMPER #21"
+      - "Mashup Method #24"
+      - "Cultural Trend Mining #51"
+      - "Category Design #55"
+      - "Premiumization Lens #56"
+      - "Downmarket Disruption #57"
+      - "Packaging Innovation #58"
+    scoring_weights:
+      originality: 0.20
+      market_size: 0.20
+      margin_potential: 0.20
+      visual_appeal: 0.15
+      speed_to_prototype: 0.15
+      research_backing: 0.10
+    score_range:
+      min: 74
+      max: 86
+      mean: 80.1
+    top_ideas:
+      - rank: 1
+        idea: "ZEST Functional Takeout Brand"
+        score: 86
+        method: "Category Design #55, JTBD #4"
+      - rank: 2
+        idea: "Orange Chicken Everything Sauce"
+        score: 85
+        method: "Blue Ocean Strategy #9, Premiumization Lens #56"
+      - rank: 3
+        idea: "Functional Takeout Frozen Bowl"
+        score: 84
+        method: "JTBD #4, Category Design #55"
+      - rank: 4
+        idea: "Orange Chicken Prebiotic RTD"
+        score: 83
+        method: "Mashup Method #24, Cultural Trend Mining #51"
+      - rank: 5
+        idea: "Single-Serve GLP-1 Portion Cup"
+        score: 83
+        method: "JTBD #4, Blue Ocean Strategy #9"
+    category_distribution:
+      Premium CPG: 9
+      Functional Beverage: 6
+      Family Meals / Frozen: 5
+    ops_complexity_distribution:
+      Simple: 12
+      Moderate: 6
+      Complex: 2
+    notion_idea_pipeline_db: "d7f77313-3bfc-42e6-9c6d-53aa7d2b2597"
+    output_html: "output/innovation-workshop-2026-04-23.html"
+    output_pdf: "output/innovation-workshop-2026-04-23.pdf"
+    midjourney_prompts: "output/midjourney-prompts-2026-04-23.md"
+    images_dir: "output/images-orange-chicken-workshop/"
+    method_performance:
+      - method: "JTBD #4"
+        avg_score: 84.0
+        appearances: 5
+        note: "Strong across frozen + beverage ideas"
+      - method: "Blue Ocean Strategy #9"
+        avg_score: 82.3
+        appearances: 4
+        note: "Best for sauce + condiment white space"
+      - method: "Mashup Method #24"
+        avg_score: 80.5
+        appearances: 5
+        note: "Reliable for cross-category ideas"
+      - method: "Cultural Trend Mining #51"
+        avg_score: 81.2
+        appearances: 5
+        note: "Critical for Korean-Chinese fusion angle"
+      - method: "Premiumization Lens #56"
+        avg_score: 81.8
+        appearances: 5
+        note: "Unlocked premium packaging concepts"
+      - method: "Packaging Innovation #58"
+        avg_score: 76.0
+        appearances: 2
+        note: "High originality but ops complexity penalty"
+      - method: "Downmarket Disruption #57"
+        avg_score: 75.0
+        appearances: 2
+        note: "Lower score but fast-to-market angle"
+    cluster_insights:
+      - "GLP-1 adjacent positioning unlocks premium pricing across all format types"
+      - "Swicy flavor profile (orange + chili) lands in both functional and indulgent positioning without contradiction"
+      - "Beverage extensions carry lowest ops complexity and highest speed-to-market"
+      - "Packaging innovation ideas scored lower due to ops complexity penalty — may deserve separate track"
+      - "Asian-American comfort format has significant white space in functional CPG — minimal direct competition"
+    next_runs_suggested:
+      - "Run same cluster against B2B/foodservice angle (office catering, meal kit operators)"
+      - "Deep-dive on GLP-1 meal format specifically — full 20-idea run"
+      - "Explore adjacent Asian comfort formats: General Tso's, Kung Pao, Teriyaki"

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>1915 South | Ashley — Engagement Overview</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-card: #161A23;
+    --bg-card-alt: #1E2330;
+    --white: #F5F1E8;
+    --gray: #A8ADB8;
+    --gray-light: #D4D7DD;
+    --accent: #E8A547;
+    --accent-soft: #C97E2A;
+    --line: #2A2F3D;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--bg); color: var(--white);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); background: var(--bg-card); padding: 2px 6px; border-radius: 3px; }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 48px 80px; }
+
+  .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 0.18em; font-size: 11px; text-transform: uppercase; }
+  h1 { font-size: 40px; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; margin: 12px 0 8px; }
+  .subtitle { font-size: 17px; color: var(--gray-light); margin-bottom: 12px; max-width: 720px; }
+  .meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gray); margin-bottom: 36px; letter-spacing: 0.04em; }
+  .meta span { margin-right: 24px; }
+  .meta strong { color: var(--white); font-weight: 500; }
+
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 14px; padding-top: 16px; border-top: 1px solid var(--line); letter-spacing: -0.005em; }
+  h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 32px; }
+  p { margin: 0 0 14px; }
+  p.lede { font-size: 16px; color: var(--gray-light); max-width: 780px; }
+
+  .files {
+    display: grid; grid-template-columns: 1fr; gap: 12px; margin: 14px 0 12px;
+  }
+  .file-card {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 18px; transition: all 0.15s ease;
+  }
+  .file-card:hover { background: var(--bg-card-alt); border-color: var(--accent-soft); text-decoration: none; }
+  .file-icon {
+    flex-shrink: 0; width: 36px; height: 36px; background: var(--bg-card-alt);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    color: var(--accent); border-radius: 4px;
+  }
+  .file-title { font-weight: 600; color: var(--white); font-size: 14px; }
+  .file-desc { font-size: 13px; color: var(--gray); margin-top: 2px; }
+  .file-body { flex: 1; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fact-card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .fact-card h3 { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 8px; }
+  .fact-card p { margin: 0; font-size: 14px; color: var(--gray-light); }
+
+  ul { margin: 0 0 14px 20px; }
+  li { margin-bottom: 6px; color: var(--gray-light); }
+  li strong { color: var(--white); }
+
+  .note {
+    font-size: 13px; color: var(--gray); padding: 14px 18px;
+    background: var(--bg-card); border-left: 3px solid var(--accent);
+    border-radius: 4px; margin: 18px 0;
+  }
+
+  .concepts {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px; margin: 14px 0 12px;
+  }
+  .concept {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden; transition: all 0.15s ease;
+  }
+  .concept:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+  .concept img {
+    display: block; width: 100%; aspect-ratio: 3/2; object-fit: cover;
+    background: var(--bg-card-alt);
+  }
+  .concept-meta { padding: 10px 14px 14px; }
+  .concept-id {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .concept-name {
+    font-size: 13px; font-weight: 600; color: var(--white);
+    margin-top: 4px; line-height: 1.35;
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 24px; }
+    h1 { font-size: 32px; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">1915 South Engagement · Executive Overview</div>
+<h1>1915 South | Ashley</h1>
+<p class="subtitle">29-store Ashley HomeStore franchisee across the Southeast (FL/GA/AL/NC/MS/VA). Justin Woods, President; Russell Turner, CEO &amp; sole owner.</p>
+<div class="meta">
+  <span><strong>Status</strong> active engagement</span>
+  <span><strong>Phase</strong> Problem Frame · M&amp;A and role design</span>
+  <span><strong>Last update</strong> 2026-04-26</span>
+</div>
+
+<p class="lede">Executive overview workspace for the 1915 South engagement. Two anchor work products: the <strong>Innovation Workshop</strong> (39 scored ideas across format, ops, and back-office tracks) and the <strong>M&amp;A and Capital Brief</strong> (roll-up thesis, valuation anchors, named target operators from public sources, capital partner universe). Sub-workspaces for M&amp;A and CFO + Applied AI sit alongside this page.</p>
+
+<h2>Engagement at a glance</h2>
+<div class="grid-2">
+  <div class="fact-card"><h3>Footprint</h3><p>29 stores across FL (12), GA (7), NC (4), AL (5), MS (1), VA (1). 4 distribution centers in 4 states. Vertically integrated last-mile.</p></div>
+  <div class="fact-card"><h3>M&amp;A cadence</h3><p>Two acquisitions in three years — Fineman (Jacksonville, 2022) and Yulee FL (2025). The roll-up thesis is real, not hypothetical.</p></div>
+  <div class="fact-card"><h3>Ashley corporate context</h3><p>Manufacturer CEO Todd Wanek has publicly committed $2B to AI and innovation, set a GMROI Excellence Framework directive (Dec 2024), and ceased China sourcing (April 2025).</p></div>
+  <div class="fact-card"><h3>Engagement focus</h3><p>Three workstreams: Innovation Workshop (operator-grade idea pool), M&amp;A roadmap (roll-up + capital partners), and CFO + Applied AI role design.</p></div>
+</div>
+
+<h2>Product concepts — Track A hero visuals</h2>
+<p class="lede">Ten concept renders from the Innovation Workshop (Track A: Format / Product). Click the <a href="../files/innovation-workshop-1915-south-2026-04-22.pdf" target="_blank">Innovation Workshop PDF</a> below for the full pitch behind each.</p>
+<div class="concepts">
+  <figure class="concept"><img src="images-1915-south/a1-sleep-lab-specialty-stores-hero.png" alt="A1 Sleep Lab"><figcaption class="concept-meta"><div class="concept-id">A1 · Format</div><div class="concept-name">Sleep Lab / Specialty Stores</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a2b-store-of-future-single-element-pilot-hero.png" alt="A2b Store of the Future"><figcaption class="concept-meta"><div class="concept-id">A2b · Format</div><div class="concept-name">Store-of-Future Single-Element Pilot</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a3-15-minute-showroom-small-format-hero.png" alt="A3 15-Minute Showroom"><figcaption class="concept-meta"><div class="concept-id">A3 · Format</div><div class="concept-name">15-Minute Showroom · Small Format</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a4-concierge-appointment-showroom-hero.png" alt="A4 Concierge Showroom"><figcaption class="concept-meta"><div class="concept-id">A4 · Format</div><div class="concept-name">Concierge Appointment Showroom</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a5-ashley-care-plus-service-as-product-hero.png" alt="A5 Ashley Care Plus"><figcaption class="concept-meta"><div class="concept-id">A5 · Product</div><div class="concept-name">Ashley Care Plus — Service as Product</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a6-regional-assortment-editor-hero.png" alt="A6 Regional Assortment Editor"><figcaption class="concept-meta"><div class="concept-id">A6 · Product</div><div class="concept-name">Regional Assortment Editor</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a7-final-mile-branded-white-glove-experience-hero.png" alt="A7 Final-Mile White-Glove"><figcaption class="concept-meta"><div class="concept-id">A7 · Service</div><div class="concept-name">Final-Mile Branded White-Glove</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a8-furniture-subscription-rent-to-own-tier-hero.png" alt="A8 Subscription Tier"><figcaption class="concept-meta"><div class="concept-id">A8 · Product</div><div class="concept-name">Furniture Subscription / Rent-to-Own</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a9-builder-pro-b2b-channel-hero.png" alt="A9 Builder Pro B2B"><figcaption class="concept-meta"><div class="concept-id">A9 · Channel</div><div class="concept-name">Builder Pro B2B Channel</div></figcaption></figure>
+  <figure class="concept"><img src="images-1915-south/a10-kids-room-in-a-box-hero.png" alt="A10 Kids Room in a Box"><figcaption class="concept-meta"><div class="concept-id">A10 · Product</div><div class="concept-name">Kids Room in a Box</div></figcaption></figure>
+</div>
+
+<h2>Innovation Workshop deliverables</h2>
+<p class="lede">39 scored ideas across three tracks — Format/Product, Ops/AI Arbitrage, and Back-Office/CFO Transition. Designed as both a portfolio of options and a working baseline for sequencing.</p>
+<div class="files">
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22.pdf" target="_blank">
+    <div class="file-icon">PDF</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — PDF</div>
+      <div class="file-desc">Tabloid format with hero visuals. Primary read.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22.html" target="_blank">
+    <div class="file-icon">HTM</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — HTML (dark)</div>
+      <div class="file-desc">On-screen read.</div>
+    </div>
+  </a>
+  <a class="file-card" href="../files/innovation-workshop-1915-south-2026-04-22-light.html" target="_blank">
+    <div class="file-icon">HTM</div>
+    <div class="file-body">
+      <div class="file-title">Innovation Workshop — HTML (light)</div>
+      <div class="file-desc">Print-ready light version.</div>
+    </div>
+  </a>
+</div>
+
+<h2>M&amp;A and Capital Brief</h2>
+<p class="lede">10-section deep brief on the roll-up thesis, valuation anchors, named target operators (public sources only), capital partner universe, and a strategic sequence. Full workspace: <a href="/1915-south-ma">1915 M&amp;A</a>.</p>
+<div class="files">
+  <a class="file-card" href="/1915-south-ma">
+    <div class="file-icon">→</div>
+    <div class="file-body">
+      <div class="file-title">Open the 1915 M&amp;A workspace</div>
+      <div class="file-desc">Roll-up thesis, valuation, target operators, capital partners.</div>
+    </div>
+  </a>
+</div>
+
+<h2>CFO + Applied AI</h2>
+<p class="lede">Role design, scope of accountability, and the AI decision layer above existing data infrastructure (Zapsight). GMROI improvement levers and finance modernization. Full workspace: <a href="/1915-south-cfo">1915 CFO</a>.</p>
+<div class="files">
+  <a class="file-card" href="/1915-south-cfo">
+    <div class="file-icon">→</div>
+    <div class="file-body">
+      <div class="file-title">Open the 1915 CFO workspace</div>
+      <div class="file-desc">Role design, AI decision layer, GMROI lever map, finance modernization.</div>
+    </div>
+  </a>
+</div>
+
+<h2>Engagement context</h2>
+<ul>
+  <li><strong>Inbound conversation.</strong> Justin Woods initiated the conversation in April 2026, framing the opportunity around organizational redesign tied to AI-enabled ways of working — including a CFO-shaped role with technology and applied AI in scope.</li>
+  <li><strong>Manufacturer-level AI mandate.</strong> Ashley Furniture Industries (Todd Wanek, CEO) has publicly stated businesses have "3–5 years to figure out AI or get left behind," committed $2B to innovation, and operationalized a GMROI Excellence Framework for licensees (Dec 2024). 170+ AI projects identified inside Ashley corporate.</li>
+  <li><strong>Roll-up posture.</strong> Two acquisitions in three years and a stated path to ~48 stores within 18 months. Southeast operator distress (FRG / Badcock / Conn's / American Freight) has cleared substantial regional retail capacity from 2024–2025.</li>
+  <li><strong>Family ownership.</strong> Russell Turner, 4th-generation family owner, stepped off the executive board in January 2025 — handing operational keys to Justin while retaining decision authority on anything material. Continuity and culture preservation are first-order constraints.</li>
+</ul>
+
+<div class="note">
+  <strong>Privacy note.</strong> This page is a client-safe overview of the engagement. Internal working artifacts and negotiation prep live in a separate, access-controlled workspace.
+</div>
+
+</div>
+</body>
+</html>

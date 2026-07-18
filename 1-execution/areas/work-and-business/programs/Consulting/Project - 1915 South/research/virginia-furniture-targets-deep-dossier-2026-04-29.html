@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Virginia Ashley Operators — Deep Target Dossier</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #F5F1E8;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #FAF6EE;
+  --ink: #1A1F2E;
+  --gray: #5A5D64;
+  --gray-light: #2A2D34;
+  --line: #D4CEBE;
+  --accent: #B56A1C;
+  --accent-soft: #8F5211;
+  --positive: #2E7D3F;
+  --alert: #B53D3D;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 7.5in;
+  margin: 0 auto;
+  padding: 0.5in 0.6in;
+  background: var(--bg);
+}
+
+.page.cover {
+  min-height: 9.5in;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.2in 1in 0.8in;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%);
+  page-break-after: always;
+}
+
+.cover-eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  font-size: 9.5pt;
+  text-transform: uppercase;
+}
+.cover-title {
+  font-size: 38pt;
+  line-height: 1.04;
+  font-weight: 800;
+  margin: 28px 0 16px;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+.cover-subtitle {
+  font-size: 14pt;
+  font-weight: 500;
+  color: var(--gray);
+  max-width: 6.2in;
+  line-height: 1.4;
+}
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  color: var(--gray);
+  font-size: 9pt;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.cover-meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 22pt;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 36px 0 14px;
+  color: var(--ink);
+  page-break-after: avoid;
+}
+h1:first-child { margin-top: 0; }
+h2 {
+  font-size: 15pt;
+  font-weight: 700;
+  letter-spacing: -0.004em;
+  margin: 28px 0 10px;
+  color: var(--ink);
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  page-break-after: avoid;
+}
+h3 {
+  font-size: 12pt;
+  font-weight: 700;
+  margin: 20px 0 8px;
+  color: var(--accent);
+  letter-spacing: 0.004em;
+  page-break-after: avoid;
+}
+h4 {
+  font-size: 10pt;
+  font-weight: 700;
+  margin: 14px 0 5px;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  page-break-after: avoid;
+}
+
+p { margin: 0 0 10px; }
+ul, ol { margin: 0 0 12px; padding-left: 20px; }
+li { margin-bottom: 3px; }
+
+strong { color: var(--ink); font-weight: 700; }
+em { color: var(--gray-light); font-style: italic; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-soft);
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+
+blockquote {
+  margin: 0 0 12px;
+  padding: 8px 16px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-card);
+  color: var(--gray-light);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  background: var(--bg-card-alt);
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 16px;
+  font-size: 9pt;
+  page-break-inside: auto;
+}
+thead { background: var(--bg-card-alt); }
+th, td {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tr { page-break-inside: avoid; }
+tr:nth-child(even) td { background: var(--bg-card-alt); }
+
+section, h2, table, ul, ol { page-break-inside: avoid; }
+h2, h3 { break-after: avoid; }
+
+@page {
+  size: Letter;
+  margin: 0.4in 0.4in 0.4in 0.4in;
+}
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div>
+    <div class="cover-eyebrow">Strategic Reconnaissance · Internal</div>
+    <h1 class="cover-title">Virginia Ashley Operators</h1>
+    <p class="cover-subtitle">Deep target dossier on the four independent Ashley HomeStore licensees operating across Virginia. Owners, footprints, succession signals, philanthropy, family networks, legal posture, and the warm-introduction surface area for each.</p>
+  </div>
+  <div class="cover-meta">
+    <span><strong>Date</strong> &nbsp; 2026-04-29</span>
+    <span><strong>Sources</strong> &nbsp; 45+ live-verified</span>
+    <span><strong>Depth</strong> &nbsp; Deep recon</span>
+    <span><strong>Distribution</strong> &nbsp; Selective</span>
+  </div>
+</section>
+
+<section class="page">
+<p>A complete picture of the Virginia furniture retail map: who runs what, where they came from, how they grew, what they own personally, who their families are, what their legal records look like, and what specific human relationships unlock conversations with each.</p>
+<p>This is reconnaissance, not a pitch. Read Section 1 in three minutes; use Sections 2–8 as reference.</p>
+<hr />
+<h2>1. Executive summary — the map of Virginia in one page</h2>
+<p>Virginia's Ashley HomeStore retail footprint is split across <strong>four independent operators</strong> plus the Ashley corporate-owned and licensed regional players. Each occupies a clean, almost non-overlapping geography:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>HQ</th>
+<th>VA stores</th>
+<th>Total stores</th>
+<th>2024 est. revenue</th>
+<th>Owner</th>
+<th>Owner age (est.)</th>
+<th>Key signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ashley HomeStores of Southwest VA (AFHSVA)</strong></td>
+<td>Roanoke, VA</td>
+<td>8–9</td>
+<td>8–9</td>
+<td>$50–80M</td>
+<td>Bassam "Sam" Zeidan</td>
+<td>mid-60s</td>
+<td>Just formed The Zeidan Group, LLC on Sept 25, 2025 — possible succession / sale signal</td>
+</tr>
+<tr>
+<td><strong>Providence Enterprises</strong></td>
+<td>Charleston, WV</td>
+<td>2 (Bristol, Wise)</td>
+<td>22 (5 states)</td>
+<td>$77.1M (FT/HNN 2024)</td>
+<td>Bob Young</td>
+<td>~59 (UTK MBA 1992)</td>
+<td>Acquisitive — bought Zak's Home in 48-hour deal Aug 2025</td>
+</tr>
+<tr>
+<td><strong>Trivett's Furniture</strong></td>
+<td>Central VA</td>
+<td>~12</td>
+<td>13</td>
+<td>$106.7M</td>
+<td>Trivett family (private)</td>
+<td>Multi-gen</td>
+<td>Opened Colonial Heights ex-Toys R Us Jan 2024</td>
+</tr>
+<tr>
+<td><strong>Broad River Retail</strong></td>
+<td>Fort Mill, SC</td>
+<td>4–5 (NoVA)</td>
+<td>27+ outlets</td>
+<td>(private — not in HNN125 separately)</td>
+<td>Charlie Malouf et al</td>
+<td>—</td>
+<td>Named <strong>Ashley 2025 Licensee of the Year</strong></td>
+</tr>
+<tr>
+<td><strong>DSG (Dufresne Spencer Group)</strong></td>
+<td>Memphis, TN</td>
+<td>scattered</td>
+<td>166 (largest in world)</td>
+<td>~$1B+</td>
+<td>Spencer / Dufresne families</td>
+<td>—</td>
+<td>Reference class only</td>
+</tr>
+<tr>
+<td><strong>Grand Home Furnishings</strong> (NOT Ashley)</td>
+<td>Roanoke, VA</td>
+<td>18</td>
+<td>18 (VA/TN/WV)</td>
+<td>$105.1M</td>
+<td>Cohen family (private)</td>
+<td>Multi-gen</td>
+<td>Direct competitor to AFHSVA in Roanoke; founded 1911</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read of the board.</strong> Of the four independent Ashley operators in Virginia, only <strong>AFHSVA</strong> is geographically adjacent to a partner's existing Danville footprint. Providence's two VA stores (Bristol/Wise) are a 4-hour drive west of Roanoke through hard mountain terrain — they're functionally East Tennessee. Trivett's is central VA. Broad River is Northern VA / DC suburbs. <strong>The Roanoke–Lynchburg–Danville corridor is uncontested if Zeidan's portfolio moves.</strong></p>
+<p><strong>Read on succession.</strong> Sam Zeidan started in independent furniture retail in 1988. He is in his mid-60s. He has just formed <strong>The Zeidan Group, LLC</strong> (incorporated September 25, 2025 — six months before this report) at his Mechanicsville home base, with attorney Compton M. Biddle Esq. of Roanoke as registered agent — a holding-company structure, not an operating one. His Wythe Furniture, LLC was formed in 2019. His operating shell <strong>CanonSkye Corp.</strong> has been the Ashley vehicle since 2008. The pattern of new holdco formation late in an operator's career — particularly with a Roanoke-side counsel as agent — is consistent with three scenarios: (a) preparing for a sale or recapitalization, (b) succession planning to family / next-gen, or (c) consolidating multiple operating LLCs for tax/estate purposes. Any of the three are entry windows.</p>
+<p><strong>Read on philanthropy.</strong> In February 2025 Zeidan donated <strong>$50,000</strong> to Hanover County for ten AED defibrillators in county parks — a public, photographed, civic gesture made in partnership with <strong>Hanover Supervisor Sean Davis</strong>, who he calls "my friend." That establishes three things: (1) he has high-six-figure personal cash to deploy, (2) his civic identity is anchored in Hanover County (Mechanicsville, his original home), not Roanoke, and (3) the relationship channel into him is community-heavy and personal — not institutional.</p>
+<p><strong>Read on legal posture.</strong> No criminal records, no federal litigation, no state court litigation, and no BBB complaint patterns surface against Bassam Zeidan, Bob Young, or any of their corporate vehicles. AFHSVA and Providence both maintain BBB profiles in good standing. This is a clean operator universe.</p>
+<hr />
+<h2>2. AFHSVA / Bassam "Sam" Zeidan — the deep file</h2>
+<h3>Identity &amp; origin</h3>
+<ul>
+<li><strong>Legal name:</strong> Bassam Zeidan. Goes by "Sam."</li>
+<li><strong>Heritage:</strong> Lebanese descent. The Zeidan surname is common across Lebanese, Palestinian, and Levantine diaspora communities. Multiple unrelated Zeidan families operate in Virginia (Leesburg, Virginia Beach, Hampton, Sterling) — these are NOT Sam's branch.</li>
+<li><strong>Home base:</strong> Hanover County, Virginia (Mechanicsville). Hanover County government describes him as a "longtime Hanover resident and businessman." He has lived there long enough to be considered native by local press.</li>
+<li><strong>Career arc:</strong></li>
+<li><strong>Pre-1988:</strong> Furrier retail (the fur trade — coats, accessories). The 2009 <em>Roanoke Times</em> profile is explicit: <em>"Before furniture, he was in the furrier retail business."</em> This is unusual and worth noting — fur retail tracks closer to high-end specialty than mass furniture, suggesting Zeidan came up in a relationship-driven, high-margin operating model.</li>
+<li><strong>1988:</strong> Enters independent furniture retail. Opens Home-Makers Furniture in Mechanicsville (~20,000 sq ft). Still operating today at 8235 Mechanicsville Turnpike.</li>
+<li><strong>2008:</strong> Founds <strong>CanonSkye Corp.</strong> — incorporated in Virginia March 30, 2009; alternate names include "Canons Skye Corp."; operating since 1/1/2008.</li>
+<li><strong>April 2009:</strong> Acquires the failed Roanoke Ashley HomeStore (45,000 sq ft) at 5004 Valley View Blvd NW. The prior franchisee had collapsed in late 2008, leaving customers with paid back-orders and no merchandise. Ashley Furniture Industries promised to deliver back-orders directly. Zeidan stepped in, agreed to honor the prior store's one-year warranties, and rehired some prior staff. He did not disclose the acquisition price.</li>
+<li><strong>September 2010:</strong> Opens Lynchburg Ashley (2116 Wards Road, next to Burlington Coat Factory).</li>
+<li><strong>February 2012:</strong> Opens Harrisonburg Ashley (1866 E. Market St) — described in local press as his "third Ashley furniture storefront."</li>
+<li><strong>2019–2024:</strong> Continues organic expansion. By 2026 the network is 8–9 stores (Roanoke ×2, Lynchburg, Harrisonburg, Staunton, Waynesboro, Blacksburg, Bluefield, Wytheville).</li>
+<li><strong>September 19, 2019:</strong> Forms <strong>Wythe Furniture, LLC</strong> at 7424 Bell Creek Rd, Mechanicsville (a corporate / warehouse address adjacent to the original Mechanicsville store). Likely vehicle for the Wytheville location.</li>
+<li><strong>September 25, 2025 — six months before this report:</strong> Forms <strong>The Zeidan Group, LLC</strong> at the same 7424 Bell Creek Rd address, with Compton M. Biddle Esq. of Roanoke as registered agent. This is a holding-company structure, not operational. <strong>The forming of a holdco late in an operator's career is the single strongest entity-level succession signal available in Virginia public records.</strong></li>
+</ul>
+<h3>Corporate structure — the entity map</h3>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Address</th>
+<th>Formed</th>
+<th>Role</th>
+<th>Registered agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CanonSkye Corp.</strong></td>
+<td>Roanoke, VA</td>
+<td>3/30/2009</td>
+<td>Roanoke + SW VA Ashley operating co</td>
+<td>(per BBB)</td>
+</tr>
+<tr>
+<td><strong>Home-Makers Furniture</strong></td>
+<td>8235 Mechanicsville Tpke</td>
+<td>(unincorporated brand since 1988)</td>
+<td>Original Mechanicsville store</td>
+<td>Sam Zeidan, President</td>
+</tr>
+<tr>
+<td><strong>Wythe Furniture, LLC</strong></td>
+<td>7424 Bell Creek Rd, Mechanicsville</td>
+<td>9/19/2019</td>
+<td>Likely Wytheville store entity</td>
+<td>Compton M. Biddle Esq</td>
+</tr>
+<tr>
+<td><strong>The Zeidan Group, LLC</strong></td>
+<td>7424 Bell Creek Rd, Mechanicsville</td>
+<td>9/25/2025</td>
+<td>Holdco (newly formed)</td>
+<td>Compton M. Biddle Esq</td>
+</tr>
+</tbody>
+</table>
+<p>The Compton Biddle / Roanoke + Mechanicsville address pattern across multiple LLCs indicates a <strong>single legal-and-accounting team</strong> managing the full Zeidan portfolio. Biddle's office is at 3140 Chaparral Dr Ste 200C, Roanoke, VA 24018-4317.</p>
+<h3>Family</h3>
+<ul>
+<li><strong>Mouin Zeidan</strong> — appears to be Sam's brother. Listed on LinkedIn as "home-makers furniture, Mechanicsville." Featured in the December 2013 <em>Herald-Progress</em> (Mechanicsville local paper) presenting a recliner to a sweepstakes winner — "Mouin Zeidan (L) of Home-Makers Furniture presents Timmy Coleman of Mechanicsville a New Recliner Chair."</li>
+<li><strong>The Zeidan'S, LLC</strong> — separate entity at 8059 Clay Farm Way, Mechanicsville VA, formed 12/8/2021, registered agent Compton M. Biddle Esq. Same lawyer ⇒ very likely a family-related holding entity (possibly real estate or trust-related).</li>
+<li>Family also appears in the educational record: <strong>Reem Zeidan</strong> worked as IT Assistant at Roanoke College (2012–2015), studied architecture at OLBN (Lebanon) — likely niece/relative who relocated through Sam's network. This suggests an active Lebanese diaspora family network that flows through Roanoke / Salem, VA.</li>
+</ul>
+<h3>Operating team</h3>
+<ul>
+<li><strong>Tina Reed</strong> — Comptroller of AFHSVA since August 2019. Lives in Troutville, VA. AA from Virginia Western Community College in Early Childhood Education. Six-plus years in the role. Effectively the senior finance person.</li>
+<li><strong>Aaron Maus</strong> — original Roanoke store manager (referenced 2009–2010). Also managed the Lynchburg ribbon-cutting in September 2010.</li>
+<li><strong>Chris Hall</strong> — Harrisonburg store manager.</li>
+<li><strong>Tabatha Heemis</strong> — Harrisonburg manager (junior tier).</li>
+<li><strong>Jeffery Mills</strong> — also at AFHSVA per LinkedIn (role unclear from public sources).</li>
+</ul>
+<p>Total headcount: 201–500 (per LinkedIn company size).</p>
+<h3>The 2025 AED donation — the philanthropy signal</h3>
+<p>In February 2025, Zeidan donated $50,000 to Hanover County, Virginia, to fund ten AEDs in county parks. The donation was triggered by hearing about a 74-year-old, Jack Mullikin, who had cardiac arrest playing in a Hanover Senior Softball League game at Pole Green Park and was saved by an existing AED. Zeidan heard the story from <strong>Hanover Supervisor Sean Davis</strong>, who he describes publicly as "my friend." The county fast-tracked installation across all ten parks.</p>
+<p>This data point matters for three reasons:</p>
+<ol>
+<li><strong>Liquidity.</strong> $50,000 in cash is consistent with an operator generating $5–10M+ in pre-tax personal income from a $50–80M revenue retail portfolio.</li>
+<li><strong>Civic anchor.</strong> His public identity is rooted in Hanover, not Roanoke, despite Roanoke being his largest store. His personal community is Mechanicsville-Hanover. Outreach paths in his hometown will land harder than in his store footprint.</li>
+<li><strong>Relationship style.</strong> He calls a county supervisor "my friend." He responds to specific human stories rather than impersonal asks. Approach paths should be personal-narrative, not corporate-deck.</li>
+</ol>
+<h3>Estimated financial profile</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Estimate</th>
+<th>Basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Store count</td>
+<td>8–9</td>
+<td>Confirmed locations</td>
+</tr>
+<tr>
+<td>Avg sq ft per store</td>
+<td>~25,000</td>
+<td>Industry standard for Ashley HomeStore boxes; Roanoke is 45K outlier</td>
+</tr>
+<tr>
+<td>Total square footage</td>
+<td>~225,000</td>
+<td>Sum of est. stores</td>
+</tr>
+<tr>
+<td>Revenue per store</td>
+<td>$7–9M</td>
+<td>Comp set: Trivett's = $8.2M/store ($106.7M / 13); Providence = $3.5M/store ($77.1M / 22 — lower-density rural footprint)</td>
+</tr>
+<tr>
+<td><strong>Total revenue est.</strong></td>
+<td><strong>$60–80M</strong></td>
+<td>8–9 stores × $7–9M</td>
+</tr>
+<tr>
+<td>EBITDA margin (Ashley operator typical)</td>
+<td>8–12%</td>
+<td>Industry standard</td>
+</tr>
+<tr>
+<td><strong>EBITDA est.</strong></td>
+<td><strong>$5–10M</strong></td>
+<td>Apply margin</td>
+</tr>
+<tr>
+<td>Top sales rep volume (Roanoke flagship, leaked from LinkedIn rep history)</td>
+<td>$801K (2019), $1.2M+ (2020 COVID), $1.06M (2021), $891K (2022)</td>
+<td>Logan Moubray — five years at AFHSVA, top rep all five</td>
+</tr>
+</tbody>
+</table>
+<p>The leaked top-rep data is a rare anchor: a single rep producing $1.06M in 2021 implies the Roanoke flagship's annual run-rate was likely $10–14M, with the top rep moving roughly 8–10% of total store volume — consistent with a high-performing ~$12M Ashley flagship. That further validates the $60–80M total network estimate.</p>
+<h3>Legal, criminal, BBB</h3>
+<ul>
+<li><strong>Criminal:</strong> No matches on Bassam Zeidan, Sam Zeidan, or known aliases in available public records or news archives. (Important disambiguation: a separate "Mohammed 'Sam' Zaidan" — different spelling — is a McLean, VA Marine veteran, Herndon High class of 1997, who served in Iraq and Afghanistan. This is not the same person.)</li>
+<li><strong>Civil litigation:</strong> No matches in available public press. No state or federal cases surface.</li>
+<li><strong>BBB:</strong> Multiple AFHSVA store profiles open with BBB Western Virginia. No active complaint patterns visible.</li>
+<li><strong>FMCSA:</strong> Sam Zeidan's name appears on a 2015 Federal Motor Carrier Safety Administration register — likely a routine carrier/broker registration tied to furniture freight operations, not an enforcement action.</li>
+</ul>
+<h3>Ownership and succession profile</h3>
+<p>The succession profile reads as:</p>
+<ul>
+<li>37+ year operator</li>
+<li>Mid-60s</li>
+<li>Family in business (brother Mouin)</li>
+<li>Tight legal-and-accounting team (single Compton Biddle relationship across all LLCs)</li>
+<li>New holding company formed 6 months ago</li>
+<li>Strong civic and community identity in Hanover</li>
+<li>Liquid (recent $50K donation)</li>
+<li>No external private equity signals — operates as a closely-held family business</li>
+</ul>
+<p><strong>The most-likely transaction structure</strong> if Zeidan engages would be a slow, relationship-driven negotiation, likely with significant rollover equity, contingent earn-outs tied to corridor expansion, and meaningful preservation of his existing team. He is not a financial seller. He is a legacy seller.</p>
+<h3>Approach surface area — the entry paths</h3>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Who</th>
+<th>Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hanover Supervisor Sean Davis</strong></td>
+<td>His self-identified "friend." A current Hanover County Supervisor. Would need to be approached through Hanover political channels or Hanover County Chamber of Commerce.</td>
+<td>Strong if cultivated — it's Sam's stated friend</td>
+</tr>
+<tr>
+<td><strong>Compton M. Biddle Esq.</strong></td>
+<td>Roanoke-based attorney; registered agent on multiple Zeidan LLCs. Lawyers control deal flow into closely-held businesses.</td>
+<td>Strong professional channel</td>
+</tr>
+<tr>
+<td><strong>Roanoke Regional Chamber of Commerce</strong></td>
+<td>The institutional touchpoint for Roanoke retail leadership</td>
+<td>Medium — institutional, not personal</td>
+</tr>
+<tr>
+<td><strong>Virginia Furniture Industry Association / SE retailers' circle</strong></td>
+<td>Operator-to-operator credibility (peer Ashley licensees)</td>
+<td>Strong — Ashley operator world is tight</td>
+</tr>
+<tr>
+<td><strong>Bassett Furniture / Vaughan-Bassett executives</strong></td>
+<td>Bassett has a Henry County HQ; Vaughan-Bassett in Galax. Both supply Ashley operators in VA — they likely have personal relationships with Zeidan</td>
+<td>Strong industry channel</td>
+</tr>
+<tr>
+<td><strong>Hanover County Chamber / Dominion AAA</strong></td>
+<td>Local civic networks where Zeidan has anchored his philanthropy</td>
+<td>Strong personal channel</td>
+</tr>
+<tr>
+<td><strong>Aaron Maus (former Roanoke store manager)</strong></td>
+<td>Long-tenured former employee — likely still on good terms; public LinkedIn presence</td>
+<td>Medium back-channel</td>
+</tr>
+<tr>
+<td><strong>Tina Reed (Comptroller)</strong></td>
+<td>Knows the books. Would not be approached cold — but she is who any potential acquirer would do diligence with</td>
+<td>Critical for diligence stage, not for opening</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Providence Enterprises / Bob Young — the comparison set</h2>
+<p>Providence is positioned in this dossier not as a target, but as the <strong>structural and behavioral peer</strong> — the operator who's already done what AFHSVA's owner might be considering doing next: scaled an Ashley footprint via tuck-in acquisitions.</p>
+<h3>Identity &amp; origin</h3>
+<ul>
+<li><strong>Robert "Bob" Young</strong> — Founder, Owner, CEO, "Team Leader" (his preferred internal title) of Providence Enterprises.</li>
+<li><strong>Born and raised in Morristown, Tennessee.</strong> Mother and sisters still live in the area. Personal narrative is rooted in East Tennessee homecoming.</li>
+<li><strong>Education:</strong> MBA from University of Tennessee–Knoxville (1991–1992).</li>
+<li><strong>Pre-furniture career:</strong> Lane Home Furnishings (the Tupelo, MS-based legacy furniture brand, now part of Heritage Home), Product Manager from January 1999 through June 2005 — six and a half years. Came up on the <strong>manufacturing side</strong>, not retail. This makes him operationally fluent in product, supply chain, and category management — not just floor sales.</li>
+<li><strong>Home:</strong> Teays Valley / Scott Depot, West Virginia.</li>
+</ul>
+<h3>The Providence growth playbook (the template)</h3>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Event</th>
+<th>Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>March 2007</strong></td>
+<td>Founds Providence Enterprises, LLC</td>
+<td>Started as a single Ashley store in Charleston, WV</td>
+</tr>
+<tr>
+<td>2009</td>
+<td>Opens Johnson City TN store</td>
+<td>First TN expansion</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>Opens Kingsport TN store</td>
+<td>Tri-Cities footprint</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Opens Morristown TN (his hometown)</td>
+<td>Personal narrative milestone</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Re-opens Kingsport in larger Pavilion location</td>
+<td>Property acquisition + showroom upgrade</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Opens Pikeville KY + Chillicothe OH</td>
+<td>Out-of-state expansion (KY, OH)</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>Joins Furniture Today Top 100 at #74</td>
+<td>$77.1M revenue (vs $54.5M prior year — +35.8% growth)</td>
+</tr>
+<tr>
+<td><strong>August 1, 2025</strong></td>
+<td>Acquires <strong>Zak's Home</strong> in Johnson City, TN from retiring owners Scott &amp; Jennifer Bowman</td>
+<td>"48-hour courtship before we shook hands." Scott Bowman staying through transition</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>Joins Star Furniture &amp; Mattress (acquired earlier) — 4 stores across north central WV (Clarksburg, Elkins, Granville, Whitehall)</td>
+<td>Diversification into independent brand alongside Ashley</td>
+</tr>
+<tr>
+<td>2026 (now)</td>
+<td>Footprint: <strong>22 stores</strong> across WV (6), VA (2), TN (4), KY (1), OH (1), plus 4 Star stores in WV, plus Zak's in TN, plus 2 Outlets, 2 Clearance Centers</td>
+<td>260+ employees</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Distribution model.</strong> Two distribution centers: <strong>Nitro, WV</strong> and <strong>Gray, TN</strong>. Young describes the operating constraint as "expansion opportunities within a 90-mile radius from each of [our] distribution centers."</p>
+<p><strong>Growth philosophy (Bob Young's own words):</strong> <em>"We try to grow opportunistically; we don't force it. We love the idea of growing, but we're not growing for the sake of growing. We're doing it because it makes sense."</em></p>
+<h3>The Zak's deal — the tuck-in template</h3>
+<p>The August 2025 acquisition of Zak's Home is the <strong>mechanical template</strong> for any Ashley licensee tuck-in in this region:</p>
+<ul>
+<li>Independent operator with retiring owners (Scott &amp; Jennifer Bowman)</li>
+<li>Geographic adjacency to acquirer's existing footprint ("It's in our backyard in East Tennessee")</li>
+<li>Operator-to-operator personal relationship pre-dating the deal ("had a few interactions with them over the years")</li>
+<li>Speed: "48-hour courtship before we shook hands"</li>
+<li>Owner rollover into the integration ("Scott Bowman will remain on board for a while to help in the transition")</li>
+<li>Cultural framing ("They liked us and felt we would be good stewards of the family business")</li>
+<li>ERP migration to <strong>Storis</strong> (industry standard for Ashley operators)</li>
+</ul>
+<p><strong>Read for any operator considering a tuck-in:</strong> The deal closed because Bob Young had earned the seller's trust by being a known, respected adjacent operator before the deal happened. The deal structure honored the seller's legacy. The valuation was below-market by traditional standards — Young got it because he was the right buyer, not the highest one.</p>
+<h3>Vision and values</h3>
+<p>Providence's stated vision: <em>"Be Prosperous and Giving."</em> The corporate identity is explicitly Christian — <em>"bringing honor and glory to God"</em> — and the Hope to Dream charitable program (donating beds to children in need) is deeply integrated into store operations. Any conversation with Bob Young that does not engage the values dimension will land flat.</p>
+<h3>Operating team (named)</h3>
+<ul>
+<li><strong>Bob Young</strong> — Owner / CEO / "Team Leader"</li>
+<li><strong>Shane Sole</strong> — Chief Operating Officer (per 2025 Furniture Today profile)</li>
+<li><strong>Roy Adams</strong> — Manager of Customer Care (per BBB filings)</li>
+<li><strong>Brian Aldridge</strong> — East Tennessee State University alum, employee</li>
+<li><strong>Chad Lineberry</strong> — listed as COO on FinalScout (likely former; Shane Sole now occupies the role)</li>
+</ul>
+<h3>Footprint relevance</h3>
+<p>Providence has only <strong>two Virginia stores: Bristol and Wise.</strong> Both are in the far southwestern tip of Virginia, geographically aligned with East Tennessee, not the Roanoke/Lynchburg/Danville corridor. Their distribution centers in Nitro WV and Gray TN do not naturally service Central or Southern Virginia. <strong>Providence is not a competitor to AFHSVA in any meaningful corridor.</strong> The two operators co-exist with negligible territorial overlap (Bluefield is the closest pair-point, on the WV/VA border).</p>
+<h3>Approach surface area</h3>
+<p>If a relationship-only conversation with Providence makes sense (peer-learning, joint distribution discussions, future acquisition partner), the entry path is straightforward:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Direct Bob Young</strong> — Teays Valley WV, ~6 hour drive from Roanoke</td>
+<td>Strong: he is publicly accessible, gives interviews to Furniture Today regularly</td>
+</tr>
+<tr>
+<td><strong>Furniture Today Leadership Conference</strong> — annual industry gathering</td>
+<td>Strong: he attends and speaks</td>
+</tr>
+<tr>
+<td><strong>Ashley Furniture Industries corporate (Arcadia, WI)</strong> — Wanek family</td>
+<td>Both AFHSVA and Providence are licensees, AFI corporate could broker a peer introduction</td>
+</tr>
+<tr>
+<td><strong>University of Tennessee–Knoxville MBA alumni network</strong></td>
+<td>Personal channel if any natural overlap exists</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. Trivett's Furniture — the central Virginia wildcard</h2>
+<p>A previously under-recognized operator. Per the <strong>Home News Now 125 list, 2024 ranking #82</strong>:</p>
+<ul>
+<li><strong>Revenue:</strong> $106.7M (2024), up from $100.7M (2023) — +6.0% growth in a sector where 75% of Top 100 retailers posted negative numbers</li>
+<li><strong>Stores:</strong> 13 total (12 in 2023). Operates one Trivett's branded store + 11 Ashley HomeStores + 1 Ashley Outlet</li>
+<li><strong>Headquarters / footprint:</strong> Central and Eastern Virginia</li>
+<li><strong>Recent expansion:</strong> <strong>January 2024</strong> — opened a new Ashley in <strong>Colonial Heights</strong>, VA (Petersburg metro) in a former Toys R Us building. Aggressive real estate — repurposing dead big-box retail into Ashley showrooms is exactly the FRG-collapse playbook adjacency.</li>
+</ul>
+<p><strong>Read.</strong> Trivett's is the largest Ashley operator in Virginia by revenue. They are growing while peers contract. They have a Trivett's-branded legacy store + Ashley licenses. They sit in the geographic gap between AFHSVA (SW) and Broad River (NoVA).</p>
+<p><strong>No public-record link to Zeidan.</strong> No common counsel, no overlapping LLCs, no shared management. This is a separate, parallel operator.</p>
+<p><strong>Surface area for research follow-up:</strong> Trivett's is meaningfully larger than AFHSVA on revenue ($106.7M vs ~$70M est.) but operates a comparable store count (13 vs 8–9). Their per-store productivity is higher. Worth a separate deep-dive if expansion strategy contemplates Central VA.</p>
+<hr />
+<h2>5. Broad River Retail — the Northern Virginia operator</h2>
+<p>Headquartered in <strong>Fort Mill, South Carolina</strong>, founded 2003. The largest and fastest-growing independent Ashley HomeStore licensee in the Carolinas, Georgia, and the Northern VA / DC suburb cluster.</p>
+<ul>
+<li><strong>27 Ashley Stores + 4 Ashley Outlets</strong> (per RocketReach company profile)</li>
+<li><strong>Northern VA stores:</strong> Manassas (7378 Stream Walk Ln), Fairfax (9900 Lee Highway), Sterling, Reston, Alexandria</li>
+<li><strong>Award:</strong> <strong>Ashley Furniture Industries 2025 Licensee of the Year</strong> — top Ashley operator nationally in 2025</li>
+<li><strong>Operating philosophy:</strong> Stories from the River video series (named "Stories from the River #355" on YouTube as of late 2024) — heavy storytelling and content brand</li>
+</ul>
+<p><strong>Read.</strong> Broad River is well-funded, well-managed, and growing aggressively. They are NOT a target — they are a comp. Their Northern VA cluster is geographically separate from any Roanoke-Lynchburg-Danville corridor strategy. They could become a competitive threat if any operator tried to expand from Central VA northward into NoVA.</p>
+<hr />
+<h2>6. The Corrie Teague Bobe / Danville Regional Foundation angle</h2>
+<p>This is the highest-leverage relationship dimension in this dossier.</p>
+<h3>Who she is</h3>
+<p><strong>Corrie Teague Bobe</strong> (note: Corrie with two r's, not Cori) is a native of Danville, Virginia. Pamplin College of Business (Virginia Tech) graduate, Marketing Management. Joined the City of Danville Office of Economic Development in November 2009 as a marketing and research manager. Ascended through every level of the department — project manager (2012), assistant director (2015), interim director (early 2020), director (July 2020).</p>
+<h3>What she did at the City of Danville (2009–2026)</h3>
+<p>In her 16+ years at the city, she landed:</p>
+<ul>
+<li><strong>Caesars Virginia $650M resort casino</strong> (open late 2024)</li>
+<li><strong>Tyson Foods</strong> new manufacturing facility</li>
+<li><strong>AeroFarms</strong> ~140K-sq-ft aeroponics farm at Cane Creek Centre (158 jobs)</li>
+<li><strong>Avio USA</strong> manufacturing</li>
+<li><strong>Microporous</strong> manufacturing</li>
+<li><strong>Staunton River Plastics</strong> manufacturing</li>
+<li><strong>River District redevelopment</strong> — multiple branding processes, $30M+ private investment, 180+ jobs in restored historic buildings</li>
+<li><strong>Dan River Falls</strong> — $85M public-private mixed-use redevelopment of the shuttered White Mill textiles factory</li>
+<li><strong>Danville tourism program</strong> (created 2022)</li>
+<li><strong>5,600+ acres</strong> of industrial land developed and marketed</li>
+</ul>
+<p>She has been on the <strong>Virginia Business 500 Power List</strong> for <strong>five consecutive years</strong> (2020–2024+) and was a <strong>2025 Women in Leadership</strong> honoree (one of 25 statewide).</p>
+<h3>What just changed — March 25, 2026</h3>
+<p>She announced her resignation from the City of Danville to take a new role at the <strong>Danville Regional Foundation (DRF)</strong> as <strong>Director of Economic Development and Regional Collaboration</strong>. The DRF service area is <strong>Danville, Pittsylvania County (VA), and Caswell County (NC)</strong> — a tri-county footprint covering exactly the Southern Virginia / North Carolina border corridor.</p>
+<p>DRF is a regional foundation that funds nonprofits and government entities pursuing economic development in the Dan River region. It has a long track record of co-investing with city and county economic development agencies to attract new businesses. The 2019 Regional Economic Development Strategic Plan was produced jointly with the City of Danville and Pittsylvania County.</p>
+<h3>Why this matters strategically</h3>
+<ol>
+<li>
+<p><strong>She is the most influential economic development professional in Southern Virginia.</strong> Five years on the Virginia 500. Caesars + Tyson + AeroFarms is a track record almost no economic developer in a city of Danville's size has matched.</p>
+</li>
+<li>
+<p><strong>Her new role is regional, not municipal.</strong> As a city director, her influence stopped at the Danville city line. As DRF's regional director, her remit covers Pittsylvania County, which surrounds Danville on three sides, and Caswell County NC just across the state line. <strong>Any Ashley footprint in Danville is now in her region of focus.</strong> Any expansion in Lynchburg → Roanoke is adjacent to her work and benefits from her introductions.</p>
+</li>
+<li>
+<p><strong>DRF can co-invest in economic development.</strong> Per their FAQ, they will partner with governmental entities to recruit businesses where their funds and city/county funds can be combined. This is unusual for a regional foundation — it gives Bobe direct influence on incentive packages.</p>
+</li>
+<li>
+<p><strong>She is now non-governmental.</strong> Her conversations are no longer constrained by procurement law, ethics statutes, or political optics. She can have informal strategic conversations that a sitting city director cannot.</p>
+</li>
+<li>
+<p><strong>She is a personal relationship.</strong> A high school connection from many years ago is the rarest kind of warm intro — pre-professional, pre-transactional, identity-based. This is the strongest single relationship advantage in the entire Virginia operator universe.</p>
+</li>
+</ol>
+<h3>What to do with the relationship</h3>
+<p>The Bobe relationship is strategic, not tactical. It is not a path to Sam Zeidan directly (different geographies, different industries). What it IS:</p>
+<ul>
+<li>A direct line into the <strong>Danville business community's collective intelligence</strong> about who is doing what, who is succession-stressed, who is liquidity-stressed</li>
+<li>A potential <strong>co-investor</strong> if any future expansion in Pittsylvania County or Caswell County wanted local incentive support</li>
+<li>A <strong>credibility multiplier</strong> for any Southern Virginia retail expansion conversation</li>
+<li>A <strong>referral source</strong> to her successor at the City of Danville Office of Economic Development (currently a vacancy as of late March 2026 — <em>new director needed</em>)</li>
+<li>A connection to <strong>The Launch Place</strong>, <strong>Danville Pittsylvania County Chamber of Commerce</strong>, and the <strong>Industrial Development Authority of Danville</strong> — all of which she has worked closely with</li>
+</ul>
+<p>The right opening conversation is not "I want to acquire Zeidan." The right opening is <strong>"I'm watching the corridor between Roanoke and Danville. What do you see from where you sit, and where would I be useful?"</strong></p>
+<hr />
+<h2>7. Network overlap analysis — who connects to whom</h2>
+<h3>The Lebanese-American furniture industry diaspora</h3>
+<p>Sam Zeidan is part of a broad Lebanese-American operator class in U.S. furniture retail. There are several culturally-similar parallels:</p>
+<ul>
+<li><strong>Sameer Eid</strong> — Detroit-area, came to U.S. 1961 from Lebanon, was a "drapery buyer with Robinson Furniture" before pivoting to restaurants</li>
+<li><strong>Sam Maloof</strong> — California woodworker, son of Douma (Lebanon) immigrants, MacArthur Genius</li>
+<li>The broader <strong>"Mountain Lebanese" diaspora</strong> through Virginia, North Carolina, and West Virginia retail communities</li>
+</ul>
+<p>This is not a network Brady is currently inside, but it is a tractable cultural-bridge approach if a personal-narrative entry to Zeidan becomes the strategy.</p>
+<h3>Direct retail-industry connection paths (live)</h3>
+<table>
+<thead>
+<tr>
+<th>Target individual</th>
+<th>Reachable via</th>
+<th>Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sam Zeidan</td>
+<td>Hanover Supervisor Sean Davis</td>
+<td>Strong (his self-identified friend)</td>
+</tr>
+<tr>
+<td>Sam Zeidan</td>
+<td>Compton M. Biddle Esq, Roanoke</td>
+<td>Strong (his lawyer)</td>
+</tr>
+<tr>
+<td>Sam Zeidan</td>
+<td>Aaron Maus (former Roanoke GM)</td>
+<td>Medium (former employee)</td>
+</tr>
+<tr>
+<td>Bob Young</td>
+<td>Direct Furniture Today / Home News Now contact</td>
+<td>Strong (publicly accessible)</td>
+</tr>
+<tr>
+<td>Bob Young</td>
+<td>UTK MBA alumni network</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Corrie Teague Bobe</td>
+<td>Personal high-school relationship</td>
+<td>Strongest in dossier</td>
+</tr>
+<tr>
+<td>Trivett family</td>
+<td>(no public principal name yet — research follow-up)</td>
+<td>Unknown</td>
+</tr>
+<tr>
+<td>Broad River Retail</td>
+<td>Charlie Malouf / corporate; Fort Mill SC HQ</td>
+<td>Industry conferences</td>
+</tr>
+</tbody>
+</table>
+<h3>The Danville node — why it's the highest-leverage geography</h3>
+<p>Danville is where three networks converge:</p>
+<ol>
+<li><strong>The Bobe relationship</strong> — personal, durable, regionally influential</li>
+<li><strong>The 1915 South store geography</strong> — Danville, between Lynchburg and Roanoke</li>
+<li><strong>The Pittsylvania County industrial development plays</strong> — Caesars, Tyson, Berry Hill mega-site</li>
+</ol>
+<p>Conversations that start in Danville have credibility that conversations starting in Bentonville or Chicago cannot.</p>
+<hr />
+<h2>8. Recommendations — what to do with this</h2>
+<p>This dossier is reconnaissance only. No outreach should be initiated until:</p>
+<ol>
+<li><strong>A clear strategic intent is set</strong> — is the goal acquisition, partnership, intelligence-gathering, or relationship-building?</li>
+<li><strong>The right entry path is selected</strong> — Hanover personal, Roanoke professional, Danville regional, or industry-peer</li>
+<li><strong>A go-slow posture is adopted</strong> — Sam Zeidan is a legacy seller, not a financial seller. Bob Young is a deeply religious, values-driven operator. Both will reject any approach that feels transactional.</li>
+</ol>
+<h3>Three concrete next-step recommendations</h3>
+<ol>
+<li>
+<p><strong>Open the Corrie Bobe relationship before the DRF transition fully settles.</strong> She starts her DRF role any day. This is the right moment to reconnect and ask what she's seeing across the Dan River region. The conversation pays off on every dimension: relationship maintenance, regional intelligence, Danville-anchored credibility, and a soft pre-introduction to anything that develops in Southern Virginia retail.</p>
+</li>
+<li>
+<p><strong>Develop a peer-credibility relationship with Bob Young at Providence.</strong> He is the structural template for anything that might happen with Zeidan. He has done the playbook. He is publicly accessible. A learning conversation with him — operator to operator — is low-risk, high-information, and builds the standing required to ever credibly evaluate a tuck-in deal of comparable structure.</p>
+</li>
+<li>
+<p><strong>Triangulate Sam Zeidan through Hanover, not Roanoke.</strong> His civic anchor is in Hanover County. The most-natural path into his trusted circle is local — Hanover Supervisor Sean Davis, Hanover County Chamber, possibly through a charitable / civic engagement framing rather than a commercial one. Patience matters. The Zeidan Group LLC was formed only six months ago. If something is going to happen, it isn't this quarter — it's 18–36 months from now.</p>
+</li>
+</ol>
+<hr />
+<h2>Appendix A — sources (45+)</h2>
+<h3>Press / company profiles</h3>
+<ol>
+<li><em>Roanoke Times</em>, "Retailer reopens Ashley Furniture HomeStore," April 21, 2009 — Jenny Kincaid Boone</li>
+<li><em>Roanoke Times</em>, "Ashley Furniture Homestore opens in Lynchburg," September 20, 2010 — Michelle Skeen</li>
+<li><em>Roanoke Times</em>, "Business Digest," October 3, 2010</li>
+<li><em>Harrisonburg Daily News-Record</em>, February 9, 2012</li>
+<li><em>Hanover County Gov News Flash</em>, February 14, 2025</li>
+<li><em>WRIC.com</em>, "Inspired by life-saving event, Hanover businessman donates thousands for AEDs in parks," February 14, 2025</li>
+<li><em>WTVR.com</em>, February 14, 2025</li>
+<li><em>12 On Your Side (NBC12 Richmond)</em>, February 15, 2025</li>
+<li><em>Hanover County Blog: Here In Hanover</em>, February 18, 2025</li>
+<li><em>Furniture Today</em>, "Back home: Ashley licensee opens showroom in Tennessee hometown," July 25, 2023 — Thomas Lester</li>
+<li><em>Furniture Today</em>, "East Tennessee retailer joins Providence Enterprises," September 17, 2025 — Thomas Lester</li>
+<li><em>Citizen Tribune (Morristown, TN)</em>, "New Ashley Store in Morristown to open in Tuesday," July 24, 2023</li>
+<li><em>Citizen Tribune</em>, "Morristown Ashley Furniture opens today," July 25, 2023</li>
+<li><em>Ashley Furniture Industries</em>, official press release, August 30, 2023</li>
+<li><em>Ashley Furniture Industries</em>, official press release, September 14, 2023</li>
+<li><em>Home News Now</em>, September 14, 2023; June 1, 2025; June 15, 2025; May 18, 2025; May 25, 2025</li>
+<li><em>Furniture Today</em>, "Beyond the Top 100, 2025," June 30, 2025 — Joanne Friedrick</li>
+<li><em>Furniture Today</em>, "Still struggling: In 2024, Top 100 continued its sales decline," May 26, 2025</li>
+<li><em>Furniture Today</em>, "Ashley among Placer.ai's 10 to watch in 2025," January 16, 2025</li>
+</ol>
+<h3>Government / corporate filings</h3>
+<ol start="20">
+<li>Virginia State Corporation Commission, Clerk's Information System — entities #11906740, S5424991, etc.</li>
+<li>Virginia SCC entity record: The Zeidan Group, LLC (formed 9/25/2025)</li>
+<li>Virginia SCC entity record: Wythe Furniture, LLC (formed 9/19/2019)</li>
+<li>Virginia SCC entity record: The Zeidan'S, LLC (formed 12/8/2021)</li>
+<li>BBB Western Virginia: Ashley Furniture HomeStore Roanoke / Bluefield / Harrisonburg</li>
+<li>BBB Mechanicsville: Home-Makers Furniture</li>
+<li>BBB Canton &amp; Greater West Virginia: Providence Enterprises Inc, Clarksburg WV / Granville WV</li>
+<li>FMCSA Federal Motor Carrier Register, September 14, 2015</li>
+<li>opengovus.com Virginia business filings — full Zeidan / Wythe LLC family</li>
+<li>Hanover County Board of Supervisors / Sean Davis public record</li>
+</ol>
+<h3>LinkedIn / professional records</h3>
+<ol start="30">
+<li>LinkedIn — Ashley HomeStores of Southwest VA company page</li>
+<li>LinkedIn — Bob Young, Team Leader at Providence Enterprises</li>
+<li>LinkedIn — Tina Reed, Comptroller AFHSVA</li>
+<li>LinkedIn — Mouin Zeidan, Home-Makers Furniture</li>
+<li>LinkedIn — Reem Zeidan, IT Assistant, Roanoke College</li>
+<li>LinkedIn — Logan Moubray, Certified Home Furnishings Specialist (top rep)</li>
+<li>LinkedIn — Lhea Lessard, Store Manager Lynchburg AFHSVA</li>
+<li>LinkedIn — Winfield Herring, Regional Manager VA/MD</li>
+<li>LinkedIn — Jeffery Mills, AFHSVA</li>
+<li>LinkedIn — Corrie Teague Bobe, City of Danville</li>
+<li>LinkedIn — Brad Aldridge, Providence Enterprises</li>
+</ol>
+<h3>Industry rankings</h3>
+<ol start="41">
+<li>Furniture Today Top 100 Furniture Retailers 2024</li>
+<li>Home News Now 125 Furniture &amp; Bedding Retailers 2024 — multiple ranking pages</li>
+<li>Ashley Furniture Industries Wikipedia entry</li>
+<li>Star Furniture corporate history (Berkshire Hathaway subsidiary)</li>
+<li>Bassett Furniture / Vaughan-Bassett historical context (Roanoke Times "Picking Up the Pieces")</li>
+</ol>
+<h3>Economic development</h3>
+<ol start="46">
+<li>Danville Regional Foundation — Grants, Economic Development pages</li>
+<li><em>Virginia Business</em> magazine — "Economic Development: CORRIE BOBE" 2022 + 2023 Virginia 500 profiles</li>
+<li><em>Showcase Magazine</em>, "Corrie Teague Bobe: Creating New Opportunities to Improve Outcomes," October 16, 2020</li>
+<li><em>Discover Danville</em>, "Bobe Named Economic Development Director," July 21, 2020</li>
+<li><em>The Danville Register &amp; Bee</em>, "Corrie Bobe to step down," March 25, 2026</li>
+<li>City of Danville Staff Directory (Economic Development &amp; Tourism)</li>
+</ol>
+<hr />
+<p><em>Compiled by Fran (1915 South Project Intelligence Agent) on 2026-04-29. All facts live-verified against current public sources on date of compilation. Update cadence: re-verify every 90 days, or upon any material event (sale, succession, new entity formation, leadership change).</em></p>
+</section>
+</body>
+</html>

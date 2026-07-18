@@ -146,6 +146,33 @@ Always call `mcp__claude-in-chrome__tabs_context_mcp` first to see what's alread
 
 ---
 
+## WageWorks (COBRA Administrator)
+
+**What it gives:** COBRA election status, initial-payment confirmation, premium due dates, payment history, coverage-active flag. **The only authoritative source.** Gmail is unreliable — WageWorks emails are inconsistent and can be filtered out.
+
+**Why this matters right now (2026-04-24):** COBRA 45-day initial-payment window from 03/01-02 election passed ~04/15. Zero WageWorks emails in 30-day Gmail scan. If initial payment was never submitted, 7-person family coverage since 01/01/2026 is retroactively void. See Streaming Notes `34ced43b-89c5-812f-835e-dc44d67d4c59` (3rd-sweep Finn Alert).
+
+**Chrome MCP steps:**
+1. Ensure Brady is at the keyboard — WageWorks login requires MFA and Brady's credentials (do NOT store).
+2. Navigate to `https://participant.wageworks.com` (or COBRA-specific URL on Brady's election confirmation)
+3. Brady logs in; accept MFA prompt
+4. Extract from dashboard:
+   - **Coverage status** — Active / Pending / Terminated / Election Not Completed
+   - **Initial payment** — submitted date, amount, cleared status
+   - **Next premium due date** + amount
+   - **Last payment received** — date, amount, method
+   - **Coverage period** — start date, through date
+   - **Plan name** — underlying UHC plan (needed for formulary lookup)
+5. Log findings to Finn KB Section 2 (confirmed facts) with date stamp
+6. Update Section 3 open items — check off "COBRA initial payment verify"
+7. If coverage is terminated / election void → **immediately** create Must Finn Alert in Streaming Notes (de-dup against existing COBRA alerts per Escalation Protocol)
+
+**Frequency:** Initially on-demand until COBRA posture is resolved. Then monthly — verify next premium due + confirm last payment cleared.
+
+**Note on anomaly-sweep mode:** The 2hr remote Conductor sweep can't run this SOP (no Brady presence for MFA). Queue as "Brady-action required" output and flag in the anomaly report.
+
+---
+
 ## HELOC (Arvest)
 
 **Account:** HELOC ...2261 (~$101,073 drawn, ~$300K available)

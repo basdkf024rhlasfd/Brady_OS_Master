@@ -35,6 +35,8 @@ Last updated: 2026-04-22
 | The Source | ~$114/visit | Medical marijuana dispensary. Personal, private. Not for business classification or insurance review. |
 | Casey's | ~$17/txn, frequent | Arkansas gas station. |
 | Maverik | ~$17/txn, very frequent | **Utah gas station.** High transaction count on Karissa's card = Utah household driving. |
+| 1st Green Lawn | ~$140/invoice | **Lawn treatment vendor.** Paid via SoFi Bill Pay, not Cash App. Address: 9685 AR-72, Bentonville, AR 72712. Last invoice #26031, dated 5/4/2026. Known-good — do not flag as anomaly. Pairs with Hugo Martinez (Cash App, mowing crew). |
+| Cash App — Hugo Martinez | $65/visit (2026-05-09 onward); was $45/cut prior | **Lawn crew leader + summer maintenance.** Cash App from SoFi (...1907). Scope expanded summer 2026: mowing + mulch/rock area maintenance + weed control. Brady wants hands-off. Larger seasonal payments ($245–$450 end-of-season cleanup; $300 spring kickoff like Apr 26 2026) are normal. Treat all Cash App→Hugo as known-good. |
 
 ## Suspicious / Unresolved
 

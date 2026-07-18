@@ -18,6 +18,14 @@ description: |
   This skill owns cross-source financial anomaly detection. It does NOT own budget tracking
   (budget-baseline), daily news (daily-news-digest), or general email triage (email-summary).
 
+  BOUNDARY vs financial-assistant: This skill = adversarial/private T0 detection on
+  household/shared activity (Karissa spending patterns, ship-to mismatches, cash-adjacent
+  transfers). Output is private-only and must NEVER reach the portal /financial-assistant
+  chat surface or any family-shared resource. financial-assistant = positive cockpit
+  (net worth, pipeline, runway). If Brady's request is "snapshot" / "how are we doing" /
+  "budget check" → route to financial-assistant. Overlap phrases like "financial review" /
+  "money review" → ask Brady which lens he wants.
+
   IMPORTANT: This skill surfaces patterns and flags items. It does NOT characterize intent,
   make accusations, or draw conclusions about behavior. Brady interprets what the flags mean.
   The skill produces data; the human produces judgment.

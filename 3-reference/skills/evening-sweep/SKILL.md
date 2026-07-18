@@ -8,9 +8,9 @@ description: >
   sweeps can reference this archive for context.
 
   Trigger this skill whenever Brady says "evening sweep", "evening update", "close the day",
-  "archive today", "run PAM", "evening mode", "night sweep", "log the day", "journal today",
+  "archive today", "evening mode", "night sweep", "log the day", "journal today",
   "save today", "wind down", or any variation requesting the end-of-day capture. Also trigger
-  on "update" or "orchestrate" after 8 PM CT (PAM mode). This skill owns all end-of-day
+  on "update" or "orchestrate" after 8 PM CT. This skill owns all end-of-day
   archival, journaling, and state-capture workflows.
 trust_tier: T1
 ---

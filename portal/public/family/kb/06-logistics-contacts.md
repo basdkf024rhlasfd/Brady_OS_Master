@@ -24,6 +24,20 @@ Last verified: 2026-04-22
 | Faith's homeroom / counselor | BHS | TBD | — |
 | Triplets' 3rd grade teacher(s) | Apple Glen | TBD | Isla/Luke/Quinn — same grade, may have separate teachers |
 
+## School IDs & Logins
+
+Bentonville Public Schools assigns each student a 9-digit ID starting with `4000…`. Used for ATLAS test result access, lunch accounts, and parent portal logins.
+
+| Kid | School ID (9-digit) | DOB | School | Grade | ATLAS 6-digit access code |
+|-----|---------------------|-----|--------|-------|---------------------------|
+| Lily Kay | TBD | TBD | Bentonville High School | 11 | TBD |
+| Faith Riley | TBD | TBD | Bentonville High School | 9 | TBD |
+| Isla Kate | 400064288 | 02/03/2017 | Apple Glen Elementary | 3 | TBD — requested 2026-05-06 |
+| Luke Brady | 400064292 | 02/03/2017 | Apple Glen Elementary | 3 | TBD — requested 2026-05-06 |
+| Quinn Elaine | 400064294 | 02/03/2017 | Apple Glen Elementary | 3 | TBD — requested 2026-05-06 |
+
+**ATLAS access code request form:** https://docs.google.com/forms/d/1EwVFE9bhOxr7ffLPEsbEa7ZriB-MbycDZ8t-TRnvTHU/viewform — submit one per kid, BPS emails the 6-digit code to the parent/guardian email.
+
 ## Medical — Kids
 
 | Provider | Role | Phone | Kids Seen | Notes |

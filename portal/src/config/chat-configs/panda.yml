@@ -1,5 +1,8 @@
 enabled: true
-prompt: panda.md
+agent: oc-optimus
+agentName: OC Optimus
+agentAvatar: /personas/oc-optimus.png
+prompt: panda.md  # fallback only — `agent` takes precedence
 model: claude-sonnet-4-5
 maxOutputTokens: 1024
 welcomeMessage: "Ask me about Panda's ops innovation research — benchmarks, problem statements, KPIs, kitchen automation, and more."

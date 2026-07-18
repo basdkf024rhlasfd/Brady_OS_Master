@@ -2,6 +2,23 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { getChatConfig, type ChatConfig } from "./chat-config";
 import { loadKBFiles, loadUnifiedKB } from "./kb-loader";
+import { loadAgentPrompt } from "./agent-loader";
+import { SIDEBAR_GROUPS } from "@/lib/sidebar-groups";
+
+// ─── Effective prompt resolver ───
+// When a config has `agent: <slug>`, the agent profile (synced from repo) is
+// the source of truth. Falls back to the legacy `prompt:` file if the agent
+// file is missing or `agent` isn't set.
+function loadEffectivePrompt(config: ChatConfig): string | null {
+  if (config.agent) {
+    const agentPrompt = loadAgentPrompt(config.agent);
+    if (agentPrompt) return agentPrompt;
+  }
+  if (config.prompt && config.prompt !== "portal.md") {
+    return loadProjectPrompt(config.prompt);
+  }
+  return null;
+}
 
 // ─── Project prompt loading (file-based, cached) ───
 
@@ -31,6 +48,7 @@ export interface ProjectContext {
   configState: Record<string, unknown>;
   isAdmin: boolean;
   mode?: "client" | "operator";
+  tier?: "owner" | "test" | "preview" | "client";
 }
 
 export function buildSystemPrompt(
@@ -91,16 +109,27 @@ export function buildUnifiedSystemPrompt(
   const authorizedProjects = projectContext.authorizedProjects ?? [];
   const activeProject = projectContext.project !== "portal" ? projectContext.project : null;
 
-  // Start with the meta-prompt
-  let systemPrompt = loadProjectPrompt("portal.md");
+  // Group routes lead with the group's persona prompt (e.g., OC Optimus for
+  // panda-engagement) instead of the generic portal meta-prompt. Single-project
+  // routes keep the existing behavior — portal.md base + project sections.
+  const isGroupRoute = activeProject ? SIDEBAR_GROUPS.some((g) => g.id === activeProject) : false;
+  const activeConfig = activeProject ? getChatConfig(activeProject) : null;
+
+  let systemPrompt: string;
+  const groupLeadPrompt = isGroupRoute && activeConfig?.enabled ? loadEffectivePrompt(activeConfig) : null;
+  if (groupLeadPrompt) {
+    systemPrompt = groupLeadPrompt;
+  } else {
+    systemPrompt = loadProjectPrompt("portal.md");
+  }
 
   // Append each authorized project's prompt as a labeled section
   for (const slug of authorizedProjects) {
     const config = getChatConfig(slug);
     if (!config.enabled) continue;
 
-    const projectPrompt = loadProjectPrompt(config.prompt);
-    if (projectPrompt && config.prompt !== "portal.md") {
+    const projectPrompt = loadEffectivePrompt(config);
+    if (projectPrompt) {
       systemPrompt += `\n\n--- Project: ${slug} ---\n${projectPrompt}`;
     }
   }
@@ -134,16 +163,23 @@ export function buildUnifiedSystemPrompt(
     }
   }
 
-  // Admin context
-  if (projectContext.isAdmin) {
+  // Tier-gated context. Client tier never gets admin/operator surfaces, even
+  // if isAdmin somehow leaks through — server-side hard floor.
+  const tier = projectContext.tier ?? (projectContext.isAdmin ? "owner" : "client");
+
+  if (tier === "owner") {
     systemPrompt +=
-      "\n\nThis user is an admin/platform owner. You can be more technical and detailed in your responses.";
+      "\n\nThis user is the platform owner. You can be more technical and detailed in your responses.";
   }
 
-  // Operator mode — check active project's config
-  if (activeProject && projectContext.mode === "operator" && projectContext.isAdmin) {
-    const activeConfig = getChatConfig(activeProject);
-    if (activeConfig.operatorMode) {
+  // Operator mode — owner tier only, requires explicit operator mode + active project's config
+  if (
+    tier === "owner" &&
+    activeProject &&
+    projectContext.mode === "operator"
+  ) {
+    const activeOperatorConfig = getChatConfig(activeProject);
+    if (activeOperatorConfig.operatorMode) {
       const operatorPrompt = loadProjectPrompt("operator.md");
       systemPrompt += "\n\n--- Operator Context ---\n" + operatorPrompt;
     }

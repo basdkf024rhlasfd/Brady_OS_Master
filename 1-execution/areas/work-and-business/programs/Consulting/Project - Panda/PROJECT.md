@@ -34,9 +34,9 @@
 
 ## Competition
 
-- **Direct:** Whatever external advisors / strategy firms (McKinsey, Bain, Kearney, specialized QSR consultants) James may already be talking to. No visibility yet.
-- **Indirect:** Internal hiring — James could skip the consulting phase and go straight to a permanent leader. Brady's job is to prove the research-first scoping phase is worth doing first.
-- **Time pressure:** Next conversation being scheduled by Esmeralda (EA) for the week of April 20-24, 2026. Deliverable (research-backed problem statement brief) needs to land at or before that meeting.
+- **Direct:** **Service Physics** (Dallas boutique consulting firm) — confirmed active vendor at Panda as of April 23 call. James described them as "getting expensive" and not needing "all consulting firm resources." Brady's entry: structured, deliverable-scoped work Service Physics isn't positioned to run.
+- **Indirect:** Internal hiring — James could skip the consulting phase and go straight to a permanent leader. He acknowledged this is harder than finding Brady, and explicitly framed Brady as a bridge to that hire.
+- **Time pressure:** ~~Next conversation being scheduled by Esmeralda (EA) for the week of April 20-24.~~ Call happened April 23. Now in scope negotiation. Brady committed to a Monday (April 28) update on timing and availability.
 
 ---
 
@@ -80,7 +80,7 @@
 - **Outcome:** Call happened. Brief is obsolete as a sales tool. Research is still useful as baseline context.
 
 ### Phase 2 — Research-First Problem Portfolio (COMPLETE)
-**Status:** Completed April 22, 2026.
+**Status:** Complete. April 17–23, 2026.
 **Goal:** Produce 15-25 validated problem statements that pass the Stage-0 sharpness gate, plus an operating-model recommendation for the Ops Innovation team, before the "next week" meeting.
 
 **Approach:**
@@ -104,6 +104,30 @@
 3. Timeline framework: 6-7 months total (4 decision gates at weeks 4, 8, 12, 16)
 4. Capex envelope: $1.65M–$4.15M depending on automation scope
 5. Success metrics: Wok automation >15% productivity lift, digital accuracy >97%, drive-thru <3 min, labor productivity 20% improvement
+
+**Outcome:** Deliverable complete. April 23 session served as engagement-scope interview — James had already seen the brief framing (via prior call) and was focused on fit, scope, and cadence. Phase 3 now active.
+
+### Phase 3 — Engagement Scope Negotiation (PIVOTED — 2026-04-26)
+**Status:** Full engagement off the table. Pivoting to whitepaper-only offer.
+
+**What changed (April 26):**
+Brady accepted a full-time executive role (CFO/CAIO, separate engagement, not logged here). Before starting (~Aug 1), Brady needs a deliberate buffer month — kids through end of school, personal projects (treehouse), vibe-code management system, hand off mception.ai to a contractor while retaining owner/chairman role. No bandwidth for a 3–6 month Panda program lead.
+
+**Pivot: Innovation Research Whitepaper (~$10K)**
+Brady will offer James a standalone deliverable: an in-depth innovation research whitepaper synthesizing the 14 DR threads + 3 SFDRs (101-103) already completed. This monetizes the research corpus without committing to ongoing engagement. Clean, honest, peer-level offer.
+
+**What the whitepaper covers (existing research):**
+- Binding constraints: wok automation (PAW field validation framing), digital order accuracy, drive-thru throughput
+- Peer test kitchen landscape (Starbucks Tryer, Chipotle, McDonald's, CFA)
+- Capex benchmarks + Phase 0 charter framework
+- Kill-gate criteria (already drafted at `test-kitchen-kill-gate-criteria.md`)
+- Operating model recommendation for the Ops Innovation team
+
+**Monday message direction:** Brady will draft. Whitepaper pitch — not a scope confirmation. No forward commitment to deeper engagement. Leave the door open or closed at Brady's discretion.
+
+**`monday-response-brief-v2.md` is superseded.** Archived for context.
+
+See: `call-notes-2026-04-23.md`, `monday-response-brief-v2.md` (archived), `jordan-burke.md`
 
 **Thread priorities (reframed):**
 | Thread | Topic | Priority |
@@ -129,12 +153,11 @@
 - **April 11–16:** Phase 1 — reconnection research + call prep ✅
 - **April 16:** James Ku call ✅
 - **April 17:** Pre-research + reframe + kick off Phase 2 ✅
-- **April 18:** All 14 research threads complete, synthesis done, initial deliverable shipped ✅
-- **April 22:** Phase 2 final deliverable (problem statements + operating model) ready for meeting ✅
-- **April 22-24:** James Ku meeting (Esmeralda-scheduled) ← IN WINDOW
-- **April 23:** Phase 2a — Test kitchen research kicked off (OC Optimus) ✅
-- **April 26 - May 10:** SFDR research execution (three ranked data requests)
-- **Post-meeting:** Scope formal engagement + integrate test kitchen research into SOW
+- **April 18:** All 14 research threads complete, synthesis done, deliverable shipped ✅
+- **April 23:** Engagement-scope interview with James Ku ✅ — see `call-notes-2026-04-23.md`
+- **April 28:** Brady sends Monday whitepaper pitch to James ← YOU ARE HERE (full engagement pivoted; see Phase 3 section)
+- ~~TBD: Receive JD, team intros, SOW~~ — full engagement off table
+- **TBD:** Statement of work signed, engagement begins
 
 ---
 
@@ -178,10 +201,12 @@
 - [x] Phase 2 — Problem statement sharpening (5-criteria gate)
 - [x] Phase 2 — Operating-model one-pager (in cross-thread-synthesis.md)
 - [x] Phase 2 — Final deliverable (HTML + PDF)
-- [x] Deliverable review (April 22, 10:13 AM)
-- [x] Delivery to James Ku / April 22-24 meeting
-- [x] Phase 2a — Test kitchen charter + constraint mapping (Notion page, April 23)
-- [ ] Phase 2a — SFDR-101 research (peer test kitchen models) — due April 26
-- [ ] Phase 2a — SFDR-102 research (greenfield benchmarks) — due May 3
-- [ ] Phase 2a — SFDR-103 research (peer learnings synthesis) — due May 10
-- [ ] Phase 3 — SOW negotiation + formal engagement scope (post-meeting)
+- [x] Deliverable review with Brady
+- [x] Delivery to James Ku / next meeting (April 23 session)
+- **Phase 3 — Engagement Scope Negotiation (PIVOTED 2026-04-26)**
+- [x] April 23 engagement-scope interview — `call-notes-2026-04-23.md`
+- [x] People records updated (James Ku, Jordan Burke added)
+- [ ] Brady sends Monday whitepaper pitch to James (by April 28) — Brady drafting; `monday-response-brief-v2.md` superseded
+- ~~Receive JD from James~~ — full engagement off table
+- ~~Team + HR intros (Heather Haber)~~ — full engagement off table
+- ~~Finalize scope + statement of work~~ — full engagement off table

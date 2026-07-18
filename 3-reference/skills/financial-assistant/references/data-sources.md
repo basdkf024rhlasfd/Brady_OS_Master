@@ -2,7 +2,7 @@
 
 Tracks all financial data sources: what we have, what's stale, what needs scraping.
 
-Last updated: 2026-04-19
+Last updated: 2026-05-08
 
 ---
 
@@ -56,27 +56,36 @@ These data sources require Chrome browser scraping (via `claude-in-chrome` MCP t
 
 ### 1. Walmart.com Order History
 - **URL:** https://www.walmart.com/account/orders
-- **Status:** PARTIAL (2 pages scraped Apr 17, 2026 — see `data/walmart-scrape-2026-04-17.md`)
-- **Account:** Logged in as Karissa S (Member since 2021)
-- **Key findings so far:**
+- **Status:** SUBSCRIPTIONS COMPLETE (scraped Apr 24, 2026). Order history still PARTIAL (2 pages from Apr 17).
+- **Data files:** `data/walmart-scrape-2026-04-17.md` (order history), `data/walmart-scrape-2026-04-24.md` (full subscription list + today's order)
+- **Account (Apr 17 scrape):** Karissa S (Member since 2021) — order history account
+- **Account (Apr 24 scrape):** Brady Smallwood, 4505 NE Birchgrove Pl, Bentonville. Payment card ending 2007 (Brady's Amex). Delivery Tuesdays 10am–12pm.
+- **Key findings (Apr 17):**
   - Utah delivery confirmed: **196 Inglewood Dr, Orem, UT 84097** (necklace order Apr 17)
   - Brady's groceries ($353.11, 82 items) paid with Karissa's card (2021) to Bentonville
-  - Subscription grocery delivery active (next: Apr 21)
   - Karissa's Walmart list (40 items) still maintained
-- **Remaining:** Paginate past page 2 to capture Mar 20 – Apr 9 orders. Check all "Delivery" (shipped) orders for Utah addresses. Look for card 1842 as payment method.
-- **Priority:** HIGH — continue scrape
+- **Key findings (Apr 24):**
+  - **73 active subscriptions** fully documented — see `data/walmart-scrape-2026-04-24.md` and `references/grocery-subscriptions.md`
+  - Cheese and tortillas already on bi-weekly cadence — no cadence gap
+  - Subscription payment on Brady's Amex (...2007), not Karissa's card
+  - Today's ad hoc order: $96.87 (Order #2000149-54375074) — buns, cheese, pizza, care package items, pool party items
+  - Subscription changes confirmed by Karissa today (Apr 24) — routine management, not flagged
+- **Remaining:** Paginate order history past page 2 to capture Mar 20 – Apr 9. Check Utah addresses and card 1842 usage.
+- **Priority:** LOW (subscriptions done) / MEDIUM (order history pagination)
 - **Date range:** Mar 20 – present (post-separation)
 
 ### 2. Amazon Order History
 - **URL:** https://www.amazon.com/gp/your-account/order-history
-- **Status:** COMPLETE (scraped Apr 17, 2026 — see `data/amazon-doordash-scrape-2026-04-17.md`)
-- **Account:** Brady's Amazon (42 orders, past 3 months)
+- **Status:** COMPLETE (scraped May 8, 2026 — see `data/amazon-scrape-2026-05-08.md`; prior scrape `data/amazon-doordash-scrape-2026-04-17.md`)
+- **Account:** Brady's Amazon (36 orders, Mar 28 – May 8, 2026)
 - **Key findings:**
-  - ALL 42 orders ship to Brady L Smallwood — zero Utah deliveries
-  - Only 2 return flags on Brady's account (vs 78 returns in Monarch)
-  - **The Monarch Amazon returns must be from Karissa's own Amazon account**
-  - Notable: Nest cameras ($499 total), robot vacuum ($547), Subscribe & Save Celsius
-- **Priority:** Done — Karissa's Amazon account is the gap
+  - ALL orders ship to Brady L Smallwood — zero Utah deliveries confirmed in both scrapes
+  - 2 refunds: adidas kids shoes Apr 22 ($78.93 total)
+  - Gross spend $1,773.78 / net $1,694.85 for 6-week window
+  - CELSIUS Subscribe & Save running 6 orders in 6 weeks ($157.38 = ~$26/week)
+  - Big-ticket: roborock ($547.49) + Nest Cam ($218.99) + TV wall mount set ($95.59) = $862.07 in period
+  - **Monarch Amazon returns still attributable to Karissa's separate account**
+- **Priority:** Done — Karissa's Amazon account remains the gap
 
 ### 3. DoorDash Order History + Payment Methods
 - **URL:** https://www.doordash.com/orders + /consumer/payment/
@@ -114,8 +123,13 @@ These require Gmail MCP searches, not browser scraping.
 
 ### 6. Invoice / Payment Emails
 - **Gmail queries:** `subject:(invoice OR receipt OR payment) after:2026/03/01` + vendor-specific
-- **Status:** COMPLETE (scanned Apr 17, 2026 — see `data/gmail-scan-2026-04-17.md`)
-- **Key findings:** 50 threads captured. Recurring bills mapped. Business subscriptions identified. Karissa forwarding medical payment links.
+- **Status:** COMPLETE (scanned Apr 17, 2026). Subscription-specific re-scan Apr 24, 2026.
+- **Key findings (Apr 17):** 50 threads captured. Recurring bills mapped. Business subscriptions identified. Karissa forwarding medical payment links.
+- **Key findings (Apr 24 subscription scan):** Active subscriptions confirmed — Apple (Screens 5 VNC, Monarch), Amazon Subscribe & Save (Celsius Pink Lemonade, disposable cups). No new pricing alerts on Netflix/Spotify/Disney+/Apple One.
+- **Finn scan behavior rules (set 2026-04-24):**
+  - M365 subscription change emails → do NOT flag. Brady is aware, not concerned.
+  - Walmart+ subscription change/confirmation emails → not urgent. Do not surface as alerts.
+  - Platform data usage policy emails (GitHub Copilot, etc.) → not a financial flag. Skip.
 - **Priority:** Done — refresh monthly
 
 ### 7. HELOC / Loan Notifications
@@ -155,6 +169,16 @@ These require Gmail MCP searches, not browser scraping.
 
 ---
 
+## REQUIRED BUT MISSING
+
+Files the skill expects but doesn't yet have. Finn emits a warning at the top of every run for each missing REQUIRED file.
+
+| File | Status | Why required | Owner | Next action |
+|---|---|---|---|---|
+| `references/consulting-ar-ledger.md` | **Missing** | Without a living AR ledger, Finn can't answer "what's coming in" — every downstream projection (runway, month-end, tier status) degrades. Finn check 2026-04-23 exposed zero consulting deposits in last 30d with no way to distinguish AR gap from invoicing gap. | Finn (skill) | See Streaming Notes row `34ced43b-89c5-8186-8a44-ecbfb0ec2550` — schema + seed plan. Must priority. |
+
+---
+
 ## ANALYSIS PERIODS (Standard Reference)
 
 Always use these consistently across all analysis:
@@ -175,8 +199,9 @@ Run before any major analysis session:
 - [x] Fresh Monarch CSV export — **DONE Apr 19** (13,788 rows, through Apr 19)
 - [ ] Fresh Venmo statement (venmo.com → Download April) — current through ~Apr 9
 - [x] Gmail financial email scan (Gmail MCP) — **DONE Apr 17** (see gmail-scan file)
-- [~] Walmart.com order scrape (Chrome agent) — **PARTIAL Apr 17** (2 pages, key Utah address found)
-- [x] Amazon order scrape (Chrome agent) — **DONE Apr 17** (42 orders, all Brady, no Utah)
+- [x] Walmart.com subscription scrape — **COMPLETE Apr 24** (73 items, full cadence + cost data — see `grocery-subscriptions.md`)
+- [~] Walmart.com order history scrape — **PARTIAL Apr 17** (2 pages, key Utah address found — order history pagination still needed)
+- [x] Amazon order scrape (Chrome agent) — **UPDATED May 8** (36 orders, Mar 28–May 8, all Brady, no Utah — `data/amazon-scrape-2026-05-08.md`)
 - [x] DoorDash order + payment scrape (Chrome agent) — **DONE Apr 17** (orders + payment methods + address)
 - [ ] Arvest HELOC balance check (Chrome agent) — NOT STARTED
 - [ ] Target order scrape (Chrome agent) — NOT STARTED (low priority)
@@ -186,9 +211,14 @@ Run before any major analysis session:
 | Question | Status | Source |
 |----------|--------|--------|
 | Lincoln National $89/mo | **RESOLVED** — Brady's life insurance, policy T400520958 | Gmail scan |
-| Siloam Springs Clinic $1,843 | **STILL UNKNOWN** — no email trail | Need Arvest statement detail or Monarch merchant name |
+| Siloam Springs Clinic $1,856.68 | **ACTION REQUIRED** — submit to UHC as claim. Karissa likely has additional backlog. | Brady confirmed 2026-04-24 |
+| Wellness & Courage $420 | **ACTION REQUIRED** — submit to insurance in future. Not a duplicate of WELLNESSA. | Brady confirmed 2026-04-24 |
+| WELLNESSA $420 | **RESOLVED** — separate/legitimate charge from Wellness & Courage | Brady confirmed 2026-04-24 |
+| Inferno MMA $377/mo | **RESOLVED** — Luke's BJJ dues (Kids / Child Activities) | Brady confirmed 2026-04-24 |
+| WageWorks / COBRA | **RESOLVED for April** — Brady confirmed payment made 2026-04-24 | Brady confirmed |
+| HELOC balance | **UPDATED** — $107K drawn, $193K available ($300K capacity) | Brady confirmed 2026-04-24 |
 | Card ending 1842 | **UNRESOLVED** — gift card used in Orem. Need Arvest login to verify. | Need Arvest scrape |
 | Karissa's Utah address | **PARTIALLY RESOLVED** — 196 Inglewood Dr, Orem, UT 84097 (Walmart). Also Eagle Mountain + SLC from DoorDash. | Walmart scrape |
 | Zions Bancorporation | **UNRESOLVED** — $15 deposit to Faith's card Jan 20 | — |
-| HELOC balance | **UNRESOLVED** — draws accelerating ($4,700 in 4 days) | Need Arvest scrape |
 | DoorDash account access | **NEW FINDING** — suspicious new login Mar 25, 8:05 PM from different device | Gmail scan |
+| Karissa insurance claim backlog | **OPEN** — Brady suspects Karissa is behind on many out-of-pocket UHC submissions | Brady note 2026-04-24 |

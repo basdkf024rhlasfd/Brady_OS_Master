@@ -6,6 +6,18 @@
 projects:
 
   # --- Top level (ungrouped) ---
+  - slug: mark-walmart
+    label: "Mark - Walmart"
+    short: "W"
+    href: "/mark-walmart"
+    description: "Insourcing the Build — strategic white paper on whether Walmart should vertically integrate its general-contractor capability. Cross-industry precedents (Costco, Tesla, Toyota, Sears, Schwarz) plus value-capture math. Prepared for Mark."
+    approved: 2026-06-09
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/mark-walmart/viewer/index.html"
+
   - slug: kroger
     label: "Kroger"
     short: "K"
@@ -39,6 +51,18 @@ projects:
       baseUrl: "https://innovation-lab-silk.vercel.app"
       path: "/"
 
+  - slug: shellprint
+    label: "ShellPrint"
+    short: "🐢"
+    href: "/shellprint"
+    description: "Turtle species ID and personal registry. Photograph any turtle, get a Claude-powered species identification, and build a longitudinal record of every turtle you encounter."
+    approved: 2026-04-25
+    type: iframe-external
+    magic_link: false
+    frame:
+      baseUrl: "https://shellprint-web.vercel.app"
+      path: "/"
+
   # --- VC / Startup group ---
   - slug: baden-bagley
     label: "Baden Bagley"
@@ -64,12 +88,12 @@ projects:
       baseUrl: "https://basdkf024rhlasfd.github.io/mark-schmulen-ai-os"
       path: "/viewer/"
 
-  # --- Panda Engagement group ---
+  # --- Foodservice Engagement group ---
   - slug: panda
-    label: "Panda"
+    label: "Panda Research"
     short: "A"
     href: "/panda"
-    description: "Strategic intelligence platform for Panda Restaurant Group. AI-driven ops analysis, market positioning, and innovation pipeline for James Ku."
+    description: "QSR / multi-unit foodservice strategy engagement. AI-driven ops analysis, market positioning, and innovation pipeline."
     approved: 2026-04-15
     type: iframe-local
     magic_link: false
@@ -78,7 +102,7 @@ projects:
       path: "/index.html"
 
   - slug: ops-lab
-    label: "Ops Lab"
+    label: "Panda Lab"
     short: "O"
     href: "/ops-lab"
     description: "Operations innovation lab. Tests AI-native management workflows, operator wisdom loops, and problem-first innovation frameworks."
@@ -89,18 +113,66 @@ projects:
       baseUrl: "https://ops-lab-tau.vercel.app"
       path: "/"
 
-  # --- 1915 South engagement ---
+  # --- 1915 South Engagement group ---
+  - slug: 1915-south-map
+    label: "1915 Operator Map"
+    short: "M"
+    href: "/1915-south-map"
+    description: "Interactive Southeast US map — one dot per state:franchisee combination. Click to surface research, succession signals, and acquisition context. Brady-only."
+    approved: 2026-05-04
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: ""
+      path: "/1915-south-map/viewer/index.html"
+
   - slug: 1915-south
-    label: "1915 South"
+    label: "Brady Private | 1915 South"
     short: "T"
     href: "/1915-south"
-    description: "Innovation workshop for Justin Woods at 1915 South | Ashley — product, ops, and back-office concepts for the CFO-plus-AI role."
+    description: "Internal hub for the 1915 South / Ashley engagement (Justin Woods). Includes negotiation prep, comp models, ChatGPT strategy logs, internal SFDRs. Brady-only."
     approved: 2026-04-22
     type: iframe-local
     magic_link: true
     frame:
       baseUrl: ""
       path: "/1915-south/viewer/index.html"
+
+  - slug: 1915-south-execs
+    label: "1915 South Execs"
+    short: "E"
+    href: "/1915-south-execs"
+    description: "Client-safe engagement overview for 1915 South leadership. Engagement context, M&A and Innovation Workshop summaries, and portfolio of working artifacts."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south-execs/viewer/index.html"
+
+  - slug: 1915-south-ma
+    label: "1915 M&A"
+    short: "M"
+    href: "/1915-south-ma"
+    description: "Client-safe M&A and capital workspace. Roll-up thesis, valuation anchors, named target operators (public sources only), capital partner universe."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south-ma/viewer/index.html"
+
+  - slug: 1915-south-cfo
+    label: "1915 CFO"
+    short: "C"
+    href: "/1915-south-cfo"
+    description: "Client-safe view of the CFO + Applied AI role design. Scope of accountability, technology layer, finance modernization, GMROI and applied-AI roadmap."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: true
+    frame:
+      baseUrl: ""
+      path: "/1915-south-cfo/viewer/index.html"
 
   # --- Family group ---
   - slug: grocery-assistant
@@ -132,6 +204,38 @@ projects:
     frame:
       baseUrl: "/financial-assistant"
       path: "/index.html"
+
+  - slug: bucket-system
+    label: "Bucket System"
+    short: "B"
+    href: "/bucket-system"
+    description: "Quarterly cash management on cruise control. Buckets refill on bonus day, score themselves, and feed flex into Big Things (the pool, the car, the trip). Brady-only."
+    approved: 2026-04-26
+    type: iframe-local
+    magic_link: false
+    frame:
+      baseUrl: ""
+      path: "/bucket-system/viewer/index.html"
+
+  # --- Brady OS ---
+  - slug: agent-ecosystem
+    label: "Agent Ecosystem"
+    short: "A"
+    href: "/agent-ecosystem"
+    description: "The platform overview — agents, the recursive learning arc, and how the system compounds across engagements."
+    approved: 2026-04-27
+    type: native
+    magic_link: false
+
+  # --- Personal / Holdings ---
+  - slug: sycamore-lane
+    label: "Sycamore Lane"
+    short: "S"
+    href: "/sycamore-lane"
+    description: "Sycamore Lane Holdings — operator-led strategy for CPG, retail, and foodservice. Private holding company site."
+    approved: 2026-04-22
+    type: native
+    magic_link: false
 
   # --- Incubator group (parked / not front-and-center) ---
   - slug: gary

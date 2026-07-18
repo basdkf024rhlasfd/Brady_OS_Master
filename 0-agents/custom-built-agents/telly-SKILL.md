@@ -3,9 +3,20 @@ name: telly
 trust_tier: T1
 ---
 
-# Telly — Telegram-to-Notion Dispatch
+# Telly — Telegram-to-Notion Dispatch + OS Query
 
-Capture messages, photos, and files from Telegram and route them to Notion Streaming Notes.
+Capture messages, photos, and files from Telegram and route them to Notion Streaming Notes. Answer questions about Brady's OS using live KB context.
+
+## Commands
+
+| Command | What it does |
+|---------|-------------|
+| `/help` | Full command reference |
+| `/reset` | Clear conversation thread |
+| `/status` | KB cache age, thread turn count, model in use |
+| `/digest` | Everything captured today (CT timezone); also auto-pushed at 8 PM CT |
+| `search: [topic]` | Notion full-text search, returns top 5 matches |
+| `find: [topic]` | Alias for `search:` |
 
 ## Instructions
 
@@ -212,7 +223,128 @@ export TELLY_PUSH_SECRET=<hex>
 
 ---
 
-## I. Future Roadmap (Not Started)
+## I. Inbound Ingest (`POST /api/ingest`) — ChatGPT bridge
+
+Telly exposes a second inbound endpoint so non-Telegram surfaces (ChatGPT Custom GPTs,
+browser extensions, other bots) can write to Streaming Notes using the same prefix
+routing as Telegram. This lets Brady capture from ChatGPT without a separate service.
+
+### Endpoint
+
+```
+POST https://<telly-vercel-url>/api/ingest
+Content-Type: application/json
+X-Telly-Secret: <TELLY_INGEST_SECRET>
+
+{
+  "text":   "rule: never commit secrets to public repos",
+  "source": "ChatGPT"        // optional; defaults to "ChatGPT"
+}
+```
+
+- **Auth:** shared secret via `X-Telly-Secret` header matching `TELLY_INGEST_SECRET`
+  env var (separate from `TELLY_PUSH_SECRET` so outbound and inbound can rotate
+  independently). 401 on mismatch. Never log the secret.
+- **Routing:** `text` is parsed through the same prefix routing table used by
+  Telegram DMs (section B). `rule:/never:/always:/remember:` write System Instructions;
+  `pulse:/task:/log:/idea:/bug:` write classic intake; no prefix → Pulse Note.
+- **Source tagging:** the `Source` property on the Notion page is set to the
+  request `source` value (defaults to "ChatGPT"). Must be one of the values
+  defined in the Streaming Notes DB select options for `Source` — unknown values
+  are coerced to "Chat" with a warning in the response.
+- **Response:**
+  ```json
+  { "ok": true, "notion_page_id": "349ed43b-...", "type": "System Instruction", "source": "ChatGPT" }
+  ```
+  On error: `401` (bad secret), `400` (malformed body), `502` (Notion write failed).
+- **Rate limit:** 30 writes per minute per IP (reject with 429 after).
+- **No file support** on this endpoint — text only. File capture stays on Telegram.
+
+### Where to deploy
+
+Webster's lane. The change lives in `~/telly-bot/api/ingest.js` and reuses
+`~/telly-bot/lib/prefix-router.js` (factored out of the webhook handler). See
+`references/chatgpt-to-telly-gpt-instructions.md` for the matching Custom GPT
+setup that calls this endpoint.
+
+### Fallback path
+
+If `/api/ingest` cannot be shipped on the telly-bot repo, the fallback is a
+standalone Vercel Function at `portal/src/app/api/chatgpt-capture/route.ts` in
+the portal repo that validates a shared token and writes straight to Notion via
+the existing `NOTION_API_KEY` env var. Same payload contract. Webster owns that
+fallback work.
+
+---
+
+## J. Knowledge Base System
+
+Telly loads Brady's OS context on every Claude-routed message and uses it to answer questions.
+
+### Context sources
+
+| Layer | What | How loaded |
+|-------|------|------------|
+| Rules & Preferences | Notion page `344ed43b-89c5-813d-bded-f1d5689510e2` — all behavioral rules | Fetched from Notion, cached in Blob |
+| Recent captures | Last 15 Streaming Notes (title + type + status) | Fetched from Notion, cached in Blob |
+| Static facts | Active clients, family context | Hardcoded in `lib/context.js` `buildContextString()` |
+
+### Cache behavior
+
+- Cache key: `telly/daily-context.json` in Vercel Blob
+- TTL: 12 hours
+- On cache hit (fresh): inject cached string into system prompt
+- On cache miss (stale or missing): fetch from Notion, write new blob, inject
+- On Notion failure: degrade gracefully — inject empty string, Telly still routes/answers with static facts
+
+### Context refresh endpoint
+
+Morning sweep triggers a force-refresh at ~6 AM CT so Telly starts each day with fresh context.
+
+```
+POST /api/context-refresh
+X-Telly-Secret: <TELLY_PUSH_SECRET>
+Content-Type: application/json
+```
+
+Response: `{ ok: true, length: <chars>, generatedAt: "ISO timestamp" }`
+
+Auth: same `TELLY_PUSH_SECRET` used by outbound `/api/push`. 401 on mismatch.
+
+**Morning sweep call (step 3.13b):**
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  REFRESH_URL="${TELLY_PUSH_URL/\/api\/push/\/api\/context-refresh}"
+  curl -sS -X POST "$REFRESH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    > /dev/null || echo "[telly context refresh failed — non-critical]"
+fi
+```
+
+### Thread memory
+
+- Thread window: last 10 turns, stored in Vercel Blob at `thread/{chatId}.json`
+- TTL: 6 hours (extended from 1h)
+- `/reset` clears the thread immediately
+
+### What Telly can answer
+
+- "What did I capture about [topic] recently?" — searches recent notes in context
+- "What's the rule around [behavior]?" — looks up Rules & Preferences
+- "What are my active clients?" — answers from static context
+- "What's on my plate?" — summarizes recent To Do items from Streaming Notes
+- Any follow-up in the same thread without re-stating context
+
+### What Telly still dispatches (no LLM)
+
+Prefixed messages bypass Claude entirely and write directly to Notion:
+`rule:`, `never:`, `always:`, `remember:` → System Instruction (Must/Should priority)
+
+---
+
+## K. Future Roadmap (Not Started)
 
 - Two-way sync: Notion status changes trigger Telegram notifications
 - Scheduled digest: Daily summary of open Streaming Notes

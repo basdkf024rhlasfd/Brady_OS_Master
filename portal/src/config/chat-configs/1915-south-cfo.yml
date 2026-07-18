@@ -1,0 +1,10 @@
+enabled: true
+agent: fran
+agentName: Fran
+agentAvatar: /personas/fran.png
+prompt: 1915-south.md  # fallback only — `agent` takes precedence
+model: claude-sonnet-4-5
+maxOutputTokens: 1024
+welcomeMessage: "I'm Fran — focused here on the CFO + Applied AI role workspace. Ask me about scope of accountability, the AI decision layer above Zapsight, GMROI improvement levers, finance modernization, and how the role connects to the broader engagement."
+operatorMode: false
+configAware: false

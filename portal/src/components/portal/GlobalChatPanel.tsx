@@ -20,7 +20,11 @@ export function GlobalChatPanel() {
     toggleChatMode,
     configData,
     projectConfigs,
+    agentMap,
   } = useWorkspace();
+
+  // Active agent persona for the current project, if any
+  const activeAgent = activeProject ? agentMap[activeProject] : undefined;
 
   const router = useRouter();
   const [input, setInput] = useState("");
@@ -205,6 +209,22 @@ export function GlobalChatPanel() {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          {messages.length === 0 && !isStreaming && activeAgent && (
+            <div className="flex items-center gap-3 px-1 pb-1">
+              {activeAgent.agentAvatar && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={activeAgent.agentAvatar}
+                  alt={activeAgent.agentName}
+                  className="h-12 w-12 rounded-full object-cover ring-2 ring-border shrink-0"
+                />
+              )}
+              <div className="min-w-0">
+                <p className="text-xs font-semibold text-foreground">{activeAgent.agentName}</p>
+                <p className="text-[10px] text-text-hint">Engagement intelligence agent</p>
+              </div>
+            </div>
+          )}
           {messages.length === 0 && !isStreaming && (
             <div className="flex justify-start">
               <div className="max-w-[85%] px-3 py-2 rounded-2xl text-xs bg-surface text-foreground rounded-bl-sm">

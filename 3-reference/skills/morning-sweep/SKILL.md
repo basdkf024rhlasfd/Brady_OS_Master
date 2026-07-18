@@ -11,8 +11,8 @@ description: >
   "catch me up", "full sweep", "update" (before noon CT), or any variation requesting his
   comprehensive morning briefing. Also trigger on "run the Get Ready event" or "execute Get Ready".
 
-  This skill replaces and consolidates: morning mode (AMY), family-daily-brief, email-summary,
-  and news-digest into one sequential execution. It is the canonical morning skill.
+  This skill replaces and consolidates: family-daily-brief, email-summary, and news-digest into
+  one sequential execution. It is the canonical morning skill.
 trust_tier: T1
 ---
 
@@ -29,7 +29,7 @@ one structured brief with clear first moves. The system carries him — he doesn
 ## Execution Environment
 
 **Runs on**: CoWork (Claude Desktop) on Brady's Mac
-**Local access**: iMessage MCP, file system, Notion MCP, Gmail MCP, Otter MCP, Google Calendar
+**Local access**: iMessage MCP, file system, Notion MCP, Gmail MCP, Otter MCP, Google Calendar, osascript (iCloud Calendar + Reminders via AppleScript)
 **Scheduled**: Daily, triggered manually or via scheduled task at 6:00 AM CT
 
 ## Pre-Flight (Silent — Do Not Output)
@@ -47,6 +47,51 @@ Before generating any output, silently execute ALL of these in parallel where po
      the weekly sweep to bake into Section B permanently
    - Mark each processed feedback note Status="Complete" after applying
 
+## Phase 0 — Decision Queue (FIRST THING BRADY SEES)
+
+Run the `daily-decision-queue` skill (`3-reference/skills/daily-decision-queue/SKILL.md`).
+
+Aggregates every pending `approve [agent] [slug]` from Musashi, Heidi, Phil, project-agent standups, and `Type=System Instruction` Streaming Notes into ONE numbered list. Render this BEFORE the TOP 3 / Email / Calendar sections — it's the highest-leverage 30 seconds of Brady's day.
+
+Behavior:
+- If queue has 0 items → render `🎯 Decision queue: clear ✅` and continue silently
+- If queue has items → render queue at top of sweep output. Brady can reply `approve 1,2,5 | reject 3` before the rest of the sweep, or say `continue` to defer dispositioning to end of sweep.
+- Approvals get routed by Phase 0's reply handler — they don't block sweep continuation.
+
+The decision queue is the spine of the dream-state surface — Brady's "open the day with one approve/reject list" requirement. Do NOT skip Phase 0 even if the queue is empty (the explicit "clear ✅" line is the signal that the system checked).
+
+## Phase 0.4 — Monarch CSV Refresh (Auto-Sync to Drive)
+
+Before the Daily Money Check, refresh the Monarch transaction CSV so Finn (here AND in Claude.ai Live Artifact mode) always has fresh data.
+
+**Steps (silent — only output if it fails):**
+
+1. Use `claude-in-chrome` MCP. If a Monarch tab isn't already open, create one at `https://app.monarchmoney.com/transactions`. Brady's Chrome session is persistently authenticated — no login flow.
+2. Navigate to Settings > Data > Download transactions. Trigger the download via JS click (Monarch's button doesn't accept a plain `.click()` — use the existing pattern from `0-agents/custom-built-agents/finn.md` → `account-scraping-sop.md`).
+3. Wait up to 30s for a file matching `~/Downloads/Transactions_*.csv` (newest by mtime).
+4. Copy the file to BOTH locations:
+   - `~/Library/CloudStorage/GoogleDrive-brady.smallwood@gmail.com/My Drive/Finn-Exports/monarch-YYYY-MM-DD.csv` (canonical — Claude.ai pulls from here via Google Drive MCP)
+   - `3-reference/skills/financial-assistant/data/monarch-YYYY-MM-DD.csv` (local repo copy for Finn-in-Conductor)
+5. Prune `Finn-Exports/` to last 14 days (keep weekly snapshots beyond that — every Monday's file).
+
+**Failure handling (do NOT block the sweep):**
+- If Chrome MCP is unavailable, Monarch is logged out, or the download times out → write one Streaming Notes row (`Type=Sweep Feedback`, `Priority=Should`, title `"Monarch CSV refresh failed — [reason]"`) and continue. Do NOT surface as a TOP 3 alert; this is plumbing, not a money signal.
+- If the most recent file in Drive is <12 hours old, skip the refresh entirely (already fresh).
+
+Render only on failure: `⚠️ Monarch CSV stale ([N] days) — auto-refresh failed, see Streaming Notes`. On success, no output (silent plumbing).
+
+## Phase 0.5 — Daily Money Check (Lightweight, Replaces Old Finn Daily Block)
+
+Claudine runs a 30-second financial sanity check (NOT full Finn). Three things only:
+1. Latest Arvest Family Spend balance from Gmail alerts (last 24h)
+2. Any single transaction > $500 in last 24h across Gmail order/refund emails
+3. Any bill due in next 48h from Calendar + known recurring (SoFi, Truist, COBRA, etc.)
+
+If any of the three fires → surface as one-line alert in TOP 3 candidate list.
+If all three are clean → render `💰 Money: stable, no anomalies` and move on.
+
+**Full Finn block (cash flow, runway, consulting AR, IVFH, net worth, deep account analysis) runs WEEKLY only — see weekly-sweep Phase X.** Daily Finn was overkill; cash position doesn't change materially day-to-day, and daily heavy financial output crowded the sweep surface.
+
 ## Phase 1: SCAN (Gather Everything — No Output Yet)
 
 Execute all scans before writing anything. Gather raw data into working memory.
@@ -54,6 +99,66 @@ Execute all scans before writing anything. Gather raw data into working memory.
 ### 1.0 Load Rules & Preferences
 Fetch the Rules & Preferences page from Reference Layer (page ID `344ed43b-89c5-813d-bded-f1d5689510e2`).
 Apply all rules to this sweep's behavior and output. This must run before any other scan or report step.
+
+### 1.0b Load Phil's Pre-Sweep Primer
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "Pre-Sweep Primer"` created today.
+
+**If found:**
+- Read the body (the Starter Block written by `phil-pre-sweep`).
+- Hold **PROPOSED TOP 3** as priors for Phase 2's TOP 3 (override only with stronger signal from today's full scan).
+- Carry **CARRYOVER**, **WITHIN-7-DAY HORIZON**, **CALENDAR HEADLINES**, and **COHERENCE FLAGS** forward into the relevant Phase 2 sections (📋 NOTION STATUS, 📅 CALENDAR, 🔑 TOP 3).
+- Note the **CLEANUP EXECUTED** count (Phil's autonomous Done/Status reconciles) in Phase 2's 📋 NOTION STATUS section as `Phil reconciled: [N] items at 4 AM`.
+- Note the **CLEANUP PROPOSED** list under 📊 STREAMING NOTES — NEEDS DIRECTION so Brady can one-shot approve.
+- At sweep end (Phase 3.6b equivalent timing), mark the primer row `Status = "Complete", Done = "__YES__", Action = "Consumed by morning sweep"`.
+
+**If no primer found:** log `⚠️ No pre-sweep primer today (Phil may not have run)` in the 📋 NOTION STATUS section of the brief and proceed normally. The primer is additive — sweep works identically without it.
+
+Backup archive (full detail, for rollback or investigation): `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md`.
+
+### 1.0c Load Musashi's Agent Review
+Query Streaming Notes DB (`2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83`) for `Type = "Musashi Review"` created in the last 24 hours.
+
+**If found:**
+- Read the body (the Compact Summary from the `musashi-review` skill).
+- Hold the **TOP 3 RECOMMENDATIONS**, **TECH SCAN (top 2)**, and **BIZ IDEAS (top 2)** for Phase 2's new `🗡️ MUSASHI REVIEW` section. Each item arrives with an approval slug like `approve musashi phil-1` or `approve musashi tech-[slug]` — preserve it verbatim.
+- Note any recommendations flagged `size: large` or `cost: token-heavy` — these go in the review section with an explicit warning, never auto-executed.
+- Do NOT execute any recommendation in this phase. All execution is approval-gated (see Phase 3.4c below).
+
+**If no review found:** log `⚠️ No Musashi review today` in the 🗡️ MUSASHI REVIEW section of the brief and proceed normally. The review is additive — sweep works identically without it.
+
+Backup archive (full scorecard + rationale): `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
+
+### 1.0d Dual-Engagement Capacity Snapshot
+
+Read both active engagement PROJECT.md files and the build queue. Generates a compact capacity table held in working memory for Phase 2 output — Brady sees the full picture before Gmail.
+
+1. Read `1-execution/areas/work-and-business/programs/Consulting/Project - Panda/PROJECT.md` — extract: current phase, next open action item with date
+2. Read `1-execution/areas/work-and-business/programs/Consulting/Project - 1915 South/PROJECT.md` — extract: current phase, next open action item with date
+3. Read `3-reference/build-queue/INDEX.md` — count open specs
+
+Brady hours estimates (hardcoded per phase label):
+- Pre-engagement: 5-10h/wk
+- Scope negotiation / Whitepaper offer: 5-15h/wk
+- Active / embedded: 35-50h/wk
+- Advisory / Delayed Start: 8-12h/wk
+- Delivery: 20-30h/wk
+
+Output block for Phase 2 (insert in the REPORT section after TOP 3):
+
+```
+ENGAGEMENT CAPACITY SNAPSHOT
+─────────────────────────────────────────────────────────────
+Client         Phase                   Next Touch    Brady Hrs/Wk
+─────────────────────────────────────────────────────────────
+Panda          [phase]                 [date]        [hours]
+1915 South     [phase]                 [date]        [hours]
+─────────────────────────────────────────────────────────────
+BUILD QUEUE: N open specs
+─────────────────────────────────────────────────────────────
+```
+
+- If any Next Touch date is today or tomorrow, append `←HOT` to that row.
+- If both engagements are in scope-negotiation or active simultaneously, add: `⚠️ Both engagements active — confirm capacity scenario before new commitments.`
 
 ### 1.1 Gmail Scan
 - Search: last 24 hours, skip `category:promotions` and `category:social`
@@ -78,16 +183,62 @@ Query the following (use Notion MCP):
 - **Projects DB**: `2c2ed43b89c580afac9bededd48b98e7` — any status changes since last Daily State
 
 ### 1.4 Calendar Scan
-Query ALL three calendars for today AND tomorrow:
+Query ALL three Google calendars for today AND tomorrow:
 - Primary: `primary`
 - Secondary: `bradysmallz@gmail.com`
 - Family: `family13834007621771747799@group.calendar.google.com`
 
+**Also read local iCloud calendars via osascript** (these don't sync to Google Calendar MCP):
+```bash
+osascript -e '
+tell application "Calendar"
+  set todayStart to current date
+  set time of todayStart to 0
+  set todayEnd to todayStart + (86400 * 2) - 1
+  set eventList to {}
+  repeat with c in calendars
+    repeat with e in (every event of c whose start date >= todayStart and start date <= todayEnd)
+      set end of eventList to (name of c) & "|" & (summary of e) & "|" & (start date of e as string)
+    end repeat
+  end repeat
+  return eventList
+end tell'
+```
+Key iCloud calendars to merge in: **Scheduled Reminders**, **Home**, **Luke's calendar**, **Family** (may duplicate Google Family — dedupe by event title+time).
+
 Flag:
-- Conflicts (overlapping events)
+- Conflicts (overlapping events — across Google + iCloud sources)
 - Gaps that could be used for focused work
 - Missing recurring events (compare against known patterns)
 - Anything requiring prep (meetings, appointments, kid logistics)
+
+### 1.4b Reminders Scan (iCloud)
+Read all incomplete reminders via osascript:
+```bash
+osascript -e '
+tell application "Reminders"
+  set output to {}
+  repeat with l in every list
+    repeat with r in every reminder of l whose completed is false
+      set props to {name of r, name of l}
+      try
+        set end of props to (due date of r as string)
+      on error
+        set end of props to "no due date"
+      end try
+      set end of output to props
+    end repeat
+  end repeat
+  return output
+end tell'
+```
+Lists: **Reminders**, **Things To Buy**, **Lily reminders**, **To do**
+
+Surface in the 📅 CALENDAR section:
+- Reminders due today or overdue → flag prominently
+- Reminders due tomorrow → include in TOMORROW PREVIEW
+- Reminders with no due date but in "Reminders" or "To do" lists → include in 📋 NOTION STATUS as a count (e.g., "3 undated Reminders — consider scheduling")
+- "Things To Buy" → include in family brief if non-empty
 ### 1.5 Otter.ai Scan
 - Search recent recordings (last 48 hours)
 - Parameters: `created_after` in `YYYY/MM/DD` format, `include_shared_meetings: False`, `username: Brady Smallwood`
@@ -175,7 +326,7 @@ Now write the brief. Every section is scannable. No fluff.
 ═══════════════════════════════════════════════════
 🌅 MORNING SWEEP — [Day], [Month DD, YYYY]
 ═══════════════════════════════════════════════════
-🔑 TOP 3 (what moves the needle today)
+🔑 TOP 3 (what moves the needle today) [seeded from Phil primer where applicable]
 1. [most important thing]
 2. [second most important]
 3. [third most important]
@@ -284,6 +435,33 @@ No build requests detected.
   → Set a next action, or say "archive [name]" to close it
 
 [If 0 items: "All active items have next actions set. Pipeline healthy."]
+
+───────────────────────────────────────────────────
+🗡️ MUSASHI REVIEW (last night's agent tension pass)
+───────────────────────────────────────────────────
+[If no Musashi Review row found today: "⚠️ No Musashi review today (Musashi may not have run)." Skip the rest of this section.]
+
+[If review found — surface the Compact Summary in this format:]
+
+SCORECARD: [N] agents scored, avg [X.X]/10. Top: [agent X/10]. Bottom: [agent X/10].
+
+TOP 3 AGENT RECOMMENDATIONS:
+1. [agent] [size] — [what + why] → say `approve musashi [slug]-1` to queue dev plan
+2. [agent] [size] — [...]   → `approve musashi [slug]-2`
+3. [agent] [size] — [...]   → `approve musashi [slug]-3`
+
+TECH SCAN (top 2):
+• [tool name + link] — [1-line fit] → `approve musashi tech-[slug]`
+• [...] → `approve musashi tech-[slug]`
+
+BIZ IDEAS (top 2):
+• [name] — [1-line pitch + economics] → `approve musashi biz-[slug]`
+• [...] → `approve musashi biz-[slug]`
+
+[If any recommendation is size:large OR cost:token-heavy, surface it with:]
+⚠️ LARGE / TOKEN-HEAVY — requires explicit approval; do NOT approve in a batch.
+
+Full scorecard + rationale: 1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md
 
 ═══════════════════════════════════════════════════
 👨‍👩‍👧‍👦 FAMILY BRIEF
@@ -419,6 +597,24 @@ For each Build Request classified as **execute-now (small)** in Section 1.9 Sour
 - Change Type to "To Do", add a body note explaining the blocker
 - Report under BLOCKED in Phase 2 BUILD REQUESTS output
 
+### 3.4c Musashi Review — Approval-Gated Processing
+
+If a Musashi Review row was loaded in Phase 1.0c, check Brady's response to the
+sweep brief for any `approve musashi [slug]` tokens.
+
+**For each approval slug matched:**
+1. Find the corresponding recommendation / tech item / biz idea in the review body or backup file at `1-execution/areas/brady-os/musashi-reviews/YYYY-MM-DD.md`.
+2. **Size gate:**
+   - **small + reversible + touches only `0-agents/` or `3-reference/skills/`** → eligible for the existing Phase 3.4b autonomous Build Request flow. Run through the same four gates (Scope / Clarity / Risk / Size). If all pass, execute directly. If any fail, fall through to the medium path.
+   - **medium** → draft a dev plan at `.context/plans/musashi-[slug].md`, set `Status = "Processing"` on the Musashi Review row, flag it in the brief as "Queued for evening sweep — [slug]".
+   - **large or token-heavy** → draft a Conductor plan at `.context/plans/musashi-[slug].md`, set `Status = "Processing"`. Do NOT auto-run even if Brady approved — large means the dev plan itself is expensive to generate. Report: `[slug] queued for Conductor — expected token cost [estimate if known].`
+3. After processing all approved items, if any unapproved items remain, leave the Musashi Review row `Status = "In Progress"` so tomorrow's sweep can continue surfacing them. If every item was approved or explicitly declined, mark `Status = "Complete"`, `Done = "__YES__"`.
+4. Append one Routing Log row per approved-and-actioned item (per `3-reference/skills/_shared/routing-log.md`): `destination` is the dev plan file or the edit target; `reason` is `Musashi recommendation approved by Brady`; `summary` is the one-line action.
+
+**If no approval slugs in Brady's reply:** do nothing. The review row stays `Not Started` for next sweep. Musashi's proposals are not debt — they compound as optionality.
+
+**Hard rule:** never auto-execute a Musashi recommendation without an approval slug. Even when the item passes every autonomy gate, the slug is required. This is the approval-gate contract Brady set when commissioning the skill.
+
 ### 3.5 Report Applied Feedback
 If any Sweep Feedback notes were applied in Pre-Flight step 4, report what changed:
 ```
@@ -454,6 +650,22 @@ If any new System Instructions were processed in step 3.6b:
 - Same check for `3-reference/skills/claudine-onboarding/SKILL.md`
 
 This step only ADDS rules. It never removes or modifies existing rules without Brady's explicit instruction.
+
+### 3.6d Run the Streaming Notes Processor
+After Rules & Preferences propagation, call the streaming-notes processor
+(`3-reference/skills/streaming-notes-processor/SKILL.md`) for the remaining non-System-Instruction
+Types (Build Request, Pulse Note, Sweep Feedback, Task, To Do, Note).
+
+- The processor back-stops any System Instruction that 3.6b missed, drafts Build Request plans
+  at `.context/plans/streaming-notes-*.md`, auto-routes clear Pulse Notes, queues Sweep Feedback
+  for next Pre-Flight, and **drafts** (never auto-sets) Next Action candidates for Task/To Do/Note items.
+- It writes one Routing Log row per actioned item and appends a daily score to
+  `1-execution/areas/brady-os/processing-scores/YYYY-MM.md`.
+- Append the processor's ≤6-line summary block to the sweep brief. Do not repeat items
+  already covered in Phase 3.6b.
+- If the processor surfaces drafts awaiting Brady's approval, include them under a
+  `Drafts awaiting approval:` sub-heading in the brief — Brady replies "apply drafts"
+  to commit them.
 
 ### 3.7 Pipeline Dashboard
 Run the pipeline dashboard skill (`3-reference/skills/pipeline-dashboard/SKILL.md`) to snapshot the Streaming Notes DB. Output the one-line summary in the sweep output.
@@ -601,6 +813,23 @@ fi
 
 Fill the variables from the sweep output: `N_PRIORITIES` = count from TOP priorities section, `N_VIP_EMAILS` = VIP emails needing reply, `N_THREADS` = active Notion threads. Omit `LINK` if there's no canonical URL.
 
+### 3.13b Refresh Telly's Knowledge Base
+
+Immediately after the completion push, trigger a Telly KB context refresh so she starts the day with current Rules & Preferences and recent Streaming Notes. Non-critical — never block the sweep if it fails.
+
+```bash
+[ -f ~/.telly-push.env ] && source ~/.telly-push.env
+if [ -n "$TELLY_PUSH_URL" ] && [ -n "$TELLY_PUSH_SECRET" ]; then
+  REFRESH_URL="${TELLY_PUSH_URL/\/api\/push/\/api\/context-refresh}"
+  curl -sS -X POST "$REFRESH_URL" \
+    -H "X-Telly-Secret: $TELLY_PUSH_SECRET" \
+    -H "Content-Type: application/json" \
+    > /dev/null || echo "[telly context refresh failed — non-critical]"
+fi
+```
+
+This primes Telly's 12-hour cache. If the refresh fails, Telly self-refreshes on her first query of the day.
+
 ## Mid-Day Feedback (Anytime)
 
 Brady can give feedback on the sweep at any point during the day. Claudine handles it based on type:
@@ -651,7 +880,7 @@ Whenever this sweep sets `Status = "Complete"` on any Streaming Note, ALSO set `
 - It DOES update the calendar — writes back to Get Ready event, creates Email Catchup block, and adds missing events from scan
 - It does NOT modify Section B of the Get Ready event — only the weekly sweep can do that (with Brady's approval)
 - It doesn't make decisions — it surfaces information and suggests, Brady decides
-- It doesn't replace the evening capture (PAM) — that's a separate workflow
+- It doesn't replace the evening capture (evening-sweep) — that's a separate workflow
 
 ## Data Dependencies
 

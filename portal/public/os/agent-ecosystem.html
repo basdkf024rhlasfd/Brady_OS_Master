@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brady OS — Agent Ecosystem (Flow Chart · System Map · Org Chart)</title>
+<meta name="description" content="Brady OS agent ecosystem — hierarchical flow chart / system map of every agent, tier, schedule, and handoff. Also: org chart, process diagram, topology, architecture, roster, workflow.">
+<meta name="keywords" content="flow chart, flowchart, process flow, process diagram, org chart, organization chart, system map, ecosystem, ecosystem diagram, topology, architecture diagram, agent hierarchy, agent map, workflow, roster, team structure, Brady OS, Claudine, Nemuro, agent tree, hierarchy diagram">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0b0d12;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;min-height:100vh;padding:32px 24px 60px}
+
+h1{text-align:center;font-size:1.5rem;font-weight:800;color:#f5c842;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.subtitle{text-align:center;font-size:.75rem;color:#4b5563;letter-spacing:.06em;margin-bottom:36px}
+
+.map{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0}
+
+/* ── TIERS ── */
+.tier{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:12px;width:100%}
+.tier-label{width:100%;text-align:center;font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:#1f2d40;margin-bottom:4px;margin-top:8px}
+
+/* ── NODES ── */
+.node{
+  background:#111420;
+  border:1.5px solid var(--b, #2a2f3d);
+  border-radius:12px;
+  padding:14px 18px;
+  min-width:148px;max-width:210px;
+  cursor:pointer;
+  transition:transform .18s,box-shadow .18s,border-color .18s;
+  position:relative;
+}
+.node:hover{
+  transform:translateY(-4px);
+  border-color:var(--a);
+  box-shadow:0 12px 40px rgba(0,0,0,.55),0 0 0 1px var(--a);
+}
+.node .n{font-size:.9rem;font-weight:700;color:var(--a);margin-bottom:5px;letter-spacing:.03em}
+.node .r{font-size:.68rem;color:#6b7280;line-height:1.45}
+.node .t{font-size:.62rem;color:#374151;margin-top:7px;font-weight:600;letter-spacing:.04em}
+
+/* size variants */
+.node.lg{min-width:200px;max-width:240px;padding:18px 22px}
+.node.lg .n{font-size:1.1rem}
+.node.sm{min-width:120px;max-width:165px;padding:10px 14px}
+.node.sm .n{font-size:.78rem}
+.node.sm .r{font-size:.63rem}
+
+/* color palettes */
+.gold {--a:#f5c842;--b:rgba(245,200,66,.35);background:linear-gradient(135deg,#130e00,#0e0c00)}
+.indigo{--a:#818cf8;--b:rgba(129,140,248,.25)}
+.orange{--a:#f97316;--b:rgba(249,115,22,.25)}
+.purple{--a:#c084fc;--b:rgba(192,132,252,.25)}
+.green {--a:#4ade80;--b:rgba(74,222,128,.2)}
+.amber {--a:#fbbf24;--b:rgba(251,191,36,.22)}
+.teal  {--a:#2dd4bf;--b:rgba(45,212,191,.22)}
+.sky   {--a:#38bdf8;--b:rgba(56,189,248,.22)}
+.rose  {--a:#fb7185;--b:rgba(251,113,133,.2)}
+.slate {--a:#94a3b8;--b:rgba(148,163,184,.18)}
+
+/* ── CONNECTORS ── */
+.vert{display:flex;flex-direction:column;align-items:center;gap:0;margin:6px 0}
+.vert svg{display:block}
+.flow-tag{font-size:.58rem;color:#1e2d3d;letter-spacing:.05em;margin:1px 0;text-align:center}
+
+/* ── MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;align-items:center;justify-content:center}
+.overlay.on{display:flex}
+.modal{background:#13161f;border:1.5px solid #2a2f3d;border-radius:16px;padding:28px 32px;max-width:480px;width:92%;position:relative;animation:pop .18s ease}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.modal h2{font-size:1.3rem;font-weight:800;margin-bottom:6px}
+.modal .mrole{font-size:.82rem;color:#94a3b8;line-height:1.55;margin-bottom:16px}
+.modal .mdetail{font-size:.78rem;color:#4b5563;line-height:1.75}
+.modal .mdetail strong{color:#cbd5e1}
+.modal .mdetail code{background:#1e2535;border-radius:4px;padding:1px 5px;font-size:.72rem;color:#7dd3fc}
+.mclose{position:absolute;top:14px;right:14px;background:none;border:none;color:#374151;font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .15s,color .15s}
+.mclose:hover{background:#1e2535;color:#e2e8f0}
+
+/* ── LEGEND ── */
+.legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:44px;padding-top:20px;border-top:1px solid #1a1f2e}
+.li{display:flex;align-items:center;gap:6px;font-size:.67rem;color:#4b5563}
+.ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+/* ── SIDEBAR SECTIONS (ad hoc + dormant) ── */
+.sidebar{margin-top:28px;padding:16px 20px;border:1px dashed #1f2535;border-radius:10px;max-width:1100px;margin-left:auto;margin-right:auto}
+.sidebar-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:#4b5563;margin-bottom:10px;text-align:center;font-weight:600}
+.sidebar.dormant{border-color:#2a1f1f;background:rgba(251,113,133,.03)}
+.sidebar.dormant .sidebar-label{color:#6b4b52}
+.sidebar .tier{gap:10px}
+
+/* ── KEYWORD FOOTNOTE ── */
+.keywords{max-width:1100px;margin:24px auto 0;padding:14px 20px;font-size:.6rem;color:#2d3748;text-align:center;line-height:1.7;letter-spacing:.04em}
+.keywords strong{color:#4b5563;font-weight:600}
+
+/* arrow helper */
+.arr{color:#1a2535;font-size:1.1rem;line-height:1;text-align:center;margin:4px 0;user-select:none}
+</style>
+</head>
+<body>
+
+<h1>Brady OS — Agent Ecosystem</h1>
+<p class="subtitle">Flow chart · System map · Org chart — 18 agents · 5 tiers + 2 sidebars · Click any node to expand · Updated 2026-04-24</p>
+
+<div class="map">
+
+  <!-- T1: COMMAND -->
+  <div class="tier-label">Command Layer</div>
+  <div class="tier">
+    <div class="node gold lg" onclick="open_('claudine')">
+      <div class="n">CLAUDINE</div>
+      <div class="r">Country President · Strategic Hub<br>Non-executing · All-Aware · Judgment</div>
+      <div class="t">Always On · Chat / Cowork / Code</div>
+    </div>
+  </div>
+
+  <div class="arr">↓ &nbsp; ↓ &nbsp; ↓</div>
+
+  <!-- T2: ADVISORY RING -->
+  <div class="tier-label">Advisory Ring</div>
+  <div class="tier">
+    <div class="node orange sm" onclick="open_('wyatt')">
+      <div class="n">WYATT EARP</div>
+      <div class="r">Dissent Agent<br>Pressure-tests pitches</div>
+      <div class="t">Dissent Protocol</div>
+    </div>
+    <div class="node slate sm" onclick="open_('bertha')">
+      <div class="n">BERTHA</div>
+      <div class="r">Performance Coach<br>4-layer tracking</div>
+      <div class="t">Check-ins</div>
+    </div>
+  </div>
+
+  <div class="arr">↓</div>
+
+  <!-- T3: SCHEDULED AUTONOMOUS -->
+  <div class="tier-label">Scheduled Autonomous Agents</div>
+  <div class="tier">
+    <div class="node indigo" onclick="open_('phil')">
+      <div class="n">PHIL</div>
+      <div class="r">Notion grooming<br>Pre-sweep primer<br>TOP 3 candidates</div>
+      <div class="t">⏰ 4 AM CT · Daily</div>
+    </div>
+    <div class="node orange" onclick="open_('musashi')">
+      <div class="n">MUSASHI</div>
+      <div class="r">Agent scoring (/10)<br>Tech scan · Build ideation<br>Brady approval gate</div>
+      <div class="t">⏰ Midnight CT · Daily</div>
+    </div>
+    <div class="node purple" onclick="open_('heidi')">
+      <div class="n">HYGIENE HEIDI</div>
+      <div class="r">OS compliance audit<br>Red/Amber/Green brief<br>Purgatory detection</div>
+      <div class="t">⏰ Saturday 8 AM CT</div>
+    </div>
+    <div class="node green" onclick="open_('finn')">
+      <div class="n">FINN</div>
+      <div class="r">Personal CFO<br>Net worth · Pipeline<br>Household finance</div>
+      <div class="t">On-demand + sweeps</div>
+    </div>
+  </div>
+
+  <div class="arr">↓</div>
+
+  <!-- T4: EXECUTION -->
+  <div class="tier-label">Execution & Publishing</div>
+  <div class="tier">
+    <div class="node amber" onclick="open_('yuki')">
+      <div class="n">YUKI RONIN A–E</div>
+      <div class="r">Named builder ronins<br>Approved specs only<br>Musashi-directed</div>
+      <div class="t">Post-Brady approval</div>
+    </div>
+    <div class="node teal" onclick="open_('webster')">
+      <div class="n">WEBSTER</div>
+      <div class="r">Web publishing<br>mception.ai deploys<br>Vercel · Clerk · APIs</div>
+      <div class="t">Deploy / config requests</div>
+    </div>
+    <div class="node sky" onclick="open_('telly')">
+      <div class="n">TELLY</div>
+      <div class="r">Telegram ↔ Notion<br>Intake + feedback capture<br>Outbound push</div>
+      <div class="t">Always on · Telegram</div>
+    </div>
+    <div class="node slate sm" onclick="open_('cornelius')">
+      <div class="n">CORNELIUS</div>
+      <div class="r">Notion archivist<br>OS source of truth</div>
+      <div class="t">AM/PM + voice notes</div>
+    </div>
+    <div class="node slate sm" onclick="open_('mason')">
+      <div class="n">MASON</div>
+      <div class="r">System packager<br>Rebuild architect</div>
+      <div class="t">On-demand</div>
+    </div>
+    <div class="node slate sm" onclick="open_('contentdrafter')">
+      <div class="n">CONTENT DRAFTER</div>
+      <div class="r">Ghost writer · 5 series<br>LinkedIn + Substack</div>
+      <div class="t">Content requests</div>
+    </div>
+  </div>
+
+  <div class="arr">↓</div>
+
+  <!-- T5: PROJECT INTELLIGENCE -->
+  <div class="tier-label">Project Intelligence</div>
+  <div class="tier">
+    <div class="node gold" onclick="open_('ocoptimus')">
+      <div class="n">OC OPTIMUS</div>
+      <div class="r">Panda Restaurant Group<br>Cycle-horizon coach<br>Synthesis · Problem Frame · Data Hunt</div>
+      <div class="t">Daily standup · All-knowing · 14 DR threads</div>
+    </div>
+    <div class="node amber" onclick="open_('fran')">
+      <div class="n">FRAN</div>
+      <div class="r">1915 South · Ashley HomeStore<br>Engagement accelerator<br>Synthesis · Problem Frame · Data Hunt</div>
+      <div class="t">Daily standup · All-knowing · M&A in flight</div>
+    </div>
+  </div>
+
+</div><!-- /map -->
+
+<!-- AD HOC SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-label">Ad Hoc Utilities · Invoked On Demand</div>
+  <div class="tier">
+    <div class="node sky sm" onclick="open_('dicaprio')">
+      <div class="n">DICAPRIO</div>
+      <div class="r">20K-Foot Recon<br>Cross-project status · Drift detection</div>
+      <div class="t">Ad Hoc → Claudine</div>
+    </div>
+  </div>
+</div>
+
+<!-- DORMANT SIDEBAR -->
+<div class="sidebar dormant">
+  <div class="sidebar-label">Dormant · 30-Day Retirement Watch (retire 2026-05-24 if unused)</div>
+  <div class="tier">
+    <div class="node slate sm" onclick="open_('bo')">
+      <div class="n">BO</div>
+      <div class="r">Chief of Staff<br>Front door · Gatekeeper</div>
+      <div class="t">Dormant · Role absorbed by Claudine</div>
+    </div>
+    <div class="node rose sm" onclick="open_('burt')">
+      <div class="n">BURT</div>
+      <div class="r">Consigliere<br>Sharp judgment · Pattern memory</div>
+      <div class="t">Dormant · Overlaps Claudine + Wyatt</div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="li"><div class="ld" style="background:#f5c842"></div>Command</div>
+  <div class="li"><div class="ld" style="background:#38bdf8"></div>Recon / Comms</div>
+  <div class="li"><div class="ld" style="background:#818cf8"></div>Nightly (Phil)</div>
+  <div class="li"><div class="ld" style="background:#f97316"></div>Nightly (Musashi)</div>
+  <div class="li"><div class="ld" style="background:#c084fc"></div>Weekly Audit</div>
+  <div class="li"><div class="ld" style="background:#4ade80"></div>Financial</div>
+  <div class="li"><div class="ld" style="background:#fbbf24"></div>Execution</div>
+  <div class="li"><div class="ld" style="background:#2dd4bf"></div>Web/Deploy</div>
+  <div class="li"><div class="ld" style="background:#94a3b8"></div>Support/Advisory</div>
+</div>
+
+<!-- KEYWORD FOOTNOTE (search hints for future-me) -->
+<div class="keywords">
+  <strong>Also known as:</strong> flow chart · flowchart · process diagram · process flow · org chart · organization chart · system map · ecosystem diagram · topology · architecture diagram · agent hierarchy · agent map · hierarchy diagram · workflow · roster · team structure · agent tree
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="ov" onclick="close_(event)">
+  <div class="modal">
+    <button class="mclose" onclick="closeM()">✕</button>
+    <h2 id="mname"></h2>
+    <p class="mrole" id="mrole"></p>
+    <div class="mdetail" id="mdetail"></div>
+  </div>
+</div>
+
+<script>
+const A = {
+  claudine:{accent:'#f5c842',role:'Country President of Nemuro OS · Non-Executing Judgment Agent · All-Aware Strategic Hub',detail:`<strong>Trigger:</strong> Chat, Cowork, or Code session activation<br><br><strong>Outputs:</strong> Decisions, approvals, direction vectors, behavioral defaults<br><br><strong>Handoffs:</strong> Distributes direction to all operational agents; receives status from DiCaprio<br><br><strong>Key rule:</strong> Claudine judges and directs — she never executes. All autonomous action routes through scheduled agents or builder tiers.`},
+  dicaprio:{accent:'#38bdf8',role:'20K-Foot Reconnaissance · Project Drift Detection · Status Synthesis',detail:`<strong>Trigger:</strong> Scheduled or ad hoc<br><br><strong>Outputs:</strong> STATUS-TEMPLATE reports, drift flags, stale work alerts<br><br><strong>Template:</strong> <code>0-agents/custom-built-agents/dicaprio-STATUS-TEMPLATE.md</code><br><br><strong>Handoff:</strong> Reports directly to Claudine`},
+  bo:{accent:'#94a3b8',role:'Chief of Staff · Front Door · Decision Gatekeeper',detail:`<strong>Status:</strong> Dormant — 30-day retirement watch (retire 2026-05-24 if unused)<br><br><strong>Trigger:</strong> Incoming decisions, calendar requests, or ambiguous asks<br><br><strong>Outputs:</strong> Decision compression (In / Out / Park / Delegate), boundary defense<br><br><strong>Handoff:</strong> Protects Brady's execution focus; routes to correct agent or Brady directly<br><br><strong>Why dormant:</strong> Role overlaps with Claudine's "all-aware" judgment + Telly's Telegram intake. No activations in recent git history.`},
+  burt:{accent:'#fb7185',role:'Consigliere · Sharp Decision Support · Pattern Memory',detail:`<strong>Status:</strong> Dormant — 30-day retirement watch (retire 2026-05-24 if unused)<br><br><strong>Trigger:</strong> Strategy or high-stakes decision queries<br><br><strong>Outputs:</strong> Pattern-matched history, bullshit detection, direct recommendations<br><br><strong>Handoff:</strong> Feeds Brady's judgment model; often runs alongside Wyatt Earp dissent<br><br><strong>Why dormant:</strong> "Sharp judgment + pattern memory" overlaps with Claudine; counter-voice lane is owned by Wyatt. Never activated in git history.`},
+  wyatt:{accent:'#f97316',role:'Ad Hoc Dissent Agent · Pitch Pressure-Tester',detail:`<strong>Trigger:</strong> Dissent Protocol activation (Brady invokes)<br><br><strong>Outputs:</strong> Structured dissent memo highlighting blind spots and escalations<br><br><strong>Handoff:</strong> Delivered to Brady for strategic recalibration before client delivery`},
+  bertha:{accent:'#94a3b8',role:'Performance Coach · 4-Layer Tracking (State · Story · Standards · Systems)',detail:`<strong>Trigger:</strong> Check-ins or misalignment detection<br><br><strong>Outputs:</strong> Thinking-partner insights, behavioral pattern recognition<br><br><strong>Handoff:</strong> Feeds Brady's self-awareness loop; surfaces patterns to Claudine`},
+  phil:{accent:'#818cf8',role:'Daily 4 AM CT · Notion Grooming · Pre-Sweep Primer',detail:`<strong>Trigger:</strong> 4:00 AM CT daily (scheduled)<br><br><strong>Outputs:</strong><br>• TOP 3 daily candidates<br>• Carryover / 7-day horizon flags<br>• Coherence flags (Done/Status mismatches, capped 20/run)<br>• Gitted backup: <code>brady-os/phil-morning-audits/YYYY-MM-DD.md</code><br>• Streaming Notes row: Type="Pre-Sweep Primer"<br><br><strong>Handoff:</strong> Morning Sweep Phase 1.0b consumes Phil's primer`},
+  musashi:{accent:'#f97316',role:'Daily Midnight CT · Agent Tension Scoring · Tech Scan · Build Ideation',detail:`<strong>Trigger:</strong> Midnight CT daily (scheduled)<br><br><strong>Outputs:</strong><br>• Agent scorecards — 5 dimensions (Activation, Output Landed, Autonomy, Trigger Clarity, Surprise Value), 0–2 each, /10 total<br>• 1–3 recommendations per below-threshold agent<br>• Web scan via Exa + Bright Data for new AI tools / MCPs<br>• 3–5 low-manual-lift biz ideas<br>• Gitted backup: <code>brady-os/musashi-reviews/YYYY-MM-DD.md</code><br>• Every item has an approval slug — nothing auto-executes<br><br><strong>Handoff:</strong> Brady approves slug → Yuki Ronin builds. Morning Sweep Phase 1.0c consumes.`},
+  heidi:{accent:'#c084fc',role:'Weekly Saturday 8 AM CT · OS Compliance Audit · Rule Enforcement',detail:`<strong>Trigger:</strong> Saturday 8:00 AM CT (weekly scheduled)<br><br><strong>4 Hygiene Rules audited per agent:</strong> objective scoring methodology, self-scoring, improvement-seeking, Streaming Notes purgatory ≤7 days<br><br><strong>Outputs:</strong><br>• Red/Amber/Green brief<br>• Approval gates for all violations<br>• Gitted backup: <code>brady-os/hygiene-heidi-reports/YYYY-MM-DD.md</code><br>• Streaming Notes row + Routing Log row<br><br><strong>Handoff:</strong> Violations route to Brady with required approval before auto-fixes`},
+  finn:{accent:'#4ade80',role:'Personal CFO · Financial Cockpit · Family Ops Lead',detail:`<strong>Trigger:</strong> On-demand + morning/weekly sweep financial sections<br><br><strong>Outputs:</strong><br>• Net worth snapshot (current: $1.35M, investments $1.02M, liquidity $301K HELOC)<br>• Consulting pipeline enriched from Gmail + Calendar + Notion<br>• Monarch CSV analysis (7-day, 30-day, Utah/AR splits)<br>• Household finance tracking<br>• HTML dashboard published to mception.ai<br><br><strong>Handoff:</strong> Feeds Brady's decision model; flags anomalies to Financial Anomaly Review`},
+  yuki:{accent:'#fbbf24',role:'Named Builder Ronins A–E · Approved Specs Only · Musashi-Directed',detail:`<strong>Trigger:</strong> Brady approves a Musashi recommendation (approval slug)<br><br><strong>Outputs:</strong> Built artifacts, implementation code, domain deliverables<br><br><strong>Handoff:</strong> Delivers to project stakeholders; reports blockers back to Musashi<br>Domain expertise fed back to Musashi for future agent re-scoring`},
+  webster:{accent:'#2dd4bf',role:'Web Publishing Concierge · mception.ai Deploys · Vercel & Clerk Ops',detail:`<strong>Trigger:</strong> Deploy, config, permissions, or API wiring requests<br><br><strong>5 Runbooks:</strong><br>1. Publish new slug<br>2. Edit Clerk allowlist<br>3. Diagnose failed deploy<br>4. Wire new API / token<br>5. Spin up standalone Vercel app<br><br><strong>Authority:</strong> Only Webster owns mception.ai slug publishing; checks <code>portal/src/config/projects.yml</code> allowlist before any publish<br><br><strong>Handoff:</strong> Feeds mception.ai portal; coordinates with Clerk auth and Vercel env vars`},
+  telly:{accent:'#38bdf8',role:'Telegram ↔ Notion Dispatch Bot · Intake · Outbound Push',detail:`<strong>Trigger:</strong> Incoming Telegram messages with prefixes<br><br><strong>Inbound prefixes:</strong> <code>rule:</code> / <code>never:</code> / <code>always:</code> / <code>remember:</code> → Streaming Notes as System Instruction<br><br><strong>Outbound:</strong> <code>POST /api/push</code> used by sweeps for completion notifications to Brady<br><br><strong>Handoff:</strong> Feeds Notion Streaming Notes DB; morning sweep picks up all System Instructions`},
+  cornelius:{accent:'#94a3b8',role:'Notion-Native Strategist · OS Archivist · Decision Archive',detail:`<strong>Trigger:</strong> Daily AM/PM summary, voice notes, "Save This" requests<br><br><strong>Outputs:</strong> Canonical OS records, decision archives, system sync<br><br><strong>Handoff:</strong> Maintains Brady OS as source of truth; reconciles against git state`},
+  mason:{accent:'#94a3b8',role:'System Packager · Rebuild Architect · Knowledge Transfer',detail:`<strong>Outputs:</strong> Friend-safe rebuild guides covering Activation / Operating / Project Overlay layers<br><br><strong>Handoff:</strong> Enables Brady OS replication and onboarding of others into the system`},
+  contentdrafter:{accent:'#94a3b8',role:'Ghost Writer · Voice-Matching Expert · Brady\'s 5 Content Series',detail:`<strong>Trigger:</strong> Content series requests<br><br><strong>5 Active Series:</strong><br>• COO Who Quit<br>• AI for the Rest of Us<br>• Building with ADHD<br>• Dad Journal<br>• Arm the Rebels<br><br><strong>Outputs:</strong> LinkedIn posts and Substack pieces in Brady's voice<br><br><strong>Handoff:</strong> Content-publishing-kit sequences ideation → drafting → visuals`},
+  ocoptimus:{accent:'#f5c842',role:'Panda Restaurant Group · Engagement Architect · Cycle-Horizon Coach',detail:`<strong>Trigger:</strong> Daily project standup or problem discovery<br><br><strong>3 Modes:</strong><br>• Synthesis — full narrative from 14 DR threads<br>• Problem Frame — structured SFDR, sizes the gap<br>• Data Hunt — surfaces what's missing and who has it<br><br><strong>Notion wiki:</strong> <code>34aed43b-89c5-81a1-8593-dc4bef3c121d</code><br><br><strong>Handoff:</strong> Champion: James Ku · Authority: Russell Turner · Reports to Claudine`},
+  fran:{accent:'#fbbf24',role:'1915 South / Ashley HomeStore Franchisee · Engagement Accelerator',detail:`<strong>Trigger:</strong> Daily project standup or operational queries<br><br><strong>3 Modes:</strong><br>• Synthesis — franchise economics, GMROI, phase progression<br>• Problem Frame — structured SFDR for operational gaps<br>• Data Hunt — Justin/Russell corpus, scenario matrix<br><br><strong>M&A workshop:</strong> In flight — Fran absorbs output when it lands<br><br><strong>Notion wiki:</strong> <code>34aed43b-89c5-8133-9f37-cae04045d8c7</code><br><br><strong>Handoff:</strong> Champion: Justin Woods · Authority: Russell Turner`}
+};
+
+function open_(k){
+  const a=A[k];if(!a)return;
+  document.getElementById('mname').textContent=k.toUpperCase().replace('_',' ');
+  document.getElementById('mname').style.color=a.accent;
+  document.getElementById('mrole').textContent=a.role;
+  document.getElementById('mdetail').innerHTML=a.detail;
+  document.getElementById('ov').classList.add('on');
+}
+function close_(e){if(e.target===document.getElementById('ov'))closeM()}
+function closeM(){document.getElementById('ov').classList.remove('on')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()})
+</script>
+</body>
+</html>

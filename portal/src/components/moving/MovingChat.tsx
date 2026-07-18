@@ -3,7 +3,10 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import LiveEstimatePanel from '@/components/moving/LiveEstimatePanel'
+import ThurmanCard from '@/components/moving/ThurmanCard'
+import ThurmanLeadForm from '@/components/moving/ThurmanLeadForm'
 import { calculateEstimate, EstimateResult } from '@/lib/moving/national-data'
+import { isOrlandoMetro } from '@/lib/moving/orlando-detector'
 import type { ExtractedData, PanelView } from '@/lib/moving/types'
 
 interface Message {
@@ -23,7 +26,22 @@ export default function MovingChat() {
   const [loading, setLoading] = useState(false)
   const [extractedData, setExtractedData] = useState<ExtractedData>({})
   const [panelView, setPanelView] = useState<PanelView>('calculator')
+  const [thurmanFormOpen, setThurmanFormOpen] = useState(false)
   const pendingPanelChanges = useRef<Partial<ExtractedData>>({})
+
+  const isOrlando = useMemo(
+    () => isOrlandoMetro(extractedData.destinationCity),
+    [extractedData.destinationCity]
+  )
+
+  // Auto-jump to Orlando tab when destination is detected for the first time
+  const prevIsOrlando = useRef(false)
+  useEffect(() => {
+    if (isOrlando && !prevIsOrlando.current) {
+      setPanelView('orlando')
+    }
+    prevIsOrlando.current = isOrlando
+  }, [isOrlando])
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -257,20 +275,34 @@ export default function MovingChat() {
         </div>
 
         {/* Estimate Panel - 2 cols */}
-        <div className="lg:col-span-2">
-          <LiveEstimatePanel
-            extractedData={extractedData}
-            estimate={estimate}
-            panelView={panelView}
-            onDataChange={(update) => {
-              setExtractedData(prev => ({ ...prev, ...update }))
-              pendingPanelChanges.current = { ...pendingPanelChanges.current, ...update }
-            }}
-            onSendToChat={handleSendToChat}
-            lastAIMessage={lastAIMessage}
-          />
+        <div
+          className="lg:col-span-2 flex flex-col gap-3"
+          style={{ height: 'calc(100vh - 200px)', minHeight: '500px' }}
+        >
+          {isOrlando && <ThurmanCard onConnect={() => setThurmanFormOpen(true)} />}
+          <div className="flex-1 min-h-0">
+            <LiveEstimatePanel
+              extractedData={extractedData}
+              estimate={estimate}
+              panelView={panelView}
+              isOrlando={isOrlando}
+              onDataChange={(update) => {
+                setExtractedData(prev => ({ ...prev, ...update }))
+                pendingPanelChanges.current = { ...pendingPanelChanges.current, ...update }
+              }}
+              onSendToChat={handleSendToChat}
+              lastAIMessage={lastAIMessage}
+            />
+          </div>
         </div>
       </div>
+
+      <ThurmanLeadForm
+        open={thurmanFormOpen}
+        onClose={() => setThurmanFormOpen(false)}
+        extractedData={extractedData}
+        recentMessages={messages}
+      />
     </div>
   )
 }
