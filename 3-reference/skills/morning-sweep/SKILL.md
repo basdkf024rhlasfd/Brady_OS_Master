@@ -305,6 +305,19 @@ Cap at 5 items (oldest first). Store results for the Phase 2 report block.
 
 SLA reference: `3-reference/skills/_shared/streaming-notes-processing-paths.md`
 
+### 1.10 Apple Reminders Scan (Finn Phase)
+
+Run `apple-reminders-scan` skill in compact mode. Skill spec: `3-reference/skills/apple-reminders-scan/SKILL.md`
+
+- Scans: `Things To Buy`, `To do`, `Lily reminders` (+ `Finn` list if it exists)
+- Classifies, logs in-scope items to Streaming Notes, marks qualifying items complete in Apple Reminders
+- Logs individual actions internally — no separate announcement in this phase
+
+Store compact result for the Phase 2 `💰 FINANCES` block:
+- If N > 0 Finn-territory items: `🔔 Reminders: N Finn-territory (N processed · N flagged)`
+- If flagged items exist: surface each as a bullet under FINANCES (same block)
+- If 0 Finn-territory items found: omit the Reminders line entirely
+
 ## Phase 2: REPORT (Structured Output)
 
 Now write the brief. Every section is scannable. No fluff.

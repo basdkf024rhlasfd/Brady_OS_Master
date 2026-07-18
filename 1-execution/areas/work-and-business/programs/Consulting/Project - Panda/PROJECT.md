@@ -85,10 +85,25 @@
 
 **Approach:**
 1. Pre-research internal source pull ✅ (Notion, Gmail, Drive, baseline research files)
-2. 14 deep research threads (DR-01 to DR-14) running in waves, parallel where possible
-3. Per-thread extraction of candidate problem statements
-4. Cross-thread synthesis → 15-25 sharpened problem statements
-5. Final deliverable: `panda-problem-statements.html` + `.pdf` (mception design system) + operating-model one-pager
+2. 14 deep research threads (DR-01 to DR-14) running in waves, parallel where possible ✅
+3. Per-thread extraction of candidate problem statements ✅
+4. Cross-thread synthesis → 15-25 sharpened problem statements ✅
+5. Final deliverable: `panda-problem-statements.html` + `.pdf` (mception design system) + operating-model one-pager ✅
+
+### Phase 2a — Test Kitchen Operational Validation (ACTIVE)
+**Status:** Kicked off April 23, 2026.
+**Owner:** OC Optimus
+**Goal:** Research and scope a 6-7 month test kitchen stand-up to validate solutions for Panda's three binding constraints: (1) wok automation productivity + labor cost reduction, (2) digital order accuracy at scale (e-commerce to kitchen handoff), (3) drive-thru throughput bottleneck elimination.
+
+**Approach:**
+1. Test kitchen charter & constraint mapping ✅ (Notion page created April 23)
+2. Three ranked SFDRs (Specific Feasible Data Requests) for peer benchmarks:
+   - SFDR-101: Peer test kitchen models (Chipotle, Starbucks, McDonald's) — due April 26
+   - SFDR-102: Greenfield QSR capex/timeline/staffing benchmarks — due May 3
+   - SFDR-103: Peer learnings mapped to Panda's binding constraints — due May 10
+3. Timeline framework: 6-7 months total (4 decision gates at weeks 4, 8, 12, 16)
+4. Capex envelope: $1.65M–$4.15M depending on automation scope
+5. Success metrics: Wok automation >15% productivity lift, digital accuracy >97%, drive-thru <3 min, labor productivity 20% improvement
 
 **Outcome:** Deliverable complete. April 23 session served as engagement-scope interview — James had already seen the brief framing (via prior call) and was focused on fit, scope, and cadence. Phase 3 now active.
 
