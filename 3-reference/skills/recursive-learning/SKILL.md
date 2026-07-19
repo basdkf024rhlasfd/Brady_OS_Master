@@ -1,12 +1,12 @@
 ---
 name: recursive-learning
-description: Captures and logs working style feedback to Brady's Onboarding Brief AND the Streaming Notes pipeline for persistent learning across sessions. Use this skill when Brady gives feedback on HOW Claudine works (not WHAT to do), when calibrating behavior/tone/approach, at session end to check for unlogged learnings, or when Brady says things like "remember this" or "learn from this" about working style.
+description: Captures and logs working style feedback to Brady's Onboarding Brief AND the Streaming Notes pipeline for persistent learning across sessions. Applies to ALL agents (Claudine, Finn, and any other Brady OS agent). Use when Brady corrects HOW an agent works, redirects a lookup or search approach, calibrates behavior/tone/approach, at session end to check for unlogged learnings, or when Brady says things like "remember this" or "learn from this" about working style.
 trust_tier: T1
 ---
 
 # Recursive Learning
 
-Log behavioral feedback to the Streaming Notes pipeline (Type="System Instruction") AND the Working Style Learnings table in the Claude Onboarding Context page so future Claudine sessions benefit from accumulated calibration.
+Log behavioral feedback to the Streaming Notes pipeline (Type="System Instruction") AND the Working Style Learnings table in the Claude Onboarding Context page so all future agent sessions benefit from accumulated calibration. This skill applies to every Brady OS agent — not just Claudine.
 
 ## When to Trigger
 
@@ -14,6 +14,9 @@ Log behavioral feedback to the Streaming Notes pipeline (Type="System Instructio
 - Brady calibrates behavior ("be more direct", "just do it", "don't ask so much")
 - Explicit: "remember this", "learn from this", "add this to your learnings"
 - Brady uses the Feedback Capture triggers (`rule:`, `never:`, `always:`, `remember:`, `log:`)
+- **Brady redirects a lookup or search** — "you should have checked X first", "it was in Y", "you know where that lives" → this is a data-source priority learning, log it
+- **Brady had to supply info Finn should have remembered** — phone number, ID, platform, contact — if it exists in KB/references, that's a gap; if it's new, log it as a new data point AND note the gap in lookup order
+- **"You should remember this"** or **"fix why that didn't work"** → always triggers recursive learning, not just a one-time fix
 - Session end: Check if any feedback was given that wasn't logged
 
 ## Workflow
@@ -30,6 +33,10 @@ Examples of working style feedback:
 - "More Bo mode, less Bertha"
 - "Carry the cognitive load"
 - "Don't add decision fatigue"
+- "You should have known to look there" → data source priority learning
+- "It was in the texts from [person]" → iMessage lookup gap
+- "You should remember that for next time" → skill/data map gap
+- "Fix why that didn't work" → procedural gap, not just a one-time patch
 
 ### 2. Propose the Learning
 
@@ -68,6 +75,26 @@ Insert a new row in the Working Style Learnings table:
 
 Use `notion-update-page` with `update_content` targeting the last table row.
 
+**C. Claude Code memory (when running in Code/Conductor context) — REQUIRED when applicable**
+
+If the session is running in Claude Code or Conductor, also write a `feedback` memory to:
+`/Users/bs/.claude/projects/-Users-bs-conductor-repos-brady-os-master/memory/`
+
+Use the standard memory frontmatter format:
+```markdown
+---
+name: [short topic]
+description: [one-line hook for MEMORY.md index]
+type: feedback
+---
+[Rule statement]
+
+**Why:** [why Brady gave this correction — the incident that prompted it]
+**How to apply:** [when this kicks in, what agent/skill it affects]
+```
+
+Then add a pointer to `MEMORY.md`. This ensures the learning survives across Claude Code sessions independently of the Notion pipeline.
+
 ### 4. Acknowledge
 
 Brief confirmation: "Logged. Future sessions will know."
@@ -101,10 +128,14 @@ Bad: "Be more proactive sometimes"
 
 ## Session End Check
 
-Before ending any substantial session, ask yourself:
-- Did Brady give any feedback on how I worked?
-- Did I already log it to BOTH destinations?
-- If not, propose logging it now.
+Before ending any substantial session, run this checklist silently:
+- Did Brady redirect a lookup or tell me where something actually lives?
+- Did Brady supply info I should have known or found myself?
+- Did Brady say "remember this", "fix why that didn't work", or "you should know this"?
+- Did any correction happen that I patched locally but didn't log as a learning?
+
+If YES to any → log it without waiting for Brady to ask. Brief acknowledgment: "Logged. Future sessions will know."
+If NO → no announcement needed, just close cleanly.
 
 ## Reference
 
