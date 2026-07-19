@@ -1,0 +1,26 @@
+# Talent OS — keep confidential inputs and generated PII out of git.
+# The kit (skills, templates, reference, agents) is safe to commit.
+# Anything a client hands you, or anything a skill generates from it, is NOT.
+
+# Real inputs Brandon drops in (interview transcripts, resumes, rosters, survey data)
+intake/interviews/*
+intake/roles/*
+intake/resumes/*
+intake/data/*
+# ...but keep the folders + their READMEs so the structure ships
+!intake/**/README.md
+!intake/**/.gitkeep
+
+# Generated deliverables can contain candidate names, comp, PII
+deliverables/*
+!deliverables/README.md
+!deliverables/.gitkeep
+
+# Local scratch / model working notes
+.context/
+*.local.md
+
+# OS noise
+.DS_Store
+node_modules/
+*.log
