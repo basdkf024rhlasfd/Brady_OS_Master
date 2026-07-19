@@ -1,0 +1,93 @@
+# The Steward — Recursive Learning Log
+# ---------------------------------------------------------------------------
+# This file is the Steward's diary. It grows one entry per weekly run. The
+# Steward READS it at Pre-Flight (to reconcile the experiment ledger and to
+# reweight which signal sources it trusts) and WRITES to it at the end of
+# every run. It is the Steward's OWN instrumentation — mutable by the Steward.
+#
+# It is NOT the eval contract. The scoring rubric + family-freeze rule live in
+# `eval-contract.md`, which the Steward may read but NEVER edit. Keep that
+# separation: contract = constitution (Brady only); log = diary (Steward).
+#
+# MIN-SAMPLE HUMILITY (hard rule):
+#   * Never mark a shipped change confirmed/rejected on N=1 week of post-ship
+#     signal. A terminal verdict needs >=2 weeks of observation OR an explicit
+#     Brady confirmation.
+#   * Never reweight a signal source on <4 lifetime approved proposals from it.
+#   * Below the min-sample threshold, the verdict/weight stays "pending" /
+#     "inconclusive". One good week is a story, not a pattern.
+# ---------------------------------------------------------------------------
+
+runs:
+  # ----- SEED EXAMPLE (delete on first real run) -----------------------------
+  - date: "2026-07-19"            # example seed — not a real run
+    example: true                 # remove this key on the first real run
+    week_of: "2026-07-13"
+    catch_up_for: []              # any missed week-dates this run consolidated
+    signal:
+      posthog_available: false    # true once the PostHog MCP + capture is live
+      mode: "brady-side-only"     # "brady-side-only" | "full" (full = PostHog live)
+      chat_sessions_reviewed: 0
+      low_confidence_flags: 0     # chatbot "couldn't answer" / uncertain replies
+      unanswered_clusters: 0      # clustered repeated unanswered questions
+      brady_reexplanations: 0     # things Brady re-explained (Streaming Notes / R&P)
+    proposals_drafted: 0
+    proposals_ship_eligible: 0    # cleared the eval-contract gate (Value>=2, Effort S/M, Risk Low/Med)
+    family_freeze_proposals: 0    # High-risk family/protected — always explicit-approval
+    watched_not_shipped: 0
+    build_spec_flagged: 0         # Effort=L items kicked to SPEC-NNN
+    skip_week: true               # empty week is a SUCCESS output; digest still fired
+    top_proposals: []
+      # - slug: "healthcare-copay-answer"
+      #   surface: "healthcare"
+      #   value: 3
+      #   effort: "S"
+      #   risk: "High"             # -> family-freeze block, family-path UAT required
+      #   family_freeze: true
+      #   gap_type: "unanswered-question"   # unanswered-question | re-explanation
+      #   rationale: "3 sessions asked how copays work; chatbot returned low-confidence each time."
+    self_score: null              # /10 — computed in the run, mirrored into backup
+    learnings: []
+      # - "Brady-side re-explanation signal produced the only ship-eligible proposal this week."
+  # ----- REAL RUNS APPEND BELOW ---------------------------------------------
+
+# ---------------------------------------------------------------------------
+# EXPERIMENT LEDGER
+# Each change that Brady approves and that ships gets logged here the week it
+# ships, then RE-EVALUATED every subsequent run until it reaches a terminal
+# verdict. This is how the Steward learns whether its proposals actually work —
+# not just whether they were approved.
+#
+# verdict:
+#   pending       — shipped <2 weeks ago; too early to judge (min-sample rule)
+#   confirmed     — >=2 weeks of post-ship signal show the gap closed (fewer
+#                   unanswered questions / no more re-explanation) OR Brady confirmed
+#   rejected      — gap did NOT close, or the change caused a new problem
+#   inconclusive  — >=2 weeks observed but signal too thin to call either way
+# ---------------------------------------------------------------------------
+experiment_ledger:
+  # ----- SEED EXAMPLE (delete on first real ship) ----------------------------
+  - slug: "EXAMPLE-do-not-count"
+    example: true                 # remove on first real ledger entry
+    shipped_week: "2026-07-19"
+    surface: "example"
+    change: "One-line description of what actually shipped."
+    hypothesis: "Shipping X closes the unanswered-question gap on surface Y."
+    gap_type: "unanswered-question"
+    post_ship_weeks_observed: 0
+    verdict: "pending"
+    evidence: []                  # per-week observations: e.g. "wk2: 0 repeat asks (was 3)"
+    notes: "Seed example — delete on first real ship. Do not count toward any pattern."
+  # ----- REAL LEDGER ENTRIES APPEND BELOW -----------------------------------
+
+# ---------------------------------------------------------------------------
+# SIGNAL-SOURCE PERFORMANCE (reweight only above min-sample)
+# Tracks which signal sources actually produce proposals Brady approves, so the
+# Steward can spend its weekly attention where it pays off. Reweight a source
+# ONLY once it has >=4 lifetime approved proposals; below that, treat as noise.
+# ---------------------------------------------------------------------------
+source_performance:
+  posthog_unanswered_clusters:   { proposals_drafted: 0, approved: 0, lifetime_approved: 0, weight: "unweighted (min-sample not met)" }
+  posthog_low_confidence_flags:  { proposals_drafted: 0, approved: 0, lifetime_approved: 0, weight: "unweighted (min-sample not met)" }
+  brady_reexplanations:          { proposals_drafted: 0, approved: 0, lifetime_approved: 0, weight: "unweighted (min-sample not met)" }
+  streaming_notes_sweep_feedback: { proposals_drafted: 0, approved: 0, lifetime_approved: 0, weight: "unweighted (min-sample not met)" }

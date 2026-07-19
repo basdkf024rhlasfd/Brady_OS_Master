@@ -58,5 +58,12 @@ Statuses:
 | SPEC-010 | engagement-portal-offer | Medium | T1 | open |
 | SPEC-011 | magic-link-analytics | Small | T1 | open |
 | SPEC-012 | build-queue-reconciliation | Small | T1 | open |
+| SPEC-013 | mception-capture | Medium | T1 | open |
+| SPEC-014 | mception-killtest | Small | T1 | open |
+| SPEC-015 | mception-steward-skill | Medium | T1 | open |
+| SPEC-016 | telly-inbound-bridge | Medium | T1 | open |
+| SPEC-017 | mception-loop-wire | Large | T2 | open |
 
 SPEC-008..012 source: `docs/mception-asset-strategy.md` (2026-07-18). Sequencing: 008 → 009; 010's first external send gated on 008; 011 and 012 independent.
+
+**mception self-improving loop (core, SPEC-013..017)** — Brady-approved 2026-07-19. NOTE: the live static-asset exposure fixed by this branch's `proxy.ts` change is the confirmed-urgent slice of **SPEC-008 (portal-trust-lockdown)** via its option (a); family-data eviction is **SPEC-009 (sensitive-content-eviction)** and is NOT duplicated by a loop spec. Loop build order: 013 capture (needs Brady's PostHog key) → 014 kill-test after 1 week → on go: 015 steward + 016 telly bridge → 017 wires it. Plan: `~/.claude/plans/system-instruction-you-are-working-declarative-bengio.md`.

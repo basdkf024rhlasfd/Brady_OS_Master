@@ -16,22 +16,33 @@ const isProtectedRoute = createRouteMatcher([
   "/calculators(.*)",
   "/notes(.*)",
   "/user-profile(.*)",
-  // --- Sensitive static content — SPEC-008 trust lockdown (2026-07-18) ---
+  // --- Sensitive static content — SPEC-008 trust lockdown (2026-07-18, #299) ---
   // These paths serve confidential engagement / family / financial files from
   // public/. The matcher below normally exempts static files (.html/.csv/images)
-  // from Clerk, so these were fetchable unauthenticated. Protection is scoped to
-  // the KB/files subdirectories so client-safe magic-link viewers keep working:
-  //   • 1915-south-execs / -ma / -cfo (client-safe views) are NOT matched here
-  //   • /panda/viewer and /financial-assistant/<viewer> stay public; only /kb is gated
-  //   • orlando/kb is intentionally left public — its viewer client-side-fetches it
+  // from Clerk, so these were fetchable unauthenticated. Client-safe magic-link
+  // viewers (1915-south-execs / -ma / -cfo, /panda/viewer, /orlando) are
+  // deliberately NOT matched here so their tours keep working.
   "/1915-south", // Brady-only engagement hub (viewer + files/)
   "/1915-south/(.*)",
   "/1915-south-map", // Brady-only operator map
   "/1915-south-map/(.*)",
-  "/family/(.*)", // family KB (school access codes, calendar) — no project viewer here
-  "/financial-assistant/kb/(.*)", // itemized balance sheet — leaves the viewer public
+  "/family/(.*)", // family KB (school access codes, calendar)
   "/panda/kb/(.*)", // engagement KB — leaves /panda/viewer for magic-link tours
   "/healthcare/kb/(.*)", // family benefits KB
+  // --- SPEC-008 follow-up (2026-07-19, #300): close remaining financial holes ---
+  // #299 gated only /financial-assistant/kb and left the VIEWER public, but the
+  // viewer loads /financial-assistant/data.js which carries net worth + account
+  // numbers (verified live-exposed 2026-07-19: data.js, bucket-system, and
+  // family-budget all returned HTTP 200 to anonymous requests after #299 shipped).
+  // Gate the whole prefixes. None are magic-link shared (magic_link: false in
+  // projects.yml), so a full Clerk gate breaks no legitimate access — signed-in
+  // Brady/family still pass.
+  "/financial-assistant", // net worth / account numbers in data.js + viewer
+  "/financial-assistant/(.*)",
+  "/family-budget",
+  "/family-budget/(.*)",
+  "/bucket-system",
+  "/bucket-system/(.*)",
 ]);
 
 export default isDevBypass
@@ -48,15 +59,18 @@ export const config = {
     // Default: run on everything except _next and common static assets.
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     "/(api|trpc)(.*)",
-    // SPEC-008: force middleware to run for sensitive static content that the
+    // SPEC-008 (#299): force middleware to run for sensitive static content the
     // default matcher would otherwise exempt by extension (.html/.pdf/.csv/images).
     // Pairs with the sensitive prefixes in isProtectedRoute above. Scoped so it
-    // does NOT catch sibling prefixes (e.g. /family-budget, /1915-south-execs).
+    // does NOT catch client-safe siblings (1915-south-execs, etc.).
     "/1915-south/:path*",
     "/1915-south-map/:path*",
     "/family/:path*",
-    "/financial-assistant/kb/:path*",
     "/panda/kb/:path*",
     "/healthcare/kb/:path*",
+    // SPEC-008 follow-up (2026-07-19, #300): the .js/.html viewer holes #299 left.
+    "/financial-assistant/:path*",
+    "/family-budget/:path*",
+    "/bucket-system/:path*",
   ],
 };

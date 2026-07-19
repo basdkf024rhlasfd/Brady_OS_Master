@@ -44,3 +44,33 @@ next-env.d.ts
 # clerk configuration (can include secrets)
 /.clerk/
 .env*.local
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SENSITIVE FAMILY / FINANCIAL DATA — must never be tracked in git (SPEC-010)
+# ─────────────────────────────────────────────────────────────────────────────
+# These files contain kids' school login codes + student IDs + DOBs, medical/Rx
+# detail, insurance member IDs, patient-portal logins, phone numbers, full
+# balance sheet (net worth, account last-4s, IRA/401k/Roth balances), Monarch
+# transaction data, and client-confidential consulting pipeline figures. Per
+# CLAUDE.md + TRANSPARENCY §5 ("family/sensitive data never in git"), and because
+# everything under portal/public/ is ALSO served as a PUBLIC static asset over
+# HTTP (no Clerk gate — see src/proxy.ts protected-route matcher), these are a
+# double leak: git history AND the live web.
+#
+# The canonical source for all of this is Notion + the sweeps/Monarch pipeline,
+# which regenerate it at runtime — so git tracking adds leak risk with no durable
+# value. Target architecture: chatbot KB loads from Notion at runtime (mirroring
+# src/app/api/1915-south/research-feed/route.ts); the financial dashboard fetches
+# from an authenticated API route instead of <script src="data.js">.
+#
+# NOTE: This block prevents FUTURE (re)commits of new files here. It does NOT
+# untrack the 25 files already committed here — that requires `git rm --cached` +
+# (optionally) a history purge, which are DESTRUCTIVE and gated on Brady's
+# explicit confirm. See docs/investigations/family-data-degit-plan.md.
+public/family/kb/
+public/financial-assistant/data.js
+public/financial-assistant/kb/
+
+# Keep the safe, committed presentation shell + zeroed template tracked:
+!public/financial-assistant/data.example.js
+!public/financial-assistant/index.html

@@ -28,7 +28,14 @@ const SENSITIVE = [
   { dir: "public/1915-south/files", prefix: "/1915-south" },
   { dir: "public/1915-south-map", prefix: "/1915-south-map" },
   { dir: "public/family/kb", prefix: "/family" },
-  { dir: "public/financial-assistant/kb", prefix: "/financial-assistant/kb" },
+  // Strengthened 2026-07-19 (#300): gate the WHOLE /financial-assistant prefix,
+  // not just /kb. #299 left the viewer public, but it loads
+  // /financial-assistant/data.js which carries net worth + account numbers
+  // (verified HTTP 200 to anonymous requests). Same for the two cash-cockpit
+  // viewers below, which #299's check did not cover at all.
+  { dir: "public/financial-assistant", prefix: "/financial-assistant" },
+  { dir: "public/family-budget", prefix: "/family-budget" },
+  { dir: "public/bucket-system", prefix: "/bucket-system" },
   { dir: "public/panda/kb", prefix: "/panda/kb" },
   { dir: "public/healthcare/kb", prefix: "/healthcare/kb" },
 ];
