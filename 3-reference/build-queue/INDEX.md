@@ -53,3 +53,11 @@ Statuses:
 | SPEC-005 | platform-sow-template | Medium | T1 | needs-review |
 | SPEC-006 | platform-library-query | Small | T1 | needs-review |
 | SPEC-007 | recon-dicaprio-retool | Medium | T1 | needs-review |
+| SPEC-008 | mception-capture | Medium | T1 | open |
+| SPEC-009 | mception-killtest | Small | T1 | open |
+| SPEC-010 | mception-family-degit | Medium | T2 | open |
+| SPEC-011 | mception-steward-skill | Medium | T1 | open |
+| SPEC-012 | telly-inbound-bridge | Medium | T1 | open |
+| SPEC-013 | mception-loop-wire | Large | T2 | open |
+
+**mception self-improving loop (core)** — Brady-approved 2026-07-19. Build order: 010 (family de-git, start now) + 008 (capture, needs Brady's 2 token pastes) run first → 009 kill-test after 1 week → on go: 011 + 012 → 013 wires it. Plan: `~/.claude/plans/system-instruction-you-are-working-declarative-bengio.md`.
