@@ -2,8 +2,8 @@
 
 **ID:** SPEC-008
 **Slug:** portal-trust-lockdown
-**Status:** open
-**Claimed by:** —
+**Status:** needs-review
+**Claimed by:** Claudine (Code) — 2026-07-18
 **Reviewer:** Brady
 **Size:** medium
 **Trust tier:** T2+ (client-facing production behavior — Brady must approve before deploy)
@@ -42,3 +42,23 @@ mception.ai serves sensitive static files unauthenticated and accepts unauthenti
 ## Notes
 
 Source: `docs/mception-asset-strategy.md` (2026-07-18 13-agent audit). No new magic links or client grants should be minted until this ships. The `magic_link: false` flips for the Brady-only `1915-south` / `1915-south-map` slugs shipped in the same PR that created this spec.
+
+### Implementation notes (2026-07-18, Claudine/Code)
+
+Implemented and building green (`npm run build` exit 0; changed files lint clean). Approach chosen — **surgical route protection, option (a)** — after verifying the safe path:
+- `kb-loader.ts` reads KB via server-side `readFileSync`, so gating the HTTP routes does **not** affect chat KB injection.
+- Only `orlando`'s viewer client-side-fetches its own `kb/` — orlando is intentionally left public, so no viewer breaks.
+- Protection is scoped to KB/files subdirs so client-safe magic-link viewers keep working: `1915-south-execs/-ma/-cfo`, `panda/viewer`, `financial-assistant` viewer, and `orlando` are all untouched. Only `1915-south` (Brady-only) is protected wholesale.
+- `IntakeForm` renders only in `EngagementHub` (authenticated portal), so a Clerk-session gate on `/api/intake` breaks no legitimate caller.
+
+Done in this PR:
+1. `portal/src/proxy.ts` — added sensitive prefixes to `isProtectedRoute` **and** matching `:path*` entries to `config.matcher` (so static `.html/.pdf/.csv/images` under those dirs no longer bypass Clerk). Precise patterns avoid sibling prefixes (`/family-budget`, `/1915-south-execs`).
+2. `portal/src/app/api/intake/route.ts` — requires a Clerk session (`auth()` → 401 if none).
+3. `portal/src/app/(portal)/healthcare/layout.tsx` — new; `requireProjectAccess("healthcare")`.
+4. `portal/scripts/check-public-exposure.mjs` + `prebuild` hook — fails the build if any sensitive dir loses its gate (verified: passes on the fix, fails on a deliberate regression).
+5. `mception-local-dev/SKILL.md` — scrubbed the committed `sk_test` key to a placeholder.
+
+**Still requires Brady (acceptance gate):**
+- Rotate/invalidate the old dev `sk_test` key in the Clerk dashboard (code scrub alone doesn't invalidate the leaked value; full history scrub is SPEC-009 C4).
+- Full browser UAT across tiers (owner / client / preview / magic-link / logged-out) per webster Runbook 5 before treating as accepted. Automated HTTP verification against the Vercel preview is in the PR.
+- Merge = deploy. Only Brady moves this spec `needs-review → accepted`.

@@ -53,7 +53,7 @@ Statuses:
 | SPEC-005 | platform-sow-template | Medium | T1 | needs-review |
 | SPEC-006 | platform-library-query | Small | T1 | needs-review |
 | SPEC-007 | recon-dicaprio-retool | Medium | T1 | needs-review |
-| SPEC-008 | portal-trust-lockdown | Medium | T2+ | open |
+| SPEC-008 | portal-trust-lockdown | Medium | T2+ | needs-review |
 | SPEC-009 | sensitive-content-eviction | Large | T2+ | open |
 | SPEC-010 | engagement-portal-offer | Medium | T1 | open |
 | SPEC-011 | magic-link-analytics | Small | T1 | open |

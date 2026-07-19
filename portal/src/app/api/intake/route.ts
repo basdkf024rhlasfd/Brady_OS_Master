@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 
 const STREAMING_NOTES_DB = "2e9ed43b-89c5-80f4-8c21-000b4cfe812e";
 const NOTION_VERSION = "2022-06-28";
 
 export async function POST(req: NextRequest) {
   try {
+    // SPEC-008: require an authenticated portal session. This endpoint writes
+    // rows into the Streaming Notes DB that morning sweep consumes, so leaving
+    // it open was both a spam and an agent-prompt-injection vector. The only
+    // legitimate caller is IntakeForm (EngagementHub), which renders on
+    // authenticated portal pages and sends the session cookie same-origin.
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body = await req.json();
     const { message, source, projectSlug } = body;
 

@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "check:exposure": "node scripts/check-public-exposure.mjs",
+    "prebuild": "node scripts/check-public-exposure.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
