@@ -1,11 +1,13 @@
 import { streamText, convertToModelMessages, stepCountIs, type UIMessage } from "ai";
 import { anthropic } from "@ai-sdk/anthropic";
+import { auth } from "@clerk/nextjs/server";
 import {
   buildUnifiedSystemPrompt,
   getChatConfig,
   type ProjectContext,
 } from "@/lib/chat/global-chat-engine";
 import { getPortalAccess } from "@/lib/portal-access";
+import { captureChatAnswer } from "@/lib/analytics/posthog-server";
 import { resolveTools } from "@/lib/chat/tools";
 import { SIDEBAR_GROUPS } from "@/lib/sidebar-groups";
 
@@ -101,6 +103,17 @@ export async function POST(req: Request) {
   const userEmail = access.emailAddresses[0] ?? "unknown";
   const isGroupRequest = !!groupMembers;
 
+  // Clerk user id for capture distinct_id (SPEC-008). Wrapped defensively: in
+  // the dev-bypass path (no Clerk middleware) auth() can throw — fall back to
+  // email so capture, when enabled, still attributes the turn.
+  let clerkUserId: string | null = null;
+  try {
+    clerkUserId = (await auth()).userId;
+  } catch {
+    clerkUserId = null;
+  }
+  const captureDistinctId = clerkUserId ?? userEmail;
+
   // Direct anthropic provider — AI Gateway swap reverted because the prod
   // Vercel project doesn't have OIDC enabled and AI_GATEWAY_API_KEY isn't
   // set. Future Phase 4.1: enable Gateway in Vercel project settings + set
@@ -113,10 +126,9 @@ export async function POST(req: Request) {
     maxOutputTokens: activeConfig.maxOutputTokens,
     tools: hasTools ? tools : undefined,
     stopWhen: hasTools ? stepCountIs(3) : undefined,
-    onFinish: ({ usage, finishReason }) => {
+    onFinish: async ({ text, usage, finishReason }) => {
       // Phase 4 audit log — structured JSON one-line per turn, queryable in
-      // Vercel Logs UI by grep "[AUDIT]". Future upgrade: pipe to durable DB
-      // for per-seat monthly budget enforcement (currently log-only).
+      // Vercel Logs UI by grep "[AUDIT]".
       const auditEntry = {
         ts: new Date().toISOString(),
         userEmail,
@@ -135,6 +147,25 @@ export async function POST(req: Request) {
         toolsAvailable: Object.keys(tools),
       };
       console.log(`[AUDIT] ${JSON.stringify(auditEntry)}`);
+
+      // SPEC-008 durable capture — persist the actual Q&A turn to PostHog so the
+      // self-improving loop can see unanswered questions. No-op unless the
+      // server POSTHOG_KEY env is present; best-effort so it never breaks the
+      // response.
+      try {
+        await captureChatAnswer({
+          project: projectContext.project,
+          userEmail,
+          distinctId: captureDistinctId,
+          question: queryText,
+          answer: text,
+          tokensIn: usage?.inputTokens ?? 0,
+          tokensOut: usage?.outputTokens ?? 0,
+          finishReason,
+        });
+      } catch (err) {
+        console.error("[CAPTURE] chat_answer failed", err);
+      }
     },
   });
 
