@@ -5,7 +5,7 @@ const isDevBypass =
   process.env.NODE_ENV === "development" &&
   process.env.MCEPTION_DEV_BYPASS === "true";
 
-// Routes NOT listed here are publicly accessible (e.g. /share/* for magic links)
+// Routes NOT listed here are publicly accessible (e.g. /share/* for magic links).
 const isProtectedRoute = createRouteMatcher([
   "/about(.*)",
   "/knowledge(.*)",
@@ -16,36 +16,33 @@ const isProtectedRoute = createRouteMatcher([
   "/calculators(.*)",
   "/notes(.*)",
   "/user-profile(.*)",
-  // SECURITY (2026-07-19): sensitive static assets under public/ were served to
-  // the anonymous internet because (a) they were absent from this list and
-  // (b) the matcher below skipped their file extensions, so the proxy never ran
-  // on them. Page routes were auth-gated by the (portal) layout, but the raw
-  // asset URLs (e.g. /family/kb/16-school-access-codes.md, /financial-assistant/
-  // data.js, /1915-south/viewer/index.html) were not. These prefixes are
-  // family- or Brady-only and are NEVER magic-link shared, so a plain Clerk gate
-  // does not break any legitimate access (signed-in Brady/family still pass;
-  // anonymous is blocked). Client-safe, magic-link-shared slugs (1915-south-execs
-  // /-ma/-cfo, pauletteai, etc.) are deliberately NOT added here — gating them via
-  // Clerk would break magic-link (non-Clerk) visitors; they need the separate
-  // magic-link-aware fix tracked in docs/investigations/family-data-degit-plan.md.
-  "/family",
-  "/family/(.*)",
+  // --- Sensitive static content — SPEC-008 trust lockdown (2026-07-18, #299) ---
+  // These paths serve confidential engagement / family / financial files from
+  // public/. The matcher below normally exempts static files (.html/.csv/images)
+  // from Clerk, so these were fetchable unauthenticated. Client-safe magic-link
+  // viewers (1915-south-execs / -ma / -cfo, /panda/viewer, /orlando) are
+  // deliberately NOT matched here so their tours keep working.
+  "/1915-south", // Brady-only engagement hub (viewer + files/)
+  "/1915-south/(.*)",
+  "/1915-south-map", // Brady-only operator map
+  "/1915-south-map/(.*)",
+  "/family/(.*)", // family KB (school access codes, calendar)
+  "/panda/kb/(.*)", // engagement KB — leaves /panda/viewer for magic-link tours
+  "/healthcare/kb/(.*)", // family benefits KB
+  // --- SPEC-008 follow-up (2026-07-19, #300): close remaining financial holes ---
+  // #299 gated only /financial-assistant/kb and left the VIEWER public, but the
+  // viewer loads /financial-assistant/data.js which carries net worth + account
+  // numbers (verified live-exposed 2026-07-19: data.js, bucket-system, and
+  // family-budget all returned HTTP 200 to anonymous requests after #299 shipped).
+  // Gate the whole prefixes. None are magic-link shared (magic_link: false in
+  // projects.yml), so a full Clerk gate breaks no legitimate access — signed-in
+  // Brady/family still pass.
+  "/financial-assistant", // net worth / account numbers in data.js + viewer
+  "/financial-assistant/(.*)",
   "/family-budget",
   "/family-budget/(.*)",
-  "/financial-assistant",
-  "/financial-assistant/(.*)",
   "/bucket-system",
   "/bucket-system/(.*)",
-  "/healthcare",
-  "/healthcare/(.*)",
-  "/grocery-assistant",
-  "/grocery-assistant/(.*)",
-  "/school-hub",
-  "/school-hub/(.*)",
-  "/1915-south",
-  "/1915-south/(.*)",
-  "/1915-south-map",
-  "/1915-south-map/(.*)",
 ]);
 
 export default isDevBypass
@@ -59,24 +56,21 @@ export default isDevBypass
 
 export const config = {
   matcher: [
+    // Default: run on everything except _next and common static assets.
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     "/(api|trpc)(.*)",
-    // SECURITY (2026-07-19): the first pattern above skips requests whose path
-    // ends in an extension (.js, .html, .md is NOT skipped but .js/.html ARE),
-    // so the proxy would never run on e.g. /financial-assistant/data.js or
-    // /1915-south/viewer/index.html — leaving those static assets ungated.
-    // These explicit prefix matchers force the proxy to run on EVERY file under
-    // the sensitive prefixes regardless of extension, so isProtectedRoute can
-    // gate them. Keep this list in sync with the sensitive-prefix block in
-    // isProtectedRoute above.
-    "/family/:path*",
-    "/family-budget/:path*",
-    "/financial-assistant/:path*",
-    "/bucket-system/:path*",
-    "/healthcare/:path*",
-    "/grocery-assistant/:path*",
-    "/school-hub/:path*",
+    // SPEC-008 (#299): force middleware to run for sensitive static content the
+    // default matcher would otherwise exempt by extension (.html/.pdf/.csv/images).
+    // Pairs with the sensitive prefixes in isProtectedRoute above. Scoped so it
+    // does NOT catch client-safe siblings (1915-south-execs, etc.).
     "/1915-south/:path*",
     "/1915-south-map/:path*",
+    "/family/:path*",
+    "/panda/kb/:path*",
+    "/healthcare/kb/:path*",
+    // SPEC-008 follow-up (2026-07-19, #300): the .js/.html viewer holes #299 left.
+    "/financial-assistant/:path*",
+    "/family-budget/:path*",
+    "/bucket-system/:path*",
   ],
 };

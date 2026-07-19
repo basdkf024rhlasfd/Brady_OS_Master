@@ -46,7 +46,7 @@ MCEPTION_DEV_BYPASS=true
 
 # Clerk Auth (dev instance — works on localhost)
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_dXB3YXJkLXRocnVzaC04OS5jbGVyay5hY2NvdW50cy5kZXYk
-CLERK_SECRET_KEY=sk_test_1bsa9ibb3tTRMNL4XlGqMYALSvyqE99EDY47HDOhXC
+CLERK_SECRET_KEY=<get sk_test_… from the Clerk dashboard → API keys; never commit the real value>  # SPEC-008: rotate the previously-committed dev key in Clerk
 CLERK_SIGN_IN_URL=/sign-in
 CLERK_SIGN_UP_URL=/sign-up
 CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/portal
