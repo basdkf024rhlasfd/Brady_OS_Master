@@ -15,6 +15,12 @@ export interface KBConfig {
   maxFiles: number;
   routing: "keyword" | "all";
   routes?: KBRoute[];
+  // Fail-closed allowlist: when set, non-owner tiers (test/preview/client) may
+  // only ever be served these files from this KB. Any file not listed here —
+  // including new files added later — stays owner-only by default. Used to keep
+  // private operational KBs (meds, insurance, custody, sweep state) out of
+  // shared/family surfaces. Omit to serve every routed file to all tiers.
+  clientSafeFiles?: string[];
 }
 
 export interface ToolConfig {
@@ -104,6 +110,9 @@ function mergeWithDefaults(raw: Record<string, unknown>): ChatConfig {
       maxFiles: (kb.maxFiles as number) ?? 4,
       routing: (kb.routing as "keyword" | "all") ?? "keyword",
       routes: kb.routes as KBRoute[] | undefined,
+      clientSafeFiles: Array.isArray(kb.clientSafeFiles)
+        ? (kb.clientSafeFiles as string[])
+        : undefined,
     };
   }
 

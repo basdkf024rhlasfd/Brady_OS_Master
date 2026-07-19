@@ -167,6 +167,23 @@ kb:
   directory: public/family/kb
   maxFiles: 6
   routing: keyword
+  # Fail-closed allowlist for non-owner tiers (Karissa / any shared family user).
+  # ONLY these files are ever served to test/preview/client tiers. Everything
+  # else — logistics-contacts (meds, insurance, co-parent/custody), open-loops,
+  # sweep-state, life-events, access-codes, decisions/rejected logs, and any new
+  # file added later — stays owner-only. Owner (Brady) still gets the full KB.
+  clientSafeFiles:
+    - 01-family-roster.md
+    - 02-school-calendar.md
+    - 03-weekly-schedule.md
+    - 04-meal-preferences.md
+    - 05-chore-assignments.md
+    - 07-budget-targets.md
+    - 08-family-rules.md
+    - 09-activity-details.md
+    - 13-family-preferences.md
+    - 14-walmart-subscriptions.md
+    - 20-routines.md
   routes:
     - keywords: [kid, kids, lily, faith, isla, quinn, luke, child, children, triplet, roster, family]
       files: [01-family-roster.md, 03-weekly-schedule.md, 09-activity-details.md, 11-week-ahead.md]
