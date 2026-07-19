@@ -155,7 +155,7 @@ input:focus, select:focus { outline: none; border-color: var(--gold); }
 .cushion-note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray); margin-top: 12px; }
 
 /* Buckets */
-.buckets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.buckets { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .bucket {
   background: var(--bg-card); border: 1px solid rgba(240,237,230,0.08);
   border-radius: 12px; padding: 16px;
@@ -276,7 +276,7 @@ input:focus, select:focus { outline: none; border-color: var(--gold); }
   </div>
 
   <!-- The buckets -->
-  <div class="section-header">The four buckets (where every dollar lives)</div>
+  <div class="section-header">The five buckets (where every dollar lives) — floor plan</div>
   <div class="buckets">
     <div class="bucket">
       <div class="name">Core</div>
@@ -284,19 +284,24 @@ input:focus, select:focus { outline: none; border-color: var(--gold); }
       <div class="desc">Mortgage, cars, loans, utilities, phones. Fixed. Paid by the base paycheck. Not ours to flex.</div>
     </div>
     <div class="bucket">
+      <div class="name">Vacation/Fun</div>
+      <div class="target">$1,000/mo</div>
+      <div class="desc">Trips, one-off experiences. Paid from what's left of the base paycheck after Core. Real money, not a maybe.</div>
+    </div>
+    <div class="bucket">
       <div class="name">Living</div>
-      <div class="target">$8,480/mo</div>
-      <div class="desc">Food &amp; household $4,500 · Karissa $1,800 · kids $780 · medical, clothes, fun. The food line is the only one we watch daily.</div>
+      <div class="target">$9,380/mo</div>
+      <div class="desc">Food &amp; household $4,500 · Karissa $1,800 · kids $780 · medical, clothes, fun, subscriptions, ad hoc buffer. The food line is the only one we watch daily.</div>
     </div>
     <div class="bucket">
       <div class="name">Build</div>
-      <div class="target">$5,140/mo</div>
-      <div class="desc">529s, investing, buffer. Pays the future. First thing to pause when money is tight — never the first thing to raid for fun.</div>
+      <div class="target">$2,020/mo</div>
+      <div class="desc">529 college (protected) + HELOC principal + a smaller investing/emergency contribution. This is the line that flexes with bonus size — grows a lot at the Goal bonus pace.</div>
     </div>
     <div class="bucket">
       <div class="name">Reserve</div>
-      <div class="target">≥ $42,750</div>
-      <div class="desc">Every bonus lands here, 100%. It pays us a steady $14,250 "bonus salary" on the 1st. We never spend a bonus directly.</div>
+      <div class="target">$20K–40K</div>
+      <div class="desc">Every bonus lands here, 100%. Pays a steady ~$11,400 "bonus salary" on the 1st. Above $40K, the extra sweeps to Vacation/Kids/Safety instead of sitting idle.</div>
     </div>
   </div>
 
@@ -304,10 +309,10 @@ input:focus, select:focus { outline: none; border-color: var(--gold); }
   <div class="section-header">The rules (so it never has to be a debate)</div>
   <div class="card">
     <ul class="rules">
-      <li><strong>We budget against $23,000/mo, always.</strong> $8,750 base + $14,250 bonus salary. The size of the last bonus check changes nothing.</li>
+      <li><strong>We budget against $20,150/mo, always — the floor plan.</strong> $8,750 base + ~$11,400 bonus salary. That's Brady's own $60K/quarter estimate, and it matches the real bonus trend, so it's the number we plan around, not a guess. The size of the last bonus check changes nothing.</li>
       <li><strong>A bonus landing is a non-event here.</strong> It sweeps 100% to the Reserve. If it hits the checking account, text Brady — it's in the wrong place.</li>
       <li><strong>The HELOC is not income.</strong> Ever. It's for things that make the house worth more. A HELOC draw for lifestyle is an automatic red month.</li>
-      <li><strong>When money is tight, things give in this order:</strong> extra investing → fun &amp; discretionary → (only if forced) food to the floor → 529s last → the mortgage never.</li>
+      <li><strong>When money is tight, things give in this order:</strong> extra investing/emergency-fund AND Vacation/Fun (equal priority, first to flex) → fun &amp; discretionary → (only if forced) food to the floor → 529s + HELOC principal last → the mortgage never.</li>
       <li><strong>No guilt.</strong> A red week isn't a fight, it's a light. The next week runs lighter and the month can still pass.</li>
     </ul>
   </div>
@@ -327,10 +332,10 @@ input:focus, select:focus { outline: none; border-color: var(--gold); }
 </div>
 
 <script>
-// ─── Budget constants (from budget-targets.md, locked 2026-07-16) ───
+// ─── Budget constants (from budget-targets.md, floor plan locked 2026-07-18) ───
 const WEEK_CAP = 1040;        // green ceiling
 const WEEK_AMBER = 1200;      // amber ceiling; above = red
-const MONTH_CUSHION = 2350;   // true monthly cushion after all buckets
+const MONTH_CUSHION = 720;    // true monthly cushion after all five buckets (floor case)
 
 const fmt = n => '$' + Number(n).toLocaleString('en-US', {maximumFractionDigits: 0});
 
