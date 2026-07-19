@@ -3,7 +3,7 @@
 | Name | Role | Age/Grade | School | Key Context |
 |------|------|-----------|--------|-------------|
 | Brady | Dad | 41 | — | ADHD, portfolio career, Broker Co founder |
-| Lily Kay | Daughter | 17, Junior (11th) | Bentonville High School | Chamber choir, a cappella, works at Genesis Gymnastics |
+| Lily Kay | Daughter | 17, Junior (11th) | Bentonville High School | Chamber choir, a cappella, works at Genesis Gymnastics. Student ID: 37467 |
 | Faith Riley | Daughter | 14, Freshman (9th) | Bentonville High School | Advanced choir, Life Church / Switch youth program |
 | Isla Kate | Daughter | 9, 3rd grade | Apple Glen Elementary | Learning piano — 10 min daily practice. On methylphenidate (ADHD) — 1 tablet every morning, filled at Walgreens. |
 | Luke Brady | Son | 9, 3rd grade | Apple Glen Elementary | Martial arts (Warriors class), green/orange belt |

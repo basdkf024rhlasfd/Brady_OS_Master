@@ -185,6 +185,13 @@ secrets:
       source: 1-execution/.../Project - PauletteAI/viewer/.env (local, gitignored)
       provisioning: "Create .env file with GOOGLE_API_KEY=..."
 
+  mception_portal:
+    - name: MAGIC_LINK_SECRET
+      source: Vercel project "portal" > Environment Variables (production)
+      provisioning: "cd portal && vercel env pull .env.local --environment=production"
+      purpose: JWT signing secret for /share/[token] magic links. Required by portal/scripts/generate-magic-link.ts and portal/src/lib/magic-link.ts.
+      note: Added 2026-04-23. Rotate via `vercel env update MAGIC_LINK_SECRET production` — all existing links will break on rotation.
+
 # ─── Cross-Repo Dependencies ───
 cross_repo_dependencies:
   telly_archive:

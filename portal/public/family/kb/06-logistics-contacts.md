@@ -18,7 +18,7 @@ Last verified: 2026-04-22
 | Contact | School / Role | Phone | Address / Notes |
 |---------|---------------|-------|-----------------|
 | BHS front office | Bentonville High School | (479) 254-5100 | 1801 SE J St, Bentonville, AR 72712 |
-| Terry Hicks | BHS Choir Director (Lily, Faith) | via BHS front office | — |
+| Terry Hicks | BHS Choir Director (Lily, Faith) | via BHS front office | Sends permission slips + announcements via **CutTime** — SMS from +18443858463. Permission forms arrive as `app.gocuttime.com/g/q/...` links. Brady's CutTime guardian ID: `HZiSHFxQ`. |
 | Apple Glen front office | Apple Glen Elementary | (479) 254-5580 | 1801 NE Brave Ln, Bentonville, AR 72712 |
 | Lily's homeroom / counselor | BHS | TBD | — |
 | Faith's homeroom / counselor | BHS | TBD | — |
@@ -176,7 +176,7 @@ Brady wants to eventually merge the two Athena accounts (`bradysmallz@gmail.com`
 
 | Person | Relationship | Phone | Notes |
 |--------|--------------|-------|-------|
-| Primary | TBD | TBD | First call in emergency |
+| Brady Smallwood | Dad / Primary guardian | 801-376-3737 | First call in emergency |
 | Secondary | TBD | TBD | — |
 | Out-of-area | TBD | TBD | If local is unreachable |
 

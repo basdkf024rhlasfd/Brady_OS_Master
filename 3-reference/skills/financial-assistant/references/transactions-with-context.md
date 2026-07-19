@@ -27,11 +27,12 @@ Last updated: 2026-04-22
 | Anthropic | $93/mo avg (up to $200) | Claude Pro + business API. Business expense — belongs in business-vs-personal rules. |
 | Apple | ~$19/mo | iCloud/services subscription. |
 | Inferno MMA | ~$125/mo | Kids' BJJ — one or more kids enrolled. Household ops bucket. |
-| WELLNESSA | $140/week (~$420/mo) | Appears 3x monthly — verify what this is. Possibly Karissa's. |
-| Wellness & Courage | $140/week (~$420/mo) | Same pattern as WELLNESSA — may be same merchant under different names. Flag for Brady. |
+| WELLNESSA / Wellness & Courage | $140/session, 2–3x/mo (~$280–$420/mo) | **Two separate therapists, same practice.** Jill = Karissa's personal therapist. Johnna = couples therapist. Both bill as "WELLNESSANDCO AR" with slightly different suffix codes. NORMAL — do not flag as anomaly. Brady wants to explore billing UHC insurance — action item in medical-claims-tracker.md. |
 | Bentonville School District | ~$80/mo avg | School fees — lunch, activities, extracurriculars. |
 | Twin Peaks Rogers | ~$54/mo | Restaurant recurring — Brady. |
-| Jem 8th Street | ~$106/mo | Unknown recurring — flag for Brady to identify. |
+| Jem 8th Street | irregular ($5–$550) | Bentonville co-working/event space. Charges are inconsistent (day passes $5–$15, one-time $550 in Jan). Not a gym membership — Planet Fitness is separate. |
+| Planet Fitness | $16.43/mo | Active gym membership — most recent charge Apr 17. Also had higher "IClub Fees SMALLWOOD" charges ($25–$54) Nov–Dec 2025, likely multi-person plan or annual fee. |
+| The Source | ~$114/visit | Medical marijuana dispensary. Personal, private. Not for business classification or insurance review. |
 | Casey's | ~$17/txn, frequent | Arkansas gas station. |
 | Maverik | ~$17/txn, very frequent | Convenience/gas station. Frequent on Karissa's card. |
 | 1st Green Lawn | ~$140/invoice | **Lawn treatment vendor.** Paid via SoFi Bill Pay, not Cash App. Address: 9685 AR-72, Bentonville, AR 72712. Last invoice #26031, dated 5/4/2026. Known-good — do not flag as anomaly. Pairs with Hugo Martinez (Cash App, mowing crew). |
@@ -46,6 +47,13 @@ Last updated: 2026-04-22
 | Zions Bancorporation | $15 deposit to Faith's MONEY card Jan 20. | **UNRESOLVED** — verify purpose |
 | Arvest Bank — Online Banking | $324/mo avg, 3 months active | Likely HELOC draws. Cross-reference with liabilities growth. |
 | Corebridge Financial | Policy link expired Dec 2025 | **May have lapsed.** Verify if separate life insurance is still active. |
+
+## Monarch Miscategorizations (Known)
+
+| Monarch Label | Actual | Notes |
+|---|---|---|
+| Costco — "MEMBERSHIP FEE MAR XX-FEB XX" ~$99 | Citi Mastercard annual fee (AAdvantage) | Recurs every March. Not a warehouse club membership. |
+| Costco — store purchases | Cost Plus (grocery/home goods chain) | Monarch tags Cost Plus as Costco. Not the same. |
 
 ## One-Time Large Transactions to Watch
 

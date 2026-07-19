@@ -15,7 +15,9 @@ portal/.env.local
 .vercel
 .env*.local
 
-# Claude Code runtime state
+# Workspace-local Claude settings — SessionStart hook stays scoped to Rome only.
+# Do NOT commit. If you want another workspace (bilbao, san-jose, etc.) to prime,
+# create its own .claude/settings.json there.
 .claude/
 
 # Next.js build traces (root-level stray build artifacts)
