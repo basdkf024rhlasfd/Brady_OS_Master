@@ -1,13 +1,13 @@
-# SPEC-011 — The Steward SKILL.md (weekly loop SOP)
+# SPEC-015 — The Steward SKILL.md (weekly loop SOP)
 
-**ID:** SPEC-011
+**ID:** SPEC-015
 **Slug:** mception-steward-skill
 **Status:** open
 **Claimed by:** —
 **Reviewer:** Brady
 **Size:** medium
 **Trust tier:** T1 (a new skill doc; the skill itself is read-only/propose-only)
-**Approval gate:** Brady approved core plan 2026-07-19; activation gated on SPEC-009 go decision
+**Approval gate:** Brady approved core plan 2026-07-19; activation gated on SPEC-014 go decision
 
 ---
 
@@ -19,7 +19,7 @@ Amendment 3: "no SOP = no execution." The weekly loop cannot exist until its SKI
 
 `3-reference/skills/mception-steward/SKILL.md` (or `0-agents/custom-built-agents/` if instantiated as a named agent), scaffolded via the `agent-scheduler` SOP, cloning the Hygiene-Heidi Saturday pattern. Must specify:
 1. **Runner:** Claude.ai Code scheduled trigger (the only git-receipt-proven runner with repo+Notion+push; holds MCPs/memory/governance/`~/brady-os-local`). Weekly cadence; idempotent catch-up for missed weeks.
-2. **Read-only proposer:** reads PostHog (via MCP) + chat transcripts + coverage gaps; drafts proposals; writes ONLY to a gitted backup (`1-execution/areas/brady-os/mception-steward/YYYY-MM-DD.md`) with `approve steward <slug>` lines + a Telly digest. Holds NO deploy creds. Execution is a separate step (SPEC-013 → Musashi Deploy Mode).
+2. **Read-only proposer:** reads PostHog (via MCP) + chat transcripts + coverage gaps; drafts proposals; writes ONLY to a gitted backup (`1-execution/areas/brady-os/mception-steward/YYYY-MM-DD.md`) with `approve steward <slug>` lines + a Telly digest. Holds NO deploy creds. Execution is a separate step (SPEC-017 → Musashi Deploy Mode).
 3. **Immutable eval contract:** the Steward's scoring rubric + the family-freeze rule live in a file it may **read but never edit** (anti-metric-gaming, Thicket lesson).
 4. **Family-freeze:** any proposal touching family pages / `family-shared` / protected surfaces (financial-assistant, bucket-system, 1915-south*) is always explicit-approval, never silent, and requires family-path UAT.
 5. **"Skip this week" is a first-class success output;** the digest fires even on empty weeks ("nothing worth shipping — here's what I watched").
@@ -37,7 +37,7 @@ Amendment 3: "no SOP = no execution." The weekly loop cannot exist until its SKI
 
 ## Blocked by
 
-- SPEC-009 go decision (draft may proceed in parallel; do not schedule/activate until the kill-test passes).
+- SPEC-014 go decision (draft may proceed in parallel; do not schedule/activate until the kill-test passes).
 
 ## Notes
 

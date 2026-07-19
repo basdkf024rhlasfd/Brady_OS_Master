@@ -1,6 +1,6 @@
-# SPEC-008 — mception Capture Layer (Phase A instrumentation)
+# SPEC-013 — mception Capture Layer (Phase A instrumentation)
 
-**ID:** SPEC-008
+**ID:** SPEC-013
 **Slug:** mception-capture
 **Status:** open
 **Claimed by:** —
@@ -13,7 +13,7 @@
 
 ## Problem
 
-mception.ai is blind — it stores nothing about what visitors click or ask. The self-improving loop's entire input signal doesn't exist. Phase A wires the capture layer only (no loop, no autonomy) so we can run the week-one kill-test (SPEC-009) and find out if a gated portal even produces enough weekly signal before building anything else.
+mception.ai is blind — it stores nothing about what visitors click or ask. The self-improving loop's entire input signal doesn't exist. Phase A wires the capture layer only (no loop, no autonomy) so we can run the week-one kill-test (SPEC-014) and find out if a gated portal even produces enough weekly signal before building anything else.
 
 ## Deliverable
 

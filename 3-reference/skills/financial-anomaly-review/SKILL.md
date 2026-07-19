@@ -299,6 +299,33 @@ it's out of scope.
 If a data source is unavailable, the skill notes the gap in output and runs the detectors it can
 run. It does not fail closed.
 
+### Detector 10 — Medical reimbursement candidates
+
+Finn is authorized to submit claims on Brady's behalf to UHC (COBRA) and Aflac, but only after Brady confirms. This detector surfaces the candidates.
+
+Flag any transaction where:
+- Monarch category = `Medical`, `Pharmacy`, or `Health & Fitness`
+- Amount > $20
+- Date is within the last 12 months
+- The charge is NOT already in `references/medical-claims-tracker.md` with `claim_status` = `submitted` or `reimbursed`
+
+**Urgency tiers:**
+- **URGENT (red):** Date of service > 9 months ago — UHC's 1-year filing deadline approaching
+- **Standard:** 3–9 months old
+- **Recent:** < 3 months old (track now, submit next cycle)
+
+**Aflac vs. UHC:** Flag Aflac separately. UHC reimbursement = overpayment on covered services, copay assist, out-of-network claims. Aflac = accident/illness supplemental payouts triggered by qualifying events (hospital stays, ER visits, surgery). Both have different claim processes and deadlines.
+
+**Output for each flag:**
+- Date, merchant/provider, amount, estimated type (copay | Rx | specialist | lab | therapy)
+- Status in tracker (not tracked | tracked-pending | URGENT)
+- Suggested action: "Add to medical-claims-tracker.md and submit to UHC" or "Verify Aflac trigger"
+
+**Tracking file:** `3-reference/skills/financial-assistant/references/medical-claims-tracker.md`  
+Finn populates new rows from Monarch; Brady updates `claim_status` as he submits/receives.
+
+Severity: medium for standard, high for URGENT (>9 months from service).
+
 ---
 
 ## Future enhancements (not implemented in v0.1)
@@ -316,5 +343,6 @@ run. It does not fail closed.
 
 ## Version history
 
-**v0.1 (2026-04-21)** — Initial creation. Cross-source detection framework,
-9 detectors, T0 gate, private-only output.
+**v0.2 (2026-04-22)** — Added Detector 10: Medical reimbursement candidates. UHC + Aflac claim tracking, urgency tiers, links to medical-claims-tracker.md.
+
+**v0.1 (2026-04-21)** — Initial creation. Cross-source detection framework, 9 detectors, T0 gate, private-only output.

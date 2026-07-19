@@ -1,6 +1,6 @@
-# SPEC-012 — Telly Inbound Reply Bridge (close the phone loop)
+# SPEC-016 — Telly Inbound Reply Bridge (close the phone loop)
 
-**ID:** SPEC-012
+**ID:** SPEC-016
 **Slug:** telly-inbound-bridge
 **Status:** open
 **Claimed by:** —

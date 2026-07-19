@@ -1,13 +1,13 @@
-# SPEC-013 — Wire the Weekly Loop End-to-End (Phase C deliverable)
+# SPEC-017 — Wire the Weekly Loop End-to-End (Phase C deliverable)
 
-**ID:** SPEC-013
+**ID:** SPEC-017
 **Slug:** mception-loop-wire
 **Status:** open
 **Claimed by:** —
 **Reviewer:** Brady
 **Size:** large
 **Trust tier:** T2 (the execution step ships changes to `portal/` — Brady approves each proposal)
-**Approval gate:** Brady approved core plan 2026-07-19; whole loop gated on SPEC-009 go
+**Approval gate:** Brady approved core plan 2026-07-19; whole loop gated on SPEC-014 go
 
 ---
 
@@ -18,9 +18,9 @@ With capture live (008), the kill-test passed (009), family data clean (010), th
 ## Deliverable
 
 The closed weekly loop, everything Brady-gated (no auto-ship, no earned-autonomy tiers):
-1. **Saturday:** the Steward (SPEC-011) runs on its Claude-Code scheduled trigger → reads the week's signal → writes a numbered proposal list as `approve steward <slug>` lines to its gitted backup → pushes a Telly digest to Brady's phone.
+1. **Saturday:** the Steward (SPEC-015) runs on its Claude-Code scheduled trigger → reads the week's signal → writes a numbered proposal list as `approve steward <slug>` lines to its gitted backup → pushes a Telly digest to Brady's phone.
 2. **`daily-decision-queue`** picks up the `approve steward <slug>` lines (add "mception-steward" as a source row to its fixed source table).
-3. **Brady replies once** from his phone (SPEC-012 parses it).
+3. **Brady replies once** from his phone (SPEC-016 parses it).
 4. **Approved proposals execute** via **Musashi Deploy Mode**: each becomes a portal change (KB file add/edit, chat-config tweak, copy fix) shipped as a PR → repo-janitor CI → mandatory UAT (webster Runbook 5) → merge = Vercel auto-deploy. The Steward never holds deploy creds; execution is this separate credentialed step (prompt-injection boundary).
 5. **Experiment ledger:** each shipped change is recorded; the next run marks it confirmed/rejected/inconclusive (min-sample humility — never "learn" from N=1).
 6. Empty weeks still send the "nothing worth shipping" digest (predictable cadence beats silence).
@@ -37,7 +37,7 @@ The closed weekly loop, everything Brady-gated (no auto-ship, no earned-autonomy
 
 ## Blocked by
 
-- SPEC-009 (go), SPEC-010 (family de-git), SPEC-011 (Steward SKILL), SPEC-012 (Telly bridge).
+- SPEC-014 (go), SPEC-009 (sensitive-content-eviction, main), SPEC-015 (Steward SKILL), SPEC-016 (Telly bridge).
 
 ## Notes
 

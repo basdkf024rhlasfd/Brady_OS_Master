@@ -58,10 +58,12 @@ export function buildSystemPrompt(
   conversationContext?: string
 ): string {
   let systemPrompt = loadProjectPrompt(config.prompt);
+  const tier = projectContext.tier ?? (projectContext.isAdmin ? "owner" : "client");
 
-  // KB injection — config-driven, works for any project
+  // KB injection — config-driven, works for any project. Tier-gated so
+  // non-owner tiers never receive owner-only KB files.
   if (config.kb?.enabled && userMessage) {
-    const kbContent = loadKBFiles(userMessage, config.kb, conversationContext);
+    const kbContent = loadKBFiles(userMessage, config.kb, conversationContext, tier);
     if (kbContent) {
       systemPrompt += "\n\n" + kbContent;
     }
@@ -109,6 +111,10 @@ export function buildUnifiedSystemPrompt(
   const authorizedProjects = projectContext.authorizedProjects ?? [];
   const activeProject = projectContext.project !== "portal" ? projectContext.project : null;
 
+  // Resolve tier up front — it gates both KB file access (owner-only files) and
+  // the admin/operator context appended further down.
+  const tier = projectContext.tier ?? (projectContext.isAdmin ? "owner" : "client");
+
   // Group routes lead with the group's persona prompt (e.g., OC Optimus for
   // panda-engagement) instead of the generic portal meta-prompt. Single-project
   // routes keep the existing behavior — portal.md base + project sections.
@@ -139,9 +145,10 @@ export function buildUnifiedSystemPrompt(
     systemPrompt += `\n\nThe user is currently viewing the "${activeProject}" project page.`;
   }
 
-  // Unified KB injection
+  // Unified KB injection — tier-gated so non-owner tiers never receive
+  // owner-only KB files (see KBConfig.clientSafeFiles).
   if (userMessage && authorizedProjects.length > 0) {
-    const kbContent = loadUnifiedKB(userMessage, authorizedProjects, activeProject, 6, conversationContext);
+    const kbContent = loadUnifiedKB(userMessage, authorizedProjects, activeProject, 6, conversationContext, tier);
     if (kbContent) {
       systemPrompt += "\n\n" + kbContent;
     }
@@ -164,9 +171,8 @@ export function buildUnifiedSystemPrompt(
   }
 
   // Tier-gated context. Client tier never gets admin/operator surfaces, even
-  // if isAdmin somehow leaks through — server-side hard floor.
-  const tier = projectContext.tier ?? (projectContext.isAdmin ? "owner" : "client");
-
+  // if isAdmin somehow leaks through — server-side hard floor. (`tier` resolved
+  // at the top of this function.)
   if (tier === "owner") {
     systemPrompt +=
       "\n\nThis user is the platform owner. You can be more technical and detailed in your responses.";
