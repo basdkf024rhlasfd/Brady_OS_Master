@@ -53,3 +53,10 @@ Statuses:
 | SPEC-005 | platform-sow-template | Medium | T1 | needs-review |
 | SPEC-006 | platform-library-query | Small | T1 | needs-review |
 | SPEC-007 | recon-dicaprio-retool | Medium | T1 | needs-review |
+| SPEC-008 | portal-trust-lockdown | Medium | T2+ | open |
+| SPEC-009 | sensitive-content-eviction | Large | T2+ | open |
+| SPEC-010 | engagement-portal-offer | Medium | T1 | open |
+| SPEC-011 | magic-link-analytics | Small | T1 | open |
+| SPEC-012 | build-queue-reconciliation | Small | T1 | open |
+
+SPEC-008..012 source: `docs/mception-asset-strategy.md` (2026-07-18). Sequencing: 008 → 009; 010's first external send gated on 008; 011 and 012 independent.

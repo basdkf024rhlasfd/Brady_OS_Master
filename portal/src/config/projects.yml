@@ -121,7 +121,8 @@ projects:
     description: "Interactive Southeast US map — one dot per state:franchisee combination. Click to surface research, succession signals, and acquisition context. Brady-only."
     approved: 2026-05-04
     type: iframe-local
-    magic_link: true
+    # Brady-only surface — magic links disabled per fail-closed guardrail (2026-07-18, SPEC-008)
+    magic_link: false
     frame:
       baseUrl: ""
       path: "/1915-south-map/viewer/index.html"
@@ -133,7 +134,8 @@ projects:
     description: "Internal hub for the 1915 South / Ashley engagement (Justin Woods). Includes negotiation prep, comp models, ChatGPT strategy logs, internal SFDRs. Brady-only."
     approved: 2026-04-22
     type: iframe-local
-    magic_link: true
+    # Brady-only surface — magic links disabled per fail-closed guardrail (2026-07-18, SPEC-008)
+    magic_link: false
     frame:
       baseUrl: ""
       path: "/1915-south/viewer/index.html"
