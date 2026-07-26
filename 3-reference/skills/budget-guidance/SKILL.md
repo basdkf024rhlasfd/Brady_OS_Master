@@ -38,43 +38,62 @@ Income has two shapes. Treat them differently, on purpose:
 
 | Income | Shape | Funds | Rule |
 |--------|-------|-------|------|
-| **1915 South base** | Steady ~$8,750/mo take-home | **Core** (fixed bills) | Spend as it lands |
-| **EBITDA bonus** | Lumpy — quarterly, variable | **Living + Build** | **Never spent directly.** Swept to Bonus Reserve, then paid out as a fixed monthly "salary." |
+| **1915 South base** | Steady ~$8,750/mo take-home ($150K/yr gross) | **Core**, then **Vacation/Fun** with the leftover | Spend as it lands |
+| **EBITDA bonus** | Lumpy — quarterly, variable | **Living + Build** | **Never spent directly.** Swept to the Standard-of-Living Buffer (Reserve), then paid out as a fixed monthly "salary." |
 
 **The mechanism that makes lumpy feel like salary:**
-1. A bonus lands → **100% swept to the Bonus Reserve account** (a separate savings account, not checking). It is not "money in the account to spend."
-2. On the 1st of each month, Bonus Reserve pays a **fixed $14,250 "bonus salary"** into operating.
-3. Operating now sees steady income every month: **$8,750 base + $14,250 bonus salary = ~$23,000/mo.** The family budgets against $23,000, never against the size of the last bonus.
+1. A bonus lands → **100% swept to the Standard of Living Buffer** (a separate savings account, not checking). It is not "money in the account to spend."
+2. On the 1st of each month, the Buffer pays a **fixed "bonus salary"** into operating (amount below — floor vs goal case).
+3. Weekly Plus-Up & Ad Hoc: the fixed salary is what funds the Mon/Thu weekly deposits (see `bill-autopay-map.md`) plus room for ad hoc (Rule 6). The family budgets against the smoothed monthly total, never against the size of the last bonus.
 
-**Conservative planning basis (locked 2026-07-16):**
-- Annual bonus assumption: **$300K gross = $75K/quarter**, even split (1.5% of ~$20M EBITDA).
-- Net after ~42% blended high-income tax: **~$174K/yr ≈ $14,250/mo** — that's the bonus-salary figure.
-- **First payment (~next week): ~$20,440 gross** = 1.5% × $4.0M Q2 EBT × (31 employed / 91 quarter days) — prorated for the 5/31 start (a full quarter would be $60K). Nets ~$13K. This *seeds* the Reserve; it doesn't change the $14,250 draw, but a partial-quarter seed leaves the Reserve 🔴 (thin) at first — it fills over the first 1–2 full quarters.
-- **Annual-pace watch:** Q2 EBT of $4.0M annualizes to ~$16M → ~$240K/yr bonus, **below** the $300K conservative assumption. One data point; don't move the draw yet, but if Q3/Q4 hold near $4M, step the smoothed salary down from $14,250 toward ~$11,400/mo. The `bonus-log.md` trues this up each quarter.
+**Two planning cases (Brady's diagram, locked 2026-07-18 — floor is the one to plan around):**
 
-**Reserve health (objective):**
-| Reserve balance | Light | Action |
+| Case | Bonus/quarter | Bonus/year gross | Net/yr (~57% keep) | Smoothed bonus salary | Total steady income (+ $8,750 base) |
+|---|---:|---:|---:|---:|---:|
+| **Floor (plan around this)** | $60,000 | $240,000 | ~$136,800 | **~$11,400/mo** | **~$20,150/mo** |
+| Goal (upside case) | $125,000 | $500,000 | ~$285,000 | ~$23,750/mo | ~$32,500/mo |
+
+The floor case is confirmed against real data twice over: it matches Brady's own estimate AND independently matches the annual pace implied by actual Q2 2026 EBT ($4.0M/qtr → ~$240K/yr bonus at 1.5%). **This replaces the earlier $300K/yr ($75K/qtr, $14,250/mo) planning assumption** — that number was optimistic relative to both Brady's own estimate and the trailing data. `bonus-log.md` trues up the real pace each quarter; if actual EBT consistently prints above $4M/qtr, revisit toward Goal.
+
+**Standard of Living Buffer health — floor/ceiling, not just a floor (Brady's diagram numbers):**
+| Buffer balance | Light | Action |
 |---|---|---|
-| ≥ 1 quarter of draws (~$42,750) | 🟢 | Normal. Pay full bonus salary. |
-| 1–3 months (~$14K–43K) | 🟡 | Hold. No new Living/Build increases until the next bonus lands. |
-| < 1 month (< ~$14K) | 🔴 | Cut bonus salary to what Reserve can sustain. Living flexes down (see Rule 3). |
+| ≥ $20K (the "SLB" target) | 🟢 | Normal. Pay full bonus salary. |
+| $10K–20K | 🟡 | Hold. No new Living/Build increases until the next bonus lands. |
+| < $10K | 🔴 | Cut bonus salary to what the Buffer can sustain. Living flexes down (see Rule 3). |
+| **> $40K (the Max)** | ⬆️ | **Overflow — sweep the excess above $40K out** to Vacation/Fun, Kids/Education (529), or Safety/Retirement rather than letting it idle in the smoothing account. |
+
+**First payment (~next week): ~$20,440 gross** = 1.5% × $4.0M Q2 EBT × (31 employed / 91 quarter days) — prorated for the 5/31 start (a full quarter would be $60K). Nets ~$13K. This seeds the Buffer partway; it starts 🟡/🔴 and fills toward $20K over the first 1–2 full quarters — expected, not a failure.
 
 ---
 
-## Rule 2 — Four buckets, one traffic light each
+## Rule 2 — Five buckets, one traffic light each
 
-Every dollar is Core, Living, Build, or Reserve. Each bucket has a target and a light.
+Every dollar is Core, Vacation/Fun, Living, Build, or Reserve. Each bucket has a target and a light.
 **Green ≤ target · Amber ≤ target +10% · Red > target +10%.** That's the whole judgment.
+
+**Floor-case targets (locked 2026-07-18 — confirmed workable, see math below):**
 
 | Bucket | Funded by | Monthly target | Light checks |
 |--------|-----------|---------------:|--------------|
 | **Core** — mortgage, auto, loans, utilities, phone, HELOC interest | Base | **~$7,030** | Must always fit inside base. Red = structural problem, not a spending one. |
-| **Living** — food/household, Karissa personal, kids, medical, fun | Bonus salary | **~$8,480** | Checked weekly on the food line (Rule 4). |
-| **Build** — 529s, investing, HELOC principal, buffer rebuild | Bonus salary | **~$5,140** | Flexes first when Reserve is 🟡/🔴. |
-| **Reserve** — the smoothing tank | Bonus (100%) | balance ≥ 1 qtr | Rule 1. |
+| **Vacation/Fun** — family trips, one-off experiences | Base surplus (the $1,720/mo left after Core) | **$1,000** | New bucket — funded from base, not bonus, so it doesn't compete with Living/Build. |
+| **Living** — food/household, Karissa personal, kids, medical, fun, subscriptions, ad hoc buffer | Bonus salary | **~$9,380** | Checked weekly on the food line (Rule 4); ad hoc buffer sized per Rule 6. |
+| **Build** — 529s (protected floor), HELOC principal, investing/emergency (the flex) | Bonus salary (leftover after Living) | **~$2,020** (529 $1,250 + HELOC principal $250 + investing/emergency $520 combined) | **This is what actually flexes in the floor case** — see note below. |
+| **Reserve** (Standard of Living Buffer) — the smoothing tank | Bonus (100%) | $20K target / $40K ceiling | Rule 1. |
 
-Total planned outflow ≈ **$20,650** against ~$23,000 income = **~$2,350 true monthly cushion**
-— *real* only if no HELOC draw funds any of it (Rule 5).
+**The honest trade-off in the floor case:** Core, Vacation/Fun, and full Living (including the $1,000
+ad hoc buffer) are **all fully funded** — this is real, not a squeeze. What shrinks is Build's *extra*
+wealth-building: 529 stays protected (Lily's draw is imminent) and HELOC principal stays funded, but
+investing/emergency-buffer-rebuild drops from the $3,640/mo goal-case ideal to **$520/mo combined**.
+That's the lever that flexes with bonus size — not lifestyle.
+
+**Math check:** Floor income $20,150/mo (base $8,750 + bonus salary $11,400) − total spend $19,430/mo
+(Core $7,030 + Vacation $1,000 + Living $9,380 + Build $2,020) = **~$720/mo true cushion remaining**,
+on top of everything above being funded. This is what "should live plenty fine" looks like as a number.
+
+At the **Goal case** ($125K/qtr, ~$23,750/mo smoothed), Build restores to the full $5,140 target and
+Vacation/Fun can grow beyond $1,000 — track this as bonuses come in above the floor pace.
 
 ---
 
@@ -83,10 +102,11 @@ Total planned outflow ≈ **$20,650** against ~$23,000 income = **~$2,350 true m
 When a bonus is light or the Reserve is 🔴, cut **from the bottom up**, never the top:
 
 ```
-1. Build : extras      ← cut FIRST (extra investing, buffer rebuild, HELOC principal)
+1. Build : extras      ← cut FIRST (investing/emergency-rebuild — already the floor-case flex line)
+   Vacation/Fun         ← equally first-in-line on the base side (mirrors Build:extras)
 2. Living : discretionary   ← then trim (fun, clothing, non-essential shopping)
 3. Living : essentials      ← only if forced (food to floor, keep meds/therapy)
-4. Build : savings floors   ← 529s held as long as possible
+4. Build : savings floors   ← 529s + HELOC principal held as long as possible
 5. Core                     ← NEVER cut by choice; a Core miss = escalate immediately
 ```
 
@@ -134,6 +154,38 @@ not earned. It made a losing month look like a winning one.
 
 ---
 
+## Rule 6 — The ad hoc / surprise buffer
+
+Every household has spend that isn't a bill, isn't groceries, and isn't a named line — home repairs,
+random purchases, a dealer fee, a one-off charity ask. That's not chaos, it's a category, and it gets
+sized from data like every other line, not guessed.
+
+**Monthly target: $1,000.** *(Locked by Brady 2026-07-18.)*
+
+**How it's set (objective, refreshable):**
+1. Pull every transaction over several clean months (skip any anomalous/contaminated period — e.g. a
+   treatment or transition window) that **doesn't already have a budget line** — i.e. exclude Core
+   bills, food & household, Karissa's personal line, kids' activities, clothing, medical.
+2. Split what's left into three buckets by nature, not just size:
+   - **Recurring but uncounted** (appears in ≥3 of the sampled months) — this is a *predictable* miss,
+     not ad hoc. Give it its own line (see "Subscriptions & personal SaaS" in `budget-targets.md`).
+   - **Travel/vacation-tagged** — lumpy but plannable. Keep it separate; don't let it inflate the
+     "surprise" number just because it's irregular.
+   - **True one-off** (appears in <3 months, not travel-tagged) — this is the real ad hoc pool.
+3. Average the true one-off pool over the sample window. Round to a clean number **between the trimmed
+   mean (excluding the single biggest outlier) and the full mean** — enough slack for an occasional
+   $500–800 surprise without being permanently inflated by the one $1,000+ anomaly in the sample.
+4. Refresh the same way each quarter, using the next clean window.
+
+**What this replaces:** a flat guessed "buffer" line. Guessing under-sizes the buffer (feels like
+overspending every month) or over-sizes it (steals from savings). Measuring it fixes both.
+
+**What NOT to fold in:** vacation/travel and recurring subscriptions. They're real costs, but a
+different shape — plannable vs. fixed vs. genuinely random — and folding them into "ad hoc" hides
+which lever actually needs adjusting when the number moves.
+
+---
+
 ## The three protocols (how Finn actually responds)
 
 ### A. "Can we afford [X]?" — deterministic, answer in one pass
@@ -148,7 +200,7 @@ not earned. It made a losing month look like a winning one.
 2. **Sweep 100% net to Bonus Reserve.** Do not leave it in checking.
 3. Recompute Reserve light. Report months-of-runway the reserve now holds.
 4. If Reserve just crossed back to 🟢, note which held Build/Living items can resume.
-5. Log the payment (date, gross, net, EBITDA basis) so the $300K/yr assumption gets trued up.
+5. Log the payment (date, gross, net, EBT basis) so the $240K/yr floor assumption gets trued up.
 
 ### C. Monthly close (fires on "budget close" / end of month, and inside weekly-sweep)
 1. Actual vs target for each of the four buckets, with its light.
@@ -162,7 +214,10 @@ not earned. It made a losing month look like a winning one.
 ## What Finn writes
 
 - Rolling monthly close → `~/brady-os-local/finance/budget-close-YYYY-MM.md` (sensitive; actuals).
-- Bonus log → `~/brady-os-local/finance/bonus-log.md` (each payment; trues up the $300K assumption).
+- Bonus log → `~/brady-os-local/finance/bonus-log.md` (each payment; trues up the $240K/yr floor assumption vs. actual EBT pace).
+- Ad hoc buffer refresh (quarterly, Rule 6) → `~/brady-os-local/finance/adhoc-buffer-analysis.md`
+  (sensitive; merchant-level detail). Update `budget-targets.md`'s buffer line only if the refreshed
+  number moves meaningfully from $1,000.
 - Target changes → `budget-targets.md` (repo; numbers only, no personal/medical detail).
 - A Red event or Core miss → Streaming Notes `Priority=Must` via Finn's Escalation Protocol
   (de-dup topic keys, incl. new key `HELOC lifestyle draw`).
