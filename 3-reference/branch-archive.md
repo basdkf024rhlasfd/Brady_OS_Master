@@ -4,6 +4,9 @@ Unmerged branches archived here before deletion. SOP: branches sit 30 days befor
 
 ---
 
+*(No active archive blocks. Last block — 2026-04-07, 13 branches — completed its 30-day hold; remote refs confirmed deleted, block cleared 2026-07-17. Recover any of them from this file's git history if ever needed.)*
+
+<!-- CLEARED 2026-07-17 — retained in git history:
 ## Archive — 2026-04-07
 
 **Delete after: 2026-05-07**
@@ -40,3 +43,4 @@ git checkout -b <branch-name> origin/<branch-name>
 ```
 
 After 2026-05-07, remote refs will be deleted and recovery requires reflog or backup.
+-->

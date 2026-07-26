@@ -206,6 +206,12 @@ Two destinations.
 
 Finalize `1-execution/areas/brady-os/phil-morning-audits/YYYY-MM-DD.md` with this structure:
 
+**Monthly rollup (added 2026-07-17):** on the first run of each month, compress the prior
+month's dailies into `phil-morning-audits/YYYY-MM-rollup.md` (one section per day: date,
+STATUS line, reconcile count, TOP 3) and delete the dailies it absorbed. Keeps the audit
+trail greppable without unbounded file sprawl (~365 files/yr otherwise). Same pattern as
+`processing-scores/`. Current month always stays as individual dailies.
+
 ```markdown
 # Phil Pre-Sweep — YYYY-MM-DD
 
