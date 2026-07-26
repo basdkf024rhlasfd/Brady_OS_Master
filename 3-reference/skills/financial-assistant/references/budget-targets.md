@@ -1,6 +1,6 @@
 # Monthly Budget Targets
 
-Last updated: 2026-07-16
+Last updated: 2026-07-18
 
 > **Read this with the engine.** The objective rules that operate these numbers —
 > bonus smoothing, traffic lights, the waterfall, "can we afford X" — live in
@@ -15,39 +15,62 @@ Last updated: 2026-07-16
 The consulting "$24K gross / 30% tax reserve" model below is **ARCHIVED** — it was the transition-year
 plan and no longer applies. W-2 income now; withholding is automatic; no separate tax-reserve bucket.*
 
-### Income (smoothed — see budget-guidance Rule 1)
+### Income (smoothed — see budget-guidance Rule 1) — FLOOR CASE, locked 2026-07-18
 
-| Source | Monthly | Basis |
-|--------|--------:|-------|
-| 1915 South base (take-home) | **$8,750** | Actual June deposit $8,743; post pre-tax benefits + 401k + withholding |
-| Bonus salary (smoothed from Reserve) | **$14,250** | Conservative $300K/yr gross ($75K/qtr, 1.5% × ~$20M EBITDA), ~$174K net ÷ 12 |
-| **Total steady income** | **$23,000** | Budget against this, never against last bonus size |
+Two planning cases exist; **plan around the floor**, not the goal:
+
+| Case | Bonus/qtr | Bonus/yr gross | Smoothed bonus salary | + $8,750 base = Total |
+|---|---:|---:|---:|---:|
+| **Floor (this plan)** | $60,000 | $240,000 | **$11,400** | **$20,150/mo** |
+| Goal (upside, track separately) | $125,000 | $500,000 | ~$23,750 | ~$32,500/mo |
+
+The floor case ($60K/qtr) is Brady's own estimate AND independently matches the pace implied by actual
+Q2 2026 EBT ($4.0M/qtr → ~$240K/yr at 1.5%) — two methods, same number. **This replaces the earlier
+$300K/yr ($75K/qtr, $14,250/mo) assumption**, which was optimistic relative to both.
 
 *First bonus (~next week): **~$20,440 gross** = 1.5% × $4.0M Q2 EBT × (31 employed / 91 quarter days),
-prorated for the 5/31 start. Nets ~$13K. Seeds the Reserve (thin at first — a partial quarter fills the
-tank slowly); does not change the $14,250 draw. Trues up as real EBT prints — log to `bonus-log.md`.
-Note: Q2 EBT of $4.0M annualizes to ~$240K/yr, below the $300K assumption — revisit the smoothed draw if
-Q3/Q4 hold near $4M.*
+prorated for the 5/31 start. Nets ~$13K. Seeds the Standard of Living Buffer partway — starts 🟡/🔴 and
+fills toward the $20K target over 1–2 quarters. Trues up as real EBT prints — log to `bonus-log.md`.*
 
-### Four buckets
+### Five buckets (floor case)
 
 | Bucket | Funded by | Monthly | Notes |
 |--------|-----------|--------:|-------|
 | **Core** (mortgage $3,330, auto/Escalade $839, student loan $640, utilities $735, phone+internet $445, HELOC interest ~$642, insurance/streaming $150, other loan ~$250) | Base | **~$7,030** | Must fit inside base take-home |
-| **Living** (food & household $4,500, Karissa personal $1,800, kids extracurricular/allowance $780, medical copays $300, clothing $300, fun $400, buffer $400) | Bonus salary | **~$8,480** | Food is the watched line |
-| **Build** (529s $1,250, investing $2,000, HELOC principal $250, emergency/buffer rebuild ~$1,640) | Bonus salary | **~$5,140** | Flexes first when Reserve is 🟡/🔴 |
-| **Reserve** | Bonus (100% swept) | balance ≥ 1 qtr (~$42,750) | The smoothing tank |
-| **Total outflow** | | **~$20,650** | vs $23,000 income = **~$2,350 cushion** (real only if no HELOC lifestyle draw) |
+| **Vacation/Fun** *(new bucket)* | Base surplus ($8,750 − Core) | **$1,000** | Funded from base leftover, not bonus — doesn't compete with Living/Build |
+| **Living** (food & household $4,500, Karissa personal $1,800, kids extracurricular/allowance $780, medical copays $300, clothing $300, fun $400, subscriptions ~$300, ad hoc/surprise buffer $1,000) | Bonus salary | **~$9,380** | Food is the watched line |
+| **Build** (529s $1,250 protected + HELOC principal $250 + investing/emergency $520 combined) | Bonus salary (leftover) | **~$2,020** | **The floor-case flex line** — see note below |
+| **Reserve** (Standard of Living Buffer) | Bonus (100% swept) | $20K target / **$40K ceiling** | Sweep any excess above $40K to Vacation/Kids/Safety |
+| **Total outflow** | | **~$19,430** | vs $20,150 floor income = **~$720 true cushion** (real only if no HELOC lifestyle draw) |
+
+**The honest trade-off:** Core, Vacation/Fun, and full Living (incl. the $1,000 ad hoc buffer) are **all
+fully funded** in the floor case — this is real "living plenty fine," not a squeeze. What shrinks is
+Build's *extra* wealth-building: 529 and HELOC principal stay protected, but investing/emergency-buffer
+rebuild drops from the $3,640/mo goal-case ideal to **$520/mo combined**. That's the lever that scales
+with bonus size. At the Goal case ($125K/qtr), Build restores to $5,140 and Vacation/Fun can grow.
 
 ### Live rules (full detail in budget-guidance)
 
 - **Food & household: $4,500/mo, $1,040/wk cap** *(locked by Brady 2026-07-16)*. The #1 lever —
   actual ran $5–7K. Watch weekly. Set objectively = Liberal USDA grocery tier + ~$600 consumables +
   ~$1,050 dining cap (method in budget-guidance Rule 4). Refreshed quarterly against the USDA report.
+- **Ad hoc / surprise buffer: $1,000/mo** *(locked by Brady 2026-07-18)*, replacing the old guessed
+  $400 line. Data-backed from ~6.5 clean months of true one-off spend (home repairs, auto costs, small
+  irregular purchases) — averaged ~$950–1,300/mo depending on outlier treatment. Method + methodology
+  detail in budget-guidance Rule 6. **Vacation/travel and recurring subscriptions are deliberately NOT
+  folded into this line** — they're separate, more predictable categories.
+- **Subscriptions & personal SaaS: ~$300/mo** *(new line, 2026-07-18)* — previously uncounted recurring
+  spend (streaming, personal software tools) that was hiding inside "ad hoc." Predictable, so it gets
+  its own line instead of inflating the buffer.
+- **Vacation/Fun: $1,000/mo** *(locked by Brady 2026-07-18)*, funded from base surplus, not bonus. One-off
+  travel has averaged ~$1,273/mo historically — this target is a bit below that average by design, to
+  preserve true cushion; revisit upward once a full bonus quarter confirms the floor pace holds.
 - **HELOC is not income.** The Apr-2026 $37,859 "Other Income" was an Arvest HELOC draw (borrowed).
   Any lifestyle draw = automatic Red. HELOC = appreciating assets only.
-- **Travel = $0 net** — reimbursed by employer. Confirm reimbursements actually land.
-- **Bonus never spent directly** — 100% to Reserve, paid out as the $14,250 salary.
+- **Travel (work) = $0 net** — reimbursed by employer. Confirm reimbursements actually land. (Distinct
+  from personal Vacation/Fun above, which is now funded at $1,000/mo.)
+- **Bonus never spent directly** — 100% to the Standard of Living Buffer, paid out as the ~$11,400
+  smoothed salary.
 
 ---
 
