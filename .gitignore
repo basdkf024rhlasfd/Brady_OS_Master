@@ -29,3 +29,7 @@ portal/.env.local
 /output/*.pdf
 /output/images*/
 3-reference/public-pack.zip
+
+# Python build artifacts
+__pycache__/
+*.pyc

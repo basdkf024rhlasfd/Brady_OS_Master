@@ -49,6 +49,33 @@ Calendar, and Notion consulting pipeline.
 | `weekly-summary` | Called by weekly-sweep | **Now the primary Finn cadence.** Detailed multi-section block: cash flow, runway, consulting AR, IVFH position, net worth, account-level analysis, anomaly review |
 | `full` (default) | Standalone trigger / on-demand | Complete financial snapshot with all sections + HTML dashboard |
 | `anomaly` | Triggered when Phase 0.5 fires an alert | Deep dive on the specific anomaly only — not full snapshot |
+| `account-view` | "L7D/L30D on [account]", "ins and outs for [account]", "run the account view on [account]" | **Single-account rolling-window view.** L7D / L30D / L90D averages with debt-funded inflow separated from real income, week-by-week trend, refund-netted category + merchant tables, and a full line-item ledger for the shortest window. Runs via `scripts/account-window-view.py`. Also runs as a sub-step of `weekly-summary` — see below. |
+
+### `account-view` sub-mode
+
+```bash
+python3 scripts/account-window-view.py <monarch.csv> --account 9380 --html
+```
+
+Aggregate cash-flow math hides per-account funding structure. Karissa's Arvest
+FREE BLUE ...9380 read as roughly cash-flow neutral in the aggregate view while
+actually running **~102% HELOC-funded** (first run, 2026-07-26).
+
+Rules this mode enforces:
+
+1. **Inflows are classified off `Original Statement`, never the Monarch `Merchant` label.** Monarch collapses HELOC draws and genuine internal transfers into the same "Arvest Bank — Online Banking" label. See `references/transactions-with-context.md` → Transfers & Funding Patterns.
+2. **HELOC draws are debt, never income.** They are reported on their own line and excluded from operating cash flow. The headline metric is *operating cash flow ex-HELOC*.
+3. **Merchant refunds are netted against that merchant's spend**, not counted as inflow — so category and merchant totals are true net spend.
+4. **Debt-funded share of spend** (`HELOC ÷ net spend`) is the flag metric. Above 50% the HTML renders a red banner. Surface it in the weekly block whenever it exceeds 50% on any account.
+
+**Weekly cadence:** on every `weekly-summary`, run `account-view` for the two
+primary household accounts (Arvest FREE BLUE ...9380 and SoFi Checking ...1907)
+and surface one line each: *"9380: net spend $X/wk, debt-funded N%, ops CF $Y/day."*
+Escalate per the Must-Alert protocol if debt-funded share rises two consecutive
+weeks or crosses 100%.
+
+**Output is sensitive.** HTML lands in `~/brady-os-local/finance/` by default and
+must never be committed — household transaction detail, per CLAUDE.md.
 
 **Cadence rule (canonical, 2026-04-25):** Finn runs WEEKLY (Sundays via weekly-sweep) + ON-DEMAND. Claudine handles the daily lightweight check. This is the tier-2/tier-3 separation: Claudine = conductor (daily surface), Finn = specialist (weekly deep work).
 
@@ -78,6 +105,7 @@ Calendar, and Notion consulting pipeline.
 | Consulting rate card | `references/consulting-rate-card.md` | No — consulting sections skipped if absent |
 | Insurance claims tracker | `references/insurance-claims.md` | No — surfaces open UHC/Aflac claims when present |
 | **Aflac coverage details** | `references/aflac-coverage.md` | **Authoritative answer source for Aflac/medical Qs. Full Accident High + Critical Illness $40K benefit schedules. Cert # CER0002539005. Source PDFs in `references/insurance-docs/aflac/`.** |
+| Account window view | `scripts/account-window-view.py` | No — required only for `account-view` mode. Reads any Monarch CSV; no other dependencies. |
 | **Rolling KPIs** | `references/kpi-rolling.md` | **Append-only Finn KPI tracker. K1 = % Food Subscription L30D (goal: ↑). Updated every `weekly-summary` run. Surface latest reading + delta in weekly-sweep block.** |
 
 ## Rolling KPI Pattern

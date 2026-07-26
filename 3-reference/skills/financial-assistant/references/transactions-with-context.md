@@ -2,9 +2,19 @@
 
 Recurring merchants and transaction patterns Finn needs to understand beyond what the Monarch category tells him. When these hit the feed, he should know what they mean without asking.
 
-Last updated: 2026-04-22
+Last updated: 2026-07-26
 
 ---
+
+## Transfers & Funding Patterns
+
+| Merchant / Pattern | Amount | Context |
+|---|---|---|
+| **Arvest Bank — Online Banking** / **Transfer From Loan \*2261 — Online Banking** | $400–$500 per draw, multiple per week | **RESOLVED 2026-07-26 — these are HELOC draws, not internal transfers.** Both Monarch merchant labels resolve to the same original statement text: `Transfer from Loan *2261 - Online Banking`. Loan \*2261 is the Arvest HELOC. **Per Finn doctrine, HELOC draws are debt, never income** — never count these as inflow in cash-flow, runway, or budget-vs-actual math. Destination is almost always FREE BLUE ...9380 (Karissa/family). Draw rate L30D as of 2026-07-25: $6,200 (~$207/day). Supersedes the prior "Arvest Bank — Online Banking, $324/mo, likely HELOC draws — UNRESOLVED" entry. |
+| Transfer From Checking \*7323 — Online Banking | $50–$200, occasional | **Genuine internal transfer**, not debt. Distinct from Loan \*2261 — check the original statement text, not the Monarch merchant label, since both can surface as "Arvest Bank — Online Banking". |
+| Brady Smallwood (`BSmallwood TRANSFER`) | $250 observed 2026-06-29 | Real deposit from Brady into Karissa's account. This is the only genuine (non-debt) household funding line seen in the L90D window ending 2026-07-25. |
+
+**Rule:** when classifying Arvest inflows, key off the `Original Statement` column, not `Merchant`. Monarch collapses several distinct funding sources into the single label "Arvest Bank — Online Banking".
 
 ## Fixed Monthly Obligations
 
@@ -45,7 +55,6 @@ Last updated: 2026-04-22
 | Card ending 1842 | Walmart gift card. Split payment with Karissa's Arvest 2021 on Apr 1. Not linked in Monarch. Potential untracked spending channel. | **UNRESOLVED** — need Arvest login to verify linkage |
 | Siloam Springs Clinic | $1,843 in March transactions, no email trail, no clear patient attribution | **UNKNOWN** — ask Brady |
 | Zions Bancorporation | $15 deposit to Faith's MONEY card Jan 20. | **UNRESOLVED** — verify purpose |
-| Arvest Bank — Online Banking | $324/mo avg, 3 months active | Likely HELOC draws. Cross-reference with liabilities growth. |
 | Corebridge Financial | Policy link expired Dec 2025 | **May have lapsed.** Verify if separate life insurance is still active. |
 
 ## Monarch Miscategorizations (Known)
