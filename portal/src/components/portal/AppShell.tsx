@@ -1,5 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import { Sidebar } from "./Sidebar";
 import { GlobalChatPanel } from "./GlobalChatPanel";
 import { WorkspaceProvider, type AgentMap } from "@/contexts/WorkspaceContext";
@@ -26,12 +30,58 @@ export function AppShell({
   agentMap?: AgentMap;
 }) {
   const isPreview = tier === "preview";
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setMobileNavOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileNavOpen]);
 
   return (
     <WorkspaceProvider isAdmin={isAdmin} projects={projects} projectConfigs={projectConfigs} agentMap={agentMap}>
       <div className="flex h-screen bg-background">
-        <Sidebar isAdmin={isAdmin} projects={projects} projectConfigs={projectConfigs} />
+        {mobileNavOpen && (
+          <button
+            type="button"
+            aria-label="Close navigation"
+            onClick={() => setMobileNavOpen(false)}
+            className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          />
+        )}
+
+        <div
+          className={`fixed inset-y-0 left-0 z-50 transform transition-transform duration-200 md:static md:z-auto md:translate-x-0 ${
+            mobileNavOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          }`}
+        >
+          <Sidebar isAdmin={isAdmin} projects={projects} projectConfigs={projectConfigs} />
+        </div>
+
         <div className="flex flex-1 flex-col overflow-hidden">
+          <div className="flex h-14 shrink-0 items-center gap-2 border-b border-border bg-background px-3 md:hidden">
+            <button
+              type="button"
+              aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((o) => !o)}
+              className="flex h-11 w-11 items-center justify-center rounded-md text-text-secondary transition hover:bg-surface-active hover:text-foreground"
+            >
+              {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+            <Link href="/portal" className="text-sm font-bold text-foreground">
+              mception<span className="text-accent-brand">.ai</span>
+            </Link>
+          </div>
+
           {isPreview && (
             <div
               role="status"
