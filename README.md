@@ -2,6 +2,8 @@
 
 A governance system for life and work on the other side of complexity.
 
+> **Canonical governance doc:** [OS Structure & Philosophy](https://www.notion.so/2b7ed43b89c580849c30fae7382db079) in Notion. This repo implements the architecture; Notion holds the constitution.
+
 ## The 4 Layers
 
 ### Layer 0 — Agents
@@ -10,6 +12,17 @@ A flat roster of agent profiles. Each agent has an identity, expertise, and seni
 Profiles are platform-agnostic. Where an agent lives (Claude, ChatGPT, Notion AI) is metadata, not identity.
 
 When a project needs a team, agents are drafted from this layer and assigned project-specific roles. Personal agents live in `0-agents/`. The broader talent pool lives in the community directories at the repo root (engineering/, marketing/, sales/, etc.).
+
+### Platform Architecture
+
+| Platform | Role |
+|----------|------|
+| **Notion** | Persistence layer — databases, memory, structured data, system of record |
+| **GitHub** (`Brady_OS_Master`) | Agent profiles, execution scaffolding, reference docs, skills, consulting project files |
+| **Claude** (claude.ai + Claude Code) | Runtime AI partner (Claudine identity), thinking, drafting, code |
+| **Conductor.build** | Multi-agent orchestration — parallel workspaces, CoWork automation, scheduled sweeps |
+| **Google Workspace** | Email/calendar capture, lightweight automation scripts |
+| **mception.ai** | Curated client-facing portal (separate repo, published via allowlist) |
 
 → [Agent Index](0-agents/README.md)
 → [Agent Profile Template](0-agents/custom-built-agents/_template.md)
