@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Innovation Workshop — Hospitality-Grade, Low-Labor Home Retail — 2026-08-04</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{--bg:#0b0d12;--panel:#12151d;--edge:#1f2430;--txt:#e8eaf0;--dim:#9aa3b5;--acc:#5eead4;--acc2:#f0abfc;--warn:#fbbf24;--bad:#f87171;--ok:#4ade80;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font:14px/1.65 'DM Sans',sans-serif;padding:0}
+.wrap{max-width:1040px;margin:0 auto;padding:48px 40px}
+.cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;page-break-after:always}
+.kicker{font:600 12px 'JetBrains Mono';letter-spacing:4px;color:var(--acc);text-transform:uppercase;margin-bottom:20px}
+h1{font:700 64px/1.05 'Space Grotesk';margin-bottom:18px}
+.cover .sub{font-size:19px;color:var(--dim);max-width:640px}
+.cover .brand{margin-top:56px;font:600 12px 'JetBrains Mono';letter-spacing:3px;color:var(--dim)}
+.sec-h{font:600 12px 'JetBrains Mono';letter-spacing:4px;color:var(--acc);text-transform:uppercase;margin:0 0 22px;border-bottom:1px solid var(--edge);padding-bottom:10px}
+.exec{page-break-after:always}
+.t5{display:flex;gap:16px;align-items:flex-start;background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:16px 18px;margin-bottom:10px}
+.t5-rank{font:600 13px 'JetBrains Mono';color:var(--acc2)}
+.t5 strong{font:700 17px 'Space Grotesk'}
+.t5 p{color:var(--dim);font-size:13px;margin-top:2px}
+.t5-score{margin-left:auto;font:600 16px 'JetBrains Mono';color:var(--acc)}
+.theme{background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--acc2);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.theme strong{font:700 15px 'Space Grotesk'}
+.theme p{color:var(--dim);font-size:13px}
+table.matrix{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+table.matrix th,table.matrix td{padding:7px 10px;border-bottom:1px solid var(--edge);text-align:left}
+table.matrix th{font:600 10px 'JetBrains Mono';letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+.product-page{page-break-before:always;page-break-inside:avoid;padding:36px 0 24px;border-top:1px solid var(--edge)}
+.p-head{display:flex;gap:18px;align-items:baseline}
+.p-rank{font:600 15px 'JetBrains Mono';color:var(--acc2)}
+.p-name{font:700 36px/1.1 'Space Grotesk'}
+.p-meta{margin:8px 0 0}
+.tag{font:600 10px 'JetBrains Mono';letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);border:1px solid var(--edge);border-radius:20px;padding:3px 10px;margin-right:6px}
+.tag.score{color:var(--acc);border-color:var(--acc)}
+.p-oneliner{font-size:16px;color:var(--dim);margin:14px 0 20px;max-width:820px}
+.product-image-block{float:left;margin:0 24px 16px 0;width:280px}
+.product-image-block img{width:280px;height:280px;object-fit:contain;border-radius:10px;background:#000}
+.product-image-block.placeholder .ph-inner{width:280px;height:280px;border:1px dashed var(--edge);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--panel)}
+.ph-label{font:600 10px 'JetBrains Mono';letter-spacing:2px;color:var(--dim)}
+.ph-file{font:400 10px 'JetBrains Mono';color:#565f72}
+.p-body h3{font:700 20px 'Space Grotesk';margin:14px 0 8px}
+.p-body p{margin-bottom:10px;max-width:840px}
+ul.rtbs{list-style:none}
+ul.rtbs li{padding:8px 0 8px 18px;position:relative;border-bottom:1px dashed var(--edge)}
+ul.rtbs li:before{content:'▸';position:absolute;left:0;color:var(--acc)}
+.src{display:block;font:400 9px 'JetBrains Mono';color:#6b7488;margin-top:3px}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.panel{background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:16px 18px}
+.panel h4{font:700 14px 'Space Grotesk';margin-bottom:8px}
+.panel p{font-size:12.5px;color:var(--dim)}
+.comp{padding:7px 0;border-bottom:1px dashed var(--edge);font-size:12.5px}
+.comp strong{display:block}
+.comp span{color:var(--dim);font-size:11px;margin-right:8px}
+.comp em{color:#8b93a7;font-size:11px;font-style:normal}
+table.cost{width:100%;font-size:12px;border-collapse:collapse}
+table.cost td{padding:5px 8px 5px 0;vertical-align:top;border-bottom:1px dashed var(--edge)}
+table.cost td:first-child{font:600 10px 'JetBrains Mono';letter-spacing:1px;color:var(--dim);text-transform:uppercase;width:70px}
+.defense{font:600 9px 'JetBrains Mono';color:var(--warn);letter-spacing:1px;text-transform:uppercase;margin-left:8px}
+.oc{font:600 10px 'JetBrains Mono';letter-spacing:1px;border-radius:16px;padding:2px 10px;margin-left:8px}
+.oc-simple{background:#0d2b1c;color:var(--ok)}.oc-moderate{background:#2d230a;color:var(--warn)}.oc-complex{background:#2d1212;color:var(--bad)}
+.fits{display:flex;flex-wrap:wrap;gap:6px}
+.fit-chip{font:600 10px 'JetBrains Mono';color:var(--acc);border:1px solid var(--acc);opacity:.85;border-radius:16px;padding:3px 10px}
+.p-footer{display:flex;gap:20px;align-items:flex-start;margin-top:16px;background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:14px 18px}
+.lbl{font:600 9px 'JetBrains Mono';letter-spacing:2px;color:var(--dim);display:block;margin-bottom:2px}
+.fm{flex:1}.fm p{font-size:12.5px}
+.ei{display:flex;gap:14px;align-items:center}.ei b{font:600 15px 'JetBrains Mono';color:var(--acc)}
+.verify{display:flex;flex-direction:column;gap:4px}
+.vchip{font:600 8.5px 'JetBrains Mono';letter-spacing:1px;border-radius:12px;padding:2px 8px}
+.vchip.ok{background:#0d2b1c;color:var(--ok)}.vchip.warn{background:#2d230a;color:var(--warn)}.vchip.bad{background:#2d1212;color:var(--bad)}
+.research-basis{font:400 10px 'JetBrains Mono';color:#6b7488;margin-top:12px}
+.appendix{page-break-before:always}
+.appendix h3{font:700 20px 'Space Grotesk';margin:20px 0 8px}
+.appendix p,.appendix li{font-size:13px;color:var(--dim);max-width:860px}
+.appendix ul{margin:6px 0 6px 20px}
+@media print{body{background:#0b0d12 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body>
+<div class="wrap cover">
+  <div class="kicker">Innovation Workshop — Run 8 — 2026-08-04</div>
+  <h1>Hospitality-Grade,<br>Low-Labor Home Retail</h1>
+  <p class="sub">20 verified concepts for the furniture store rebuilt on the bartaco service model — and the future of the mattress store. Judge-panel scored, adversarially verified.</p>
+  <div class="brand">MCEPTION.AI</div>
+</div>
+<div class="wrap exec">
+  <div class="sec-h">Executive Summary — Top 5</div>
+  <div class="t5"><span class="t5-rank">#01</span><div><strong>Room-as-Menu Ordering</strong><p>Every vignette gets a laminated bartaco-style &#x27;room menu&#x27; — whole room + good/better/best swaps + delivery-week picker, ordered via QR like dinner.</p></div><span class="t5-score">4.1</span></div><div class="t5"><span class="t5-rank">#02</span><div><strong>The Sleep Suite</strong><p>Vacated Mattress Firm/Badcock box carved into 8-12 bookable hotel-grade sleep suites; $25/45-min tracked nap, fee credits purchase; sleep data closes the sale.</p></div><span class="t5-score">4.0</span></div><div class="t5"><span class="t5-rank">#03</span><div><strong>Sleep Genius Bar</strong><p>Apple Store transfer: bookable diagnostic counter (pressure-mapping + wearable data review); expert forbidden to close; floor fully self-serve QR. FOH -40-50%.</p></div><span class="t5-score">3.9</span></div><div class="t5"><span class="t5-rank">#04</span><div><strong>Closing Day Commons</strong><p>Owns new-home closing day: realtor-issued pass, whole-home QR cart against your uploaded floor plan, sparkling-cider toasts. $10-30K baskets, near-zero CAC.</p></div><span class="t5-score">3.9</span></div><div class="t5"><span class="t5-rank">#05</span><div><strong>Hosting Panic Pit Stop</strong><p>Oct-Dec &#x27;guests land in 12 days&#x27; rescue lane: pre-staged guest-ready bundles, QR buy, countdown delivery-by-date guarantee only an owned fleet can make.</p></div><span class="t5-score">3.7</span></div>
+  <div class="sec-h" style="margin-top:34px">Key Themes</div>
+  <div class="theme"><strong>Sleep beat furniture</strong><p>6 of the top 8 concepts are sleep-side. The &#x27;future of mattress stores&#x27; brief has more open white space than furniture-meets-F&amp;B.</p></div><div class="theme"><strong>The bartaco transfer is the service model, not the food</strong><p>Every food-forward concept took ops damage (permits, soil risk); every self-serve ritual (menus, flights, suites, fit reports) survived scoring and verification.</p></div><div class="theme"><strong>Paid, credited trial rituals</strong><p>$25-49 tickets that convert to purchase credit emerged independently in 4 surviving ideas — the panel&#x27;s strongest convergent signal. Ticketing filters intent and funds the labor model.</p></div><div class="theme"><strong>Owned DC + fleet is the moat</strong><p>Delivery-date guarantees and one-date whole-room delivery recur across the portfolio — the single asset DTC brands and marketplaces cannot copy.</p></div>
+  <div class="sec-h" style="margin-top:34px">Portfolio — Effort × Impact</div>
+  <table class="matrix"><tr><th>Idea</th><th>Type</th><th>Effort</th><th>Impact</th><th>Score</th></tr><tr><td>#01 Room-as-Menu Ordering</td><td>element</td><td>2</td><td>4</td><td>4.1</td></tr><tr><td>#02 The Sleep Suite</td><td>format</td><td>4</td><td>5</td><td>4.0</td></tr><tr><td>#03 Sleep Genius Bar</td><td>element</td><td>2</td><td>4</td><td>3.9</td></tr><tr><td>#04 Closing Day Commons</td><td>format</td><td>3</td><td>4</td><td>3.9</td></tr><tr><td>#05 Hosting Panic Pit Stop</td><td>element</td><td>2</td><td>3</td><td>3.7</td></tr><tr><td>#06 The Sleep Tasting Flight</td><td>element</td><td>2</td><td>4</td><td>3.7</td></tr><tr><td>#07 The Fit Report Nap Bar</td><td>element</td><td>3</td><td>4</td><td>3.6</td></tr><tr><td>#08 Test-Night Ticketed Slowroom</td><td>element</td><td>3</td><td>3</td><td>3.6</td></tr><tr><td>#09 One-Tap Room</td><td>format</td><td>2</td><td>4</td><td>3.5</td></tr><tr><td>#10 Sleep Score Social Club</td><td>format</td><td>4</td><td>3</td><td>3.5</td></tr><tr><td>#11 Room Transformation Studio</td><td>element</td><td>2</td><td>3</td><td>3.5</td></tr><tr><td>#12 The Designer&#x27;s Counter</td><td>element</td><td>3</td><td>4</td><td>3.5</td></tr><tr><td>#13 The Verdict Room</td><td>element</td><td>2</td><td>3</td><td>3.4</td></tr><tr><td>#14 Summon-Only Floor</td><td>element</td><td>3</td><td>4</td><td>3.4</td></tr><tr><td>#15 The No-Desk Store</td><td>format</td><td>3</td><td>3</td><td>3.4</td></tr><tr><td>#16 The Long Table</td><td>element</td><td>4</td><td>3</td><td>3.4</td></tr><tr><td>#17 The Neighborhood Living Room</td><td>format</td><td>4</td><td>4</td><td>3.3</td></tr><tr><td>#18 After Dark: The Insomniac Hours</td><td>format</td><td>3</td><td>3</td><td>3.3</td></tr><tr><td>#19 Omakase Room Setups</td><td>service</td><td>2</td><td>3</td><td>3.2</td></tr><tr><td>#20 Date Night at the Store</td><td>format</td><td>2</td><td>3</td><td>3.1</td></tr></table>
+</div>
+<div class="wrap">
+
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#01</span>
+    <div>
+      <h2 class="p-name">Room-as-Menu Ordering</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 21 — SCAMPER (Magnify)</span>
+        <span class="tag score">SCORE 4.1</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Every vignette gets a laminated bartaco-style &#x27;room menu&#x27; — whole room + good/better/best swaps + delivery-week picker, ordered via QR like dinner.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-01-room-as-menu-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Magnify the price tag into the whole ordering interface. Each staged vignette carries a laminated room menu: the complete room priced as one line, per-piece prices below, three good/better/best swaps per category, and a delivery-week picker. Guests order the room from their phone the way they order dinner at bartaco — no order-writer, no quote-building, no desk. It serves the shopper who already avoids the commissioned floor and wants to decide at their own pace.</p><p>The insight is that bartaco&#x27;s real innovation wasn&#x27;t tacos — it was moving 90% of order entry to the guest&#x27;s phone and cutting labor 5-6 points while wages and sentiment went up. Furniture&#x27;s equivalent of the order-taking server is the quote-building rep. The novelty judge called this &quot;not a story&quot; — correct, and that&#x27;s the point: it&#x27;s the load-bearing primitive that Summon-Only, One-Tap Room, and Closing Day all sit on. Ship it first and every later concept inherits the rails.</p><p>Execution is the fastest in the portfolio: menu design + QR carts on the existing e-commerce stack + delivery-slot logic against owned DC inventory. Pilot in 2 stores inside 60 days, then fleet-roll — it retrofits any of the 29 stores without touching the building.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>bartaco runs ~90% of orders through QR, cut labor 5-6 pts, and raised blended wages to $20-24/hr with pooled tips — the model transfers order entry to the guest.<span class="src">Restaurant Dive, &#x27;How Bartaco eliminated wait staff roles to boost wages,&#x27; 2023; Back of House, Mar 2023</span></li><li>Order-for-delivery furniture retail without carrying inventory is proven — IKEA Planning Studios (8-9K sqft) sell whole rooms for home delivery with zero cash-and-carry.<span class="src">Retail Dive on IKEA small-format strategy; IKEA Newsroom (Manhattan Planning Studio)</span></li><li>Mattress dollars fell 6.5% in 2025 but ASP rose ~5% — trade-up structures like good/better/best swaps are where the margin is.<span class="src">ISPA 2026 report via Run 8 cluster research (Furniture Today, 2026-07-14)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>IKEA Planning Studios do whole-room ordering but appointment-led and IKEA-only; no US mid-market furniture chain menus a staged room as a single orderable object with swaps. Wayfair/DTC do &quot;shop the look&quot; online with no physical dwell. Ashley corporate has QR tags in some stores but they link to PDPs, not room-level carts with delivery pickers. Copyable in principle by any large chain, but the delivery-week guarantee requires owned DC + fleet — the piece national marketplaces and most franchisees can&#x27;t match.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>bartaco QR service model</strong><span>bartaco (~30 US locations)</span><em>90% QR ordering; service leaders cover 6-8 tables; labor -5-6 pts</em></div><div class="comp"><strong>IKEA Planning Studio</strong><span>IKEA (NYC, LA, Pentagon City, others)</span><em>8-9K sqft, zero take-home inventory, whole-room order-for-delivery</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$40-90K per store<span class="src">assumption (anchored to comparable: OneDine-class QR platform deployments at bartaco)</span></td></tr>
+        <tr><td>Labor</td><td>-1 to -2 FTE per store (order-entry/quote-writing eliminated); 1-2 salaried stylists summoned for custom swaps only<span class="src">comparable: bartaco (Restaurant Dive 2023)</span></td></tr>
+        <tr><td>Revenue</td><td>Whole-room baskets replace single-item tickets; good/better/best swaps drive trade-up; delivery-week picker converts hesitation into a committed date.</td></tr>
+        <tr><td>Payback</td><td>If room-menu vignettes lift average basket even 10-15% on current vignette-adjacent sales, sub-$100K capex returns inside 12 months; labor savings alone (~$50-80K/yr/store) cover it independently.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-simple">Simple</span></h4>
+      <p>No permits, no food, no construction. Main burdens are menu upkeep as inventory shifts and keeping delivery-slot promises honest against DC capacity — a data discipline, not a build.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Print room menus and turn on QR room-carts for the 10 best vignettes in 2 pilot stores within 60 days; measure basket size and rep time vs control stores.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">SCAMPER (Magnify) applied to the price tag; triggered by bartaco&#x27;s 90%-QR labor model and the ISPA premium trade-up signal.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#02</span>
+    <div>
+      <h2 class="p-name">The Sleep Suite</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 24+57 — Mashup × Downmarket Disruption (merged)</span>
+        <span class="tag score">SCORE 4.0</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Vacated Mattress Firm/Badcock box carved into 8-12 bookable hotel-grade sleep suites; $25/45-min tracked nap, fee credits purchase; sleep data closes the sale.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-02-sleep-suite-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Take a dead mattress-store box and rebuild it as the thing people actually want: a place to sleep. Eight to twelve private, hotel-grade suites — real bedding, blackout, per-room climate — bookable at $25 for a 45-minute tracked nap, app unlock, QR self-check-in. The fee credits toward purchase; the sensor readout on the nightstand tablet shows how you actually slept and matches you to the top-two mattress tiers with tap-to-buy. For the buyer who won&#x27;t spend $2-5K on a 90-second showroom flop test.</p><p>The insight: the mattress industry&#x27;s core unsolved problem is proof. Online returns run 21-22% vs ~9% in-store because nobody can evaluate a mattress in a minute, awake, in fluorescent light. Casper&#x27;s Dreamery proved people will pay exactly this ($25/45-min, nine nooks, Soho) — but Casper sold naps as brand marketing with nothing to convert into. Here the nap IS the qualification funnel, and the vacated-box glut (Mattress Firm closed ~700 stores in its 2018 bankruptcy with ~700 more closures announced since; ~880 FRG storefronts vacated) makes the real estate historically cheap.</p><p>First move is one box, eight suites, in a market where a store already closed. Zero floor salespeople; 1-2 salaried Sleep Hosts run the house; linen turns batched between booking blocks. Owned DC delivers the purchased mattress days later.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Consumers will pay $25 for a 45-minute in-store nap — Casper&#x27;s Dreamery ran exactly this price point with 9 nooks, fresh linens per napper, in NYC.<span class="src">TIME, &#x27;You Can Pay to Nap at Casper&#x27;s New NYC Store,&#x27; 2018-07; Racked, 2018-07-11</span></li><li>Booked private sleep-demo appointments are the current playbook of the category&#x27;s hottest brand — Eight Sleep&#x27;s House of Sleep runs reservation-only 30-min private pod sessions (2026).<span class="src">eightsleep.com/house-of-sleep, 2026</span></li><li>Online returns ran 16.9% overall vs 8.9% in physical stores in 2025, and online furniture/bedding returns jumped to 21-23% — bodies-on-beds proof is the structural advantage of physical.<span class="src">BUILD Magazine, &#x27;Bed-in-a-Box: The Showroom Renaissance,&#x27; 2026-03-02 (verified in Run 8 cluster research)</span></li><li>Paid, credited trial rituals appeared independently in 4 of Run 8&#x27;s top 20 — the judge panel&#x27;s strongest convergent signal that ticketing filters intent and funds labor.<span class="src">Run 8 Gate 1 panel, cross-cutting theme 3, 2026-07-18</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Casper Dreamery (closed) proved the price point but had no conversion engine and no owned fulfillment. Eight Sleep&#x27;s House of Sleep is a single mobile pod, demo-only, no mattress breadth. Nap lounges (city nap bars, airport pods) sell rest, not mattresses. Sleep Number&#x27;s 600-store fleet is the cautionary incumbent — full-labor showrooms, now in Ch. 11. Nobody combines paid tracked naps + purchase credit + owned delivery fleet in the Southeast mid-market. Copying requires real estate conviction and fleet logistics, not just an idea.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>The Dreamery</strong><span>Casper (NYC, 2018; since closed)</span><em>$25 / 45-min nap, 9 nooks, fresh linens + PJs per guest</em></div><div class="comp"><strong>House of Sleep</strong><span>Eight Sleep (Bay Area, 2026)</span><em>Free reservation-only 30-min private pod demos; 30-day discount code on exit</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$400-700K per box (8-12 suites)<span class="src">assumption (anchored to comparable: midscale hotel renovation per-key costs)</span></td></tr>
+        <tr><td>Labor</td><td>1-2 salaried Sleep Hosts total vs 4-6 commissioned reps in a legacy mattress store; linen service batched<span class="src">comparable: Casper Dreamery</span></td></tr>
+        <tr><td>Revenue</td><td>Nap fees filter intent and offset labor; real revenue is $2-5K mattress ASP at elevated conversion (guest arrives pre-qualified, leaves with personal sleep data), plus adjustable-base attach.</td></tr>
+        <tr><td>Payback</td><td>One incremental mattress/day at ~$1K gross margin ≈ $30K/mo GM; a $550K midpoint build pays back in 18-24 months before nap-fee and attach revenue.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-complex">Complex</span></h4>
+      <p>The Ops Skeptic&#x27;s 3.5 is earned: hygiene protocol (fresh linens per guest, Dreamery-style), no overnight stays so no lodging licensure, but ADA, fire egress on partitioned suites, and single-host security windows all need solving; franchise agreement review for a non-standard format.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">second-gen-vacated-box</span><span class="fit-chip">retrofit-existing-store</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Sign one short-term lease on a vacated mattress box, build 8 suites, and run a 90-day booked-nap pilot with purchase-credit tracking.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>4/5</b>
+        <span class="lbl">IMPACT</span><b>5/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip ok">COST: PASS</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Mashup (nap hotel × mattress store) × Downmarket Disruption; triggered by the vacated-box glut and the online-return-rate proof gap.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#03</span>
+    <div>
+      <h2 class="p-name">Sleep Genius Bar</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 15 — Analogous Inspiration (Apple Store)</span>
+        <span class="tag score">SCORE 3.9</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Apple Store transfer: bookable diagnostic counter (pressure-mapping + wearable data review); expert forbidden to close; floor fully self-serve QR. FOH -40-50%.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-03-sleep-genius-bar-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Move the mattress expert from commission-hungry floor-walker to bookable diagnostician. A no-register counter staffed by 2-3 salaried, pooled-bonus &quot;sleep geniuses&quot; who run pressure-mapping scans and review your wearable data by appointment — and are explicitly forbidden to close the sale. The rest of the floor is self-serve QR try-and-buy. For the shopper whose defining behavior is dodging the salesperson at the door.</p><p>The insight is a trust inversion, and that&#x27;s the answer to the novelty judge&#x27;s 3.1: the familiar Apple aesthetic isn&#x27;t the idea — the forbidden-to-close rule is. Apple&#x27;s Genius Bar built the most valuable retail real estate on earth around service people with no sales quota. In mattresses, the diagnostic tech is already commodity: Dreams (UK&#x27;s largest bed retailer) runs Sleepmatch pressure-mapping chain-wide — a free 3-minute scan, 18 measurements, no purchase obligation — and made it the anchor of its &quot;slowroom&quot; resurgence. No US mid-market player has copied the machine or the no-close covenant.</p><p>Execution: counter millwork plus a Sleepmatch-class diagnostic bed retrofits into any existing store&#x27;s mattress department. Book via the same rails as the room-menu QR stack. Pilot in one store; the labor restructure (commissioned reps → salaried geniuses + zone hosts) is the hard part, so start where turnover has already created openings.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Chain-wide in-store pressure-mapping diagnostics already work at retail scale — Dreams&#x27; Sleepmatch runs a free 3-min scan (18 measurements, 25 patents) across its UK estate.<span class="src">Furniture News, &#x27;Dreams rolls out mattress-matching technology&#x27;; dreams.ie/about-sleepmatch</span></li><li>Salaried zone coverage with pooled incentives raises wages while cutting FOH headcount ~50% — bartaco&#x27;s service-leader model, guest sentiment ~4.7/5.<span class="src">Restaurant Dive, 2023-01; FSR Magazine, Feb 2021</span></li><li>2025 mattress units fell 13.2% while ASP rose ~5% — fewer, higher-intent shoppers reward a diagnostic (premium-mix) model over a volume floor.<span class="src">ISPA 2026 report via Run 8 cluster research (Furniture Today, 2026-07-14)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Apple Genius Bar is the template but not a competitor. Dreams (UK) has the diagnostic tech but pairs it with a conventional assisted-sales floor — no no-close rule, no US presence. Sleep Number built diagnostic smart-bed stores but with full commissioned labor, and is now in Ch. 11 — evidence the tech alone isn&#x27;t the moat; the labor model is. Mattress Firm&#x27;s &quot;Sleep Experts&quot; are commissioned closers with a quiz. Incumbents could buy the same machines tomorrow; ripping out commission economics is the hard-to-copy part.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Genius Bar</strong><span>Apple</span><em>Free bookable diagnostics; no sales quota; anchors store visit frequency</em></div><div class="comp"><strong>Sleepmatch</strong><span>Dreams (UK&#x27;s largest bed specialist)</span><em>Free 3-min pressure-mapping scan, chain-wide, no purchase obligation</em></div><div class="comp"><strong>Sleep Number 360 smart stores</strong><span>Sleep Number (Ch. 11, 2026)</span><em>Diagnostic-led stores with commissioned labor — cautionary comp</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$75-150K per store<span class="src">assumption (diagnostic hardware anchored to comparable: Dreams Sleepmatch deployment)</span></td></tr>
+        <tr><td>Labor</td><td>FOH -40-50%: 6-8 commissioned reps → 2-3 salaried geniuses + zone hosts on pooled bonus<span class="src">comparable: bartaco (Restaurant Dive 2023)</span></td></tr>
+        <tr><td>Revenue</td><td>Free diagnostic monetizes through conversion and premium mix — data-backed recommendations trade shoppers up the ASP curve and into adjustable bases; appointments create a bookable pipeline.</td></tr>
+        <tr><td>Payback</td><td>Removing 2-3 commissioned FTEs (~$120-180K/yr fully loaded) covers the capex inside 12 months before any conversion lift is counted.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>No permits or food; the burden is organizational — converting commissioned reps to salaried diagnostic roles without a floor revolt, plus wearable-data privacy handling (consent + no storage without opt-in).</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Install one diagnostic counter in the highest-traffic store, staff it with two volunteers moved to salary+pool, and run 90 days of booked scans measuring conversion and ASP vs floor baseline.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Analogous Inspiration from Apple&#x27;s Genius Bar; triggered by Dreams&#x27; slowroom/Sleepmatch resurgence and commissioned-floor conversion running ~2-3%.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#04</span>
+    <div>
+      <h2 class="p-name">Closing Day Commons</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 59 — Occasion-Based Innovation</span>
+        <span class="tag score">SCORE 3.9</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Owns new-home closing day: realtor-issued pass, whole-home QR cart against your uploaded floor plan, sparkling-cider toasts. $10-30K baskets, near-zero CAC.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-04-closing-day-commons-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Claim the single highest-spend occasion in retail: the day someone closes on a house. Realtors hand buyers a Closing Day pass; the buyer uploads their floor plan, walks the showroom tagging a whole-home cart room by room via QR, and the visit ends with a sparkling-cider toast from a celebration host. One cart, one delivery date, timed to move-in — a promise only an operator with its own DCs and trucks can make.</p><p>The insight is timing concentration: new-home buyers spend ~$26,900 on furnishings, appliances, and improvements in the first year — roughly 3x non-movers — and most of it lands in the first months, when reaching a mover is dramatically more effective than reaching an established resident. Furniture retail currently buys this customer back with mass promo advertising; the realtor pass acquires them at the exact hour of maximum intent for the cost of cider. The pass is a buyer gift, not a paid referral, keeping the realtor channel clean.</p><p>Execution: a lightweight realtor portal, the floor-plan cart layered on the Room-as-Menu QR rails (rank 1 is the prerequisite), and celebration staging in existing stores. Pilot with 10-15 realtor teams around 2 stores; no construction required.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Buyers of newly built homes spend an average of $26,882 on appliances, furnishings, and improvements in year one — nearly 3x the $9,457 spent by non-moving owners.<span class="src">NAHB, &#x27;Home Purchases Trigger Big Spending,&#x27; 2022; Eye on Housing follow-up, 2026-07</span></li><li>New movers spend $10-12K on the home in the first 3-6 months, and reaching them early is far more effective than marketing to established residents.<span class="src">Porch Group Media, new mover marketing trends; Cordless Media new mover statistics</span></li><li>Occasion-owned retail with a delivery-date guarantee leans on the owned DC + fleet moat — the one asset DTC and marketplaces can&#x27;t copy.<span class="src">Run 8 Gate 1 panel, cross-cutting theme 4, 2026-07-18</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>New-mover marketing is a crowded mailer industry (Welcome Wagon, Speedeon) but it&#x27;s coupons, not an in-store occasion. IKEA Planning Studios do appointment whole-home planning without the occasion hook or delivery-date muscle. Builders&#x27; design centers capture new-construction buyers but only for the builder&#x27;s own units, pre-closing. Big furniture chains run generic new-mover discounts. Nobody has productized closing day itself as a retail ritual; copying requires local realtor relationships plus owned fulfillment — slow to replicate at national-chain speed.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>IKEA Planning Studio</strong><span>IKEA</span><em>Appointment whole-room/home planning, order-for-delivery</em></div><div class="comp"><strong>Welcome Wagon</strong><span>Welcome Wagon LLC (since 1928)</span><em>New-mover gift/offer marketing sold to local businesses — proves the channel, not the experience</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">public-data</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$50-100K pilot (2 stores + portal)<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>Net zero: 2-3 celebration hosts redeployed from existing floor hours; no commissioned role in the flow<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>$10-30K whole-home baskets at near-zero CAC (realtor channel replaces promo ad spend); financing attach on large carts; delivery-date guarantee closes.</td></tr>
+        <tr><td>Payback</td><td>At ~$4K gross margin on a median $15K basket, ~15-20 closing-day baskets repay the full pilot; a 2-store pilot converting 2-3 passes/week clears that inside a quarter.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>No permits beyond incidental cider service (non-alcoholic fallback per cluster rule). Real work is channel ops: realtor program compliance review (gift, not compensated referral), floor-plan data handling, and protecting the delivery-date promise against DC capacity.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Recruit 10-15 realtor teams around 2 stores, ship the pass + floor-plan cart portal, and run a 90-day pilot measuring passes redeemed, basket size, and CAC vs promo baseline.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Occasion-Based method on life-event spend spikes; triggered by NAHB first-year spend data and the owned-fleet delivery-guarantee moat.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#05</span>
+    <div>
+      <h2 class="p-name">Hosting Panic Pit Stop</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 59 — Occasion-Based Innovation</span>
+        <span class="tag score">SCORE 3.7</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Oct-Dec &#x27;guests land in 12 days&#x27; rescue lane: pre-staged guest-ready bundles, QR buy, countdown delivery-by-date guarantee only an owned fleet can make.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-05-hosting-panic-pit-stop-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A seasonal front-of-store lane, live October through December, built for one buyer: the host who just realized company arrives in twelve days and the guest room is a treadmill closet. Pre-staged bundles — sleeper sofa + bedding, guest bed + nightstand + lamp, dining extension + eight chairs — each carry a laminated card with one number in large type: &quot;Delivered by Nov 21. Guaranteed.&quot; Scan, pick the date, pay on your phone. No salesperson required.</p><p>The insight is that hosting panic is a deadline purchase, not a browsing purchase, and deadline buyers pay for certainty, not discounts. Thanksgiving hosts already absorb real money for the occasion — hosts spend hundreds on the event itself and 64% get no contribution from guests (LendingTree hosting survey) — and the one thing e-commerce structurally cannot promise in November is a hard delivery date. A 29-store operator with owned DCs and its own trucks can. The guarantee IS the product; the furniture is the fulfillment.</p><p>Execution is the lightest in the surviving set: pick 6-10 bundle SKUs the DC already carries deep, stage one lane per store, print the countdown cards, wire the QR carts, and hold fleet capacity for guaranteed slots. The Margin Realist&#x27;s caution — countdown pricing must not decay into a markdown — is handled by pricing bundles at everyday price plus a visible &quot;date-lock&quot; line item, never below it. Runnable this October with no new hires.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Thanksgiving hosts carry the occasion financially — most receive no cost-sharing from guests (64%), making them receptive to paid convenience.<span class="src">LendingTree Thanksgiving hosting survey (2019: 64% of hosts get no offers to chip in; avg host spend ~$310), lendingtree.com/credit-cards/study/thanksgiving-hosting</span></li><li>In-stock, date-certain furniture delivery is a proven differentiator: Living Spaces built its model on flat-fee same-day/next-day delivery of in-stock goods in qualifying markets.<span class="src">Living Spaces shipping FAQs, livingspaces.com/company/shipping-faqs</span></li><li>Online furniture/bedding return rates run 21-22% vs ~9% in-store, so a deadline buyer who needs it right the first time favors physical + guaranteed logistics.<span class="src">Run 8 cluster brief; corroborated by public 2025-26 return-rate benchmarks (online ~20-24% vs ~9% in-store; Capital One Shopping research, ecommerce category benchmarks)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Living Spaces (West Coast) is the closest structural analog — in-stock model, flat-fee same/next-day delivery — but it sells speed generically, not the hosting occasion, and has no Southeast presence. Wayfair shows &quot;get it by&quot; badges but its ~20%+ return economics and drop-ship-heavy supply model (most SKUs ship from suppliers, not Wayfair-controlled stock) make a hard local date guarantee risky for it to offer. IKEA owns &quot;in stock today&quot; but is cash-and-carry: the customer is the fleet. Nobody merchandises the countdown. Incumbents could copy the signage in a season, but not the owned-DC + owned-fleet capacity that makes the guarantee honest — that is the moat.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Living Spaces same/next-day delivery</strong><span>Living Spaces</span><em>$119 flat full-service delivery fee, unlimited items, in-stock same/next-day in qualifying areas (verified 2026-08)</em></div><div class="comp"><strong>IKEA in-stock cash-and-carry</strong><span>IKEA</span><em>Immediate availability, customer self-transport; no date-guaranteed staging</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable:Living Spaces (delivery model); assumption (bundle velocity)</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$15-40K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>Net zero — one redeployed Host Concierge on per-delivered-bundle bonus<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>Bundle AOV $1,500-4,000 at everyday price plus visible date-lock fee; zero discount leakage; near-zero CAC via the occasion itself.</td></tr>
+        <tr><td>Payback</td><td>At 2-3 bundles/store/week across 12 weeks and ~$2.5K AOV, a store books ~$60-90K incremental seasonal revenue against &lt;$40K one-time setup — payback inside the first season.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-simple">Simple</span></h4>
+      <p>No permits, no food, no new roles. The real constraint is fleet slot management in peak season — guaranteed dates must be capacity-capped per week per store, or the guarantee eats overtime.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">seasonal-overlay</span><span class="fit-chip">fleet-service</span><span class="fit-chip">retrofit-existing-store</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Pilot in 3 stores this October: 8 bundle SKUs, countdown cards, capacity-capped guarantee slots, and a per-bundle bonus for one redeployed concierge.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip warn">COMPETITIVE: FIXED</span></div>
+  </div>
+  <p class="research-basis">Occasion-Based method applied to the Q4 hosting deadline; triggered by the cluster&#x27;s owned-DC/fleet moat signal and e-comm&#x27;s 21-22% return-rate weakness on deadline purchases.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#06</span>
+    <div>
+      <h2 class="p-name">The Sleep Tasting Flight</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 56 — Premiumization</span>
+        <span class="tag score">SCORE 3.7</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">$49 sommelier-style guided flight of five mattresses, scripted by QR bedside cards, scored by pressure sensors; one steward covers 6-8 flights and the fee credits purchase.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-06-sleep-tasting-flight-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A bookable 60-minute ritual that turns mattress shopping into a tasting. Guests reserve a flight, get a five-bed sequence chosen from their intake quiz, and move bed to bed guided by QR bedside cards — what to notice, how long to lie, which position to test — while a pressure-sensor pad scores each bed against their sleep profile. A single salaried Sleep Steward hosts the room the way a sommelier works a tasting bar: pouring context, never closing. The $49 fee credits in full toward purchase.</p><p>The insight is the panel&#x27;s strongest convergent signal: paid, credited trial rituals filter intent and fund the labor model. A tasting fee converts the tire-kicker floor into an appointment book of pre-qualified buyers, while premium framing supports the trade-up already happening in the market — ISPA&#x27;s 2025 full-year data shows units down 13.2% while US-produced mattress ASP rose ~5%, meaning the remaining buyers are spending more per bed. Dreams (UK) proved machine-guided matching works at scale with its free 3-minute Sleepmatch scan; the flight premiumizes that primitive into a revenue-bearing experience nobody in US mid-market runs.</p><p>Execution: a five-bed flight bay retrofit into an existing mattress department, scripted cards, off-the-shelf pressure pads, and one steward per shift. The Ops Skeptic&#x27;s 3.4 — one steward across 6-8 concurrent flights — is solved by staggering start times in 10-minute offsets so the steward touches each flight at its decision moments, not continuously.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Mattress buyers are trading up: 2025 units fell 13.2% while ASP rose 5% — premium guided experiences match where the dollars moved.<span class="src">ISPA 2025 full-year data: unit shipments -13.2%, US-produced mattress ASP up ~5% (ISPA report via Bedding News Now / BedTimes Magazine, 2026)</span></li><li>Machine-guided mattress matching is proven retail practice: Dreams&#x27; Sleepmatch runs a 3-minute pressure-mapping scan on 18 body measurements chain-wide in the UK.<span class="src">Furniture News, &#x27;Dreams rolls out mattress-matching technology&#x27;; dreams.co.uk/about-sleepmatch</span></li><li>Paid in-store sleep experiences have precedent: Casper&#x27;s Dreamery charged $25 for 45-minute sessions in SoHo, booked via ClassPass with walk-ins.<span class="src">Adweek / Patch coverage of Casper Dreamery launch, 2018</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Dreams (UK) is the nearest player — free Sleepmatch scans feed a guided sale — but it is a diagnostic step, not a paid ritual, and has no US presence. Coco-Mat&#x27;s SoHo store offered free naps up to three hours with robes and coffee, proving dwell but capturing no fee and no intent filter. Hästens sits at the absurd end: a €500/night Sleep Spa hotel in Coimbra selling $40K beds. The mid-market gap — a $49 credited, scripted, sensor-scored flight — is empty. Mattress Firm could copy the format, but its commissioned floor economics fight the salaried-steward model; a bartaco-style labor rebuild is the barrier.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Sleepmatch in-store scan</strong><span>Dreams (UK)</span><em>Free 3-min pressure-mapping scan; feeds guided mattress recommendation</em></div><div class="comp"><strong>The Dreamery</strong><span>Casper</span><em>$25 / 45-min nap session, 9 nooks, SoHo NYC (2018)</em></div><div class="comp"><strong>Hästens Sleep Spa (CBR Boutique Hotel, Coimbra)</strong><span>Hästens / FLH Hotels</span><em>€500 one-night stay, 15 rooms, all-inclusive; showcases Hästens&#x27; five-figure flagship beds (verified via Forbes 2021 + booking listings)</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable:Dreams Sleepmatch (mechanic) + assumption (conversion rate)</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$40-90K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>-1 to -2 FTE per store<span class="src">comparable:bartaco service-leader model (Restaurant Dive 2023)</span></td></tr>
+        <tr><td>Revenue</td><td>$49 credited fee filters intent; conversion on booked appointments should exceed the walk-in floor baseline (baseline unmeasured — assumption, no public benchmark defends a specific floor-conversion number); ASP mix shifts up via scripted premium sequence.</td></tr>
+        <tr><td>Payback</td><td>At 25 flights/week, 40% conversion (assumption) and $2K ASP, one bay drives ~$1M annualized mattress revenue; at typical bedding gross margins (~40-50%) capex recovers within roughly a quarter, and inside year one even at half that velocity.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>Hygiene protocol per flight (fresh pillow protectors, sheet turns batched like the Sleep Suite model); staggered booking grid so one steward covers 6-8 flights; no permits, no food beyond packaged decaf.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">second-gen-vacated-box</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Build one flight bay in the highest-traffic store, sell $49 bookings via ClassPass-style scheduling for 60 days, and track flight-to-purchase conversion against floor baseline.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip warn">COST: DOWNGRADED</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Premiumization method on the mattress trial; triggered by ISPA&#x27;s trade-up signal (units -13.2%, ASP +5%) and the panel&#x27;s convergent paid-credited-ritual pattern across 4 survivors.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#07</span>
+    <div>
+      <h2 class="p-name">The Fit Report Nap Bar</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 4 — Jobs-to-be-Done</span>
+        <span class="tag score">SCORE 3.6</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">25-minute sensor-tracked in-store nap ends with a printed, data-backed Mattress Fit Report ranking three candidates against your body — a 400-600 sqft retrofit.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-07-fit-report-nap-bar-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A compact nap bar inside an existing store: self-serve pods with QR check-in, a 25-minute tracked rest on a sensor-instrumented bed, and the payoff — a printed Mattress Fit Report showing your pressure map, detected sleep position, and three ranked in-stock mattresses for your body. The job being done is the JTBD core of the whole cluster: &quot;prove the mattress works on MY body before I spend $2-5K.&quot; No salesperson opinion; a document.</p><p>The insight is that the nap economy proved demand but never closed the loop. Casper&#x27;s Dreamery sold $25/45-minute naps in SoHo with nine nooks and ClassPass booking — people paid to sleep in a store — but the nap was wellness theater with no diagnostic output and no purchase mechanic. Dreams&#x27; Sleepmatch proved the opposite half: a free 3-minute pressure scan on 18 body measurements drives guided mattress sales chain-wide in the UK. The Fit Report fuses them — the dwell of the nap with the conversion authority of the scan — and hands the customer a take-home artifact that anchors the sale even if they walk.</p><p>Execution is a 400-600 sqft retrofit: 4-6 pods, pressure-mapping mats, auto-generated report, one Sleep Concierge per pod bank absorbed into the existing floor. The Ops Skeptic&#x27;s 3.4 (hygiene, turn time) is met with Dreamery-style fresh-linen kits and batched turns; the Novelty judge&#x27;s shrug is answered by the report, not the nap — the printout is the product.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Consumers will pay to nap in a retail store: Casper&#x27;s Dreamery charged $25 for 45 minutes with fresh linens per napper, nine nooks, walk-ins plus ClassPass booking.<span class="src">Patch / Adweek / Fast Company coverage of The Dreamery, 2018</span></li><li>Pressure-map diagnostics sell mattresses at scale: Dreams&#x27; Sleepmatch performs 1,000+ calculations on 18 body measurements and is deployed chain-wide as the guided-sale engine.<span class="src">Furniture News, &#x27;Dreams rolls out mattress-matching technology&#x27;</span></li><li>In-store proof beats online guessing: online mattress/bedding returns run 21-22% vs ~9% in-store — a body-verified fit report attacks the category&#x27;s costliest failure mode.<span class="src">Run 8 cluster brief; corroborated by public 2025-26 return-rate benchmarks (online ~20-24% vs ~9% in-store; Capital One Shopping research, furniture/home category benchmarks)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Casper Dreamery (2018) is the direct ancestor — paid naps, no diagnostics, no conversion mechanic, and it died with Casper&#x27;s retail retreat, which is the cautionary tale this fixes. Dreams Sleepmatch (UK) owns the scan but does it awake in 3 minutes with no dwell and no US footprint. Coco-Mat offered free 3-hour naps in SoHo as pure hospitality — no data, no report. Sleep Number stores use in-store pressure mapping to find a customer&#x27;s &quot;Sleep Number,&quot; but only to sell their own adjustable smart-bed platform. A multi-brand fit report from a neutral-feeling nap is unoccupied ground; copying requires sensors plus a labor model that doesn&#x27;t hover, which commissioned chains resist.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>The Dreamery</strong><span>Casper</span><em>$25 / 45-min nap, amenity kit, 9 nooks; wellness positioning, no purchase link</em></div><div class="comp"><strong>Sleepmatch</strong><span>Dreams (UK)</span><em>Free 3-min pressure-mapping scan feeding mattress recommendations</em></div><div class="comp"><strong>Coco-Mat SoHo nap rooms</strong><span>Coco-Mat</span><em>Free naps up to 3 hours with robe/refreshments; nap-room bed ~$16K (HuffPost); handmade natural mattresses; NYC stores have since closed</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable:Casper Dreamery + Dreams Sleepmatch (both halves proven separately); assumption (fused conversion rate)</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$75-150K per store<span class="src">assumption (Dreamery built 9 full nooks; this is lighter)</span></td></tr>
+        <tr><td>Labor</td><td>Roughly neutral per store<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>$25 tracked nap credited to purchase; Fit Report drives conversion and premium-tier attach; report doubles as a retargeting asset for walk-outs.</td></tr>
+        <tr><td>Payback</td><td>If the pod bank converts 6 incremental mattresses/week at $2K ASP (assumption), that is ~$600K/yr incremental revenue; at typical bedding gross margins (~40-50%) capex recovers in roughly 4-7 months; break-even needs fewer than 2 incremental beds/week.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>Hygiene is the load: fresh pillow protector/linen kit per napper (Dreamery standard), batched turns; sensor-to-report software is off-the-shelf pressure mapping plus a template; no permits; franchise-safe since it sells Ashley&#x27;s own assortment.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">second-gen-vacated-box</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Retrofit 500 sqft in one store with 4 pods and launch &#x27;$25 nap, applied to your mattress&#x27; with printed Fit Reports, measuring report-to-purchase rate over 90 days.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip warn">COST: DOWNGRADED</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip warn">COMPETITIVE: FIXED</span></div>
+  </div>
+  <p class="research-basis">JTBD method on &#x27;prove it works on MY body&#x27;; triggered by the paid-nap precedent (Dreamery) colliding with diagnostic-led selling (Sleepmatch) and 21-22% online return rates.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#08</span>
+    <div>
+      <h2 class="p-name">Test-Night Ticketed Slowroom</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 9 — Blue Ocean (ERRC)</span>
+        <span class="tag score">SCORE 3.6</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">$49 reservation-only evening test nights: 90 minutes, private mattress bay, robes, decaf wind-down bar, zero staff contact until the call button — fee credits purchase.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-08-test-night-slowroom-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Two or three evenings a week, after the commissioned-floor hours end, the mattress department becomes a reservation-only slowroom. Couples book a $49 ticket, get a private curtained bay for 90 minutes with robes and a sensor pad under the sheet, wind down with decaf and sleepy mocktails, and test beds the way they will actually use them — at night, tired, together. No staff approach, ever; a call button summons the one Sleep Concierge on duty. The pressure readback prints at the end, and the $49 credits toward purchase.</p><p>The Blue Ocean move eliminates the two things every mattress store shares — daytime fluorescent testing and a hovering closer — and raises the two things none offer: nighttime realism and privacy. The appetite is documented at both ends of the market: John Lewis&#x27;s &quot;The Residence&quot; let shoppers book overnight stays inside its department stores and generated global press, and Hästens now runs an entire €500/night Sleep Spa hotel to sell $40K beds. The ticket mechanic (panel&#x27;s convergent signal: paid, credited rituals in 4 survivors) filters for high-intent couples making a $2-5K decision.</p><p>Execution rides on assets already paid for: the beds are the floor stock, the hours are dead hours, the bays are curtain-track retrofits. The Ops Skeptic&#x27;s 3.3 — after-hours guests, hygiene, staffing — is addressed with a two-person evening minimum (concierge + security/host), Dreamery-style linen kits per bay, and 10 pm close, deliberately avoiding After Dark&#x27;s lone-worker exposure.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Shoppers will book sleep experiences inside stores: John Lewis&#x27;s &#x27;The Residence&#x27; in-store apartments (Oxford Street, Cambridge, Liverpool) took overnight bookings with concierge service.<span class="src">Time Out London / Hello! coverage of John Lewis The Residence, 2017</span></li><li>The physical &#x27;slowroom&#x27; is the format winning the post-bed-in-a-box correction — UK chains Dreams and Bensons anchor guided, unhurried in-store sleep retail while online returns run 21-22%.<span class="src">Run 8 cluster brief (Stage 0 behavioral shift); returns figure corroborated by public 2025-26 benchmarks (online ~20-24% vs ~9% in-store)</span></li><li>Premium sleep retail supports paid immersion: Hästens&#x27; 15-room Sleep Spa hotel in Coimbra charges €500/night, all-inclusive, expressly to sell its mattresses.<span class="src">Forbes coverage of Hästens Sleep Spa opening (2021) + current booking listings (15 rooms, €500 flat nightly rate, one-night stays)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Casper Dreamery sold daytime naps, not decision-night testing, and had no bed-purchase mechanic. John Lewis&#x27;s Residence was a month-long PR stunt, never operationalized as a sales channel. Hästens&#x27; Sleep Spa proves the logic at €500 but is a destination hotel for a $40K product. Dreams/Bensons slowrooms are guided daytime formats. Nobody sells the 90-minute private evening test as a standing, ticketed product in US mid-market. Mattress Firm could imitate, but its long contraction (~700 stores closed in the 2018 bankruptcy, with a further ~700 closures announced post-Somnigroup acquisition) and commission culture make after-hours salaried hosting an awkward graft; for an operator already moving to zone hosts, it is one scheduling block.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>The Residence (in-store overnight stays)</strong><span>John Lewis &amp; Partners</span><em>Free application-based overnight stays, 16 Sep-18 Oct 2017, 3 stores (Oxford Street, Cambridge, Liverpool); after-hours private shopping with personal shopper</em></div><div class="comp"><strong>Hästens Sleep Spa (CBR Boutique Hotel, Coimbra)</strong><span>Hästens / FLH Hotels</span><em>€500/night, 15 rooms, one-night stays, all-inclusive; showcases Hästens&#x27; five-figure flagship beds (verified via Forbes 2021 + booking listings)</em></div><div class="comp"><strong>The Dreamery</strong><span>Casper</span><em>$25 / 45-min daytime nap sessions, SoHo NYC</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable:Hästens Sleep Spa + John Lewis Residence (demand proof); assumption (conversion + booking velocity)</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$60-120K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>+25-30 labor hours/week (evening pair)<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>$49 credited tickets (2 guests/bay) gate high-intent couples; conversion on a $2-5K decision made in privacy; ticket revenue covers the evening labor pair at ~5 bookings/night.</td></tr>
+        <tr><td>Payback</td><td>12 bookings/week at 40% conversion and $2.5K ASP is ~$620K annualized incremental; even at 20% conversion the format clears its labor and capex inside year one.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>Two-person evening minimum and 10 pm close solve the lone-worker/after-hours insurance flag; per-bay fresh linen kits and batched turns handle hygiene; packaged decaf/mocktails avoid food-permit exposure; booking and bay assignment automated.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">second-gen-vacated-box</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Run Thursday-Saturday test nights in one store for 8 weeks — 4 bays, $49 credited tickets on a booking page, two-person evening crew — and measure ticket fill rate and bay-to-purchase conversion.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip ok">COST: PASS</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip warn">COMPETITIVE: FIXED</span></div>
+  </div>
+  <p class="research-basis">Blue Ocean ERRC on the mattress trial (eliminate daytime + hovering, raise realism + privacy); triggered by the slowroom resurgence (Dreams/Bensons) and sleep-tourism signals (Hästens, SLEEPLAB).</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#09</span>
+    <div>
+      <h2 class="p-name">One-Tap Room</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 4 — Jobs To Be Done</span>
+        <span class="tag score">SCORE 3.5</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Scan the doorframe QR, buy the entire staged room as one object with one delivery date; swap pieces from a curated bench.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-09-one-tap-room-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Every staged vignette on the floor becomes a single purchasable object. A doorframe QR opens the whole room — itemized price, three curated swap options per piece from a bench along the wall, one tap, one delivery date. The buyer is the time-poor household that loves a finished room but will never assemble it item-by-item across six SKUs and four delivery windows.</p><p>The insight is that furniture retail already stages whole rooms but still sells in pieces. Rooms To Go built a national chain on &quot;buy the room, save a lot&quot; — but only as static packages, never as a scan-and-own mechanic on a live vignette with owned-fleet single-date delivery. The Ops Skeptic&#x27;s real concern (3.9/3.0/3.5 spread came from Novelty, not Ops) is that this is Room-as-Menu&#x27;s sibling; the answer is that One-Tap is the format version — the whole store reorganized around rooms as SKUs, with staging labor replacing selling labor at roughly half headcount.</p><p>First move is cheap: pick 6 vignettes in one store, print doorframe QRs against pre-built room carts in the existing e-comm stack, stand up one swap bench, and route everything to a single delivery date via the owned DC. No construction, no permits.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Whole-room bundling is a proven mid-market furniture mechanic — Rooms To Go scaled nationally on packaged rooms (&#x27;Buy the piece, save a little. Buy the room, save a lot!&#x27;).<span class="src">Rooms To Go company history (Wikipedia; roomstogo.com)</span></li><li>QR-native ordering let bartaco eliminate traditional wait-staff roles (~90% of orders via QR), shave 5-6 pts off labor cost, and run ~30% store-level EBITDA while guest satisfaction rose.<span class="src">Restaurant Dive 2023-01 (restaurantdive.com/news/how-bartaco-eliminated-wait-staff-roles-to-boost-wages); FSR Feb 2021</span></li><li>In-store QR product engagement is already normalized in furniture — Living Spaces runs chain-wide QR item scanning today.<span class="src">Living Spaces &#x27;How to Use the QR Code In-Store&#x27; guide, livingspaces.com</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Rooms To Go sells packaged rooms but through a commissioned floor with no scan-the-vignette mechanic. IKEA sells room inspiration and now AI room design (Kreativ) but fulfillment is flat-pack self-serve, not one-date white-glove. Wayfair &quot;Shop the Look&quot; is online-only with marketplace delivery chaos — the 21-22% online return rate is the gap. Incumbents could copy the QR sticker in a weekend; they cannot copy single-date whole-room delivery without an owned DC + fleet, which is the moat.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Rooms To Go packaged rooms</strong><span>Rooms To Go</span><em>Pre-designed room bundles at a discount vs piece pricing; national chain built on the mechanic</em></div><div class="comp"><strong>bartaco QR zone-service model</strong><span>bartaco</span><em>~90% QR ordering, salaried service leaders ($55K start) covering 12-18 tables; labor down 5-6 pts</em></div><div class="comp"><strong>IKEA Kreativ shoppable room designs</strong><span>IKEA / Ingka Group</span><em>Free AI room design; whole design adds straight to cart</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$60-120K/store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>Selling headcount ~-40-50%; add ~1-2 stylist FTE for staging<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>AOV lift — room baskets of $4-8K vs $1-2K single-item tickets; swap bench protects margin by keeping substitutions in-house.</td></tr>
+        <tr><td>Payback</td><td>If 8-10% of store transactions convert to room-level baskets at 2.5-3x AOV, a $100K retrofit pays back inside 9-12 months on gross-margin lift alone.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-simple">Simple</span></h4>
+      <p>No permits, no F&amp;B, no new trades. Hard part is inventory discipline — every vignette SKU must be in-stock at the DC or the one-date promise breaks; needs a weekly staging-to-stock reconciliation.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Six doorframe-QR vignettes + one swap bench in one store, fulfilled on single-date owned-fleet delivery, 60-day read on room-basket conversion.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip warn">COST: DOWNGRADED</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">JTBD method against the job &#x27;give me the finished room without the project&#x27;; triggered by 21-22% online furniture return rates vs ~9% in-store and Rooms To Go&#x27;s proven bundle economics.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#10</span>
+    <div>
+      <h2 class="p-name">Sleep Score Social Club</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 51 — Cultural Trend Mining</span>
+        <span class="tag score">SCORE 3.5</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">WHOOP/Oura-native store: tap your ring, get matched to beds on your own biometrics; local sleep-score leaderboard.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-10-sleep-score-social-club-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A mattress store built for the wearable generation: tap your Oura ring or sync WHOOP at a kiosk and the floor re-ranks itself around your actual sleep data — beds matched to your restlessness, HRV, and sleep-stage profile, with a local leaderboard and monthly sleep-score socials that make recovery a scene, not a chore. Target: the 25-45 optimization crowd already paying Restore Hyper Wellness monthly membership fees (up to ~$300/month) to biohack.</p><p>The insight is that sleep is now a status metric — 57% of US adults own a wearable or connected health device and sleep is the #2 tracked metric — but no retailer lets that data drive the purchase. Sleep Number proved score-based selling works (550+ stores selling on SleepIQ); it just trapped the score inside its own bed. This store reads the scores people already have. The Ops Skeptic&#x27;s two flags are addressed head-on: the 30-day score-delta guarantee is CUT — replaced with a capped $200 &#x27;sleep-fit credit&#x27; toward exchange, not refund, killing the uncapped return liability. Thin Southeast wearable penetration is backstopped by an in-store sensor-mat nap that generates a score for the ringless — no one is turned away, wearables just skip the line.</p><p>First move: one 800 sqft Recovery Corner retrofit in the best-demo store — two kiosks, sensor mat, leaderboard screen, one monthly event — before committing to a full-format box.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>57% of US adults own at least one wearable or connected health device; sleep is the second-most-tracked metric (26%).<span class="src">Rock Health 2025 Consumer Adoption of Digital Health Survey via Fierce Healthcare</span></li><li>Score-based bed selling is proven at scale — Sleep Number operates 550+ stores selling on the SleepIQ biometric score.<span class="src">Sleep Number support documentation and store network, sleepnumber.com</span></li><li>Consumers pay recurring fees for social-adjacent recovery spaces — Restore Hyper Wellness runs 210+ studios on monthly memberships (pricing varies by studio, roughly $69-300/month).<span class="src">Restore Hyper Wellness memberships page, restore.com, retrieved 2026-08 (site states prices vary by studio)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Sleep Number sells the score but only inside its proprietary bed, and it&#x27;s in Chapter 11 — the score-retail playbook is orphaned. Eight Sleep ($100M Series D, retail push 2026) owns the tech-sleeper audience but sells a $2-4K cover, not mattresses, through pop-up pods. Restore and Remedy Place own paid recovery social spaces with zero mattress attach. The gap: nobody matches YOUR existing wearable data to a multi-brand mattress wall. Copyable by a national — but franchise agility and local-club programming are hard to replicate from a 550-store bankruptcy.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Sleep Number stores (SleepIQ selling)</strong><span>Sleep Number</span><em>550+ stores; smart beds sold on a 5-100 biometric sleep score</em></div><div class="comp"><strong>Restore Hyper Wellness studios</strong><span>Restore Hyper Wellness</span><em>210+ studios; monthly memberships for recovery services, pricing varies by studio (~$69-300/mo)</em></div><div class="comp"><strong>Eight Sleep retail pods</strong><span>Eight Sleep</span><em>$100M Series D; 2026 retail rollout incl. mobile &#x27;House of Sleep&#x27; pod</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$150-300K retrofit corner; $500-900K full club box<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>-50-60% FOH vs commissioned floor; 1-2 salaried sleep concierges<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>Premium mattress conversion on data-matched recommendations + $19-29/mo club membership (events, nap credits, priority delivery) as recurring layer.</td></tr>
+        <tr><td>Payback</td><td>Corner pilot: if data-matched shoppers convert at 2x the floor&#x27;s ~2-3% baseline on $2-5K ASPs, $200K pays back in 12-18 months; membership revenue is upside, not the case.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>Biometric data handling needs a clean consent/privacy policy (tap-to-sync, nothing stored without opt-in). Score-delta guarantee removed — exchange-credit cap eliminates the return-liability flag. Event programming is a real recurring workload for the 2 hosts.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">second-gen-vacated-box</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>800 sqft Recovery Corner in one store — 2 wearable kiosks, 1 sensor-mat nap station, leaderboard screen, one launch event with a local run club — 90-day conversion read.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>4/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip warn">COST: DOWNGRADED</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Cultural trend mining on sleep-as-status: wearable ownership at 57%, sleep tourism and SLEEPLAB-style venues rising, while the category&#x27;s score-selling pioneer sits in Chapter 11 with the playbook unclaimed.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#11</span>
+    <div>
+      <h2 class="p-name">Room Transformation Studio</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 51 — Cultural Trend Mining</span>
+        <span class="tag score">SCORE 3.5</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">TikTok #roomtransformation bay: AI renders your actual room with in-stock product + creator filming corner for the reveal post; whole-look delivery.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-11-room-transformation-studio-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A 400-500 sqft in-store bay where a shopper brings phone photos of their actual room, a self-serve AI station renders the before/after using only in-stock product, and a ring-lit filming corner is staged for shooting the reveal. Buy the whole look in one cart; the owned fleet delivers it as one drop; the customer posts the transformation. Target: the 18-40 renter/first-home crowd that treats a room redo as content.</p><p>The insight: the render tech is commoditized — IKEA Kreativ and Wayfair&#x27;s Muse (successor to Decorify) both do AI room redesign free online — but both strand the customer at a screen with flat-pack or marketplace fulfillment. Nobody has put the tool in a store, constrained it to in-stock SKUs (killing the render-to-doorstep disappointment gap), and closed the loop with single-date whole-look delivery plus a place to film the payoff. The demand signal is not subtle: #roomtransformation carries 5.2B TikTok views, #roommakeover 4.2B. Judges were aligned (0.2 spread, tightest in the field) — this is a low-controversy, execute-well play.</p><p>First move: one bay in the highest-traffic store using an off-the-shelf AI render tool (Muse/Kreativ-class) skinned to the in-stock catalog, IKEA-grade self-serve UX, one part-time stylist floating.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Room-reveal content is a massive organic demand pool — #roomtransformation has 5.2B views and #roommakeover 4.2B on TikTok (plus #roomdecor at 7.8B).<span class="src">Analyzify TikTok Shop trends report, analyzify.com/hub/tiktok-shop-products, retrieved 2026-08</span></li><li>AI room-redesign tech is mature and consumer-proven — IKEA Kreativ lets shoppers scan, erase, and redesign their real rooms, adding results straight to cart.<span class="src">Ingka Group newsroom, IKEA Kreativ launch announcement</span></li><li>Generative shoppable renders are validated at scale — Wayfair&#x27;s Decorify produced photorealistic shoppable room restyles from a single photo (launched 2023; replaced by successor tool Muse in Feb 2025).<span class="src">Wayfair investor press releases, 2023-07-25 (Decorify launch) and 2025-02-11 (Muse launch)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>IKEA Kreativ (free, app-based) and Wayfair Muse (free, web; replaced Decorify in Feb 2025) own the tool layer but not the in-store experience, the in-stock constraint, or the white-glove single-drop. Havenly sells human design at $199/room online but takes weeks. Creator-economy stores (Camp, pop-ups) prove filming corners drive traffic but sell toys, not furniture. A national could copy the bay; the in-stock render constraint + owned-fleet whole-look drop is the part that requires a DC, and the local-creator flywheel compounds to the first mover in each market.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>IKEA Kreativ</strong><span>IKEA / Ingka Group</span><em>Free AI scan-and-redesign of your real room; cart integration</em></div><div class="comp"><strong>Wayfair Muse (successor to Decorify)</strong><span>Wayfair</span><em>Free generative-AI inspiration/restyle tool with shoppable results; replaced Decorify Feb 2025</em></div><div class="comp"><strong>Havenly</strong><span>Havenly</span><em>$199/room online design; $699 in-person package</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$40-90K per bay<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>Near-zero net; one existing stylist floats to the bay<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>Whole-look carts ($3-6K) at higher attach than piece shopping, plus earned-media flywheel — every reveal post is a zero-CAC local ad.</td></tr>
+        <tr><td>Payback</td><td>One incremental whole-look cart per week at ~35% blended margin covers a $60K bay in under a year; UGC reach is uncosted upside.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-simple">Simple</span></h4>
+      <p>No permits or F&amp;B. Main burdens: keeping the render catalog synced to live DC stock (weekly feed), and a lightweight UGC consent/rights flow for reposting customer reveals.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>One bay in the flagship store: licensed AI render station constrained to in-stock SKUs + ring-lit filming corner, launched with 5 invited local creators, 90-day cart and UGC read.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip ok">COST: PASS</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip warn">COMPETITIVE: FIXED</span></div>
+  </div>
+  <p class="research-basis">Cultural trend mining on the room-reveal content economy (5.2B+ views) colliding with commoditized AI render tech that no physical retailer has operationalized in-store.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#12</span>
+    <div>
+      <h2 class="p-name">The Designer&#x27;s Counter</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 56 — Premiumization</span>
+        <span class="tag score">SCORE 3.5</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Open-kitchen 10-seat design bar; 2 salaried house designers in 25-min seatings; rest of store self-serve. 8-10 commissioned reps → 4 heads.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-12-designers-counter-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Rip out the sales desks and put a 10-seat design bar in the middle of the floor — open-kitchen style, two salaried house designers working in full view, material library racked behind them, bookable 25-minute seatings. Everything else in the store is self-serve QR. The customer who wants expertise books a seat and watches their room take shape; the customer who doesn&#x27;t never gets approached. Parent concept: Concierge Appointment Showroom, upgraded with theater.</p><p>The insight is that design help is furniture retail&#x27;s most valuable and worst-delivered service: Havenly charges $199-699 for it remotely, IKEA is rolling out 28+ appointment-based Plan and Order Points across 19 markets on design expertise alone — while mid-market stores give it away via commissioned reps customers actively avoid. Making the expertise visible, scarce, and bookable premiumizes it without charging for it; the open-kitchen staging is the answer to the Novelty judge&#x27;s 3.0 (&quot;it&#x27;s just appointments&quot;) — the counter is merchandising for competence, the same move that made open kitchens table stakes in restaurants. The Margin Realist scored it highest (3.6) because the P&amp;L is the story: 8-10 commissioned heads collapse to 2 designers + 2 zone hosts on pooled bonus.</p><p>First move: convert one store&#x27;s sales-desk zone to a 6-seat counter with existing top-performing designers, publish the booking link, and measure design-led ticket size vs floor baseline.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Appointment-based furniture design retail is scaling — IKEA operates 28 Plan and Order Points across 19 markets with 30+ more planned, built on bookable design expertise in small footprints.<span class="src">IKEA Global newsroom, &#x27;The IKEA menu of conceptualised meeting points grows&#x27;</span></li><li>Consumers pay real money for room design — Havenly charges $199/room online and $699 in-person, proving the service has standalone market value.<span class="src">Havenly pricing page, havenly.com/pricing, retrieved 2026-08</span></li><li>The salaried-zone-host model lifts wages while cutting labor — bartaco eliminated traditional wait-staff roles (salaried $55K service leaders covering 12-18 tables), shaved 5-6 pts off labor cost, and moved average hourly income UP to $23-25/hr while guest satisfaction rose.<span class="src">Restaurant Dive 2023-01; FSR Feb 2021; Back of House Mar 2023</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>IKEA Plan and Order Points are the closest structural analog but sit in a separate small box, not on a full showroom floor, and skew kitchens. Havenly/Decorilla sell design remotely with no product floor. Room &amp; Board and Crate &amp; Barrel offer free design services but deliver them through back-office consultations, invisible on the floor. Nobody in mid-market furniture has staged design as open-kitchen theater tied to a self-serve floor. Easily copied cosmetically; hard to copy economically without also killing the commission model, which incumbents&#x27; comp plans resist.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>IKEA Plan and Order Points / Planning Studios</strong><span>IKEA / Ingka Group</span><em>Free bookable design appointments; 28 locations in 19 markets, 30+ planned</em></div><div class="comp"><strong>Havenly in-person design</strong><span>Havenly</span><em>$199 online / $699 in-person per-room design packages</em></div><div class="comp"><strong>bartaco open service model</strong><span>bartaco</span><em>Salaried zone leads + QR floor; ~30% store EBITDA</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$150-275K/store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>-$250-400K/yr/store<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>Design-led tickets run multi-room ($5-15K) vs single-item floor sales; counter seatings filter for high-intent, high-basket customers.</td></tr>
+        <tr><td>Payback</td><td>Labor delta alone repays a $200K buildout in 6-10 months; any design-led AOV lift is incremental — the highest-confidence payback in W3&#x27;s slate.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>No permits (no F&amp;B required at the counter). Real risks: comp-plan transition for displaced commissioned reps (phase via attrition + host conversion offers) and Saturday booking overflow — publish a standby list and cap seatings at 25 minutes hard.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span><span class="fit-chip">second-gen-vacated-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Convert one store&#x27;s sales-desk zone into a 6-seat design counter staffed by 2 existing top designers with online booking; 90-day read on design-led AOV vs floor baseline and labor cost per store.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Premiumization method applied to design expertise; triggered by IKEA scaling appointment-design formats globally while Havenly prices the same service at $199-699, and mid-market floors give it away through a sales model customers avoid.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#13</span>
+    <div>
+      <h2 class="p-name">The Verdict Room</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 4 — Jobs-to-be-Done</span>
+        <span class="tag score">SCORE 3.4</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Private, salesperson-free decision lounges where couples close their own $3-8K purchase over coffee — comparison screens, financing math, and a &#x27;we decided&#x27; tap.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-13-verdict-room-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>The Verdict Room converts 150-250 sqft of dead showroom corner into 2-3 private decision lounges. A couple scans their QR shortlist at the door, sits down with good coffee, and the room does the closer&#x27;s job: side-by-side comparison screens, transparent financing math, real delivery dates from the owned DC, and a single &quot;we decided&quot; checkout tap. No human enters unless summoned.</p><p>The insight: the highest-friction moment in a $3-8K furniture purchase isn&#x27;t discovery — it&#x27;s the couple&#x27;s private negotiation with each other, which today happens in a parking lot or over text after they&#x27;ve left the store (and where most sales die). Tesla proved buyers will self-close large tickets when advisors are salaried and there is nothing to negotiate; the Verdict Room gives that self-close moment a dedicated, dignified physical container instead of exporting it to the driveway. It also removes the closer role entirely — one zone host covers 6-8 rooms.</p><p>First move is a single-store pilot: build two lounges with millwork the operator&#x27;s own shop can produce, run comparison UX on off-the-shelf tablets against the existing e-comm cart, and A/B close-rate against the rest of the fleet. The novelty judge scored this modest (3.2) because the mechanic is quiet — so the pilot&#x27;s story is the metric: what happens to conversion when the couple&#x27;s verdict conversation stays in the building.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Tesla advisors are salaried and non-commissioned; the fixed-price, self-completed purchase is consistently described as low-pressure — proof large-ticket buyers will close themselves.<span class="src">Electrek, 2018-06-04 (Tesla compensation lawsuit settlement coverage); Tesla IR &#x27;Reinvents Car Buying Experience&#x27;</span></li><li>Traditional furniture floors convert at ~2-3% under commissioned pressure — the model the lounge replaces.<span class="src">Run 8 cluster brief, 2026-07-18 (industry conversion benchmark)</span></li><li>bartaco&#x27;s opt-in service model cut FOH labor ~50% while guest sentiment held ~4.7/5 — the same host-ratio math funds lounge coverage.<span class="src">Restaurant Dive, Jan 2023, via Run 8 cluster brief</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Tesla showrooms are the closest behavioral analog — salaried advisors, purchase completed on the buyer&#x27;s phone — but have no private deliberation space. IKEA Plan &amp; Order points (~2,000 sqft) offer seated planning sessions but keep a specialist in the room the whole time. Car dealers run the anti-pattern: the &quot;closing room&quot; WITH the closer in it. No furniture or mattress chain offers a salesperson-free closing space; incumbents could copy the room cheaply but not the culture (commissioned reps will not voluntarily leave the close).</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Tesla showroom self-close model</strong><span>Tesla</span><em>Salaried non-commissioned advisors; purchase completed by buyer on own phone/kiosk</em></div><div class="comp"><strong>IKEA Plan &amp; Order point</strong><span>IKEA (Ingka)</span><em>~2,000 sqft appointment-based planning studios, no take-home inventory, delivery-only</em></div><div class="comp"><strong>No direct private self-close lounge found in furniture retail</strong><span>—</span><em>Gap confirmed by search 2026-08-03</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$40-80K per store (2-3 lounges)<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>-1 to -2 closer FTEs per store; one zone host covers 6-8 rooms<span class="src">comparable:bartaco</span></td></tr>
+        <tr><td>Revenue</td><td>Higher close rate on $3-8K carts by containing the couple&#x27;s decision moment in-store; attach of financing + delivery scheduling at the tap.</td></tr>
+        <tr><td>Payback</td><td>At a $5K average ticket and ~40% product margin, roughly 20-40 incremental closed orders recovers a $60K build; a 1-point conversion gain on typical store traffic clears that within 12 months.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-simple">Simple</span></h4>
+      <p>No permits, no food prep (self-serve coffee), no new tech beyond tablets on the existing cart. Main risk is cultural — commissioned reps poaching the room — which the salaried-host zone model removes.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Build two lounges in one store with in-house millwork and off-the-shelf tablets; A/B close-rate vs. fleet for 60 days.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">JTBD method against the job &#x27;let us decide on our own terms without a commission-hungry stranger hovering&#x27;; triggered by the Tesla/bartaco evidence that removing the closer raises sentiment without killing conversion.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#14</span>
+    <div>
+      <h2 class="p-name">Summon-Only Floor</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 21 — SCAMPER (Reverse)</span>
+        <span class="tag score">SCORE 3.4</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Associates are physically forbidden to approach; a bartaco-style call puck at every vignette makes service opt-in — hosts cover 8-10 room sets at ~50% fewer floor staff.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-14-summon-only-floor-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Summon-Only Floor reverses the single most-hated convention in furniture retail: the approach. Associates may not initiate contact — ever. Every vignette carries a call puck and a QR tag; the guest summons help when they want it, and a salaried zone host arrives to that room set within a stated SLA. Everything else — browsing, cart-building, delivery-slot booking — is self-serve.</p><p>The insight is proven in two industries. bartaco removed order-takers entirely (90% QR ordering) and replaced servers with fewer salaried zone leaders covering double the tables — labor down 5-6 points, wages UP to $23-24/hr, sentiment ~4.7/5. Sephora proved shoppers will happily self-sort: its color-coded basket system in EU stores (red = help me, black = leave me alone) went viral in 2019 precisely because approach-aversion is mainstream, not niche. Furniture is the worst-offender category — the greeter ambush is why the JTBD says &quot;without a commission-hungry stranger hovering.&quot;</p><p>The ops judge scored this highest (3.6) because it&#x27;s a pure retrofit: pucks, signage, comp restructure, ~$100-150K per store. The novelty judge&#x27;s 2.9 (&quot;reversal is table stakes&quot;) is fair — so the pilot must be loud about the promise: put &quot;Nobody will approach you. We promise.&quot; on the front door. That sign is the marketing. First store converts in under 90 days; the hard part is comp migration from commission to salary + pooled conversion/NPS bonus, which the bartaco playbook de-risks.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>bartaco runs ~90% QR ordering with salaried zone service leaders covering 6-8 tables each (vs 3-4 traditional), labor down 5-6 pts, average wage up to $23-24/hr, guest sentiment ~4.7/5.<span class="src">Restaurant Dive, Jan 2023; FSR Magazine, Feb 2021; Back of House, Mar 2023 — via Run 8 cluster brief</span></li><li>Sephora&#x27;s color-coded basket pilot (red &#x27;assist me&#x27; / black &#x27;shop on my own&#x27;) demonstrated mass demand for opt-in service; Korean beauty chain Innisfree ran the same system from 2016.<span class="src">HuffPost, 2019-11-05, &#x27;Sephora&#x27;s Genius Basket System&#x27;</span></li><li>Commissioned furniture floors convert at ~2-3%; the approach model is the suspected drag.<span class="src">Run 8 cluster brief, 2026-07-18</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Sephora/Innisfree solved the signal (baskets) but kept commissioned-adjacent staffing; no big-box furniture player has banned the approach. bartaco owns the mechanic in restaurants. Dreams (UK) &quot;slowrooms&quot; slow the visit down but still staff it conventionally. This is trivially copyable on hardware — the moat is comp-structure conversion, which commissioned incumbents (Ashley corporate floors, Mattress Firm) cannot do without a staff revolt. A franchisee who moves first gets the &quot;no-pressure store&quot; brand position in each market.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>bartaco zone service-leader + QR model</strong><span>bartaco (Barteca Restaurant Group)</span><em>90% QR ordering; salaried leaders at 6-8 tables each; ~30% store-level EBITDA</em></div><div class="comp"><strong>Color-coded &#x27;assist me&#x27; baskets</strong><span>Sephora (Europe pilot); Innisfree (Korea, 2016)</span><em>Free opt-in service signal; viral earned media</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$100-150K per store<span class="src">comparable:roster estimate, Run 8 idea 13</span></td></tr>
+        <tr><td>Labor</td><td>~50% fewer floor staff; 8-10 commissioned reps → 4-5 salaried zone hosts at higher base<span class="src">comparable:bartaco</span></td></tr>
+        <tr><td>Revenue</td><td>Conversion lift from removed approach-pressure + longer dwell; labor savings of 3-5 pts fund the wage premium and drop the rest to EBITDA.</td></tr>
+        <tr><td>Payback</td><td>If labor savings net ~$150-250K/store/yr after wage increases (assumption on a ~$5M store), hardware pays back in under 12 months before any conversion lift.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>No permits or hygiene issues; burden is comp migration (commission → salary + pooled bonus) and enforcing the no-approach rule against decades of habit. SLA misses on busy Saturdays are the failure mode — puck telemetry must be monitored.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">fleet-service</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Convert one store: install pucks, restructure comp for that team, post the &#x27;nobody will approach you&#x27; promise, and track summon-rate, SLA, conversion, and NPS for 90 days.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip warn">RTBS: REVISED</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">SCAMPER-Reverse on the sales approach; triggered by bartaco&#x27;s published labor economics and viral consumer demand for opt-in service (Sephora baskets).</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#15</span>
+    <div>
+      <h2 class="p-name">The No-Desk Store</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 21 — SCAMPER (Eliminate)</span>
+        <span class="tag score">SCORE 3.4</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Kill the sales desk, cash wrap, and finance office; QR carts and phone financing replace them, and the reclaimed square footage becomes a self-serve lounge.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-15-no-desk-store-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>The No-Desk Store eliminates the three pieces of furniture no guest ever wanted to sit at: the sales desk, the cash wrap, and the finance office. Every tag is a QR that builds a cart; financing prequal and delivery-slot booking happen on the guest&#x27;s phone; the 400-800 sqft those desks occupied becomes a self-serve coffee/sparkling-water lounge in the heart of the floor. Closer, cashier, and F&amp;I roles disappear; headcount drops 40-50% while remaining hosts get paid more.</p><p>Apple wrote the proof 20 years ago: no registers, transactions completed anywhere on the floor by roving staff — and it runs the most profitable square footage in retail. Tesla went further and removed the F&amp;I office entirely; buyers complete financing themselves online with no negotiation. Furniture is the last big-ticket category still routing every purchase through a desk built for 1995 paperwork.</p><p>The novelty judge&#x27;s 2.2 — &quot;subtraction isn&#x27;t a story&quot; — is the real risk, and the answer is to sell the addition, not the subtraction: the story is what the desks BECOME. The pilot store&#x27;s marketing is a photo of the old finance office turned into the best seat in the building. Execution path: pick one store, rip out desks over two closed days, stand up QR checkout on the existing e-comm cart plus an embedded financing flow (the operator&#x27;s existing lender already has phone-native prequal), and redeploy — not fire — desk staff into host roles during the pilot.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Apple Stores have operated register-free for two decades with roving mobile checkout — the canonical proof that big-ticket retail needs no cash wrap.<span class="src">Computerworld, &#x27;Inside Apple&#x27;s secret plan to kill the cash register&#x27;</span></li><li>Tesla stores have no trade-in desk, F&amp;I office, or negotiation; all purchases complete online — including financing — and buyers describe it as low-pressure.<span class="src">Electrek, 2018-06-04; Tesla IR press release &#x27;Tesla Reinvents Car Buying Experience&#x27;</span></li><li>In-store mattress/bedding returns run ~9% vs 21-22% online — the physical floor is worth keeping; it&#x27;s the desks that add no value.<span class="src">ISPA 2026 report data, via Run 8 cluster brief</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Apple and Tesla own the pattern in electronics/auto but nobody has transferred it to furniture. J.C. Penney&#x27;s 2012 register-elimination plan died with the Ron Johnson turnaround before full rollout — a strategy failure, not a verdict on the checkout mechanic, and it lacked phone-native financing which now exists. Ashley corporate stores, Mattress Firm, and regional players all still run desk-centric floors; they could copy the tech quickly, but the desks anchor their commission + F&amp;I revenue model, so they won&#x27;t move first. Franchisee risk: Ashley promo/financing programs must still be honorable in a phone flow — this needs lender API confirmation before build.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Apple Store register-free floor</strong><span>Apple</span><em>Mobile checkout anywhere; no cash wrap since store inception</em></div><div class="comp"><strong>Tesla no-F&amp;I purchase flow</strong><span>Tesla</span><em>100% online purchase + financing; showroom is education-only</em></div><div class="comp"><strong>J.C. Penney register-elimination plan (cautionary)</strong><span>J.C. Penney (2012, Ron Johnson era)</span><em>ANNOUNCED elimination of traditional registers (RFID/self-checkout by 2014); never completed — abandoned when the broader turnaround collapsed</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">comparable</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$75-150K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>-40-50% store headcount (closer, cashier, F&amp;I roles removed); remaining hosts at higher base + pooled bonus<span class="src">comparable:bartaco</span></td></tr>
+        <tr><td>Revenue</td><td>Labor savings drop to EBITDA; reclaimed prime sqft raises dwell; phone financing keeps attach without an F&amp;I salary.</td></tr>
+        <tr><td>Payback</td><td>Removing 2-3 desk FTEs (~$120-200K/yr loaded, assumption) pays back the retrofit in under 12 months; conversion/dwell gains are upside.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>No permits beyond minor interior work; real burden is tech — financing/promo flows must work phone-native under Ashley&#x27;s national promo calendar, and edge cases (split tender, exchanges) need a fallback tablet at the host stand. F&amp;I attach revenue must be re-plumbed, not lost.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">new-small-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>One-store retrofit: remove desks over two closed days, launch QR checkout + phone financing prequal with the existing lender, redeploy desk staff as hosts, measure conversion and F&amp;I attach for 90 days.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip warn">COMPS: FIXED</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip warn">COMPETITIVE: FIXED</span></div>
+  </div>
+  <p class="research-basis">SCAMPER-Eliminate on the transaction furniture; triggered by Apple/Tesla registerless precedents and the cluster&#x27;s finding that self-serve mechanics survive scrutiny while staffed desks add labor without sentiment.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#16</span>
+    <div>
+      <h2 class="p-name">The Long Table</h2>
+      <div class="p-meta"><span class="tag">element</span>
+        <span class="tag">METHOD 24 — Mashup (furniture store × supper club)</span>
+        <span class="tag score">SCORE 3.4</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Ticketed supper clubs, book clubs, and game nights hosted ON the actual dining sets for sale — seat-level QR reads &#x27;this table, delivered Friday.&#x27;</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-16-long-table-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>The Long Table turns the dining department into a venue. After close, partnered local chefs run ticketed supper clubs ($75-125/seat), book clubs, and game nights hosted on the actual dining sets and sectionals for sale. Every seat carries a QR: &quot;this table, delivered Friday&quot; — a promise only an operator with its own DC and fleet can print. Events are run by revenue-share partners; the house adds one salaried lead, so net new labor is near zero.</p><p>The insight: people pay serious money to eat at a beautiful communal table — Outstanding in the Field sells $385 seats at farm tables; ABC Carpet &amp; Home built a Michelin-starred Jean-Georges restaurant inside its store and made dining the front door of furniture retail; RH&#x27;s 25 gallery restaurants run $5-6M each and exist to drive furniture attach. Nobody has built the mid-market version where the table you dine on is itself the SKU, purchasable from your seat. A 90-minute dinner is the longest product demo in retail, with intent pre-filtered by the ticket.</p><p>The ops judge&#x27;s 2.9 flag — food on merchandise means permits and soil risk — is the design constraint, not a footnote. Answer: chef partners operate under their own catering licenses plus a per-event temporary food permit ($52-200 in most jurisdictions); menus are engineered dry-service (no red sauces/wine at launch — mocktail pairing fallback per roster); event tables run designated floor-model stock with commercial fabric protection, and soiled pieces flow into the existing clearance channel. First event is runnable in 60 days in one store.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Outstanding in the Field sells communal-table dinner tickets from $385/seat and sells out — proof of high willingness-to-pay for ticketed table experiences.<span class="src">Outstanding in the Field FAQ / LancasterOnline, 2023-03</span></li><li>ABC Carpet &amp; Home&#x27;s in-store restaurants (ABC Kitchen/Cocina with Jean-Georges) made dining a durable traffic engine for a furniture retailer.<span class="src">Jean-Georges Restaurants / abchome.com restaurant pages</span></li><li>RH Hospitality operates restaurants in 25 galleries at $5-6M/restaurant explicitly to drive furniture attach; Fritz Hansen (Singapore, Mar 2026) and Poliform (Milan, May 2026) followed — all luxury-tier, none mid-market.<span class="src">Run 8 cluster brief, 2026-07-18</span></li><li>Temporary food event permits are cheap and routine: e.g. Texas single-event $52 / multi-event $200; NYC $70.<span class="src">Texas DSHS retail food establishment permit schedule; NYC temporary food service permit page</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>RH Rooftop, ABC Kitchen, Poliform Café, and Fritz Hansen prove furniture × dining at the luxury tier with permanent, capex-heavy restaurants ($5-6M each). Supper-club operators (Outstanding in the Field &amp; local pop-up scenes) prove the ticket economics but own no retail floor. A 2026-08 search found no player running ticketed events ON for-sale mid-market inventory with seat-level purchase — the lane is open. Copyability is moderate: any store can host a dinner, but the delivered-Friday promise requires owned DC + fleet, and commissioned floors have no incentive to hand the evening to a chef.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Outstanding in the Field</strong><span>Outstanding in the Field (touring)</span><em>Ticketed communal-table dinners from $385/seat, routinely sold out</em></div><div class="comp"><strong>ABC Kitchen</strong><span>ABC Carpet &amp; Home × Jean-Georges</span><em>Full restaurant inside a furniture store; dining as retail traffic engine</em></div><div class="comp"><strong>RH Rooftop Restaurant</strong><span>RH</span><em>$5-6M/restaurant across 25 galleries; drives furniture attach (NY gallery $100M+/yr)</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$15-40K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>Near-zero net: one salaried house lead per event night; chefs and service on revenue share<span class="src">comparable:roster estimate</span></td></tr>
+        <tr><td>Revenue</td><td>Ticket revenue covers event cost (30-40 seats × $75-125, assumption); profit is furniture attach from seat-level QR plus a pre-qualified buyer pipeline for daytime.</td></tr>
+        <tr><td>Payback</td><td>Events run at breakeven on tickets; one dining-set sale per event (~$2-4K ticket, ~40% margin, assumption) makes the night profitable; kit pays back inside a 10-12 event season.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-complex">Complex</span></h4>
+      <p>Permits (chef&#x27;s catering license + $52-200 temporary event permits), insurance rider, dry-service menu engineering, fabric protection and a defined soiled-goods-to-clearance path, alcohol avoided at launch (mocktail pairings). Highest ops burden of W4&#x27;s four ideas — hence pilot with ONE proven chef partner and designated event stock only.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">seasonal-overlay</span><span class="fit-chip">second-gen-vacated-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Book one local chef with an existing catering license for a 3-dinner series in one store&#x27;s dining department this fall; sell 30 seats/night and instrument seat-level QR attach.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>4/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Mashup method (furniture store × supper club); triggered by the luxury-tier proof (RH/ABC/Poliform/Fritz Hansen) plus supper-club ticket economics, with the mid-market low-labor slot confirmed empty.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#17</span>
+    <div>
+      <h2 class="p-name">The Neighborhood Living Room</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 51+57 — Cultural Trend Mining + Downmarket Disruption (merged)</span>
+        <span class="tag score">SCORE 3.3</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">12-15K sqft small-box third place in vacated Badcock storefronts: funded events calendar, kids&#x27; corner, everything shoppable by QR, 2 hosts vs 6-8 reps.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-17-neighborhood-living-room-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A 12-15K sqft small-box that behaves like the town&#x27;s living room instead of a furniture store: free wifi, a book exchange, a kids&#x27; corner, lamps actually lit, real mugs on real coffee tables — and every single object carries a QR tag that drops it into a cart fulfilled by the operator&#x27;s own DC and fleet. Evening programming (trivia, supper clubs, paid local hosts) fills the room after 6pm. Two salaried hosts per shift replace 6-8 commissioned heads.</p><p>The insight is that the third-place playbook is proven outside furniture — Capital One runs 60+ part-bank/part-café locations on exactly this &quot;come hang out, transact when ready&quot; logic — while furniture retail keeps paying commissioned labor to ambush the same declining traffic. The panel&#x27;s cut list is the guardrail here: dwell alone is rent plus coffee, so this format hard-wires conversion — QR on everything, whole-room menus at each vignette, delivery-week picker at the tag, and event guests exit past a &quot;the room you sat in, delivered Friday&quot; screen. Events are ticketed or partner-funded, never a pure cost line.</p><p>First move is one store, not a fleet: take a single second-gen Badcock box (FRG&#x27;s collapse vacated roughly 880 Southeast storefronts at distressed rents), fit it out light, and run a 90-day events calendar with QR conversion tracked weekly against a control store.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Third-place retail operates at national scale: Capital One runs 60+ café-format locations across 18 states where anyone can work, sip, and attend free events — no account required.<span class="src">Capital One (capitalone.com/local) and Upgraded Points café roundup, retrieved 2026-08-03</span></li><li>Small-format works in home furnishing: IKEA&#x27;s Plan &amp; Order Point format runs at 3,000-15,000 sqft, launched 2023, built on planning + delivery rather than cash-and-carry.<span class="src">Forbes, &#x27;IKEA Opens New Plan, Order &amp; Pick-Up Stores,&#x27; 2024-01-22</span></li><li>bartaco&#x27;s zone-host model — the labor blueprint — cut FOH staff ~50% while raising wages to $23-24/hr and holding ~4.7/5 guest sentiment.<span class="src">Restaurant Dive (Jan 2023) + FSR (Feb 2021), via Run 8 cluster brief</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Capital One Café proves the third-place mechanic but sells banking, not furniture. IKEA&#x27;s Plan &amp; Order Points are small-box home retail but appointment/planning-driven, with no dwell or community layer. Barnes &amp; Noble and board-game cafés own community dwell but have no big-ticket attach. No US furniture operator runs a true shoppable third place at mid-market; Ashley or Arhaus could copy the format, but the owned-DC delivery promise and distressed second-gen real estate are harder to replicate quickly.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Capital One Café</strong><span>Capital One</span><em>Free third place (coffee for purchase); 60+ locations; drives account opening</em></div><div class="comp"><strong>IKEA Plan &amp; Order Point</strong><span>IKEA / Ingka</span><em>3-15K sqft small-box; planning + order-for-delivery, no cash-and-carry</em></div><div class="comp"><strong>Snakes &amp; Lattes</strong><span>Snakes &amp; Lattes Inc.</span><em>$5-20/person cover for unlimited dwell — proves people pay to linger</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$400K-$900K per box<span class="src">assumption (within cluster retrofit band $100K-$2M)</span></td></tr>
+        <tr><td>Labor</td><td>-50-60% FOH cost: 2 salaried hosts/shift vs 6-8 commissioned reps<span class="src">comparable:bartaco</span></td></tr>
+        <tr><td>Revenue</td><td>QR-shoppable floor + whole-room menus; ticketed/partner-funded events feed high-dwell traffic; owned-fleet delivery date at the tag closes.</td></tr>
+        <tr><td>Payback</td><td>At distressed second-gen rent, the box breaks even near ~55-65% of a standard store&#x27;s volume on a much lower labor line; event traffic is incremental CAC-free footfall. Target 24-36 month payback.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-complex">Complex</span></h4>
+      <p>New lease, light F&amp;B (county health permit), event programming and insurance, kids&#x27;-corner liability, plus a genuinely new store P&amp;L. Franchise/brand sign-off needed since it won&#x27;t merchandise like a standard Ashley floor.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">second-gen-vacated-box</span><span class="fit-chip">new-small-box</span><span class="fit-chip">retrofit-existing-store</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Sign one short-term deal on a vacated Badcock box, fit out light, and run a 90-day events-plus-QR pilot with weekly conversion readout against a control store.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>4/5</b>
+        <span class="lbl">IMPACT</span><b>4/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Cultural Trend Mining × Downmarket Disruption: third-place hunger (Capital One Café scale-out) colliding with ~880 vacated FRG storefronts across the Southeast — distressed boxes priced for a format bet.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#18</span>
+    <div>
+      <h2 class="p-name">After Dark: The Insomniac Hours</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 59 — Occasion-Based</span>
+        <span class="tag score">SCORE 3.3</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Mattress slowroom open 8pm-midnight for people actually lying awake; app door access; one Night Keeper; sensor mats feed a morning follow-up quote.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-18-after-dark-insomniac-hours-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A mattress slowroom that opens 8pm-midnight — the exact hours the customer&#x27;s problem is happening. Insomniacs and shift workers book online, unlock the door by app, and trial-nap in dim, phone-silenced pod rooms while sensor mats log pressure and position data into a morning follow-up quote. It sells to the highest-intent mattress shopper alive: someone who couldn&#x27;t sleep tonight.</p><p>The insight is occasion-timing: every mattress store is closed when the buying trigger fires. Casper&#x27;s Dreamery proved people pay $25 for a 45-minute in-store nap ritual, and Nap York ran paid pods ($10/30-min) around the clock in NYC — but nobody has aimed trial-sleep hours at the insomnia occasion itself, where a data-backed morning quote converts the night&#x27;s evidence into a purchase. It also sweats existing real estate: same floor, same inventory, four incremental hours.</p><p>The Ops Skeptic&#x27;s lone-worker flag is solved before pilot, not after: booked-and-ID-verified access only (no walk-ins), a two-person minimum standard (Night Keeper + security guard or paired keeper), camera coverage, and a panic/check-in protocol — the same controls late-night gyms and hotels already run. First move is two nights a week at one store: Thursday/Friday 8pm-midnight, six pods, booked online, 90 days.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Paid in-store napping is a proven ritual: Casper&#x27;s Dreamery charged $25 for a 45-minute nap in nine sleep nooks in NYC.<span class="src">Fast Company, &#x27;I tried to fall asleep in the Dreamery,&#x27; July 2018</span></li><li>Standalone paid sleep venues sustained demand at $10/30-min pods and $40/hr private suites in Manhattan.<span class="src">Nap York coverage via Yahoo Lifestyle, retrieved 2026-08-03 (NYC flagship later closed per Time Out — demand proven, Manhattan rent not required here)</span></li><li>In-store mattress trial crushes online returns: ~9% in-store return rates vs 21-22% for online mattress/bedding.<span class="src">Run 8 cluster brief (bed-in-a-box returns data)</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Casper Dreamery (nap ritual, closed with Casper&#x27;s retail retrenchment), Nap York (paid pods, no product attach), Dreams UK&#x27;s calm premium concept stores (daytime only), and Hästens Sleep Spa appointments (luxury tier, daytime). Nobody operates evening-hours mattress trial at mid-market. Mattress Firm could copy the hours, but not quickly the pod build-out + sensor-to-quote pipeline, and its franchise-free corporate estate is shrinking, not experimenting.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>The Dreamery</strong><span>Casper</span><em>$25 / 45-min nap, 9 nooks, robes + amenities</em></div><div class="comp"><strong>Nap York</strong><span>Nap York</span><em>$10/30-min pod; $40/hr private suite; late-hours paid sleep</em></div><div class="comp"><strong>Hästens Sleep Spa</strong><span>Hästens</span><em>Appointment-only consultative sleep experience selling $23K+ beds</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$75K-$150K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>+1 Night Keeper + 1 guard, 2 nights/wk (~$1.5-2.5K/mo); partially offset by shifting daytime hours as high-intent traffic moves to night<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>$25-35 booked session credited to purchase; sensor data feeds a next-morning quote; ~$1,200+ ASP units on trade-up tiers.</td></tr>
+        <tr><td>Payback</td><td>At 6 pods x 2 sessions x 2 nights = ~24 sessions/wk, a 20-25% close rate on high-intent trialists (~5 units/wk incremental) covers night labor several times over; capex back in 12-18 months.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>Lone-worker safety solved via booked/ID-verified entry, two-person minimum, cameras + check-in protocol; needs insurance rider for after-hours occupancy and hygiene turns (fresh protectors/linen per session). No food permits, no alcohol.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">second-gen-vacated-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Run Thursday/Friday 8pm-midnight at one existing store for 90 days: six retrofit pods, online booking, guard on duty, sensor-to-morning-quote pipeline, close-rate readout.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>3/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Occasion-Based method against the sleep-tourism/insomnia signal: the mattress purchase trigger fires at 11pm while 100% of stores are dark; Dreamery/Nap York proved paid trial-sleep demand.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#19</span>
+    <div>
+      <h2 class="p-name">Omakase Room Setups</h2>
+      <div class="p-meta"><span class="tag">service</span>
+        <span class="tag">METHOD 15 — Analogous (sushi omakase transfer)</span>
+        <span class="tag score">SCORE 3.2</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Booked 45-min &#x27;chef&#x27;s choice&#x27; reveal of 3 curated room vignettes, course-by-course (lighting/scent/soundtrack); whole-room one-tap purchase.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-19-omakase-room-setups-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>A booked, seated 45-minute session where the store — not the shopper — does the choosing. Guests share their room, budget, and taste in a 2-minute intake; a curator then reveals three fully-styled room vignettes course-by-course, each with its own lighting, scent, and soundtrack shift. Each &quot;course&quot; is priced as a complete room with one-tap QR purchase and a single delivery date off the owned fleet.</p><p>The insight is decision-fatigue economics: a 40,000-sqft floor with 200 sofas produces 2-3% conversion; omakase inverts it — trust the house, judge three finished answers. The mechanic already sells at both ends of the market: Hästens&#x27; appointment-only Sleep Spa walks buyers through a curated consultation to sell $23K+ beds, and IKEA&#x27;s Plan &amp; Order Points run entirely on guided planning sessions rather than browsing. Nobody runs theatrical whole-room curation at mid-market price points, where the panel&#x27;s own data says whole-room baskets are the margin play.</p><p>Execution is deliberately light — this is a service layered on existing assets, not a build. Three vignette bays near the front of one store, staged off-hours by the existing merch team, programmable lighting and a scent diffuser per bay, one salaried curator hosting up to six parties per shift. The Margin Realist&#x27;s throughput concern is met by the basket math: one $8-12K whole-room close per shift beats a day of piecemeal floor sales.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Appointment-based curated selling closes ultra-premium sleep purchases: Hästens&#x27; Sleep Spa is an appointment-only consultative experience for beds starting ~$23K.<span class="src">Hästens (hastens.com/us/book-an-appointment) + The Sleep Spa Scottsdale, retrieved 2026-08-03</span></li><li>Guided planning formats convert without a browsable floor: IKEA&#x27;s Plan &amp; Order Point stores (3-15K sqft, 2023+) sell rooms via planning sessions and delivery only.<span class="src">Forbes, 2024-01-22; Chain Store Age, 2024</span></li><li>Experience-first, curated reveals command ticket prices in ordinary venues: Fever&#x27;s Candlelight sells out ticketed staged evenings across 100+ cities on curation and atmosphere alone.<span class="src">Fever (feverup.com/candlelight), retrieved 2026-08-03</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Hästens Sleep Spa and RH&#x27;s designer-led galleries prove curated appointments at luxury; IKEA proves planning-led selling at value. Interior design services (Havenly, in-store design desks) curate remotely but without theater or a one-tap whole-room close. The gap is theatrical, sensory, mid-market whole-room curation with single-date delivery. Easy for a competitor to imitate superficially; hard to match the one-delivery-date promise without an owned DC and fleet.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Hästens Sleep Spa</strong><span>Hästens</span><em>Appointment-only curated consultation; beds $23K-$725K</em></div><div class="comp"><strong>IKEA Plan &amp; Order Point</strong><span>IKEA / Ingka</span><em>Booked planning sessions; order-for-delivery only</em></div><div class="comp"><strong>Candlelight Concerts</strong><span>Fever</span><em>Ticketed curated staged experiences; online-only booking</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$30K-$75K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>Net ~0: one salaried curator (redeployed top floor talent); staging absorbed by existing merch team off-hours<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>$49 booking fee credited to purchase; whole-room baskets $8-12K at better blended margin than piecemeal; one delivery date via owned fleet.</td></tr>
+        <tr><td>Payback</td><td>Two whole-room closes per week (~15-20% of ~12 weekly sessions) is ~$70-100K/mo incremental basket volume; capex recovered inside one quarter if close rate holds.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-moderate">Moderate</span></h4>
+      <p>No permits; burden is choreography — curator training, booking discipline, and nightly restaging labor. Vignettes must rotate from in-stock DC inventory or the one-date delivery promise breaks.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">second-gen-vacated-box</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Pilot Friday/Saturday omakase sessions at one store: three staged bays, $49 credited bookings, one curator, 8 weeks, tracked on close rate and basket size vs floor average.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Analogous transfer from sushi omakase: highest-trust, highest-margin format in dining is &#x27;no menu, trust the chef&#x27; — mapped onto furniture&#x27;s decision-fatigue problem and the panel&#x27;s whole-room basket signal.</p>
+</section>
+<section class="product-page">
+  <div class="p-head">
+    <span class="p-rank">#20</span>
+    <div>
+      <h2 class="p-name">Date Night at the Store</h2>
+      <div class="p-meta"><span class="tag">format</span>
+        <span class="tag">METHOD 51 — Cultural Trend Mining</span>
+        <span class="tag score">SCORE 3.1</span></div>
+    </div>
+  </div>
+  <p class="p-oneliner">Thu-Sat evenings: ticketed sober-curious date-night venue in staged living rooms; mocktail cart, board games, vinyl; &#x27;your night, your room&#x27; QR exit cart.</p>
+  <div class="product-image-block placeholder"><div class="ph-inner"><span class="ph-label">MJ RENDER PENDING</span><span class="ph-file">r8-20-date-night-at-the-store-hero.png</span></div></div>
+  <div class="p-body">
+    <h3>The Pitch</h3><p>Thursday-through-Saturday evenings, the showroom becomes a ticketed date-night venue: couples book a staged living room for 90 minutes — mocktail cart, board games, vinyl, warm lamp light — and everything they touched all night compiles into a QR &quot;your night, your room&quot; exit cart with one delivery date. The store&#x27;s most expensive asset, a beautifully staged floor, finally earns after 7pm.</p><p>Two trends intersect here. Sober-curious is mainstream — NielsenIQ pegs interest up 44% in two years, a quarter of US adults drank no alcohol in 2024, and the NA category passed $925M (+22% YoY) — leaving couples short on alcohol-free evening venues. Meanwhile ticketed experiences in unconventional spaces (Fever&#x27;s Candlelight in churches and museums, board-game cafés charging $5-20 covers for dwell) prove people pay for atmosphere. The unfair advantage: this venue&#x27;s furniture is the merchandise, and the couple most likely to buy a sectional is the one that just spent 90 minutes on it together.</p><p>The Margin Realist&#x27;s 3.0 is answered by the cost side: zero new headcount (two evening hosts on redeployed hours), no alcohol license (mocktails by design, not compromise), capex under $40K. Tickets cover the night&#x27;s variable cost, so every exit-cart conversion is nearly pure incremental margin on hours the store previously sat dark. Novelty judge scored it 4.0 — it is also the run&#x27;s most PR-able story.</p>
+    <h3>Reasons to Believe</h3><ul class="rtbs"><li>Sober-curious interest rose 44% in two years; ~25% of US adults drank no alcohol in 2024; NA category hit $925M off-premise, +22% YoY.<span class="src">NielsenIQ, &#x27;Non Alcohol Is No Longer a Niche,&#x27; 2025</span></li><li>People pay covers just to linger in furnished social space: Snakes &amp; Lattes charges $5-20/person for unlimited board-game dwell across US and Canadian locations.<span class="src">Snakes &amp; Lattes (snakesandlattes.com/faq) + Wikipedia, retrieved 2026-08-03</span></li><li>Ticketed staged evenings in non-traditional venues scale: Fever&#x27;s Candlelight series sells online-only tickets across dozens of US cities year-round.<span class="src">Fever (feverup.com), retrieved 2026-08-03</span></li></ul>
+  </div>
+  <div style="clear:both"></div>
+  <div class="panel-grid">
+    <div class="panel"><h4>Competitive Landscape</h4><p>Board-game cafés and Fever&#x27;s Candlelight own ticketed evening dwell but sell nothing durable; museums&#x27; late-night programs prove the date-night occasion in retail-adjacent space; RH Rooftop Restaurants monetize furniture-adjacent romance at luxury with full F&amp;B build-outs. No mid-market furniture retailer sells the evening itself. Trivially copyable in appearance, but the exit-cart-to-owned-fleet conversion loop and pre-staged whole-room pricing are the compounding parts.</p></div>
+    <div class="panel"><h4>Closest Comparables</h4><div class="comps"><div class="comp"><strong>Candlelight Concerts</strong><span>Fever</span><em>Ticketed evening experiences in borrowed atmospheric venues</em></div><div class="comp"><strong>Snakes &amp; Lattes</strong><span>Snakes &amp; Lattes Inc.</span><em>$5-20/person cover, unlimited games + F&amp;B margin</em></div><div class="comp"><strong>RH Rooftop Restaurant</strong><span>RH</span><em>Full restaurants in galleries; hospitality drives furniture attach ($5-6M/restaurant per Run 8 cluster brief)</em></div></div></div>
+    <div class="panel"><h4>Cost Model <span class="defense">assumption</span></h4>
+      <table class="cost">
+        <tr><td>Capex</td><td>$15K-$40K per store<span class="src">assumption</span></td></tr>
+        <tr><td>Labor</td><td>~$0 net: two salaried evening hosts on redeployed hours (per roster spec); no servers — QR mocktail rounds<span class="src">assumption</span></td></tr>
+        <tr><td>Revenue</td><td>$39-59/couple tickets (partially credited to purchase) + NA beverage margin + QR exit-cart conversion on $2-8K living-room baskets.</td></tr>
+        <tr><td>Payback</td><td>Tickets cover nightly variable cost at ~8-10 couples/night; one exit-cart conversion per weekend (~$3K basket) makes the quarter; capex back in under 6 months even at low close rates.</td></tr>
+      </table></div>
+    <div class="panel"><h4>Operational Complexity <span class="oc oc-simple">Simple</span></h4>
+      <p>No alcohol license needed (NA by design); check local health rules for prepared NA beverages; soil risk managed by dark upholstery zones, covered drinks, and cleaning turns. Insurance rider for after-hours public events; franchise optics need one brand sign-off.</p>
+      <h4 style="margin-top:14px">Deployment Fit</h4><div class="fits"><span class="fit-chip">retrofit-existing-store</span><span class="fit-chip">seasonal-overlay</span></div></div>
+  </div>
+  <div class="p-footer">
+    <div class="fm"><span class="lbl">FIRST MOVE</span><p>Ticket six Thursday-Saturday date nights at one store over 3 weekends — 8 staged living rooms, $49/couple credited, mocktail cart, exit-cart conversion tracked per room.</p></div>
+    <div class="ei"><span class="lbl">EFFORT</span><b>2/5</b>
+        <span class="lbl">IMPACT</span><b>3/5</b></div>
+    <div class="verify"><span class="vchip ok">COMPS: PASS</span><span class="vchip ok">COST: PASS</span><span class="vchip ok">RTBS: PASS</span><span class="vchip ok">COMPETITIVE: PASS</span></div>
+  </div>
+  <p class="research-basis">Cultural Trend Mining: sober-curious mainstreaming (NIQ +44% interest) × the ticketed-experience economy (Fever, board-game cafés) mapped onto a staged showroom that sits dark every evening.</p>
+</section>
+</div>
+
+<section class="appendix wrap">
+  <div class="sec-h">Whitepaper Appendix</div>
+  <h3>Methodology</h3>
+  <p>Run 8 executed the innovation-workshop advanced-model pipeline: Stage 0 trend-convergence research (bartaco service economics, ISPA 2026 mattress data, RH/Poliform/Fritz Hansen hospitality precedent, FRG vacancy analysis, Eight Sleep retail signals); a 9-method blind parallel fan-out (JTBD, Blue Ocean, Analogous Inspiration, SCAMPER, Mashup, Cultural Trend Mining, Premiumization, Downmarket Disruption, Occasion-Based) producing 34 deduplicated raw ideas; a 3-judge scoring panel (Margin Realist / Novelty Maximalist / Ops Skeptic, median-of-three, 6-criterion weighted rubric); Gate 1 operator selection of 20 survivors; parallel research-grounded pitch development; and a mandatory adversarial verification pass in which every comparable, cost line, and cited statistic was independently attacked before publication.</p>
+  <h3>Market Context</h3>
+  <p>US mattress unit shipments fell 13.2% in 2025 (dollars -6.5%) while average selling prices rose ~5% — a contracting-volume, premiumizing market (ISPA 2026 Industry Trends Report). Sleep Number entered Chapter 11 with sale to Sleep Country Canada; Mattress Firm closed ~700 stores in its 2018 bankruptcy with ~700 more closures announced since; the Franchise Group collapse vacated ~880 Southeast storefronts. Bed-in-a-box economics broke on 21-23% online return rates vs ~9% in-store. Meanwhile furniture × hospitality is proven at the luxury tier — RH operates restaurants and wine bars in 25 galleries explicitly to drive furniture attach — and the mid-market, low-labor translation of that playbook remains unclaimed.</p>
+  <h3>The Labor Thesis (bartaco transfer)</h3>
+  <p>bartaco eliminated the order-taker role (90% QR ordering), replaced servers with fewer salaried zone service leaders, and pooled tips house-wide: labor cost down 5-6 points, ~50% fewer front-of-house staff, average wage UP to $23-24/hr, guest sentiment ~4.7/5, ~30% store-level EBITDA. The transferable primitive for home retail is not food — it is opt-in service, self-serve transaction rails, and salaried zone hospitality funded by removed commissioned roles.</p>
+  <h3>Verification Report</h3>
+  <ul>
+    <li>All 20 ideas passed adversarial verification; per-idea status chips appear on each page.</li>
+    <li>Fixes applied during verification: Wayfair Decorify (discontinued) replaced with Wayfair Muse; #roommakeover view count corrected per the cited source; bartaco table-coverage figure corrected to published values; Mattress Firm closure count corrected to ~700 (2018) + ~700 announced; online-vs-store return rates restated precisely (16.9% vs 8.9% overall; 21-23% online furniture/bedding); Coco-Mat pricing replaced with verified figures; J.C. Penney register-removal comparable restated as an announced-not-completed plan; several capex lines downgraded to explicit assumptions.</li>
+    <li>Key stats verified against primary sources: ISPA 2026 (Furniture Today 2026-07-14), NAHB first-year buyer spend ($26,882 vs $9,457), Dreams Sleepmatch (3-min scan, 18 measurements, 25 patents, free), Casper Dreamery ($25/45-min, 9 nooks), Eight Sleep House of Sleep (free 30-min private reservations), NielsenIQ non-alcohol category ($925M off-premise, +22% YoY, sober-curious interest +44%), Outstanding in the Field ($385/seat).</li>
+  </ul>
+  <h3>Method Performance (this run)</h3>
+  <p>Survivor counts by method: SCAMPER 3, Occasion-Based 3, Cultural Trend Mining 3 (+1 merged), JTBD 3, Analogous 2, Premiumization 2, Blue Ocean 1, Mashup 1 (+1 merged), Downmarket Disruption 1 (+2 merged). Highest-scoring ideas came from SCAMPER-Magnify (Room-as-Menu, 4.1) and the Mashup×Downmarket merge (The Sleep Suite, 4.0). Packaging Innovation (#58) was correctly excluded per Run 5/7 learning (food/CPG only).</p>
+  <h3>Sources</h3>
+  <p>Restaurant Dive (Jan 2023); FSR Magazine (Feb 2021); Back of House (Mar 2023); ISPA 2026 Mattress Industry Trends Report via Furniture Today (2026-07-14); BedTimes (Mar 2026); RH 10-K (Jan 2026); Chain Store Age (2018); Poliform/WWD (2026); Interior Daily — Fritz Hansen Singapore (Mar 2026); Axios — Eight Sleep Series D (Aug 2025); Furniture Today — Sleep Number (Mar 2026); BUILD Magazine (Mar 2026); NAHB Eye on Housing (2022, 2026); NielsenIQ (2025); HuffPost (2019); Forbes (2024); TIME/TechCrunch (2018); Dreams.ie; Hästens; IKEA Newsroom; Texas DSHS; NYC DOHMH.</p>
+</section>
+</body></html>
