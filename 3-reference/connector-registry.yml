@@ -210,7 +210,7 @@ cowork:
       tool_prefix: "mcp__Notion__"  # Code session uses mcp__Notion__; Conductor uses mcp__claude_ai_Notion__
       purpose: Same Notion access as Conductor (sweeps read/write Streaming Notes + Routing Log)
       verify: { type: mcp_tool, check: "mcp__Notion__notion-search" }
-      last_verified: 2026-08-01  # verified by Hygiene Heidi run (Code scheduled session)
+      last_verified: 2026-08-08  # verified by Hygiene Heidi run (Code scheduled session)
 
     gmail:
       slug: cowork-mcp-gmail
