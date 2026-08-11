@@ -1,5 +1,13 @@
 ---
+name: cascading-accountability
 trust_tier: T0
+description: >
+  AI-native management system for CEO daily briefings. Surfaces performance signals,
+  risk flags, and pre-drafted communications. Includes templates, an OKR tracker,
+  and the supporting whitepaper.
+
+  TRIGGER whenever Brady says: "cascading accountability", "CEO briefing", "accountability
+  system", "performance signals", or asks for the management-cascade briefing format.
 ---
 
 # Cascading Accountability System

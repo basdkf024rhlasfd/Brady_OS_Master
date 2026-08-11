@@ -1,0 +1,23 @@
+name: Substrate Audit
+
+# Blocks PRs that ADD capability the registry can't see — an unregistered skill or
+# agent, or a SKILL.md with no routable frontmatter.
+# Only newly ADDED files are checked — pre-existing debt never blocks a PR.
+# Full-repo sweep (plus the S8.4 yield trend) runs weekly via Hygiene Heidi Rule 8.
+# Rationale: 3-reference/substrate-doctrine.md
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  substrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run substrate-audit (added files only)
+        run: |
+          chmod +x 3-reference/scripts/substrate-audit/substrate-audit.sh
+          3-reference/scripts/substrate-audit/substrate-audit.sh --ci "origin/${{ github.base_ref }}"

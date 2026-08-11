@@ -1,5 +1,12 @@
 ---
+name: pipeline-dashboard
 trust_tier: T0
+description: >
+  Queries the Streaming Notes DB and regenerates a live SVG snapshot showing what is
+  sitting at each pipeline stage (In / Processing / Out). Runs at the end of each sweep.
+
+  TRIGGER whenever Brady says: "pipeline dashboard", "pipeline snapshot", "what's in
+  the pipeline", "show me the pipeline", or at the close of a morning/evening/weekly sweep.
 ---
 
 # Pipeline Dashboard

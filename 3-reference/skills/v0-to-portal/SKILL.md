@@ -1,5 +1,13 @@
 ---
+name: v0-to-portal
 trust_tier: T2
+description: >
+  End-to-end checklist for deploying a V0-generated (or Stitch-generated) app into the
+  mception.ai portal via ProjectFrame.
+
+  TRIGGER whenever Brady says: "deploy this V0 app", "v0 to portal", "put this V0 build
+  on mception", "wire up this Stitch app", or any variation about moving a generated app
+  into the portal.
 ---
 
 # V0 to Portal Deploy

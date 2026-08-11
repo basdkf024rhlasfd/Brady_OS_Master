@@ -1,5 +1,12 @@
 ---
+name: agent-debate
 trust_tier: T0
+description: >
+  Stages structured debates between Brady OS agents on strategic questions, rendered
+  as a war room transcript.
+
+  TRIGGER whenever Brady says: "stage a debate", "agent debate", "war room", or asks
+  to have the agents argue a strategic question out.
 ---
 
 # Agent Debate — Skill

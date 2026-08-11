@@ -96,23 +96,13 @@ if [ "$CI_MODE" = 0 ]; then
   fi
 fi
 
-# --- R7.6: skills registry drift (full-repo mode only) ---
+# --- R7.6: RETIRED 2026-08-11 — superseded by substrate-audit.sh (Hygiene Heidi Rule 8) ---
+# R7.6 checked skills-registry drift in both directions, but only as AMBER and only in
+# full-repo mode, so it flagged unregistered skills for weeks without ever gating a PR.
+# Both directions now live in S8.1 of 3-reference/scripts/substrate-audit/substrate-audit.sh
+# as a RED that fails CI. One owner, with teeth. Rationale: 3-reference/substrate-doctrine.md
 if [ "$CI_MODE" = 0 ]; then
-  drift=()
-  for d in 3-reference/skills/*/; do
-    name=$(basename "$d")
-    [ "$name" = "_shared" ] && continue
-    grep -q "3-reference/skills/$name/" CLAUDE.md || drift+=("skill dir not in CLAUDE.md registry: $name")
-  done
-  while IFS= read -r p; do
-    [ -e "$p" ] || drift+=("CLAUDE.md registry path missing on disk: $p")
-  done < <(grep -o '3-reference/skills/[a-z0-9_-]*/SKILL\.md' CLAUDE.md | sort -u)
-  if [ ${#drift[@]} -gt 0 ]; then
-    note "AMBER R7.6 skills registry drift:"
-    printf '        %s\n' "${drift[@]}"
-  else
-    note "PASS  R7.6 skills registry in sync with CLAUDE.md"
-  fi
+  note "INFO  R7.6 skills-registry drift moved to substrate-audit.sh (S8.1, Heidi Rule 8)"
 fi
 
 # --- R7.5: size report ---

@@ -1,5 +1,12 @@
 ---
+name: project-creator
 trust_tier: T2
+description: >
+  Turns a conversation into an execution-ready project brief using BRIEF-TEMPLATE.md.
+
+  TRIGGER whenever Brady says: "create a project", "spin up a project", "turn this into
+  a project", "project brief", "make this a real project", or any variation asking to
+  convert a discussion into a structured, execution-ready brief.
 ---
 
 # Project Creator

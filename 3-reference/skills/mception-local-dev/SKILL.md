@@ -1,3 +1,16 @@
+---
+name: mception-local-dev
+trust_tier: T1
+description: >
+  Spins up the mception.ai portal on localhost for rapid UI iteration — no Clerk
+  sign-in, no Vercel env dance, no auth friction. All known Clerk/Vercel traps
+  documented.
+
+  TRIGGER whenever Brady says: "spin up mception locally", "local dev server",
+  "iterate on mception UI", "run the portal locally", or any variation about getting
+  the portal running on his machine.
+---
+
 # mception Local Dev
 
 **Trigger:** "spin up mception locally", "local dev server", "iterate on mception UI", "run the portal locally"
