@@ -637,10 +637,10 @@ idea_library:
       method_confidence: "Methods with ≥8 lifetime ideas: 4, 15, 21, 24, 51, 56, 58. SCAMPER #21 lifetime ~28 ideas at ~0.78 — anchor everywhere. #51 lifetime ~0.80 and 1.00 on format runs. #9 now 3 runs ≤0.67 with 0.25 here — demote to lever-discovery role. #59 at 6 ideas (0.75, 0.75) — promising, below the 8-idea confidence bar until next run."
       cluster_yield: "New cluster produced 20 survivors / 2 at ≥4.0 on first spawn — refresh-worthy; prior clusters untouched this run"
       judge_lens_drift: "First run with zero contested ideas — either the pool converged or lenses are homogenizing; watch next run before adjusting rubric"
-    policy_recommendations:  # approval-gated — Brady approves before these change future runs
-      - "approve iw-policy-59: promote Occasion-Based (#59) into the default product-innovation method set"
-      - "approve iw-policy-9: demote Blue Ocean (#9) to lever-discovery input (feed ERRC output INTO other methods, don't score its raw output standalone)"
-      - "approve iw-policy-57: on format runs, run Downmarket (#57) as a fusion pass over other methods' raw pool instead of a standalone generator"
+    policy_recommendations:  # APPROVED by Brady 2026-08-11 (all three) — encoded in SKILL.md Step 2 method cluster
+      - "iw-policy-59 [APPROVED 2026-08-11]: promote Occasion-Based (#59) into the default product-innovation method set"
+      - "iw-policy-9 [APPROVED 2026-08-11]: demote Blue Ocean (#9) to lever-discovery input (feed ERRC output INTO other methods, don't score its raw output standalone)"
+      - "iw-policy-57 [APPROVED 2026-08-11]: on format runs, run Downmarket (#57) as a fusion pass over other methods' raw pool instead of a standalone generator"
     learnings:
       - "The bartaco transfer that survives scrutiny is the SERVICE-LEADER + QR primitive, not the F&B — every food-forward concept took ops damage; every self-serve ritual survived"
       - "Paid, credited trial rituals ($25-49 → purchase credit) emerged independently from 4 methods — strongest convergent signal in 8 runs; ticketing filters intent AND funds the labor model"
