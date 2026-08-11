@@ -245,7 +245,7 @@ Merge the pool after all agents return. Fallback: if subagent orchestration is u
 
 **Default product innovation cluster:**
 - Jobs to Be Done (#4)
-- Blue Ocean Strategy (#9)
+- Blue Ocean Strategy (#9) — **lever-discovery only** (Run 8 policy, approved 2026-08-11): run the ERRC grid and feed its output INTO other methods as raw material; do not score its standalone ideas (3 runs ≤0.67 hit rate, 0.25 on Run 8 — whole-format ERRC bets die at the judge panel)
 - Analogous Inspiration (#15)
 - SCAMPER (#21)
 - Mashup Method (#24)
@@ -254,6 +254,9 @@ Merge the pool after all agents return. Fallback: if subagent orchestration is u
 - Packaging Innovation (#58)
 - Category Design (#55)
 - Downmarket Disruption (#57)
+- Occasion-Based Thinking (#59) — promoted to permanent set (Run 8 policy, approved 2026-08-11): 75% hit rate in both runs used; produced 2 top-5 ideas on Run 8
+
+**Format/retail-run method policy** (Run 8, approved 2026-08-11): on store-format or service-model runs, run Downmarket Disruption (#57) as a **fusion pass over the other methods' raw pool** rather than a standalone generator — both of its Run 8 survivors came via merges with other methods' concepts. (#58 Packaging remains excluded from non-food runs per Run 5/7 learning.)
 
 Run each method against the selected categories. Target: 30-40 raw ideas.
 

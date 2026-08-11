@@ -578,3 +578,96 @@ idea_library:
   - { name: "Cashmere-Touch Sweats", category: "Kids Fashion / DTC", method: 56, date: "2026-04-19" }
   - { name: "Butterfly Cargo", category: "Kids Fashion / DTC", method: 51, date: "2026-04-19" }
   - { name: "Inside-Out Collection", category: "Kids Fashion / DTC", method: 21, date: "2026-04-19" }
+
+  # Run 8 — Hospitality-Grade, Low-Labor Home Retail (furniture × bartaco + future of mattress stores)
+  - date: "2026-08-04"
+    category: "Retail Formats — Furniture / Mattress (Hospitality-Grade, Low-Labor)"
+    input_seeds:
+      - "Furniture store meets bar taco — low labor but even better"
+      - "Future of mattress stores"
+    input_source: "Brady (2 converging theses)"
+    stage_0_readiness_level: 2
+    cluster_id_used: "3a9ed43b-89c5-8160-84c0-c5daa621cf02"  # Category Intel DB row (created this run)
+    cluster_name: "Hospitality-Grade, Low-Labor Home Retail"
+    sharpness_gate_passes: 1
+    sharpness_gate_override: false
+    methods_used: [4, 9, 15, 21, 24, 51, 56, 57, 59]  # 58 excluded per Run 5/7 learning (food/CPG only)
+    ideas_generated: 34   # 36 raw, 2 near-duplicate pairs merged at generation time
+    ideas_surviving: 20
+    stage_at_save: 2      # Researched + verified; MJ images queued (Run 7 precedent)
+    top_picks:
+      - name: "Room-as-Menu Ordering"
+        method: 21
+        score: 4.1
+        tags: [scamper-magnify, qr-ordering, whole-room-basket, retrofit, load-bearing-primitive]
+      - name: "The Sleep Suite"
+        method: 24  # co-credit 57
+        score: 4.0
+        tags: [mashup, downmarket, vacated-box, paid-trial, sleep-data-closes]
+      - name: "Sleep Genius Bar"
+        method: 15
+        score: 3.9
+        tags: [apple-transfer, diagnostic-only, no-close-rule, foh-minus-40-50]
+      - name: "Closing Day Commons"
+        method: 59
+        score: 3.9
+        tags: [occasion, realtor-channel, whole-home-cart, near-zero-cac]
+      - name: "Hosting Panic Pit Stop"
+        method: 59
+        score: 3.7
+        tags: [seasonal-overlay, delivery-date-guarantee, owned-fleet-moat]
+    method_performance:
+      4:  { ideas_raw: 4, survivors: 3, hit_rate: 0.75, notes: "Verdict Room / Fit Report Nap Bar / One-Tap Room; Living Room Club cut (dwell without conversion mechanic)" }
+      9:  { ideas_raw: 4, survivors: 1, hit_rate: 0.25, notes: "ERRC produced whole-format bets judges killed (Open Floor House, Unstore, One Price One Pot); only ticketed Test-Night survived. Use Blue Ocean for LEVER discovery, not standalone format bets." }
+      15: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Sleep Genius Bar (top-3) and Omakase survived; hotel-lobby and dealership transfers cut on rev/sqft and reverse-logistics grounds" }
+      21: { ideas_raw: 4, survivors: 3, hit_rate: 0.75, notes: "SCAMPER-Magnify produced the run's #1 idea (Room-as-Menu 4.1). Reverse and Eliminate also survived. Anchor method for format runs, matching CPG record." }
+      24: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Max-contrast wins again — Sleep Suite (merged w/ 57) is #2 overall; Long Table survived with permits engineered in. Rally & Rest ($1-2M capex) and podcast studio cut." }
+      51: { ideas_raw: 4, survivors: 4, hit_rate: 1.00, notes: "All four survived incl. one merge (Neighborhood Living Room). Wearable culture, #roomtransformation, sober-curious date night, third-place hunger all validated by verification pass." }
+      56: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Ritual-mechanic premiumization survived (Tasting Flight, Designer's Counter); ceremony-only and F&I-room concepts cut for not changing the P&L" }
+      57: { ideas_raw: 4, survivors: 2, hit_rate: 0.50, notes: "Both survivors via merges (Sleep Suite, Neighborhood Living Room) — downmarket works here as a FUSION lens on other methods' concepts rather than standalone" }
+      59: { ideas_raw: 4, survivors: 3, hit_rate: 0.75, notes: "Second strong outing (75% both runs used) — Closing Day + Hosting Panic in top 5. PROMOTE to permanent method set." }
+    judge_panel:
+      contested_ideas: 0   # none exceeded 1.5 spread; widest: Third-Shift 1.3, Rally & Rest 1.3, No-Desk 1.2
+      lens_disagreement_pattern: "Novelty vs Ops divergence concentrated on food-forward and big-capex concepts; Margin and Ops agreed unusually often (self-serve ritual concepts score well on both)"
+    image_qa: { checked: 0, requeued: 0, failed: 0 }  # MJ batch queued for Chrome-capable session; prompts in output/midjourney-prompts-2026-08-04-run8.md
+    verification: { comparables_fixed: 6, cost_lines_downgraded: 5, rtbs_revised: 9, competitive_fixed: 4, ideas_failed: 0 }
+    analytics:
+      gate_predictiveness: "8/8 lifetime runs passed sharpness gate first try (2 overrides were full-auto elections, not failures) — gate has never fired; too early to judge its predictive value"
+      readiness_level_outcomes: "Level 2 convergence runs (4, 5, 6, 8) keep producing top-quartile survivors; 59% survival (20/34) in Run 8 vs 54-63% historical Level 2 band — consistent"
+      method_confidence: "Methods with ≥8 lifetime ideas: 4, 15, 21, 24, 51, 56, 58. SCAMPER #21 lifetime ~28 ideas at ~0.78 — anchor everywhere. #51 lifetime ~0.80 and 1.00 on format runs. #9 now 3 runs ≤0.67 with 0.25 here — demote to lever-discovery role. #59 at 6 ideas (0.75, 0.75) — promising, below the 8-idea confidence bar until next run."
+      cluster_yield: "New cluster produced 20 survivors / 2 at ≥4.0 on first spawn — refresh-worthy; prior clusters untouched this run"
+      judge_lens_drift: "First run with zero contested ideas — either the pool converged or lenses are homogenizing; watch next run before adjusting rubric"
+    policy_recommendations:  # APPROVED by Brady 2026-08-11 (all three) — encoded in SKILL.md Step 2 method cluster
+      - "iw-policy-59 [APPROVED 2026-08-11]: promote Occasion-Based (#59) into the default product-innovation method set"
+      - "iw-policy-9 [APPROVED 2026-08-11]: demote Blue Ocean (#9) to lever-discovery input (feed ERRC output INTO other methods, don't score its raw output standalone)"
+      - "iw-policy-57 [APPROVED 2026-08-11]: on format runs, run Downmarket (#57) as a fusion pass over other methods' raw pool instead of a standalone generator"
+    learnings:
+      - "The bartaco transfer that survives scrutiny is the SERVICE-LEADER + QR primitive, not the F&B — every food-forward concept took ops damage; every self-serve ritual survived"
+      - "Paid, credited trial rituals ($25-49 → purchase credit) emerged independently from 4 methods — strongest convergent signal in 8 runs; ticketing filters intent AND funds the labor model"
+      - "Mattress-side concepts outscored furniture-side (6 of top 8) — contracting-volume premiumizing categories reward experience formats"
+      - "Owned DC + delivery fleet is the recurring moat across the whole portfolio — delivery-date guarantees are the anti-DTC weapon"
+      - "Inline verification catches real fabrications: discontinued comparables (Decorify), inflated store-closure counts, wrong hashtag stats — the pass earned its mandatory status again"
+      - "Infra: long background subagents died to repeated worker restarts; verification completed inline (main context, file-by-file edits) — for restart-prone sessions, prefer inline verification with immediate file writes"
+      - "Infra: PDF via Playwright in the remote sandbox needs a localhost HTTP server + --no-proxy-server (file:// is blocked; the agent proxy intercepts loopback), and a page-count sanity check (a 404 print looks like success)"
+
+  # Run 8 idea library
+  - { name: "Room-as-Menu Ordering", category: "Home Retail Formats", method: 21, date: "2026-08-04" }
+  - { name: "The Sleep Suite", category: "Home Retail Formats", method: 24, date: "2026-08-04" }
+  - { name: "Sleep Genius Bar", category: "Home Retail Formats", method: 15, date: "2026-08-04" }
+  - { name: "Closing Day Commons", category: "Home Retail Formats", method: 59, date: "2026-08-04" }
+  - { name: "Hosting Panic Pit Stop", category: "Home Retail Formats", method: 59, date: "2026-08-04" }
+  - { name: "The Sleep Tasting Flight", category: "Home Retail Formats", method: 56, date: "2026-08-04" }
+  - { name: "The Fit Report Nap Bar", category: "Home Retail Formats", method: 4, date: "2026-08-04" }
+  - { name: "Test-Night Ticketed Slowroom", category: "Home Retail Formats", method: 9, date: "2026-08-04" }
+  - { name: "One-Tap Room", category: "Home Retail Formats", method: 4, date: "2026-08-04" }
+  - { name: "Sleep Score Social Club", category: "Home Retail Formats", method: 51, date: "2026-08-04" }
+  - { name: "Room Transformation Studio", category: "Home Retail Formats", method: 51, date: "2026-08-04" }
+  - { name: "The Designer's Counter", category: "Home Retail Formats", method: 56, date: "2026-08-04" }
+  - { name: "The Verdict Room", category: "Home Retail Formats", method: 4, date: "2026-08-04" }
+  - { name: "Summon-Only Floor", category: "Home Retail Formats", method: 21, date: "2026-08-04" }
+  - { name: "The No-Desk Store", category: "Home Retail Formats", method: 21, date: "2026-08-04" }
+  - { name: "The Long Table", category: "Home Retail Formats", method: 24, date: "2026-08-04" }
+  - { name: "The Neighborhood Living Room", category: "Home Retail Formats", method: 51, date: "2026-08-04" }
+  - { name: "After Dark: The Insomniac Hours", category: "Home Retail Formats", method: 59, date: "2026-08-04" }
+  - { name: "Omakase Room Setups", category: "Home Retail Formats", method: 15, date: "2026-08-04" }
+  - { name: "Date Night at the Store", category: "Home Retail Formats", method: 51, date: "2026-08-04" }
