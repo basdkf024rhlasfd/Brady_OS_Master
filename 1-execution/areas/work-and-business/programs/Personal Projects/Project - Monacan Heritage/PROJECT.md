@@ -39,6 +39,14 @@ Pierce the family mystery around Brady's Monacan Indian heritage and the early-1
 - `atha-sorrells-1924-whitepaper.md` — Atha Sorrells case deep dive
 - `earlier-generations-deep-dive.md` — Earlier-generation Clark genealogy deep dive
 - `modern-monacan-whitepaper.md` — **NEW 2026-05-06.** Modern PI investigation whitepaper. 431 lines, 10 parts. Money trail / governance / real estate / CHP vendor layer / audit picture / university footprint / people worth knowing / investigator's verdict / counter-narrative / closeable gaps. Public-records-only. Built on research files 09–14.
+- `curry-rockbridge-whitepaper.md` — The Curry Question companion (Peter Curry → free Black Curry family, Rockbridge)
+- `smallwood-line-whitepaper.md` — **NEW 2026-08-11.** "The Name Itself." First paper on the Smallwood patriline (James 1792 → present). The line going dark above 1792, the 1948–1955 fracture decade, the Nelson Roudnal + Lutie Clark junction where the two family lines merge, negative finding on classification-era records, 7-item research plan. Built on DeYoung workbook + ANALYSIS.md.
+- `palatine-current-whitepaper.md` — **NEW 2026-08-11.** "The Palatine Current." Names the family's third stream: German/Swiss Valley lines (Knisely→Knicely, Zumbro from Switzerland 1694, Weismann→Wiseman, Geldmacher→**Moneymaker** — the name that translated itself) from the Rhineland via Pennsylvania and the Great Wagon Road, converging in Ethel May Knicely (1904–1949). Data cautions + ship-list research plan.
+- `women-who-carried-it-whitepaper.md` — **NEW 2026-08-11.** "The Women Who Carried It." The matriarchs: the Edith Wane recovery (the slot that held three women), Sally Wane of Aylesford Kent, Frances Mason as step-matriarch, Mary Susan Clark's four state classifications 1906–1940, Atha, the widows' bridge 1948–1955, Lutie Fannie Clark. Women's-side research plan.
+
+## Chapter roadmap
+
+**`NEXT-CHAPTERS.md`** (project root) — **NEW 2026-08-11.** Standing creative slate for the whitepaper series: 12 queued chapters (oral-history capture ⚠️ expiring, Civil War generation, Two Virginias synthesis, deep-lines audit gate, kids' edition, Tutelo keepsake, LoV expedition, Harrison Wane, mtDNA verdict, ship lists, Nelson Roudnal file) with effort classes and sequencing. Add new chapter ideas there, not in chat threads.
 
 ## Next actions
 
