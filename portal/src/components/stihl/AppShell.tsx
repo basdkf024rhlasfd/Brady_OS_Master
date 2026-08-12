@@ -29,7 +29,7 @@ export function StihlShell({ children }: StihlShellProps) {
   const pathname = usePathname();
 
   return (
-    <div className="stihl-dark flex h-screen overflow-hidden bg-background">
+    <div className="stihl-dark flex h-full flex-col overflow-hidden bg-background lg:flex-row">
       {/* Sidebar */}
       <aside className="hidden lg:flex w-56 flex-col border-r border-white/[0.08] bg-sidebar">
         <div className="p-6">
@@ -75,7 +75,7 @@ export function StihlShell({ children }: StihlShellProps) {
       </aside>
 
       {/* Mobile header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-background/95 backdrop-blur">
+      <div className="lg:hidden shrink-0 border-b border-white/[0.08] bg-background/95 backdrop-blur">
         <div className="flex items-center justify-between px-4 h-14">
           <div>
             <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -109,7 +109,7 @@ export function StihlShell({ children }: StihlShellProps) {
 
       {/* Main content */}
       <main className="flex-1 overflow-y-auto">
-        <div className="pt-24 lg:pt-0">
+        <div>
           {/* Subtle radial glow at top */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-radial from-primary/5 via-transparent to-transparent pointer-events-none" />
 

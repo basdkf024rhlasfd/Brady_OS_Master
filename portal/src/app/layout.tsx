@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import { PostHogProvider } from "@/components/analytics/PostHogProvider";
@@ -17,6 +17,34 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "mception.ai",
   description: "AI-powered tools for the next generation of builders",
+  manifest: "/manifest.webmanifest",
+  applicationName: "mception",
+  icons: {
+    icon: [
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  // Next emits the standards-track `mobile-web-app-capable`; older iOS only
+  // reads the legacy spelling, so ship both to guarantee the standalone shell.
+  other: { "apple-mobile-web-app-capable": "yes" },
+  appleWebApp: {
+    capable: true,
+    title: "mception",
+    // Translucent lets the app paint under the status bar; the shell adds
+    // safe-area padding so nothing renders beneath the notch or home indicator.
+    statusBarStyle: "black-translucent",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Fills the display cutout area on iPhone; requires the safe-area padding
+  // applied in globals.css / the portal shell.
+  viewportFit: "cover",
+  themeColor: "#111827",
 };
 
 export default function RootLayout({
