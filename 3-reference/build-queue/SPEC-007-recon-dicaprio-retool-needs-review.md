@@ -2,7 +2,7 @@
 
 **ID:** SPEC-007  
 **Slug:** recon-dicaprio-retool  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** medium  

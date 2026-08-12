@@ -1,3 +1,17 @@
+---
+name: kids-test-results-onepager
+trust_tier: T2
+description: >
+  Print-ready, age-appropriate 1-pager per kid based on standardized test results
+  (ATLAS, NWEA MAP, etc.). Specific praise grounded in actual scores, a calibrated
+  reading list by Lexile band, workbook recommendations, and a kid-specific closing
+  line. Real outputs land in ~/brady-os-local/family/kids/ — never the repo.
+
+  TRIGGER whenever Brady says: "make a 1-pager for the kids' [test] results", "summer
+  plan one-pager", "kid-friendly test results", "MAP results one-pager", or any
+  variation asking for a per-kid write-up of standardized test scores.
+---
+
 # Kids Test Results 1-Pager
 
 Generate age-appropriate, print-ready 1-pagers for the Smallwood kids based on standardized test results. One page per kid, written *to* them, with specific praise grounded in their actual data plus a calibrated summer (or off-season) reading + workbook plan.

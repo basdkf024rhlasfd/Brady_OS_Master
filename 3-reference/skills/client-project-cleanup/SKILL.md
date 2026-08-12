@@ -1,6 +1,13 @@
 ---
 name: client-project-cleanup
 trust_tier: T1
+description: >
+  Weekly audit of consulting project pages in Notion for SOP compliance, staleness,
+  and privacy leaks. Keeps every project true to 3-reference/project-kickoff.md.
+  Never deletes content — archives, highlights, and fixes.
+
+  TRIGGER whenever Brady says: "client project cleanup", "audit the client projects",
+  "project hygiene", "clean up the consulting pages", or on the weekly sweep cadence.
 ---
 
 # Client Project Cleanup

@@ -347,7 +347,7 @@ Prompt: [short instruction block — if Notion-backed, just "Fetch [PAGE_ID] Sec
 ```
 
 After scheduling:
-- [ ] Confirm cron fires at the right CT time (remember DST: UTC-5 CST, UTC-6 CDT)
+- [ ] Confirm cron fires at the right CT time. **DST: CDT = UTC−5 (Mar–Nov), CST = UTC−6 (Nov–Mar).** Cron is evaluated in UTC and does not shift itself, so a fixed expression drifts by an hour twice a year — record both expressions in the skill and swap at the changeover. Worked example: 8 PM CT → `0 1 * * *` in CDT, `0 2 * * *` in CST.
 - [ ] Verify CLAUDE.md registry entry is committed
 - [ ] Verify consuming skill has the integration phase + graceful fallback
 - [ ] Note the Conductor dashboard URL for the trigger

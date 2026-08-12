@@ -1,3 +1,16 @@
+---
+name: page-chatbot
+trust_tier: T2
+description: >
+  Enables an AI chat interface on any mception.ai portal page. Config-only — a YAML
+  chat config plus a system-prompt markdown file, no code changes for new projects.
+  Supports KB injection, keyword routing, and streaming via AI SDK v6.
+
+  TRIGGER whenever Brady says: "add chat to [project]", "enable chatbot on [page]",
+  "set up chat for [slug]", "page chatbot", or any variation about putting a chat
+  surface on a portal page.
+---
+
 # Page Chatbot
 
 Enable an AI chat interface on any mception.ai portal page. Config-only operation — no code changes required for new projects.

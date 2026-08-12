@@ -74,6 +74,7 @@ rules by updating this section and re-deploying the skill.
 | 5 | **Research Library stays loaded, current, and leveraged** (Claudine Research Score ≥ 5/10) | K16 composite from `claudine-scorecard` is ≥ 5/10 AND no Active row has been unreferenced for >90 days AND every active client engagement has ≥ 10 sources tagged with its `Client Relevance` value | K16 < 5/10 OR any Active row with `Last Referenced` >90 days old (dormancy) OR any active client with <10 tagged sources (coverage gap) |
 | 6 | **Connector Registry stays accurate** — no phantom or missing connectors across harnesses | Every entry in `3-reference/connector-registry.yml` has `last_verified` ≤ 30 days AND its `verify:` probe currently passes | Any entry with `last_verified > 30 days` (stale) OR any entry whose `verify:` probe fails (phantom or disappeared) OR any Conductor MCP tool present in the session that is NOT yet listed in the registry (undocumented) |
 | 7 | **Repo stays lean** — no oversized files, build artifacts, family binaries, or duplicate bloat in git | `3-reference/scripts/repo-janitor/repo-janitor.sh` exits 0: no tracked file >5MB outside `portal/public` deliverables, no build artifacts, no family photos/PDFs, duplicate waste <1MB | Any RED from the janitor script: oversized file, tracked artifact (renders, `.next`, zips), family binary (policy: `~/brady-os-local`), or growing duplicate waste |
+| 8 | **Substrate stays legible** — every capability on disk is visible to a future model | `3-reference/scripts/substrate-audit/substrate-audit.sh` exits 0: every skill dir and agent profile named in `CLAUDE.md`, every `SKILL.md` carrying `name:` + `description:` frontmatter | Any skill or agent present on disk but absent from the `CLAUDE.md` registry, OR any `SKILL.md` missing routable frontmatter. Per `3-reference/substrate-doctrine.md`: unregistered capability has already been paid for and will never be collected |
 
 ### Rule 2 — Self-Scoring Interpretation Note
 
@@ -314,6 +315,26 @@ Run `3-reference/scripts/repo-janitor/repo-janitor.sh` from the repo root (full-
 Note: the same script runs in CI (`.github/workflows/repo-janitor.yml`, `--ci` mode) and blocks PRs that ADD violations — Heidi's weekly sweep is the backstop that catches pre-existing debt and slow drift that per-PR checks can't see.
 
 **Pass condition:** janitor exits 0 and tree size within 10% of last week → **Green**
+
+## Phase 5.5 — Rule 8: Substrate Legibility (Substrate Audit)
+
+Run `3-reference/scripts/substrate-audit/substrate-audit.sh` from the repo root (full-sweep mode, no flags). It performs four checks and prints one PASS/AMBER/RED line each:
+
+- **S8.1 skills registry drift (both directions)** — a dir under `3-reference/skills/` with no matching path in the `CLAUDE.md` Skills Registry, OR a registry line pointing at a `SKILL.md` that no longer exists on disk (a dead path routes a future model to nothing) → **Red** per item. Absorbed from repo-janitor R7.6 on 2026-08-11, which flagged the same drift as AMBER-only and never gated CI
+- **S8.2 unregistered agents** — a profile under `0-agents/custom-built-agents/` whose filename (or its `-SKILL.md` companion) is never named in `CLAUDE.md` → **Red** per agent
+- **S8.3 unroutable skills** — a `SKILL.md` missing frontmatter `name:` or `description:`, so a future model cannot route to it → **Red** per skill
+- **S8.4 substrate yield** — share of active commit days that touched `0-agents/`, `3-reference/`, `portal/src/`, `.github/`, `CLAUDE.md`, or `AGENTS.md` over 90 days. Target ≥60%. Also reports how many days wrote *only* agent output under `1-execution/` → **report only, never gates**
+
+**Why this rule exists:** when the underlying model improves, the improvement applies to what the model can see. Capability on disk but absent from the registry is invisible, so it does not compound. Full rationale in `3-reference/substrate-doctrine.md`.
+
+**Output gates:**
+- S8.1 / S8.2 hits → `approve heidi substrate-register-{n}` → Brady's reply: `register` (Heidi drafts the registry line from the skill's own frontmatter/body and appends it to `CLAUDE.md`), `retire` (skill/agent is dead — Heidi proposes removal with a manifest per `docs/investigations/`), or `defer` (in-flight build, re-check next run).
+- S8.3 hits → `approve heidi substrate-frontmatter` → Heidi drafts `name:` + `description:` blocks from each skill's existing body triggers. Never invents triggers that aren't already documented in the file.
+- S8.4 is narrated, never gated. Report the percentage and the automation-only day count in the brief; if yield is <40% for three consecutive weeks, raise it once as an Amber Note — the fix is Brady's call, not Heidi's.
+
+Note: the same script runs in CI (`.github/workflows/substrate-audit.yml`, `--ci` mode) and blocks PRs that ADD unregistered capability — Heidi's weekly sweep is the backstop for pre-existing drift and for S8.4, which CI cannot see.
+
+**Pass condition:** substrate-audit exits 0 → **Green** (S8.4 does not affect the gate)
 
 ### 5.1 — Heidi's Self-Score (Rule 2 compliance)
 

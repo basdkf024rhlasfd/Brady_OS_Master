@@ -2,7 +2,7 @@
 
 **ID:** SPEC-001  
 **Slug:** oc-phase-sync  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** small  

@@ -2,7 +2,7 @@
 
 **ID:** SPEC-012
 **Slug:** build-queue-reconciliation
-**Status:** open
+**Status:** needs-review
 **Claimed by:** —
 **Reviewer:** Brady
 **Size:** small
@@ -37,3 +37,37 @@ The build queue has been dormant ~12 weeks and its state is internally inconsist
 ## Notes
 
 Source: `docs/mception-asset-strategy.md` §2.4/§4 Phase 1. The queue matters beyond hygiene: SPEC-008..011 route through it, and Phase 3's contractor handoff depends on a delegation surface whose state can be trusted.
+
+---
+
+## Execution record — 2026-08-11 (nightly-advance, Collect lever)
+
+All four deliverables complete. Acceptance criteria 1–5 met; criterion 5 (no agent renames to
+`accepted`) upheld — every spec sits at `needs-review` awaiting Brady.
+
+1. **Verification table** → `INDEX.md` § "Verification Table (SPEC-012, run 2026-08-11)".
+   All 7 in-scope specs verified **shipped**, two flagged `shipped (superseded)` where the
+   April 26 CFO pivot overtook what the spec literally requested (SPEC-001 phase text,
+   SPEC-003 Scenario A/B constraint → inverted to "model only Scenario B").
+2. **Body/filename drift fixed** on all 7, plus SPEC-015.
+3. **Pending acceptance section** → `INDEX.md`, 8 numbered `approve musashi <slug>` tokens
+   plus `approve musashi build-queue-batch` for one-reply acceptance.
+4. **Streaming Notes row** → `3baed43b-89c5-8172-8828-fbff0fabf025`.
+
+**Scope extension:** SPEC-015 (mception-steward-skill) was outside this spec's stated 001–007
+range but carried identical drift — its deliverable shipped (510-line SKILL.md, all 5 required
+elements, registered in `CLAUDE.md` 2026-08-11) while both filename and body still said `open`.
+Reconciled and included in the batch.
+
+### Defect in this spec — fix before accepting
+
+Deliverable #4 specifies `Type = "Task"` for the Streaming Notes row. **That value does not
+exist in the Streaming Notes schema.** Valid options: Thread Log, Pulse Note, Daily State,
+System Instruction, Communication Snapshot, Note, To Do, Keep Handy, Pin to Top, Pulse Log,
+Overnight Log, Inbound to Cornelius, Outbound to agent, Execution Request, Research, Backlog
+Item, Sprint Proposal. Used `Backlog Item`, matching the existing approval-gated Musashi
+precedent (`burt-1`). Deliverable #4 should be corrected to `Backlog Item`.
+
+Also worth recording: the Streaming Notes **data source** is `2e9ed43b-89c5-80f4-8c21-000b4cfe812e`
+(what writes must target); `2e9ed43b-89c5-800d-acc7-d9e4e9ea1b83` is the database wrapper. Both
+IDs appear in the repo and both are correct at their own level — not a conflict.

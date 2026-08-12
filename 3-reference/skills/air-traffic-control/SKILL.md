@@ -1,5 +1,13 @@
 ---
+name: air-traffic-control
 trust_tier: T0
+description: >
+  Routes work across Brady OS repos, generates handoff prompts, and coordinates
+  cross-repo changes. Registry: air-traffic-control/repo-registry.yml.
+
+  TRIGGER whenever Brady says: "route this", "air traffic control", "which repo does
+  this belong in", "hand this off to [repo]", or any variation asking where work
+  should live or how to move it between repos.
 ---
 
 # Air Traffic Control

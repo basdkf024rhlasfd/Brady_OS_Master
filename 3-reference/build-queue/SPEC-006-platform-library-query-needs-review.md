@@ -2,7 +2,7 @@
 
 **ID:** SPEC-006  
 **Slug:** platform-library-query  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** small  

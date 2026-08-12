@@ -1,5 +1,13 @@
 ---
+name: os-context-pack
 trust_tier: T0
+description: >
+  Generates a portable context pack for any Claude Chat Project so it knows Brady,
+  his OS, his rules, his clients, and his agents cold. Outputs custom instructions
+  plus a knowledge file.
+
+  TRIGGER whenever Brady says: "brady os context", "context pack", "make a context
+  pack", "prime a chat project", or asks for portable OS context for another surface.
 ---
 
 # OS Context Pack — Skill Definition

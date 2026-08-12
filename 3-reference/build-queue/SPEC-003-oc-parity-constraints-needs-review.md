@@ -2,7 +2,7 @@
 
 **ID:** SPEC-003  
 **Slug:** oc-parity-constraints  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** small  

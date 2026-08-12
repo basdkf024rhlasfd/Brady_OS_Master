@@ -2,7 +2,7 @@
 
 **ID:** SPEC-015
 **Slug:** mception-steward-skill
-**Status:** open
+**Status:** needs-review
 **Claimed by:** —
 **Reviewer:** Brady
 **Size:** medium

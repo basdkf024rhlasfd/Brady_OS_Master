@@ -2,7 +2,7 @@
 
 **ID:** SPEC-004  
 **Slug:** platform-capacity-view  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** medium  
