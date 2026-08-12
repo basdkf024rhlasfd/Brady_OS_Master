@@ -154,57 +154,64 @@ export function GlobalChatPanel() {
 
   return (
     <>
-      {/* Pull tab — visible when panel is collapsed */}
+      {/* Pull tab — visible when panel is collapsed. Phones reach chat from the
+          top bar instead, so the tab is desktop-only. */}
       {!chatOpen && (
         <button
           onClick={toggleChat}
           title="Open chat (⌘K)"
-          className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex items-center justify-center bg-accent text-white w-8 h-14 rounded-l-lg shadow-lg hover:bg-accent-hover transition-colors"
+          className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex items-center justify-center bg-accent text-white w-8 h-14 rounded-l-lg shadow-lg hover:bg-accent-hover transition-colors"
         >
           <MessageCircle className="h-4 w-4" />
         </button>
       )}
 
+      {/* Full-screen sheet on phones, inline column from md up. */}
       <aside
-        className={`flex flex-col border-l border-border bg-background transition-all duration-200 shrink-0 ${
-          chatOpen ? "w-80" : "w-0"
+        className={`fixed inset-0 z-40 flex-col bg-background md:static md:inset-auto md:z-auto md:flex md:border-l md:border-border md:transition-all md:duration-200 md:shrink-0 ${
+          chatOpen ? "flex md:w-80" : "hidden md:w-0"
         } overflow-hidden`}
       >
         {/* Header */}
-        <div className="flex h-14 items-center justify-between border-b border-border px-3 shrink-0">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider truncate">
-              Chat
-            </span>
-            <span className="text-xs text-text-hint">|</span>
-            <span className="text-xs text-text-secondary truncate">
-              {projectConfigs.find((p) => p.slug === chatScope)?.label ?? chatScope}
-            </span>
-            {isAdmin && (
-              <button
-                onClick={toggleChatMode}
-                className={`ml-1 px-2 py-0.5 rounded-full text-[10px] font-medium transition-colors shrink-0 ${
-                  chatMode === "operator"
-                    ? "bg-amber-100 text-amber-700"
-                    : "bg-surface text-text-muted hover:bg-surface-active"
-                }`}
-                title={
-                  chatMode === "operator"
-                    ? "Switch to Client mode"
-                    : "Switch to Operator mode"
-                }
-              >
-                {chatMode === "operator" ? "Operator" : "Client"}
-              </button>
-            )}
+        <div className="pt-safe flex items-center justify-between border-b border-border px-3 shrink-0 md:pt-0">
+          <div className="flex h-14 w-full items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-xs font-semibold text-text-muted uppercase tracking-wider truncate">
+                Chat
+              </span>
+              <span className="text-xs text-text-hint">|</span>
+              <span className="text-xs text-text-secondary truncate">
+                {projectConfigs.find((p) => p.slug === chatScope)?.label ?? chatScope}
+              </span>
+              {isAdmin && (
+                <button
+                  onClick={toggleChatMode}
+                  className={`ml-1 px-2 py-0.5 rounded-full text-[10px] font-medium transition-colors shrink-0 ${
+                    chatMode === "operator"
+                      ? "bg-amber-100 text-amber-700"
+                      : "bg-surface text-text-muted hover:bg-surface-active"
+                  }`}
+                  title={
+                    chatMode === "operator"
+                      ? "Switch to Client mode"
+                      : "Switch to Operator mode"
+                  }
+                >
+                  {chatMode === "operator" ? "Operator" : "Client"}
+                </button>
+              )}
+            </div>
+            <button
+              onClick={toggleChat}
+              className="flex h-9 w-9 items-center justify-center rounded-md text-text-muted transition hover:bg-surface-active hover:text-foreground shrink-0 md:h-7 md:w-7"
+              title="Collapse chat (⌘K)"
+              aria-label="Close chat"
+            >
+              {/* The panel is a full-screen sheet on phones, a right rail on desktop. */}
+              <span className="md:hidden">&times;</span>
+              <span className="hidden md:inline">&rarr;</span>
+            </button>
           </div>
-          <button
-            onClick={toggleChat}
-            className="flex h-7 w-7 items-center justify-center rounded-md text-text-muted transition hover:bg-surface-active hover:text-foreground shrink-0"
-            title="Collapse chat (⌘K)"
-          >
-            &rarr;
-          </button>
         </div>
 
         {/* Messages */}
@@ -279,7 +286,7 @@ export function GlobalChatPanel() {
         </div>
 
         {/* Input */}
-        <div className="border-t border-border p-3 shrink-0">
+        <div className="pb-safe border-t border-border p-3 shrink-0">
           <div className="relative">
             {/* Slash command suggestions */}
             {suggestions.length > 0 && (
@@ -307,13 +314,15 @@ export function GlobalChatPanel() {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask anything or /navigate…"
-                className="flex-1 px-3 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-accent-ring focus:border-transparent text-xs"
+                // 16px on phones: iOS Safari auto-zooms into any input with a
+                // smaller font size, which then leaves the page zoomed.
+                className="flex-1 px-3 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-accent-ring focus:border-transparent text-base md:text-xs"
                 disabled={isStreaming}
               />
               <button
                 onClick={handleSend}
                 disabled={isStreaming || !input.trim()}
-                className="px-3 py-2 bg-accent text-white rounded-full text-xs font-medium hover:bg-accent-hover disabled:bg-text-hint disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 bg-accent text-white rounded-full text-sm md:text-xs font-medium hover:bg-accent-hover disabled:bg-text-hint disabled:cursor-not-allowed transition-colors"
               >
                 Send
               </button>

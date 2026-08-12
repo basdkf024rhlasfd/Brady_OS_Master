@@ -100,7 +100,11 @@ export function WorkspaceProvider({
   const [chatOpen, setChatOpen] = useState(false);
   const [configOpen, setConfigOpen] = useState(false);
   useEffect(() => {
-    setChatOpen(readLocalStorage("workspace-chat-open", true));
+    // Desktop shows chat as a 320px rail, so defaulting it open is free. Phones
+    // render it as a full-screen sheet — restoring that on load would bury the
+    // app behind the chat panel, so there it opens only on an explicit tap.
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    setChatOpen(isDesktop && readLocalStorage("workspace-chat-open", true));
     setConfigOpen(readLocalStorage("workspace-config-open", false));
   }, []);
 

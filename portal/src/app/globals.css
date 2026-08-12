@@ -158,6 +158,33 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* --- Installed-app / iOS behavior ---------------------------------------
+   The layout sets viewportFit: "cover", so the page paints under the notch and
+   home indicator. The utilities below put that space back where it matters.
+   Shells use h-dvh (not h-screen) so the dynamic Safari toolbar doesn't push
+   the bottom of the app off-screen. */
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Drawers that sit against the left edge need the landscape inset too. */
+.pl-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+
+/* Kill the grey flash on tap targets in the standalone webview. */
+@media (hover: none) {
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 /* STIHL dark theme — scoped to .stihl-dark wrapper */
 .stihl-dark {
   --background: oklch(0.09 0 0);

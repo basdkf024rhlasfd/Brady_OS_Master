@@ -33,7 +33,7 @@ export function SchoolHubShell({ children }: SchoolHubShellProps) {
   }));
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
+    <div className="flex h-full flex-col overflow-hidden bg-background lg:flex-row">
       {/* Sidebar */}
       <aside className="hidden lg:flex w-56 flex-col border-r border-white/[0.08] bg-[#0a0a0f]">
         <div className="p-6">
@@ -109,7 +109,7 @@ export function SchoolHubShell({ children }: SchoolHubShellProps) {
       </aside>
 
       {/* Mobile header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-background/95 backdrop-blur">
+      <div className="lg:hidden shrink-0 border-b border-white/[0.08] bg-background/95 backdrop-blur">
         <div className="flex items-center justify-between px-4 h-14">
           <div>
             <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -164,7 +164,7 @@ export function SchoolHubShell({ children }: SchoolHubShellProps) {
 
       {/* Main content */}
       <main className="flex-1 overflow-y-auto">
-        <div className="pt-28 lg:pt-0">
+        <div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {children}
           </div>

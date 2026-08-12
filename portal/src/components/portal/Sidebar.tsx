@@ -97,7 +97,7 @@ function ShareCount({ entries, label }: { entries: AccessEntry[]; label: string 
   return (
     <span
       ref={ref}
-      className="flex items-center justify-center w-5 h-7 shrink-0 text-[10px] text-text-hint cursor-default"
+      className="hidden md:flex items-center justify-center w-5 h-7 shrink-0 text-[10px] text-text-hint cursor-default"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -130,6 +130,7 @@ function SortableNavItem({
   p,
   isAdmin,
   collapsed,
+  dragEnabled,
   accessMap,
   isStarred,
   onToggleStar,
@@ -137,6 +138,8 @@ function SortableNavItem({
   p: ProjectNav;
   isAdmin: boolean;
   collapsed: boolean;
+  /** Off on touch — a pointer-drag sensor would swallow drawer scrolling. */
+  dragEnabled: boolean;
   accessMap: ReturnType<typeof useWorkspace>["accessMap"];
   isStarred?: boolean;
   onToggleStar?: (slug: string) => void;
@@ -157,7 +160,7 @@ function SortableNavItem({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: p.slug, disabled: collapsed || !isAdmin });
+  } = useSortable({ id: p.slug, disabled: !dragEnabled });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -173,8 +176,8 @@ function SortableNavItem({
       style={style}
       className="relative group flex items-center"
     >
-      {/* Drag handle — admin + expanded only */}
-      {isAdmin && !collapsed && (
+      {/* Drag handle — admin + expanded + pointer input only */}
+      {dragEnabled && (
         <button
           {...attributes}
           {...listeners}
@@ -188,7 +191,7 @@ function SortableNavItem({
 
       <Link
         href={p.href}
-        className={`flex flex-1 h-7 items-center rounded-md px-2 text-xs transition min-w-0 ${
+        className={`flex flex-1 h-9 md:h-7 items-center rounded-md px-2 text-xs transition min-w-0 ${
           isActive
             ? "bg-surface-active text-foreground"
             : "text-text-secondary hover:bg-surface hover:text-foreground"
@@ -202,12 +205,13 @@ function SortableNavItem({
         <ShareCount entries={sharedEntries} label={p.label} />
       )}
 
-      {/* Star toggle — admin + expanded + hovered */}
+      {/* Star toggle — admin + expanded + hovered. Hidden on touch, where a
+          hover-revealed control is an invisible tap target. */}
       {isAdmin && !collapsed && onToggleStar && (
         <button
           tabIndex={-1}
           onClick={(e) => { e.preventDefault(); onToggleStar(p.slug); }}
-          className={`opacity-0 group-hover:opacity-100 flex items-center justify-center w-5 h-7 shrink-0 transition-opacity ${
+          className={`opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center w-5 h-7 shrink-0 transition-opacity ${
             isStarred ? "!opacity-100 text-amber-400" : "text-text-hint hover:text-amber-400"
           }`}
           aria-label={isStarred ? "Unstar" : "Star"}
@@ -224,19 +228,38 @@ export function Sidebar({
   isAdmin,
   projects,
   projectConfigs,
+  mobileOpen = false,
+  onMobileClose,
 }: {
   isAdmin: boolean;
   projects: ProjectId[];
   projectConfigs: ProjectNav[];
+  /** Below md the sidebar is an off-canvas drawer driven by AppShell. */
+  mobileOpen?: boolean;
+  onMobileClose?: () => void;
 }) {
   const pathname = usePathname();
   const { accessMap } = useWorkspace();
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsedPref, setCollapsedPref] = useState(false);
   useEffect(() => {
     const saved = localStorage.getItem("sidebar-collapsed");
-    if (saved) setCollapsed(JSON.parse(saved));
+    if (saved) setCollapsedPref(JSON.parse(saved));
   }, []);
+
+  // Defaults to true so SSR renders the desktop tree and hydration matches.
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  // Icon-rail mode is a desktop affordance — the mobile drawer is always full
+  // width, so it must always render labels regardless of the saved preference.
+  const collapsed = collapsedPref && isDesktop;
 
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     projects: true,
@@ -261,8 +284,8 @@ export function Sidebar({
   );
 
   function toggleCollapse() {
-    const next = !collapsed;
-    setCollapsed(next);
+    const next = !collapsedPref;
+    setCollapsedPref(next);
     localStorage.setItem("sidebar-collapsed", JSON.stringify(next));
   }
 
@@ -289,7 +312,7 @@ export function Sidebar({
       <Link
         key={link.href}
         href={link.href}
-        className={`flex h-7 items-center rounded-md px-2 text-xs transition ${
+        className={`flex h-9 md:h-7 items-center rounded-md px-2 text-xs transition ${
           isActive
             ? "bg-surface-active text-foreground"
             : "text-text-secondary hover:bg-surface hover:text-foreground"
@@ -302,9 +325,9 @@ export function Sidebar({
 
   return (
     <aside
-      className={`sidebar-dark flex h-screen flex-col border-r border-border bg-background transition-all ${
-        collapsed ? "w-14" : "w-56"
-      }`}
+      className={`sidebar-dark pt-safe pl-safe fixed inset-y-0 left-0 z-40 flex h-dvh w-64 flex-col border-r border-border bg-background transition-transform duration-200 md:static md:z-auto md:w-56 md:translate-x-0 md:transition-all ${
+        mobileOpen ? "translate-x-0" : "-translate-x-full"
+      } ${collapsed ? "md:w-14" : "md:w-56"}`}
     >
       {/* Header */}
       <div className="flex h-14 items-center justify-between border-b border-border px-3">
@@ -314,10 +337,11 @@ export function Sidebar({
           </Link>
         )}
         <button
-          onClick={toggleCollapse}
+          onClick={isDesktop ? toggleCollapse : onMobileClose}
+          aria-label={isDesktop ? "Toggle sidebar" : "Close navigation"}
           className="flex h-8 w-8 items-center justify-center rounded-md text-text-muted transition hover:bg-surface-active hover:text-foreground"
         >
-          {collapsed ? "\u2261" : "\u2190"}
+          {!isDesktop ? "\u00d7" : collapsed ? "\u2261" : "\u2190"}
         </button>
       </div>
 
@@ -372,7 +396,7 @@ export function Sidebar({
                       <Link
                         key={p.slug}
                         href={p.href}
-                        className={`flex h-7 items-center rounded-md px-2 text-xs transition min-w-0 ${
+                        className={`flex h-9 md:h-7 items-center rounded-md px-2 text-xs transition min-w-0 ${
                           pathname === p.href || pathname.startsWith(`${p.href}/`)
                             ? "bg-surface-active text-foreground"
                             : "text-text-secondary hover:bg-surface hover:text-foreground"
@@ -401,6 +425,7 @@ export function Sidebar({
                       p={p}
                       isAdmin={isAdmin}
                       collapsed={collapsed}
+                      dragEnabled={isAdmin && !collapsed && isDesktop}
                       accessMap={accessMap}
                       isStarred={starred.includes(p.slug)}
                       onToggleStar={toggleStar}
@@ -447,6 +472,7 @@ export function Sidebar({
                                 p={p}
                                 isAdmin={isAdmin}
                                 collapsed={collapsed}
+                                dragEnabled={isAdmin && !collapsed && isDesktop}
                                 accessMap={accessMap}
                                 isStarred={starred.includes(p.slug)}
                                 onToggleStar={toggleStar}
@@ -513,7 +539,7 @@ export function Sidebar({
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-7 items-center rounded-md px-2 text-xs text-text-secondary transition hover:bg-surface hover:text-foreground"
+                        className="flex h-9 md:h-7 items-center rounded-md px-2 text-xs text-text-secondary transition hover:bg-surface hover:text-foreground"
                       >
                         {link.label}
                         <span className="ml-auto text-[10px] text-text-hint">&nearr;</span>
@@ -548,7 +574,7 @@ export function Sidebar({
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex h-7 items-center rounded-md px-2 text-xs transition ${
+                className={`flex h-9 md:h-7 items-center rounded-md px-2 text-xs transition ${
                   isActive
                     ? "bg-surface-active text-foreground"
                     : "text-text-secondary hover:bg-surface hover:text-foreground"
@@ -562,7 +588,7 @@ export function Sidebar({
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-border px-2 py-2">
+      <div className="pb-safe border-t border-border px-2 py-2">
         <div
           className={`flex items-center rounded-md px-2 py-1.5 transition ${
             collapsed ? "justify-center" : "justify-between"
