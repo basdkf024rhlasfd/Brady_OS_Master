@@ -293,7 +293,7 @@
     <h1 class="marquee">Lantern</h1>
     <p class="tagline">
       You are the only light down here. Ride the three currents, swallow the
-      <b>plankton</b>, never touch the <i>reef</i>.
+      <b>plankton</b>, never touch the <i>reef</i> — but shave close, and the deep pays you for it.
     </p>
     <div class="zones">
       <div class="zone">◄ Dive<span>tap left</span></div>
@@ -312,6 +312,7 @@
       <span>Best <b id="best2">0</b></span>
       <span>Depth <b id="depth">0</b>m</span>
     </div>
+    <p class="eyebrow" id="zone-reached"></p>
     <p class="prompt" id="again-prompt">Tap to dive again</p>
   </div>
 </div>
@@ -411,6 +412,8 @@
   const sfxShield  = () => { tone(660, 0.22, 'triangle', 0.13); setTimeout(() => tone(990, 0.26, 'triangle', 0.1), 90); };
   const sfxSwitch  = () => tone(200, 0.06, 'sine', 0.045);
   const sfxDeath   = () => { tone(190, 0.55, 'sawtooth', 0.16, 40); tone(96, 0.7, 'sine', 0.12, 32); };
+  const sfxGraze   = () => tone(1240, 0.07, 'sine', 0.07, 900);
+  const sfxZone    = () => { tone(392, 0.3, 'triangle', 0.1); setTimeout(() => tone(523, 0.3, 'triangle', 0.1), 110); setTimeout(() => tone(659, 0.42, 'triangle', 0.11), 220); };
 
   // Keep the toggle from doubling as a "tap to dive" — both phases have to be
   // swallowed or the pointerup reaches the window handler and starts a run.
@@ -437,6 +440,19 @@
   let ang, pr, lane, elapsed, score, streak, shield, frontier, lastFree, lockout;
   let obstacles, motes, gates, sparks, floaters, wake, pulses;
   let shake = 0, flash = 0, invuln = 0;
+  let slowmo = 0;            // >0 = death slow-motion timer
+  let zoneIdx = 0, banner = null;   // banner: {text, sub, life}
+
+  // Depth zones — the water itself gets stranger as you survive.
+  // tint: [bg core, bg mid, bg edge], ventHue shifts the thermal glow.
+  const ZONES = [
+    { at: 0,    name: 'TWILIGHT ZONE',  tint: ['#0b1526', '#070d18', '#05080f'], vent: 'rgba(255, 138, 76,'  },
+    { at: 200,  name: 'MIDNIGHT ZONE',  tint: ['#0a1030', '#060a1c', '#040611'], vent: 'rgba(255, 116, 92,'  },
+    { at: 450,  name: 'ABYSSAL PLAIN',  tint: ['#140e2e', '#0b081c', '#060410'], vent: 'rgba(255, 96, 120,'  },
+    { at: 750,  name: 'HADAL TRENCH',   tint: ['#1c0b26', '#100617', '#08030c'], vent: 'rgba(255, 80, 150,'  },
+    { at: 1100, name: 'THE UNCHARTED',  tint: ['#220820', '#130412', '#0a0208'], vent: 'rgba(255, 70, 190,'  }
+  ];
+  const depthM = () => Math.round(elapsed * 7.4);
 
   const snow = Array.from({ length: 64 }, () => ({
     x: Math.random(), y: Math.random(),
@@ -451,7 +467,7 @@
     frontier = ang + 2.2;
     lastFree = [0, 1, 2];
     obstacles = []; motes = []; gates = []; sparks = []; floaters = []; wake = []; pulses = [];
-    shake = 0; flash = 0; invuln = 1.1;
+    shake = 0; flash = 0; invuln = 1.1; slowmo = 0; zoneIdx = 0; banner = null;
     paintHud();
   }
 
@@ -497,10 +513,13 @@
 
       const open = [0, 1, 2].filter(l => blocked.indexOf(l) === -1);
       if (Math.random() < 0.64) {
-        motes.push({
-          lane: pick(open), a: mid, ph: rnd(0, 7),
-          pearl: !shield && score > 18 && Math.random() < 0.055
-        });
+        const L = pick(open);
+        if (Math.random() < 0.28) {
+          // a train — three motes down one current, begging for a combo
+          for (let k = -1; k <= 1; k++) motes.push({ lane: L, a: mid + k * Math.min(0.11, span / 2.2), ph: rnd(0, 7), pearl: false });
+        } else {
+          motes.push({ lane: L, a: mid, ph: rnd(0, 7), pearl: !shield && score > 18 && Math.random() < 0.055 });
+        }
       }
 
       frontier = mid + span / 2 + gap;
@@ -581,6 +600,7 @@
   function die() {
     mode = 'over';
     lockout = 0.7;
+    slowmo = REDUCED ? 0 : 1;
     shake = REDUCED ? 4 : 22;
     flash = 1;
     sfxDeath();
@@ -596,7 +616,8 @@
     el.final.textContent = score;
     el.best.textContent = best;
     el.best2.textContent = best;
-    el.depth.textContent = Math.round(elapsed * 7.4);
+    el.depth.textContent = depthM();
+    document.getElementById('zone-reached').textContent = 'Reached: ' + ZONES[zoneIdx].name;
     el.crown.hidden = !isBest || score === 0;
     el.combo.classList.remove('on');
     el.shield.classList.remove('on');
@@ -634,11 +655,25 @@
       const playerR = R * 0.042;
       const thick   = R * 0.095;
 
-      // reef collision
+      // reef collision + graze detection
       if (invuln <= 0) {
         for (const o of obstacles) {
           const orad = LANES[o.lane] * R;
-          if (Math.abs(pr - orad) >= thick / 2 + playerR * 0.86) continue;
+          const gap = Math.abs(pr - orad) - (thick / 2 + playerR * 0.86);
+          if (gap >= 0) {
+            // close but clean: shaving past the reef pays
+            if (!o.grazed && gap < playerR * 1.5 && ang > o.a0 && ang < o.a1) {
+              o.grazed = true;
+              const gain = 3 * multiplier();
+              score += gain;
+              sfxGraze();
+              floater(CX + Math.cos(ang) * pr, VY + Math.sin(ang) * pr - 18, 'GRAZE +' + gain);
+              burst(CX + Math.cos(ang) * pr, VY + Math.sin(ang) * pr, 6, 'mote', 150);
+              if (navigator.vibrate) navigator.vibrate(5);
+              paintHud();
+            }
+            continue;
+          }
           const pad = playerR / Math.max(pr, 1);
           if (ang > o.a0 - pad && ang < o.a1 + pad) {
             if (shield) {
@@ -699,6 +734,17 @@
       }
     }
 
+    if (mode === 'play' && zoneIdx < ZONES.length - 1 && depthM() >= ZONES[zoneIdx + 1].at) {
+      zoneIdx++;
+      banner = { text: ZONES[zoneIdx].name, sub: ZONES[zoneIdx].at + 'm', life: 2.6 };
+      sfxZone();
+      score += 10;
+      if (navigator.vibrate) navigator.vibrate([15, 30, 15]);
+      if (!REDUCED) for (const pz of [0.3, 0.55, 0.8]) pulses.push({ r: R * pz, a: 0.9 });
+      paintHud();
+    }
+    if (banner) { banner.life -= dt; if (banner.life <= 0) banner = null; }
+
     if (mode === 'over') lockout = Math.max(0, lockout - dt);
 
     // ambience + effects
@@ -743,11 +789,12 @@
     ctx.save();
     if (shake > 0.4) ctx.translate(rnd(-shake, shake), rnd(-shake, shake));
 
-    // abyss ground
+    // abyss ground — tinted by the current depth zone
+    const Z = ZONES[zoneIdx];
     const bg = ctx.createRadialGradient(CX, CY, 0, CX, CY, Math.max(W, H) * 0.72);
-    bg.addColorStop(0, '#0b1526');
-    bg.addColorStop(0.55, '#070d18');
-    bg.addColorStop(1, '#05080f');
+    bg.addColorStop(0, Z.tint[0]);
+    bg.addColorStop(0.55, Z.tint[1]);
+    bg.addColorStop(1, Z.tint[2]);
     ctx.fillStyle = bg;
     ctx.fillRect(-60, -60, W + 120, H + 120);
 
@@ -766,9 +813,9 @@
     const beat = 0.86 + 0.14 * Math.sin(t * 1.6);
     const vg = ctx.createRadialGradient(CX, CY, 0, CX, CY, R * 0.46 * beat);
     vg.addColorStop(0.00, 'rgba(255, 214, 168, 0.95)');
-    vg.addColorStop(0.16, 'rgba(255, 138, 76, 0.62)');
-    vg.addColorStop(0.44, 'rgba(196, 72, 44, 0.20)');
-    vg.addColorStop(1.00, 'rgba(150, 50, 40, 0)');
+    vg.addColorStop(0.16, Z.vent + '0.62)');
+    vg.addColorStop(0.44, Z.vent + '0.20)');
+    vg.addColorStop(1.00, Z.vent + '0)');
     ctx.fillStyle = vg;
     ctx.beginPath();
     ctx.arc(CX, CY, R * 0.46 * beat, 0, 6.2832);
@@ -877,9 +924,10 @@
       const pRad = R * 0.042;
       const blink = invuln > 0 && Math.floor(t * 14) % 2 === 0 ? 0.35 : 1;
 
-      // tendrils streaming behind
-      ctx.globalAlpha = 0.55 * blink;
-      ctx.strokeStyle = '#6ff2d4';
+      // tendrils streaming behind — white-hot on a x3+ streak
+      const hot = multiplier() >= 3;
+      ctx.globalAlpha = (hot ? 0.8 : 0.55) * blink;
+      ctx.strokeStyle = hot ? '#cffff4' : '#6ff2d4';
       ctx.lineWidth = Math.max(1, pRad * 0.2);
       for (let k = -1; k <= 1; k++) {
         ctx.beginPath();
@@ -933,6 +981,36 @@
       ctx.fillText(f.text, f.x, f.y);
     }
     ctx.globalAlpha = 1;
+
+    // combo vignette — the deep answers your streak with light at the edges
+    const mult = multiplier();
+    if (mode === 'play' && mult > 1) {
+      const vig = ctx.createRadialGradient(CX, CY, Math.min(W, H) * 0.38, CX, CY, Math.max(W, H) * 0.74);
+      vig.addColorStop(0, 'rgba(111,242,212,0)');
+      vig.addColorStop(1, 'rgba(111,242,212,' + (0.05 * (mult - 1)).toFixed(3) + ')');
+      ctx.fillStyle = vig;
+      ctx.fillRect(-60, -60, W + 120, H + 120);
+    }
+
+    // zone banner
+    if (banner) {
+      const bl = banner.life;
+      const aIn = clamp((2.6 - bl) / 0.3, 0, 1);
+      const aOut = clamp(bl / 0.5, 0, 1);
+      ctx.globalAlpha = Math.min(aIn, aOut);
+      ctx.fillStyle = '#dceef0';
+      ctx.font = '800 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.textAlign = 'center';
+      const by = VY - R * 0.62;
+      ctx.shadowColor = 'rgba(111,242,212,0.6)';
+      ctx.shadowBlur = 18;
+      ctx.fillText(banner.text, CX, by);
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#6b8790';
+      ctx.font = '600 11px ui-monospace, SFMono-Regular, Menlo, monospace';
+      ctx.fillText('— ' + banner.sub + ' —', CX, by + 20);
+      ctx.globalAlpha = 1;
+    }
     ctx.textAlign = 'left';
 
     ctx.restore();
@@ -950,8 +1028,12 @@
   let last = 0;
   function frame(now) {
     if (!last) last = now;
-    const dt = Math.min(0.05, (now - last) / 1000);
+    let dt = Math.min(0.05, (now - last) / 1000);
     last = now;
+    if (slowmo > 0) {
+      slowmo = Math.max(0, slowmo - dt * 1.1);
+      dt *= 0.22 + 0.78 * (1 - slowmo);   // death plays out at fifth speed, easing back
+    }
     step(dt);
     draw(now / 1000);
     requestAnimationFrame(frame);
