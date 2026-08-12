@@ -2,7 +2,7 @@
 
 **ID:** SPEC-002  
 **Slug:** oc-research-autonomy  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** small  

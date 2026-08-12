@@ -2,7 +2,7 @@
 
 **ID:** SPEC-005  
 **Slug:** platform-sow-template  
-**Status:** open  
+**Status:** needs-review
 **Claimed by:** —  
 **Reviewer:** Brady  
 **Size:** medium  
